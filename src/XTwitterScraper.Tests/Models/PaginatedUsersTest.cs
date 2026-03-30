@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models;
+using XTwitterScraper.Models.X.Users;
 
 namespace XTwitterScraper.Tests.Models;
 
@@ -14,19 +15,51 @@ public class PaginatedUsersTest : TestBase
         {
             HasNextPage = true,
             NextCursor = "next_cursor",
-            Users = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Users =
+            [
+                new()
+                {
+                    ID = "id",
+                    Name = "name",
+                    Username = "username",
+                    CreatedAt = "createdAt",
+                    Description = "description",
+                    Followers = 0,
+                    Following = 0,
+                    Location = "location",
+                    ProfilePicture = "profilePicture",
+                    StatusesCount = 0,
+                    Verified = true,
+                },
+            ],
         };
 
         bool expectedHasNextPage = true;
         string expectedNextCursor = "next_cursor";
-        List<JsonElement> expectedUsers = [JsonSerializer.Deserialize<JsonElement>("{}")];
+        List<UserProfile> expectedUsers =
+        [
+            new()
+            {
+                ID = "id",
+                Name = "name",
+                Username = "username",
+                CreatedAt = "createdAt",
+                Description = "description",
+                Followers = 0,
+                Following = 0,
+                Location = "location",
+                ProfilePicture = "profilePicture",
+                StatusesCount = 0,
+                Verified = true,
+            },
+        ];
 
         Assert.Equal(expectedHasNextPage, model.HasNextPage);
         Assert.Equal(expectedNextCursor, model.NextCursor);
         Assert.Equal(expectedUsers.Count, model.Users.Count);
         for (int i = 0; i < expectedUsers.Count; i++)
         {
-            Assert.True(JsonElement.DeepEquals(expectedUsers[i], model.Users[i]));
+            Assert.Equal(expectedUsers[i], model.Users[i]);
         }
     }
 
@@ -37,7 +70,23 @@ public class PaginatedUsersTest : TestBase
         {
             HasNextPage = true,
             NextCursor = "next_cursor",
-            Users = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Users =
+            [
+                new()
+                {
+                    ID = "id",
+                    Name = "name",
+                    Username = "username",
+                    CreatedAt = "createdAt",
+                    Description = "description",
+                    Followers = 0,
+                    Following = 0,
+                    Location = "location",
+                    ProfilePicture = "profilePicture",
+                    StatusesCount = 0,
+                    Verified = true,
+                },
+            ],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -56,7 +105,23 @@ public class PaginatedUsersTest : TestBase
         {
             HasNextPage = true,
             NextCursor = "next_cursor",
-            Users = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Users =
+            [
+                new()
+                {
+                    ID = "id",
+                    Name = "name",
+                    Username = "username",
+                    CreatedAt = "createdAt",
+                    Description = "description",
+                    Followers = 0,
+                    Following = 0,
+                    Location = "location",
+                    ProfilePicture = "profilePicture",
+                    StatusesCount = 0,
+                    Verified = true,
+                },
+            ],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -68,14 +133,30 @@ public class PaginatedUsersTest : TestBase
 
         bool expectedHasNextPage = true;
         string expectedNextCursor = "next_cursor";
-        List<JsonElement> expectedUsers = [JsonSerializer.Deserialize<JsonElement>("{}")];
+        List<UserProfile> expectedUsers =
+        [
+            new()
+            {
+                ID = "id",
+                Name = "name",
+                Username = "username",
+                CreatedAt = "createdAt",
+                Description = "description",
+                Followers = 0,
+                Following = 0,
+                Location = "location",
+                ProfilePicture = "profilePicture",
+                StatusesCount = 0,
+                Verified = true,
+            },
+        ];
 
         Assert.Equal(expectedHasNextPage, deserialized.HasNextPage);
         Assert.Equal(expectedNextCursor, deserialized.NextCursor);
         Assert.Equal(expectedUsers.Count, deserialized.Users.Count);
         for (int i = 0; i < expectedUsers.Count; i++)
         {
-            Assert.True(JsonElement.DeepEquals(expectedUsers[i], deserialized.Users[i]));
+            Assert.Equal(expectedUsers[i], deserialized.Users[i]);
         }
     }
 
@@ -86,7 +167,23 @@ public class PaginatedUsersTest : TestBase
         {
             HasNextPage = true,
             NextCursor = "next_cursor",
-            Users = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Users =
+            [
+                new()
+                {
+                    ID = "id",
+                    Name = "name",
+                    Username = "username",
+                    CreatedAt = "createdAt",
+                    Description = "description",
+                    Followers = 0,
+                    Following = 0,
+                    Location = "location",
+                    ProfilePicture = "profilePicture",
+                    StatusesCount = 0,
+                    Verified = true,
+                },
+            ],
         };
 
         model.Validate();
@@ -99,7 +196,23 @@ public class PaginatedUsersTest : TestBase
         {
             HasNextPage = true,
             NextCursor = "next_cursor",
-            Users = [JsonSerializer.Deserialize<JsonElement>("{}")],
+            Users =
+            [
+                new()
+                {
+                    ID = "id",
+                    Name = "name",
+                    Username = "username",
+                    CreatedAt = "createdAt",
+                    Description = "description",
+                    Followers = 0,
+                    Following = 0,
+                    Location = "location",
+                    ProfilePicture = "profilePicture",
+                    StatusesCount = 0,
+                    Verified = true,
+                },
+            ],
         };
 
         PaginatedUsers copied = new(model);
