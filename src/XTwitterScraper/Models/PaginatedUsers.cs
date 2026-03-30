@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models.X.Users;
 
 namespace XTwitterScraper.Models;
 
@@ -31,16 +32,16 @@ public sealed record class PaginatedUsers : JsonModel
         init { this._rawData.Set("next_cursor", value); }
     }
 
-    public required IReadOnlyList<JsonElement> Users
+    public required IReadOnlyList<UserProfile> Users
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<JsonElement>>("users");
+            return this._rawData.GetNotNullStruct<ImmutableArray<UserProfile>>("users");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<JsonElement>>(
+            this._rawData.Set<ImmutableArray<UserProfile>>(
                 "users",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -52,7 +53,10 @@ public sealed record class PaginatedUsers : JsonModel
     {
         _ = this.HasNextPage;
         _ = this.NextCursor;
-        _ = this.Users;
+        foreach (var item in this.Users)
+        {
+            item.Validate();
+        }
     }
 
     public PaginatedUsers() { }
