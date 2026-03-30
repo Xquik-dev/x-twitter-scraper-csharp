@@ -27,21 +27,6 @@ public interface IDmService
     IDmService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Send direct message
-    /// </summary>
-    Task<DmUpdateResponse> Update(
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Update(DmUpdateParams, CancellationToken)"/>
-    Task<DmUpdateResponse> Update(
-        string userID,
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Get DM conversation history
     /// </summary>
     Task<DmRetrieveHistoryResponse> RetrieveHistory(
@@ -53,6 +38,21 @@ public interface IDmService
     Task<DmRetrieveHistoryResponse> RetrieveHistory(
         string userID,
         DmRetrieveHistoryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Send direct message
+    /// </summary>
+    Task<DmSendResponse> Send(
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Send(DmSendParams, CancellationToken)"/>
+    Task<DmSendResponse> Send(
+        string userID,
+        DmSendParams parameters,
         CancellationToken cancellationToken = default
     );
 }
@@ -71,22 +71,6 @@ public interface IDmServiceWithRawResponse
     IDmServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>post /x/dm/{userId}</c>, but is otherwise the
-    /// same as <see cref="IDmService.Update(DmUpdateParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<DmUpdateResponse>> Update(
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Update(DmUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<DmUpdateResponse>> Update(
-        string userID,
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Returns a raw HTTP response for <c>get /x/dm/{userId}/history</c>, but is otherwise the
     /// same as <see cref="IDmService.RetrieveHistory(DmRetrieveHistoryParams, CancellationToken)"/>.
     /// </summary>
@@ -99,6 +83,22 @@ public interface IDmServiceWithRawResponse
     Task<HttpResponse<DmRetrieveHistoryResponse>> RetrieveHistory(
         string userID,
         DmRetrieveHistoryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /x/dm/{userId}</c>, but is otherwise the
+    /// same as <see cref="IDmService.Send(DmSendParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<DmSendResponse>> Send(
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Send(DmSendParams, CancellationToken)"/>
+    Task<HttpResponse<DmSendResponse>> Send(
+        string userID,
+        DmSendParams parameters,
         CancellationToken cancellationToken = default
     );
 }

@@ -31,7 +31,7 @@ public interface IIntegrationService
     /// <summary>
     /// Create integration
     /// </summary>
-    Task<IntegrationCreateResponse> Create(
+    Task<Integration> Create(
         IntegrationCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -39,13 +39,13 @@ public interface IIntegrationService
     /// <summary>
     /// Get integration details
     /// </summary>
-    Task<IntegrationRetrieveResponse> Retrieve(
+    Task<Integration> Retrieve(
         IntegrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(IntegrationRetrieveParams, CancellationToken)"/>
-    Task<IntegrationRetrieveResponse> Retrieve(
+    Task<Integration> Retrieve(
         string id,
         IntegrationRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -54,13 +54,13 @@ public interface IIntegrationService
     /// <summary>
     /// Update integration
     /// </summary>
-    Task<IntegrationUpdateResponse> Update(
+    Task<Integration> Update(
         IntegrationUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(IntegrationUpdateParams, CancellationToken)"/>
-    Task<IntegrationUpdateResponse> Update(
+    Task<Integration> Update(
         string id,
         IntegrationUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -137,7 +137,7 @@ public interface IIntegrationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /integrations</c>, but is otherwise the
     /// same as <see cref="IIntegrationService.Create(IntegrationCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<IntegrationCreateResponse>> Create(
+    Task<HttpResponse<Integration>> Create(
         IntegrationCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -146,13 +146,13 @@ public interface IIntegrationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /integrations/{id}</c>, but is otherwise the
     /// same as <see cref="IIntegrationService.Retrieve(IntegrationRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<IntegrationRetrieveResponse>> Retrieve(
+    Task<HttpResponse<Integration>> Retrieve(
         IntegrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(IntegrationRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<IntegrationRetrieveResponse>> Retrieve(
+    Task<HttpResponse<Integration>> Retrieve(
         string id,
         IntegrationRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -162,13 +162,13 @@ public interface IIntegrationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>patch /integrations/{id}</c>, but is otherwise the
     /// same as <see cref="IIntegrationService.Update(IntegrationUpdateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<IntegrationUpdateResponse>> Update(
+    Task<HttpResponse<Integration>> Update(
         IntegrationUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(IntegrationUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<IntegrationUpdateResponse>> Update(
+    Task<HttpResponse<Integration>> Update(
         string id,
         IntegrationUpdateParams? parameters = null,
         CancellationToken cancellationToken = default

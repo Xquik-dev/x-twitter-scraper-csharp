@@ -7,12 +7,12 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var user = await this.client.X.Users.Retrieve(
+        var userProfile = await this.client.X.Users.Retrieve(
             "username",
             new(),
             TestContext.Current.CancellationToken
         );
-        user.Validate();
+        userProfile.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -37,12 +37,12 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveFollowersYouKnow_Works()
     {
-        var response = await this.client.X.Users.RetrieveFollowersYouKnow(
+        var paginatedUsers = await this.client.X.Users.RetrieveFollowersYouKnow(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedUsers.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -58,23 +58,23 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveLikes_Works()
     {
-        var response = await this.client.X.Users.RetrieveLikes(
+        var paginatedTweets = await this.client.X.Users.RetrieveLikes(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveMedia_Works()
     {
-        var response = await this.client.X.Users.RetrieveMedia(
+        var paginatedTweets = await this.client.X.Users.RetrieveMedia(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -99,12 +99,12 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveTweets_Works()
     {
-        var response = await this.client.X.Users.RetrieveTweets(
+        var paginatedTweets = await this.client.X.Users.RetrieveTweets(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

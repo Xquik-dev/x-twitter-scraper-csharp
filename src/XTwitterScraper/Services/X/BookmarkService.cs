@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Bookmarks;
 
 namespace XTwitterScraper.Services.X;
@@ -34,7 +35,7 @@ public sealed class BookmarkService : IBookmarkService
     }
 
     /// <inheritdoc/>
-    public async Task<BookmarkListResponse> List(
+    public async Task<PaginatedTweets> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -75,7 +76,7 @@ public sealed class BookmarkServiceWithRawResponse : IBookmarkServiceWithRawResp
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<BookmarkListResponse>> List(
+    public async Task<HttpResponse<PaginatedTweets>> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -92,14 +93,14 @@ public sealed class BookmarkServiceWithRawResponse : IBookmarkServiceWithRawResp
             response,
             async (token) =>
             {
-                var bookmarks = await response
-                    .Deserialize<BookmarkListResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    bookmarks.Validate();
+                    paginatedTweets.Validate();
                 }
-                return bookmarks;
+                return paginatedTweets;
             }
         );
     }

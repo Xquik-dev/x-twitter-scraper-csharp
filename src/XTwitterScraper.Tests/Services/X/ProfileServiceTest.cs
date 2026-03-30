@@ -6,13 +6,13 @@ namespace XTwitterScraper.Tests.Services.X;
 public class ProfileServiceTest : TestBase
 {
     [Fact(Skip = "Mock server tests are disabled")]
-    public async Task PatchAll_Works()
+    public async Task Update_Works()
     {
-        var response = await this.client.X.Profile.PatchAll(
+        var profile = await this.client.X.Profile.Update(
             new() { Account = "account" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        profile.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

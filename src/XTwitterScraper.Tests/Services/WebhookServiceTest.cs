@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using XTwitterScraper.Models.Webhooks;
+using XTwitterScraper.Models;
 
 namespace XTwitterScraper.Tests.Services;
 

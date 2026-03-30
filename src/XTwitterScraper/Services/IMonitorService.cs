@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models.Monitors;
+using Monitors = XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Services;
 
@@ -31,61 +31,61 @@ public interface IMonitorService
     /// <summary>
     /// Create monitor
     /// </summary>
-    Task<MonitorCreateResponse> Create(
-        MonitorCreateParams parameters,
+    Task<Monitors::MonitorCreateResponse> Create(
+        Monitors::MonitorCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Get monitor
     /// </summary>
-    Task<MonitorRetrieveResponse> Retrieve(
-        MonitorRetrieveParams parameters,
+    Task<Monitors::Monitor> Retrieve(
+        Monitors::MonitorRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Retrieve(MonitorRetrieveParams, CancellationToken)"/>
-    Task<MonitorRetrieveResponse> Retrieve(
+    /// <inheritdoc cref="Retrieve(Monitors::MonitorRetrieveParams, CancellationToken)"/>
+    Task<Monitors::Monitor> Retrieve(
         string id,
-        MonitorRetrieveParams? parameters = null,
+        Monitors::MonitorRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Update monitor
     /// </summary>
-    Task<MonitorUpdateResponse> Update(
-        MonitorUpdateParams parameters,
+    Task<Monitors::Monitor> Update(
+        Monitors::MonitorUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Update(MonitorUpdateParams, CancellationToken)"/>
-    Task<MonitorUpdateResponse> Update(
+    /// <inheritdoc cref="Update(Monitors::MonitorUpdateParams, CancellationToken)"/>
+    Task<Monitors::Monitor> Update(
         string id,
-        MonitorUpdateParams? parameters = null,
+        Monitors::MonitorUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// List monitors
     /// </summary>
-    Task<MonitorListResponse> List(
-        MonitorListParams? parameters = null,
+    Task<Monitors::MonitorListResponse> List(
+        Monitors::MonitorListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Deactivate monitor
     /// </summary>
-    Task<MonitorDeactivateResponse> Deactivate(
-        MonitorDeactivateParams parameters,
+    Task<Monitors::MonitorDeactivateResponse> Deactivate(
+        Monitors::MonitorDeactivateParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Deactivate(MonitorDeactivateParams, CancellationToken)"/>
-    Task<MonitorDeactivateResponse> Deactivate(
+    /// <inheritdoc cref="Deactivate(Monitors::MonitorDeactivateParams, CancellationToken)"/>
+    Task<Monitors::MonitorDeactivateResponse> Deactivate(
         string id,
-        MonitorDeactivateParams? parameters = null,
+        Monitors::MonitorDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }
@@ -105,67 +105,67 @@ public interface IMonitorServiceWithRawResponse
 
     /// <summary>
     /// Returns a raw HTTP response for <c>post /monitors</c>, but is otherwise the
-    /// same as <see cref="IMonitorService.Create(MonitorCreateParams, CancellationToken)"/>.
+    /// same as <see cref="IMonitorService.Create(Monitors::MonitorCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<MonitorCreateResponse>> Create(
-        MonitorCreateParams parameters,
+    Task<HttpResponse<Monitors::MonitorCreateResponse>> Create(
+        Monitors::MonitorCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /monitors/{id}</c>, but is otherwise the
-    /// same as <see cref="IMonitorService.Retrieve(MonitorRetrieveParams, CancellationToken)"/>.
+    /// same as <see cref="IMonitorService.Retrieve(Monitors::MonitorRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<MonitorRetrieveResponse>> Retrieve(
-        MonitorRetrieveParams parameters,
+    Task<HttpResponse<Monitors::Monitor>> Retrieve(
+        Monitors::MonitorRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Retrieve(MonitorRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<MonitorRetrieveResponse>> Retrieve(
+    /// <inheritdoc cref="Retrieve(Monitors::MonitorRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<Monitors::Monitor>> Retrieve(
         string id,
-        MonitorRetrieveParams? parameters = null,
+        Monitors::MonitorRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns a raw HTTP response for <c>patch /monitors/{id}</c>, but is otherwise the
-    /// same as <see cref="IMonitorService.Update(MonitorUpdateParams, CancellationToken)"/>.
+    /// same as <see cref="IMonitorService.Update(Monitors::MonitorUpdateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<MonitorUpdateResponse>> Update(
-        MonitorUpdateParams parameters,
+    Task<HttpResponse<Monitors::Monitor>> Update(
+        Monitors::MonitorUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Update(MonitorUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<MonitorUpdateResponse>> Update(
+    /// <inheritdoc cref="Update(Monitors::MonitorUpdateParams, CancellationToken)"/>
+    Task<HttpResponse<Monitors::Monitor>> Update(
         string id,
-        MonitorUpdateParams? parameters = null,
+        Monitors::MonitorUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /monitors</c>, but is otherwise the
-    /// same as <see cref="IMonitorService.List(MonitorListParams?, CancellationToken)"/>.
+    /// same as <see cref="IMonitorService.List(Monitors::MonitorListParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<MonitorListResponse>> List(
-        MonitorListParams? parameters = null,
+    Task<HttpResponse<Monitors::MonitorListResponse>> List(
+        Monitors::MonitorListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
     /// Returns a raw HTTP response for <c>delete /monitors/{id}</c>, but is otherwise the
-    /// same as <see cref="IMonitorService.Deactivate(MonitorDeactivateParams, CancellationToken)"/>.
+    /// same as <see cref="IMonitorService.Deactivate(Monitors::MonitorDeactivateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<MonitorDeactivateResponse>> Deactivate(
-        MonitorDeactivateParams parameters,
+    Task<HttpResponse<Monitors::MonitorDeactivateResponse>> Deactivate(
+        Monitors::MonitorDeactivateParams parameters,
         CancellationToken cancellationToken = default
     );
 
-    /// <inheritdoc cref="Deactivate(MonitorDeactivateParams, CancellationToken)"/>
-    Task<HttpResponse<MonitorDeactivateResponse>> Deactivate(
+    /// <inheritdoc cref="Deactivate(Monitors::MonitorDeactivateParams, CancellationToken)"/>
+    Task<HttpResponse<Monitors::MonitorDeactivateResponse>> Deactivate(
         string id,
-        MonitorDeactivateParams? parameters = null,
+        Monitors::MonitorDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

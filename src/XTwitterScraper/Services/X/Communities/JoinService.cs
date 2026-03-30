@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models.X.Communities;
 using XTwitterScraper.Models.X.Communities.Join;
 
 namespace XTwitterScraper.Services.X.Communities;
@@ -35,7 +36,7 @@ public sealed class JoinService : IJoinService
     }
 
     /// <inheritdoc/>
-    public async Task<JoinCreateResponse> Create(
+    public async Task<CommunityActionResult> Create(
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +48,7 @@ public sealed class JoinService : IJoinService
     }
 
     /// <inheritdoc/>
-    public Task<JoinCreateResponse> Create(
+    public Task<CommunityActionResult> Create(
         string id,
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -57,7 +58,7 @@ public sealed class JoinService : IJoinService
     }
 
     /// <inheritdoc/>
-    public async Task<JoinDeleteAllResponse> DeleteAll(
+    public async Task<CommunityActionResult> DeleteAll(
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -69,7 +70,7 @@ public sealed class JoinService : IJoinService
     }
 
     /// <inheritdoc/>
-    public Task<JoinDeleteAllResponse> DeleteAll(
+    public Task<CommunityActionResult> DeleteAll(
         string id,
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
@@ -96,7 +97,7 @@ public sealed class JoinServiceWithRawResponse : IJoinServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<JoinCreateResponse>> Create(
+    public async Task<HttpResponse<CommunityActionResult>> Create(
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -116,20 +117,20 @@ public sealed class JoinServiceWithRawResponse : IJoinServiceWithRawResponse
             response,
             async (token) =>
             {
-                var join = await response
-                    .Deserialize<JoinCreateResponse>(token)
+                var communityActionResult = await response
+                    .Deserialize<CommunityActionResult>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    join.Validate();
+                    communityActionResult.Validate();
                 }
-                return join;
+                return communityActionResult;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<JoinCreateResponse>> Create(
+    public Task<HttpResponse<CommunityActionResult>> Create(
         string id,
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -139,7 +140,7 @@ public sealed class JoinServiceWithRawResponse : IJoinServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<JoinDeleteAllResponse>> DeleteAll(
+    public async Task<HttpResponse<CommunityActionResult>> DeleteAll(
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -159,20 +160,20 @@ public sealed class JoinServiceWithRawResponse : IJoinServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<JoinDeleteAllResponse>(token)
+                var communityActionResult = await response
+                    .Deserialize<CommunityActionResult>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    communityActionResult.Validate();
                 }
-                return deserializedResponse;
+                return communityActionResult;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<JoinDeleteAllResponse>> DeleteAll(
+    public Task<HttpResponse<CommunityActionResult>> DeleteAll(
         string id,
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default

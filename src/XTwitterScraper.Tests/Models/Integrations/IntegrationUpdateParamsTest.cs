@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Integrations;
 
 namespace XTwitterScraper.Tests.Models.Integrations;
@@ -15,7 +15,7 @@ public class IntegrationUpdateParamsTest : TestBase
         var parameters = new IntegrationUpdateParams
         {
             ID = "id",
-            EventTypes = [IntegrationUpdateParamsEventType.TweetNew],
+            EventTypes = [EventType.TweetNew],
             Filters = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -31,10 +31,7 @@ public class IntegrationUpdateParamsTest : TestBase
         };
 
         string expectedID = "id";
-        List<ApiEnum<string, IntegrationUpdateParamsEventType>> expectedEventTypes =
-        [
-            IntegrationUpdateParamsEventType.TweetNew,
-        ];
+        List<ApiEnum<string, EventType>> expectedEventTypes = [EventType.TweetNew];
         Dictionary<string, JsonElement> expectedFilters = new()
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -147,7 +144,7 @@ public class IntegrationUpdateParamsTest : TestBase
         var parameters = new IntegrationUpdateParams
         {
             ID = "id",
-            EventTypes = [IntegrationUpdateParamsEventType.TweetNew],
+            EventTypes = [EventType.TweetNew],
             Filters = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -165,69 +162,5 @@ public class IntegrationUpdateParamsTest : TestBase
         IntegrationUpdateParams copied = new(parameters);
 
         Assert.Equal(parameters, copied);
-    }
-}
-
-public class IntegrationUpdateParamsEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(IntegrationUpdateParamsEventType.TweetNew)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetReply)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetRetweet)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetQuote)]
-    [InlineData(IntegrationUpdateParamsEventType.FollowerGained)]
-    [InlineData(IntegrationUpdateParamsEventType.FollowerLost)]
-    public void Validation_Works(IntegrationUpdateParamsEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, IntegrationUpdateParamsEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, IntegrationUpdateParamsEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(IntegrationUpdateParamsEventType.TweetNew)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetReply)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetRetweet)]
-    [InlineData(IntegrationUpdateParamsEventType.TweetQuote)]
-    [InlineData(IntegrationUpdateParamsEventType.FollowerGained)]
-    [InlineData(IntegrationUpdateParamsEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(IntegrationUpdateParamsEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, IntegrationUpdateParamsEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, IntegrationUpdateParamsEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, IntegrationUpdateParamsEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, IntegrationUpdateParamsEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
     }
 }

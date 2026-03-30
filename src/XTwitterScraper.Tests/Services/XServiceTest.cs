@@ -18,11 +18,11 @@ public class XServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetHomeTimeline_Works()
     {
-        var response = await this.client.X.GetHomeTimeline(
+        var paginatedTweets = await this.client.X.GetHomeTimeline(
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

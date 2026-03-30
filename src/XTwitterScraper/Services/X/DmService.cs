@@ -35,28 +35,6 @@ public sealed class DmService : IDmService
     }
 
     /// <inheritdoc/>
-    public async Task<DmUpdateResponse> Update(
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        using var response = await this
-            .WithRawResponse.Update(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
-    }
-
-    /// <inheritdoc/>
-    public Task<DmUpdateResponse> Update(
-        string userID,
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return this.Update(parameters with { UserID = userID }, cancellationToken);
-    }
-
-    /// <inheritdoc/>
     public async Task<DmRetrieveHistoryResponse> RetrieveHistory(
         DmRetrieveHistoryParams parameters,
         CancellationToken cancellationToken = default
@@ -79,6 +57,28 @@ public sealed class DmService : IDmService
 
         return this.RetrieveHistory(parameters with { UserID = userID }, cancellationToken);
     }
+
+    /// <inheritdoc/>
+    public async Task<DmSendResponse> Send(
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Send(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<DmSendResponse> Send(
+        string userID,
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Send(parameters with { UserID = userID }, cancellationToken);
+    }
 }
 
 /// <inheritdoc/>
@@ -95,47 +95,6 @@ public sealed class DmServiceWithRawResponse : IDmServiceWithRawResponse
     public DmServiceWithRawResponse(IXTwitterScraperClientWithRawResponse client)
     {
         _client = client;
-    }
-
-    /// <inheritdoc/>
-    public async Task<HttpResponse<DmUpdateResponse>> Update(
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (parameters.UserID == null)
-        {
-            throw new XTwitterScraperInvalidDataException("'parameters.UserID' cannot be null");
-        }
-
-        HttpRequest<DmUpdateParams> request = new()
-        {
-            Method = HttpMethod.Post,
-            Params = parameters,
-        };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var dm = await response.Deserialize<DmUpdateResponse>(token).ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    dm.Validate();
-                }
-                return dm;
-            }
-        );
-    }
-
-    /// <inheritdoc/>
-    public Task<HttpResponse<DmUpdateResponse>> Update(
-        string userID,
-        DmUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return this.Update(parameters with { UserID = userID }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -181,5 +140,44 @@ public sealed class DmServiceWithRawResponse : IDmServiceWithRawResponse
         parameters ??= new();
 
         return this.RetrieveHistory(parameters with { UserID = userID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<DmSendResponse>> Send(
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.UserID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.UserID' cannot be null");
+        }
+
+        HttpRequest<DmSendParams> request = new() { Method = HttpMethod.Post, Params = parameters };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<DmSendResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<DmSendResponse>> Send(
+        string userID,
+        DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Send(parameters with { UserID = userID }, cancellationToken);
     }
 }

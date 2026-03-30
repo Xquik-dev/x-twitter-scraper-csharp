@@ -24,15 +24,19 @@ See the [`examples`](examples) directory for complete and runnable examples.
 ```csharp
 using System;
 using XTwitterScraper;
-using XTwitterScraper.Models.Account;
+using XTwitterScraper.Models.X.Tweets;
 
 XTwitterScraperClient client = new();
 
-AccountRetrieveParams parameters = new();
+TweetSearchParams parameters = new()
+{
+    Q = "from:elonmusk",
+    Limit = 10,
+};
 
-var account = await client.Account.Retrieve(parameters);
+var paginatedTweets = await client.X.Tweets.Search(parameters);
 
-Console.WriteLine(account);
+Console.WriteLine(paginatedTweets);
 ```
 
 ## Client configuration
@@ -75,7 +79,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-var account = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with
         {
@@ -83,9 +87,9 @@ var account = await client
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
-    .Account.Retrieve(parameters);
+    .X.Tweets.Search(parameters);
 
-Console.WriteLine(account);
+Console.WriteLine(paginatedTweets);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -96,7 +100,7 @@ The `WithOptions` method does not affect the original client or service.
 
 To send a request to the X Twitter Scraper API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
 
-For example, `client.Account.Retrieve` should be called with an instance of `AccountRetrieveParams`, and it will return an instance of `Task<AccountRetrieveResponse>`.
+For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
 
 ## Binary responses
 
@@ -133,7 +137,7 @@ The SDK defines methods that deserialize responses into instances of C# classes.
 To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
 
 ```csharp
-var response = await client.WithRawResponse.Account.Retrieve();
+var response = await client.WithRawResponse.X.Tweets.Search(parameters);
 var statusCode = response.StatusCode;
 var headers = response.Headers;
 ```
@@ -144,10 +148,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using XTwitterScraper.Models.Account;
+using XTwitterScraper.Models;
 
-var response = await client.WithRawResponse.Account.Retrieve();
-AccountRetrieveResponse deserialized = await response.Deserialize();
+var response = await client.WithRawResponse.X.Tweets.Search(parameters);
+PaginatedTweets deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -205,13 +209,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var account = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
-    .Account.Retrieve(parameters);
+    .X.Tweets.Search(parameters);
 
-Console.WriteLine(account);
+Console.WriteLine(paginatedTweets);
 ```
 
 ### Timeouts
@@ -232,13 +236,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var account = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
-    .Account.Retrieve(parameters);
+    .X.Tweets.Search(parameters);
 
-Console.WriteLine(account);
+Console.WriteLine(paginatedTweets);
 ```
 
 ### Proxies
@@ -272,9 +276,9 @@ To set undocumented parameters, a constructor exists that accepts dictionaries f
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using XTwitterScraper.Models.Account;
+using XTwitterScraper.Models.X.Tweets;
 
-AccountRetrieveParams parameters = new
+TweetSearchParams parameters = new
 (
     rawHeaderData: new Dictionary<string, JsonElement>()
     {
@@ -289,7 +293,7 @@ AccountRetrieveParams parameters = new
 {
     // Documented properties can still be added here.
     // In case of conflict, these parameters take precedence over the custom parameters.
-
+    Limit = 200
 };
 ```
 
@@ -300,17 +304,16 @@ This can also be used to set a documented parameter to an undocumented or not ye
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using XTwitterScraper.Models.Account;
+using XTwitterScraper.Models.X.Tweets;
 
-var parameters = AccountSetXUsernameParams.FromRawUnchecked
+var parameters = TweetSearchParams.FromRawUnchecked
 (
 
     rawHeaderData: new Dictionary<string, JsonElement>(),
-    rawQueryData: new Dictionary<string, JsonElement>(),
-    rawBodyData: new Dictionary<string, JsonElement>
+    rawQueryData: new Dictionary<string, JsonElement>
     {
         {
-            "username",
+            "q",
             JsonSerializer.SerializeToElement("custom value")
         }
     }
@@ -364,7 +367,7 @@ To access undocumented response properties, the `RawData` property can be used:
 ```csharp
 using System.Text.Json;
 
-var response = client.Account.Retrieve()
+var response = client.X.Tweets.Search(parameters)
 if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 {
     // Do something with `value`
@@ -382,8 +385,8 @@ By default, the SDK will not throw an exception in this case. It will throw `XTw
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
 ```csharp
-var account = client.Account.Retrieve();
-account.Validate();
+var paginatedTweets = client.X.Tweets.Search(parameters);
+paginatedTweets.Validate();
 ```
 
 Or configure the client using the `ResponseValidation` option:
@@ -399,13 +402,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var account = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { ResponseValidation = true }
     )
-    .Account.Retrieve(parameters);
+    .X.Tweets.Search(parameters);
 
-Console.WriteLine(account);
+Console.WriteLine(paginatedTweets);
 ```
 
 ## Semantic versioning

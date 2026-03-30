@@ -34,13 +34,13 @@ public sealed class FollowerService : IFollowerService
     }
 
     /// <inheritdoc/>
-    public async Task<FollowerRetrieveCheckResponse> RetrieveCheck(
-        FollowerRetrieveCheckParams parameters,
+    public async Task<FollowerCheckResponse> Check(
+        FollowerCheckParams parameters,
         CancellationToken cancellationToken = default
     )
     {
         using var response = await this
-            .WithRawResponse.RetrieveCheck(parameters, cancellationToken)
+            .WithRawResponse.Check(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
@@ -63,12 +63,12 @@ public sealed class FollowerServiceWithRawResponse : IFollowerServiceWithRawResp
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<FollowerRetrieveCheckResponse>> RetrieveCheck(
-        FollowerRetrieveCheckParams parameters,
+    public async Task<HttpResponse<FollowerCheckResponse>> Check(
+        FollowerCheckParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<FollowerRetrieveCheckParams> request = new()
+        HttpRequest<FollowerCheckParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -79,7 +79,7 @@ public sealed class FollowerServiceWithRawResponse : IFollowerServiceWithRawResp
             async (token) =>
             {
                 var deserializedResponse = await response
-                    .Deserialize<FollowerRetrieveCheckResponse>(token)
+                    .Deserialize<FollowerCheckResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {

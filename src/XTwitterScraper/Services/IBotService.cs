@@ -1,18 +1,13 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models.Bot;
 using XTwitterScraper.Services.Bot;
 
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// Telegram bot service endpoints
-///
-/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
 /// </summary>
 public interface IBotService
 {
@@ -30,14 +25,6 @@ public interface IBotService
     IBotService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IPlatformLinkService PlatformLinks { get; }
-
-    /// <summary>
-    /// Track bot token usage
-    /// </summary>
-    Task<BotTrackUsageResponse> TrackUsage(
-        BotTrackUsageParams parameters,
-        CancellationToken cancellationToken = default
-    );
 }
 
 /// <summary>
@@ -54,13 +41,4 @@ public interface IBotServiceWithRawResponse
     IBotServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IPlatformLinkServiceWithRawResponse PlatformLinks { get; }
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>post /bot/usage</c>, but is otherwise the
-    /// same as <see cref="IBotService.TrackUsage(BotTrackUsageParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<BotTrackUsageResponse>> TrackUsage(
-        BotTrackUsageParams parameters,
-        CancellationToken cancellationToken = default
-    );
 }
