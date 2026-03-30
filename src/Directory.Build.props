@@ -6,7 +6,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 X Twitter Scraper</Copyright>
     <PackageProjectUrl>https://xquik.com</PackageProjectUrl>
-    <RepositoryUrl>https://www.github.com/stainless-sdks/x-twitter-scraper-csharp</RepositoryUrl>
+    <RepositoryUrl>https://www.github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <!-- Documentation-->
