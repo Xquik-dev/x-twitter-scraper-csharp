@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models.X.Communities;
 using XTwitterScraper.Models.X.Communities.Join;
 
 namespace XTwitterScraper.Services.X.Communities;
@@ -31,13 +32,13 @@ public interface IJoinService
     /// <summary>
     /// Join community
     /// </summary>
-    Task<JoinCreateResponse> Create(
+    Task<CommunityActionResult> Create(
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Create(JoinCreateParams, CancellationToken)"/>
-    Task<JoinCreateResponse> Create(
+    Task<CommunityActionResult> Create(
         string id,
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -46,13 +47,13 @@ public interface IJoinService
     /// <summary>
     /// Leave community
     /// </summary>
-    Task<JoinDeleteAllResponse> DeleteAll(
+    Task<CommunityActionResult> DeleteAll(
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="DeleteAll(JoinDeleteAllParams, CancellationToken)"/>
-    Task<JoinDeleteAllResponse> DeleteAll(
+    Task<CommunityActionResult> DeleteAll(
         string id,
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
@@ -76,13 +77,13 @@ public interface IJoinServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /x/communities/{id}/join</c>, but is otherwise the
     /// same as <see cref="IJoinService.Create(JoinCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<JoinCreateResponse>> Create(
+    Task<HttpResponse<CommunityActionResult>> Create(
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Create(JoinCreateParams, CancellationToken)"/>
-    Task<HttpResponse<JoinCreateResponse>> Create(
+    Task<HttpResponse<CommunityActionResult>> Create(
         string id,
         JoinCreateParams parameters,
         CancellationToken cancellationToken = default
@@ -92,13 +93,13 @@ public interface IJoinServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /x/communities/{id}/join</c>, but is otherwise the
     /// same as <see cref="IJoinService.DeleteAll(JoinDeleteAllParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<JoinDeleteAllResponse>> DeleteAll(
+    Task<HttpResponse<CommunityActionResult>> DeleteAll(
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="DeleteAll(JoinDeleteAllParams, CancellationToken)"/>
-    Task<HttpResponse<JoinDeleteAllResponse>> DeleteAll(
+    Task<HttpResponse<CommunityActionResult>> DeleteAll(
         string id,
         JoinDeleteAllParams parameters,
         CancellationToken cancellationToken = default

@@ -29,18 +29,18 @@ public interface IMediaService
     IMediaService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Upload media
-    /// </summary>
-    Task<MediaCreateResponse> Create(
-        MediaCreateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Download tweet media
     /// </summary>
     Task<MediaDownloadResponse> Download(
         MediaDownloadParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Upload media
+    /// </summary>
+    Task<MediaUploadResponse> Upload(
+        MediaUploadParams parameters,
         CancellationToken cancellationToken = default
     );
 }
@@ -59,20 +59,20 @@ public interface IMediaServiceWithRawResponse
     IMediaServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>post /x/media</c>, but is otherwise the
-    /// same as <see cref="IMediaService.Create(MediaCreateParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<MediaCreateResponse>> Create(
-        MediaCreateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Returns a raw HTTP response for <c>post /x/media/download</c>, but is otherwise the
     /// same as <see cref="IMediaService.Download(MediaDownloadParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<MediaDownloadResponse>> Download(
         MediaDownloadParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /x/media</c>, but is otherwise the
+    /// same as <see cref="IMediaService.Upload(MediaUploadParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<MediaUploadResponse>> Upload(
+        MediaUploadParams parameters,
         CancellationToken cancellationToken = default
     );
 }

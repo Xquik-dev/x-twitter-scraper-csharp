@@ -47,7 +47,7 @@ public sealed class AccountService : IAccountService
     }
 
     /// <inheritdoc/>
-    public async Task<AccountRetrieveResponse> Retrieve(
+    public async Task<XAccountDetail> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -59,7 +59,7 @@ public sealed class AccountService : IAccountService
     }
 
     /// <inheritdoc/>
-    public Task<AccountRetrieveResponse> Retrieve(
+    public Task<XAccountDetail> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -174,7 +174,7 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    public async Task<HttpResponse<XAccountDetail>> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -194,20 +194,20 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
             response,
             async (token) =>
             {
-                var account = await response
-                    .Deserialize<AccountRetrieveResponse>(token)
+                var xAccountDetail = await response
+                    .Deserialize<XAccountDetail>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    account.Validate();
+                    xAccountDetail.Validate();
                 }
-                return account;
+                return xAccountDetail;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    public Task<HttpResponse<XAccountDetail>> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

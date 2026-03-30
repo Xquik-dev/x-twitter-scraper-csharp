@@ -1,12 +1,10 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
-using System = System;
 
 namespace XTwitterScraper.Models.Events;
 
@@ -161,9 +159,9 @@ public record class EventListParams : ParamsBase
             && this._rawQueryData.Equals(other._rawQueryData);
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/events")
         {
             Query = this.QueryString(options, new() { ApiKey = true }),
         }.Uri;
@@ -181,61 +179,5 @@ public record class EventListParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
-    }
-}
-
-[JsonConverter(typeof(EventTypeConverter))]
-public enum EventType
-{
-    TweetNew,
-    TweetReply,
-    TweetRetweet,
-    TweetQuote,
-    FollowerGained,
-    FollowerLost,
-}
-
-sealed class EventTypeConverter : JsonConverter<EventType>
-{
-    public override EventType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "tweet.new" => EventType.TweetNew,
-            "tweet.reply" => EventType.TweetReply,
-            "tweet.retweet" => EventType.TweetRetweet,
-            "tweet.quote" => EventType.TweetQuote,
-            "follower.gained" => EventType.FollowerGained,
-            "follower.lost" => EventType.FollowerLost,
-            _ => (EventType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        EventType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                EventType.TweetNew => "tweet.new",
-                EventType.TweetReply => "tweet.reply",
-                EventType.TweetRetweet => "tweet.retweet",
-                EventType.TweetQuote => "tweet.quote",
-                EventType.FollowerGained => "follower.gained",
-                EventType.FollowerLost => "follower.lost",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
     }
 }

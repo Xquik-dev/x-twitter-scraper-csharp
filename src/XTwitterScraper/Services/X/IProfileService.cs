@@ -31,8 +31,8 @@ public interface IProfileService
     /// <summary>
     /// Update X profile
     /// </summary>
-    Task<ProfilePatchAllResponse> PatchAll(
-        ProfilePatchAllParams parameters,
+    Task<ProfileUpdateResponse> Update(
+        ProfileUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -68,10 +68,10 @@ public interface IProfileServiceWithRawResponse
 
     /// <summary>
     /// Returns a raw HTTP response for <c>patch /x/profile</c>, but is otherwise the
-    /// same as <see cref="IProfileService.PatchAll(ProfilePatchAllParams, CancellationToken)"/>.
+    /// same as <see cref="IProfileService.Update(ProfileUpdateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<ProfilePatchAllResponse>> PatchAll(
-        ProfilePatchAllParams parameters,
+    Task<HttpResponse<ProfileUpdateResponse>> Update(
+        ProfileUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 

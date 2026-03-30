@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X;
 using X = XTwitterScraper.Services.X;
 
@@ -130,7 +131,7 @@ public sealed class XService : IXService
     }
 
     /// <inheritdoc/>
-    public async Task<XGetHomeTimelineResponse> GetHomeTimeline(
+    public async Task<PaginatedTweets> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -296,7 +297,7 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<XGetHomeTimelineResponse>> GetHomeTimeline(
+    public async Task<HttpResponse<PaginatedTweets>> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -313,14 +314,14 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<XGetHomeTimelineResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }

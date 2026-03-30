@@ -31,8 +31,8 @@ public interface IFollowerService
     /// <summary>
     /// Check follow relationship
     /// </summary>
-    Task<FollowerRetrieveCheckResponse> RetrieveCheck(
-        FollowerRetrieveCheckParams parameters,
+    Task<FollowerCheckResponse> Check(
+        FollowerCheckParams parameters,
         CancellationToken cancellationToken = default
     );
 }
@@ -52,10 +52,10 @@ public interface IFollowerServiceWithRawResponse
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /x/followers/check</c>, but is otherwise the
-    /// same as <see cref="IFollowerService.RetrieveCheck(FollowerRetrieveCheckParams, CancellationToken)"/>.
+    /// same as <see cref="IFollowerService.Check(FollowerCheckParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<FollowerRetrieveCheckResponse>> RetrieveCheck(
-        FollowerRetrieveCheckParams parameters,
+    Task<HttpResponse<FollowerCheckResponse>> Check(
+        FollowerCheckParams parameters,
         CancellationToken cancellationToken = default
     );
 }

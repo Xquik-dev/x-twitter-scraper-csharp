@@ -35,7 +35,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public async Task<StyleRetrieveResponse> Retrieve(
+    public async Task<StyleProfile> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public Task<StyleRetrieveResponse> Retrieve(
+    public Task<StyleProfile> Retrieve(
         string username,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -59,7 +59,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public async Task<StyleUpdateResponse> Update(
+    public async Task<StyleProfile> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -71,7 +71,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public Task<StyleUpdateResponse> Update(
+    public Task<StyleProfile> Update(
         string username,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -112,7 +112,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public async Task<StyleAnalyzeResponse> Analyze(
+    public async Task<StyleProfile> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -177,7 +177,7 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
+    public async Task<HttpResponse<StyleProfile>> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -197,20 +197,20 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var style = await response
-                    .Deserialize<StyleRetrieveResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    style.Validate();
+                    styleProfile.Validate();
                 }
-                return style;
+                return styleProfile;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
+    public Task<HttpResponse<StyleProfile>> Retrieve(
         string username,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -222,7 +222,7 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleUpdateResponse>> Update(
+    public async Task<HttpResponse<StyleProfile>> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -242,20 +242,20 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var style = await response
-                    .Deserialize<StyleUpdateResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    style.Validate();
+                    styleProfile.Validate();
                 }
-                return style;
+                return styleProfile;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<StyleUpdateResponse>> Update(
+    public Task<HttpResponse<StyleProfile>> Update(
         string username,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -326,7 +326,7 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleAnalyzeResponse>> Analyze(
+    public async Task<HttpResponse<StyleProfile>> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -341,14 +341,14 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<StyleAnalyzeResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    styleProfile.Validate();
                 }
-                return deserializedResponse;
+                return styleProfile;
             }
         );
     }

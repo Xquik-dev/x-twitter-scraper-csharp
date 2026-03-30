@@ -33,13 +33,13 @@ public sealed class ProfileService : IProfileService
     }
 
     /// <inheritdoc/>
-    public async Task<ProfilePatchAllResponse> PatchAll(
-        ProfilePatchAllParams parameters,
+    public async Task<ProfileUpdateResponse> Update(
+        ProfileUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
         using var response = await this
-            .WithRawResponse.PatchAll(parameters, cancellationToken)
+            .WithRawResponse.Update(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
@@ -86,12 +86,12 @@ public sealed class ProfileServiceWithRawResponse : IProfileServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<ProfilePatchAllResponse>> PatchAll(
-        ProfilePatchAllParams parameters,
+    public async Task<HttpResponse<ProfileUpdateResponse>> Update(
+        ProfileUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<ProfilePatchAllParams> request = new()
+        HttpRequest<ProfileUpdateParams> request = new()
         {
             Method = XTwitterScraperClientWithRawResponse.PatchMethod,
             Params = parameters,
@@ -101,14 +101,14 @@ public sealed class ProfileServiceWithRawResponse : IProfileServiceWithRawRespon
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<ProfilePatchAllResponse>(token)
+                var profile = await response
+                    .Deserialize<ProfileUpdateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    profile.Validate();
                 }
-                return deserializedResponse;
+                return profile;
             }
         );
     }
