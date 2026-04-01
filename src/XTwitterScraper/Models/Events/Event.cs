@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Events;
 
@@ -47,22 +48,24 @@ public sealed record class Event : JsonModel
         init { this._rawData.Set("monitorId", value); }
     }
 
-    public required DateTimeOffset OccurredAt
+    public required System::DateTimeOffset OccurredAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("occurredAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("occurredAt");
         }
         init { this._rawData.Set("occurredAt", value); }
     }
 
-    public required ApiEnum<string, EventType> Type
+    public required ApiEnum<string, global::XTwitterScraper.Models.Events.Type> Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, EventType>>("type");
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, global::XTwitterScraper.Models.Events.Type>
+            >("type");
         }
         init { this._rawData.Set("type", value); }
     }
@@ -121,4 +124,60 @@ class EventFromRaw : IFromRawJson<Event>
     /// <inheritdoc/>
     public Event FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Event.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
+{
+    TweetNew,
+    TweetReply,
+    TweetRetweet,
+    TweetQuote,
+    FollowerGained,
+    FollowerLost,
+}
+
+sealed class TypeConverter : JsonConverter<global::XTwitterScraper.Models.Events.Type>
+{
+    public override global::XTwitterScraper.Models.Events.Type Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "tweet.new" => global::XTwitterScraper.Models.Events.Type.TweetNew,
+            "tweet.reply" => global::XTwitterScraper.Models.Events.Type.TweetReply,
+            "tweet.retweet" => global::XTwitterScraper.Models.Events.Type.TweetRetweet,
+            "tweet.quote" => global::XTwitterScraper.Models.Events.Type.TweetQuote,
+            "follower.gained" => global::XTwitterScraper.Models.Events.Type.FollowerGained,
+            "follower.lost" => global::XTwitterScraper.Models.Events.Type.FollowerLost,
+            _ => (global::XTwitterScraper.Models.Events.Type)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::XTwitterScraper.Models.Events.Type value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                global::XTwitterScraper.Models.Events.Type.TweetNew => "tweet.new",
+                global::XTwitterScraper.Models.Events.Type.TweetReply => "tweet.reply",
+                global::XTwitterScraper.Models.Events.Type.TweetRetweet => "tweet.retweet",
+                global::XTwitterScraper.Models.Events.Type.TweetQuote => "tweet.quote",
+                global::XTwitterScraper.Models.Events.Type.FollowerGained => "follower.gained",
+                global::XTwitterScraper.Models.Events.Type.FollowerLost => "follower.lost",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

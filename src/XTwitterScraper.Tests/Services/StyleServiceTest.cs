@@ -7,23 +7,23 @@ public class StyleServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var styleProfile = await this.client.Styles.Retrieve(
+        var style = await this.client.Styles.Retrieve(
             "username",
             new(),
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        style.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
-        var styleProfile = await this.client.Styles.Update(
+        var style = await this.client.Styles.Update(
             "username",
             new() { Label = "label", Tweets = [new("text")] },
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        style.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -42,11 +42,11 @@ public class StyleServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Analyze_Works()
     {
-        var styleProfile = await this.client.Styles.Analyze(
+        var response = await this.client.Styles.Analyze(
             new() { Username = "username" },
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

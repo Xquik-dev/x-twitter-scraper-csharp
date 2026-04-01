@@ -31,13 +31,13 @@ public interface IStyleService
     /// <summary>
     /// Get cached style profile
     /// </summary>
-    Task<StyleProfile> Retrieve(
+    Task<StyleRetrieveResponse> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(StyleRetrieveParams, CancellationToken)"/>
-    Task<StyleProfile> Retrieve(
+    Task<StyleRetrieveResponse> Retrieve(
         string username,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -46,13 +46,13 @@ public interface IStyleService
     /// <summary>
     /// Save style profile with custom tweets
     /// </summary>
-    Task<StyleProfile> Update(
+    Task<StyleUpdateResponse> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(StyleUpdateParams, CancellationToken)"/>
-    Task<StyleProfile> Update(
+    Task<StyleUpdateResponse> Update(
         string username,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -81,7 +81,7 @@ public interface IStyleService
     /// <summary>
     /// Analyze writing style from recent tweets
     /// </summary>
-    Task<StyleProfile> Analyze(
+    Task<StyleAnalyzeResponse> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -127,13 +127,13 @@ public interface IStyleServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /styles/{username}</c>, but is otherwise the
     /// same as <see cref="IStyleService.Retrieve(StyleRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<StyleProfile>> Retrieve(
+    Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(StyleRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<StyleProfile>> Retrieve(
+    Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
         string username,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -143,13 +143,13 @@ public interface IStyleServiceWithRawResponse
     /// Returns a raw HTTP response for <c>put /styles/{username}</c>, but is otherwise the
     /// same as <see cref="IStyleService.Update(StyleUpdateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<StyleProfile>> Update(
+    Task<HttpResponse<StyleUpdateResponse>> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(StyleUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<StyleProfile>> Update(
+    Task<HttpResponse<StyleUpdateResponse>> Update(
         string username,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
@@ -184,7 +184,7 @@ public interface IStyleServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /styles</c>, but is otherwise the
     /// same as <see cref="IStyleService.Analyze(StyleAnalyzeParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<StyleProfile>> Analyze(
+    Task<HttpResponse<StyleAnalyzeResponse>> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     );

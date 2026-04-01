@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using XTwitterScraper.Models;
 using XTwitterScraper.Models.Integrations;
 
 namespace XTwitterScraper.Tests.Services;
