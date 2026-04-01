@@ -8,9 +8,10 @@ public class ComposeServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
-        await this.client.Compose.Create(
+        var compose = await this.client.Compose.Create(
             new() { Step = Step.Compose },
             TestContext.Current.CancellationToken
         );
+        compose.Validate();
     }
 }
