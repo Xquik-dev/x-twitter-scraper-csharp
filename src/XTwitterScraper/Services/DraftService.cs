@@ -35,7 +35,7 @@ public sealed class DraftService : IDraftService
     }
 
     /// <inheritdoc/>
-    public async Task<DraftDetail> Create(
+    public async Task<DraftCreateResponse> Create(
         DraftCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class DraftService : IDraftService
     }
 
     /// <inheritdoc/>
-    public async Task<DraftDetail> Retrieve(
+    public async Task<DraftRetrieveResponse> Retrieve(
         DraftRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -59,7 +59,7 @@ public sealed class DraftService : IDraftService
     }
 
     /// <inheritdoc/>
-    public Task<DraftDetail> Retrieve(
+    public Task<DraftRetrieveResponse> Retrieve(
         string id,
         DraftRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -118,7 +118,7 @@ public sealed class DraftServiceWithRawResponse : IDraftServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<DraftDetail>> Create(
+    public async Task<HttpResponse<DraftCreateResponse>> Create(
         DraftCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -133,20 +133,20 @@ public sealed class DraftServiceWithRawResponse : IDraftServiceWithRawResponse
             response,
             async (token) =>
             {
-                var draftDetail = await response
-                    .Deserialize<DraftDetail>(token)
+                var draft = await response
+                    .Deserialize<DraftCreateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    draftDetail.Validate();
+                    draft.Validate();
                 }
-                return draftDetail;
+                return draft;
             }
         );
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<DraftDetail>> Retrieve(
+    public async Task<HttpResponse<DraftRetrieveResponse>> Retrieve(
         DraftRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -166,20 +166,20 @@ public sealed class DraftServiceWithRawResponse : IDraftServiceWithRawResponse
             response,
             async (token) =>
             {
-                var draftDetail = await response
-                    .Deserialize<DraftDetail>(token)
+                var draft = await response
+                    .Deserialize<DraftRetrieveResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    draftDetail.Validate();
+                    draft.Validate();
                 }
-                return draftDetail;
+                return draft;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<DraftDetail>> Retrieve(
+    public Task<HttpResponse<DraftRetrieveResponse>> Retrieve(
         string id,
         DraftRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

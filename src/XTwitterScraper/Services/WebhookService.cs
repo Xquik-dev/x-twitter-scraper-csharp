@@ -47,7 +47,7 @@ public sealed class WebhookService : IWebhookService
     }
 
     /// <inheritdoc/>
-    public async Task<Webhook> Update(
+    public async Task<WebhookUpdateResponse> Update(
         WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -59,7 +59,7 @@ public sealed class WebhookService : IWebhookService
     }
 
     /// <inheritdoc/>
-    public Task<Webhook> Update(
+    public Task<WebhookUpdateResponse> Update(
         string id,
         WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -200,7 +200,7 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Webhook>> Update(
+    public async Task<HttpResponse<WebhookUpdateResponse>> Update(
         WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -220,7 +220,9 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
             response,
             async (token) =>
             {
-                var webhook = await response.Deserialize<Webhook>(token).ConfigureAwait(false);
+                var webhook = await response
+                    .Deserialize<WebhookUpdateResponse>(token)
+                    .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
                     webhook.Validate();
@@ -231,7 +233,7 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<Webhook>> Update(
+    public Task<HttpResponse<WebhookUpdateResponse>> Update(
         string id,
         WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default

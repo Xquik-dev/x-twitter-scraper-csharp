@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models;
 using XTwitterScraper.Models.X;
 using X = XTwitterScraper.Services.X;
 
@@ -68,7 +67,7 @@ public interface IXService
     /// <summary>
     /// Get home timeline
     /// </summary>
-    Task<PaginatedTweets> GetHomeTimeline(
+    Task<XGetHomeTimelineResponse> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -143,7 +142,7 @@ public interface IXServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/timeline</c>, but is otherwise the
     /// same as <see cref="IXService.GetHomeTimeline(XGetHomeTimelineParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> GetHomeTimeline(
+    Task<HttpResponse<XGetHomeTimelineResponse>> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     );

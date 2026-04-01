@@ -39,13 +39,13 @@ public interface IWebhookService
     /// <summary>
     /// Update webhook
     /// </summary>
-    Task<Webhook> Update(
+    Task<WebhookUpdateResponse> Update(
         WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(WebhookUpdateParams, CancellationToken)"/>
-    Task<Webhook> Update(
+    Task<WebhookUpdateResponse> Update(
         string id,
         WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -131,13 +131,13 @@ public interface IWebhookServiceWithRawResponse
     /// Returns a raw HTTP response for <c>patch /webhooks/{id}</c>, but is otherwise the
     /// same as <see cref="IWebhookService.Update(WebhookUpdateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<Webhook>> Update(
+    Task<HttpResponse<WebhookUpdateResponse>> Update(
         WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Update(WebhookUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<Webhook>> Update(
+    Task<HttpResponse<WebhookUpdateResponse>> Update(
         string id,
         WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default

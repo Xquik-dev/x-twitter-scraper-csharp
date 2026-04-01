@@ -7,22 +7,22 @@ public class JoinServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
-        var communityActionResult = await this.client.X.Communities.Join.Create(
+        var join = await this.client.X.Communities.Join.Create(
             "id",
             new() { Account = "account" },
             TestContext.Current.CancellationToken
         );
-        communityActionResult.Validate();
+        join.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task DeleteAll_Works()
     {
-        var communityActionResult = await this.client.X.Communities.Join.DeleteAll(
+        var response = await this.client.X.Communities.Join.DeleteAll(
             "id",
             new() { Account = "account" },
             TestContext.Current.CancellationToken
         );
-        communityActionResult.Validate();
+        response.Validate();
     }
 }

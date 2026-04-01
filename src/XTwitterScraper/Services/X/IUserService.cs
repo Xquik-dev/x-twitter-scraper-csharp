@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Users;
 using XTwitterScraper.Services.X.Users;
 
@@ -35,13 +34,13 @@ public interface IUserService
     /// <summary>
     /// Look up X user
     /// </summary>
-    Task<UserProfile> Retrieve(
+    Task<UserRetrieveResponse> Retrieve(
         UserRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(UserRetrieveParams, CancellationToken)"/>
-    Task<UserProfile> Retrieve(
+    Task<UserRetrieveResponse> Retrieve(
         string username,
         UserRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -73,13 +72,13 @@ public interface IUserService
     /// <summary>
     /// Get followers you know for a user
     /// </summary>
-    Task<PaginatedUsers> RetrieveFollowersYouKnow(
+    Task<UserRetrieveFollowersYouKnowResponse> RetrieveFollowersYouKnow(
         UserRetrieveFollowersYouKnowParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowersYouKnow(UserRetrieveFollowersYouKnowParams, CancellationToken)"/>
-    Task<PaginatedUsers> RetrieveFollowersYouKnow(
+    Task<UserRetrieveFollowersYouKnowResponse> RetrieveFollowersYouKnow(
         string id,
         UserRetrieveFollowersYouKnowParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -103,13 +102,13 @@ public interface IUserService
     /// <summary>
     /// Get tweets liked by a user
     /// </summary>
-    Task<PaginatedTweets> RetrieveLikes(
+    Task<UserRetrieveLikesResponse> RetrieveLikes(
         UserRetrieveLikesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveLikes(UserRetrieveLikesParams, CancellationToken)"/>
-    Task<PaginatedTweets> RetrieveLikes(
+    Task<UserRetrieveLikesResponse> RetrieveLikes(
         string id,
         UserRetrieveLikesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -118,13 +117,13 @@ public interface IUserService
     /// <summary>
     /// Get media tweets by a user
     /// </summary>
-    Task<PaginatedTweets> RetrieveMedia(
+    Task<UserRetrieveMediaResponse> RetrieveMedia(
         UserRetrieveMediaParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMedia(UserRetrieveMediaParams, CancellationToken)"/>
-    Task<PaginatedTweets> RetrieveMedia(
+    Task<UserRetrieveMediaResponse> RetrieveMedia(
         string id,
         UserRetrieveMediaParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -156,13 +155,13 @@ public interface IUserService
     /// <summary>
     /// Get recent tweets by a user
     /// </summary>
-    Task<PaginatedTweets> RetrieveTweets(
+    Task<UserRetrieveTweetsResponse> RetrieveTweets(
         UserRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveTweets(UserRetrieveTweetsParams, CancellationToken)"/>
-    Task<PaginatedTweets> RetrieveTweets(
+    Task<UserRetrieveTweetsResponse> RetrieveTweets(
         string id,
         UserRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -203,13 +202,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{username}</c>, but is otherwise the
     /// same as <see cref="IUserService.Retrieve(UserRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<UserProfile>> Retrieve(
+    Task<HttpResponse<UserRetrieveResponse>> Retrieve(
         UserRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(UserRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<UserProfile>> Retrieve(
+    Task<HttpResponse<UserRetrieveResponse>> Retrieve(
         string username,
         UserRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -244,13 +243,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/followers-you-know</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveFollowersYouKnow(UserRetrieveFollowersYouKnowParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedUsers>> RetrieveFollowersYouKnow(
+    Task<HttpResponse<UserRetrieveFollowersYouKnowResponse>> RetrieveFollowersYouKnow(
         UserRetrieveFollowersYouKnowParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowersYouKnow(UserRetrieveFollowersYouKnowParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedUsers>> RetrieveFollowersYouKnow(
+    Task<HttpResponse<UserRetrieveFollowersYouKnowResponse>> RetrieveFollowersYouKnow(
         string id,
         UserRetrieveFollowersYouKnowParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -276,13 +275,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/likes</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveLikes(UserRetrieveLikesParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> RetrieveLikes(
+    Task<HttpResponse<UserRetrieveLikesResponse>> RetrieveLikes(
         UserRetrieveLikesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveLikes(UserRetrieveLikesParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedTweets>> RetrieveLikes(
+    Task<HttpResponse<UserRetrieveLikesResponse>> RetrieveLikes(
         string id,
         UserRetrieveLikesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -292,13 +291,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/media</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveMedia(UserRetrieveMediaParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> RetrieveMedia(
+    Task<HttpResponse<UserRetrieveMediaResponse>> RetrieveMedia(
         UserRetrieveMediaParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMedia(UserRetrieveMediaParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedTweets>> RetrieveMedia(
+    Task<HttpResponse<UserRetrieveMediaResponse>> RetrieveMedia(
         string id,
         UserRetrieveMediaParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -333,13 +332,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/tweets</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveTweets(UserRetrieveTweetsParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
+    Task<HttpResponse<UserRetrieveTweetsResponse>> RetrieveTweets(
         UserRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveTweets(UserRetrieveTweetsParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
+    Task<HttpResponse<UserRetrieveTweetsResponse>> RetrieveTweets(
         string id,
         UserRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default

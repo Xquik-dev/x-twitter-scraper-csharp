@@ -34,9 +34,9 @@ TweetSearchParams parameters = new()
     Limit = 10,
 };
 
-var paginatedTweets = await client.X.Tweets.Search(parameters);
+var response = await client.X.Tweets.Search(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(response);
 ```
 
 ## Client configuration
@@ -79,7 +79,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var response = await client
     .WithOptions(options =>
         options with
         {
@@ -89,7 +89,7 @@ var paginatedTweets = await client
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(response);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -100,7 +100,7 @@ The `WithOptions` method does not affect the original client or service.
 
 To send a request to the X Twitter Scraper API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
 
-For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
+For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<TweetSearchResponse>`.
 
 ## Binary responses
 
@@ -148,10 +148,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using XTwitterScraper.Models;
+using XTwitterScraper.Models.X.Tweets;
 
 var response = await client.WithRawResponse.X.Tweets.Search(parameters);
-PaginatedTweets deserialized = await response.Deserialize();
+TweetSearchResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -209,13 +209,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var response = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(response);
 ```
 
 ### Timeouts
@@ -236,13 +236,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var response = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(response);
 ```
 
 ### Proxies
@@ -385,8 +385,8 @@ By default, the SDK will not throw an exception in this case. It will throw `XTw
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
 ```csharp
-var paginatedTweets = client.X.Tweets.Search(parameters);
-paginatedTweets.Validate();
+var response = client.X.Tweets.Search(parameters);
+response.Validate();
 ```
 
 Or configure the client using the `ResponseValidation` option:
@@ -402,13 +402,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var response = await client
     .WithOptions(options =>
         options with { ResponseValidation = true }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(response);
 ```
 
 ## Semantic versioning

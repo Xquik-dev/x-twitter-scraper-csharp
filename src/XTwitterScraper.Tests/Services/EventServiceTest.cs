@@ -7,12 +7,12 @@ public class EventServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var eventDetail = await this.client.Events.Retrieve(
+        var event_ = await this.client.Events.Retrieve(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        eventDetail.Validate();
+        event_.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

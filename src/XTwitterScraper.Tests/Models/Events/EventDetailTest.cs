@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Events;
 
 namespace XTwitterScraper.Tests.Models.Events;
@@ -21,7 +21,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
             XEventID = "xEventId",
         };
@@ -33,7 +33,7 @@ public class EventDetailTest : TestBase
         };
         string expectedMonitorID = "monitorId";
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        ApiEnum<string, EventDetailType> expectedType = EventDetailType.TweetNew;
         string expectedUsername = "username";
         string expectedXEventID = "xEventId";
 
@@ -64,7 +64,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
             XEventID = "xEventId",
         };
@@ -90,7 +90,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
             XEventID = "xEventId",
         };
@@ -109,7 +109,7 @@ public class EventDetailTest : TestBase
         };
         string expectedMonitorID = "monitorId";
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        ApiEnum<string, EventDetailType> expectedType = EventDetailType.TweetNew;
         string expectedUsername = "username";
         string expectedXEventID = "xEventId";
 
@@ -140,7 +140,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
             XEventID = "xEventId",
         };
@@ -160,7 +160,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
         };
 
@@ -180,7 +180,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
         };
 
@@ -199,7 +199,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
 
             // Null should be interpreted as omitted for these properties
@@ -222,7 +222,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
 
             // Null should be interpreted as omitted for these properties
@@ -244,7 +244,7 @@ public class EventDetailTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = EventType.TweetNew,
+            Type = EventDetailType.TweetNew,
             Username = "username",
             XEventID = "xEventId",
         };
@@ -252,5 +252,71 @@ public class EventDetailTest : TestBase
         EventDetail copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class EventDetailTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(EventDetailType.TweetNew)]
+    [InlineData(EventDetailType.TweetReply)]
+    [InlineData(EventDetailType.TweetRetweet)]
+    [InlineData(EventDetailType.TweetQuote)]
+    [InlineData(EventDetailType.FollowerGained)]
+    [InlineData(EventDetailType.FollowerLost)]
+    public void Validation_Works(EventDetailType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventDetailType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventDetailType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(EventDetailType.TweetNew)]
+    [InlineData(EventDetailType.TweetReply)]
+    [InlineData(EventDetailType.TweetRetweet)]
+    [InlineData(EventDetailType.TweetQuote)]
+    [InlineData(EventDetailType.FollowerGained)]
+    [InlineData(EventDetailType.FollowerLost)]
+    public void SerializationRoundtrip_Works(EventDetailType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventDetailType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventDetailType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventDetailType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventDetailType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

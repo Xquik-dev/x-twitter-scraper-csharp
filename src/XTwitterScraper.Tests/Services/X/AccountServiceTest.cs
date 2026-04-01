@@ -22,12 +22,12 @@ public class AccountServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var xAccountDetail = await this.client.X.Accounts.Retrieve(
+        var account = await this.client.X.Accounts.Retrieve(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        xAccountDetail.Validate();
+        account.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
