@@ -51,6 +51,9 @@ public record class IntegrationUpdateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Event filter rules (JSON)
+    /// </summary>
     public IReadOnlyDictionary<string, JsonElement>? Filters
     {
         get
@@ -92,6 +95,9 @@ public record class IntegrationUpdateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Custom message template (JSON)
+    /// </summary>
     public IReadOnlyDictionary<string, JsonElement>? MessageTemplate
     {
         get

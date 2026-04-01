@@ -23,6 +23,9 @@ public sealed record class Integration : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// Integration config — shape varies by type (JSON)
+    /// </summary>
     public required IReadOnlyDictionary<string, JsonElement> Config
     {
         get
@@ -97,6 +100,9 @@ public sealed record class Integration : JsonModel
         init { this._rawData.Set("type", value); }
     }
 
+    /// <summary>
+    /// Event filter rules (JSON)
+    /// </summary>
     public IReadOnlyDictionary<string, JsonElement>? Filters
     {
         get
