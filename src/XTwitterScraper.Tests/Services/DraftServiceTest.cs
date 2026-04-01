@@ -7,22 +7,22 @@ public class DraftServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
-        var draftDetail = await this.client.Drafts.Create(
+        var draft = await this.client.Drafts.Create(
             new() { Text = "text" },
             TestContext.Current.CancellationToken
         );
-        draftDetail.Validate();
+        draft.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var draftDetail = await this.client.Drafts.Retrieve(
+        var draft = await this.client.Drafts.Retrieve(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        draftDetail.Validate();
+        draft.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

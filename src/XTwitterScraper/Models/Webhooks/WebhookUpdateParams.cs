@@ -6,7 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Webhooks;
 
@@ -27,14 +29,14 @@ public record class WebhookUpdateParams : ParamsBase
 
     public string? ID { get; init; }
 
-    public IReadOnlyList<ApiEnum<string, EventType>>? EventTypes
+    public IReadOnlyList<ApiEnum<string, WebhookUpdateParamsEventType>>? EventTypes
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<ImmutableArray<ApiEnum<string, EventType>>>(
-                "eventTypes"
-            );
+            return this._rawBodyData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, WebhookUpdateParamsEventType>>
+            >("eventTypes");
         }
         init
         {
@@ -43,7 +45,7 @@ public record class WebhookUpdateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set<ImmutableArray<ApiEnum<string, EventType>>?>(
+            this._rawBodyData.Set<ImmutableArray<ApiEnum<string, WebhookUpdateParamsEventType>>?>(
                 "eventTypes",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -203,5 +205,61 @@ public record class WebhookUpdateParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
+    }
+}
+
+[JsonConverter(typeof(WebhookUpdateParamsEventTypeConverter))]
+public enum WebhookUpdateParamsEventType
+{
+    TweetNew,
+    TweetReply,
+    TweetRetweet,
+    TweetQuote,
+    FollowerGained,
+    FollowerLost,
+}
+
+sealed class WebhookUpdateParamsEventTypeConverter : JsonConverter<WebhookUpdateParamsEventType>
+{
+    public override WebhookUpdateParamsEventType Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "tweet.new" => WebhookUpdateParamsEventType.TweetNew,
+            "tweet.reply" => WebhookUpdateParamsEventType.TweetReply,
+            "tweet.retweet" => WebhookUpdateParamsEventType.TweetRetweet,
+            "tweet.quote" => WebhookUpdateParamsEventType.TweetQuote,
+            "follower.gained" => WebhookUpdateParamsEventType.FollowerGained,
+            "follower.lost" => WebhookUpdateParamsEventType.FollowerLost,
+            _ => (WebhookUpdateParamsEventType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        WebhookUpdateParamsEventType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                WebhookUpdateParamsEventType.TweetNew => "tweet.new",
+                WebhookUpdateParamsEventType.TweetReply => "tweet.reply",
+                WebhookUpdateParamsEventType.TweetRetweet => "tweet.retweet",
+                WebhookUpdateParamsEventType.TweetQuote => "tweet.quote",
+                WebhookUpdateParamsEventType.FollowerGained => "follower.gained",
+                WebhookUpdateParamsEventType.FollowerLost => "follower.lost",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

@@ -35,7 +35,7 @@ public sealed class EventService : IEventService
     }
 
     /// <inheritdoc/>
-    public async Task<EventDetail> Retrieve(
+    public async Task<EventRetrieveResponse> Retrieve(
         EventRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class EventService : IEventService
     }
 
     /// <inheritdoc/>
-    public Task<EventDetail> Retrieve(
+    public Task<EventRetrieveResponse> Retrieve(
         string id,
         EventRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -88,7 +88,7 @@ public sealed class EventServiceWithRawResponse : IEventServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<EventDetail>> Retrieve(
+    public async Task<HttpResponse<EventRetrieveResponse>> Retrieve(
         EventRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -108,20 +108,20 @@ public sealed class EventServiceWithRawResponse : IEventServiceWithRawResponse
             response,
             async (token) =>
             {
-                var eventDetail = await response
-                    .Deserialize<EventDetail>(token)
+                var deserializedResponse = await response
+                    .Deserialize<EventRetrieveResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    eventDetail.Validate();
+                    deserializedResponse.Validate();
                 }
-                return eventDetail;
+                return deserializedResponse;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<EventDetail>> Retrieve(
+    public Task<HttpResponse<EventRetrieveResponse>> Retrieve(
         string id,
         EventRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

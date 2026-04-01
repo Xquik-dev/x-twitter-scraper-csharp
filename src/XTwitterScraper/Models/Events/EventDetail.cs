@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Events;
 
@@ -47,22 +48,22 @@ public sealed record class EventDetail : JsonModel
         init { this._rawData.Set("monitorId", value); }
     }
 
-    public required DateTimeOffset OccurredAt
+    public required System::DateTimeOffset OccurredAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("occurredAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("occurredAt");
         }
         init { this._rawData.Set("occurredAt", value); }
     }
 
-    public required ApiEnum<string, EventType> Type
+    public required ApiEnum<string, EventDetailType> Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, EventType>>("type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, EventDetailType>>("type");
         }
         init { this._rawData.Set("type", value); }
     }
@@ -140,4 +141,60 @@ class EventDetailFromRaw : IFromRawJson<EventDetail>
     /// <inheritdoc/>
     public EventDetail FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         EventDetail.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(EventDetailTypeConverter))]
+public enum EventDetailType
+{
+    TweetNew,
+    TweetReply,
+    TweetRetweet,
+    TweetQuote,
+    FollowerGained,
+    FollowerLost,
+}
+
+sealed class EventDetailTypeConverter : JsonConverter<EventDetailType>
+{
+    public override EventDetailType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "tweet.new" => EventDetailType.TweetNew,
+            "tweet.reply" => EventDetailType.TweetReply,
+            "tweet.retweet" => EventDetailType.TweetRetweet,
+            "tweet.quote" => EventDetailType.TweetQuote,
+            "follower.gained" => EventDetailType.FollowerGained,
+            "follower.lost" => EventDetailType.FollowerLost,
+            _ => (EventDetailType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        EventDetailType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                EventDetailType.TweetNew => "tweet.new",
+                EventDetailType.TweetReply => "tweet.reply",
+                EventDetailType.TweetRetweet => "tweet.retweet",
+                EventDetailType.TweetQuote => "tweet.quote",
+                EventDetailType.FollowerGained => "follower.gained",
+                EventDetailType.FollowerLost => "follower.lost",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

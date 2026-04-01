@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Tests.Models.Monitors;
@@ -14,12 +15,15 @@ public class MonitorUpdateParamsTest : TestBase
         var parameters = new MonitorUpdateParams
         {
             ID = "id",
-            EventTypes = [EventType.TweetNew],
+            EventTypes = [MonitorUpdateParamsEventType.TweetNew],
             IsActive = true,
         };
 
         string expectedID = "id";
-        List<ApiEnum<string, EventType>> expectedEventTypes = [EventType.TweetNew];
+        List<ApiEnum<string, MonitorUpdateParamsEventType>> expectedEventTypes =
+        [
+            MonitorUpdateParamsEventType.TweetNew,
+        ];
         bool expectedIsActive = true;
 
         Assert.Equal(expectedID, parameters.ID);
@@ -77,12 +81,76 @@ public class MonitorUpdateParamsTest : TestBase
         var parameters = new MonitorUpdateParams
         {
             ID = "id",
-            EventTypes = [EventType.TweetNew],
+            EventTypes = [MonitorUpdateParamsEventType.TweetNew],
             IsActive = true,
         };
 
         MonitorUpdateParams copied = new(parameters);
 
         Assert.Equal(parameters, copied);
+    }
+}
+
+public class MonitorUpdateParamsEventTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MonitorUpdateParamsEventType.TweetNew)]
+    [InlineData(MonitorUpdateParamsEventType.TweetReply)]
+    [InlineData(MonitorUpdateParamsEventType.TweetRetweet)]
+    [InlineData(MonitorUpdateParamsEventType.TweetQuote)]
+    [InlineData(MonitorUpdateParamsEventType.FollowerGained)]
+    [InlineData(MonitorUpdateParamsEventType.FollowerLost)]
+    public void Validation_Works(MonitorUpdateParamsEventType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonitorUpdateParamsEventType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorUpdateParamsEventType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonitorUpdateParamsEventType.TweetNew)]
+    [InlineData(MonitorUpdateParamsEventType.TweetReply)]
+    [InlineData(MonitorUpdateParamsEventType.TweetRetweet)]
+    [InlineData(MonitorUpdateParamsEventType.TweetQuote)]
+    [InlineData(MonitorUpdateParamsEventType.FollowerGained)]
+    [InlineData(MonitorUpdateParamsEventType.FollowerLost)]
+    public void SerializationRoundtrip_Works(MonitorUpdateParamsEventType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonitorUpdateParamsEventType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonitorUpdateParamsEventType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorUpdateParamsEventType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, MonitorUpdateParamsEventType>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }

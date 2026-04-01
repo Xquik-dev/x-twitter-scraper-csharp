@@ -48,65 +48,65 @@ public class TweetServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetFavoriters_Works()
     {
-        var paginatedUsers = await this.client.X.Tweets.GetFavoriters(
+        var response = await this.client.X.Tweets.GetFavoriters(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        paginatedUsers.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetQuotes_Works()
     {
-        var paginatedTweets = await this.client.X.Tweets.GetQuotes(
+        var response = await this.client.X.Tweets.GetQuotes(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        paginatedTweets.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetReplies_Works()
     {
-        var paginatedTweets = await this.client.X.Tweets.GetReplies(
+        var response = await this.client.X.Tweets.GetReplies(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        paginatedTweets.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetRetweeters_Works()
     {
-        var paginatedUsers = await this.client.X.Tweets.GetRetweeters(
+        var response = await this.client.X.Tweets.GetRetweeters(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        paginatedUsers.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetThread_Works()
     {
-        var paginatedTweets = await this.client.X.Tweets.GetThread(
+        var response = await this.client.X.Tweets.GetThread(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        paginatedTweets.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Search_Works()
     {
-        var paginatedTweets = await this.client.X.Tweets.Search(
+        var response = await this.client.X.Tweets.Search(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
-        paginatedTweets.Validate();
+        response.Validate();
     }
 }

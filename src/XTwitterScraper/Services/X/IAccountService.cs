@@ -39,13 +39,13 @@ public interface IAccountService
     /// <summary>
     /// Get X account details
     /// </summary>
-    Task<XAccountDetail> Retrieve(
+    Task<AccountRetrieveResponse> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(AccountRetrieveParams, CancellationToken)"/>
-    Task<XAccountDetail> Retrieve(
+    Task<AccountRetrieveResponse> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -116,13 +116,13 @@ public interface IAccountServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/accounts/{id}</c>, but is otherwise the
     /// same as <see cref="IAccountService.Retrieve(AccountRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<XAccountDetail>> Retrieve(
+    Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(AccountRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<XAccountDetail>> Retrieve(
+    Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

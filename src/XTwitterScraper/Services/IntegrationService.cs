@@ -35,7 +35,7 @@ public sealed class IntegrationService : IIntegrationService
     }
 
     /// <inheritdoc/>
-    public async Task<Integration> Create(
+    public async Task<IntegrationCreateResponse> Create(
         IntegrationCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public sealed class IntegrationService : IIntegrationService
     }
 
     /// <inheritdoc/>
-    public async Task<Integration> Retrieve(
+    public async Task<IntegrationRetrieveResponse> Retrieve(
         IntegrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -59,7 +59,7 @@ public sealed class IntegrationService : IIntegrationService
     }
 
     /// <inheritdoc/>
-    public Task<Integration> Retrieve(
+    public Task<IntegrationRetrieveResponse> Retrieve(
         string id,
         IntegrationRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -71,7 +71,7 @@ public sealed class IntegrationService : IIntegrationService
     }
 
     /// <inheritdoc/>
-    public async Task<Integration> Update(
+    public async Task<IntegrationUpdateResponse> Update(
         IntegrationUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -83,7 +83,7 @@ public sealed class IntegrationService : IIntegrationService
     }
 
     /// <inheritdoc/>
-    public Task<Integration> Update(
+    public Task<IntegrationUpdateResponse> Update(
         string id,
         IntegrationUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -198,7 +198,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Integration>> Create(
+    public async Task<HttpResponse<IntegrationCreateResponse>> Create(
         IntegrationCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -214,7 +214,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
             async (token) =>
             {
                 var integration = await response
-                    .Deserialize<Integration>(token)
+                    .Deserialize<IntegrationCreateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -226,7 +226,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Integration>> Retrieve(
+    public async Task<HttpResponse<IntegrationRetrieveResponse>> Retrieve(
         IntegrationRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -247,7 +247,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
             async (token) =>
             {
                 var integration = await response
-                    .Deserialize<Integration>(token)
+                    .Deserialize<IntegrationRetrieveResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -259,7 +259,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<Integration>> Retrieve(
+    public Task<HttpResponse<IntegrationRetrieveResponse>> Retrieve(
         string id,
         IntegrationRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -271,7 +271,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Integration>> Update(
+    public async Task<HttpResponse<IntegrationUpdateResponse>> Update(
         IntegrationUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -292,7 +292,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
             async (token) =>
             {
                 var integration = await response
-                    .Deserialize<Integration>(token)
+                    .Deserialize<IntegrationUpdateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -304,7 +304,7 @@ public sealed class IntegrationServiceWithRawResponse : IIntegrationServiceWithR
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<Integration>> Update(
+    public Task<HttpResponse<IntegrationUpdateResponse>> Update(
         string id,
         IntegrationUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
