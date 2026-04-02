@@ -29,52 +29,10 @@ public interface IStyleService
     IStyleService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Get cached style profile
-    /// </summary>
-    Task<StyleRetrieveResponse> Retrieve(
-        StyleRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(StyleRetrieveParams, CancellationToken)"/>
-    Task<StyleRetrieveResponse> Retrieve(
-        string username,
-        StyleRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Save style profile with custom tweets
-    /// </summary>
-    Task<StyleUpdateResponse> Update(
-        StyleUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Update(StyleUpdateParams, CancellationToken)"/>
-    Task<StyleUpdateResponse> Update(
-        string username,
-        StyleUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// List cached style profiles
     /// </summary>
     Task<StyleListResponse> List(
         StyleListParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Delete a style profile
-    /// </summary>
-    Task Delete(StyleDeleteParams parameters, CancellationToken cancellationToken = default);
-
-    /// <inheritdoc cref="Delete(StyleDeleteParams, CancellationToken)"/>
-    Task Delete(
-        string username,
-        StyleDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -93,21 +51,6 @@ public interface IStyleService
         StyleCompareParams parameters,
         CancellationToken cancellationToken = default
     );
-
-    /// <summary>
-    /// Get engagement metrics for style tweets
-    /// </summary>
-    Task<StyleGetPerformanceResponse> GetPerformance(
-        StyleGetPerformanceParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="GetPerformance(StyleGetPerformanceParams, CancellationToken)"/>
-    Task<StyleGetPerformanceResponse> GetPerformance(
-        string username,
-        StyleGetPerformanceParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
 }
 
 /// <summary>
@@ -124,59 +67,11 @@ public interface IStyleServiceWithRawResponse
     IStyleServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>get /styles/{username}</c>, but is otherwise the
-    /// same as <see cref="IStyleService.Retrieve(StyleRetrieveParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
-        StyleRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(StyleRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
-        string username,
-        StyleRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>put /styles/{username}</c>, but is otherwise the
-    /// same as <see cref="IStyleService.Update(StyleUpdateParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<StyleUpdateResponse>> Update(
-        StyleUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Update(StyleUpdateParams, CancellationToken)"/>
-    Task<HttpResponse<StyleUpdateResponse>> Update(
-        string username,
-        StyleUpdateParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Returns a raw HTTP response for <c>get /styles</c>, but is otherwise the
     /// same as <see cref="IStyleService.List(StyleListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<StyleListResponse>> List(
         StyleListParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>delete /styles/{username}</c>, but is otherwise the
-    /// same as <see cref="IStyleService.Delete(StyleDeleteParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse> Delete(
-        StyleDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Delete(StyleDeleteParams, CancellationToken)"/>
-    Task<HttpResponse> Delete(
-        string username,
-        StyleDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -195,22 +90,6 @@ public interface IStyleServiceWithRawResponse
     /// </summary>
     Task<HttpResponse<StyleCompareResponse>> Compare(
         StyleCompareParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>get /styles/{username}/performance</c>, but is otherwise the
-    /// same as <see cref="IStyleService.GetPerformance(StyleGetPerformanceParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<StyleGetPerformanceResponse>> GetPerformance(
-        StyleGetPerformanceParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="GetPerformance(StyleGetPerformanceParams, CancellationToken)"/>
-    Task<HttpResponse<StyleGetPerformanceResponse>> GetPerformance(
-        string username,
-        StyleGetPerformanceParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

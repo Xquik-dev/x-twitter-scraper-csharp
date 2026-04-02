@@ -40,7 +40,7 @@ public class TweetGetQuotesResponseTest : TestBase
 
         bool expectedHasNextPage = true;
         string expectedNextCursor = "next_cursor";
-        List<TweetGetQuotesResponseTweet> expectedTweets =
+        List<Tweet> expectedTweets =
         [
             new()
             {
@@ -152,7 +152,7 @@ public class TweetGetQuotesResponseTest : TestBase
 
         bool expectedHasNextPage = true;
         string expectedNextCursor = "next_cursor";
-        List<TweetGetQuotesResponseTweet> expectedTweets =
+        List<Tweet> expectedTweets =
         [
             new()
             {
@@ -255,12 +255,12 @@ public class TweetGetQuotesResponseTest : TestBase
     }
 }
 
-public class TweetGetQuotesResponseTweetTest : TestBase
+public class TweetTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -282,7 +282,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
 
         string expectedID = "id";
         string expectedText = "text";
-        TweetGetQuotesResponseTweetAuthor expectedAuthor = new()
+        AuthorModel expectedAuthor = new()
         {
             ID = "id",
             Name = "name",
@@ -312,7 +312,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -333,10 +333,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweet>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Tweet>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -344,7 +341,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -365,15 +362,12 @@ public class TweetGetQuotesResponseTweetTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweet>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Tweet>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
         string expectedText = "text";
-        TweetGetQuotesResponseTweetAuthor expectedAuthor = new()
+        AuthorModel expectedAuthor = new()
         {
             ID = "id",
             Name = "name",
@@ -403,7 +397,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -429,7 +423,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TweetGetQuotesResponseTweet { ID = "id", Text = "text" };
+        var model = new Tweet { ID = "id", Text = "text" };
 
         Assert.Null(model.Author);
         Assert.False(model.RawData.ContainsKey("author"));
@@ -452,7 +446,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TweetGetQuotesResponseTweet { ID = "id", Text = "text" };
+        var model = new Tweet { ID = "id", Text = "text" };
 
         model.Validate();
     }
@@ -460,7 +454,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -497,7 +491,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -519,7 +513,7 @@ public class TweetGetQuotesResponseTweetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TweetGetQuotesResponseTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -539,18 +533,18 @@ public class TweetGetQuotesResponseTweetTest : TestBase
             ViewCount = 0,
         };
 
-        TweetGetQuotesResponseTweet copied = new(model);
+        Tweet copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class TweetGetQuotesResponseTweetAuthorTest : TestBase
+public class AuthorModelTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -572,7 +566,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -581,7 +575,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweetAuthor>(
+        var deserialized = JsonSerializer.Deserialize<AuthorModel>(
             json,
             ModelBase.SerializerOptions
         );
@@ -592,7 +586,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -601,7 +595,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweetAuthor>(
+        var deserialized = JsonSerializer.Deserialize<AuthorModel>(
             element,
             ModelBase.SerializerOptions
         );
@@ -621,7 +615,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -635,7 +629,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -649,7 +643,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -662,7 +656,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -679,7 +673,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -695,7 +689,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TweetGetQuotesResponseTweetAuthor
+        var model = new AuthorModel
         {
             ID = "id",
             Name = "name",
@@ -703,7 +697,7 @@ public class TweetGetQuotesResponseTweetAuthorTest : TestBase
             Verified = true,
         };
 
-        TweetGetQuotesResponseTweetAuthor copied = new(model);
+        AuthorModel copied = new(model);
 
         Assert.Equal(model, copied);
     }
