@@ -32,7 +32,7 @@ public class StyleProfileTest : TestBase
         DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         bool expectedIsOwnAccount = true;
         long expectedTweetCount = 0;
-        List<StyleProfileTweet> expectedTweets =
+        List<Tweet> expectedTweets =
         [
             new()
             {
@@ -116,7 +116,7 @@ public class StyleProfileTest : TestBase
         DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         bool expectedIsOwnAccount = true;
         long expectedTweetCount = 0;
-        List<StyleProfileTweet> expectedTweets =
+        List<Tweet> expectedTweets =
         [
             new()
             {
@@ -190,12 +190,12 @@ public class StyleProfileTest : TestBase
     }
 }
 
-public class StyleProfileTweetTest : TestBase
+public class TweetTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -217,7 +217,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -226,10 +226,7 @@ public class StyleProfileTweetTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<StyleProfileTweet>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Tweet>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -237,7 +234,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -246,10 +243,7 @@ public class StyleProfileTweetTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<StyleProfileTweet>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Tweet>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -266,7 +260,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -280,7 +274,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new StyleProfileTweet { ID = "id", Text = "text" };
+        var model = new Tweet { ID = "id", Text = "text" };
 
         Assert.Null(model.AuthorUsername);
         Assert.False(model.RawData.ContainsKey("authorUsername"));
@@ -291,7 +285,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new StyleProfileTweet { ID = "id", Text = "text" };
+        var model = new Tweet { ID = "id", Text = "text" };
 
         model.Validate();
     }
@@ -299,7 +293,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -318,7 +312,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -334,7 +328,7 @@ public class StyleProfileTweetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new StyleProfileTweet
+        var model = new Tweet
         {
             ID = "id",
             Text = "text",
@@ -342,7 +336,7 @@ public class StyleProfileTweetTest : TestBase
             CreatedAt = "createdAt",
         };
 
-        StyleProfileTweet copied = new(model);
+        Tweet copied = new(model);
 
         Assert.Equal(model, copied);
     }

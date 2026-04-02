@@ -5,17 +5,6 @@ namespace XTwitterScraper.Tests.Services.X;
 public class UserServiceTest : TestBase
 {
     [Fact(Skip = "Mock server tests are disabled")]
-    public async Task Retrieve_Works()
-    {
-        var user = await this.client.X.Users.Retrieve(
-            "username",
-            new(),
-            TestContext.Current.CancellationToken
-        );
-        user.Validate();
-    }
-
-    [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveBatch_Works()
     {
         await this.client.X.Users.RetrieveBatch(

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Radar;
 
@@ -105,12 +107,12 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     /// Source filter. One of: github, google_trends, hacker_news, polymarket, reddit,
     /// trustmrr, wikipedia
     /// </summary>
-    public string? Source
+    public ApiEnum<string, Source>? Source
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("source");
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, Source>>("source");
         }
         init
         {
@@ -212,5 +214,64 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
+    }
+}
+
+/// <summary>
+/// Source filter. One of: github, google_trends, hacker_news, polymarket, reddit,
+/// trustmrr, wikipedia
+/// </summary>
+[JsonConverter(typeof(SourceConverter))]
+public enum Source
+{
+    GitHub,
+    GoogleTrends,
+    HackerNews,
+    Polymarket,
+    Reddit,
+    Trustmrr,
+    Wikipedia,
+}
+
+sealed class SourceConverter : JsonConverter<Source>
+{
+    public override Source Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "github" => Source.GitHub,
+            "google_trends" => Source.GoogleTrends,
+            "hacker_news" => Source.HackerNews,
+            "polymarket" => Source.Polymarket,
+            "reddit" => Source.Reddit,
+            "trustmrr" => Source.Trustmrr,
+            "wikipedia" => Source.Wikipedia,
+            _ => (Source)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Source value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Source.GitHub => "github",
+                Source.GoogleTrends => "google_trends",
+                Source.HackerNews => "hacker_news",
+                Source.Polymarket => "polymarket",
+                Source.Reddit => "reddit",
+                Source.Trustmrr => "trustmrr",
+                Source.Wikipedia => "wikipedia",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

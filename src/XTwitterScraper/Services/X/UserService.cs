@@ -43,30 +43,6 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveResponse> Retrieve(
-        UserRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        using var response = await this
-            .WithRawResponse.Retrieve(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
-    }
-
-    /// <inheritdoc/>
-    public Task<UserRetrieveResponse> Retrieve(
-        string username,
-        UserRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        parameters ??= new();
-
-        return this.Retrieve(parameters with { Username = username }, cancellationToken);
-    }
-
-    /// <inheritdoc/>
     public Task RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
@@ -291,51 +267,6 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     public IFollowServiceWithRawResponse Follow
     {
         get { return _follow.Value; }
-    }
-
-    /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveResponse>> Retrieve(
-        UserRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (parameters.Username == null)
-        {
-            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
-        }
-
-        HttpRequest<UserRetrieveParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var user = await response
-                    .Deserialize<UserRetrieveResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    user.Validate();
-                }
-                return user;
-            }
-        );
-    }
-
-    /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveResponse>> Retrieve(
-        string username,
-        UserRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        parameters ??= new();
-
-        return this.Retrieve(parameters with { Username = username }, cancellationToken);
     }
 
     /// <inheritdoc/>

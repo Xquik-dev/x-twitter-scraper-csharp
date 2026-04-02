@@ -40,39 +40,9 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Look up tweet
-    /// </summary>
-    Task<TweetRetrieveResponse> Retrieve(
-        TweetRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(TweetRetrieveParams, CancellationToken)"/>
-    Task<TweetRetrieveResponse> Retrieve(
-        string tweetID,
-        TweetRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Get multiple tweets by IDs
     /// </summary>
     Task List(TweetListParams parameters, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Delete tweet
-    /// </summary>
-    Task<TweetDeleteResponse> Delete(
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Delete(TweetDeleteParams, CancellationToken)"/>
-    Task<TweetDeleteResponse> Delete(
-        string tweetID,
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
 
     /// <summary>
     /// Get users who liked a tweet
@@ -185,43 +155,11 @@ public interface ITweetServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>get /x/tweets/{tweetId}</c>, but is otherwise the
-    /// same as <see cref="ITweetService.Retrieve(TweetRetrieveParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        TweetRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(TweetRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        string tweetID,
-        TweetRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Returns a raw HTTP response for <c>get /x/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> List(
         TweetListParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>delete /x/tweets/{tweetId}</c>, but is otherwise the
-    /// same as <see cref="ITweetService.Delete(TweetDeleteParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<TweetDeleteResponse>> Delete(
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Delete(TweetDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<TweetDeleteResponse>> Delete(
-        string tweetID,
-        TweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
