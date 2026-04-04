@@ -22,6 +22,9 @@ public sealed record class EventRetrieveResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// Event payload — shape varies by event type (JSON)
+    /// </summary>
     public required IReadOnlyDictionary<string, JsonElement> Data
     {
         get

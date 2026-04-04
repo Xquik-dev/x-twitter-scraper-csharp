@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0 (2026-04-04)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([902c35c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/902c35cdde409c616f97466abb232414b7733333))
+* **api:** api update ([08d35d1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/08d35d12205c4bae6c0bb04ebae61d0523fb7879))
+* **api:** api update ([5c7f059](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/5c7f0591f585d60618bb527d4f6b19ad26a3635e))
+
 ## 0.2.0 (2026-04-01)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.1.0...v0.2.0)

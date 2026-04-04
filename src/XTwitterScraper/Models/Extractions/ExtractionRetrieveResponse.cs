@@ -24,6 +24,9 @@ public sealed record class ExtractionRetrieveResponse : JsonModel
         init { this._rawData.Set("hasMore", value); }
     }
 
+    /// <summary>
+    /// Extraction job metadata — shape varies by tool type (JSON)
+    /// </summary>
     public required IReadOnlyDictionary<string, JsonElement> Job
     {
         get

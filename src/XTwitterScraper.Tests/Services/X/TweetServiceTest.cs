@@ -15,34 +15,12 @@ public class TweetServiceTest : TestBase
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
-    public async Task Retrieve_Works()
-    {
-        var tweet = await this.client.X.Tweets.Retrieve(
-            "tweetId",
-            new(),
-            TestContext.Current.CancellationToken
-        );
-        tweet.Validate();
-    }
-
-    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
         await this.client.X.Tweets.List(
             new() { Ids = "ids" },
             TestContext.Current.CancellationToken
         );
-    }
-
-    [Fact(Skip = "Mock server tests are disabled")]
-    public async Task Delete_Works()
-    {
-        var tweet = await this.client.X.Tweets.Delete(
-            "tweetId",
-            new() { Account = "account" },
-            TestContext.Current.CancellationToken
-        );
-        tweet.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

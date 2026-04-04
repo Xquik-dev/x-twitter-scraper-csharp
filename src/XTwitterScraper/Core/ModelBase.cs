@@ -4,6 +4,7 @@ using XTwitterScraper.Models;
 using XTwitterScraper.Models.Account;
 using XTwitterScraper.Models.Compose;
 using XTwitterScraper.Models.Draws;
+using XTwitterScraper.Models.Radar;
 using XTwitterScraper.Models.Subscribe;
 using XTwitterScraper.Models.X.Tweets;
 using Drafts = XTwitterScraper.Models.Drafts;
@@ -43,6 +44,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Goal>(),
             new ApiEnumConverter<string, MediaType>(),
             new ApiEnumConverter<string, Drafts::Goal>(),
+            new ApiEnumConverter<string, Source>(),
             new ApiEnumConverter<string, Monitors::MonitorEventType>(),
             new ApiEnumConverter<string, Monitors::MonitorCreateResponseEventType>(),
             new ApiEnumConverter<string, Monitors::MonitorRetrieveResponseEventType>(),

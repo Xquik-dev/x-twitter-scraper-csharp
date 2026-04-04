@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
@@ -33,7 +31,7 @@ public interface IComposeService
     /// <summary>
     /// Compose, refine, or score a tweet
     /// </summary>
-    Task<Dictionary<string, JsonElement>> Create(
+    Task<ComposeCreateResponse> Create(
         ComposeCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -56,7 +54,7 @@ public interface IComposeServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /compose</c>, but is otherwise the
     /// same as <see cref="IComposeService.Create(ComposeCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<Dictionary<string, JsonElement>>> Create(
+    Task<HttpResponse<ComposeCreateResponse>> Create(
         ComposeCreateParams parameters,
         CancellationToken cancellationToken = default
     );

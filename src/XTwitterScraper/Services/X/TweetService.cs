@@ -62,55 +62,9 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetRetrieveResponse> Retrieve(
-        TweetRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        using var response = await this
-            .WithRawResponse.Retrieve(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
-    }
-
-    /// <inheritdoc/>
-    public Task<TweetRetrieveResponse> Retrieve(
-        string tweetID,
-        TweetRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        parameters ??= new();
-
-        return this.Retrieve(parameters with { TweetID = tweetID }, cancellationToken);
-    }
-
-    /// <inheritdoc/>
     public Task List(TweetListParams parameters, CancellationToken cancellationToken = default)
     {
         return this.WithRawResponse.List(parameters, cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public async Task<TweetDeleteResponse> Delete(
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
-    }
-
-    /// <inheritdoc/>
-    public Task<TweetDeleteResponse> Delete(
-        string tweetID,
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -306,51 +260,6 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        TweetRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (parameters.TweetID == null)
-        {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
-        }
-
-        HttpRequest<TweetRetrieveParams> request = new()
-        {
-            Method = HttpMethod.Get,
-            Params = parameters,
-        };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var tweet = await response
-                    .Deserialize<TweetRetrieveResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    tweet.Validate();
-                }
-                return tweet;
-            }
-        );
-    }
-
-    /// <inheritdoc/>
-    public Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        string tweetID,
-        TweetRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        parameters ??= new();
-
-        return this.Retrieve(parameters with { TweetID = tweetID }, cancellationToken);
-    }
-
-    /// <inheritdoc/>
     public Task<HttpResponse> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
@@ -362,49 +271,6 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             Params = parameters,
         };
         return this._client.Execute(request, cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public async Task<HttpResponse<TweetDeleteResponse>> Delete(
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (parameters.TweetID == null)
-        {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
-        }
-
-        HttpRequest<TweetDeleteParams> request = new()
-        {
-            Method = HttpMethod.Delete,
-            Params = parameters,
-        };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var tweet = await response
-                    .Deserialize<TweetDeleteResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    tweet.Validate();
-                }
-                return tweet;
-            }
-        );
-    }
-
-    /// <inheritdoc/>
-    public Task<HttpResponse<TweetDeleteResponse>> Delete(
-        string tweetID,
-        TweetDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
     }
 
     /// <inheritdoc/>

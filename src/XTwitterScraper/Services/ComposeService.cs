@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
@@ -36,7 +34,7 @@ public sealed class ComposeService : IComposeService
     }
 
     /// <inheritdoc/>
-    public async Task<Dictionary<string, JsonElement>> Create(
+    public async Task<ComposeCreateResponse> Create(
         ComposeCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -65,7 +63,7 @@ public sealed class ComposeServiceWithRawResponse : IComposeServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Dictionary<string, JsonElement>>> Create(
+    public async Task<HttpResponse<ComposeCreateResponse>> Create(
         ComposeCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -80,9 +78,14 @@ public sealed class ComposeServiceWithRawResponse : IComposeServiceWithRawRespon
             response,
             async (token) =>
             {
-                return await response
-                    .Deserialize<Dictionary<string, JsonElement>>(token)
+                var compose = await response
+                    .Deserialize<ComposeCreateResponse>(token)
                     .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    compose.Validate();
+                }
+                return compose;
             }
         );
     }

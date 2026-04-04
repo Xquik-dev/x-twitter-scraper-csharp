@@ -32,21 +32,6 @@ public interface IUserService
     IFollowService Follow { get; }
 
     /// <summary>
-    /// Look up X user
-    /// </summary>
-    Task<UserRetrieveResponse> Retrieve(
-        UserRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(UserRetrieveParams, CancellationToken)"/>
-    Task<UserRetrieveResponse> Retrieve(
-        string username,
-        UserRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Get multiple users by IDs
     /// </summary>
     Task RetrieveBatch(
@@ -197,22 +182,6 @@ public interface IUserServiceWithRawResponse
     IUserServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IFollowServiceWithRawResponse Follow { get; }
-
-    /// <summary>
-    /// Returns a raw HTTP response for <c>get /x/users/{username}</c>, but is otherwise the
-    /// same as <see cref="IUserService.Retrieve(UserRetrieveParams, CancellationToken)"/>.
-    /// </summary>
-    Task<HttpResponse<UserRetrieveResponse>> Retrieve(
-        UserRetrieveParams parameters,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <inheritdoc cref="Retrieve(UserRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<UserRetrieveResponse>> Retrieve(
-        string username,
-        UserRetrieveParams? parameters = null,
-        CancellationToken cancellationToken = default
-    );
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /x/users/batch</c>, but is otherwise the

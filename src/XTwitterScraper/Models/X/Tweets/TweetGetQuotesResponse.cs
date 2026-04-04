@@ -31,18 +31,16 @@ public sealed record class TweetGetQuotesResponse : JsonModel
         init { this._rawData.Set("next_cursor", value); }
     }
 
-    public required IReadOnlyList<TweetGetQuotesResponseTweet> Tweets
+    public required IReadOnlyList<Tweet> Tweets
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<TweetGetQuotesResponseTweet>>(
-                "tweets"
-            );
+            return this._rawData.GetNotNullStruct<ImmutableArray<Tweet>>("tweets");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<TweetGetQuotesResponseTweet>>(
+            this._rawData.Set<ImmutableArray<Tweet>>(
                 "tweets",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -98,10 +96,8 @@ class TweetGetQuotesResponseFromRaw : IFromRawJson<TweetGetQuotesResponse>
     ) => TweetGetQuotesResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<TweetGetQuotesResponseTweet, TweetGetQuotesResponseTweetFromRaw>)
-)]
-public sealed record class TweetGetQuotesResponseTweet : JsonModel
+[JsonConverter(typeof(JsonModelConverter<Tweet, TweetFromRaw>))]
+public sealed record class Tweet : JsonModel
 {
     public required string ID
     {
@@ -123,12 +119,12 @@ public sealed record class TweetGetQuotesResponseTweet : JsonModel
         init { this._rawData.Set("text", value); }
     }
 
-    public TweetGetQuotesResponseTweetAuthor? Author
+    public AuthorModel? Author
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<TweetGetQuotesResponseTweetAuthor>("author");
+            return this._rawData.GetNullableClass<AuthorModel>("author");
         }
         init
         {
@@ -282,51 +278,43 @@ public sealed record class TweetGetQuotesResponseTweet : JsonModel
         _ = this.ViewCount;
     }
 
-    public TweetGetQuotesResponseTweet() { }
+    public Tweet() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TweetGetQuotesResponseTweet(TweetGetQuotesResponseTweet tweetGetQuotesResponseTweet)
-        : base(tweetGetQuotesResponseTweet) { }
+    public Tweet(Tweet tweet)
+        : base(tweet) { }
 #pragma warning restore CS8618
 
-    public TweetGetQuotesResponseTweet(IReadOnlyDictionary<string, JsonElement> rawData)
+    public Tweet(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TweetGetQuotesResponseTweet(FrozenDictionary<string, JsonElement> rawData)
+    Tweet(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TweetGetQuotesResponseTweetFromRaw.FromRawUnchecked"/>
-    public static TweetGetQuotesResponseTweet FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="TweetFromRaw.FromRawUnchecked"/>
+    public static Tweet FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class TweetGetQuotesResponseTweetFromRaw : IFromRawJson<TweetGetQuotesResponseTweet>
+class TweetFromRaw : IFromRawJson<Tweet>
 {
     /// <inheritdoc/>
-    public TweetGetQuotesResponseTweet FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TweetGetQuotesResponseTweet.FromRawUnchecked(rawData);
+    public Tweet FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Tweet.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        TweetGetQuotesResponseTweetAuthor,
-        TweetGetQuotesResponseTweetAuthorFromRaw
-    >)
-)]
-public sealed record class TweetGetQuotesResponseTweetAuthor : JsonModel
+[JsonConverter(typeof(JsonModelConverter<AuthorModel, AuthorModelFromRaw>))]
+public sealed record class AuthorModel : JsonModel
 {
     public required string ID
     {
@@ -385,42 +373,37 @@ public sealed record class TweetGetQuotesResponseTweetAuthor : JsonModel
         _ = this.Verified;
     }
 
-    public TweetGetQuotesResponseTweetAuthor() { }
+    public AuthorModel() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TweetGetQuotesResponseTweetAuthor(
-        TweetGetQuotesResponseTweetAuthor tweetGetQuotesResponseTweetAuthor
-    )
-        : base(tweetGetQuotesResponseTweetAuthor) { }
+    public AuthorModel(AuthorModel authorModel)
+        : base(authorModel) { }
 #pragma warning restore CS8618
 
-    public TweetGetQuotesResponseTweetAuthor(IReadOnlyDictionary<string, JsonElement> rawData)
+    public AuthorModel(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TweetGetQuotesResponseTweetAuthor(FrozenDictionary<string, JsonElement> rawData)
+    AuthorModel(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TweetGetQuotesResponseTweetAuthorFromRaw.FromRawUnchecked"/>
-    public static TweetGetQuotesResponseTweetAuthor FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="AuthorModelFromRaw.FromRawUnchecked"/>
+    public static AuthorModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class TweetGetQuotesResponseTweetAuthorFromRaw : IFromRawJson<TweetGetQuotesResponseTweetAuthor>
+class AuthorModelFromRaw : IFromRawJson<AuthorModel>
 {
     /// <inheritdoc/>
-    public TweetGetQuotesResponseTweetAuthor FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TweetGetQuotesResponseTweetAuthor.FromRawUnchecked(rawData);
+    public AuthorModel FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        AuthorModel.FromRawUnchecked(rawData);
 }
