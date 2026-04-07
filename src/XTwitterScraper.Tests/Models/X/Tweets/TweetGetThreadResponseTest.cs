@@ -29,6 +29,7 @@ public class TweetGetThreadResponseTest : TestBase
                     },
                     BookmarkCount = 0,
                     CreatedAt = "createdAt",
+                    IsNoteTweet = true,
                     LikeCount = 0,
                     QuoteCount = 0,
                     ReplyCount = 0,
@@ -55,6 +56,7 @@ public class TweetGetThreadResponseTest : TestBase
                 },
                 BookmarkCount = 0,
                 CreatedAt = "createdAt",
+                IsNoteTweet = true,
                 LikeCount = 0,
                 QuoteCount = 0,
                 ReplyCount = 0,
@@ -94,6 +96,7 @@ public class TweetGetThreadResponseTest : TestBase
                     },
                     BookmarkCount = 0,
                     CreatedAt = "createdAt",
+                    IsNoteTweet = true,
                     LikeCount = 0,
                     QuoteCount = 0,
                     ReplyCount = 0,
@@ -134,6 +137,7 @@ public class TweetGetThreadResponseTest : TestBase
                     },
                     BookmarkCount = 0,
                     CreatedAt = "createdAt",
+                    IsNoteTweet = true,
                     LikeCount = 0,
                     QuoteCount = 0,
                     ReplyCount = 0,
@@ -167,6 +171,7 @@ public class TweetGetThreadResponseTest : TestBase
                 },
                 BookmarkCount = 0,
                 CreatedAt = "createdAt",
+                IsNoteTweet = true,
                 LikeCount = 0,
                 QuoteCount = 0,
                 ReplyCount = 0,
@@ -206,6 +211,7 @@ public class TweetGetThreadResponseTest : TestBase
                     },
                     BookmarkCount = 0,
                     CreatedAt = "createdAt",
+                    IsNoteTweet = true,
                     LikeCount = 0,
                     QuoteCount = 0,
                     ReplyCount = 0,
@@ -240,6 +246,7 @@ public class TweetGetThreadResponseTest : TestBase
                     },
                     BookmarkCount = 0,
                     CreatedAt = "createdAt",
+                    IsNoteTweet = true,
                     LikeCount = 0,
                     QuoteCount = 0,
                     ReplyCount = 0,
@@ -273,6 +280,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             },
             BookmarkCount = 0,
             CreatedAt = "createdAt",
+            IsNoteTweet = true,
             LikeCount = 0,
             QuoteCount = 0,
             ReplyCount = 0,
@@ -291,6 +299,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
         };
         long expectedBookmarkCount = 0;
         string expectedCreatedAt = "createdAt";
+        bool expectedIsNoteTweet = true;
         long expectedLikeCount = 0;
         long expectedQuoteCount = 0;
         long expectedReplyCount = 0;
@@ -302,6 +311,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
         Assert.Equal(expectedAuthor, model.Author);
         Assert.Equal(expectedBookmarkCount, model.BookmarkCount);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedIsNoteTweet, model.IsNoteTweet);
         Assert.Equal(expectedLikeCount, model.LikeCount);
         Assert.Equal(expectedQuoteCount, model.QuoteCount);
         Assert.Equal(expectedReplyCount, model.ReplyCount);
@@ -325,6 +335,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             },
             BookmarkCount = 0,
             CreatedAt = "createdAt",
+            IsNoteTweet = true,
             LikeCount = 0,
             QuoteCount = 0,
             ReplyCount = 0,
@@ -357,6 +368,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             },
             BookmarkCount = 0,
             CreatedAt = "createdAt",
+            IsNoteTweet = true,
             LikeCount = 0,
             QuoteCount = 0,
             ReplyCount = 0,
@@ -382,6 +394,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
         };
         long expectedBookmarkCount = 0;
         string expectedCreatedAt = "createdAt";
+        bool expectedIsNoteTweet = true;
         long expectedLikeCount = 0;
         long expectedQuoteCount = 0;
         long expectedReplyCount = 0;
@@ -393,6 +406,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
         Assert.Equal(expectedAuthor, deserialized.Author);
         Assert.Equal(expectedBookmarkCount, deserialized.BookmarkCount);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedIsNoteTweet, deserialized.IsNoteTweet);
         Assert.Equal(expectedLikeCount, deserialized.LikeCount);
         Assert.Equal(expectedQuoteCount, deserialized.QuoteCount);
         Assert.Equal(expectedReplyCount, deserialized.ReplyCount);
@@ -416,6 +430,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             },
             BookmarkCount = 0,
             CreatedAt = "createdAt",
+            IsNoteTweet = true,
             LikeCount = 0,
             QuoteCount = 0,
             ReplyCount = 0,
@@ -437,6 +452,8 @@ public class TweetGetThreadResponseTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("bookmarkCount"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.IsNoteTweet);
+        Assert.False(model.RawData.ContainsKey("isNoteTweet"));
         Assert.Null(model.LikeCount);
         Assert.False(model.RawData.ContainsKey("likeCount"));
         Assert.Null(model.QuoteCount);
@@ -469,6 +486,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             Author = null,
             BookmarkCount = null,
             CreatedAt = null,
+            IsNoteTweet = null,
             LikeCount = null,
             QuoteCount = null,
             ReplyCount = null,
@@ -482,6 +500,8 @@ public class TweetGetThreadResponseTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("bookmarkCount"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.IsNoteTweet);
+        Assert.False(model.RawData.ContainsKey("isNoteTweet"));
         Assert.Null(model.LikeCount);
         Assert.False(model.RawData.ContainsKey("likeCount"));
         Assert.Null(model.QuoteCount);
@@ -506,6 +526,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             Author = null,
             BookmarkCount = null,
             CreatedAt = null,
+            IsNoteTweet = null,
             LikeCount = null,
             QuoteCount = null,
             ReplyCount = null,
@@ -532,6 +553,7 @@ public class TweetGetThreadResponseTweetTest : TestBase
             },
             BookmarkCount = 0,
             CreatedAt = "createdAt",
+            IsNoteTweet = true,
             LikeCount = 0,
             QuoteCount = 0,
             ReplyCount = 0,

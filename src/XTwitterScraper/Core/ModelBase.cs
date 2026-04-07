@@ -6,13 +6,13 @@ using XTwitterScraper.Models.Compose;
 using XTwitterScraper.Models.Draws;
 using XTwitterScraper.Models.Radar;
 using XTwitterScraper.Models.Subscribe;
-using XTwitterScraper.Models.X.Tweets;
 using Drafts = XTwitterScraper.Models.Drafts;
 using Events = XTwitterScraper.Models.Events;
 using Extractions = XTwitterScraper.Models.Extractions;
 using Integrations = XTwitterScraper.Models.Integrations;
 using Monitors = XTwitterScraper.Models.Monitors;
 using Tickets = XTwitterScraper.Models.Support.Tickets;
+using Tweets = XTwitterScraper.Models.X.Tweets;
 using Webhooks = XTwitterScraper.Models.Webhooks;
 using X = XTwitterScraper.Models.X;
 
@@ -93,7 +93,8 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Integrations::Type>(),
             new ApiEnumConverter<string, Integrations::IntegrationUpdateParamsEventType>(),
             new ApiEnumConverter<string, X::Type>(),
-            new ApiEnumConverter<string, QueryType>(),
+            new ApiEnumConverter<string, Tweets::Type>(),
+            new ApiEnumConverter<string, Tweets::QueryType>(),
             new ApiEnumConverter<string, Tickets::Status>(),
         },
     };
