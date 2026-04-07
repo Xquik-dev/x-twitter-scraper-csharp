@@ -177,6 +177,27 @@ public sealed record class TweetGetRepliesResponseTweet : JsonModel
         }
     }
 
+    /// <summary>
+    /// Whether this is a Note Tweet (long-form post, up to 25,000 characters)
+    /// </summary>
+    public bool? IsNoteTweet
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isNoteTweet");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isNoteTweet", value);
+        }
+    }
+
     public long? LikeCount
     {
         get
@@ -275,6 +296,7 @@ public sealed record class TweetGetRepliesResponseTweet : JsonModel
         this.Author?.Validate();
         _ = this.BookmarkCount;
         _ = this.CreatedAt;
+        _ = this.IsNoteTweet;
         _ = this.LikeCount;
         _ = this.QuoteCount;
         _ = this.ReplyCount;
