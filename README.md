@@ -8,10 +8,9 @@ The REST API documentation can be found on [xquik.com](https://xquik.com).
 
 ## Installation
 
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
-
 ```bash
-dotnet add package XTwitterScraper
+git clone git@github.com:stainless-sdks/x-twitter-scraper-csharp.git
+dotnet add reference x-twitter-scraper-csharp/src/XTwitterScraper
 ```
 
 ## Requirements
@@ -35,9 +34,9 @@ TweetSearchParams parameters = new()
     Limit = 10,
 };
 
-var response = await client.X.Tweets.Search(parameters);
+var paginatedTweets = await client.X.Tweets.Search(parameters);
 
-Console.WriteLine(response);
+Console.WriteLine(paginatedTweets);
 ```
 
 ## Client configuration
@@ -80,7 +79,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-var response = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with
         {
@@ -90,7 +89,7 @@ var response = await client
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(response);
+Console.WriteLine(paginatedTweets);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -101,7 +100,7 @@ The `WithOptions` method does not affect the original client or service.
 
 To send a request to the X Twitter Scraper API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
 
-For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<TweetSearchResponse>`.
+For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
 
 ## Binary responses
 
@@ -149,10 +148,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using XTwitterScraper.Models.X.Tweets;
+using XTwitterScraper.Models;
 
 var response = await client.WithRawResponse.X.Tweets.Search(parameters);
-TweetSearchResponse deserialized = await response.Deserialize();
+PaginatedTweets deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -180,6 +179,46 @@ Additionally, all 4xx errors inherit from `XTwitterScraper4xxException`.
 - `XTwitterScraperInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
 - `XTwitterScraperException`: Base class for all exceptions.
+
+## Pagination
+
+The SDK defines methods that return a paginated lists of results. It provides convenient ways to access the results either one page at a time or item-by-item across all pages.
+
+### Auto-pagination
+
+To iterate through all results across all pages, use the `Paginate` method, which automatically fetches more pages as needed. The method returns an [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
+
+```csharp
+using System;
+
+var page = await client.X.Communities.Tweets.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
+### Manual pagination
+
+To access individual page items and manually request the next page, use the `Items` property, and `HasNext` and `Next` methods:
+
+```csharp
+using System;
+
+var page = await client.X.Communities.Tweets.List(parameters);
+while (true)
+{
+    foreach (var item in page.Items)
+    {
+        Console.WriteLine(item);
+    }
+    if (!page.HasNext())
+    {
+        break;
+    }
+    page = await page.Next();
+}
+```
 
 ## Network options
 
@@ -210,13 +249,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var response = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(response);
+Console.WriteLine(paginatedTweets);
 ```
 
 ### Timeouts
@@ -237,13 +276,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var response = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(response);
+Console.WriteLine(paginatedTweets);
 ```
 
 ### Proxies
@@ -386,8 +425,8 @@ By default, the SDK will not throw an exception in this case. It will throw `XTw
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
 ```csharp
-var response = client.X.Tweets.Search(parameters);
-response.Validate();
+var paginatedTweets = client.X.Tweets.Search(parameters);
+paginatedTweets.Validate();
 ```
 
 Or configure the client using the `ResponseValidation` option:
@@ -403,13 +442,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var response = await client
+var paginatedTweets = await client
     .WithOptions(options =>
         options with { ResponseValidation = true }
     )
     .X.Tweets.Search(parameters);
 
-Console.WriteLine(response);
+Console.WriteLine(paginatedTweets);
 ```
 
 ## Semantic versioning
@@ -421,4 +460,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/Xquik-dev/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.

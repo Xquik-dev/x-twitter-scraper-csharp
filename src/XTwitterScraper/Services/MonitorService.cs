@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
-using XTwitterScraper.Models.Monitors;
+using Monitors = XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Services;
 
@@ -35,8 +35,8 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public async Task<MonitorCreateResponse> Create(
-        MonitorCreateParams parameters,
+    public async Task<Monitors::MonitorCreateResponse> Create(
+        Monitors::MonitorCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -47,8 +47,8 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public async Task<MonitorRetrieveResponse> Retrieve(
-        MonitorRetrieveParams parameters,
+    public async Task<Monitors::Monitor> Retrieve(
+        Monitors::MonitorRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -59,9 +59,9 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public Task<MonitorRetrieveResponse> Retrieve(
+    public Task<Monitors::Monitor> Retrieve(
         string id,
-        MonitorRetrieveParams? parameters = null,
+        Monitors::MonitorRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -71,8 +71,8 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public async Task<MonitorUpdateResponse> Update(
-        MonitorUpdateParams parameters,
+    public async Task<Monitors::Monitor> Update(
+        Monitors::MonitorUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -83,9 +83,9 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public Task<MonitorUpdateResponse> Update(
+    public Task<Monitors::Monitor> Update(
         string id,
-        MonitorUpdateParams? parameters = null,
+        Monitors::MonitorUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -95,8 +95,8 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public async Task<MonitorListResponse> List(
-        MonitorListParams? parameters = null,
+    public async Task<Monitors::MonitorListResponse> List(
+        Monitors::MonitorListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -107,8 +107,8 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public async Task<MonitorDeactivateResponse> Deactivate(
-        MonitorDeactivateParams parameters,
+    public async Task<Monitors::MonitorDeactivateResponse> Deactivate(
+        Monitors::MonitorDeactivateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -119,9 +119,9 @@ public sealed class MonitorService : IMonitorService
     }
 
     /// <inheritdoc/>
-    public Task<MonitorDeactivateResponse> Deactivate(
+    public Task<Monitors::MonitorDeactivateResponse> Deactivate(
         string id,
-        MonitorDeactivateParams? parameters = null,
+        Monitors::MonitorDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -148,12 +148,12 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<MonitorCreateResponse>> Create(
-        MonitorCreateParams parameters,
+    public async Task<HttpResponse<Monitors::MonitorCreateResponse>> Create(
+        Monitors::MonitorCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<MonitorCreateParams> request = new()
+        HttpRequest<Monitors::MonitorCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -164,7 +164,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             async (token) =>
             {
                 var monitor = await response
-                    .Deserialize<MonitorCreateResponse>(token)
+                    .Deserialize<Monitors::MonitorCreateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -176,8 +176,8 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<MonitorRetrieveResponse>> Retrieve(
-        MonitorRetrieveParams parameters,
+    public async Task<HttpResponse<Monitors::Monitor>> Retrieve(
+        Monitors::MonitorRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -186,7 +186,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
-        HttpRequest<MonitorRetrieveParams> request = new()
+        HttpRequest<Monitors::MonitorRetrieveParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -197,7 +197,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             async (token) =>
             {
                 var monitor = await response
-                    .Deserialize<MonitorRetrieveResponse>(token)
+                    .Deserialize<Monitors::Monitor>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -209,9 +209,9 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<MonitorRetrieveResponse>> Retrieve(
+    public Task<HttpResponse<Monitors::Monitor>> Retrieve(
         string id,
-        MonitorRetrieveParams? parameters = null,
+        Monitors::MonitorRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -221,8 +221,8 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<MonitorUpdateResponse>> Update(
-        MonitorUpdateParams parameters,
+    public async Task<HttpResponse<Monitors::Monitor>> Update(
+        Monitors::MonitorUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -231,7 +231,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
-        HttpRequest<MonitorUpdateParams> request = new()
+        HttpRequest<Monitors::MonitorUpdateParams> request = new()
         {
             Method = XTwitterScraperClientWithRawResponse.PatchMethod,
             Params = parameters,
@@ -242,7 +242,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             async (token) =>
             {
                 var monitor = await response
-                    .Deserialize<MonitorUpdateResponse>(token)
+                    .Deserialize<Monitors::Monitor>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -254,9 +254,9 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<MonitorUpdateResponse>> Update(
+    public Task<HttpResponse<Monitors::Monitor>> Update(
         string id,
-        MonitorUpdateParams? parameters = null,
+        Monitors::MonitorUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -266,14 +266,14 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<MonitorListResponse>> List(
-        MonitorListParams? parameters = null,
+    public async Task<HttpResponse<Monitors::MonitorListResponse>> List(
+        Monitors::MonitorListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<MonitorListParams> request = new()
+        HttpRequest<Monitors::MonitorListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -284,7 +284,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             async (token) =>
             {
                 var monitors = await response
-                    .Deserialize<MonitorListResponse>(token)
+                    .Deserialize<Monitors::MonitorListResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -296,8 +296,8 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<MonitorDeactivateResponse>> Deactivate(
-        MonitorDeactivateParams parameters,
+    public async Task<HttpResponse<Monitors::MonitorDeactivateResponse>> Deactivate(
+        Monitors::MonitorDeactivateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -306,7 +306,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
-        HttpRequest<MonitorDeactivateParams> request = new()
+        HttpRequest<Monitors::MonitorDeactivateParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
@@ -317,7 +317,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
             async (token) =>
             {
                 var deserializedResponse = await response
-                    .Deserialize<MonitorDeactivateResponse>(token)
+                    .Deserialize<Monitors::MonitorDeactivateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -329,9 +329,9 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<MonitorDeactivateResponse>> Deactivate(
+    public Task<HttpResponse<Monitors::MonitorDeactivateResponse>> Deactivate(
         string id,
-        MonitorDeactivateParams? parameters = null,
+        Monitors::MonitorDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {

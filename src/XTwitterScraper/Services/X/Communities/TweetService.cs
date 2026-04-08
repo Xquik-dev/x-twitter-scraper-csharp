@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Communities.Tweets;
 
 namespace XTwitterScraper.Services.X.Communities;
@@ -34,7 +36,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetListResponse> List(
+    public async Task<TweetListPage> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -43,6 +45,30 @@ public sealed class TweetService : ITweetService
             .WithRawResponse.List(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<TweetListByCommunityPage> ListByCommunity(
+        TweetListByCommunityParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.ListByCommunity(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<TweetListByCommunityPage> ListByCommunity(
+        string id,
+        TweetListByCommunityParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.ListByCommunity(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -63,7 +89,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetListResponse>> List(
+    public async Task<HttpResponse<TweetListPage>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -78,15 +104,56 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var tweets = await response
-                    .Deserialize<TweetListResponse>(token)
-                    .ConfigureAwait(false);
+                var page = await response.Deserialize<PaginatedTweets>(token).ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    tweets.Validate();
+                    page.Validate();
                 }
-                return tweets;
+                return new TweetListPage(this, parameters, page);
             }
         );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+        TweetListByCommunityParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<TweetListByCommunityParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var page = await response.Deserialize<PaginatedTweets>(token).ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    page.Validate();
+                }
+                return new TweetListByCommunityPage(this, parameters, page);
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+        string id,
+        TweetListByCommunityParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.ListByCommunity(parameters with { ID = id }, cancellationToken);
     }
 }

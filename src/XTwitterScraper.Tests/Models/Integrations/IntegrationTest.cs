@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Integrations;
 
 namespace XTwitterScraper.Tests.Models.Integrations;
@@ -20,7 +21,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -39,10 +40,10 @@ public class IntegrationTest : TestBase
             { "chatId", JsonSerializer.SerializeToElement("bar") },
         };
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, IntegrationEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            IntegrationEventType.TweetNew,
-            IntegrationEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         bool expectedIsActive = true;
         string expectedName = "My Telegram Bot";
@@ -96,7 +97,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -129,7 +130,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -155,10 +156,10 @@ public class IntegrationTest : TestBase
             { "chatId", JsonSerializer.SerializeToElement("bar") },
         };
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, IntegrationEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            IntegrationEventType.TweetNew,
-            IntegrationEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         bool expectedIsActive = true;
         string expectedName = "My Telegram Bot";
@@ -212,7 +213,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -239,7 +240,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -266,7 +267,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -286,7 +287,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -319,7 +320,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -345,7 +346,7 @@ public class IntegrationTest : TestBase
                 { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
@@ -361,72 +362,6 @@ public class IntegrationTest : TestBase
         Integration copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class IntegrationEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(IntegrationEventType.TweetNew)]
-    [InlineData(IntegrationEventType.TweetReply)]
-    [InlineData(IntegrationEventType.TweetRetweet)]
-    [InlineData(IntegrationEventType.TweetQuote)]
-    [InlineData(IntegrationEventType.FollowerGained)]
-    [InlineData(IntegrationEventType.FollowerLost)]
-    public void Validation_Works(IntegrationEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, IntegrationEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, IntegrationEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(IntegrationEventType.TweetNew)]
-    [InlineData(IntegrationEventType.TweetReply)]
-    [InlineData(IntegrationEventType.TweetRetweet)]
-    [InlineData(IntegrationEventType.TweetQuote)]
-    [InlineData(IntegrationEventType.FollowerGained)]
-    [InlineData(IntegrationEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(IntegrationEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, IntegrationEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, IntegrationEventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, IntegrationEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, IntegrationEventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
     }
 }
 

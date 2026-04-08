@@ -45,16 +45,16 @@ public sealed record class StyleProfile : JsonModel
         init { this._rawData.Set("tweetCount", value); }
     }
 
-    public required IReadOnlyList<Tweet> Tweets
+    public required IReadOnlyList<StyleProfileTweet> Tweets
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<Tweet>>("tweets");
+            return this._rawData.GetNotNullStruct<ImmutableArray<StyleProfileTweet>>("tweets");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<Tweet>>(
+            this._rawData.Set<ImmutableArray<StyleProfileTweet>>(
                 "tweets",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -119,8 +119,8 @@ class StyleProfileFromRaw : IFromRawJson<StyleProfile>
         StyleProfile.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<Tweet, TweetFromRaw>))]
-public sealed record class Tweet : JsonModel
+[JsonConverter(typeof(JsonModelConverter<StyleProfileTweet, StyleProfileTweetFromRaw>))]
+public sealed record class StyleProfileTweet : JsonModel
 {
     public required string ID
     {
@@ -187,37 +187,39 @@ public sealed record class Tweet : JsonModel
         _ = this.CreatedAt;
     }
 
-    public Tweet() { }
+    public StyleProfileTweet() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Tweet(Tweet tweet)
-        : base(tweet) { }
+    public StyleProfileTweet(StyleProfileTweet styleProfileTweet)
+        : base(styleProfileTweet) { }
 #pragma warning restore CS8618
 
-    public Tweet(IReadOnlyDictionary<string, JsonElement> rawData)
+    public StyleProfileTweet(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tweet(FrozenDictionary<string, JsonElement> rawData)
+    StyleProfileTweet(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TweetFromRaw.FromRawUnchecked"/>
-    public static Tweet FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="StyleProfileTweetFromRaw.FromRawUnchecked"/>
+    public static StyleProfileTweet FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class TweetFromRaw : IFromRawJson<Tweet>
+class StyleProfileTweetFromRaw : IFromRawJson<StyleProfileTweet>
 {
     /// <inheritdoc/>
-    public Tweet FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tweet.FromRawUnchecked(rawData);
+    public StyleProfileTweet FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        StyleProfileTweet.FromRawUnchecked(rawData);
 }

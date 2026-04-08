@@ -58,18 +58,18 @@ public sealed record class Integration : JsonModel
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public required IReadOnlyList<ApiEnum<string, IntegrationEventType>> EventTypes
+    public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<ApiEnum<string, IntegrationEventType>>
-            >("eventTypes");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+                "eventTypes"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<ApiEnum<string, IntegrationEventType>>>(
+            this._rawData.Set<ImmutableArray<ApiEnum<string, EventType>>>(
                 "eventTypes",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -236,65 +236,6 @@ class IntegrationFromRaw : IFromRawJson<Integration>
     /// <inheritdoc/>
     public Integration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Integration.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// Type of monitor event fired when account activity occurs.
-/// </summary>
-[JsonConverter(typeof(IntegrationEventTypeConverter))]
-public enum IntegrationEventType
-{
-    TweetNew,
-    TweetReply,
-    TweetRetweet,
-    TweetQuote,
-    FollowerGained,
-    FollowerLost,
-}
-
-sealed class IntegrationEventTypeConverter : JsonConverter<IntegrationEventType>
-{
-    public override IntegrationEventType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "tweet.new" => IntegrationEventType.TweetNew,
-            "tweet.reply" => IntegrationEventType.TweetReply,
-            "tweet.retweet" => IntegrationEventType.TweetRetweet,
-            "tweet.quote" => IntegrationEventType.TweetQuote,
-            "follower.gained" => IntegrationEventType.FollowerGained,
-            "follower.lost" => IntegrationEventType.FollowerLost,
-            _ => (IntegrationEventType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        IntegrationEventType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                IntegrationEventType.TweetNew => "tweet.new",
-                IntegrationEventType.TweetReply => "tweet.reply",
-                IntegrationEventType.TweetRetweet => "tweet.retweet",
-                IntegrationEventType.TweetQuote => "tweet.quote",
-                IntegrationEventType.FollowerGained => "follower.gained",
-                IntegrationEventType.FollowerLost => "follower.lost",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }
 
 [JsonConverter(typeof(IntegrationTypeConverter))]

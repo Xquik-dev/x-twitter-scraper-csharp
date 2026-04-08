@@ -15,77 +15,99 @@ public class TweetServiceTest : TestBase
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
+    public async Task Retrieve_Works()
+    {
+        var tweet = await this.client.X.Tweets.Retrieve(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        tweet.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
-        var tweets = await this.client.X.Tweets.List(
+        var paginatedTweets = await this.client.X.Tweets.List(
             new() { Ids = "ids" },
             TestContext.Current.CancellationToken
         );
-        tweets.Validate();
+        paginatedTweets.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
+    public async Task Delete_Works()
+    {
+        var tweet = await this.client.X.Tweets.Delete(
+            "id",
+            new() { Account = "@elonmusk" },
+            TestContext.Current.CancellationToken
+        );
+        tweet.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetFavoriters_Works()
     {
-        var response = await this.client.X.Tweets.GetFavoriters(
+        var paginatedUsers = await this.client.X.Tweets.GetFavoriters(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedUsers.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetQuotes_Works()
     {
-        var response = await this.client.X.Tweets.GetQuotes(
+        var paginatedTweets = await this.client.X.Tweets.GetQuotes(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetReplies_Works()
     {
-        var response = await this.client.X.Tweets.GetReplies(
+        var paginatedTweets = await this.client.X.Tweets.GetReplies(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetRetweeters_Works()
     {
-        var response = await this.client.X.Tweets.GetRetweeters(
+        var paginatedUsers = await this.client.X.Tweets.GetRetweeters(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedUsers.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetThread_Works()
     {
-        var response = await this.client.X.Tweets.GetThread(
+        var paginatedTweets = await this.client.X.Tweets.GetThread(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Search_Works()
     {
-        var response = await this.client.X.Tweets.Search(
+        var paginatedTweets = await this.client.X.Tweets.Search(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 }

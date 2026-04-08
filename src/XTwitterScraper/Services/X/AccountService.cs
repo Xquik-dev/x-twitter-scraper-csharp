@@ -47,7 +47,7 @@ public sealed class AccountService : IAccountService
     }
 
     /// <inheritdoc/>
-    public async Task<AccountRetrieveResponse> Retrieve(
+    public async Task<XAccountDetail> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -59,7 +59,7 @@ public sealed class AccountService : IAccountService
     }
 
     /// <inheritdoc/>
-    public Task<AccountRetrieveResponse> Retrieve(
+    public Task<XAccountDetail> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -104,6 +104,18 @@ public sealed class AccountService : IAccountService
         parameters ??= new();
 
         return this.Delete(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<AccountBulkRetryResponse> BulkRetry(
+        AccountBulkRetryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.BulkRetry(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
@@ -174,7 +186,7 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    public async Task<HttpResponse<XAccountDetail>> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -194,20 +206,20 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
             response,
             async (token) =>
             {
-                var account = await response
-                    .Deserialize<AccountRetrieveResponse>(token)
+                var xAccountDetail = await response
+                    .Deserialize<XAccountDetail>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    account.Validate();
+                    xAccountDetail.Validate();
                 }
-                return account;
+                return xAccountDetail;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    public Task<HttpResponse<XAccountDetail>> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -291,6 +303,36 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
         parameters ??= new();
 
         return this.Delete(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<AccountBulkRetryResponse>> BulkRetry(
+        AccountBulkRetryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<AccountBulkRetryParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<AccountBulkRetryResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>

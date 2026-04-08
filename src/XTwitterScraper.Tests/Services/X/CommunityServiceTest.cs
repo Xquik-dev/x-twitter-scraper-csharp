@@ -39,32 +39,32 @@ public class CommunityServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveMembers_Works()
     {
-        var response = await this.client.X.Communities.RetrieveMembers(
+        var paginatedUsers = await this.client.X.Communities.RetrieveMembers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedUsers.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveModerators_Works()
     {
-        var response = await this.client.X.Communities.RetrieveModerators(
+        var paginatedUsers = await this.client.X.Communities.RetrieveModerators(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedUsers.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveSearch_Works()
     {
-        var response = await this.client.X.Communities.RetrieveSearch(
+        var paginatedTweets = await this.client.X.Communities.RetrieveSearch(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        paginatedTweets.Validate();
     }
 }

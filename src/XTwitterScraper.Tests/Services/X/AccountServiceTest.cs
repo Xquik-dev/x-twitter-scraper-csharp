@@ -22,12 +22,12 @@ public class AccountServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var account = await this.client.X.Accounts.Retrieve(
+        var xAccountDetail = await this.client.X.Accounts.Retrieve(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        account.Validate();
+        xAccountDetail.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -49,6 +49,16 @@ public class AccountServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         account.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
+    public async Task BulkRetry_Works()
+    {
+        var response = await this.client.X.Accounts.BulkRetry(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

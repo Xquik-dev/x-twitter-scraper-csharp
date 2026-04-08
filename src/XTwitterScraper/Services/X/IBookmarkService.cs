@@ -31,7 +31,7 @@ public interface IBookmarkService
     /// <summary>
     /// Get bookmarked tweets
     /// </summary>
-    Task<BookmarkListResponse> List(
+    Task<BookmarkListPage> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -62,7 +62,7 @@ public interface IBookmarkServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/bookmarks</c>, but is otherwise the
     /// same as <see cref="IBookmarkService.List(BookmarkListParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<BookmarkListResponse>> List(
+    Task<HttpResponse<BookmarkListPage>> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     );

@@ -31,13 +31,13 @@ public interface IEventService
     /// <summary>
     /// Get event
     /// </summary>
-    Task<EventRetrieveResponse> Retrieve(
+    Task<EventDetail> Retrieve(
         EventRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(EventRetrieveParams, CancellationToken)"/>
-    Task<EventRetrieveResponse> Retrieve(
+    Task<EventDetail> Retrieve(
         string id,
         EventRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -69,13 +69,13 @@ public interface IEventServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /events/{id}</c>, but is otherwise the
     /// same as <see cref="IEventService.Retrieve(EventRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<EventRetrieveResponse>> Retrieve(
+    Task<HttpResponse<EventDetail>> Retrieve(
         EventRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(EventRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<EventRetrieveResponse>> Retrieve(
+    Task<HttpResponse<EventDetail>> Retrieve(
         string id,
         EventRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

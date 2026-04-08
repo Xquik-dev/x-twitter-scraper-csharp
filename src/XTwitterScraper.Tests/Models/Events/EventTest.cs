@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
-using Events = XTwitterScraper.Models.Events;
+using XTwitterScraper.Models;
+using XTwitterScraper.Models.Events;
 
 namespace XTwitterScraper.Tests.Models.Events;
 
@@ -12,7 +12,7 @@ public class EventTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Events::Event
+        var model = new Event
         {
             ID = "id",
             Data = new Dictionary<string, JsonElement>()
@@ -21,7 +21,7 @@ public class EventTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = Events::Type.TweetNew,
+            Type = EventType.TweetNew,
             Username = "username",
         };
 
@@ -32,7 +32,7 @@ public class EventTest : TestBase
         };
         string expectedMonitorID = "monitorId";
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, Events::Type> expectedType = Events::Type.TweetNew;
+        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
         string expectedUsername = "username";
 
         Assert.Equal(expectedID, model.ID);
@@ -52,7 +52,7 @@ public class EventTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Events::Event
+        var model = new Event
         {
             ID = "id",
             Data = new Dictionary<string, JsonElement>()
@@ -61,15 +61,12 @@ public class EventTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = Events::Type.TweetNew,
+            Type = EventType.TweetNew,
             Username = "username",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Events::Event>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Event>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -77,7 +74,7 @@ public class EventTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Events::Event
+        var model = new Event
         {
             ID = "id",
             Data = new Dictionary<string, JsonElement>()
@@ -86,15 +83,12 @@ public class EventTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = Events::Type.TweetNew,
+            Type = EventType.TweetNew,
             Username = "username",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Events::Event>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Event>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
@@ -104,7 +98,7 @@ public class EventTest : TestBase
         };
         string expectedMonitorID = "monitorId";
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, Events::Type> expectedType = Events::Type.TweetNew;
+        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
         string expectedUsername = "username";
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -124,7 +118,7 @@ public class EventTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Events::Event
+        var model = new Event
         {
             ID = "id",
             Data = new Dictionary<string, JsonElement>()
@@ -133,7 +127,7 @@ public class EventTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = Events::Type.TweetNew,
+            Type = EventType.TweetNew,
             Username = "username",
         };
 
@@ -143,7 +137,7 @@ public class EventTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Events::Event
+        var model = new Event
         {
             ID = "id",
             Data = new Dictionary<string, JsonElement>()
@@ -152,78 +146,12 @@ public class EventTest : TestBase
             },
             MonitorID = "monitorId",
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Type = Events::Type.TweetNew,
+            Type = EventType.TweetNew,
             Username = "username",
         };
 
-        Events::Event copied = new(model);
+        Event copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class TypeTest : TestBase
-{
-    [Theory]
-    [InlineData(Events::Type.TweetNew)]
-    [InlineData(Events::Type.TweetReply)]
-    [InlineData(Events::Type.TweetRetweet)]
-    [InlineData(Events::Type.TweetQuote)]
-    [InlineData(Events::Type.FollowerGained)]
-    [InlineData(Events::Type.FollowerLost)]
-    public void Validation_Works(Events::Type rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Events::Type> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Events::Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Events::Type.TweetNew)]
-    [InlineData(Events::Type.TweetReply)]
-    [InlineData(Events::Type.TweetRetweet)]
-    [InlineData(Events::Type.TweetQuote)]
-    [InlineData(Events::Type.FollowerGained)]
-    [InlineData(Events::Type.FollowerLost)]
-    public void SerializationRoundtrip_Works(Events::Type rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Events::Type> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Events::Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Events::Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Events::Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
     }
 }

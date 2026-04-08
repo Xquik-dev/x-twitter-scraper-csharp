@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Webhooks;
 
 namespace XTwitterScraper.Tests.Models.Webhooks;
@@ -16,17 +16,17 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [WebhookEventType.TweetNew, WebhookEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, WebhookEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            WebhookEventType.TweetNew,
-            WebhookEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";
@@ -49,7 +49,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [WebhookEventType.TweetNew, WebhookEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -67,7 +67,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [WebhookEventType.TweetNew, WebhookEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -81,10 +81,10 @@ public class WebhookTest : TestBase
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, WebhookEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            WebhookEventType.TweetNew,
-            WebhookEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";
@@ -107,7 +107,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [WebhookEventType.TweetNew, WebhookEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -122,7 +122,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [WebhookEventType.TweetNew, WebhookEventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -130,71 +130,5 @@ public class WebhookTest : TestBase
         Webhook copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class WebhookEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(WebhookEventType.TweetNew)]
-    [InlineData(WebhookEventType.TweetReply)]
-    [InlineData(WebhookEventType.TweetRetweet)]
-    [InlineData(WebhookEventType.TweetQuote)]
-    [InlineData(WebhookEventType.FollowerGained)]
-    [InlineData(WebhookEventType.FollowerLost)]
-    public void Validation_Works(WebhookEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, WebhookEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, WebhookEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(WebhookEventType.TweetNew)]
-    [InlineData(WebhookEventType.TweetReply)]
-    [InlineData(WebhookEventType.TweetRetweet)]
-    [InlineData(WebhookEventType.TweetQuote)]
-    [InlineData(WebhookEventType.FollowerGained)]
-    [InlineData(WebhookEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(WebhookEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, WebhookEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, WebhookEventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, WebhookEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, WebhookEventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
     }
 }

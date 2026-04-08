@@ -31,8 +31,23 @@ public interface ITweetService
     /// <summary>
     /// Search tweets across all communities
     /// </summary>
-    Task<TweetListResponse> List(
+    Task<TweetListPage> List(
         TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Get community tweets
+    /// </summary>
+    Task<TweetListByCommunityPage> ListByCommunity(
+        TweetListByCommunityParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>
+    Task<TweetListByCommunityPage> ListByCommunity(
+        string id,
+        TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }
@@ -54,8 +69,24 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetListResponse>> List(
+    Task<HttpResponse<TweetListPage>> List(
         TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/{id}/tweets</c>, but is otherwise the
+    /// same as <see cref="ITweetService.ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+        TweetListByCommunityParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>
+    Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+        string id,
+        TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }
