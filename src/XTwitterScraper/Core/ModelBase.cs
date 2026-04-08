@@ -8,7 +8,6 @@ using XTwitterScraper.Models.Radar;
 using XTwitterScraper.Models.Subscribe;
 using Drafts = XTwitterScraper.Models.Drafts;
 using Extractions = XTwitterScraper.Models.Extractions;
-using Integrations = XTwitterScraper.Models.Integrations;
 using Tickets = XTwitterScraper.Models.Support.Tickets;
 using Tweets = XTwitterScraper.Models.X.Tweets;
 using X = XTwitterScraper.Models.X;
@@ -44,7 +43,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Source>(),
             new ApiEnumConverter<string, Extractions::ExtractionJobStatus>(),
             new ApiEnumConverter<string, Extractions::ExtractionJobToolType>(),
-            new ApiEnumConverter<string, Extractions::ExtractionRunResponseStatus>(),
             new ApiEnumConverter<string, Extractions::ExtractionRunResponseToolType>(),
             new ApiEnumConverter<string, Extractions::Status>(),
             new ApiEnumConverter<string, Extractions::ToolType>(),
@@ -53,8 +51,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Extractions::ExtractionRunParamsToolType>(),
             new ApiEnumConverter<string, Format>(),
             new ApiEnumConverter<string, Type>(),
-            new ApiEnumConverter<string, Integrations::IntegrationType>(),
-            new ApiEnumConverter<string, Integrations::Type>(),
             new ApiEnumConverter<string, X::Type>(),
             new ApiEnumConverter<string, Tweets::Type>(),
             new ApiEnumConverter<string, Tweets::QueryType>(),

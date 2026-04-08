@@ -1,6 +1,6 @@
+using System.Text.Json;
 using System.Threading.Tasks;
 using XTwitterScraper.Models;
-using XTwitterScraper.Models.Integrations;
 
 namespace XTwitterScraper.Tests.Services;
 
@@ -15,7 +15,7 @@ public class IntegrationServiceTest : TestBase
                 Config = new("-1001234567890"),
                 EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                 Name = "My Telegram Bot",
-                Type = Type.Telegram,
+                Type = JsonSerializer.SerializeToElement("telegram"),
             },
             TestContext.Current.CancellationToken
         );

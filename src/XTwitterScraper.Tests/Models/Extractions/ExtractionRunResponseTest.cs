@@ -13,18 +13,16 @@ public class ExtractionRunResponseTest : TestBase
         var model = new ExtractionRunResponse
         {
             ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            Status = ExtractionRunResponseStatus.Running,
             ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
-        ApiEnum<string, ExtractionRunResponseStatus> expectedStatus =
-            ExtractionRunResponseStatus.Running;
+        JsonElement expectedStatus = JsonSerializer.SerializeToElement("running");
         ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
             ExtractionRunResponseToolType.FollowerExplorer;
 
         Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedStatus, model.Status);
+        Assert.True(JsonElement.DeepEquals(expectedStatus, model.Status));
         Assert.Equal(expectedToolType, model.ToolType);
     }
 
@@ -34,7 +32,6 @@ public class ExtractionRunResponseTest : TestBase
         var model = new ExtractionRunResponse
         {
             ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            Status = ExtractionRunResponseStatus.Running,
             ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
@@ -53,7 +50,6 @@ public class ExtractionRunResponseTest : TestBase
         var model = new ExtractionRunResponse
         {
             ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            Status = ExtractionRunResponseStatus.Running,
             ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
@@ -65,13 +61,12 @@ public class ExtractionRunResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
-        ApiEnum<string, ExtractionRunResponseStatus> expectedStatus =
-            ExtractionRunResponseStatus.Running;
+        JsonElement expectedStatus = JsonSerializer.SerializeToElement("running");
         ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
             ExtractionRunResponseToolType.FollowerExplorer;
 
         Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedStatus, deserialized.Status);
+        Assert.True(JsonElement.DeepEquals(expectedStatus, deserialized.Status));
         Assert.Equal(expectedToolType, deserialized.ToolType);
     }
 
@@ -81,7 +76,6 @@ public class ExtractionRunResponseTest : TestBase
         var model = new ExtractionRunResponse
         {
             ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            Status = ExtractionRunResponseStatus.Running,
             ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
@@ -94,69 +88,12 @@ public class ExtractionRunResponseTest : TestBase
         var model = new ExtractionRunResponse
         {
             ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            Status = ExtractionRunResponseStatus.Running,
             ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         ExtractionRunResponse copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class ExtractionRunResponseStatusTest : TestBase
-{
-    [Theory]
-    [InlineData(ExtractionRunResponseStatus.Running)]
-    public void Validation_Works(ExtractionRunResponseStatus rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, ExtractionRunResponseStatus> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseStatus>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(ExtractionRunResponseStatus.Running)]
-    public void SerializationRoundtrip_Works(ExtractionRunResponseStatus rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, ExtractionRunResponseStatus> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseStatus>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseStatus>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseStatus>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
     }
 }
 

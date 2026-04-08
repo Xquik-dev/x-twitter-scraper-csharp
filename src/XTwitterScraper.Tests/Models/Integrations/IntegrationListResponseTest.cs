@@ -27,7 +27,6 @@ public class IntegrationListResponseTest : TestBase
                     EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                     IsActive = true,
                     Name = "My Telegram Bot",
-                    Type = IntegrationType.Telegram,
                     Filters = new Dictionary<string, JsonElement>()
                     {
                         { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -52,7 +51,6 @@ public class IntegrationListResponseTest : TestBase
                 EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                 IsActive = true,
                 Name = "My Telegram Bot",
-                Type = IntegrationType.Telegram,
                 Filters = new Dictionary<string, JsonElement>()
                 {
                     { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -88,7 +86,6 @@ public class IntegrationListResponseTest : TestBase
                     EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                     IsActive = true,
                     Name = "My Telegram Bot",
-                    Type = IntegrationType.Telegram,
                     Filters = new Dictionary<string, JsonElement>()
                     {
                         { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -127,7 +124,6 @@ public class IntegrationListResponseTest : TestBase
                     EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                     IsActive = true,
                     Name = "My Telegram Bot",
-                    Type = IntegrationType.Telegram,
                     Filters = new Dictionary<string, JsonElement>()
                     {
                         { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -159,7 +155,6 @@ public class IntegrationListResponseTest : TestBase
                 EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                 IsActive = true,
                 Name = "My Telegram Bot",
-                Type = IntegrationType.Telegram,
                 Filters = new Dictionary<string, JsonElement>()
                 {
                     { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -195,7 +190,6 @@ public class IntegrationListResponseTest : TestBase
                     EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                     IsActive = true,
                     Name = "My Telegram Bot",
-                    Type = IntegrationType.Telegram,
                     Filters = new Dictionary<string, JsonElement>()
                     {
                         { "minFollowers", JsonSerializer.SerializeToElement("bar") },
@@ -228,7 +222,6 @@ public class IntegrationListResponseTest : TestBase
                     EventTypes = [EventType.TweetNew, EventType.FollowerGained],
                     IsActive = true,
                     Name = "My Telegram Bot",
-                    Type = IntegrationType.Telegram,
                     Filters = new Dictionary<string, JsonElement>()
                     {
                         { "minFollowers", JsonSerializer.SerializeToElement("bar") },

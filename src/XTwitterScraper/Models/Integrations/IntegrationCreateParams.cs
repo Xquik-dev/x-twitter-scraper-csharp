@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -7,8 +8,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
-using System = System;
 
 namespace XTwitterScraper.Models.Integrations;
 
@@ -71,19 +70,20 @@ public record class IntegrationCreateParams : ParamsBase
         init { this._rawBodyData.Set("name", value); }
     }
 
-    public required ApiEnum<string, global::XTwitterScraper.Models.Integrations.Type> Type
+    public JsonElement Type
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<
-                ApiEnum<string, global::XTwitterScraper.Models.Integrations.Type>
-            >("type");
+            return this._rawBodyData.GetNotNullStruct<JsonElement>("type");
         }
         init { this._rawBodyData.Set("type", value); }
     }
 
-    public IntegrationCreateParams() { }
+    public IntegrationCreateParams()
+    {
+        this.Type = JsonSerializer.SerializeToElement("telegram");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -161,9 +161,9 @@ public record class IntegrationCreateParams : ParamsBase
             && this._rawBodyData.Equals(other._rawBodyData);
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/integrations")
+        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/integrations")
         {
             Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
@@ -255,45 +255,4 @@ class ConfigFromRaw : IFromRawJson<Config>
     /// <inheritdoc/>
     public Config FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Config.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(TypeConverter))]
-public enum Type
-{
-    Telegram,
-}
-
-sealed class TypeConverter : JsonConverter<global::XTwitterScraper.Models.Integrations.Type>
-{
-    public override global::XTwitterScraper.Models.Integrations.Type Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "telegram" => global::XTwitterScraper.Models.Integrations.Type.Telegram,
-            _ => (global::XTwitterScraper.Models.Integrations.Type)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::XTwitterScraper.Models.Integrations.Type value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                global::XTwitterScraper.Models.Integrations.Type.Telegram => "telegram",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }
