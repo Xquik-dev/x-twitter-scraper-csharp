@@ -8,10 +8,9 @@ The REST API documentation can be found on [xquik.com](https://xquik.com).
 
 ## Installation
 
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
-
 ```bash
-dotnet add package XTwitterScraper
+git clone git@github.com:stainless-sdks/x-twitter-scraper-csharp.git
+dotnet add reference x-twitter-scraper-csharp/src/XTwitterScraper
 ```
 
 ## Requirements
@@ -421,4 +420,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/Xquik-dev/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
