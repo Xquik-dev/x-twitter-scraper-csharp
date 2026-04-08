@@ -7,8 +7,11 @@ public class BookmarkServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
-        var page = await this.client.X.Bookmarks.List(new(), TestContext.Current.CancellationToken);
-        page.Validate();
+        var paginatedTweets = await this.client.X.Bookmarks.List(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        paginatedTweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

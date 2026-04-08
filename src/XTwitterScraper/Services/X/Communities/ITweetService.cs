@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Communities.Tweets;
 
 namespace XTwitterScraper.Services.X.Communities;
@@ -31,7 +32,7 @@ public interface ITweetService
     /// <summary>
     /// Search tweets across all communities
     /// </summary>
-    Task<TweetListPage> List(
+    Task<PaginatedTweets> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -39,13 +40,13 @@ public interface ITweetService
     /// <summary>
     /// Get community tweets
     /// </summary>
-    Task<TweetListByCommunityPage> ListByCommunity(
+    Task<PaginatedTweets> ListByCommunity(
         TweetListByCommunityParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>
-    Task<TweetListByCommunityPage> ListByCommunity(
+    Task<PaginatedTweets> ListByCommunity(
         string id,
         TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -69,7 +70,7 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetListPage>> List(
+    Task<HttpResponse<PaginatedTweets>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -78,13 +79,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/{id}/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+    Task<HttpResponse<PaginatedTweets>> ListByCommunity(
         TweetListByCommunityParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="ListByCommunity(TweetListByCommunityParams, CancellationToken)"/>
-    Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+    Task<HttpResponse<PaginatedTweets>> ListByCommunity(
         string id,
         TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default

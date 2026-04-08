@@ -35,7 +35,7 @@ public sealed class BookmarkService : IBookmarkService
     }
 
     /// <inheritdoc/>
-    public async Task<BookmarkListPage> List(
+    public async Task<PaginatedTweets> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -76,7 +76,7 @@ public sealed class BookmarkServiceWithRawResponse : IBookmarkServiceWithRawResp
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<BookmarkListPage>> List(
+    public async Task<HttpResponse<PaginatedTweets>> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -93,12 +93,14 @@ public sealed class BookmarkServiceWithRawResponse : IBookmarkServiceWithRawResp
             response,
             async (token) =>
             {
-                var page = await response.Deserialize<PaginatedTweets>(token).ConfigureAwait(false);
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
+                    .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    page.Validate();
+                    paginatedTweets.Validate();
                 }
-                return new BookmarkListPage(this, parameters, page);
+                return paginatedTweets;
             }
         );
     }
