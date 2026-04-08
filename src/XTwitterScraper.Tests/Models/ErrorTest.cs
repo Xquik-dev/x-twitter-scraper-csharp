@@ -10,9 +10,9 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = ErrorError.InternalError };
+        var model = new Error { ErrorValue = ErrorError.InvalidInput };
 
-        ApiEnum<string, ErrorError> expectedErrorValue = ErrorError.InternalError;
+        ApiEnum<string, ErrorError> expectedErrorValue = ErrorError.InvalidInput;
 
         Assert.Equal(expectedErrorValue, model.ErrorValue);
     }
@@ -20,7 +20,7 @@ public class ErrorTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = ErrorError.InternalError };
+        var model = new Error { ErrorValue = ErrorError.InvalidInput };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(json, ModelBase.SerializerOptions);
@@ -31,13 +31,13 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Error { ErrorValue = ErrorError.InternalError };
+        var model = new Error { ErrorValue = ErrorError.InvalidInput };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, ErrorError> expectedErrorValue = ErrorError.InternalError;
+        ApiEnum<string, ErrorError> expectedErrorValue = ErrorError.InvalidInput;
 
         Assert.Equal(expectedErrorValue, deserialized.ErrorValue);
     }
@@ -45,7 +45,7 @@ public class ErrorTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Error { ErrorValue = ErrorError.InternalError };
+        var model = new Error { ErrorValue = ErrorError.InvalidInput };
 
         model.Validate();
     }
@@ -53,7 +53,7 @@ public class ErrorTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Error { ErrorValue = ErrorError.InternalError };
+        var model = new Error { ErrorValue = ErrorError.InvalidInput };
 
         Error copied = new(model);
 

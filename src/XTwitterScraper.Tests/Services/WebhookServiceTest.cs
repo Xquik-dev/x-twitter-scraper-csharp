@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using XTwitterScraper.Models.Webhooks;
+using XTwitterScraper.Models;
 
 namespace XTwitterScraper.Tests.Services;
 
@@ -9,7 +9,11 @@ public class WebhookServiceTest : TestBase
     public async Task Create_Works()
     {
         var webhook = await this.client.Webhooks.Create(
-            new() { EventTypes = [EventType.TweetNew], UrlValue = "https://example.com" },
+            new()
+            {
+                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                UrlValue = "https://example.com/webhook",
+            },
             TestContext.Current.CancellationToken
         );
         webhook.Validate();

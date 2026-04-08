@@ -17,12 +17,12 @@ public class TicketListResponseTest : TestBase
             [
                 new()
                 {
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    MessageCount = 0,
-                    PublicID = "publicId",
-                    Status = "status",
-                    Subject = "subject",
-                    UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    MessageCount = 2,
+                    PublicID = "tk_abc123",
+                    Status = "open",
+                    Subject = "Cannot connect X account",
+                    UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
                 },
             ],
         };
@@ -31,12 +31,12 @@ public class TicketListResponseTest : TestBase
         [
             new()
             {
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                MessageCount = 0,
-                PublicID = "publicId",
-                Status = "status",
-                Subject = "subject",
-                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                MessageCount = 2,
+                PublicID = "tk_abc123",
+                Status = "open",
+                Subject = "Cannot connect X account",
+                UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
             },
         ];
 
@@ -57,12 +57,12 @@ public class TicketListResponseTest : TestBase
             [
                 new()
                 {
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    MessageCount = 0,
-                    PublicID = "publicId",
-                    Status = "status",
-                    Subject = "subject",
-                    UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    MessageCount = 2,
+                    PublicID = "tk_abc123",
+                    Status = "open",
+                    Subject = "Cannot connect X account",
+                    UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
                 },
             ],
         };
@@ -85,12 +85,12 @@ public class TicketListResponseTest : TestBase
             [
                 new()
                 {
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    MessageCount = 0,
-                    PublicID = "publicId",
-                    Status = "status",
-                    Subject = "subject",
-                    UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    MessageCount = 2,
+                    PublicID = "tk_abc123",
+                    Status = "open",
+                    Subject = "Cannot connect X account",
+                    UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
                 },
             ],
         };
@@ -106,12 +106,12 @@ public class TicketListResponseTest : TestBase
         [
             new()
             {
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                MessageCount = 0,
-                PublicID = "publicId",
-                Status = "status",
-                Subject = "subject",
-                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                MessageCount = 2,
+                PublicID = "tk_abc123",
+                Status = "open",
+                Subject = "Cannot connect X account",
+                UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
             },
         ];
 
@@ -132,12 +132,12 @@ public class TicketListResponseTest : TestBase
             [
                 new()
                 {
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    MessageCount = 0,
-                    PublicID = "publicId",
-                    Status = "status",
-                    Subject = "subject",
-                    UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    MessageCount = 2,
+                    PublicID = "tk_abc123",
+                    Status = "open",
+                    Subject = "Cannot connect X account",
+                    UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
                 },
             ],
         };
@@ -196,12 +196,12 @@ public class TicketListResponseTest : TestBase
             [
                 new()
                 {
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    MessageCount = 0,
-                    PublicID = "publicId",
-                    Status = "status",
-                    Subject = "subject",
-                    UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    MessageCount = 2,
+                    PublicID = "tk_abc123",
+                    Status = "open",
+                    Subject = "Cannot connect X account",
+                    UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
                 },
             ],
         };
@@ -219,20 +219,20 @@ public class TicketTest : TestBase
     {
         var model = new Ticket
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            MessageCount = 0,
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            MessageCount = 2,
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        long expectedMessageCount = 0;
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
-        string expectedSubject = "subject";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        long expectedMessageCount = 2;
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "open";
+        string expectedSubject = "Cannot connect X account";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedMessageCount, model.MessageCount);
@@ -247,12 +247,12 @@ public class TicketTest : TestBase
     {
         var model = new Ticket
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            MessageCount = 0,
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            MessageCount = 2,
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -266,24 +266,24 @@ public class TicketTest : TestBase
     {
         var model = new Ticket
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            MessageCount = 0,
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            MessageCount = 2,
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Ticket>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        long expectedMessageCount = 0;
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
-        string expectedSubject = "subject";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        long expectedMessageCount = 2;
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "open";
+        string expectedSubject = "Cannot connect X account";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedMessageCount, deserialized.MessageCount);
@@ -298,12 +298,12 @@ public class TicketTest : TestBase
     {
         var model = new Ticket
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            MessageCount = 0,
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            MessageCount = 2,
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         model.Validate();
@@ -386,12 +386,12 @@ public class TicketTest : TestBase
     {
         var model = new Ticket
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            MessageCount = 0,
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            MessageCount = 2,
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         Ticket copied = new(model);

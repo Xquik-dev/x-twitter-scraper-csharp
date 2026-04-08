@@ -48,12 +48,12 @@ public sealed class LikeService : ILikeService
 
     /// <inheritdoc/>
     public Task<LikeCreateResponse> Create(
-        string tweetID,
+        string id,
         LikeCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -70,12 +70,12 @@ public sealed class LikeService : ILikeService
 
     /// <inheritdoc/>
     public Task<LikeDeleteResponse> Delete(
-        string tweetID,
+        string id,
         LikeDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -101,9 +101,9 @@ public sealed class LikeServiceWithRawResponse : ILikeServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<LikeCreateParams> request = new()
@@ -130,12 +130,12 @@ public sealed class LikeServiceWithRawResponse : ILikeServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<LikeCreateResponse>> Create(
-        string tweetID,
+        string id,
         LikeCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -144,9 +144,9 @@ public sealed class LikeServiceWithRawResponse : ILikeServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<LikeDeleteParams> request = new()
@@ -173,11 +173,11 @@ public sealed class LikeServiceWithRawResponse : ILikeServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<LikeDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         LikeDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 }

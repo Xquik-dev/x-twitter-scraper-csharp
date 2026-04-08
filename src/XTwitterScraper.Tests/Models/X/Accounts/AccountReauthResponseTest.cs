@@ -11,14 +11,14 @@ public class AccountReauthResponseTest : TestBase
     {
         var model = new AccountReauthResponse
         {
-            ID = "id",
-            Status = "status",
-            XUsername = "xUsername",
+            ID = "42",
+            Status = "active",
+            XUsername = "elonmusk",
         };
 
-        string expectedID = "id";
-        string expectedStatus = "status";
-        string expectedXUsername = "xUsername";
+        string expectedID = "42";
+        string expectedStatus = "active";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedStatus, model.Status);
@@ -30,9 +30,9 @@ public class AccountReauthResponseTest : TestBase
     {
         var model = new AccountReauthResponse
         {
-            ID = "id",
-            Status = "status",
-            XUsername = "xUsername",
+            ID = "42",
+            Status = "active",
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -49,9 +49,9 @@ public class AccountReauthResponseTest : TestBase
     {
         var model = new AccountReauthResponse
         {
-            ID = "id",
-            Status = "status",
-            XUsername = "xUsername",
+            ID = "42",
+            Status = "active",
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -61,9 +61,9 @@ public class AccountReauthResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedStatus = "status";
-        string expectedXUsername = "xUsername";
+        string expectedID = "42";
+        string expectedStatus = "active";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedStatus, deserialized.Status);
@@ -75,9 +75,9 @@ public class AccountReauthResponseTest : TestBase
     {
         var model = new AccountReauthResponse
         {
-            ID = "id",
-            Status = "status",
-            XUsername = "xUsername",
+            ID = "42",
+            Status = "active",
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -88,9 +88,9 @@ public class AccountReauthResponseTest : TestBase
     {
         var model = new AccountReauthResponse
         {
-            ID = "id",
-            Status = "status",
-            XUsername = "xUsername",
+            ID = "42",
+            Status = "active",
+            XUsername = "elonmusk",
         };
 
         AccountReauthResponse copied = new(model);

@@ -15,19 +15,19 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = "status",
-                TotalEntries = 0,
-                TweetAuthorUsername = "tweetAuthorUsername",
-                TweetID = "tweetId",
-                TweetLikeCount = 0,
-                TweetQuoteCount = 0,
-                TweetReplyCount = 0,
-                TweetRetweetCount = 0,
-                TweetText = "tweetText",
-                TweetUrl = "https://example.com",
-                ValidEntries = 0,
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Status = "completed",
+                TotalEntries = 250,
+                TweetAuthorUsername = "elonmusk",
+                TweetID = "1234567890",
+                TweetLikeCount = 50000,
+                TweetQuoteCount = 5000,
+                TweetReplyCount = 10000,
+                TweetRetweetCount = 25000,
+                TweetText = "Giving away 3 Tesla Model 3s!",
+                TweetUrl = "https://x.com/elonmusk/status/1234567890",
+                ValidEntries = 200,
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             Winners =
@@ -42,24 +42,24 @@ public class DrawRetrieveResponseTest : TestBase
             ],
         };
 
-        Draw expectedDraw = new()
+        DrawDetail expectedDraw = new()
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "completed",
+            TotalEntries = 250,
+            TweetAuthorUsername = "elonmusk",
+            TweetID = "1234567890",
+            TweetLikeCount = 50000,
+            TweetQuoteCount = 5000,
+            TweetReplyCount = 10000,
+            TweetRetweetCount = 25000,
+            TweetText = "Giving away 3 Tesla Model 3s!",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
+            ValidEntries = 200,
             DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
-        List<DrawRetrieveResponseWinner> expectedWinners =
+        List<Winner> expectedWinners =
         [
             new()
             {
@@ -85,19 +85,19 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = "status",
-                TotalEntries = 0,
-                TweetAuthorUsername = "tweetAuthorUsername",
-                TweetID = "tweetId",
-                TweetLikeCount = 0,
-                TweetQuoteCount = 0,
-                TweetReplyCount = 0,
-                TweetRetweetCount = 0,
-                TweetText = "tweetText",
-                TweetUrl = "https://example.com",
-                ValidEntries = 0,
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Status = "completed",
+                TotalEntries = 250,
+                TweetAuthorUsername = "elonmusk",
+                TweetID = "1234567890",
+                TweetLikeCount = 50000,
+                TweetQuoteCount = 5000,
+                TweetReplyCount = 10000,
+                TweetRetweetCount = 25000,
+                TweetText = "Giving away 3 Tesla Model 3s!",
+                TweetUrl = "https://x.com/elonmusk/status/1234567890",
+                ValidEntries = 200,
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             Winners =
@@ -128,19 +128,19 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = "status",
-                TotalEntries = 0,
-                TweetAuthorUsername = "tweetAuthorUsername",
-                TweetID = "tweetId",
-                TweetLikeCount = 0,
-                TweetQuoteCount = 0,
-                TweetReplyCount = 0,
-                TweetRetweetCount = 0,
-                TweetText = "tweetText",
-                TweetUrl = "https://example.com",
-                ValidEntries = 0,
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Status = "completed",
+                TotalEntries = 250,
+                TweetAuthorUsername = "elonmusk",
+                TweetID = "1234567890",
+                TweetLikeCount = 50000,
+                TweetQuoteCount = 5000,
+                TweetReplyCount = 10000,
+                TweetRetweetCount = 25000,
+                TweetText = "Giving away 3 Tesla Model 3s!",
+                TweetUrl = "https://x.com/elonmusk/status/1234567890",
+                ValidEntries = 200,
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             Winners =
@@ -162,24 +162,24 @@ public class DrawRetrieveResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        Draw expectedDraw = new()
+        DrawDetail expectedDraw = new()
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "completed",
+            TotalEntries = 250,
+            TweetAuthorUsername = "elonmusk",
+            TweetID = "1234567890",
+            TweetLikeCount = 50000,
+            TweetQuoteCount = 5000,
+            TweetReplyCount = 10000,
+            TweetRetweetCount = 25000,
+            TweetText = "Giving away 3 Tesla Model 3s!",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
+            ValidEntries = 200,
             DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
-        List<DrawRetrieveResponseWinner> expectedWinners =
+        List<Winner> expectedWinners =
         [
             new()
             {
@@ -205,19 +205,19 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = "status",
-                TotalEntries = 0,
-                TweetAuthorUsername = "tweetAuthorUsername",
-                TweetID = "tweetId",
-                TweetLikeCount = 0,
-                TweetQuoteCount = 0,
-                TweetReplyCount = 0,
-                TweetRetweetCount = 0,
-                TweetText = "tweetText",
-                TweetUrl = "https://example.com",
-                ValidEntries = 0,
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Status = "completed",
+                TotalEntries = 250,
+                TweetAuthorUsername = "elonmusk",
+                TweetID = "1234567890",
+                TweetLikeCount = 50000,
+                TweetQuoteCount = 5000,
+                TweetReplyCount = 10000,
+                TweetRetweetCount = 25000,
+                TweetText = "Giving away 3 Tesla Model 3s!",
+                TweetUrl = "https://x.com/elonmusk/status/1234567890",
+                ValidEntries = 200,
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             Winners =
@@ -242,19 +242,19 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Status = "status",
-                TotalEntries = 0,
-                TweetAuthorUsername = "tweetAuthorUsername",
-                TweetID = "tweetId",
-                TweetLikeCount = 0,
-                TweetQuoteCount = 0,
-                TweetReplyCount = 0,
-                TweetRetweetCount = 0,
-                TweetText = "tweetText",
-                TweetUrl = "https://example.com",
-                ValidEntries = 0,
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Status = "completed",
+                TotalEntries = 250,
+                TweetAuthorUsername = "elonmusk",
+                TweetID = "1234567890",
+                TweetLikeCount = 50000,
+                TweetQuoteCount = 5000,
+                TweetReplyCount = 10000,
+                TweetRetweetCount = 25000,
+                TweetText = "Giving away 3 Tesla Model 3s!",
+                TweetUrl = "https://x.com/elonmusk/status/1234567890",
+                ValidEntries = 200,
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
             Winners =
@@ -270,398 +270,6 @@ public class DrawRetrieveResponseTest : TestBase
         };
 
         DrawRetrieveResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class DrawTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-            DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
-
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        long expectedTotalEntries = 0;
-        string expectedTweetAuthorUsername = "tweetAuthorUsername";
-        string expectedTweetID = "tweetId";
-        long expectedTweetLikeCount = 0;
-        long expectedTweetQuoteCount = 0;
-        long expectedTweetReplyCount = 0;
-        long expectedTweetRetweetCount = 0;
-        string expectedTweetText = "tweetText";
-        string expectedTweetUrl = "https://example.com";
-        long expectedValidEntries = 0;
-        DateTimeOffset expectedDrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedCreatedAt, model.CreatedAt);
-        Assert.Equal(expectedStatus, model.Status);
-        Assert.Equal(expectedTotalEntries, model.TotalEntries);
-        Assert.Equal(expectedTweetAuthorUsername, model.TweetAuthorUsername);
-        Assert.Equal(expectedTweetID, model.TweetID);
-        Assert.Equal(expectedTweetLikeCount, model.TweetLikeCount);
-        Assert.Equal(expectedTweetQuoteCount, model.TweetQuoteCount);
-        Assert.Equal(expectedTweetReplyCount, model.TweetReplyCount);
-        Assert.Equal(expectedTweetRetweetCount, model.TweetRetweetCount);
-        Assert.Equal(expectedTweetText, model.TweetText);
-        Assert.Equal(expectedTweetUrl, model.TweetUrl);
-        Assert.Equal(expectedValidEntries, model.ValidEntries);
-        Assert.Equal(expectedDrawnAt, model.DrawnAt);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-            DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Draw>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-            DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Draw>(element, ModelBase.SerializerOptions);
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        long expectedTotalEntries = 0;
-        string expectedTweetAuthorUsername = "tweetAuthorUsername";
-        string expectedTweetID = "tweetId";
-        long expectedTweetLikeCount = 0;
-        long expectedTweetQuoteCount = 0;
-        long expectedTweetReplyCount = 0;
-        long expectedTweetRetweetCount = 0;
-        string expectedTweetText = "tweetText";
-        string expectedTweetUrl = "https://example.com";
-        long expectedValidEntries = 0;
-        DateTimeOffset expectedDrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
-        Assert.Equal(expectedStatus, deserialized.Status);
-        Assert.Equal(expectedTotalEntries, deserialized.TotalEntries);
-        Assert.Equal(expectedTweetAuthorUsername, deserialized.TweetAuthorUsername);
-        Assert.Equal(expectedTweetID, deserialized.TweetID);
-        Assert.Equal(expectedTweetLikeCount, deserialized.TweetLikeCount);
-        Assert.Equal(expectedTweetQuoteCount, deserialized.TweetQuoteCount);
-        Assert.Equal(expectedTweetReplyCount, deserialized.TweetReplyCount);
-        Assert.Equal(expectedTweetRetweetCount, deserialized.TweetRetweetCount);
-        Assert.Equal(expectedTweetText, deserialized.TweetText);
-        Assert.Equal(expectedTweetUrl, deserialized.TweetUrl);
-        Assert.Equal(expectedValidEntries, deserialized.ValidEntries);
-        Assert.Equal(expectedDrawnAt, deserialized.DrawnAt);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-            DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-        };
-
-        Assert.Null(model.DrawnAt);
-        Assert.False(model.RawData.ContainsKey("drawnAt"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-
-            // Null should be interpreted as omitted for these properties
-            DrawnAt = null,
-        };
-
-        Assert.Null(model.DrawnAt);
-        Assert.False(model.RawData.ContainsKey("drawnAt"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-
-            // Null should be interpreted as omitted for these properties
-            DrawnAt = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Draw
-        {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            TotalEntries = 0,
-            TweetAuthorUsername = "tweetAuthorUsername",
-            TweetID = "tweetId",
-            TweetLikeCount = 0,
-            TweetQuoteCount = 0,
-            TweetReplyCount = 0,
-            TweetRetweetCount = 0,
-            TweetText = "tweetText",
-            TweetUrl = "https://example.com",
-            ValidEntries = 0,
-            DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-        };
-
-        Draw copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class DrawRetrieveResponseWinnerTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new DrawRetrieveResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string expectedAuthorUsername = "authorUsername";
-        bool expectedIsBackup = true;
-        long expectedPosition = 0;
-        string expectedTweetID = "tweetId";
-
-        Assert.Equal(expectedAuthorUsername, model.AuthorUsername);
-        Assert.Equal(expectedIsBackup, model.IsBackup);
-        Assert.Equal(expectedPosition, model.Position);
-        Assert.Equal(expectedTweetID, model.TweetID);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new DrawRetrieveResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DrawRetrieveResponseWinner>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new DrawRetrieveResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DrawRetrieveResponseWinner>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedAuthorUsername = "authorUsername";
-        bool expectedIsBackup = true;
-        long expectedPosition = 0;
-        string expectedTweetID = "tweetId";
-
-        Assert.Equal(expectedAuthorUsername, deserialized.AuthorUsername);
-        Assert.Equal(expectedIsBackup, deserialized.IsBackup);
-        Assert.Equal(expectedPosition, deserialized.Position);
-        Assert.Equal(expectedTweetID, deserialized.TweetID);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new DrawRetrieveResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new DrawRetrieveResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        DrawRetrieveResponseWinner copied = new(model);
 
         Assert.Equal(model, copied);
     }

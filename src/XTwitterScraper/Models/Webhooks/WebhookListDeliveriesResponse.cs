@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -14,18 +13,16 @@ namespace XTwitterScraper.Models.Webhooks;
 )]
 public sealed record class WebhookListDeliveriesResponse : JsonModel
 {
-    public required IReadOnlyList<WebhookListDeliveriesResponseDelivery> Deliveries
+    public required IReadOnlyList<Delivery> Deliveries
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<WebhookListDeliveriesResponseDelivery>
-            >("deliveries");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Delivery>>("deliveries");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<WebhookListDeliveriesResponseDelivery>>(
+            this._rawData.Set<ImmutableArray<Delivery>>(
                 "deliveries",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -73,9 +70,7 @@ public sealed record class WebhookListDeliveriesResponse : JsonModel
     }
 
     [SetsRequiredMembers]
-    public WebhookListDeliveriesResponse(
-        IReadOnlyList<WebhookListDeliveriesResponseDelivery> deliveries
-    )
+    public WebhookListDeliveriesResponse(IReadOnlyList<Delivery> deliveries)
         : this()
     {
         this.Deliveries = deliveries;
@@ -88,170 +83,4 @@ class WebhookListDeliveriesResponseFromRaw : IFromRawJson<WebhookListDeliveriesR
     public WebhookListDeliveriesResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => WebhookListDeliveriesResponse.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(
-    typeof(JsonModelConverter<
-        WebhookListDeliveriesResponseDelivery,
-        WebhookListDeliveriesResponseDeliveryFromRaw
-    >)
-)]
-public sealed record class WebhookListDeliveriesResponseDelivery : JsonModel
-{
-    public required string ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
-        }
-        init { this._rawData.Set("id", value); }
-    }
-
-    public required long Attempts
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("attempts");
-        }
-        init { this._rawData.Set("attempts", value); }
-    }
-
-    public required DateTimeOffset CreatedAt
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
-        }
-        init { this._rawData.Set("createdAt", value); }
-    }
-
-    public required string Status
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("status");
-        }
-        init { this._rawData.Set("status", value); }
-    }
-
-    public required string StreamEventID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("streamEventId");
-        }
-        init { this._rawData.Set("streamEventId", value); }
-    }
-
-    public DateTimeOffset? DeliveredAt
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<DateTimeOffset>("deliveredAt");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("deliveredAt", value);
-        }
-    }
-
-    public string? LastError
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("lastError");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("lastError", value);
-        }
-    }
-
-    public long? LastStatusCode
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("lastStatusCode");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("lastStatusCode", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-        _ = this.Attempts;
-        _ = this.CreatedAt;
-        _ = this.Status;
-        _ = this.StreamEventID;
-        _ = this.DeliveredAt;
-        _ = this.LastError;
-        _ = this.LastStatusCode;
-    }
-
-    public WebhookListDeliveriesResponseDelivery() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public WebhookListDeliveriesResponseDelivery(
-        WebhookListDeliveriesResponseDelivery webhookListDeliveriesResponseDelivery
-    )
-        : base(webhookListDeliveriesResponseDelivery) { }
-#pragma warning restore CS8618
-
-    public WebhookListDeliveriesResponseDelivery(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    WebhookListDeliveriesResponseDelivery(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="WebhookListDeliveriesResponseDeliveryFromRaw.FromRawUnchecked"/>
-    public static WebhookListDeliveriesResponseDelivery FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class WebhookListDeliveriesResponseDeliveryFromRaw
-    : IFromRawJson<WebhookListDeliveriesResponseDelivery>
-{
-    /// <inheritdoc/>
-    public WebhookListDeliveriesResponseDelivery FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookListDeliveriesResponseDelivery.FromRawUnchecked(rawData);
 }

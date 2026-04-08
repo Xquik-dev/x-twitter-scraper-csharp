@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Tests.Models.Monitors;
@@ -14,21 +14,22 @@ public class MonitorCreateResponseTest : TestBase
     {
         var model = new MonitorCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorCreateResponseEventType.TweetNew],
-            Username = "username",
-            XUserID = "xUserId",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
+            XUserID = "1234567890",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<ApiEnum<string, MonitorCreateResponseEventType>> expectedEventTypes =
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            MonitorCreateResponseEventType.TweetNew,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "1234567890";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -46,11 +47,11 @@ public class MonitorCreateResponseTest : TestBase
     {
         var model = new MonitorCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorCreateResponseEventType.TweetNew],
-            Username = "username",
-            XUserID = "xUserId",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
+            XUserID = "1234567890",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,11 +68,11 @@ public class MonitorCreateResponseTest : TestBase
     {
         var model = new MonitorCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorCreateResponseEventType.TweetNew],
-            Username = "username",
-            XUserID = "xUserId",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
+            XUserID = "1234567890",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -81,14 +82,15 @@ public class MonitorCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        List<ApiEnum<string, MonitorCreateResponseEventType>> expectedEventTypes =
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            MonitorCreateResponseEventType.TweetNew,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "1234567890";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -106,11 +108,11 @@ public class MonitorCreateResponseTest : TestBase
     {
         var model = new MonitorCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorCreateResponseEventType.TweetNew],
-            Username = "username",
-            XUserID = "xUserId",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
+            XUserID = "1234567890",
         };
 
         model.Validate();
@@ -121,79 +123,15 @@ public class MonitorCreateResponseTest : TestBase
     {
         var model = new MonitorCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorCreateResponseEventType.TweetNew],
-            Username = "username",
-            XUserID = "xUserId",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
+            XUserID = "1234567890",
         };
 
         MonitorCreateResponse copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class MonitorCreateResponseEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(MonitorCreateResponseEventType.TweetNew)]
-    [InlineData(MonitorCreateResponseEventType.TweetReply)]
-    [InlineData(MonitorCreateResponseEventType.TweetRetweet)]
-    [InlineData(MonitorCreateResponseEventType.TweetQuote)]
-    [InlineData(MonitorCreateResponseEventType.FollowerGained)]
-    [InlineData(MonitorCreateResponseEventType.FollowerLost)]
-    public void Validation_Works(MonitorCreateResponseEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, MonitorCreateResponseEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorCreateResponseEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(MonitorCreateResponseEventType.TweetNew)]
-    [InlineData(MonitorCreateResponseEventType.TweetReply)]
-    [InlineData(MonitorCreateResponseEventType.TweetRetweet)]
-    [InlineData(MonitorCreateResponseEventType.TweetQuote)]
-    [InlineData(MonitorCreateResponseEventType.FollowerGained)]
-    [InlineData(MonitorCreateResponseEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(MonitorCreateResponseEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, MonitorCreateResponseEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, MonitorCreateResponseEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorCreateResponseEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, MonitorCreateResponseEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
     }
 }

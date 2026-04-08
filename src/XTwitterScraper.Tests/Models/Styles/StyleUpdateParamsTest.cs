@@ -13,16 +13,16 @@ public class StyleUpdateParamsTest : TestBase
     {
         var parameters = new StyleUpdateParams
         {
-            Username = "username",
-            Label = "label",
-            Tweets = [new("text")],
+            ID = "id",
+            Label = "Professional Voice",
+            Tweets = [new("Excited to share our latest research findings.")],
         };
 
-        string expectedUsername = "username";
-        string expectedLabel = "label";
-        List<Tweet> expectedTweets = [new("text")];
+        string expectedID = "id";
+        string expectedLabel = "Professional Voice";
+        List<Tweet> expectedTweets = [new("Excited to share our latest research findings.")];
 
-        Assert.Equal(expectedUsername, parameters.Username);
+        Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedLabel, parameters.Label);
         Assert.Equal(expectedTweets.Count, parameters.Tweets.Count);
         for (int i = 0; i < expectedTweets.Count; i++)
@@ -36,14 +36,14 @@ public class StyleUpdateParamsTest : TestBase
     {
         StyleUpdateParams parameters = new()
         {
-            Username = "username",
-            Label = "label",
-            Tweets = [new("text")],
+            ID = "id",
+            Label = "Professional Voice",
+            Tweets = [new("Excited to share our latest research findings.")],
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/username"), url);
+        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/id"), url);
     }
 
     [Fact]
@@ -51,9 +51,9 @@ public class StyleUpdateParamsTest : TestBase
     {
         var parameters = new StyleUpdateParams
         {
-            Username = "username",
-            Label = "label",
-            Tweets = [new("text")],
+            ID = "id",
+            Label = "Professional Voice",
+            Tweets = [new("Excited to share our latest research findings.")],
         };
 
         StyleUpdateParams copied = new(parameters);
@@ -67,9 +67,9 @@ public class TweetTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tweet { Text = "text" };
+        var model = new Tweet { Text = "Excited to share our latest research findings." };
 
-        string expectedText = "text";
+        string expectedText = "Excited to share our latest research findings.";
 
         Assert.Equal(expectedText, model.Text);
     }
@@ -77,7 +77,7 @@ public class TweetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tweet { Text = "text" };
+        var model = new Tweet { Text = "Excited to share our latest research findings." };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Tweet>(json, ModelBase.SerializerOptions);
@@ -88,13 +88,13 @@ public class TweetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tweet { Text = "text" };
+        var model = new Tweet { Text = "Excited to share our latest research findings." };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Tweet>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        string expectedText = "text";
+        string expectedText = "Excited to share our latest research findings.";
 
         Assert.Equal(expectedText, deserialized.Text);
     }
@@ -102,7 +102,7 @@ public class TweetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tweet { Text = "text" };
+        var model = new Tweet { Text = "Excited to share our latest research findings." };
 
         model.Validate();
     }
@@ -110,7 +110,7 @@ public class TweetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Tweet { Text = "text" };
+        var model = new Tweet { Text = "Excited to share our latest research findings." };
 
         Tweet copied = new(model);
 

@@ -9,6 +9,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models;
 
+/// <summary>
+/// Error response containing a machine-readable error code.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Error, ErrorFromRaw>))]
 public sealed record class Error : JsonModel
 {

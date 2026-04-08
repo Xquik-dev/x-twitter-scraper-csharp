@@ -7,6 +7,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Tweets;
 
+/// <summary>
+/// Tweet returned from search results with inline author info.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<SearchTweet, SearchTweetFromRaw>))]
 public sealed record class SearchTweet : JsonModel
 {
@@ -81,6 +84,27 @@ public sealed record class SearchTweet : JsonModel
             }
 
             this._rawData.Set("createdAt", value);
+        }
+    }
+
+    /// <summary>
+    /// True for Note Tweets (long-form content, up to 25,000 characters)
+    /// </summary>
+    public bool? IsNoteTweet
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isNoteTweet");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isNoteTweet", value);
         }
     }
 
@@ -182,6 +206,7 @@ public sealed record class SearchTweet : JsonModel
         this.Author?.Validate();
         _ = this.BookmarkCount;
         _ = this.CreatedAt;
+        _ = this.IsNoteTweet;
         _ = this.LikeCount;
         _ = this.QuoteCount;
         _ = this.ReplyCount;

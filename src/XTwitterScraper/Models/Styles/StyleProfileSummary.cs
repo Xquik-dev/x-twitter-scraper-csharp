@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Styles;
 
+/// <summary>
+/// Style profile summary with tweet count and ownership flag.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<StyleProfileSummary, StyleProfileSummaryFromRaw>))]
 public sealed record class StyleProfileSummary : JsonModel
 {

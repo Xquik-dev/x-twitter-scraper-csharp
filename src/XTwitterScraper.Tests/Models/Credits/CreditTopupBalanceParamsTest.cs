@@ -8,9 +8,9 @@ public class CreditTopupBalanceParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new CreditTopupBalanceParams { Amount = 0 };
+        var parameters = new CreditTopupBalanceParams { Amount = 10000 };
 
-        long expectedAmount = 0;
+        long expectedAmount = 10000;
 
         Assert.Equal(expectedAmount, parameters.Amount);
     }
@@ -18,7 +18,7 @@ public class CreditTopupBalanceParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        CreditTopupBalanceParams parameters = new() { Amount = 0 };
+        CreditTopupBalanceParams parameters = new() { Amount = 10000 };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -28,7 +28,7 @@ public class CreditTopupBalanceParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new CreditTopupBalanceParams { Amount = 0 };
+        var parameters = new CreditTopupBalanceParams { Amount = 10000 };
 
         CreditTopupBalanceParams copied = new(parameters);
 

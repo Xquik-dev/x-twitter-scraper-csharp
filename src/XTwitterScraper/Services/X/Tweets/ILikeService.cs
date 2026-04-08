@@ -38,7 +38,7 @@ public interface ILikeService
 
     /// <inheritdoc cref="Create(LikeCreateParams, CancellationToken)"/>
     Task<LikeCreateResponse> Create(
-        string tweetID,
+        string id,
         LikeCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -53,7 +53,7 @@ public interface ILikeService
 
     /// <inheritdoc cref="Delete(LikeDeleteParams, CancellationToken)"/>
     Task<LikeDeleteResponse> Delete(
-        string tweetID,
+        string id,
         LikeDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -73,7 +73,7 @@ public interface ILikeServiceWithRawResponse
     ILikeServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>post /x/tweets/{tweetId}/like</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /x/tweets/{id}/like</c>, but is otherwise the
     /// same as <see cref="ILikeService.Create(LikeCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LikeCreateResponse>> Create(
@@ -83,13 +83,13 @@ public interface ILikeServiceWithRawResponse
 
     /// <inheritdoc cref="Create(LikeCreateParams, CancellationToken)"/>
     Task<HttpResponse<LikeCreateResponse>> Create(
-        string tweetID,
+        string id,
         LikeCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>delete /x/tweets/{tweetId}/like</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /x/tweets/{id}/like</c>, but is otherwise the
     /// same as <see cref="ILikeService.Delete(LikeDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<LikeDeleteResponse>> Delete(
@@ -99,7 +99,7 @@ public interface ILikeServiceWithRawResponse
 
     /// <inheritdoc cref="Delete(LikeDeleteParams, CancellationToken)"/>
     Task<HttpResponse<LikeDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         LikeDeleteParams parameters,
         CancellationToken cancellationToken = default
     );

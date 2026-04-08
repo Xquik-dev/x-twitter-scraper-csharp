@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.X.Bookmarks;
 public record class BookmarkListParams : ParamsBase
 {
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for bookmarks
     /// </summary>
     public string? Cursor
     {

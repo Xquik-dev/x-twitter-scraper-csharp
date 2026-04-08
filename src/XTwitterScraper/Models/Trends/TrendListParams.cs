@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Trends;
 
 /// <summary>
-/// Get trending topics
+/// Get regional trending topics
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -17,6 +17,9 @@ namespace XTwitterScraper.Models.Trends;
 /// </summary>
 public record class TrendListParams : ParamsBase
 {
+    /// <summary>
+    /// Number of trending topics to return (1-50, default 30)
+    /// </summary>
     public long? Count
     {
         get

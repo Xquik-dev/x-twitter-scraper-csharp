@@ -11,14 +11,14 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
-            Error = "error",
+            Error = "",
         };
 
-        long expectedStatusCode = 0;
+        long expectedStatusCode = 200;
         bool expectedSuccess = true;
-        string expectedError = "error";
+        string expectedError = "";
 
         Assert.Equal(expectedStatusCode, model.StatusCode);
         Assert.Equal(expectedSuccess, model.Success);
@@ -30,9 +30,9 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
-            Error = "error",
+            Error = "",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -49,9 +49,9 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
-            Error = "error",
+            Error = "",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -61,9 +61,9 @@ public class WebhookTestResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        long expectedStatusCode = 0;
+        long expectedStatusCode = 200;
         bool expectedSuccess = true;
-        string expectedError = "error";
+        string expectedError = "";
 
         Assert.Equal(expectedStatusCode, deserialized.StatusCode);
         Assert.Equal(expectedSuccess, deserialized.Success);
@@ -75,9 +75,9 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
-            Error = "error",
+            Error = "",
         };
 
         model.Validate();
@@ -86,7 +86,7 @@ public class WebhookTestResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new WebhookTestResponse { StatusCode = 0, Success = true };
+        var model = new WebhookTestResponse { StatusCode = 200, Success = true };
 
         Assert.Null(model.Error);
         Assert.False(model.RawData.ContainsKey("error"));
@@ -95,7 +95,7 @@ public class WebhookTestResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new WebhookTestResponse { StatusCode = 0, Success = true };
+        var model = new WebhookTestResponse { StatusCode = 200, Success = true };
 
         model.Validate();
     }
@@ -105,7 +105,7 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
 
             // Null should be interpreted as omitted for these properties
@@ -121,7 +121,7 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
 
             // Null should be interpreted as omitted for these properties
@@ -136,9 +136,9 @@ public class WebhookTestResponseTest : TestBase
     {
         var model = new WebhookTestResponse
         {
-            StatusCode = 0,
+            StatusCode = 200,
             Success = true,
-            Error = "error",
+            Error = "",
         };
 
         WebhookTestResponse copied = new(model);

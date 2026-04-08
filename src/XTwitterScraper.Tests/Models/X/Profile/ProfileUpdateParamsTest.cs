@@ -10,18 +10,18 @@ public class ProfileUpdateParamsTest : TestBase
     {
         var parameters = new ProfileUpdateParams
         {
-            Account = "account",
-            Description = "description",
-            Location = "location",
-            Name = "name",
-            UrlValue = "url",
+            Account = "@elonmusk",
+            Description = "description_value",
+            Location = "location_value",
+            Name = "Example Name",
+            UrlValue = "https://xquik.com/example",
         };
 
-        string expectedAccount = "account";
-        string expectedDescription = "description";
-        string expectedLocation = "location";
-        string expectedName = "name";
-        string expectedUrlValue = "url";
+        string expectedAccount = "@elonmusk";
+        string expectedDescription = "description_value";
+        string expectedLocation = "location_value";
+        string expectedName = "Example Name";
+        string expectedUrlValue = "https://xquik.com/example";
 
         Assert.Equal(expectedAccount, parameters.Account);
         Assert.Equal(expectedDescription, parameters.Description);
@@ -33,7 +33,7 @@ public class ProfileUpdateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new ProfileUpdateParams { Account = "account" };
+        var parameters = new ProfileUpdateParams { Account = "@elonmusk" };
 
         Assert.Null(parameters.Description);
         Assert.False(parameters.RawBodyData.ContainsKey("description"));
@@ -50,7 +50,7 @@ public class ProfileUpdateParamsTest : TestBase
     {
         var parameters = new ProfileUpdateParams
         {
-            Account = "account",
+            Account = "@elonmusk",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -72,7 +72,7 @@ public class ProfileUpdateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        ProfileUpdateParams parameters = new() { Account = "account" };
+        ProfileUpdateParams parameters = new() { Account = "@elonmusk" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -84,11 +84,11 @@ public class ProfileUpdateParamsTest : TestBase
     {
         var parameters = new ProfileUpdateParams
         {
-            Account = "account",
-            Description = "description",
-            Location = "location",
-            Name = "name",
-            UrlValue = "url",
+            Account = "@elonmusk",
+            Description = "description_value",
+            Location = "location_value",
+            Name = "Example Name",
+            UrlValue = "https://xquik.com/example",
         };
 
         ProfileUpdateParams copied = new(parameters);

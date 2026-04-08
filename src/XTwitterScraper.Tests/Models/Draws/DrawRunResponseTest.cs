@@ -12,10 +12,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -28,11 +28,11 @@ public class DrawRunResponseTest : TestBase
             ],
         };
 
-        string expectedID = "id";
-        long expectedTotalEntries = 0;
-        string expectedTweetID = "tweetId";
-        long expectedValidEntries = 0;
-        List<DrawRunResponseWinner> expectedWinners =
+        string expectedID = "42";
+        long expectedTotalEntries = 250;
+        string expectedTweetID = "1234567890";
+        long expectedValidEntries = 200;
+        List<Winner> expectedWinners =
         [
             new()
             {
@@ -59,10 +59,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -89,10 +89,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -112,11 +112,11 @@ public class DrawRunResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        long expectedTotalEntries = 0;
-        string expectedTweetID = "tweetId";
-        long expectedValidEntries = 0;
-        List<DrawRunResponseWinner> expectedWinners =
+        string expectedID = "42";
+        long expectedTotalEntries = 250;
+        string expectedTweetID = "1234567890";
+        long expectedValidEntries = 200;
+        List<Winner> expectedWinners =
         [
             new()
             {
@@ -143,10 +143,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -167,10 +167,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -184,110 +184,6 @@ public class DrawRunResponseTest : TestBase
         };
 
         DrawRunResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class DrawRunResponseWinnerTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new DrawRunResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string expectedAuthorUsername = "authorUsername";
-        bool expectedIsBackup = true;
-        long expectedPosition = 0;
-        string expectedTweetID = "tweetId";
-
-        Assert.Equal(expectedAuthorUsername, model.AuthorUsername);
-        Assert.Equal(expectedIsBackup, model.IsBackup);
-        Assert.Equal(expectedPosition, model.Position);
-        Assert.Equal(expectedTweetID, model.TweetID);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new DrawRunResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DrawRunResponseWinner>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new DrawRunResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DrawRunResponseWinner>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedAuthorUsername = "authorUsername";
-        bool expectedIsBackup = true;
-        long expectedPosition = 0;
-        string expectedTweetID = "tweetId";
-
-        Assert.Equal(expectedAuthorUsername, deserialized.AuthorUsername);
-        Assert.Equal(expectedIsBackup, deserialized.IsBackup);
-        Assert.Equal(expectedPosition, deserialized.Position);
-        Assert.Equal(expectedTweetID, deserialized.TweetID);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new DrawRunResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new DrawRunResponseWinner
-        {
-            AuthorUsername = "authorUsername",
-            IsBackup = true,
-            Position = 0,
-            TweetID = "tweetId",
-        };
-
-        DrawRunResponseWinner copied = new(model);
 
         Assert.Equal(model, copied);
     }

@@ -8,27 +8,27 @@ public class StyleDeleteParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new StyleDeleteParams { Username = "username" };
+        var parameters = new StyleDeleteParams { ID = "id" };
 
-        string expectedUsername = "username";
+        string expectedID = "id";
 
-        Assert.Equal(expectedUsername, parameters.Username);
+        Assert.Equal(expectedID, parameters.ID);
     }
 
     [Fact]
     public void Url_Works()
     {
-        StyleDeleteParams parameters = new() { Username = "username" };
+        StyleDeleteParams parameters = new() { ID = "id" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/username"), url);
+        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/id"), url);
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new StyleDeleteParams { Username = "username" };
+        var parameters = new StyleDeleteParams { ID = "id" };
 
         StyleDeleteParams copied = new(parameters);
 

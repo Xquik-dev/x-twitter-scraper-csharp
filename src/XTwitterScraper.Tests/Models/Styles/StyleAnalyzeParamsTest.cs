@@ -8,9 +8,9 @@ public class StyleAnalyzeParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new StyleAnalyzeParams { Username = "username" };
+        var parameters = new StyleAnalyzeParams { Username = "elonmusk" };
 
-        string expectedUsername = "username";
+        string expectedUsername = "elonmusk";
 
         Assert.Equal(expectedUsername, parameters.Username);
     }
@@ -18,7 +18,7 @@ public class StyleAnalyzeParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        StyleAnalyzeParams parameters = new() { Username = "username" };
+        StyleAnalyzeParams parameters = new() { Username = "elonmusk" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -28,7 +28,7 @@ public class StyleAnalyzeParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new StyleAnalyzeParams { Username = "username" };
+        var parameters = new StyleAnalyzeParams { Username = "elonmusk" };
 
         StyleAnalyzeParams copied = new(parameters);
 

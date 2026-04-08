@@ -24,10 +24,10 @@ public record class LikeDeleteParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public string? TweetID { get; init; }
+    public string? ID { get; init; }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account identifier (@username or account ID)
     /// </summary>
     public required string Account
     {
@@ -46,7 +46,7 @@ public record class LikeDeleteParams : ParamsBase
     public LikeDeleteParams(LikeDeleteParams likeDeleteParams)
         : base(likeDeleteParams)
     {
-        this.TweetID = likeDeleteParams.TweetID;
+        this.ID = likeDeleteParams.ID;
 
         this._rawBodyData = new(likeDeleteParams._rawBodyData);
     }
@@ -69,13 +69,13 @@ public record class LikeDeleteParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
         FrozenDictionary<string, JsonElement> rawBodyData,
-        string tweetID
+        string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
-        this.TweetID = tweetID;
+        this.ID = id;
     }
 #pragma warning restore CS8618
 
@@ -84,14 +84,14 @@ public record class LikeDeleteParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData,
-        string tweetID
+        string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData),
-            tweetID
+            id
         );
     }
 
@@ -100,7 +100,7 @@ public record class LikeDeleteParams : ParamsBase
             FriendlyJsonPrinter.PrintValue(
                 new Dictionary<string, JsonElement>()
                 {
-                    ["TweetID"] = JsonSerializer.SerializeToElement(this.TweetID),
+                    ["ID"] = JsonSerializer.SerializeToElement(this.ID),
                     ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
                     ),
@@ -119,7 +119,7 @@ public record class LikeDeleteParams : ParamsBase
         {
             return false;
         }
-        return (this.TweetID?.Equals(other.TweetID) ?? other.TweetID == null)
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
             && this._rawBodyData.Equals(other._rawBodyData);
@@ -128,8 +128,7 @@ public record class LikeDeleteParams : ParamsBase
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/')
-                + string.Format("/x/tweets/{0}/like", this.TweetID)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/tweets/{0}/like", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),

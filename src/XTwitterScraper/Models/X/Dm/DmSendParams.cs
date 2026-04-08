@@ -28,7 +28,7 @@ public record class DmSendParams : ParamsBase
     public string? UserID { get; init; }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) sending the DM
     /// </summary>
     public required string Account
     {

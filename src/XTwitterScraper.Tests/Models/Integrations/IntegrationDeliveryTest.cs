@@ -12,28 +12,28 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
-            DeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            LastError = "lastError",
-            LastStatusCode = 0,
-            SourceID = "sourceId",
-            SourceType = "sourceType",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
+            DeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z"),
+            LastError = "",
+            LastStatusCode = 200,
+            SourceID = "100",
+            SourceType = "monitor",
         };
 
-        string expectedID = "id";
-        long expectedAttempts = 0;
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedEventType = "eventType";
-        string expectedStatus = "status";
-        DateTimeOffset expectedDeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedLastError = "lastError";
-        long expectedLastStatusCode = 0;
-        string expectedSourceID = "sourceId";
-        string expectedSourceType = "sourceType";
+        string expectedID = "42";
+        long expectedAttempts = 1;
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedEventType = "tweet.new";
+        string expectedStatus = "delivered";
+        DateTimeOffset expectedDeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z");
+        string expectedLastError = "";
+        long expectedLastStatusCode = 200;
+        string expectedSourceID = "100";
+        string expectedSourceType = "monitor";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedAttempts, model.Attempts);
@@ -52,16 +52,16 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
-            DeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            LastError = "lastError",
-            LastStatusCode = 0,
-            SourceID = "sourceId",
-            SourceType = "sourceType",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
+            DeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z"),
+            LastError = "",
+            LastStatusCode = 200,
+            SourceID = "100",
+            SourceType = "monitor",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -78,16 +78,16 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
-            DeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            LastError = "lastError",
-            LastStatusCode = 0,
-            SourceID = "sourceId",
-            SourceType = "sourceType",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
+            DeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z"),
+            LastError = "",
+            LastStatusCode = 200,
+            SourceID = "100",
+            SourceType = "monitor",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -97,16 +97,16 @@ public class IntegrationDeliveryTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        long expectedAttempts = 0;
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedEventType = "eventType";
-        string expectedStatus = "status";
-        DateTimeOffset expectedDeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedLastError = "lastError";
-        long expectedLastStatusCode = 0;
-        string expectedSourceID = "sourceId";
-        string expectedSourceType = "sourceType";
+        string expectedID = "42";
+        long expectedAttempts = 1;
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedEventType = "tweet.new";
+        string expectedStatus = "delivered";
+        DateTimeOffset expectedDeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z");
+        string expectedLastError = "";
+        long expectedLastStatusCode = 200;
+        string expectedSourceID = "100";
+        string expectedSourceType = "monitor";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedAttempts, deserialized.Attempts);
@@ -125,16 +125,16 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
-            DeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            LastError = "lastError",
-            LastStatusCode = 0,
-            SourceID = "sourceId",
-            SourceType = "sourceType",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
+            DeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z"),
+            LastError = "",
+            LastStatusCode = 200,
+            SourceID = "100",
+            SourceType = "monitor",
         };
 
         model.Validate();
@@ -145,11 +145,11 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
         };
 
         Assert.Null(model.DeliveredAt);
@@ -169,11 +169,11 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
         };
 
         model.Validate();
@@ -184,11 +184,11 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
 
             // Null should be interpreted as omitted for these properties
             DeliveredAt = null,
@@ -215,11 +215,11 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
 
             // Null should be interpreted as omitted for these properties
             DeliveredAt = null,
@@ -237,16 +237,16 @@ public class IntegrationDeliveryTest : TestBase
     {
         var model = new IntegrationDelivery
         {
-            ID = "id",
-            Attempts = 0,
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventType = "eventType",
-            Status = "status",
-            DeliveredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            LastError = "lastError",
-            LastStatusCode = 0,
-            SourceID = "sourceId",
-            SourceType = "sourceType",
+            ID = "42",
+            Attempts = 1,
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventType = "tweet.new",
+            Status = "delivered",
+            DeliveredAt = DateTimeOffset.Parse("2025-01-15T12:00:01Z"),
+            LastError = "",
+            LastStatusCode = 200,
+            SourceID = "100",
+            SourceType = "monitor",
         };
 
         IntegrationDelivery copied = new(model);

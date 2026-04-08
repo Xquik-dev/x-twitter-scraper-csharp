@@ -12,16 +12,16 @@ public class StyleProfileSummaryTest : TestBase
     {
         var model = new StyleProfileSummary
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
-            XUsername = "xUsername",
+            TweetCount = 50,
+            XUsername = "elonmusk",
         };
 
-        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         bool expectedIsOwnAccount = true;
-        long expectedTweetCount = 0;
-        string expectedXUsername = "xUsername";
+        long expectedTweetCount = 50;
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedFetchedAt, model.FetchedAt);
         Assert.Equal(expectedIsOwnAccount, model.IsOwnAccount);
@@ -34,10 +34,10 @@ public class StyleProfileSummaryTest : TestBase
     {
         var model = new StyleProfileSummary
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
-            XUsername = "xUsername",
+            TweetCount = 50,
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -54,10 +54,10 @@ public class StyleProfileSummaryTest : TestBase
     {
         var model = new StyleProfileSummary
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
-            XUsername = "xUsername",
+            TweetCount = 50,
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,10 +67,10 @@ public class StyleProfileSummaryTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         bool expectedIsOwnAccount = true;
-        long expectedTweetCount = 0;
-        string expectedXUsername = "xUsername";
+        long expectedTweetCount = 50;
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedFetchedAt, deserialized.FetchedAt);
         Assert.Equal(expectedIsOwnAccount, deserialized.IsOwnAccount);
@@ -83,10 +83,10 @@ public class StyleProfileSummaryTest : TestBase
     {
         var model = new StyleProfileSummary
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
-            XUsername = "xUsername",
+            TweetCount = 50,
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -97,10 +97,10 @@ public class StyleProfileSummaryTest : TestBase
     {
         var model = new StyleProfileSummary
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
-            XUsername = "xUsername",
+            TweetCount = 50,
+            XUsername = "elonmusk",
         };
 
         StyleProfileSummary copied = new(model);

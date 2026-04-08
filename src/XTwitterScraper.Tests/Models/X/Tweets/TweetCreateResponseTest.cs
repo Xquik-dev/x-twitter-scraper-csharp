@@ -9,10 +9,10 @@ public class TweetCreateResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TweetCreateResponse { TweetID = "tweetId" };
+        var model = new TweetCreateResponse { TweetID = "1234567890" };
 
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedTweetID = "tweetId";
+        string expectedTweetID = "1234567890";
 
         Assert.True(JsonElement.DeepEquals(expectedSuccess, model.Success));
         Assert.Equal(expectedTweetID, model.TweetID);
@@ -21,7 +21,7 @@ public class TweetCreateResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TweetCreateResponse { TweetID = "tweetId" };
+        var model = new TweetCreateResponse { TweetID = "1234567890" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TweetCreateResponse>(
@@ -35,7 +35,7 @@ public class TweetCreateResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TweetCreateResponse { TweetID = "tweetId" };
+        var model = new TweetCreateResponse { TweetID = "1234567890" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TweetCreateResponse>(
@@ -45,7 +45,7 @@ public class TweetCreateResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedTweetID = "tweetId";
+        string expectedTweetID = "1234567890";
 
         Assert.True(JsonElement.DeepEquals(expectedSuccess, deserialized.Success));
         Assert.Equal(expectedTweetID, deserialized.TweetID);
@@ -54,7 +54,7 @@ public class TweetCreateResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TweetCreateResponse { TweetID = "tweetId" };
+        var model = new TweetCreateResponse { TweetID = "1234567890" };
 
         model.Validate();
     }
@@ -62,7 +62,7 @@ public class TweetCreateResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TweetCreateResponse { TweetID = "tweetId" };
+        var model = new TweetCreateResponse { TweetID = "1234567890" };
 
         TweetCreateResponse copied = new(model);
 

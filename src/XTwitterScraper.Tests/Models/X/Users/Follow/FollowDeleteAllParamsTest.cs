@@ -8,29 +8,29 @@ public class FollowDeleteAllParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new FollowDeleteAllParams { UserID = "userId", Account = "account" };
+        var parameters = new FollowDeleteAllParams { ID = "id", Account = "@elonmusk" };
 
-        string expectedUserID = "userId";
-        string expectedAccount = "account";
+        string expectedID = "id";
+        string expectedAccount = "@elonmusk";
 
-        Assert.Equal(expectedUserID, parameters.UserID);
+        Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedAccount, parameters.Account);
     }
 
     [Fact]
     public void Url_Works()
     {
-        FollowDeleteAllParams parameters = new() { UserID = "userId", Account = "account" };
+        FollowDeleteAllParams parameters = new() { ID = "id", Account = "@elonmusk" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/users/userId/follow"), url);
+        Assert.Equal(new Uri("https://xquik.com/api/v1/x/users/id/follow"), url);
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new FollowDeleteAllParams { UserID = "userId", Account = "account" };
+        var parameters = new FollowDeleteAllParams { ID = "id", Account = "@elonmusk" };
 
         FollowDeleteAllParams copied = new(parameters);
 

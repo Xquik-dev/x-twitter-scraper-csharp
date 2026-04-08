@@ -38,7 +38,7 @@ public interface IFollowService
 
     /// <inheritdoc cref="Create(FollowCreateParams, CancellationToken)"/>
     Task<FollowCreateResponse> Create(
-        string userID,
+        string id,
         FollowCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -53,7 +53,7 @@ public interface IFollowService
 
     /// <inheritdoc cref="DeleteAll(FollowDeleteAllParams, CancellationToken)"/>
     Task<FollowDeleteAllResponse> DeleteAll(
-        string userID,
+        string id,
         FollowDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -73,7 +73,7 @@ public interface IFollowServiceWithRawResponse
     IFollowServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>post /x/users/{userId}/follow</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /x/users/{id}/follow</c>, but is otherwise the
     /// same as <see cref="IFollowService.Create(FollowCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FollowCreateResponse>> Create(
@@ -83,13 +83,13 @@ public interface IFollowServiceWithRawResponse
 
     /// <inheritdoc cref="Create(FollowCreateParams, CancellationToken)"/>
     Task<HttpResponse<FollowCreateResponse>> Create(
-        string userID,
+        string id,
         FollowCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>delete /x/users/{userId}/follow</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /x/users/{id}/follow</c>, but is otherwise the
     /// same as <see cref="IFollowService.DeleteAll(FollowDeleteAllParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FollowDeleteAllResponse>> DeleteAll(
@@ -99,7 +99,7 @@ public interface IFollowServiceWithRawResponse
 
     /// <inheritdoc cref="DeleteAll(FollowDeleteAllParams, CancellationToken)"/>
     Task<HttpResponse<FollowDeleteAllResponse>> DeleteAll(
-        string userID,
+        string id,
         FollowDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     );

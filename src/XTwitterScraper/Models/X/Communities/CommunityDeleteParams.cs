@@ -27,7 +27,7 @@ public record class CommunityDeleteParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) deleting the community
     /// </summary>
     public required string Account
     {

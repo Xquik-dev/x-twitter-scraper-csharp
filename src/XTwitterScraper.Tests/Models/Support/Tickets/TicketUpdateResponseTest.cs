@@ -9,10 +9,10 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "publicId", Status = "status" };
+        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
 
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "resolved";
 
         Assert.Equal(expectedPublicID, model.PublicID);
         Assert.Equal(expectedStatus, model.Status);
@@ -21,7 +21,7 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "publicId", Status = "status" };
+        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketUpdateResponse>(
@@ -35,7 +35,7 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "publicId", Status = "status" };
+        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketUpdateResponse>(
@@ -44,8 +44,8 @@ public class TicketUpdateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "resolved";
 
         Assert.Equal(expectedPublicID, deserialized.PublicID);
         Assert.Equal(expectedStatus, deserialized.Status);
@@ -54,7 +54,7 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "publicId", Status = "status" };
+        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
 
         model.Validate();
     }
@@ -110,7 +110,7 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "publicId", Status = "status" };
+        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
 
         TicketUpdateResponse copied = new(model);
 

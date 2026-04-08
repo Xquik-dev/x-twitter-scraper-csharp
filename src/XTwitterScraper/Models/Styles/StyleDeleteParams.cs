@@ -17,7 +17,7 @@ namespace XTwitterScraper.Models.Styles;
 /// </summary>
 public record class StyleDeleteParams : ParamsBase
 {
-    public string? Username { get; init; }
+    public string? ID { get; init; }
 
     public StyleDeleteParams() { }
 
@@ -26,7 +26,7 @@ public record class StyleDeleteParams : ParamsBase
     public StyleDeleteParams(StyleDeleteParams styleDeleteParams)
         : base(styleDeleteParams)
     {
-        this.Username = styleDeleteParams.Username;
+        this.ID = styleDeleteParams.ID;
     }
 #pragma warning restore CS8618
 
@@ -44,12 +44,12 @@ public record class StyleDeleteParams : ParamsBase
     StyleDeleteParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        string username
+        string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this.Username = username;
+        this.ID = id;
     }
 #pragma warning restore CS8618
 
@@ -57,13 +57,13 @@ public record class StyleDeleteParams : ParamsBase
     public static StyleDeleteParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        string username
+        string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            username
+            id
         );
     }
 
@@ -72,7 +72,7 @@ public record class StyleDeleteParams : ParamsBase
             FriendlyJsonPrinter.PrintValue(
                 new Dictionary<string, JsonElement>()
                 {
-                    ["Username"] = JsonSerializer.SerializeToElement(this.Username),
+                    ["ID"] = JsonSerializer.SerializeToElement(this.ID),
                     ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
                     ),
@@ -90,7 +90,7 @@ public record class StyleDeleteParams : ParamsBase
         {
             return false;
         }
-        return (this.Username?.Equals(other.Username) ?? other.Username == null)
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData);
     }
@@ -98,7 +98,7 @@ public record class StyleDeleteParams : ParamsBase
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/styles/{0}", this.Username)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/styles/{0}", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),

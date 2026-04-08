@@ -12,18 +12,18 @@ public class XAccountTest : TestBase
     {
         var model = new XAccount
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        string expectedXUserID = "xUserId";
-        string expectedXUsername = "xUsername";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedStatus = "active";
+        string expectedXUserID = "9876543210";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -37,11 +37,11 @@ public class XAccountTest : TestBase
     {
         var model = new XAccount
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -55,11 +55,11 @@ public class XAccountTest : TestBase
     {
         var model = new XAccount
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -69,11 +69,11 @@ public class XAccountTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        string expectedXUserID = "xUserId";
-        string expectedXUsername = "xUsername";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedStatus = "active";
+        string expectedXUserID = "9876543210";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -87,11 +87,11 @@ public class XAccountTest : TestBase
     {
         var model = new XAccount
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -102,11 +102,11 @@ public class XAccountTest : TestBase
     {
         var model = new XAccount
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         XAccount copied = new(model);

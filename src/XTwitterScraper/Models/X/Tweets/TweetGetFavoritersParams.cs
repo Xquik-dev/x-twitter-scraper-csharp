@@ -20,7 +20,7 @@ public record class TweetGetFavoritersParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for favoriters
     /// </summary>
     public string? Cursor
     {

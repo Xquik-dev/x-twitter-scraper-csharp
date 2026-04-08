@@ -12,18 +12,18 @@ public class ApiKeyCreateResponseTest : TestBase
     {
         var model = new ApiKeyCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            FullKey = "fullKey",
-            Name = "name",
-            Prefix = "prefix",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            FullKey = "xq_live_abc123def456",
+            Name = "My API Key",
+            Prefix = "xq_live_abc1",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedFullKey = "fullKey";
-        string expectedName = "name";
-        string expectedPrefix = "prefix";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedFullKey = "xq_live_abc123def456";
+        string expectedName = "My API Key";
+        string expectedPrefix = "xq_live_abc1";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -37,11 +37,11 @@ public class ApiKeyCreateResponseTest : TestBase
     {
         var model = new ApiKeyCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            FullKey = "fullKey",
-            Name = "name",
-            Prefix = "prefix",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            FullKey = "xq_live_abc123def456",
+            Name = "My API Key",
+            Prefix = "xq_live_abc1",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -58,11 +58,11 @@ public class ApiKeyCreateResponseTest : TestBase
     {
         var model = new ApiKeyCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            FullKey = "fullKey",
-            Name = "name",
-            Prefix = "prefix",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            FullKey = "xq_live_abc123def456",
+            Name = "My API Key",
+            Prefix = "xq_live_abc1",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -72,11 +72,11 @@ public class ApiKeyCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedFullKey = "fullKey";
-        string expectedName = "name";
-        string expectedPrefix = "prefix";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedFullKey = "xq_live_abc123def456";
+        string expectedName = "My API Key";
+        string expectedPrefix = "xq_live_abc1";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -90,11 +90,11 @@ public class ApiKeyCreateResponseTest : TestBase
     {
         var model = new ApiKeyCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            FullKey = "fullKey",
-            Name = "name",
-            Prefix = "prefix",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            FullKey = "xq_live_abc123def456",
+            Name = "My API Key",
+            Prefix = "xq_live_abc1",
         };
 
         model.Validate();
@@ -105,11 +105,11 @@ public class ApiKeyCreateResponseTest : TestBase
     {
         var model = new ApiKeyCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            FullKey = "fullKey",
-            Name = "name",
-            Prefix = "prefix",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            FullKey = "xq_live_abc123def456",
+            Name = "My API Key",
+            Prefix = "xq_live_abc1",
         };
 
         ApiKeyCreateResponse copied = new(model);

@@ -39,13 +39,13 @@ public interface IAccountService
     /// <summary>
     /// Get X account details
     /// </summary>
-    Task<AccountRetrieveResponse> Retrieve(
+    Task<XAccountDetail> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(AccountRetrieveParams, CancellationToken)"/>
-    Task<AccountRetrieveResponse> Retrieve(
+    Task<XAccountDetail> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -71,6 +71,15 @@ public interface IAccountService
     Task<AccountDeleteResponse> Delete(
         string id,
         AccountDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Clears loginFailedAt and loginFailureReason for all accounts with transient or
+    /// automated failure reasons, making them eligible for retry on next use.
+    /// </summary>
+    Task<AccountBulkRetryResponse> BulkRetry(
+        AccountBulkRetryParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 
@@ -116,13 +125,13 @@ public interface IAccountServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/accounts/{id}</c>, but is otherwise the
     /// same as <see cref="IAccountService.Retrieve(AccountRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    Task<HttpResponse<XAccountDetail>> Retrieve(
         AccountRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(AccountRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<AccountRetrieveResponse>> Retrieve(
+    Task<HttpResponse<XAccountDetail>> Retrieve(
         string id,
         AccountRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -150,6 +159,15 @@ public interface IAccountServiceWithRawResponse
     Task<HttpResponse<AccountDeleteResponse>> Delete(
         string id,
         AccountDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /x/accounts/bulk-retry</c>, but is otherwise the
+    /// same as <see cref="IAccountService.BulkRetry(AccountBulkRetryParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<AccountBulkRetryResponse>> BulkRetry(
+        AccountBulkRetryParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

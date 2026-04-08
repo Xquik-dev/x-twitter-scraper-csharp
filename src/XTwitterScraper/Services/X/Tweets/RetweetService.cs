@@ -48,12 +48,12 @@ public sealed class RetweetService : IRetweetService
 
     /// <inheritdoc/>
     public Task<RetweetCreateResponse> Create(
-        string tweetID,
+        string id,
         RetweetCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -70,12 +70,12 @@ public sealed class RetweetService : IRetweetService
 
     /// <inheritdoc/>
     public Task<RetweetDeleteResponse> Delete(
-        string tweetID,
+        string id,
         RetweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -101,9 +101,9 @@ public sealed class RetweetServiceWithRawResponse : IRetweetServiceWithRawRespon
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<RetweetCreateParams> request = new()
@@ -130,12 +130,12 @@ public sealed class RetweetServiceWithRawResponse : IRetweetServiceWithRawRespon
 
     /// <inheritdoc/>
     public Task<HttpResponse<RetweetCreateResponse>> Create(
-        string tweetID,
+        string id,
         RetweetCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -144,9 +144,9 @@ public sealed class RetweetServiceWithRawResponse : IRetweetServiceWithRawRespon
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<RetweetDeleteParams> request = new()
@@ -173,11 +173,11 @@ public sealed class RetweetServiceWithRawResponse : IRetweetServiceWithRawRespon
 
     /// <inheritdoc/>
     public Task<HttpResponse<RetweetDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         RetweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 }

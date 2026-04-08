@@ -9,6 +9,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Extractions;
 
+/// <summary>
+/// Extraction job tracking status, tool type, and result count.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<ExtractionJob, ExtractionJobFromRaw>))]
 public sealed record class ExtractionJob : JsonModel
 {
@@ -42,6 +45,9 @@ public sealed record class ExtractionJob : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionJobToolType> ToolType
     {
         get
@@ -175,6 +181,9 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
     }
 }
 
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionJobToolTypeConverter))]
 public enum ExtractionJobToolType
 {

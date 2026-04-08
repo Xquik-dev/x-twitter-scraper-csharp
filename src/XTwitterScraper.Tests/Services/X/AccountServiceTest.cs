@@ -10,9 +10,9 @@ public class AccountServiceTest : TestBase
         var account = await this.client.X.Accounts.Create(
             new()
             {
-                Email = "email",
-                Password = "password",
-                Username = "username",
+                Email = "user@example.com",
+                Password = "s3cur3Pa$$w0rd",
+                Username = "elonmusk",
             },
             TestContext.Current.CancellationToken
         );
@@ -22,12 +22,12 @@ public class AccountServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var account = await this.client.X.Accounts.Retrieve(
+        var xAccountDetail = await this.client.X.Accounts.Retrieve(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        account.Validate();
+        xAccountDetail.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -52,11 +52,21 @@ public class AccountServiceTest : TestBase
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
+    public async Task BulkRetry_Works()
+    {
+        var response = await this.client.X.Accounts.BulkRetry(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Reauth_Works()
     {
         var response = await this.client.X.Accounts.Reauth(
             "id",
-            new() { Password = "password" },
+            new() { Password = "password_value" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

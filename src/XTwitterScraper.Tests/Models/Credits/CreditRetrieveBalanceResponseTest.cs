@@ -11,16 +11,16 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
-            AutoTopupEnabled = true,
-            Balance = 0,
-            LifetimePurchased = 0,
-            LifetimeUsed = 0,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 200000,
+            LifetimeUsed = 150000,
         };
 
-        bool expectedAutoTopupEnabled = true;
-        long expectedBalance = 0;
-        long expectedLifetimePurchased = 0;
-        long expectedLifetimeUsed = 0;
+        bool expectedAutoTopupEnabled = false;
+        long expectedBalance = 50000;
+        long expectedLifetimePurchased = 200000;
+        long expectedLifetimeUsed = 150000;
 
         Assert.Equal(expectedAutoTopupEnabled, model.AutoTopupEnabled);
         Assert.Equal(expectedBalance, model.Balance);
@@ -33,10 +33,10 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
-            AutoTopupEnabled = true,
-            Balance = 0,
-            LifetimePurchased = 0,
-            LifetimeUsed = 0,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 200000,
+            LifetimeUsed = 150000,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -53,10 +53,10 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
-            AutoTopupEnabled = true,
-            Balance = 0,
-            LifetimePurchased = 0,
-            LifetimeUsed = 0,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 200000,
+            LifetimeUsed = 150000,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -66,10 +66,10 @@ public class CreditRetrieveBalanceResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        bool expectedAutoTopupEnabled = true;
-        long expectedBalance = 0;
-        long expectedLifetimePurchased = 0;
-        long expectedLifetimeUsed = 0;
+        bool expectedAutoTopupEnabled = false;
+        long expectedBalance = 50000;
+        long expectedLifetimePurchased = 200000;
+        long expectedLifetimeUsed = 150000;
 
         Assert.Equal(expectedAutoTopupEnabled, deserialized.AutoTopupEnabled);
         Assert.Equal(expectedBalance, deserialized.Balance);
@@ -82,10 +82,10 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
-            AutoTopupEnabled = true,
-            Balance = 0,
-            LifetimePurchased = 0,
-            LifetimeUsed = 0,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 200000,
+            LifetimeUsed = 150000,
         };
 
         model.Validate();
@@ -96,10 +96,10 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
-            AutoTopupEnabled = true,
-            Balance = 0,
-            LifetimePurchased = 0,
-            LifetimeUsed = 0,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 200000,
+            LifetimeUsed = 150000,
         };
 
         CreditRetrieveBalanceResponse copied = new(model);

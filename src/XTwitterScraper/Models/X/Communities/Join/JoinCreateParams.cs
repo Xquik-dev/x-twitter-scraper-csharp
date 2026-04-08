@@ -27,7 +27,7 @@ public record class JoinCreateParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account identifier (@username or account ID)
     /// </summary>
     public required string Account
     {

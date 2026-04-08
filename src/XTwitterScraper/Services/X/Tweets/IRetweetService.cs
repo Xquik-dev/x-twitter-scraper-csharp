@@ -38,7 +38,7 @@ public interface IRetweetService
 
     /// <inheritdoc cref="Create(RetweetCreateParams, CancellationToken)"/>
     Task<RetweetCreateResponse> Create(
-        string tweetID,
+        string id,
         RetweetCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -53,7 +53,7 @@ public interface IRetweetService
 
     /// <inheritdoc cref="Delete(RetweetDeleteParams, CancellationToken)"/>
     Task<RetweetDeleteResponse> Delete(
-        string tweetID,
+        string id,
         RetweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -73,7 +73,7 @@ public interface IRetweetServiceWithRawResponse
     IRetweetServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>post /x/tweets/{tweetId}/retweet</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /x/tweets/{id}/retweet</c>, but is otherwise the
     /// same as <see cref="IRetweetService.Create(RetweetCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<RetweetCreateResponse>> Create(
@@ -83,13 +83,13 @@ public interface IRetweetServiceWithRawResponse
 
     /// <inheritdoc cref="Create(RetweetCreateParams, CancellationToken)"/>
     Task<HttpResponse<RetweetCreateResponse>> Create(
-        string tweetID,
+        string id,
         RetweetCreateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>delete /x/tweets/{tweetId}/retweet</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /x/tweets/{id}/retweet</c>, but is otherwise the
     /// same as <see cref="IRetweetService.Delete(RetweetDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<RetweetDeleteResponse>> Delete(
@@ -99,7 +99,7 @@ public interface IRetweetServiceWithRawResponse
 
     /// <inheritdoc cref="Delete(RetweetDeleteParams, CancellationToken)"/>
     Task<HttpResponse<RetweetDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         RetweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     );

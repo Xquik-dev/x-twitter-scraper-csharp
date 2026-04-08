@@ -12,10 +12,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -24,13 +26,15 @@ public class ExtractionRetrieveResponseTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "abc123",
         };
 
-        bool expectedHasMore = true;
+        bool expectedHasMore = false;
         Dictionary<string, JsonElement> expectedJob = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "id", JsonSerializer.SerializeToElement("bar") },
+            { "toolType", JsonSerializer.SerializeToElement("bar") },
+            { "status", JsonSerializer.SerializeToElement("bar") },
         };
         List<Dictionary<string, JsonElement>> expectedResults =
         [
@@ -39,7 +43,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
         ];
-        string expectedNextCursor = "nextCursor";
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedHasMore, model.HasMore);
         Assert.Equal(expectedJob.Count, model.Job.Count);
@@ -68,10 +72,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -80,7 +86,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -97,10 +103,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -109,7 +117,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -119,10 +127,12 @@ public class ExtractionRetrieveResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        bool expectedHasMore = true;
+        bool expectedHasMore = false;
         Dictionary<string, JsonElement> expectedJob = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "id", JsonSerializer.SerializeToElement("bar") },
+            { "toolType", JsonSerializer.SerializeToElement("bar") },
+            { "status", JsonSerializer.SerializeToElement("bar") },
         };
         List<Dictionary<string, JsonElement>> expectedResults =
         [
@@ -131,7 +141,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
         ];
-        string expectedNextCursor = "nextCursor";
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedHasMore, deserialized.HasMore);
         Assert.Equal(expectedJob.Count, deserialized.Job.Count);
@@ -160,10 +170,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -172,7 +184,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "abc123",
         };
 
         model.Validate();
@@ -183,10 +195,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -206,10 +220,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -228,10 +244,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -254,10 +272,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -279,10 +299,12 @@ public class ExtractionRetrieveResponseTest : TestBase
     {
         var model = new ExtractionRetrieveResponse
         {
-            HasMore = true,
+            HasMore = false,
             Job = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "id", JsonSerializer.SerializeToElement("bar") },
+                { "toolType", JsonSerializer.SerializeToElement("bar") },
+                { "status", JsonSerializer.SerializeToElement("bar") },
             },
             Results =
             [
@@ -291,7 +313,7 @@ public class ExtractionRetrieveResponseTest : TestBase
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "abc123",
         };
 
         ExtractionRetrieveResponse copied = new(model);

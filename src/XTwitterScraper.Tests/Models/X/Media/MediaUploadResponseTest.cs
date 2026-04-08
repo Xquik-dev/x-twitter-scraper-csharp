@@ -9,9 +9,9 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "mediaId" };
+        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
 
-        string expectedMediaID = "mediaId";
+        string expectedMediaID = "1234567890123456789";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMediaID, model.MediaID);
@@ -21,7 +21,7 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "mediaId" };
+        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MediaUploadResponse>(
@@ -35,7 +35,7 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "mediaId" };
+        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MediaUploadResponse>(
@@ -44,7 +44,7 @@ public class MediaUploadResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedMediaID = "mediaId";
+        string expectedMediaID = "1234567890123456789";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMediaID, deserialized.MediaID);
@@ -54,7 +54,7 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "mediaId" };
+        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
 
         model.Validate();
     }
@@ -62,7 +62,7 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "mediaId" };
+        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
 
         MediaUploadResponse copied = new(model);
 

@@ -24,10 +24,10 @@ public record class FollowDeleteAllParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
-    public string? UserID { get; init; }
+    public string? ID { get; init; }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account identifier (@username or account ID)
     /// </summary>
     public required string Account
     {
@@ -46,7 +46,7 @@ public record class FollowDeleteAllParams : ParamsBase
     public FollowDeleteAllParams(FollowDeleteAllParams followDeleteAllParams)
         : base(followDeleteAllParams)
     {
-        this.UserID = followDeleteAllParams.UserID;
+        this.ID = followDeleteAllParams.ID;
 
         this._rawBodyData = new(followDeleteAllParams._rawBodyData);
     }
@@ -69,13 +69,13 @@ public record class FollowDeleteAllParams : ParamsBase
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
         FrozenDictionary<string, JsonElement> rawBodyData,
-        string userID
+        string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
-        this.UserID = userID;
+        this.ID = id;
     }
 #pragma warning restore CS8618
 
@@ -84,14 +84,14 @@ public record class FollowDeleteAllParams : ParamsBase
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         IReadOnlyDictionary<string, JsonElement> rawBodyData,
-        string userID
+        string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData),
-            userID
+            id
         );
     }
 
@@ -100,7 +100,7 @@ public record class FollowDeleteAllParams : ParamsBase
             FriendlyJsonPrinter.PrintValue(
                 new Dictionary<string, JsonElement>()
                 {
-                    ["UserID"] = JsonSerializer.SerializeToElement(this.UserID),
+                    ["ID"] = JsonSerializer.SerializeToElement(this.ID),
                     ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
                     ),
@@ -119,7 +119,7 @@ public record class FollowDeleteAllParams : ParamsBase
         {
             return false;
         }
-        return (this.UserID?.Equals(other.UserID) ?? other.UserID == null)
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
             && this._rawBodyData.Equals(other._rawBodyData);
@@ -128,8 +128,7 @@ public record class FollowDeleteAllParams : ParamsBase
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/')
-                + string.Format("/x/users/{0}/follow", this.UserID)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/users/{0}/follow", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),

@@ -8,27 +8,27 @@ public class StyleRetrieveParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new StyleRetrieveParams { Username = "username" };
+        var parameters = new StyleRetrieveParams { ID = "id" };
 
-        string expectedUsername = "username";
+        string expectedID = "id";
 
-        Assert.Equal(expectedUsername, parameters.Username);
+        Assert.Equal(expectedID, parameters.ID);
     }
 
     [Fact]
     public void Url_Works()
     {
-        StyleRetrieveParams parameters = new() { Username = "username" };
+        StyleRetrieveParams parameters = new() { ID = "id" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/username"), url);
+        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/id"), url);
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new StyleRetrieveParams { Username = "username" };
+        var parameters = new StyleRetrieveParams { ID = "id" };
 
         StyleRetrieveParams copied = new(parameters);
 

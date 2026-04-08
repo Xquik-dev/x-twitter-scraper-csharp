@@ -35,7 +35,7 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public async Task<StyleRetrieveResponse> Retrieve(
+    public async Task<StyleProfile> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,19 +47,19 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public Task<StyleRetrieveResponse> Retrieve(
-        string username,
+    public Task<StyleProfile> Retrieve(
+        string id,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.Retrieve(parameters with { Username = username }, cancellationToken);
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<StyleUpdateResponse> Update(
+    public async Task<StyleProfile> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -71,13 +71,13 @@ public sealed class StyleService : IStyleService
     }
 
     /// <inheritdoc/>
-    public Task<StyleUpdateResponse> Update(
-        string username,
+    public Task<StyleProfile> Update(
+        string id,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Update(parameters with { Username = username }, cancellationToken);
+        return this.Update(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -100,19 +100,18 @@ public sealed class StyleService : IStyleService
 
     /// <inheritdoc/>
     public async Task Delete(
-        string username,
+        string id,
         StyleDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        await this.Delete(parameters with { Username = username }, cancellationToken)
-            .ConfigureAwait(false);
+        await this.Delete(parameters with { ID = id }, cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task<StyleAnalyzeResponse> Analyze(
+    public async Task<StyleProfile> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -149,14 +148,14 @@ public sealed class StyleService : IStyleService
 
     /// <inheritdoc/>
     public Task<StyleGetPerformanceResponse> GetPerformance(
-        string username,
+        string id,
         StyleGetPerformanceParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.GetPerformance(parameters with { Username = username }, cancellationToken);
+        return this.GetPerformance(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -177,14 +176,14 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
+    public async Task<HttpResponse<StyleProfile>> Retrieve(
         StyleRetrieveParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.Username == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<StyleRetrieveParams> request = new()
@@ -197,39 +196,39 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var style = await response
-                    .Deserialize<StyleRetrieveResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    style.Validate();
+                    styleProfile.Validate();
                 }
-                return style;
+                return styleProfile;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<StyleRetrieveResponse>> Retrieve(
-        string username,
+    public Task<HttpResponse<StyleProfile>> Retrieve(
+        string id,
         StyleRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.Retrieve(parameters with { Username = username }, cancellationToken);
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleUpdateResponse>> Update(
+    public async Task<HttpResponse<StyleProfile>> Update(
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.Username == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<StyleUpdateParams> request = new()
@@ -242,26 +241,26 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var style = await response
-                    .Deserialize<StyleUpdateResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    style.Validate();
+                    styleProfile.Validate();
                 }
-                return style;
+                return styleProfile;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<StyleUpdateResponse>> Update(
-        string username,
+    public Task<HttpResponse<StyleProfile>> Update(
+        string id,
         StyleUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Update(parameters with { Username = username }, cancellationToken);
+        return this.Update(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -300,9 +299,9 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.Username == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<StyleDeleteParams> request = new()
@@ -315,18 +314,18 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse> Delete(
-        string username,
+        string id,
         StyleDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.Delete(parameters with { Username = username }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<StyleAnalyzeResponse>> Analyze(
+    public async Task<HttpResponse<StyleProfile>> Analyze(
         StyleAnalyzeParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -341,14 +340,14 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<StyleAnalyzeResponse>(token)
+                var styleProfile = await response
+                    .Deserialize<StyleProfile>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    styleProfile.Validate();
                 }
-                return deserializedResponse;
+                return styleProfile;
             }
         );
     }
@@ -387,9 +386,9 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.Username == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<StyleGetPerformanceParams> request = new()
@@ -416,13 +415,13 @@ public sealed class StyleServiceWithRawResponse : IStyleServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<StyleGetPerformanceResponse>> GetPerformance(
-        string username,
+        string id,
         StyleGetPerformanceParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.GetPerformance(parameters with { Username = username }, cancellationToken);
+        return this.GetPerformance(parameters with { ID = id }, cancellationToken);
     }
 }

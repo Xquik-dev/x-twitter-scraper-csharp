@@ -17,7 +17,7 @@ namespace XTwitterScraper.Models.X.Users;
 /// </summary>
 public record class UserRetrieveParams : ParamsBase
 {
-    public string? Username { get; init; }
+    public string? ID { get; init; }
 
     public UserRetrieveParams() { }
 
@@ -26,7 +26,7 @@ public record class UserRetrieveParams : ParamsBase
     public UserRetrieveParams(UserRetrieveParams userRetrieveParams)
         : base(userRetrieveParams)
     {
-        this.Username = userRetrieveParams.Username;
+        this.ID = userRetrieveParams.ID;
     }
 #pragma warning restore CS8618
 
@@ -44,12 +44,12 @@ public record class UserRetrieveParams : ParamsBase
     UserRetrieveParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        string username
+        string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this.Username = username;
+        this.ID = id;
     }
 #pragma warning restore CS8618
 
@@ -57,13 +57,13 @@ public record class UserRetrieveParams : ParamsBase
     public static UserRetrieveParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        string username
+        string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            username
+            id
         );
     }
 
@@ -72,7 +72,7 @@ public record class UserRetrieveParams : ParamsBase
             FriendlyJsonPrinter.PrintValue(
                 new Dictionary<string, JsonElement>()
                 {
-                    ["Username"] = JsonSerializer.SerializeToElement(this.Username),
+                    ["ID"] = JsonSerializer.SerializeToElement(this.ID),
                     ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
                     ),
@@ -90,7 +90,7 @@ public record class UserRetrieveParams : ParamsBase
         {
             return false;
         }
-        return (this.Username?.Equals(other.Username) ?? other.Username == null)
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData);
     }
@@ -98,7 +98,7 @@ public record class UserRetrieveParams : ParamsBase
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/users/{0}", this.Username)
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/users/{0}", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),

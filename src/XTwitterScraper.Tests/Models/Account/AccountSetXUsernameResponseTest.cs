@@ -9,10 +9,10 @@ public class AccountSetXUsernameResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new AccountSetXUsernameResponse { XUsername = "xUsername" };
+        var model = new AccountSetXUsernameResponse { XUsername = "elonmusk" };
 
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.True(JsonElement.DeepEquals(expectedSuccess, model.Success));
         Assert.Equal(expectedXUsername, model.XUsername);
@@ -21,7 +21,7 @@ public class AccountSetXUsernameResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new AccountSetXUsernameResponse { XUsername = "xUsername" };
+        var model = new AccountSetXUsernameResponse { XUsername = "elonmusk" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AccountSetXUsernameResponse>(
@@ -35,7 +35,7 @@ public class AccountSetXUsernameResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new AccountSetXUsernameResponse { XUsername = "xUsername" };
+        var model = new AccountSetXUsernameResponse { XUsername = "elonmusk" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AccountSetXUsernameResponse>(
@@ -45,7 +45,7 @@ public class AccountSetXUsernameResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.True(JsonElement.DeepEquals(expectedSuccess, deserialized.Success));
         Assert.Equal(expectedXUsername, deserialized.XUsername);
@@ -54,7 +54,7 @@ public class AccountSetXUsernameResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new AccountSetXUsernameResponse { XUsername = "xUsername" };
+        var model = new AccountSetXUsernameResponse { XUsername = "elonmusk" };
 
         model.Validate();
     }
@@ -62,7 +62,7 @@ public class AccountSetXUsernameResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new AccountSetXUsernameResponse { XUsername = "xUsername" };
+        var model = new AccountSetXUsernameResponse { XUsername = "elonmusk" };
 
         AccountSetXUsernameResponse copied = new(model);
 

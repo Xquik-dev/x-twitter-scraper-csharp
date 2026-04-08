@@ -12,38 +12,38 @@ public class StyleGetPerformanceResponseTest : TestBase
     {
         var model = new StyleGetPerformanceResponse
         {
-            TweetCount = 0,
+            TweetCount = 5,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    CreatedAt = "createdAt",
-                    LikeCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    ID = "1234567890",
+                    Text = "Excited to share our latest research findings.",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    LikeCount = 120,
+                    ReplyCount = 8,
+                    RetweetCount = 15,
+                    ViewCount = 5000,
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
-        long expectedTweetCount = 0;
+        long expectedTweetCount = 5;
         List<StyleGetPerformanceResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                ReplyCount = 0,
-                RetweetCount = 0,
-                ViewCount = 0,
+                ID = "1234567890",
+                Text = "Excited to share our latest research findings.",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 120,
+                ReplyCount = 8,
+                RetweetCount = 15,
+                ViewCount = 5000,
             },
         ];
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedTweetCount, model.TweetCount);
         Assert.Equal(expectedTweets.Count, model.Tweets.Count);
@@ -59,21 +59,21 @@ public class StyleGetPerformanceResponseTest : TestBase
     {
         var model = new StyleGetPerformanceResponse
         {
-            TweetCount = 0,
+            TweetCount = 5,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    CreatedAt = "createdAt",
-                    LikeCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    ID = "1234567890",
+                    Text = "Excited to share our latest research findings.",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    LikeCount = 120,
+                    ReplyCount = 8,
+                    RetweetCount = 15,
+                    ViewCount = 5000,
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -90,21 +90,21 @@ public class StyleGetPerformanceResponseTest : TestBase
     {
         var model = new StyleGetPerformanceResponse
         {
-            TweetCount = 0,
+            TweetCount = 5,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    CreatedAt = "createdAt",
-                    LikeCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    ID = "1234567890",
+                    Text = "Excited to share our latest research findings.",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    LikeCount = 120,
+                    ReplyCount = 8,
+                    RetweetCount = 15,
+                    ViewCount = 5000,
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -114,21 +114,21 @@ public class StyleGetPerformanceResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        long expectedTweetCount = 0;
+        long expectedTweetCount = 5;
         List<StyleGetPerformanceResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                ReplyCount = 0,
-                RetweetCount = 0,
-                ViewCount = 0,
+                ID = "1234567890",
+                Text = "Excited to share our latest research findings.",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 120,
+                ReplyCount = 8,
+                RetweetCount = 15,
+                ViewCount = 5000,
             },
         ];
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedTweetCount, deserialized.TweetCount);
         Assert.Equal(expectedTweets.Count, deserialized.Tweets.Count);
@@ -144,21 +144,21 @@ public class StyleGetPerformanceResponseTest : TestBase
     {
         var model = new StyleGetPerformanceResponse
         {
-            TweetCount = 0,
+            TweetCount = 5,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    CreatedAt = "createdAt",
-                    LikeCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    ID = "1234567890",
+                    Text = "Excited to share our latest research findings.",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    LikeCount = 120,
+                    ReplyCount = 8,
+                    RetweetCount = 15,
+                    ViewCount = 5000,
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -169,21 +169,21 @@ public class StyleGetPerformanceResponseTest : TestBase
     {
         var model = new StyleGetPerformanceResponse
         {
-            TweetCount = 0,
+            TweetCount = 5,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    CreatedAt = "createdAt",
-                    LikeCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    ID = "1234567890",
+                    Text = "Excited to share our latest research findings.",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    LikeCount = 120,
+                    ReplyCount = 8,
+                    RetweetCount = 15,
+                    ViewCount = 5000,
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         StyleGetPerformanceResponse copied = new(model);
@@ -199,22 +199,22 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 120,
+            ReplyCount = 8,
+            RetweetCount = 15,
+            ViewCount = 5000,
         };
 
-        string expectedID = "id";
-        string expectedText = "text";
-        string expectedCreatedAt = "createdAt";
-        long expectedLikeCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        long expectedViewCount = 0;
+        string expectedID = "1234567890";
+        string expectedText = "Excited to share our latest research findings.";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        long expectedLikeCount = 120;
+        long expectedReplyCount = 8;
+        long expectedRetweetCount = 15;
+        long expectedViewCount = 5000;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedText, model.Text);
@@ -230,13 +230,13 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 120,
+            ReplyCount = 8,
+            RetweetCount = 15,
+            ViewCount = 5000,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -253,13 +253,13 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 120,
+            ReplyCount = 8,
+            RetweetCount = 15,
+            ViewCount = 5000,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -269,13 +269,13 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedText = "text";
-        string expectedCreatedAt = "createdAt";
-        long expectedLikeCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        long expectedViewCount = 0;
+        string expectedID = "1234567890";
+        string expectedText = "Excited to share our latest research findings.";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        long expectedLikeCount = 120;
+        long expectedReplyCount = 8;
+        long expectedRetweetCount = 15;
+        long expectedViewCount = 5000;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedText, deserialized.Text);
@@ -291,13 +291,13 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 120,
+            ReplyCount = 8,
+            RetweetCount = 15,
+            ViewCount = 5000,
         };
 
         model.Validate();
@@ -306,7 +306,11 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new StyleGetPerformanceResponseTweet { ID = "id", Text = "text" };
+        var model = new StyleGetPerformanceResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+        };
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
@@ -323,7 +327,11 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new StyleGetPerformanceResponseTweet { ID = "id", Text = "text" };
+        var model = new StyleGetPerformanceResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+        };
 
         model.Validate();
     }
@@ -333,8 +341,8 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -361,8 +369,8 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -380,13 +388,13 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
     {
         var model = new StyleGetPerformanceResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            ID = "1234567890",
+            Text = "Excited to share our latest research findings.",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 120,
+            ReplyCount = 8,
+            RetweetCount = 15,
+            ViewCount = 5000,
         };
 
         StyleGetPerformanceResponseTweet copied = new(model);

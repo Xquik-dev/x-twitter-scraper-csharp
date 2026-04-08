@@ -6,10 +6,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Monitors;
 
+/// <summary>
+/// Account monitor that tracks activity for a given X user.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Monitor, MonitorFromRaw>))]
 public sealed record class Monitor : JsonModel
 {
@@ -33,18 +35,21 @@ public sealed record class Monitor : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
-    public required IReadOnlyList<ApiEnum<string, MonitorEventType>> EventTypes
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
+    public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<ApiEnum<string, MonitorEventType>>
-            >("eventTypes");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+                "eventTypes"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<ApiEnum<string, MonitorEventType>>>(
+            this._rawData.Set<ImmutableArray<ApiEnum<string, EventType>>>(
                 "eventTypes",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -128,60 +133,4 @@ class MonitorFromRaw : IFromRawJson<Monitor>
     /// <inheritdoc/>
     public Monitor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Monitor.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(MonitorEventTypeConverter))]
-public enum MonitorEventType
-{
-    TweetNew,
-    TweetReply,
-    TweetRetweet,
-    TweetQuote,
-    FollowerGained,
-    FollowerLost,
-}
-
-sealed class MonitorEventTypeConverter : JsonConverter<MonitorEventType>
-{
-    public override MonitorEventType Read(
-        ref Utf8JsonReader reader,
-        Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "tweet.new" => MonitorEventType.TweetNew,
-            "tweet.reply" => MonitorEventType.TweetReply,
-            "tweet.retweet" => MonitorEventType.TweetRetweet,
-            "tweet.quote" => MonitorEventType.TweetQuote,
-            "follower.gained" => MonitorEventType.FollowerGained,
-            "follower.lost" => MonitorEventType.FollowerLost,
-            _ => (MonitorEventType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        MonitorEventType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                MonitorEventType.TweetNew => "tweet.new",
-                MonitorEventType.TweetReply => "tweet.reply",
-                MonitorEventType.TweetRetweet => "tweet.retweet",
-                MonitorEventType.TweetQuote => "tweet.quote",
-                MonitorEventType.FollowerGained => "follower.gained",
-                MonitorEventType.FollowerLost => "follower.lost",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }

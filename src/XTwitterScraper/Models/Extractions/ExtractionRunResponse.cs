@@ -22,18 +22,19 @@ public sealed record class ExtractionRunResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
-    public required ApiEnum<string, ExtractionRunResponseStatus> Status
+    public JsonElement Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, ExtractionRunResponseStatus>>(
-                "status"
-            );
+            return this._rawData.GetNotNullStruct<JsonElement>("status");
         }
         init { this._rawData.Set("status", value); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionRunResponseToolType> ToolType
     {
         get
@@ -50,11 +51,17 @@ public sealed record class ExtractionRunResponse : JsonModel
     public override void Validate()
     {
         _ = this.ID;
-        this.Status.Validate();
+        if (!JsonElement.DeepEquals(this.Status, JsonSerializer.SerializeToElement("running")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
         this.ToolType.Validate();
     }
 
-    public ExtractionRunResponse() { }
+    public ExtractionRunResponse()
+    {
+        this.Status = JsonSerializer.SerializeToElement("running");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -65,6 +72,8 @@ public sealed record class ExtractionRunResponse : JsonModel
     public ExtractionRunResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Status = JsonSerializer.SerializeToElement("running");
     }
 
 #pragma warning disable CS8618
@@ -92,47 +101,9 @@ class ExtractionRunResponseFromRaw : IFromRawJson<ExtractionRunResponse>
     ) => ExtractionRunResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(ExtractionRunResponseStatusConverter))]
-public enum ExtractionRunResponseStatus
-{
-    Running,
-}
-
-sealed class ExtractionRunResponseStatusConverter : JsonConverter<ExtractionRunResponseStatus>
-{
-    public override ExtractionRunResponseStatus Read(
-        ref Utf8JsonReader reader,
-        Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "running" => ExtractionRunResponseStatus.Running,
-            _ => (ExtractionRunResponseStatus)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        ExtractionRunResponseStatus value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                ExtractionRunResponseStatus.Running => "running",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionRunResponseToolTypeConverter))]
 public enum ExtractionRunResponseToolType
 {

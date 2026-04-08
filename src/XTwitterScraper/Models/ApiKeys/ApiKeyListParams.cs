@@ -88,13 +88,13 @@ public record class ApiKeyListParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/api-keys")
         {
-            Query = this.QueryString(options, new()),
+            Query = this.QueryString(options, new() { ApiKey = true }),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, new());
+        ParamsBase.AddDefaultHeaders(request, options, new() { ApiKey = true });
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

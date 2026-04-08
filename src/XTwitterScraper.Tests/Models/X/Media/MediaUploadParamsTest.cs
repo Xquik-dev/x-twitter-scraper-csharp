@@ -14,12 +14,12 @@ public class MediaUploadParamsTest : TestBase
 
         var parameters = new MediaUploadParams
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = file,
             IsLongVideo = true,
         };
 
-        string expectedAccount = "account";
+        string expectedAccount = "@elonmusk";
         BinaryContent expectedFile = file;
         bool expectedIsLongVideo = true;
 
@@ -33,7 +33,7 @@ public class MediaUploadParamsTest : TestBase
     {
         BinaryContent file = Encoding.UTF8.GetBytes("Example data");
 
-        var parameters = new MediaUploadParams { Account = "account", File = file };
+        var parameters = new MediaUploadParams { Account = "@elonmusk", File = file };
 
         Assert.Null(parameters.IsLongVideo);
         Assert.False(parameters.RawBodyData.ContainsKey("is_long_video"));
@@ -46,7 +46,7 @@ public class MediaUploadParamsTest : TestBase
 
         var parameters = new MediaUploadParams
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = file,
 
             // Null should be interpreted as omitted for these properties
@@ -62,7 +62,7 @@ public class MediaUploadParamsTest : TestBase
     {
         MediaUploadParams parameters = new()
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = Encoding.UTF8.GetBytes("Example data"),
         };
 
@@ -76,7 +76,7 @@ public class MediaUploadParamsTest : TestBase
     {
         var parameters = new MediaUploadParams
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = Encoding.UTF8.GetBytes("Example data"),
             IsLongVideo = true,
         };

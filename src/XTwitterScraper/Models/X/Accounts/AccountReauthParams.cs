@@ -27,7 +27,7 @@ public record class AccountReauthParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Account password
+    /// Updated account password
     /// </summary>
     public required string Password
     {
@@ -40,7 +40,7 @@ public record class AccountReauthParams : ParamsBase
     }
 
     /// <summary>
-    /// TOTP secret for 2FA
+    /// TOTP secret for 2FA re-authentication
     /// </summary>
     public string? TotpSecret
     {
@@ -153,7 +153,7 @@ public record class AccountReauthParams : ParamsBase
                 + string.Format("/x/accounts/{0}/reauth", this.ID)
         )
         {
-            Query = this.QueryString(options, new()),
+            Query = this.QueryString(options, new() { ApiKey = true }),
         }.Uri;
     }
 
@@ -168,7 +168,7 @@ public record class AccountReauthParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, new());
+        ParamsBase.AddDefaultHeaders(request, options, new() { ApiKey = true });
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

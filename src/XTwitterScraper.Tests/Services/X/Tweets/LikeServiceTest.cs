@@ -8,8 +8,8 @@ public class LikeServiceTest : TestBase
     public async Task Create_Works()
     {
         var like = await this.client.X.Tweets.Like.Create(
-            "tweetId",
-            new() { Account = "account" },
+            "id",
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         like.Validate();
@@ -19,8 +19,8 @@ public class LikeServiceTest : TestBase
     public async Task Delete_Works()
     {
         var like = await this.client.X.Tweets.Like.Delete(
-            "tweetId",
-            new() { Account = "account" },
+            "id",
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         like.Validate();

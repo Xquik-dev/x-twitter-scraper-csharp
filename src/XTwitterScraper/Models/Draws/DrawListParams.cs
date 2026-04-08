@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.Draws;
 public record class DrawListParams : ParamsBase
 {
     /// <summary>
-    /// Cursor for pagination
+    /// Cursor for keyset pagination
     /// </summary>
     public string? After
     {
@@ -38,6 +38,9 @@ public record class DrawListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum number of items to return (1-100, default 50)
+    /// </summary>
     public long? Limit
     {
         get

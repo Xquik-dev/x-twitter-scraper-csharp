@@ -11,32 +11,32 @@ public class DrawRunParamsTest : TestBase
     {
         var parameters = new DrawRunParams
         {
-            TweetUrl = "https://example.com",
-            BackupCount = 0,
-            FilterAccountAgeDays = 0,
-            FilterLanguage = "filterLanguage",
-            FilterMinFollowers = 0,
-            MustFollowUsername = "mustFollowUsername",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
+            BackupCount = 2,
+            FilterAccountAgeDays = 30,
+            FilterLanguage = "en",
+            FilterMinFollowers = 50,
+            MustFollowUsername = "elonmusk",
             MustRetweet = true,
-            RequiredHashtags = ["string"],
-            RequiredKeywords = ["string"],
-            RequiredMentions = ["string"],
+            RequiredHashtags = ["#giveaway"],
+            RequiredKeywords = ["entered"],
+            RequiredMentions = ["@elonmusk"],
             UniqueAuthorsOnly = true,
-            WinnerCount = 0,
+            WinnerCount = 3,
         };
 
-        string expectedTweetUrl = "https://example.com";
-        long expectedBackupCount = 0;
-        long expectedFilterAccountAgeDays = 0;
-        string expectedFilterLanguage = "filterLanguage";
-        long expectedFilterMinFollowers = 0;
-        string expectedMustFollowUsername = "mustFollowUsername";
+        string expectedTweetUrl = "https://x.com/elonmusk/status/1234567890";
+        long expectedBackupCount = 2;
+        long expectedFilterAccountAgeDays = 30;
+        string expectedFilterLanguage = "en";
+        long expectedFilterMinFollowers = 50;
+        string expectedMustFollowUsername = "elonmusk";
         bool expectedMustRetweet = true;
-        List<string> expectedRequiredHashtags = ["string"];
-        List<string> expectedRequiredKeywords = ["string"];
-        List<string> expectedRequiredMentions = ["string"];
+        List<string> expectedRequiredHashtags = ["#giveaway"];
+        List<string> expectedRequiredKeywords = ["entered"];
+        List<string> expectedRequiredMentions = ["@elonmusk"];
         bool expectedUniqueAuthorsOnly = true;
-        long expectedWinnerCount = 0;
+        long expectedWinnerCount = 3;
 
         Assert.Equal(expectedTweetUrl, parameters.TweetUrl);
         Assert.Equal(expectedBackupCount, parameters.BackupCount);
@@ -70,7 +70,10 @@ public class DrawRunParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new DrawRunParams { TweetUrl = "https://example.com" };
+        var parameters = new DrawRunParams
+        {
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
+        };
 
         Assert.Null(parameters.BackupCount);
         Assert.False(parameters.RawBodyData.ContainsKey("backupCount"));
@@ -101,7 +104,7 @@ public class DrawRunParamsTest : TestBase
     {
         var parameters = new DrawRunParams
         {
-            TweetUrl = "https://example.com",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
 
             // Null should be interpreted as omitted for these properties
             BackupCount = null,
@@ -144,7 +147,7 @@ public class DrawRunParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        DrawRunParams parameters = new() { TweetUrl = "https://example.com" };
+        DrawRunParams parameters = new() { TweetUrl = "https://x.com/elonmusk/status/1234567890" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -156,18 +159,18 @@ public class DrawRunParamsTest : TestBase
     {
         var parameters = new DrawRunParams
         {
-            TweetUrl = "https://example.com",
-            BackupCount = 0,
-            FilterAccountAgeDays = 0,
-            FilterLanguage = "filterLanguage",
-            FilterMinFollowers = 0,
-            MustFollowUsername = "mustFollowUsername",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
+            BackupCount = 2,
+            FilterAccountAgeDays = 30,
+            FilterLanguage = "en",
+            FilterMinFollowers = 50,
+            MustFollowUsername = "elonmusk",
             MustRetweet = true,
-            RequiredHashtags = ["string"],
-            RequiredKeywords = ["string"],
-            RequiredMentions = ["string"],
+            RequiredHashtags = ["#giveaway"],
+            RequiredKeywords = ["entered"],
+            RequiredMentions = ["@elonmusk"],
             UniqueAuthorsOnly = true,
-            WinnerCount = 0,
+            WinnerCount = 3,
         };
 
         DrawRunParams copied = new(parameters);

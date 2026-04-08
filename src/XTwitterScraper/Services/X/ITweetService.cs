@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Tweets;
 using XTwitterScraper.Services.X.Tweets;
 
@@ -49,7 +50,7 @@ public interface ITweetService
 
     /// <inheritdoc cref="Retrieve(TweetRetrieveParams, CancellationToken)"/>
     Task<TweetRetrieveResponse> Retrieve(
-        string tweetID,
+        string id,
         TweetRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -57,7 +58,10 @@ public interface ITweetService
     /// <summary>
     /// Get multiple tweets by IDs
     /// </summary>
-    Task List(TweetListParams parameters, CancellationToken cancellationToken = default);
+    Task<PaginatedTweets> List(
+        TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Delete tweet
@@ -69,7 +73,7 @@ public interface ITweetService
 
     /// <inheritdoc cref="Delete(TweetDeleteParams, CancellationToken)"/>
     Task<TweetDeleteResponse> Delete(
-        string tweetID,
+        string id,
         TweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -77,13 +81,13 @@ public interface ITweetService
     /// <summary>
     /// Get users who liked a tweet
     /// </summary>
-    Task<TweetGetFavoritersResponse> GetFavoriters(
+    Task<PaginatedUsers> GetFavoriters(
         TweetGetFavoritersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetFavoriters(TweetGetFavoritersParams, CancellationToken)"/>
-    Task<TweetGetFavoritersResponse> GetFavoriters(
+    Task<PaginatedUsers> GetFavoriters(
         string id,
         TweetGetFavoritersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -92,13 +96,13 @@ public interface ITweetService
     /// <summary>
     /// Get quote tweets of a tweet
     /// </summary>
-    Task<TweetGetQuotesResponse> GetQuotes(
+    Task<PaginatedTweets> GetQuotes(
         TweetGetQuotesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetQuotes(TweetGetQuotesParams, CancellationToken)"/>
-    Task<TweetGetQuotesResponse> GetQuotes(
+    Task<PaginatedTweets> GetQuotes(
         string id,
         TweetGetQuotesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -107,13 +111,13 @@ public interface ITweetService
     /// <summary>
     /// Get replies to a tweet
     /// </summary>
-    Task<TweetGetRepliesResponse> GetReplies(
+    Task<PaginatedTweets> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<TweetGetRepliesResponse> GetReplies(
+    Task<PaginatedTweets> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -122,13 +126,13 @@ public interface ITweetService
     /// <summary>
     /// Get users who retweeted a tweet
     /// </summary>
-    Task<TweetGetRetweetersResponse> GetRetweeters(
+    Task<PaginatedUsers> GetRetweeters(
         TweetGetRetweetersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetRetweeters(TweetGetRetweetersParams, CancellationToken)"/>
-    Task<TweetGetRetweetersResponse> GetRetweeters(
+    Task<PaginatedUsers> GetRetweeters(
         string id,
         TweetGetRetweetersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -137,13 +141,13 @@ public interface ITweetService
     /// <summary>
     /// Get thread context for a tweet
     /// </summary>
-    Task<TweetGetThreadResponse> GetThread(
+    Task<PaginatedTweets> GetThread(
         TweetGetThreadParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetThread(TweetGetThreadParams, CancellationToken)"/>
-    Task<TweetGetThreadResponse> GetThread(
+    Task<PaginatedTweets> GetThread(
         string id,
         TweetGetThreadParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -152,7 +156,7 @@ public interface ITweetService
     /// <summary>
     /// Search tweets
     /// </summary>
-    Task<TweetSearchResponse> Search(
+    Task<PaginatedTweets> Search(
         TweetSearchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -185,7 +189,7 @@ public interface ITweetServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>get /x/tweets/{tweetId}</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}</c>, but is otherwise the
     /// same as <see cref="ITweetService.Retrieve(TweetRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
@@ -195,7 +199,7 @@ public interface ITweetServiceWithRawResponse
 
     /// <inheritdoc cref="Retrieve(TweetRetrieveParams, CancellationToken)"/>
     Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        string tweetID,
+        string id,
         TweetRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -204,13 +208,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> List(
+    Task<HttpResponse<PaginatedTweets>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for <c>delete /x/tweets/{tweetId}</c>, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /x/tweets/{id}</c>, but is otherwise the
     /// same as <see cref="ITweetService.Delete(TweetDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<TweetDeleteResponse>> Delete(
@@ -220,7 +224,7 @@ public interface ITweetServiceWithRawResponse
 
     /// <inheritdoc cref="Delete(TweetDeleteParams, CancellationToken)"/>
     Task<HttpResponse<TweetDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         TweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -229,13 +233,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/favoriters</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetFavoriters(TweetGetFavoritersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetGetFavoritersResponse>> GetFavoriters(
+    Task<HttpResponse<PaginatedUsers>> GetFavoriters(
         TweetGetFavoritersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetFavoriters(TweetGetFavoritersParams, CancellationToken)"/>
-    Task<HttpResponse<TweetGetFavoritersResponse>> GetFavoriters(
+    Task<HttpResponse<PaginatedUsers>> GetFavoriters(
         string id,
         TweetGetFavoritersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -245,13 +249,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/quotes</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetQuotes(TweetGetQuotesParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetGetQuotesResponse>> GetQuotes(
+    Task<HttpResponse<PaginatedTweets>> GetQuotes(
         TweetGetQuotesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetQuotes(TweetGetQuotesParams, CancellationToken)"/>
-    Task<HttpResponse<TweetGetQuotesResponse>> GetQuotes(
+    Task<HttpResponse<PaginatedTweets>> GetQuotes(
         string id,
         TweetGetQuotesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -261,13 +265,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/replies</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetReplies(TweetGetRepliesParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
+    Task<HttpResponse<PaginatedTweets>> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
+    Task<HttpResponse<PaginatedTweets>> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -277,13 +281,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/retweeters</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetRetweeters(TweetGetRetweetersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetGetRetweetersResponse>> GetRetweeters(
+    Task<HttpResponse<PaginatedUsers>> GetRetweeters(
         TweetGetRetweetersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetRetweeters(TweetGetRetweetersParams, CancellationToken)"/>
-    Task<HttpResponse<TweetGetRetweetersResponse>> GetRetweeters(
+    Task<HttpResponse<PaginatedUsers>> GetRetweeters(
         string id,
         TweetGetRetweetersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -293,13 +297,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/thread</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetThread(TweetGetThreadParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetGetThreadResponse>> GetThread(
+    Task<HttpResponse<PaginatedTweets>> GetThread(
         TweetGetThreadParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetThread(TweetGetThreadParams, CancellationToken)"/>
-    Task<HttpResponse<TweetGetThreadResponse>> GetThread(
+    Task<HttpResponse<PaginatedTweets>> GetThread(
         string id,
         TweetGetThreadParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -309,7 +313,7 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/search</c>, but is otherwise the
     /// same as <see cref="ITweetService.Search(TweetSearchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TweetSearchResponse>> Search(
+    Task<HttpResponse<PaginatedTweets>> Search(
         TweetSearchParams parameters,
         CancellationToken cancellationToken = default
     );

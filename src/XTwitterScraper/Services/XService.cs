@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X;
 using X = XTwitterScraper.Services.X;
 
@@ -130,7 +131,7 @@ public sealed class XService : IXService
     }
 
     /// <inheritdoc/>
-    public async Task<XGetHomeTimelineResponse> GetHomeTimeline(
+    public async Task<PaginatedTweets> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -154,12 +155,15 @@ public sealed class XService : IXService
     }
 
     /// <inheritdoc/>
-    public Task GetTrends(
+    public async Task<XGetTrendsResponse> GetTrends(
         XGetTrendsParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.GetTrends(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.GetTrends(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 }
 
@@ -296,7 +300,7 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<XGetHomeTimelineResponse>> GetHomeTimeline(
+    public async Task<HttpResponse<PaginatedTweets>> GetHomeTimeline(
         XGetHomeTimelineParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -313,14 +317,14 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<XGetHomeTimelineResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
@@ -356,7 +360,7 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> GetTrends(
+    public async Task<HttpResponse<XGetTrendsResponse>> GetTrends(
         XGetTrendsParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -368,6 +372,20 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<XGetTrendsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 }

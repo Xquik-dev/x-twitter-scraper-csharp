@@ -8,27 +8,27 @@ public class TweetRetrieveParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new TweetRetrieveParams { TweetID = "tweetId" };
+        var parameters = new TweetRetrieveParams { ID = "id" };
 
-        string expectedTweetID = "tweetId";
+        string expectedID = "id";
 
-        Assert.Equal(expectedTweetID, parameters.TweetID);
+        Assert.Equal(expectedID, parameters.ID);
     }
 
     [Fact]
     public void Url_Works()
     {
-        TweetRetrieveParams parameters = new() { TweetID = "tweetId" };
+        TweetRetrieveParams parameters = new() { ID = "id" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/tweets/tweetId"), url);
+        Assert.Equal(new Uri("https://xquik.com/api/v1/x/tweets/id"), url);
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new TweetRetrieveParams { TweetID = "tweetId" };
+        var parameters = new TweetRetrieveParams { ID = "id" };
 
         TweetRetrieveParams copied = new(parameters);
 

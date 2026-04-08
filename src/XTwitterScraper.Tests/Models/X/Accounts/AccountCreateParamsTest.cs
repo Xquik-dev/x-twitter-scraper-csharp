@@ -10,18 +10,18 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "email",
-            Password = "password",
-            Username = "username",
-            ProxyCountry = "proxy_country",
-            TotpSecret = "totp_secret",
+            Email = "user@example.com",
+            Password = "s3cur3Pa$$w0rd",
+            Username = "elonmusk",
+            ProxyCountry = "US",
+            TotpSecret = "JBSWY3DPEHPK3PXP",
         };
 
-        string expectedEmail = "email";
-        string expectedPassword = "password";
-        string expectedUsername = "username";
-        string expectedProxyCountry = "proxy_country";
-        string expectedTotpSecret = "totp_secret";
+        string expectedEmail = "user@example.com";
+        string expectedPassword = "s3cur3Pa$$w0rd";
+        string expectedUsername = "elonmusk";
+        string expectedProxyCountry = "US";
+        string expectedTotpSecret = "JBSWY3DPEHPK3PXP";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
@@ -35,9 +35,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "email",
-            Password = "password",
-            Username = "username",
+            Email = "user@example.com",
+            Password = "s3cur3Pa$$w0rd",
+            Username = "elonmusk",
         };
 
         Assert.Null(parameters.ProxyCountry);
@@ -51,9 +51,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "email",
-            Password = "password",
-            Username = "username",
+            Email = "user@example.com",
+            Password = "s3cur3Pa$$w0rd",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             ProxyCountry = null,
@@ -71,9 +71,9 @@ public class AccountCreateParamsTest : TestBase
     {
         AccountCreateParams parameters = new()
         {
-            Email = "email",
-            Password = "password",
-            Username = "username",
+            Email = "user@example.com",
+            Password = "s3cur3Pa$$w0rd",
+            Username = "elonmusk",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -86,11 +86,11 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "email",
-            Password = "password",
-            Username = "username",
-            ProxyCountry = "proxy_country",
-            TotpSecret = "totp_secret",
+            Email = "user@example.com",
+            Password = "s3cur3Pa$$w0rd",
+            Username = "elonmusk",
+            ProxyCountry = "US",
+            TotpSecret = "JBSWY3DPEHPK3PXP",
         };
 
         AccountCreateParams copied = new(parameters);

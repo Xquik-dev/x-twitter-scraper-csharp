@@ -9,7 +9,11 @@ public class TicketServiceTest : TestBase
     public async Task Create_Works()
     {
         var ticket = await this.client.Support.Tickets.Create(
-            new() { Body = "body", Subject = "subject" },
+            new()
+            {
+                Body = "I am unable to connect my X account. Please help.",
+                Subject = "Cannot connect X account",
+            },
             TestContext.Current.CancellationToken
         );
         ticket.Validate();
@@ -19,7 +23,7 @@ public class TicketServiceTest : TestBase
     public async Task Retrieve_Works()
     {
         var ticket = await this.client.Support.Tickets.Retrieve(
-            "id",
+            "messages_value",
             new(),
             TestContext.Current.CancellationToken
         );
@@ -31,7 +35,7 @@ public class TicketServiceTest : TestBase
     {
         var ticket = await this.client.Support.Tickets.Update(
             "id",
-            new() { Status = Status.Open },
+            new() { Status = Status.Resolved },
             TestContext.Current.CancellationToken
         );
         ticket.Validate();
@@ -52,7 +56,7 @@ public class TicketServiceTest : TestBase
     {
         var response = await this.client.Support.Tickets.Reply(
             "id",
-            new() { Body = "body" },
+            new() { Body = "Thank you for the update." },
             TestContext.Current.CancellationToken
         );
         response.Validate();

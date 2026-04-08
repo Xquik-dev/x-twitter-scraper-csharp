@@ -7,23 +7,27 @@ public class StyleServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Retrieve_Works()
     {
-        var style = await this.client.Styles.Retrieve(
-            "username",
+        var styleProfile = await this.client.Styles.Retrieve(
+            "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        style.Validate();
+        styleProfile.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
-        var style = await this.client.Styles.Update(
-            "username",
-            new() { Label = "label", Tweets = [new("text")] },
+        var styleProfile = await this.client.Styles.Update(
+            "id",
+            new()
+            {
+                Label = "Professional Voice",
+                Tweets = [new("Excited to share our latest research findings.")],
+            },
             TestContext.Current.CancellationToken
         );
-        style.Validate();
+        styleProfile.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -36,17 +40,17 @@ public class StyleServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        await this.client.Styles.Delete("username", new(), TestContext.Current.CancellationToken);
+        await this.client.Styles.Delete("id", new(), TestContext.Current.CancellationToken);
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Analyze_Works()
     {
-        var response = await this.client.Styles.Analyze(
-            new() { Username = "username" },
+        var styleProfile = await this.client.Styles.Analyze(
+            new() { Username = "elonmusk" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        styleProfile.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -63,7 +67,7 @@ public class StyleServiceTest : TestBase
     public async Task GetPerformance_Works()
     {
         var response = await this.client.Styles.GetPerformance(
-            "username",
+            "id",
             new(),
             TestContext.Current.CancellationToken
         );

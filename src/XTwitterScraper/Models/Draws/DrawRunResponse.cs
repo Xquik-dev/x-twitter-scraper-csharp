@@ -51,16 +51,16 @@ public sealed record class DrawRunResponse : JsonModel
         init { this._rawData.Set("validEntries", value); }
     }
 
-    public required IReadOnlyList<DrawRunResponseWinner> Winners
+    public required IReadOnlyList<Winner> Winners
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<DrawRunResponseWinner>>("winners");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Winner>>("winners");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<DrawRunResponseWinner>>(
+            this._rawData.Set<ImmutableArray<Winner>>(
                 "winners",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -113,94 +113,4 @@ class DrawRunResponseFromRaw : IFromRawJson<DrawRunResponse>
     /// <inheritdoc/>
     public DrawRunResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         DrawRunResponse.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(JsonModelConverter<DrawRunResponseWinner, DrawRunResponseWinnerFromRaw>))]
-public sealed record class DrawRunResponseWinner : JsonModel
-{
-    public required string AuthorUsername
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("authorUsername");
-        }
-        init { this._rawData.Set("authorUsername", value); }
-    }
-
-    public required bool IsBackup
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<bool>("isBackup");
-        }
-        init { this._rawData.Set("isBackup", value); }
-    }
-
-    public required long Position
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("position");
-        }
-        init { this._rawData.Set("position", value); }
-    }
-
-    public required string TweetID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("tweetId");
-        }
-        init { this._rawData.Set("tweetId", value); }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.AuthorUsername;
-        _ = this.IsBackup;
-        _ = this.Position;
-        _ = this.TweetID;
-    }
-
-    public DrawRunResponseWinner() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public DrawRunResponseWinner(DrawRunResponseWinner drawRunResponseWinner)
-        : base(drawRunResponseWinner) { }
-#pragma warning restore CS8618
-
-    public DrawRunResponseWinner(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    DrawRunResponseWinner(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="DrawRunResponseWinnerFromRaw.FromRawUnchecked"/>
-    public static DrawRunResponseWinner FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class DrawRunResponseWinnerFromRaw : IFromRawJson<DrawRunResponseWinner>
-{
-    /// <inheritdoc/>
-    public DrawRunResponseWinner FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DrawRunResponseWinner.FromRawUnchecked(rawData);
 }

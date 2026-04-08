@@ -13,14 +13,14 @@ public class DraftCreateParamsTest : TestBase
     {
         var parameters = new DraftCreateParams
         {
-            Text = "text",
+            Text = "AI is the future of productivity",
             Goal = Goal.Engagement,
-            Topic = "topic",
+            Topic = "AI trends",
         };
 
-        string expectedText = "text";
+        string expectedText = "AI is the future of productivity";
         ApiEnum<string, Goal> expectedGoal = Goal.Engagement;
-        string expectedTopic = "topic";
+        string expectedTopic = "AI trends";
 
         Assert.Equal(expectedText, parameters.Text);
         Assert.Equal(expectedGoal, parameters.Goal);
@@ -30,7 +30,7 @@ public class DraftCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new DraftCreateParams { Text = "text" };
+        var parameters = new DraftCreateParams { Text = "AI is the future of productivity" };
 
         Assert.Null(parameters.Goal);
         Assert.False(parameters.RawBodyData.ContainsKey("goal"));
@@ -43,7 +43,7 @@ public class DraftCreateParamsTest : TestBase
     {
         var parameters = new DraftCreateParams
         {
-            Text = "text",
+            Text = "AI is the future of productivity",
 
             // Null should be interpreted as omitted for these properties
             Goal = null,
@@ -59,7 +59,7 @@ public class DraftCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        DraftCreateParams parameters = new() { Text = "text" };
+        DraftCreateParams parameters = new() { Text = "AI is the future of productivity" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -71,9 +71,9 @@ public class DraftCreateParamsTest : TestBase
     {
         var parameters = new DraftCreateParams
         {
-            Text = "text",
+            Text = "AI is the future of productivity",
             Goal = Goal.Engagement,
-            Topic = "topic",
+            Topic = "AI trends",
         };
 
         DraftCreateParams copied = new(parameters);

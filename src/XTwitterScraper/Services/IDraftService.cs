@@ -31,7 +31,7 @@ public interface IDraftService
     /// <summary>
     /// Save a tweet draft
     /// </summary>
-    Task<DraftCreateResponse> Create(
+    Task<DraftDetail> Create(
         DraftCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -39,13 +39,13 @@ public interface IDraftService
     /// <summary>
     /// Get draft by ID
     /// </summary>
-    Task<DraftRetrieveResponse> Retrieve(
+    Task<DraftDetail> Retrieve(
         DraftRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(DraftRetrieveParams, CancellationToken)"/>
-    Task<DraftRetrieveResponse> Retrieve(
+    Task<DraftDetail> Retrieve(
         string id,
         DraftRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -89,7 +89,7 @@ public interface IDraftServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /drafts</c>, but is otherwise the
     /// same as <see cref="IDraftService.Create(DraftCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<DraftCreateResponse>> Create(
+    Task<HttpResponse<DraftDetail>> Create(
         DraftCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -98,13 +98,13 @@ public interface IDraftServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /drafts/{id}</c>, but is otherwise the
     /// same as <see cref="IDraftService.Retrieve(DraftRetrieveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<DraftRetrieveResponse>> Retrieve(
+    Task<HttpResponse<DraftDetail>> Retrieve(
         DraftRetrieveParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Retrieve(DraftRetrieveParams, CancellationToken)"/>
-    Task<HttpResponse<DraftRetrieveResponse>> Retrieve(
+    Task<HttpResponse<DraftDetail>> Retrieve(
         string id,
         DraftRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default

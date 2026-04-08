@@ -48,12 +48,12 @@ public sealed class FollowService : IFollowService
 
     /// <inheritdoc/>
     public Task<FollowCreateResponse> Create(
-        string userID,
+        string id,
         FollowCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { UserID = userID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -70,12 +70,12 @@ public sealed class FollowService : IFollowService
 
     /// <inheritdoc/>
     public Task<FollowDeleteAllResponse> DeleteAll(
-        string userID,
+        string id,
         FollowDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.DeleteAll(parameters with { UserID = userID }, cancellationToken);
+        return this.DeleteAll(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -101,9 +101,9 @@ public sealed class FollowServiceWithRawResponse : IFollowServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.UserID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.UserID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<FollowCreateParams> request = new()
@@ -130,12 +130,12 @@ public sealed class FollowServiceWithRawResponse : IFollowServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<FollowCreateResponse>> Create(
-        string userID,
+        string id,
         FollowCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Create(parameters with { UserID = userID }, cancellationToken);
+        return this.Create(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -144,9 +144,9 @@ public sealed class FollowServiceWithRawResponse : IFollowServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.UserID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.UserID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<FollowDeleteAllParams> request = new()
@@ -173,11 +173,11 @@ public sealed class FollowServiceWithRawResponse : IFollowServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<FollowDeleteAllResponse>> DeleteAll(
-        string userID,
+        string id,
         FollowDeleteAllParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.DeleteAll(parameters with { UserID = userID }, cancellationToken);
+        return this.DeleteAll(parameters with { ID = id }, cancellationToken);
     }
 }

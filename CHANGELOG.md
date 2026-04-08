@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.3.0 (2026-04-08)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([4b57dda](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/4b57dda5deed7a8f529f35ca701a6d8def223db9))
+* **api:** api update ([4579c6f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/4579c6f393788ffb35297d33d3390bdf29dcd557))
+* **api:** api update ([e6d6ad8](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/e6d6ad8bd2b7b54bc9cd6cf8b99cf35f3b4ef436))
+* **api:** api update ([aa6de12](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/aa6de123de4aa69f3aec8767875c196952f0c8ea))
+* **api:** api update ([ca7b861](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/ca7b861b08a4746fabf69896051df37b014a8c0e))
+* **api:** api update ([902c35c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/902c35cdde409c616f97466abb232414b7733333))
+* **api:** api update ([08d35d1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/08d35d12205c4bae6c0bb04ebae61d0523fb7879))
+* **api:** api update ([5c7f059](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/5c7f0591f585d60618bb527d4f6b19ad26a3635e))
+
+
+### Chores
+
+* update SDK settings ([d10d8fd](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/d10d8fda09de4b204b5eb3b9d2c90f5483bef143))
+
 ## 0.2.0 (2026-04-01)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.1.0...v0.2.0)

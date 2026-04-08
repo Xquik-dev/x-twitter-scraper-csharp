@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Tweets;
 using XTwitterScraper.Services.X.Tweets;
 
@@ -75,20 +76,26 @@ public sealed class TweetService : ITweetService
 
     /// <inheritdoc/>
     public Task<TweetRetrieveResponse> Retrieve(
-        string tweetID,
+        string id,
         TweetRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.Retrieve(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task List(TweetListParams parameters, CancellationToken cancellationToken = default)
+    public async Task<PaginatedTweets> List(
+        TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
-        return this.WithRawResponse.List(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
@@ -105,16 +112,16 @@ public sealed class TweetService : ITweetService
 
     /// <inheritdoc/>
     public Task<TweetDeleteResponse> Delete(
-        string tweetID,
+        string id,
         TweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<TweetGetFavoritersResponse> GetFavoriters(
+    public async Task<PaginatedUsers> GetFavoriters(
         TweetGetFavoritersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -126,7 +133,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetGetFavoritersResponse> GetFavoriters(
+    public Task<PaginatedUsers> GetFavoriters(
         string id,
         TweetGetFavoritersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -138,7 +145,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetGetQuotesResponse> GetQuotes(
+    public async Task<PaginatedTweets> GetQuotes(
         TweetGetQuotesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -150,7 +157,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetGetQuotesResponse> GetQuotes(
+    public Task<PaginatedTweets> GetQuotes(
         string id,
         TweetGetQuotesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -162,7 +169,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetGetRepliesResponse> GetReplies(
+    public async Task<PaginatedTweets> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -174,7 +181,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetGetRepliesResponse> GetReplies(
+    public Task<PaginatedTweets> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -186,7 +193,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetGetRetweetersResponse> GetRetweeters(
+    public async Task<PaginatedUsers> GetRetweeters(
         TweetGetRetweetersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -198,7 +205,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetGetRetweetersResponse> GetRetweeters(
+    public Task<PaginatedUsers> GetRetweeters(
         string id,
         TweetGetRetweetersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -210,7 +217,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetGetThreadResponse> GetThread(
+    public async Task<PaginatedTweets> GetThread(
         TweetGetThreadParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -222,7 +229,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetGetThreadResponse> GetThread(
+    public Task<PaginatedTweets> GetThread(
         string id,
         TweetGetThreadParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -234,7 +241,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetSearchResponse> Search(
+    public async Task<PaginatedTweets> Search(
         TweetSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -311,9 +318,9 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<TweetRetrieveParams> request = new()
@@ -340,18 +347,18 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<TweetRetrieveResponse>> Retrieve(
-        string tweetID,
+        string id,
         TweetRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        return this.Retrieve(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> List(
+    public async Task<HttpResponse<PaginatedTweets>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -361,7 +368,21 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    paginatedTweets.Validate();
+                }
+                return paginatedTweets;
+            }
+        );
     }
 
     /// <inheritdoc/>
@@ -370,9 +391,9 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
         CancellationToken cancellationToken = default
     )
     {
-        if (parameters.TweetID == null)
+        if (parameters.ID == null)
         {
-            throw new XTwitterScraperInvalidDataException("'parameters.TweetID' cannot be null");
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
         }
 
         HttpRequest<TweetDeleteParams> request = new()
@@ -399,16 +420,16 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
 
     /// <inheritdoc/>
     public Task<HttpResponse<TweetDeleteResponse>> Delete(
-        string tweetID,
+        string id,
         TweetDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.Delete(parameters with { TweetID = tweetID }, cancellationToken);
+        return this.Delete(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetGetFavoritersResponse>> GetFavoriters(
+    public async Task<HttpResponse<PaginatedUsers>> GetFavoriters(
         TweetGetFavoritersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -428,20 +449,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetGetFavoritersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetGetFavoritersResponse>> GetFavoriters(
+    public Task<HttpResponse<PaginatedUsers>> GetFavoriters(
         string id,
         TweetGetFavoritersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -453,7 +474,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetGetQuotesResponse>> GetQuotes(
+    public async Task<HttpResponse<PaginatedTweets>> GetQuotes(
         TweetGetQuotesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -473,20 +494,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetGetQuotesResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetGetQuotesResponse>> GetQuotes(
+    public Task<HttpResponse<PaginatedTweets>> GetQuotes(
         string id,
         TweetGetQuotesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -498,7 +519,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
+    public async Task<HttpResponse<PaginatedTweets>> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -518,20 +539,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetGetRepliesResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
+    public Task<HttpResponse<PaginatedTweets>> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -543,7 +564,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetGetRetweetersResponse>> GetRetweeters(
+    public async Task<HttpResponse<PaginatedUsers>> GetRetweeters(
         TweetGetRetweetersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -563,20 +584,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetGetRetweetersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetGetRetweetersResponse>> GetRetweeters(
+    public Task<HttpResponse<PaginatedUsers>> GetRetweeters(
         string id,
         TweetGetRetweetersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -588,7 +609,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetGetThreadResponse>> GetThread(
+    public async Task<HttpResponse<PaginatedTweets>> GetThread(
         TweetGetThreadParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -608,20 +629,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetGetThreadResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetGetThreadResponse>> GetThread(
+    public Task<HttpResponse<PaginatedTweets>> GetThread(
         string id,
         TweetGetThreadParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -633,7 +654,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetSearchResponse>> Search(
+    public async Task<HttpResponse<PaginatedTweets>> Search(
         TweetSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -648,14 +669,14 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<TweetSearchResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }

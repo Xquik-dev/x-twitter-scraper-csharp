@@ -20,7 +20,7 @@ public record class TweetGetRepliesParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for tweet replies
     /// </summary>
     public string? Cursor
     {
@@ -41,7 +41,7 @@ public record class TweetGetRepliesParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter after
+    /// Unix timestamp - return replies posted after this time
     /// </summary>
     public string? SinceTime
     {
@@ -62,7 +62,7 @@ public record class TweetGetRepliesParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter before
+    /// Unix timestamp - return replies posted before this time
     /// </summary>
     public string? UntilTime
     {

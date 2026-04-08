@@ -9,9 +9,9 @@ public class DmSendResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DmSendResponse { MessageID = "messageId" };
+        var model = new DmSendResponse { MessageID = "1234567890123456789" };
 
-        string expectedMessageID = "messageId";
+        string expectedMessageID = "1234567890123456789";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMessageID, model.MessageID);
@@ -21,7 +21,7 @@ public class DmSendResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DmSendResponse { MessageID = "messageId" };
+        var model = new DmSendResponse { MessageID = "1234567890123456789" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<DmSendResponse>(
@@ -35,7 +35,7 @@ public class DmSendResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DmSendResponse { MessageID = "messageId" };
+        var model = new DmSendResponse { MessageID = "1234567890123456789" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<DmSendResponse>(
@@ -44,7 +44,7 @@ public class DmSendResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedMessageID = "messageId";
+        string expectedMessageID = "1234567890123456789";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMessageID, deserialized.MessageID);
@@ -54,7 +54,7 @@ public class DmSendResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DmSendResponse { MessageID = "messageId" };
+        var model = new DmSendResponse { MessageID = "1234567890123456789" };
 
         model.Validate();
     }
@@ -62,7 +62,7 @@ public class DmSendResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DmSendResponse { MessageID = "messageId" };
+        var model = new DmSendResponse { MessageID = "1234567890123456789" };
 
         DmSendResponse copied = new(model);
 

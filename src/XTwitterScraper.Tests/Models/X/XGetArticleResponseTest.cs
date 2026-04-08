@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models.X;
+using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Tests.Models.X;
 
@@ -18,29 +19,29 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
             Author = new()
             {
-                ID = "id",
-                Followers = 0,
-                Username = "username",
+                ID = "9876543210",
+                Followers = 150000000,
+                Username = "elonmusk",
                 Verified = true,
-                ProfilePicture = "profilePicture",
+                ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
             },
         };
 
@@ -50,29 +51,29 @@ public class XGetArticleResponseTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
-        Author expectedAuthor = new()
+        TweetAuthor expectedAuthor = new()
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         Assert.Equal(expectedArticle, model.Article);
@@ -90,29 +91,29 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
             Author = new()
             {
-                ID = "id",
-                Followers = 0,
-                Username = "username",
+                ID = "9876543210",
+                Followers = 150000000,
+                Username = "elonmusk",
                 Verified = true,
-                ProfilePicture = "profilePicture",
+                ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
             },
         };
 
@@ -136,29 +137,29 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
             Author = new()
             {
-                ID = "id",
-                Followers = 0,
-                Username = "username",
+                ID = "9876543210",
+                Followers = 150000000,
+                Username = "elonmusk",
                 Verified = true,
-                ProfilePicture = "profilePicture",
+                ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
             },
         };
 
@@ -175,29 +176,29 @@ public class XGetArticleResponseTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
-        Author expectedAuthor = new()
+        TweetAuthor expectedAuthor = new()
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         Assert.Equal(expectedArticle, deserialized.Article);
@@ -215,29 +216,29 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
             Author = new()
             {
-                ID = "id",
-                Followers = 0,
-                Username = "username",
+                ID = "9876543210",
+                Followers = 150000000,
+                Username = "elonmusk",
                 Verified = true,
-                ProfilePicture = "profilePicture",
+                ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
             },
         };
 
@@ -255,21 +256,21 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
         };
 
@@ -288,21 +289,21 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
         };
 
@@ -320,21 +321,21 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
 
             // Null should be interpreted as omitted for these properties
@@ -356,21 +357,21 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
 
             // Null should be interpreted as omitted for these properties
@@ -391,29 +392,29 @@ public class XGetArticleResponseTest : TestBase
                 [
                     new()
                     {
-                        Height = 0,
-                        Text = "text",
-                        Type = "type",
-                        Url = "url",
-                        Width = 0,
+                        Height = 675,
+                        Text = "This is the first paragraph of the article.",
+                        Type = "unstyled",
+                        Url = "https://pbs.twimg.com/media/example.jpg",
+                        Width = 1200,
                     },
                 ],
-                CoverImageUrl = "coverImageUrl",
-                CreatedAt = "createdAt",
-                LikeCount = 0,
-                PreviewText = "previewText",
-                QuoteCount = 0,
-                ReplyCount = 0,
-                Title = "title",
-                ViewCount = 0,
+                CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                LikeCount = 150,
+                PreviewText = "A deep dive into the latest AI trends...",
+                QuoteCount = 8,
+                ReplyCount = 23,
+                Title = "The Future of AI",
+                ViewCount = 5000,
             },
             Author = new()
             {
-                ID = "id",
-                Followers = 0,
-                Username = "username",
+                ID = "9876543210",
+                Followers = 150000000,
+                Username = "elonmusk",
                 Verified = true,
-                ProfilePicture = "profilePicture",
+                ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
             },
         };
 
@@ -434,42 +435,42 @@ public class ArticleTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
 
         List<Content> expectedContents =
         [
             new()
             {
-                Height = 0,
-                Text = "text",
-                Type = "type",
-                Url = "url",
-                Width = 0,
+                Height = 675,
+                Text = "This is the first paragraph of the article.",
+                Type = "unstyled",
+                Url = "https://pbs.twimg.com/media/example.jpg",
+                Width = 1200,
             },
         ];
-        string expectedCoverImageUrl = "coverImageUrl";
-        string expectedCreatedAt = "createdAt";
-        long expectedLikeCount = 0;
-        string expectedPreviewText = "previewText";
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        string expectedTitle = "title";
-        long expectedViewCount = 0;
+        string expectedCoverImageUrl = "https://pbs.twimg.com/media/example.jpg";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        long expectedLikeCount = 150;
+        string expectedPreviewText = "A deep dive into the latest AI trends...";
+        long expectedQuoteCount = 8;
+        long expectedReplyCount = 23;
+        string expectedTitle = "The Future of AI";
+        long expectedViewCount = 5000;
 
         Assert.NotNull(model.Contents);
         Assert.Equal(expectedContents.Count, model.Contents.Count);
@@ -496,21 +497,21 @@ public class ArticleTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -528,21 +529,21 @@ public class ArticleTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -556,21 +557,21 @@ public class ArticleTest : TestBase
         [
             new()
             {
-                Height = 0,
-                Text = "text",
-                Type = "type",
-                Url = "url",
-                Width = 0,
+                Height = 675,
+                Text = "This is the first paragraph of the article.",
+                Type = "unstyled",
+                Url = "https://pbs.twimg.com/media/example.jpg",
+                Width = 1200,
             },
         ];
-        string expectedCoverImageUrl = "coverImageUrl";
-        string expectedCreatedAt = "createdAt";
-        long expectedLikeCount = 0;
-        string expectedPreviewText = "previewText";
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        string expectedTitle = "title";
-        long expectedViewCount = 0;
+        string expectedCoverImageUrl = "https://pbs.twimg.com/media/example.jpg";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        long expectedLikeCount = 150;
+        string expectedPreviewText = "A deep dive into the latest AI trends...";
+        long expectedQuoteCount = 8;
+        long expectedReplyCount = 23;
+        string expectedTitle = "The Future of AI";
+        long expectedViewCount = 5000;
 
         Assert.NotNull(deserialized.Contents);
         Assert.Equal(expectedContents.Count, deserialized.Contents.Count);
@@ -597,21 +598,21 @@ public class ArticleTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
 
         model.Validate();
@@ -716,21 +717,21 @@ public class ArticleTest : TestBase
             [
                 new()
                 {
-                    Height = 0,
-                    Text = "text",
-                    Type = "type",
-                    Url = "url",
-                    Width = 0,
+                    Height = 675,
+                    Text = "This is the first paragraph of the article.",
+                    Type = "unstyled",
+                    Url = "https://pbs.twimg.com/media/example.jpg",
+                    Width = 1200,
                 },
             ],
-            CoverImageUrl = "coverImageUrl",
-            CreatedAt = "createdAt",
-            LikeCount = 0,
-            PreviewText = "previewText",
-            QuoteCount = 0,
-            ReplyCount = 0,
-            Title = "title",
-            ViewCount = 0,
+            CoverImageUrl = "https://pbs.twimg.com/media/example.jpg",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            LikeCount = 150,
+            PreviewText = "A deep dive into the latest AI trends...",
+            QuoteCount = 8,
+            ReplyCount = 23,
+            Title = "The Future of AI",
+            ViewCount = 5000,
         };
 
         Article copied = new(model);
@@ -746,18 +747,18 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            Height = 0,
-            Text = "text",
-            Type = "type",
-            Url = "url",
-            Width = 0,
+            Height = 675,
+            Text = "This is the first paragraph of the article.",
+            Type = "unstyled",
+            Url = "https://pbs.twimg.com/media/example.jpg",
+            Width = 1200,
         };
 
-        long expectedHeight = 0;
-        string expectedText = "text";
-        string expectedType = "type";
-        string expectedUrl = "url";
-        long expectedWidth = 0;
+        long expectedHeight = 675;
+        string expectedText = "This is the first paragraph of the article.";
+        string expectedType = "unstyled";
+        string expectedUrl = "https://pbs.twimg.com/media/example.jpg";
+        long expectedWidth = 1200;
 
         Assert.Equal(expectedHeight, model.Height);
         Assert.Equal(expectedText, model.Text);
@@ -771,11 +772,11 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            Height = 0,
-            Text = "text",
-            Type = "type",
-            Url = "url",
-            Width = 0,
+            Height = 675,
+            Text = "This is the first paragraph of the article.",
+            Type = "unstyled",
+            Url = "https://pbs.twimg.com/media/example.jpg",
+            Width = 1200,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -789,11 +790,11 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            Height = 0,
-            Text = "text",
-            Type = "type",
-            Url = "url",
-            Width = 0,
+            Height = 675,
+            Text = "This is the first paragraph of the article.",
+            Type = "unstyled",
+            Url = "https://pbs.twimg.com/media/example.jpg",
+            Width = 1200,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -803,11 +804,11 @@ public class ContentTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        long expectedHeight = 0;
-        string expectedText = "text";
-        string expectedType = "type";
-        string expectedUrl = "url";
-        long expectedWidth = 0;
+        long expectedHeight = 675;
+        string expectedText = "This is the first paragraph of the article.";
+        string expectedType = "unstyled";
+        string expectedUrl = "https://pbs.twimg.com/media/example.jpg";
+        long expectedWidth = 1200;
 
         Assert.Equal(expectedHeight, deserialized.Height);
         Assert.Equal(expectedText, deserialized.Text);
@@ -821,11 +822,11 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            Height = 0,
-            Text = "text",
-            Type = "type",
-            Url = "url",
-            Width = 0,
+            Height = 675,
+            Text = "This is the first paragraph of the article.",
+            Type = "unstyled",
+            Url = "https://pbs.twimg.com/media/example.jpg",
+            Width = 1200,
         };
 
         model.Validate();
@@ -902,185 +903,14 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            Height = 0,
-            Text = "text",
-            Type = "type",
-            Url = "url",
-            Width = 0,
+            Height = 675,
+            Text = "This is the first paragraph of the article.",
+            Type = "unstyled",
+            Url = "https://pbs.twimg.com/media/example.jpg",
+            Width = 1200,
         };
 
         Content copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class AuthorTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-            ProfilePicture = "profilePicture",
-        };
-
-        string expectedID = "id";
-        long expectedFollowers = 0;
-        string expectedUsername = "username";
-        bool expectedVerified = true;
-        string expectedProfilePicture = "profilePicture";
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedFollowers, model.Followers);
-        Assert.Equal(expectedUsername, model.Username);
-        Assert.Equal(expectedVerified, model.Verified);
-        Assert.Equal(expectedProfilePicture, model.ProfilePicture);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-            ProfilePicture = "profilePicture",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Author>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-            ProfilePicture = "profilePicture",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Author>(element, ModelBase.SerializerOptions);
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        long expectedFollowers = 0;
-        string expectedUsername = "username";
-        bool expectedVerified = true;
-        string expectedProfilePicture = "profilePicture";
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedFollowers, deserialized.Followers);
-        Assert.Equal(expectedUsername, deserialized.Username);
-        Assert.Equal(expectedVerified, deserialized.Verified);
-        Assert.Equal(expectedProfilePicture, deserialized.ProfilePicture);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-            ProfilePicture = "profilePicture",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-        };
-
-        Assert.Null(model.ProfilePicture);
-        Assert.False(model.RawData.ContainsKey("profilePicture"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-
-            // Null should be interpreted as omitted for these properties
-            ProfilePicture = null,
-        };
-
-        Assert.Null(model.ProfilePicture);
-        Assert.False(model.RawData.ContainsKey("profilePicture"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-
-            // Null should be interpreted as omitted for these properties
-            ProfilePicture = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Author
-        {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
-            Verified = true,
-            ProfilePicture = "profilePicture",
-        };
-
-        Author copied = new(model);
 
         Assert.Equal(model, copied);
     }

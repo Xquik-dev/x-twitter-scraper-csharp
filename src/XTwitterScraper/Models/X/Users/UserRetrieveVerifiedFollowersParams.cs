@@ -20,7 +20,7 @@ public record class UserRetrieveVerifiedFollowersParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for verified followers
     /// </summary>
     public string? Cursor
     {

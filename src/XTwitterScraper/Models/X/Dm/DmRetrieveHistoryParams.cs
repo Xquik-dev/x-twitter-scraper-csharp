@@ -20,7 +20,7 @@ public record class DmRetrieveHistoryParams : ParamsBase
     public string? UserID { get; init; }
 
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for DM history
     /// </summary>
     public string? Cursor
     {

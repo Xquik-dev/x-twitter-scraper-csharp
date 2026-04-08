@@ -24,7 +24,7 @@ public record class ProfileUpdateAvatarParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) for avatar update
     /// </summary>
     public required string Account
     {

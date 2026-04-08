@@ -101,13 +101,13 @@ public record class ApiKeyRevokeParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/api-keys/{0}", this.ID)
         )
         {
-            Query = this.QueryString(options, new()),
+            Query = this.QueryString(options, new() { ApiKey = true }),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, new());
+        ParamsBase.AddDefaultHeaders(request, options, new() { ApiKey = true });
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

@@ -8,9 +8,9 @@ public class ApiKeyCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new ApiKeyCreateParams { Name = "name" };
+        var parameters = new ApiKeyCreateParams { Name = "My API Key" };
 
-        string expectedName = "name";
+        string expectedName = "My API Key";
 
         Assert.Equal(expectedName, parameters.Name);
     }
@@ -50,7 +50,7 @@ public class ApiKeyCreateParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new ApiKeyCreateParams { Name = "name" };
+        var parameters = new ApiKeyCreateParams { Name = "My API Key" };
 
         ApiKeyCreateParams copied = new(parameters);
 

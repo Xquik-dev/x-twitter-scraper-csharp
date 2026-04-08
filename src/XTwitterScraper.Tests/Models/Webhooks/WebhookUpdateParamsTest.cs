@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Webhooks;
 
 namespace XTwitterScraper.Tests.Models.Webhooks;
@@ -15,18 +14,15 @@ public class WebhookUpdateParamsTest : TestBase
         var parameters = new WebhookUpdateParams
         {
             ID = "id",
-            EventTypes = [WebhookUpdateParamsEventType.TweetNew],
+            EventTypes = [EventType.TweetNew],
             IsActive = true,
-            UrlValue = "https://example.com",
+            UrlValue = "https://example.com/webhook",
         };
 
         string expectedID = "id";
-        List<ApiEnum<string, WebhookUpdateParamsEventType>> expectedEventTypes =
-        [
-            WebhookUpdateParamsEventType.TweetNew,
-        ];
+        List<ApiEnum<string, EventType>> expectedEventTypes = [EventType.TweetNew];
         bool expectedIsActive = true;
-        string expectedUrlValue = "https://example.com";
+        string expectedUrlValue = "https://example.com/webhook";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.NotNull(parameters.EventTypes);
@@ -89,77 +85,13 @@ public class WebhookUpdateParamsTest : TestBase
         var parameters = new WebhookUpdateParams
         {
             ID = "id",
-            EventTypes = [WebhookUpdateParamsEventType.TweetNew],
+            EventTypes = [EventType.TweetNew],
             IsActive = true,
-            UrlValue = "https://example.com",
+            UrlValue = "https://example.com/webhook",
         };
 
         WebhookUpdateParams copied = new(parameters);
 
         Assert.Equal(parameters, copied);
-    }
-}
-
-public class WebhookUpdateParamsEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(WebhookUpdateParamsEventType.TweetNew)]
-    [InlineData(WebhookUpdateParamsEventType.TweetReply)]
-    [InlineData(WebhookUpdateParamsEventType.TweetRetweet)]
-    [InlineData(WebhookUpdateParamsEventType.TweetQuote)]
-    [InlineData(WebhookUpdateParamsEventType.FollowerGained)]
-    [InlineData(WebhookUpdateParamsEventType.FollowerLost)]
-    public void Validation_Works(WebhookUpdateParamsEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, WebhookUpdateParamsEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, WebhookUpdateParamsEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(WebhookUpdateParamsEventType.TweetNew)]
-    [InlineData(WebhookUpdateParamsEventType.TweetReply)]
-    [InlineData(WebhookUpdateParamsEventType.TweetRetweet)]
-    [InlineData(WebhookUpdateParamsEventType.TweetQuote)]
-    [InlineData(WebhookUpdateParamsEventType.FollowerGained)]
-    [InlineData(WebhookUpdateParamsEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(WebhookUpdateParamsEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, WebhookUpdateParamsEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, WebhookUpdateParamsEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, WebhookUpdateParamsEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, WebhookUpdateParamsEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
     }
 }

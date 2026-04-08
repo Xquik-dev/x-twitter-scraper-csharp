@@ -1,4 +1,7 @@
 using System;
+using System.Text.Json;
+using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Radar;
 
 namespace XTwitterScraper.Tests.Models.Radar;
@@ -14,14 +17,14 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
             Count = 0,
             Hours = 0,
             Region = "region",
-            Source = "source",
+            Source = Source.GitHub,
         };
 
         string expectedCategory = "category";
         long expectedCount = 0;
         long expectedHours = 0;
         string expectedRegion = "region";
-        string expectedSource = "source";
+        ApiEnum<string, Source> expectedSource = Source.GitHub;
 
         Assert.Equal(expectedCategory, parameters.Category);
         Assert.Equal(expectedCount, parameters.Count);
@@ -81,14 +84,14 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
             Count = 0,
             Hours = 0,
             Region = "region",
-            Source = "source",
+            Source = Source.GitHub,
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.Equal(
             new Uri(
-                "https://xquik.com/api/v1/radar?category=category&count=0&hours=0&region=region&source=source"
+                "https://xquik.com/api/v1/radar?category=category&count=0&hours=0&region=region&source=github"
             ),
             url
         );
@@ -103,11 +106,79 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
             Count = 0,
             Hours = 0,
             Region = "region",
-            Source = "source",
+            Source = Source.GitHub,
         };
 
         RadarRetrieveTrendingTopicsParams copied = new(parameters);
 
         Assert.Equal(parameters, copied);
+    }
+}
+
+public class SourceTest : TestBase
+{
+    [Theory]
+    [InlineData(Source.GitHub)]
+    [InlineData(Source.GoogleTrends)]
+    [InlineData(Source.HackerNews)]
+    [InlineData(Source.Polymarket)]
+    [InlineData(Source.Reddit)]
+    [InlineData(Source.Trustmrr)]
+    [InlineData(Source.Wikipedia)]
+    public void Validation_Works(Source rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Source> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Source.GitHub)]
+    [InlineData(Source.GoogleTrends)]
+    [InlineData(Source.HackerNews)]
+    [InlineData(Source.Polymarket)]
+    [InlineData(Source.Reddit)]
+    [InlineData(Source.Trustmrr)]
+    [InlineData(Source.Wikipedia)]
+    public void SerializationRoundtrip_Works(Source rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Source> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

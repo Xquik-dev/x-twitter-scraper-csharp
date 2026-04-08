@@ -16,13 +16,13 @@ public class ExtractionListParamsTest : TestBase
             After = "after",
             Limit = 1,
             Status = Status.Running,
-            ToolType = ToolType.ArticleExtractor,
+            ToolType = ToolType.FollowerExplorer,
         };
 
         string expectedAfter = "after";
         long expectedLimit = 1;
         ApiEnum<string, Status> expectedStatus = Status.Running;
-        ApiEnum<string, ToolType> expectedToolType = ToolType.ArticleExtractor;
+        ApiEnum<string, ToolType> expectedToolType = ToolType.FollowerExplorer;
 
         Assert.Equal(expectedAfter, parameters.After);
         Assert.Equal(expectedLimit, parameters.Limit);
@@ -75,14 +75,14 @@ public class ExtractionListParamsTest : TestBase
             After = "after",
             Limit = 1,
             Status = Status.Running,
-            ToolType = ToolType.ArticleExtractor,
+            ToolType = ToolType.FollowerExplorer,
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.Equal(
             new Uri(
-                "https://xquik.com/api/v1/extractions?after=after&limit=1&status=running&toolType=article_extractor"
+                "https://xquik.com/api/v1/extractions?after=after&limit=1&status=running&toolType=follower_explorer"
             ),
             url
         );
@@ -96,7 +96,7 @@ public class ExtractionListParamsTest : TestBase
             After = "after",
             Limit = 1,
             Status = Status.Running,
-            ToolType = ToolType.ArticleExtractor,
+            ToolType = ToolType.FollowerExplorer,
         };
 
         ExtractionListParams copied = new(parameters);

@@ -8,8 +8,8 @@ public class FollowServiceTest : TestBase
     public async Task Create_Works()
     {
         var follow = await this.client.X.Users.Follow.Create(
-            "userId",
-            new() { Account = "account" },
+            "id",
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         follow.Validate();
@@ -19,8 +19,8 @@ public class FollowServiceTest : TestBase
     public async Task DeleteAll_Works()
     {
         var response = await this.client.X.Users.Follow.DeleteAll(
-            "userId",
-            new() { Account = "account" },
+            "id",
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

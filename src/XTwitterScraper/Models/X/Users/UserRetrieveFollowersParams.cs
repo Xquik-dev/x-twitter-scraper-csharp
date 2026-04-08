@@ -20,7 +20,7 @@ public record class UserRetrieveFollowersParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for followers list
     /// </summary>
     public string? Cursor
     {
