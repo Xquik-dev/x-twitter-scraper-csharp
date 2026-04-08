@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Tests.Models.Monitors;
@@ -16,21 +16,17 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes =
-            [
-                MonitorCreateResponseEventType.TweetNew,
-                MonitorCreateResponseEventType.FollowerGained,
-            ],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, MonitorCreateResponseEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            MonitorCreateResponseEventType.TweetNew,
-            MonitorCreateResponseEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         string expectedUsername = "elonmusk";
         string expectedXUserID = "1234567890";
@@ -53,11 +49,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes =
-            [
-                MonitorCreateResponseEventType.TweetNew,
-                MonitorCreateResponseEventType.FollowerGained,
-            ],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -78,11 +70,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes =
-            [
-                MonitorCreateResponseEventType.TweetNew,
-                MonitorCreateResponseEventType.FollowerGained,
-            ],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -96,10 +84,10 @@ public class MonitorCreateResponseTest : TestBase
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        List<ApiEnum<string, MonitorCreateResponseEventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            MonitorCreateResponseEventType.TweetNew,
-            MonitorCreateResponseEventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         string expectedUsername = "elonmusk";
         string expectedXUserID = "1234567890";
@@ -122,11 +110,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes =
-            [
-                MonitorCreateResponseEventType.TweetNew,
-                MonitorCreateResponseEventType.FollowerGained,
-            ],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -141,11 +125,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes =
-            [
-                MonitorCreateResponseEventType.TweetNew,
-                MonitorCreateResponseEventType.FollowerGained,
-            ],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -153,69 +133,5 @@ public class MonitorCreateResponseTest : TestBase
         MonitorCreateResponse copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class MonitorCreateResponseEventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(MonitorCreateResponseEventType.TweetNew)]
-    [InlineData(MonitorCreateResponseEventType.TweetReply)]
-    [InlineData(MonitorCreateResponseEventType.TweetRetweet)]
-    [InlineData(MonitorCreateResponseEventType.TweetQuote)]
-    [InlineData(MonitorCreateResponseEventType.FollowerGained)]
-    [InlineData(MonitorCreateResponseEventType.FollowerLost)]
-    public void Validation_Works(MonitorCreateResponseEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, MonitorCreateResponseEventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorCreateResponseEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(MonitorCreateResponseEventType.TweetNew)]
-    [InlineData(MonitorCreateResponseEventType.TweetReply)]
-    [InlineData(MonitorCreateResponseEventType.TweetRetweet)]
-    [InlineData(MonitorCreateResponseEventType.TweetQuote)]
-    [InlineData(MonitorCreateResponseEventType.FollowerGained)]
-    [InlineData(MonitorCreateResponseEventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(MonitorCreateResponseEventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, MonitorCreateResponseEventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, MonitorCreateResponseEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorCreateResponseEventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, MonitorCreateResponseEventType>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
     }
 }

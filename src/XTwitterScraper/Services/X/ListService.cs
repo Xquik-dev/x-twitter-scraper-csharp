@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Lists;
 
 namespace XTwitterScraper.Services.X;
@@ -35,7 +36,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public async Task<ListRetrieveFollowersResponse> RetrieveFollowers(
+    public async Task<PaginatedUsers> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +48,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public Task<ListRetrieveFollowersResponse> RetrieveFollowers(
+    public Task<PaginatedUsers> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -59,7 +60,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public async Task<ListRetrieveMembersResponse> RetrieveMembers(
+    public async Task<PaginatedUsers> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -71,7 +72,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public Task<ListRetrieveMembersResponse> RetrieveMembers(
+    public Task<PaginatedUsers> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -83,7 +84,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public async Task<ListRetrieveTweetsResponse> RetrieveTweets(
+    public async Task<PaginatedTweets> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -95,7 +96,7 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public Task<ListRetrieveTweetsResponse> RetrieveTweets(
+    public Task<PaginatedTweets> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -124,7 +125,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -144,20 +145,20 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<ListRetrieveFollowersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -169,7 +170,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -189,20 +190,20 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<ListRetrieveMembersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -214,7 +215,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -234,20 +235,20 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<ListRetrieveTweetsResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
+    public Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default

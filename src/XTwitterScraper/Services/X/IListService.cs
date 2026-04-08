@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Lists;
 
 namespace XTwitterScraper.Services.X;
@@ -31,13 +32,13 @@ public interface IListService
     /// <summary>
     /// Get list followers
     /// </summary>
-    Task<ListRetrieveFollowersResponse> RetrieveFollowers(
+    Task<PaginatedUsers> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowers(ListRetrieveFollowersParams, CancellationToken)"/>
-    Task<ListRetrieveFollowersResponse> RetrieveFollowers(
+    Task<PaginatedUsers> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -46,13 +47,13 @@ public interface IListService
     /// <summary>
     /// Get list members
     /// </summary>
-    Task<ListRetrieveMembersResponse> RetrieveMembers(
+    Task<PaginatedUsers> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(ListRetrieveMembersParams, CancellationToken)"/>
-    Task<ListRetrieveMembersResponse> RetrieveMembers(
+    Task<PaginatedUsers> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -61,13 +62,13 @@ public interface IListService
     /// <summary>
     /// Get list tweets
     /// </summary>
-    Task<ListRetrieveTweetsResponse> RetrieveTweets(
+    Task<PaginatedTweets> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveTweets(ListRetrieveTweetsParams, CancellationToken)"/>
-    Task<ListRetrieveTweetsResponse> RetrieveTweets(
+    Task<PaginatedTweets> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -91,13 +92,13 @@ public interface IListServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/lists/{id}/followers</c>, but is otherwise the
     /// same as <see cref="IListService.RetrieveFollowers(ListRetrieveFollowersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowers(ListRetrieveFollowersParams, CancellationToken)"/>
-    Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -107,13 +108,13 @@ public interface IListServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/lists/{id}/members</c>, but is otherwise the
     /// same as <see cref="IListService.RetrieveMembers(ListRetrieveMembersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(ListRetrieveMembersParams, CancellationToken)"/>
-    Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -123,13 +124,13 @@ public interface IListServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/lists/{id}/tweets</c>, but is otherwise the
     /// same as <see cref="IListService.RetrieveTweets(ListRetrieveTweetsParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
+    Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveTweets(ListRetrieveTweetsParams, CancellationToken)"/>
-    Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
+    Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default

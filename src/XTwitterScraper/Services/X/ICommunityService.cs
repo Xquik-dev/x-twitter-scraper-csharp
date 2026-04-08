@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Communities;
 using Communities = XTwitterScraper.Services.X.Communities;
 
@@ -72,13 +73,13 @@ public interface ICommunityService
     /// <summary>
     /// Get community members
     /// </summary>
-    Task<CommunityRetrieveMembersResponse> RetrieveMembers(
+    Task<PaginatedUsers> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>
-    Task<CommunityRetrieveMembersResponse> RetrieveMembers(
+    Task<PaginatedUsers> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -87,13 +88,13 @@ public interface ICommunityService
     /// <summary>
     /// Get community moderators
     /// </summary>
-    Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
+    Task<PaginatedUsers> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>
-    Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
+    Task<PaginatedUsers> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -102,7 +103,7 @@ public interface ICommunityService
     /// <summary>
     /// Search tweets across communities
     /// </summary>
-    Task<CommunityRetrieveSearchResponse> RetrieveSearch(
+    Task<PaginatedTweets> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -170,13 +171,13 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/{id}/members</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>
-    Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
+    Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -186,13 +187,13 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/{id}/moderators</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
+    Task<HttpResponse<PaginatedUsers>> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>
-    Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
+    Task<HttpResponse<PaginatedUsers>> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -202,7 +203,7 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/search</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveSearch(CommunityRetrieveSearchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<CommunityRetrieveSearchResponse>> RetrieveSearch(
+    Task<HttpResponse<PaginatedTweets>> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );

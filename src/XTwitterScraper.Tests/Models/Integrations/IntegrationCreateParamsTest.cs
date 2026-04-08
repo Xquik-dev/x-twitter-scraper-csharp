@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using Integrations = XTwitterScraper.Models.Integrations;
 
 namespace XTwitterScraper.Tests.Models.Integrations;
@@ -15,16 +16,16 @@ public class IntegrationCreateParamsTest : TestBase
         var parameters = new Integrations::IntegrationCreateParams
         {
             Config = new("-1001234567890"),
-            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
 
         Integrations::Config expectedConfig = new("-1001234567890");
-        List<ApiEnum<string, Integrations::EventType>> expectedEventTypes =
+        List<ApiEnum<string, EventType>> expectedEventTypes =
         [
-            Integrations::EventType.TweetNew,
-            Integrations::EventType.FollowerGained,
+            EventType.TweetNew,
+            EventType.FollowerGained,
         ];
         string expectedName = "My Telegram Bot";
         ApiEnum<string, Integrations::Type> expectedType = Integrations::Type.Telegram;
@@ -45,7 +46,7 @@ public class IntegrationCreateParamsTest : TestBase
         Integrations::IntegrationCreateParams parameters = new()
         {
             Config = new("-1001234567890"),
-            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
@@ -61,7 +62,7 @@ public class IntegrationCreateParamsTest : TestBase
         var parameters = new Integrations::IntegrationCreateParams
         {
             Config = new("-1001234567890"),
-            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
             Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
@@ -131,72 +132,6 @@ public class ConfigTest : TestBase
         Integrations::Config copied = new(model);
 
         Assert.Equal(model, copied);
-    }
-}
-
-public class EventTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(Integrations::EventType.TweetNew)]
-    [InlineData(Integrations::EventType.TweetReply)]
-    [InlineData(Integrations::EventType.TweetRetweet)]
-    [InlineData(Integrations::EventType.TweetQuote)]
-    [InlineData(Integrations::EventType.FollowerGained)]
-    [InlineData(Integrations::EventType.FollowerLost)]
-    public void Validation_Works(Integrations::EventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Integrations::EventType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Integrations::EventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Integrations::EventType.TweetNew)]
-    [InlineData(Integrations::EventType.TweetReply)]
-    [InlineData(Integrations::EventType.TweetRetweet)]
-    [InlineData(Integrations::EventType.TweetQuote)]
-    [InlineData(Integrations::EventType.FollowerGained)]
-    [InlineData(Integrations::EventType.FollowerLost)]
-    public void SerializationRoundtrip_Works(Integrations::EventType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Integrations::EventType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Integrations::EventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Integrations::EventType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Integrations::EventType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
     }
 }
 

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Communities;
 using Communities = XTwitterScraper.Services.X.Communities;
 
@@ -108,7 +109,7 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public async Task<CommunityRetrieveMembersResponse> RetrieveMembers(
+    public async Task<PaginatedUsers> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -120,7 +121,7 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public Task<CommunityRetrieveMembersResponse> RetrieveMembers(
+    public Task<PaginatedUsers> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -132,7 +133,7 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public async Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
+    public async Task<PaginatedUsers> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -144,7 +145,7 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
+    public Task<PaginatedUsers> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -156,7 +157,7 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public async Task<CommunityRetrieveSearchResponse> RetrieveSearch(
+    public async Task<PaginatedTweets> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -316,7 +317,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -336,20 +337,20 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<CommunityRetrieveMembersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -361,7 +362,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -381,20 +382,20 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<CommunityRetrieveModeratorsResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -406,7 +407,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CommunityRetrieveSearchResponse>> RetrieveSearch(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -421,14 +422,14 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<CommunityRetrieveSearchResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }

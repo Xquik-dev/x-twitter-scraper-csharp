@@ -6,7 +6,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Webhooks;
 
@@ -39,18 +38,18 @@ public sealed record class Webhook : JsonModel
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public required IReadOnlyList<ApiEnum<string, WebhookEventType>> EventTypes
+    public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<ApiEnum<string, WebhookEventType>>
-            >("eventTypes");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+                "eventTypes"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<ApiEnum<string, WebhookEventType>>>(
+            this._rawData.Set<ImmutableArray<ApiEnum<string, EventType>>>(
                 "eventTypes",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -123,63 +122,4 @@ class WebhookFromRaw : IFromRawJson<Webhook>
     /// <inheritdoc/>
     public Webhook FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Webhook.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// Type of monitor event fired when account activity occurs.
-/// </summary>
-[JsonConverter(typeof(WebhookEventTypeConverter))]
-public enum WebhookEventType
-{
-    TweetNew,
-    TweetReply,
-    TweetRetweet,
-    TweetQuote,
-    FollowerGained,
-    FollowerLost,
-}
-
-sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
-{
-    public override WebhookEventType Read(
-        ref Utf8JsonReader reader,
-        Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "tweet.new" => WebhookEventType.TweetNew,
-            "tweet.reply" => WebhookEventType.TweetReply,
-            "tweet.retweet" => WebhookEventType.TweetRetweet,
-            "tweet.quote" => WebhookEventType.TweetQuote,
-            "follower.gained" => WebhookEventType.FollowerGained,
-            "follower.lost" => WebhookEventType.FollowerLost,
-            _ => (WebhookEventType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        WebhookEventType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                WebhookEventType.TweetNew => "tweet.new",
-                WebhookEventType.TweetReply => "tweet.reply",
-                WebhookEventType.TweetRetweet => "tweet.retweet",
-                WebhookEventType.TweetQuote => "tweet.quote",
-                WebhookEventType.FollowerGained => "follower.gained",
-                WebhookEventType.FollowerLost => "follower.lost",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Users;
 using XTwitterScraper.Services.X.Users;
 
@@ -43,7 +44,31 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveBatchResponse> RetrieveBatch(
+    public async Task<UserProfile> Retrieve(
+        UserRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Retrieve(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<UserProfile> Retrieve(
+        string id,
+        UserRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<PaginatedUsers> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -55,7 +80,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveFollowersResponse> RetrieveFollowers(
+    public async Task<PaginatedUsers> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -67,7 +92,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveFollowersResponse> RetrieveFollowers(
+    public Task<PaginatedUsers> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -79,7 +104,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveFollowersYouKnowResponse> RetrieveFollowersYouKnow(
+    public async Task<PaginatedUsers> RetrieveFollowersYouKnow(
         UserRetrieveFollowersYouKnowParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -91,7 +116,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveFollowersYouKnowResponse> RetrieveFollowersYouKnow(
+    public Task<PaginatedUsers> RetrieveFollowersYouKnow(
         string id,
         UserRetrieveFollowersYouKnowParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -103,7 +128,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveFollowingResponse> RetrieveFollowing(
+    public async Task<PaginatedUsers> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -115,7 +140,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveFollowingResponse> RetrieveFollowing(
+    public Task<PaginatedUsers> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -127,7 +152,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveLikesResponse> RetrieveLikes(
+    public async Task<PaginatedTweets> RetrieveLikes(
         UserRetrieveLikesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -139,7 +164,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveLikesResponse> RetrieveLikes(
+    public Task<PaginatedTweets> RetrieveLikes(
         string id,
         UserRetrieveLikesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -151,7 +176,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveMediaResponse> RetrieveMedia(
+    public async Task<PaginatedTweets> RetrieveMedia(
         UserRetrieveMediaParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -163,7 +188,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveMediaResponse> RetrieveMedia(
+    public Task<PaginatedTweets> RetrieveMedia(
         string id,
         UserRetrieveMediaParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -175,7 +200,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveMentionsResponse> RetrieveMentions(
+    public async Task<PaginatedTweets> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -187,7 +212,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveMentionsResponse> RetrieveMentions(
+    public Task<PaginatedTweets> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -199,7 +224,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveSearchResponse> RetrieveSearch(
+    public async Task<PaginatedUsers> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -211,7 +236,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveTweetsResponse> RetrieveTweets(
+    public async Task<PaginatedTweets> RetrieveTweets(
         UserRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -223,7 +248,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveTweetsResponse> RetrieveTweets(
+    public Task<PaginatedTweets> RetrieveTweets(
         string id,
         UserRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -235,7 +260,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
+    public async Task<PaginatedUsers> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -247,7 +272,7 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
+    public Task<PaginatedUsers> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -284,7 +309,52 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveBatchResponse>> RetrieveBatch(
+    public async Task<HttpResponse<UserProfile>> Retrieve(
+        UserRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<UserRetrieveParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var userProfile = await response
+                    .Deserialize<UserProfile>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    userProfile.Validate();
+                }
+                return userProfile;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<UserProfile>> Retrieve(
+        string id,
+        UserRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -299,20 +369,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveBatchResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -332,20 +402,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveFollowersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -357,7 +427,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveFollowersYouKnowResponse>> RetrieveFollowersYouKnow(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveFollowersYouKnow(
         UserRetrieveFollowersYouKnowParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -377,20 +447,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveFollowersYouKnowResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveFollowersYouKnowResponse>> RetrieveFollowersYouKnow(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveFollowersYouKnow(
         string id,
         UserRetrieveFollowersYouKnowParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -402,7 +472,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -422,20 +492,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveFollowingResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -447,7 +517,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveLikesResponse>> RetrieveLikes(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveLikes(
         UserRetrieveLikesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -467,20 +537,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveLikesResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveLikesResponse>> RetrieveLikes(
+    public Task<HttpResponse<PaginatedTweets>> RetrieveLikes(
         string id,
         UserRetrieveLikesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -492,7 +562,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveMediaResponse>> RetrieveMedia(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveMedia(
         UserRetrieveMediaParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -512,20 +582,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveMediaResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveMediaResponse>> RetrieveMedia(
+    public Task<HttpResponse<PaginatedTweets>> RetrieveMedia(
         string id,
         UserRetrieveMediaParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -537,7 +607,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -557,20 +627,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveMentionsResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
+    public Task<HttpResponse<PaginatedTweets>> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -582,7 +652,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveSearchResponse>> RetrieveSearch(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -597,20 +667,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveSearchResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<UserRetrieveTweetsResponse>> RetrieveTweets(
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         UserRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -630,20 +700,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveTweetsResponse>(token)
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedTweets.Validate();
                 }
-                return deserializedResponse;
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveTweetsResponse>> RetrieveTweets(
+    public Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         string id,
         UserRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -655,9 +725,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<
-        HttpResponse<UserRetrieveVerifiedFollowersResponse>
-    > RetrieveVerifiedFollowers(
+    public async Task<HttpResponse<PaginatedUsers>> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -677,20 +745,20 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var deserializedResponse = await response
-                    .Deserialize<UserRetrieveVerifiedFollowersResponse>(token)
+                var paginatedUsers = await response
+                    .Deserialize<PaginatedUsers>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    deserializedResponse.Validate();
+                    paginatedUsers.Validate();
                 }
-                return deserializedResponse;
+                return paginatedUsers;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<UserRetrieveVerifiedFollowersResponse>> RetrieveVerifiedFollowers(
+    public Task<HttpResponse<PaginatedUsers>> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default

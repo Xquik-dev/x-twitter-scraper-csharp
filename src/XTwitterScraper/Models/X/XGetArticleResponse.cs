@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Models.X;
 
@@ -24,12 +25,12 @@ public sealed record class XGetArticleResponse : JsonModel
     /// <summary>
     /// Author of a tweet with follower count and verification status.
     /// </summary>
-    public Author? Author
+    public TweetAuthor? Author
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Author>("author");
+            return this._rawData.GetNullableClass<TweetAuthor>("author");
         }
         init
         {
@@ -456,113 +457,4 @@ class ContentFromRaw : IFromRawJson<Content>
     /// <inheritdoc/>
     public Content FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Content.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// Author of a tweet with follower count and verification status.
-/// </summary>
-[JsonConverter(typeof(JsonModelConverter<Author, AuthorFromRaw>))]
-public sealed record class Author : JsonModel
-{
-    public required string ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
-        }
-        init { this._rawData.Set("id", value); }
-    }
-
-    public required long Followers
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("followers");
-        }
-        init { this._rawData.Set("followers", value); }
-    }
-
-    public required string Username
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("username");
-        }
-        init { this._rawData.Set("username", value); }
-    }
-
-    public required bool Verified
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<bool>("verified");
-        }
-        init { this._rawData.Set("verified", value); }
-    }
-
-    public string? ProfilePicture
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("profilePicture");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("profilePicture", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-        _ = this.Followers;
-        _ = this.Username;
-        _ = this.Verified;
-        _ = this.ProfilePicture;
-    }
-
-    public Author() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public Author(Author author)
-        : base(author) { }
-#pragma warning restore CS8618
-
-    public Author(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    Author(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="AuthorFromRaw.FromRawUnchecked"/>
-    public static Author FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class AuthorFromRaw : IFromRawJson<Author>
-{
-    /// <inheritdoc/>
-    public Author FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Author.FromRawUnchecked(rawData);
 }

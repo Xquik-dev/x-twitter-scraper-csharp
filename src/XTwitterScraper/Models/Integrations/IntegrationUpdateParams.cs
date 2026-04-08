@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -5,10 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
-using System = System;
 
 namespace XTwitterScraper.Models.Integrations;
 
@@ -32,14 +30,14 @@ public record class IntegrationUpdateParams : ParamsBase
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public IReadOnlyList<ApiEnum<string, IntegrationUpdateParamsEventType>>? EventTypes
+    public IReadOnlyList<ApiEnum<string, EventType>>? EventTypes
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<
-                ImmutableArray<ApiEnum<string, IntegrationUpdateParamsEventType>>
-            >("eventTypes");
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+                "eventTypes"
+            );
         }
         init
         {
@@ -48,9 +46,10 @@ public record class IntegrationUpdateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set<ImmutableArray<
-                ApiEnum<string, IntegrationUpdateParamsEventType>
-            >?>("eventTypes", value == null ? null : ImmutableArray.ToImmutableArray(value));
+            this._rawBodyData.Set<ImmutableArray<ApiEnum<string, EventType>>?>(
+                "eventTypes",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -264,9 +263,9 @@ public record class IntegrationUpdateParams : ParamsBase
             && this._rawBodyData.Equals(other._rawBodyData);
     }
 
-    public override System::Uri Url(ClientOptions options)
+    public override Uri Url(ClientOptions options)
     {
-        return new System::UriBuilder(
+        return new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/integrations/{0}", this.ID)
         )
         {
@@ -295,65 +294,5 @@ public record class IntegrationUpdateParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
-    }
-}
-
-/// <summary>
-/// Type of monitor event fired when account activity occurs.
-/// </summary>
-[JsonConverter(typeof(IntegrationUpdateParamsEventTypeConverter))]
-public enum IntegrationUpdateParamsEventType
-{
-    TweetNew,
-    TweetReply,
-    TweetRetweet,
-    TweetQuote,
-    FollowerGained,
-    FollowerLost,
-}
-
-sealed class IntegrationUpdateParamsEventTypeConverter
-    : JsonConverter<IntegrationUpdateParamsEventType>
-{
-    public override IntegrationUpdateParamsEventType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "tweet.new" => IntegrationUpdateParamsEventType.TweetNew,
-            "tweet.reply" => IntegrationUpdateParamsEventType.TweetReply,
-            "tweet.retweet" => IntegrationUpdateParamsEventType.TweetRetweet,
-            "tweet.quote" => IntegrationUpdateParamsEventType.TweetQuote,
-            "follower.gained" => IntegrationUpdateParamsEventType.FollowerGained,
-            "follower.lost" => IntegrationUpdateParamsEventType.FollowerLost,
-            _ => (IntegrationUpdateParamsEventType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        IntegrationUpdateParamsEventType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                IntegrationUpdateParamsEventType.TweetNew => "tweet.new",
-                IntegrationUpdateParamsEventType.TweetReply => "tweet.reply",
-                IntegrationUpdateParamsEventType.TweetRetweet => "tweet.retweet",
-                IntegrationUpdateParamsEventType.TweetQuote => "tweet.quote",
-                IntegrationUpdateParamsEventType.FollowerGained => "follower.gained",
-                IntegrationUpdateParamsEventType.FollowerLost => "follower.lost",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
     }
 }
