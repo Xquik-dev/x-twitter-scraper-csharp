@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -6,7 +7,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
-using System = System;
 
 namespace XTwitterScraper.Models.Integrations;
 
@@ -45,12 +45,12 @@ public sealed record class Integration : JsonModel
         }
     }
 
-    public required System::DateTimeOffset CreatedAt
+    public required DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
         }
         init { this._rawData.Set("createdAt", value); }
     }
@@ -96,12 +96,12 @@ public sealed record class Integration : JsonModel
         init { this._rawData.Set("name", value); }
     }
 
-    public required ApiEnum<string, IntegrationType> Type
+    public JsonElement Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, IntegrationType>>("type");
+            return this._rawData.GetNotNullStruct<JsonElement>("type");
         }
         init { this._rawData.Set("type", value); }
     }
@@ -196,14 +196,20 @@ public sealed record class Integration : JsonModel
         }
         _ = this.IsActive;
         _ = this.Name;
-        this.Type.Validate();
+        if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("telegram")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
         _ = this.Filters;
         _ = this.MessageTemplate;
         _ = this.ScopeAllMonitors;
         _ = this.SilentPush;
     }
 
-    public Integration() { }
+    public Integration()
+    {
+        this.Type = JsonSerializer.SerializeToElement("telegram");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -214,6 +220,8 @@ public sealed record class Integration : JsonModel
     public Integration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Type = JsonSerializer.SerializeToElement("telegram");
     }
 
 #pragma warning disable CS8618
@@ -236,45 +244,4 @@ class IntegrationFromRaw : IFromRawJson<Integration>
     /// <inheritdoc/>
     public Integration FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Integration.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(IntegrationTypeConverter))]
-public enum IntegrationType
-{
-    Telegram,
-}
-
-sealed class IntegrationTypeConverter : JsonConverter<IntegrationType>
-{
-    public override IntegrationType Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "telegram" => IntegrationType.Telegram,
-            _ => (IntegrationType)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        IntegrationType value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                IntegrationType.Telegram => "telegram",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }
