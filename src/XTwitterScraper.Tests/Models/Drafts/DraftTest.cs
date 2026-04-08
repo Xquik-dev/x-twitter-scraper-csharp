@@ -12,18 +12,18 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedText = "text";
-        string expectedGoal = "goal";
-        string expectedTopic = "topic";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedText = "Draft tweet about AI trends";
+        string expectedGoal = "Engagement";
+        string expectedTopic = "Technology";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -37,11 +37,11 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -55,22 +55,22 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Draft>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedText = "text";
-        string expectedGoal = "goal";
-        string expectedTopic = "topic";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedText = "Draft tweet about AI trends";
+        string expectedGoal = "Engagement";
+        string expectedTopic = "Technology";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -84,11 +84,11 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         model.Validate();
@@ -99,9 +99,9 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
         };
 
         Assert.Null(model.Goal);
@@ -115,9 +115,9 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
         };
 
         model.Validate();
@@ -128,9 +128,9 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
 
             // Null should be interpreted as omitted for these properties
             Goal = null,
@@ -148,9 +148,9 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
 
             // Null should be interpreted as omitted for these properties
             Goal = null,
@@ -165,11 +165,11 @@ public class DraftTest : TestBase
     {
         var model = new Draft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         Draft copied = new(model);

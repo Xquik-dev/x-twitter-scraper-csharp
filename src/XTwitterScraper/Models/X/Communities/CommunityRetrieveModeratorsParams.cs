@@ -20,7 +20,7 @@ public record class CommunityRetrieveModeratorsParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for community moderators
     /// </summary>
     public string? Cursor
     {

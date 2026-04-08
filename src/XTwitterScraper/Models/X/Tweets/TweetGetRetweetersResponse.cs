@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Tweets;
 
+/// <summary>
+/// Paginated list of user profiles with cursor-based navigation.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<TweetGetRetweetersResponse, TweetGetRetweetersResponseFromRaw>)
 )]
@@ -100,6 +103,9 @@ class TweetGetRetweetersResponseFromRaw : IFromRawJson<TweetGetRetweetersRespons
     ) => TweetGetRetweetersResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// X user profile with bio, follower counts, and verification status.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
         TweetGetRetweetersResponseUser,

@@ -15,7 +15,7 @@ public class StyleServiceTest : TestBase
     public async Task Analyze_Works()
     {
         var response = await this.client.Styles.Analyze(
-            new() { Username = "username" },
+            new() { Username = "elonmusk" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

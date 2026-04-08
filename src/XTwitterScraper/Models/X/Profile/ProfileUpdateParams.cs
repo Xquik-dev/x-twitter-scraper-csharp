@@ -25,7 +25,7 @@ public record class ProfileUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) to update profile
     /// </summary>
     public required string Account
     {

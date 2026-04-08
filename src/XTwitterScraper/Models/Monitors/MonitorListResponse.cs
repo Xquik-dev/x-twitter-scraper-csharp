@@ -88,6 +88,9 @@ class MonitorListResponseFromRaw : IFromRawJson<MonitorListResponse>
         MonitorListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Account monitor that tracks activity for a given X user.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<MonitorListResponseMonitor, MonitorListResponseMonitorFromRaw>)
 )]
@@ -113,6 +116,9 @@ public sealed record class MonitorListResponseMonitor : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, MonitorListResponseMonitorEventType>> EventTypes
     {
         get
@@ -213,6 +219,9 @@ class MonitorListResponseMonitorFromRaw : IFromRawJson<MonitorListResponseMonito
     ) => MonitorListResponseMonitor.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(MonitorListResponseMonitorEventTypeConverter))]
 public enum MonitorListResponseMonitorEventType
 {

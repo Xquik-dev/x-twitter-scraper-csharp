@@ -10,6 +10,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Monitors;
 
+/// <summary>
+/// Account monitor that tracks activity for a given X user.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<MonitorRetrieveResponse, MonitorRetrieveResponseFromRaw>))]
 public sealed record class MonitorRetrieveResponse : JsonModel
 {
@@ -33,6 +36,9 @@ public sealed record class MonitorRetrieveResponse : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, MonitorRetrieveResponseEventType>> EventTypes
     {
         get
@@ -133,6 +139,9 @@ class MonitorRetrieveResponseFromRaw : IFromRawJson<MonitorRetrieveResponse>
     ) => MonitorRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(MonitorRetrieveResponseEventTypeConverter))]
 public enum MonitorRetrieveResponseEventType
 {

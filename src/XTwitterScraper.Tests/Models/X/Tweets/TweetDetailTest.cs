@@ -13,58 +13,70 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
-            ConversationID = "conversationId",
-            CreatedAt = "createdAt",
-            Entities = JsonSerializer.Deserialize<JsonElement>("{}"),
-            IsNoteTweet = true,
-            IsQuoteStatus = true,
-            IsReply = true,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
+            ConversationID = "1234567890",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            Entities = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            IsNoteTweet = false,
+            IsQuoteStatus = false,
+            IsReply = false,
             Media =
             [
                 new()
                 {
-                    MediaUrl = "mediaUrl",
+                    MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                     Type = Type.Photo,
-                    Url = "url",
+                    Url = "https://t.co/abc123",
                 },
             ],
-            QuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}"),
-            Source = "source",
+            QuotedTweet = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Source = "Twitter Web App",
         };
 
-        string expectedID = "id";
-        long expectedBookmarkCount = 0;
-        long expectedLikeCount = 0;
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        string expectedText = "text";
-        long expectedViewCount = 0;
-        string expectedConversationID = "conversationId";
-        string expectedCreatedAt = "createdAt";
-        JsonElement expectedEntities = JsonSerializer.Deserialize<JsonElement>("{}");
-        bool expectedIsNoteTweet = true;
-        bool expectedIsQuoteStatus = true;
-        bool expectedIsReply = true;
+        string expectedID = "1234567890";
+        long expectedBookmarkCount = 2;
+        long expectedLikeCount = 42;
+        long expectedQuoteCount = 1;
+        long expectedReplyCount = 3;
+        long expectedRetweetCount = 5;
+        string expectedText = "Just launched our new feature!";
+        long expectedViewCount = 1500;
+        string expectedConversationID = "1234567890";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        Dictionary<string, JsonElement> expectedEntities = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
+        bool expectedIsNoteTweet = false;
+        bool expectedIsQuoteStatus = false;
+        bool expectedIsReply = false;
         List<TweetDetailMedia> expectedMedia =
         [
             new()
             {
-                MediaUrl = "mediaUrl",
+                MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                 Type = Type.Photo,
-                Url = "url",
+                Url = "https://t.co/abc123",
             },
         ];
-        JsonElement expectedQuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}");
-        string expectedSource = "source";
+        Dictionary<string, JsonElement> expectedQuotedTweet = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
+        string expectedSource = "Twitter Web App";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBookmarkCount, model.BookmarkCount);
@@ -77,7 +89,13 @@ public class TweetDetailTest : TestBase
         Assert.Equal(expectedConversationID, model.ConversationID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.NotNull(model.Entities);
-        Assert.True(JsonElement.DeepEquals(expectedEntities, model.Entities.Value));
+        Assert.Equal(expectedEntities.Count, model.Entities.Count);
+        foreach (var item in expectedEntities)
+        {
+            Assert.True(model.Entities.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.Entities[item.Key]));
+        }
         Assert.Equal(expectedIsNoteTweet, model.IsNoteTweet);
         Assert.Equal(expectedIsQuoteStatus, model.IsQuoteStatus);
         Assert.Equal(expectedIsReply, model.IsReply);
@@ -88,7 +106,13 @@ public class TweetDetailTest : TestBase
             Assert.Equal(expectedMedia[i], model.Media[i]);
         }
         Assert.NotNull(model.QuotedTweet);
-        Assert.True(JsonElement.DeepEquals(expectedQuotedTweet, model.QuotedTweet.Value));
+        Assert.Equal(expectedQuotedTweet.Count, model.QuotedTweet.Count);
+        foreach (var item in expectedQuotedTweet)
+        {
+            Assert.True(model.QuotedTweet.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.QuotedTweet[item.Key]));
+        }
         Assert.Equal(expectedSource, model.Source);
     }
 
@@ -97,31 +121,37 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
-            ConversationID = "conversationId",
-            CreatedAt = "createdAt",
-            Entities = JsonSerializer.Deserialize<JsonElement>("{}"),
-            IsNoteTweet = true,
-            IsQuoteStatus = true,
-            IsReply = true,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
+            ConversationID = "1234567890",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            Entities = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            IsNoteTweet = false,
+            IsQuoteStatus = false,
+            IsReply = false,
             Media =
             [
                 new()
                 {
-                    MediaUrl = "mediaUrl",
+                    MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                     Type = Type.Photo,
-                    Url = "url",
+                    Url = "https://t.co/abc123",
                 },
             ],
-            QuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}"),
-            Source = "source",
+            QuotedTweet = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Source = "Twitter Web App",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -138,31 +168,37 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
-            ConversationID = "conversationId",
-            CreatedAt = "createdAt",
-            Entities = JsonSerializer.Deserialize<JsonElement>("{}"),
-            IsNoteTweet = true,
-            IsQuoteStatus = true,
-            IsReply = true,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
+            ConversationID = "1234567890",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            Entities = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            IsNoteTweet = false,
+            IsQuoteStatus = false,
+            IsReply = false,
             Media =
             [
                 new()
                 {
-                    MediaUrl = "mediaUrl",
+                    MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                     Type = Type.Photo,
-                    Url = "url",
+                    Url = "https://t.co/abc123",
                 },
             ],
-            QuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}"),
-            Source = "source",
+            QuotedTweet = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Source = "Twitter Web App",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -172,31 +208,37 @@ public class TweetDetailTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        long expectedBookmarkCount = 0;
-        long expectedLikeCount = 0;
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        string expectedText = "text";
-        long expectedViewCount = 0;
-        string expectedConversationID = "conversationId";
-        string expectedCreatedAt = "createdAt";
-        JsonElement expectedEntities = JsonSerializer.Deserialize<JsonElement>("{}");
-        bool expectedIsNoteTweet = true;
-        bool expectedIsQuoteStatus = true;
-        bool expectedIsReply = true;
+        string expectedID = "1234567890";
+        long expectedBookmarkCount = 2;
+        long expectedLikeCount = 42;
+        long expectedQuoteCount = 1;
+        long expectedReplyCount = 3;
+        long expectedRetweetCount = 5;
+        string expectedText = "Just launched our new feature!";
+        long expectedViewCount = 1500;
+        string expectedConversationID = "1234567890";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        Dictionary<string, JsonElement> expectedEntities = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
+        bool expectedIsNoteTweet = false;
+        bool expectedIsQuoteStatus = false;
+        bool expectedIsReply = false;
         List<TweetDetailMedia> expectedMedia =
         [
             new()
             {
-                MediaUrl = "mediaUrl",
+                MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                 Type = Type.Photo,
-                Url = "url",
+                Url = "https://t.co/abc123",
             },
         ];
-        JsonElement expectedQuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}");
-        string expectedSource = "source";
+        Dictionary<string, JsonElement> expectedQuotedTweet = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
+        string expectedSource = "Twitter Web App";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBookmarkCount, deserialized.BookmarkCount);
@@ -209,7 +251,13 @@ public class TweetDetailTest : TestBase
         Assert.Equal(expectedConversationID, deserialized.ConversationID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.NotNull(deserialized.Entities);
-        Assert.True(JsonElement.DeepEquals(expectedEntities, deserialized.Entities.Value));
+        Assert.Equal(expectedEntities.Count, deserialized.Entities.Count);
+        foreach (var item in expectedEntities)
+        {
+            Assert.True(deserialized.Entities.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, deserialized.Entities[item.Key]));
+        }
         Assert.Equal(expectedIsNoteTweet, deserialized.IsNoteTweet);
         Assert.Equal(expectedIsQuoteStatus, deserialized.IsQuoteStatus);
         Assert.Equal(expectedIsReply, deserialized.IsReply);
@@ -220,7 +268,13 @@ public class TweetDetailTest : TestBase
             Assert.Equal(expectedMedia[i], deserialized.Media[i]);
         }
         Assert.NotNull(deserialized.QuotedTweet);
-        Assert.True(JsonElement.DeepEquals(expectedQuotedTweet, deserialized.QuotedTweet.Value));
+        Assert.Equal(expectedQuotedTweet.Count, deserialized.QuotedTweet.Count);
+        foreach (var item in expectedQuotedTweet)
+        {
+            Assert.True(deserialized.QuotedTweet.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, deserialized.QuotedTweet[item.Key]));
+        }
         Assert.Equal(expectedSource, deserialized.Source);
     }
 
@@ -229,31 +283,37 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
-            ConversationID = "conversationId",
-            CreatedAt = "createdAt",
-            Entities = JsonSerializer.Deserialize<JsonElement>("{}"),
-            IsNoteTweet = true,
-            IsQuoteStatus = true,
-            IsReply = true,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
+            ConversationID = "1234567890",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            Entities = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            IsNoteTweet = false,
+            IsQuoteStatus = false,
+            IsReply = false,
             Media =
             [
                 new()
                 {
-                    MediaUrl = "mediaUrl",
+                    MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                     Type = Type.Photo,
-                    Url = "url",
+                    Url = "https://t.co/abc123",
                 },
             ],
-            QuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}"),
-            Source = "source",
+            QuotedTweet = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Source = "Twitter Web App",
         };
 
         model.Validate();
@@ -264,14 +324,14 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
         };
 
         Assert.Null(model.ConversationID);
@@ -299,14 +359,14 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
         };
 
         model.Validate();
@@ -317,14 +377,14 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
 
             // Null should be interpreted as omitted for these properties
             ConversationID = null,
@@ -363,14 +423,14 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
 
             // Null should be interpreted as omitted for these properties
             ConversationID = null,
@@ -392,31 +452,37 @@ public class TweetDetailTest : TestBase
     {
         var model = new TweetDetail
         {
-            ID = "id",
-            BookmarkCount = 0,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            Text = "text",
-            ViewCount = 0,
-            ConversationID = "conversationId",
-            CreatedAt = "createdAt",
-            Entities = JsonSerializer.Deserialize<JsonElement>("{}"),
-            IsNoteTweet = true,
-            IsQuoteStatus = true,
-            IsReply = true,
+            ID = "1234567890",
+            BookmarkCount = 2,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            Text = "Just launched our new feature!",
+            ViewCount = 1500,
+            ConversationID = "1234567890",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            Entities = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            IsNoteTweet = false,
+            IsQuoteStatus = false,
+            IsReply = false,
             Media =
             [
                 new()
                 {
-                    MediaUrl = "mediaUrl",
+                    MediaUrl = "https://pbs.twimg.com/media/example.jpg",
                     Type = Type.Photo,
-                    Url = "url",
+                    Url = "https://t.co/abc123",
                 },
             ],
-            QuotedTweet = JsonSerializer.Deserialize<JsonElement>("{}"),
-            Source = "source",
+            QuotedTweet = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Source = "Twitter Web App",
         };
 
         TweetDetail copied = new(model);
@@ -432,14 +498,14 @@ public class TweetDetailMediaTest : TestBase
     {
         var model = new TweetDetailMedia
         {
-            MediaUrl = "mediaUrl",
+            MediaUrl = "https://pbs.twimg.com/media/example.jpg",
             Type = Type.Photo,
-            Url = "url",
+            Url = "https://t.co/abc123",
         };
 
-        string expectedMediaUrl = "mediaUrl";
+        string expectedMediaUrl = "https://pbs.twimg.com/media/example.jpg";
         ApiEnum<string, Type> expectedType = Type.Photo;
-        string expectedUrl = "url";
+        string expectedUrl = "https://t.co/abc123";
 
         Assert.Equal(expectedMediaUrl, model.MediaUrl);
         Assert.Equal(expectedType, model.Type);
@@ -451,9 +517,9 @@ public class TweetDetailMediaTest : TestBase
     {
         var model = new TweetDetailMedia
         {
-            MediaUrl = "mediaUrl",
+            MediaUrl = "https://pbs.twimg.com/media/example.jpg",
             Type = Type.Photo,
-            Url = "url",
+            Url = "https://t.co/abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -470,9 +536,9 @@ public class TweetDetailMediaTest : TestBase
     {
         var model = new TweetDetailMedia
         {
-            MediaUrl = "mediaUrl",
+            MediaUrl = "https://pbs.twimg.com/media/example.jpg",
             Type = Type.Photo,
-            Url = "url",
+            Url = "https://t.co/abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -482,9 +548,9 @@ public class TweetDetailMediaTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedMediaUrl = "mediaUrl";
+        string expectedMediaUrl = "https://pbs.twimg.com/media/example.jpg";
         ApiEnum<string, Type> expectedType = Type.Photo;
-        string expectedUrl = "url";
+        string expectedUrl = "https://t.co/abc123";
 
         Assert.Equal(expectedMediaUrl, deserialized.MediaUrl);
         Assert.Equal(expectedType, deserialized.Type);
@@ -496,9 +562,9 @@ public class TweetDetailMediaTest : TestBase
     {
         var model = new TweetDetailMedia
         {
-            MediaUrl = "mediaUrl",
+            MediaUrl = "https://pbs.twimg.com/media/example.jpg",
             Type = Type.Photo,
-            Url = "url",
+            Url = "https://t.co/abc123",
         };
 
         model.Validate();
@@ -563,9 +629,9 @@ public class TweetDetailMediaTest : TestBase
     {
         var model = new TweetDetailMedia
         {
-            MediaUrl = "mediaUrl",
+            MediaUrl = "https://pbs.twimg.com/media/example.jpg",
             Type = Type.Photo,
-            Url = "url",
+            Url = "https://t.co/abc123",
         };
 
         TweetDetailMedia copied = new(model);

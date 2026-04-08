@@ -108,16 +108,19 @@ public sealed class CommunityService : ICommunityService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveMembers(
+    public async Task<CommunityRetrieveMembersResponse> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveMembers(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveMembers(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveMembers(
+    public Task<CommunityRetrieveMembersResponse> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -125,21 +128,23 @@ public sealed class CommunityService : ICommunityService
     {
         parameters ??= new();
 
-        await this.RetrieveMembers(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveMembers(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveModerators(
+    public async Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveModerators(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveModerators(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveModerators(
+    public Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -147,17 +152,19 @@ public sealed class CommunityService : ICommunityService
     {
         parameters ??= new();
 
-        await this.RetrieveModerators(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveModerators(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveSearch(
+    public async Task<CommunityRetrieveSearchResponse> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveSearch(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveSearch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 }
 
@@ -309,7 +316,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMembers(
+    public async Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -324,11 +331,25 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<CommunityRetrieveMembersResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMembers(
+    public Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -340,7 +361,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveModerators(
+    public async Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -355,11 +376,25 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<CommunityRetrieveModeratorsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveModerators(
+    public Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -371,7 +406,7 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveSearch(
+    public async Task<HttpResponse<CommunityRetrieveSearchResponse>> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -381,6 +416,20 @@ public sealed class CommunityServiceWithRawResponse : ICommunityServiceWithRawRe
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<CommunityRetrieveSearchResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 }

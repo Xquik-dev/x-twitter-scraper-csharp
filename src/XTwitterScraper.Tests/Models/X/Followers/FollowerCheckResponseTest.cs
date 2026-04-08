@@ -11,16 +11,16 @@ public class FollowerCheckResponseTest : TestBase
     {
         var model = new FollowerCheckResponse
         {
-            IsFollowedBy = true,
+            IsFollowedBy = false,
             IsFollowing = true,
-            SourceUsername = "sourceUsername",
-            TargetUsername = "targetUsername",
+            SourceUsername = "elonmusk",
+            TargetUsername = "jack",
         };
 
-        bool expectedIsFollowedBy = true;
+        bool expectedIsFollowedBy = false;
         bool expectedIsFollowing = true;
-        string expectedSourceUsername = "sourceUsername";
-        string expectedTargetUsername = "targetUsername";
+        string expectedSourceUsername = "elonmusk";
+        string expectedTargetUsername = "jack";
 
         Assert.Equal(expectedIsFollowedBy, model.IsFollowedBy);
         Assert.Equal(expectedIsFollowing, model.IsFollowing);
@@ -33,10 +33,10 @@ public class FollowerCheckResponseTest : TestBase
     {
         var model = new FollowerCheckResponse
         {
-            IsFollowedBy = true,
+            IsFollowedBy = false,
             IsFollowing = true,
-            SourceUsername = "sourceUsername",
-            TargetUsername = "targetUsername",
+            SourceUsername = "elonmusk",
+            TargetUsername = "jack",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -53,10 +53,10 @@ public class FollowerCheckResponseTest : TestBase
     {
         var model = new FollowerCheckResponse
         {
-            IsFollowedBy = true,
+            IsFollowedBy = false,
             IsFollowing = true,
-            SourceUsername = "sourceUsername",
-            TargetUsername = "targetUsername",
+            SourceUsername = "elonmusk",
+            TargetUsername = "jack",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -66,10 +66,10 @@ public class FollowerCheckResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        bool expectedIsFollowedBy = true;
+        bool expectedIsFollowedBy = false;
         bool expectedIsFollowing = true;
-        string expectedSourceUsername = "sourceUsername";
-        string expectedTargetUsername = "targetUsername";
+        string expectedSourceUsername = "elonmusk";
+        string expectedTargetUsername = "jack";
 
         Assert.Equal(expectedIsFollowedBy, deserialized.IsFollowedBy);
         Assert.Equal(expectedIsFollowing, deserialized.IsFollowing);
@@ -82,10 +82,10 @@ public class FollowerCheckResponseTest : TestBase
     {
         var model = new FollowerCheckResponse
         {
-            IsFollowedBy = true,
+            IsFollowedBy = false,
             IsFollowing = true,
-            SourceUsername = "sourceUsername",
-            TargetUsername = "targetUsername",
+            SourceUsername = "elonmusk",
+            TargetUsername = "jack",
         };
 
         model.Validate();
@@ -96,10 +96,10 @@ public class FollowerCheckResponseTest : TestBase
     {
         var model = new FollowerCheckResponse
         {
-            IsFollowedBy = true,
+            IsFollowedBy = false,
             IsFollowing = true,
-            SourceUsername = "sourceUsername",
-            TargetUsername = "targetUsername",
+            SourceUsername = "elonmusk",
+            TargetUsername = "jack",
         };
 
         FollowerCheckResponse copied = new(model);

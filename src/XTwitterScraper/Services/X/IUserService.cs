@@ -34,7 +34,7 @@ public interface IUserService
     /// <summary>
     /// Get multiple users by IDs
     /// </summary>
-    Task RetrieveBatch(
+    Task<UserRetrieveBatchResponse> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -42,13 +42,13 @@ public interface IUserService
     /// <summary>
     /// Get user followers
     /// </summary>
-    Task RetrieveFollowers(
+    Task<UserRetrieveFollowersResponse> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowers(UserRetrieveFollowersParams, CancellationToken)"/>
-    Task RetrieveFollowers(
+    Task<UserRetrieveFollowersResponse> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -72,13 +72,13 @@ public interface IUserService
     /// <summary>
     /// Get users this user follows
     /// </summary>
-    Task RetrieveFollowing(
+    Task<UserRetrieveFollowingResponse> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowing(UserRetrieveFollowingParams, CancellationToken)"/>
-    Task RetrieveFollowing(
+    Task<UserRetrieveFollowingResponse> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -117,13 +117,13 @@ public interface IUserService
     /// <summary>
     /// Get tweets mentioning a user
     /// </summary>
-    Task RetrieveMentions(
+    Task<UserRetrieveMentionsResponse> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMentions(UserRetrieveMentionsParams, CancellationToken)"/>
-    Task RetrieveMentions(
+    Task<UserRetrieveMentionsResponse> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -132,7 +132,7 @@ public interface IUserService
     /// <summary>
     /// Search users by name or username
     /// </summary>
-    Task RetrieveSearch(
+    Task<UserRetrieveSearchResponse> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -155,13 +155,13 @@ public interface IUserService
     /// <summary>
     /// Get verified followers
     /// </summary>
-    Task RetrieveVerifiedFollowers(
+    Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveVerifiedFollowers(UserRetrieveVerifiedFollowersParams, CancellationToken)"/>
-    Task RetrieveVerifiedFollowers(
+    Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -187,7 +187,7 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/batch</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveBatch(UserRetrieveBatchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveBatch(
+    Task<HttpResponse<UserRetrieveBatchResponse>> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -196,13 +196,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/followers</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveFollowers(UserRetrieveFollowersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveFollowers(
+    Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowers(UserRetrieveFollowersParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveFollowers(
+    Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -228,13 +228,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/following</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveFollowing(UserRetrieveFollowingParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveFollowing(
+    Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveFollowing(UserRetrieveFollowingParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveFollowing(
+    Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -276,13 +276,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/mentions</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveMentions(UserRetrieveMentionsParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveMentions(
+    Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMentions(UserRetrieveMentionsParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveMentions(
+    Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -292,7 +292,7 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/search</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveSearch(UserRetrieveSearchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveSearch(
+    Task<HttpResponse<UserRetrieveSearchResponse>> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -317,13 +317,13 @@ public interface IUserServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/users/{id}/verified-followers</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveVerifiedFollowers(UserRetrieveVerifiedFollowersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveVerifiedFollowers(
+    Task<HttpResponse<UserRetrieveVerifiedFollowersResponse>> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveVerifiedFollowers(UserRetrieveVerifiedFollowersParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveVerifiedFollowers(
+    Task<HttpResponse<UserRetrieveVerifiedFollowersResponse>> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default

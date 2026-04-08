@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Accounts;
 
+/// <summary>
+/// Full X account details including proxy, cookies, and update timestamp.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<XAccountDetail, XAccountDetailFromRaw>))]
 public sealed record class XAccountDetail : JsonModel
 {

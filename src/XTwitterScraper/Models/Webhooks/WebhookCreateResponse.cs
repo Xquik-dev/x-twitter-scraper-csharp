@@ -33,6 +33,9 @@ public sealed record class WebhookCreateResponse : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, WebhookCreateResponseEventType>> EventTypes
     {
         get
@@ -122,6 +125,9 @@ class WebhookCreateResponseFromRaw : IFromRawJson<WebhookCreateResponse>
     ) => WebhookCreateResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(WebhookCreateResponseEventTypeConverter))]
 public enum WebhookCreateResponseEventType
 {

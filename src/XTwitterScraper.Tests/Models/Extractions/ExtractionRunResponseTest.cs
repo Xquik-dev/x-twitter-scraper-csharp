@@ -12,16 +12,16 @@ public class ExtractionRunResponseTest : TestBase
     {
         var model = new ExtractionRunResponse
         {
-            ID = "id",
+            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             Status = ExtractionRunResponseStatus.Running,
-            ToolType = ExtractionRunResponseToolType.ArticleExtractor,
+            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
-        string expectedID = "id";
+        string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
         ApiEnum<string, ExtractionRunResponseStatus> expectedStatus =
             ExtractionRunResponseStatus.Running;
         ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
-            ExtractionRunResponseToolType.ArticleExtractor;
+            ExtractionRunResponseToolType.FollowerExplorer;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedStatus, model.Status);
@@ -33,9 +33,9 @@ public class ExtractionRunResponseTest : TestBase
     {
         var model = new ExtractionRunResponse
         {
-            ID = "id",
+            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             Status = ExtractionRunResponseStatus.Running,
-            ToolType = ExtractionRunResponseToolType.ArticleExtractor,
+            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -52,9 +52,9 @@ public class ExtractionRunResponseTest : TestBase
     {
         var model = new ExtractionRunResponse
         {
-            ID = "id",
+            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             Status = ExtractionRunResponseStatus.Running,
-            ToolType = ExtractionRunResponseToolType.ArticleExtractor,
+            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -64,11 +64,11 @@ public class ExtractionRunResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
         ApiEnum<string, ExtractionRunResponseStatus> expectedStatus =
             ExtractionRunResponseStatus.Running;
         ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
-            ExtractionRunResponseToolType.ArticleExtractor;
+            ExtractionRunResponseToolType.FollowerExplorer;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedStatus, deserialized.Status);
@@ -80,9 +80,9 @@ public class ExtractionRunResponseTest : TestBase
     {
         var model = new ExtractionRunResponse
         {
-            ID = "id",
+            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             Status = ExtractionRunResponseStatus.Running,
-            ToolType = ExtractionRunResponseToolType.ArticleExtractor,
+            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         model.Validate();
@@ -93,9 +93,9 @@ public class ExtractionRunResponseTest : TestBase
     {
         var model = new ExtractionRunResponse
         {
-            ID = "id",
+            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             Status = ExtractionRunResponseStatus.Running,
-            ToolType = ExtractionRunResponseToolType.ArticleExtractor,
+            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
         };
 
         ExtractionRunResponse copied = new(model);

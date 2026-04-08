@@ -33,6 +33,9 @@ public sealed record class MonitorCreateResponse : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, MonitorCreateResponseEventType>> EventTypes
     {
         get
@@ -122,6 +125,9 @@ class MonitorCreateResponseFromRaw : IFromRawJson<MonitorCreateResponse>
     ) => MonitorCreateResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(MonitorCreateResponseEventTypeConverter))]
 public enum MonitorCreateResponseEventType
 {

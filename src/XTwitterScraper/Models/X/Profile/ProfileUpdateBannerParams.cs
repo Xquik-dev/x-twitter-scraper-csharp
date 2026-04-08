@@ -24,7 +24,7 @@ public record class ProfileUpdateBannerParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) for banner update
     /// </summary>
     public required string Account
     {

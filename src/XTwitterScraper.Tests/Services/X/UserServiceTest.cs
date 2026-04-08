@@ -7,20 +7,22 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveBatch_Works()
     {
-        await this.client.X.Users.RetrieveBatch(
+        var response = await this.client.X.Users.RetrieveBatch(
             new() { Ids = "ids" },
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveFollowers_Works()
     {
-        await this.client.X.Users.RetrieveFollowers(
+        var response = await this.client.X.Users.RetrieveFollowers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -37,11 +39,12 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveFollowing_Works()
     {
-        await this.client.X.Users.RetrieveFollowing(
+        var response = await this.client.X.Users.RetrieveFollowing(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -69,20 +72,22 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveMentions_Works()
     {
-        await this.client.X.Users.RetrieveMentions(
+        var response = await this.client.X.Users.RetrieveMentions(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveSearch_Works()
     {
-        await this.client.X.Users.RetrieveSearch(
+        var response = await this.client.X.Users.RetrieveSearch(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -99,10 +104,11 @@ public class UserServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveVerifiedFollowers_Works()
     {
-        await this.client.X.Users.RetrieveVerifiedFollowers(
+        var response = await this.client.X.Users.RetrieveVerifiedFollowers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 }

@@ -9,7 +9,7 @@ public class JoinServiceTest : TestBase
     {
         var join = await this.client.X.Communities.Join.Create(
             "id",
-            new() { Account = "account" },
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         join.Validate();
@@ -20,7 +20,7 @@ public class JoinServiceTest : TestBase
     {
         var response = await this.client.X.Communities.Join.DeleteAll(
             "id",
-            new() { Account = "account" },
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

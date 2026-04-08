@@ -104,6 +104,9 @@ class DrawListResponseFromRaw : IFromRawJson<DrawListResponse>
         DrawListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Giveaway draw summary with entry counts and status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DrawListResponseDraw, DrawListResponseDrawFromRaw>))]
 public sealed record class DrawListResponseDraw : JsonModel
 {

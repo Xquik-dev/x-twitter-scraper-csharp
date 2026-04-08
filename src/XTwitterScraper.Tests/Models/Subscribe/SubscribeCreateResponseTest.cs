@@ -12,13 +12,13 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
-            Message = "message",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+            Message = "Checkout session created",
             Status = Status.CheckoutCreated,
         };
 
-        string expectedUrl = "https://example.com";
-        string expectedMessage = "message";
+        string expectedUrl = "https://checkout.stripe.com/c/pay/cs_test_123";
+        string expectedMessage = "Checkout session created";
         ApiEnum<string, Status> expectedStatus = Status.CheckoutCreated;
 
         Assert.Equal(expectedUrl, model.Url);
@@ -31,8 +31,8 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
-            Message = "message",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+            Message = "Checkout session created",
             Status = Status.CheckoutCreated,
         };
 
@@ -50,8 +50,8 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
-            Message = "message",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+            Message = "Checkout session created",
             Status = Status.CheckoutCreated,
         };
 
@@ -62,8 +62,8 @@ public class SubscribeCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedUrl = "https://example.com";
-        string expectedMessage = "message";
+        string expectedUrl = "https://checkout.stripe.com/c/pay/cs_test_123";
+        string expectedMessage = "Checkout session created";
         ApiEnum<string, Status> expectedStatus = Status.CheckoutCreated;
 
         Assert.Equal(expectedUrl, deserialized.Url);
@@ -76,8 +76,8 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
-            Message = "message",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+            Message = "Checkout session created",
             Status = Status.CheckoutCreated,
         };
 
@@ -87,7 +87,10 @@ public class SubscribeCreateResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new SubscribeCreateResponse { Url = "https://example.com" };
+        var model = new SubscribeCreateResponse
+        {
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+        };
 
         Assert.Null(model.Message);
         Assert.False(model.RawData.ContainsKey("message"));
@@ -98,7 +101,10 @@ public class SubscribeCreateResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new SubscribeCreateResponse { Url = "https://example.com" };
+        var model = new SubscribeCreateResponse
+        {
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+        };
 
         model.Validate();
     }
@@ -108,7 +114,7 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
 
             // Null should be interpreted as omitted for these properties
             Message = null,
@@ -126,7 +132,7 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
 
             // Null should be interpreted as omitted for these properties
             Message = null,
@@ -141,8 +147,8 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://example.com",
-            Message = "message",
+            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
+            Message = "Checkout session created",
             Status = Status.CheckoutCreated,
         };
 

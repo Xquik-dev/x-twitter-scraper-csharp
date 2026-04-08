@@ -12,14 +12,14 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
     {
         var model = new BookmarkRetrieveFoldersResponse
         {
-            Folders = [new() { ID = "id", Name = "name" }],
+            Folders = [new() { ID = "1234567890", Name = "Read Later" }],
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
-        List<Folder> expectedFolders = [new() { ID = "id", Name = "name" }];
+        List<Folder> expectedFolders = [new() { ID = "1234567890", Name = "Read Later" }];
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
 
         Assert.Equal(expectedFolders.Count, model.Folders.Count);
         for (int i = 0; i < expectedFolders.Count; i++)
@@ -35,9 +35,9 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
     {
         var model = new BookmarkRetrieveFoldersResponse
         {
-            Folders = [new() { ID = "id", Name = "name" }],
+            Folders = [new() { ID = "1234567890", Name = "Read Later" }],
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -54,9 +54,9 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
     {
         var model = new BookmarkRetrieveFoldersResponse
         {
-            Folders = [new() { ID = "id", Name = "name" }],
+            Folders = [new() { ID = "1234567890", Name = "Read Later" }],
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -66,9 +66,9 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Folder> expectedFolders = [new() { ID = "id", Name = "name" }];
+        List<Folder> expectedFolders = [new() { ID = "1234567890", Name = "Read Later" }];
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
 
         Assert.Equal(expectedFolders.Count, deserialized.Folders.Count);
         for (int i = 0; i < expectedFolders.Count; i++)
@@ -84,9 +84,9 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
     {
         var model = new BookmarkRetrieveFoldersResponse
         {
-            Folders = [new() { ID = "id", Name = "name" }],
+            Folders = [new() { ID = "1234567890", Name = "Read Later" }],
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         model.Validate();
@@ -97,9 +97,9 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
     {
         var model = new BookmarkRetrieveFoldersResponse
         {
-            Folders = [new() { ID = "id", Name = "name" }],
+            Folders = [new() { ID = "1234567890", Name = "Read Later" }],
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         BookmarkRetrieveFoldersResponse copied = new(model);
@@ -113,10 +113,10 @@ public class FolderTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Folder { ID = "id", Name = "name" };
+        var model = new Folder { ID = "1234567890", Name = "Read Later" };
 
-        string expectedID = "id";
-        string expectedName = "name";
+        string expectedID = "1234567890";
+        string expectedName = "Read Later";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedName, model.Name);
@@ -125,7 +125,7 @@ public class FolderTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Folder { ID = "id", Name = "name" };
+        var model = new Folder { ID = "1234567890", Name = "Read Later" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Folder>(json, ModelBase.SerializerOptions);
@@ -136,14 +136,14 @@ public class FolderTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Folder { ID = "id", Name = "name" };
+        var model = new Folder { ID = "1234567890", Name = "Read Later" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Folder>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedName = "name";
+        string expectedID = "1234567890";
+        string expectedName = "Read Later";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedName, deserialized.Name);
@@ -152,7 +152,7 @@ public class FolderTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Folder { ID = "id", Name = "name" };
+        var model = new Folder { ID = "1234567890", Name = "Read Later" };
 
         model.Validate();
     }
@@ -160,7 +160,7 @@ public class FolderTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Folder { ID = "id", Name = "name" };
+        var model = new Folder { ID = "1234567890", Name = "Read Later" };
 
         Folder copied = new(model);
 

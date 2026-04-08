@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.ApiKeys;
 
+/// <summary>
+/// API key metadata returned when listing keys.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<ApiKey, ApiKeyFromRaw>))]
 public sealed record class ApiKey : JsonModel
 {

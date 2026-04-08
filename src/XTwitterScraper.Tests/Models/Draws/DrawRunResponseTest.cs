@@ -12,10 +12,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -28,10 +28,10 @@ public class DrawRunResponseTest : TestBase
             ],
         };
 
-        string expectedID = "id";
-        long expectedTotalEntries = 0;
-        string expectedTweetID = "tweetId";
-        long expectedValidEntries = 0;
+        string expectedID = "42";
+        long expectedTotalEntries = 250;
+        string expectedTweetID = "1234567890";
+        long expectedValidEntries = 200;
         List<DrawRunResponseWinner> expectedWinners =
         [
             new()
@@ -59,10 +59,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -89,10 +89,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -112,10 +112,10 @@ public class DrawRunResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        long expectedTotalEntries = 0;
-        string expectedTweetID = "tweetId";
-        long expectedValidEntries = 0;
+        string expectedID = "42";
+        long expectedTotalEntries = 250;
+        string expectedTweetID = "1234567890";
+        long expectedValidEntries = 200;
         List<DrawRunResponseWinner> expectedWinners =
         [
             new()
@@ -143,10 +143,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()
@@ -167,10 +167,10 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "id",
-            TotalEntries = 0,
-            TweetID = "tweetId",
-            ValidEntries = 0,
+            ID = "42",
+            TotalEntries = 250,
+            TweetID = "1234567890",
+            ValidEntries = 200,
             Winners =
             [
                 new()

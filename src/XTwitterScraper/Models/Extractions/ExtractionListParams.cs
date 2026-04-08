@@ -20,7 +20,7 @@ namespace XTwitterScraper.Models.Extractions;
 public record class ExtractionListParams : ParamsBase
 {
     /// <summary>
-    /// Cursor for pagination
+    /// Cursor for keyset pagination
     /// </summary>
     public string? After
     {
@@ -40,6 +40,9 @@ public record class ExtractionListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum number of items to return (1-100, default 50)
+    /// </summary>
     public long? Limit
     {
         get
@@ -58,6 +61,9 @@ public record class ExtractionListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Filter by job status
+    /// </summary>
     public ApiEnum<string, Status>? Status
     {
         get
@@ -76,6 +82,9 @@ public record class ExtractionListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Filter by extraction tool type
+    /// </summary>
     public ApiEnum<string, ToolType>? ToolType
     {
         get
@@ -184,6 +193,9 @@ public record class ExtractionListParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Filter by job status
+/// </summary>
 [JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
@@ -227,6 +239,9 @@ sealed class StatusConverter : JsonConverter<Status>
     }
 }
 
+/// <summary>
+/// Filter by extraction tool type
+/// </summary>
 [JsonConverter(typeof(ToolTypeConverter))]
 public enum ToolType
 {

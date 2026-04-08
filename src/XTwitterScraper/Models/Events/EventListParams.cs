@@ -20,7 +20,7 @@ namespace XTwitterScraper.Models.Events;
 public record class EventListParams : ParamsBase
 {
     /// <summary>
-    /// Cursor for pagination
+    /// Cursor for keyset pagination
     /// </summary>
     public string? After
     {
@@ -40,6 +40,9 @@ public record class EventListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Filter events by type
+    /// </summary>
     public ApiEnum<string, EventType>? EventType
     {
         get
@@ -58,6 +61,9 @@ public record class EventListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum number of items to return (1-100, default 50)
+    /// </summary>
     public long? Limit
     {
         get
@@ -76,6 +82,9 @@ public record class EventListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Filter events by monitor ID
+    /// </summary>
     public string? MonitorID
     {
         get
@@ -184,6 +193,9 @@ public record class EventListParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Filter events by type
+/// </summary>
 [JsonConverter(typeof(EventTypeConverter))]
 public enum EventType
 {

@@ -11,18 +11,18 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
-        string expectedID = "id";
-        long expectedFollowers = 0;
-        string expectedUsername = "username";
+        string expectedID = "9876543210";
+        long expectedFollowers = 150000000;
+        string expectedUsername = "elonmusk";
         bool expectedVerified = true;
-        string expectedProfilePicture = "profilePicture";
+        string expectedProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedFollowers, model.Followers);
@@ -36,11 +36,11 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -57,11 +57,11 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -71,11 +71,11 @@ public class TweetAuthorTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        long expectedFollowers = 0;
-        string expectedUsername = "username";
+        string expectedID = "9876543210";
+        long expectedFollowers = 150000000;
+        string expectedUsername = "elonmusk";
         bool expectedVerified = true;
-        string expectedProfilePicture = "profilePicture";
+        string expectedProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedFollowers, deserialized.Followers);
@@ -89,11 +89,11 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         model.Validate();
@@ -104,9 +104,9 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
         };
 
@@ -119,9 +119,9 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
         };
 
@@ -133,9 +133,9 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
 
             // Null should be interpreted as omitted for these properties
@@ -151,9 +151,9 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
 
             // Null should be interpreted as omitted for these properties
@@ -168,11 +168,11 @@ public class TweetAuthorTest : TestBase
     {
         var model = new TweetAuthor
         {
-            ID = "id",
-            Followers = 0,
-            Username = "username",
+            ID = "9876543210",
+            Followers = 150000000,
+            Username = "elonmusk",
             Verified = true,
-            ProfilePicture = "profilePicture",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
         };
 
         TweetAuthor copied = new(model);

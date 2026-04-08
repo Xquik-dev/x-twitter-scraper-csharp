@@ -20,7 +20,7 @@ public record class ListRetrieveMembersParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for list members
     /// </summary>
     public string? Cursor
     {

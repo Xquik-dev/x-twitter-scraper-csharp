@@ -15,7 +15,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
+                ID = "https://example.com/webhook",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -44,7 +44,7 @@ public class DrawRetrieveResponseTest : TestBase
 
         Draw expectedDraw = new()
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -85,7 +85,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
+                ID = "https://example.com/webhook",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -128,7 +128,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
+                ID = "https://example.com/webhook",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -164,7 +164,7 @@ public class DrawRetrieveResponseTest : TestBase
 
         Draw expectedDraw = new()
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -205,7 +205,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
+                ID = "https://example.com/webhook",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -242,7 +242,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "id",
+                ID = "https://example.com/webhook",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -282,7 +282,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -298,7 +298,7 @@ public class DrawTest : TestBase
             DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string expectedID = "id";
+        string expectedID = "https://example.com/webhook";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -334,7 +334,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -361,7 +361,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -381,7 +381,7 @@ public class DrawTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Draw>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "https://example.com/webhook";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -417,7 +417,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -441,7 +441,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -465,7 +465,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -488,7 +488,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -515,7 +515,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -541,7 +541,7 @@ public class DrawTest : TestBase
     {
         var model = new Draw
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,

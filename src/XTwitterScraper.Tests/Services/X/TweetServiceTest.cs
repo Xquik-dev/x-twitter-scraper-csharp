@@ -8,7 +8,7 @@ public class TweetServiceTest : TestBase
     public async Task Create_Works()
     {
         var tweet = await this.client.X.Tweets.Create(
-            new() { Account = "account", Text = "text" },
+            new() { Account = "@elonmusk", Text = "Just launched our new feature!" },
             TestContext.Current.CancellationToken
         );
         tweet.Validate();
@@ -17,10 +17,11 @@ public class TweetServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
-        await this.client.X.Tweets.List(
+        var tweets = await this.client.X.Tweets.List(
             new() { Ids = "ids" },
             TestContext.Current.CancellationToken
         );
+        tweets.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

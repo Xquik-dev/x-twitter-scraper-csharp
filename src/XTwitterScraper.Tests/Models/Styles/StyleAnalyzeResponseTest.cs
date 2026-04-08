@@ -13,36 +13,36 @@ public class StyleAnalyzeResponseTest : TestBase
     {
         var model = new StyleAnalyzeResponse
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
+            TweetCount = 50,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    AuthorUsername = "authorUsername",
-                    CreatedAt = "createdAt",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
+                    AuthorUsername = "elonmusk",
+                    CreatedAt = "2025-01-15T12:00:00Z",
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
-        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         bool expectedIsOwnAccount = true;
-        long expectedTweetCount = 0;
+        long expectedTweetCount = 50;
         List<StyleAnalyzeResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
-                AuthorUsername = "authorUsername",
-                CreatedAt = "createdAt",
+                ID = "1234567890",
+                Text = "Just launched our new feature!",
+                AuthorUsername = "elonmusk",
+                CreatedAt = "2025-01-15T12:00:00Z",
             },
         ];
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedFetchedAt, model.FetchedAt);
         Assert.Equal(expectedIsOwnAccount, model.IsOwnAccount);
@@ -60,20 +60,20 @@ public class StyleAnalyzeResponseTest : TestBase
     {
         var model = new StyleAnalyzeResponse
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
+            TweetCount = 50,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    AuthorUsername = "authorUsername",
-                    CreatedAt = "createdAt",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
+                    AuthorUsername = "elonmusk",
+                    CreatedAt = "2025-01-15T12:00:00Z",
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -90,20 +90,20 @@ public class StyleAnalyzeResponseTest : TestBase
     {
         var model = new StyleAnalyzeResponse
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
+            TweetCount = 50,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    AuthorUsername = "authorUsername",
-                    CreatedAt = "createdAt",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
+                    AuthorUsername = "elonmusk",
+                    CreatedAt = "2025-01-15T12:00:00Z",
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -113,20 +113,20 @@ public class StyleAnalyzeResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedFetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         bool expectedIsOwnAccount = true;
-        long expectedTweetCount = 0;
+        long expectedTweetCount = 50;
         List<StyleAnalyzeResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
-                AuthorUsername = "authorUsername",
-                CreatedAt = "createdAt",
+                ID = "1234567890",
+                Text = "Just launched our new feature!",
+                AuthorUsername = "elonmusk",
+                CreatedAt = "2025-01-15T12:00:00Z",
             },
         ];
-        string expectedXUsername = "xUsername";
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedFetchedAt, deserialized.FetchedAt);
         Assert.Equal(expectedIsOwnAccount, deserialized.IsOwnAccount);
@@ -144,20 +144,20 @@ public class StyleAnalyzeResponseTest : TestBase
     {
         var model = new StyleAnalyzeResponse
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
+            TweetCount = 50,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    AuthorUsername = "authorUsername",
-                    CreatedAt = "createdAt",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
+                    AuthorUsername = "elonmusk",
+                    CreatedAt = "2025-01-15T12:00:00Z",
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -168,20 +168,20 @@ public class StyleAnalyzeResponseTest : TestBase
     {
         var model = new StyleAnalyzeResponse
         {
-            FetchedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            FetchedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             IsOwnAccount = true,
-            TweetCount = 0,
+            TweetCount = 50,
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
-                    AuthorUsername = "authorUsername",
-                    CreatedAt = "createdAt",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
+                    AuthorUsername = "elonmusk",
+                    CreatedAt = "2025-01-15T12:00:00Z",
                 },
             ],
-            XUsername = "xUsername",
+            XUsername = "elonmusk",
         };
 
         StyleAnalyzeResponse copied = new(model);
@@ -197,16 +197,16 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            AuthorUsername = "authorUsername",
-            CreatedAt = "createdAt",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+            AuthorUsername = "elonmusk",
+            CreatedAt = "2025-01-15T12:00:00Z",
         };
 
-        string expectedID = "id";
-        string expectedText = "text";
-        string expectedAuthorUsername = "authorUsername";
-        string expectedCreatedAt = "createdAt";
+        string expectedID = "1234567890";
+        string expectedText = "Just launched our new feature!";
+        string expectedAuthorUsername = "elonmusk";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedText, model.Text);
@@ -219,10 +219,10 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            AuthorUsername = "authorUsername",
-            CreatedAt = "createdAt",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+            AuthorUsername = "elonmusk",
+            CreatedAt = "2025-01-15T12:00:00Z",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -239,10 +239,10 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            AuthorUsername = "authorUsername",
-            CreatedAt = "createdAt",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+            AuthorUsername = "elonmusk",
+            CreatedAt = "2025-01-15T12:00:00Z",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -252,10 +252,10 @@ public class StyleAnalyzeResponseTweetTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedText = "text";
-        string expectedAuthorUsername = "authorUsername";
-        string expectedCreatedAt = "createdAt";
+        string expectedID = "1234567890";
+        string expectedText = "Just launched our new feature!";
+        string expectedAuthorUsername = "elonmusk";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedText, deserialized.Text);
@@ -268,10 +268,10 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            AuthorUsername = "authorUsername",
-            CreatedAt = "createdAt",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+            AuthorUsername = "elonmusk",
+            CreatedAt = "2025-01-15T12:00:00Z",
         };
 
         model.Validate();
@@ -280,7 +280,11 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new StyleAnalyzeResponseTweet { ID = "id", Text = "text" };
+        var model = new StyleAnalyzeResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+        };
 
         Assert.Null(model.AuthorUsername);
         Assert.False(model.RawData.ContainsKey("authorUsername"));
@@ -291,7 +295,11 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new StyleAnalyzeResponseTweet { ID = "id", Text = "text" };
+        var model = new StyleAnalyzeResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+        };
 
         model.Validate();
     }
@@ -301,8 +309,8 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
 
             // Null should be interpreted as omitted for these properties
             AuthorUsername = null,
@@ -320,8 +328,8 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
 
             // Null should be interpreted as omitted for these properties
             AuthorUsername = null,
@@ -336,10 +344,10 @@ public class StyleAnalyzeResponseTweetTest : TestBase
     {
         var model = new StyleAnalyzeResponseTweet
         {
-            ID = "id",
-            Text = "text",
-            AuthorUsername = "authorUsername",
-            CreatedAt = "createdAt",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+            AuthorUsername = "elonmusk",
+            CreatedAt = "2025-01-15T12:00:00Z",
         };
 
         StyleAnalyzeResponseTweet copied = new(model);

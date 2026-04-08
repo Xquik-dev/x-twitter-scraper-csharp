@@ -24,7 +24,7 @@ public record class MediaUploadParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) uploading media
     /// </summary>
     public required string Account
     {

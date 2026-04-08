@@ -11,12 +11,12 @@ public class JoinDeleteAllResponseTest : TestBase
     {
         var model = new JoinDeleteAllResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
-        string expectedCommunityID = "communityId";
-        string expectedCommunityName = "communityName";
+        string expectedCommunityID = "1500000000000000000";
+        string expectedCommunityName = "Tesla Fans";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedCommunityID, model.CommunityID);
@@ -29,8 +29,8 @@ public class JoinDeleteAllResponseTest : TestBase
     {
         var model = new JoinDeleteAllResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -47,8 +47,8 @@ public class JoinDeleteAllResponseTest : TestBase
     {
         var model = new JoinDeleteAllResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -58,8 +58,8 @@ public class JoinDeleteAllResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedCommunityID = "communityId";
-        string expectedCommunityName = "communityName";
+        string expectedCommunityID = "1500000000000000000";
+        string expectedCommunityName = "Tesla Fans";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedCommunityID, deserialized.CommunityID);
@@ -72,8 +72,8 @@ public class JoinDeleteAllResponseTest : TestBase
     {
         var model = new JoinDeleteAllResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         model.Validate();
@@ -84,8 +84,8 @@ public class JoinDeleteAllResponseTest : TestBase
     {
         var model = new JoinDeleteAllResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         JoinDeleteAllResponse copied = new(model);

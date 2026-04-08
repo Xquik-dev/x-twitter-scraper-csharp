@@ -26,8 +26,8 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         List<DrawListResponseDraw> expectedDraws =
@@ -43,8 +43,8 @@ public class DrawListResponseTest : TestBase
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedDraws.Count, model.Draws.Count);
         for (int i = 0; i < expectedDraws.Count; i++)
@@ -73,8 +73,8 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -104,8 +104,8 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -128,8 +128,8 @@ public class DrawListResponseTest : TestBase
                 DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedDraws.Count, deserialized.Draws.Count);
         for (int i = 0; i < expectedDraws.Count; i++)
@@ -158,8 +158,8 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         model.Validate();
@@ -183,7 +183,7 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         Assert.Null(model.NextCursor);
@@ -208,7 +208,7 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         model.Validate();
@@ -232,7 +232,7 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -260,7 +260,7 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -287,8 +287,8 @@ public class DrawListResponseTest : TestBase
                     DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         DrawListResponse copied = new(model);

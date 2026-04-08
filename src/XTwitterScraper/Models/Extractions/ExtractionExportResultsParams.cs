@@ -21,6 +21,9 @@ public record class ExtractionExportResultsParams : ParamsBase
 {
     public string? ID { get; init; }
 
+    /// <summary>
+    /// Export file format
+    /// </summary>
     public ApiEnum<string, Format>? Format
     {
         get
@@ -144,6 +147,9 @@ public record class ExtractionExportResultsParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Export file format
+/// </summary>
 [JsonConverter(typeof(FormatConverter))]
 public enum Format
 {

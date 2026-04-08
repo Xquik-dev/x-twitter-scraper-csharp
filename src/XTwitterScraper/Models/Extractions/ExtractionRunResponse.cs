@@ -34,6 +34,9 @@ public sealed record class ExtractionRunResponse : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionRunResponseToolType> ToolType
     {
         get
@@ -133,6 +136,9 @@ sealed class ExtractionRunResponseStatusConverter : JsonConverter<ExtractionRunR
     }
 }
 
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionRunResponseToolTypeConverter))]
 public enum ExtractionRunResponseToolType
 {

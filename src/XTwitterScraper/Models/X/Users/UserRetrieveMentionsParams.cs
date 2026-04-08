@@ -20,7 +20,7 @@ public record class UserRetrieveMentionsParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for mentions
     /// </summary>
     public string? Cursor
     {
@@ -41,7 +41,7 @@ public record class UserRetrieveMentionsParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter after
+    /// Unix timestamp - return mentions after this time
     /// </summary>
     public string? SinceTime
     {
@@ -62,7 +62,7 @@ public record class UserRetrieveMentionsParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter before
+    /// Unix timestamp - return mentions before this time
     /// </summary>
     public string? UntilTime
     {

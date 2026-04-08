@@ -10,6 +10,9 @@ using System = System;
 
 namespace XTwitterScraper.Models.X.Tweets;
 
+/// <summary>
+/// Full tweet with text, engagement metrics, media, and metadata.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<TweetDetail, TweetDetailFromRaw>))]
 public sealed record class TweetDetail : JsonModel
 {
@@ -135,12 +138,14 @@ public sealed record class TweetDetail : JsonModel
     /// <summary>
     /// Parsed entities from the tweet text (URLs, mentions, hashtags, media)
     /// </summary>
-    public JsonElement? Entities
+    public IReadOnlyDictionary<string, JsonElement>? Entities
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<JsonElement>("entities");
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "entities"
+            );
         }
         init
         {
@@ -149,7 +154,10 @@ public sealed record class TweetDetail : JsonModel
                 return;
             }
 
-            this._rawData.Set("entities", value);
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "entities",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -243,12 +251,14 @@ public sealed record class TweetDetail : JsonModel
     /// <summary>
     /// The quoted tweet object, present when isQuoteStatus is true
     /// </summary>
-    public JsonElement? QuotedTweet
+    public IReadOnlyDictionary<string, JsonElement>? QuotedTweet
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<JsonElement>("quoted_tweet");
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "quoted_tweet"
+            );
         }
         init
         {
@@ -257,7 +267,10 @@ public sealed record class TweetDetail : JsonModel
                 return;
             }
 
-            this._rawData.Set("quoted_tweet", value);
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "quoted_tweet",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 

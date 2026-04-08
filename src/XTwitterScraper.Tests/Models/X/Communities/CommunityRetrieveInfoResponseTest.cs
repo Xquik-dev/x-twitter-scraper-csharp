@@ -14,14 +14,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
         {
             Community = new()
             {
-                ID = "id",
+                ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
                 Description = "description",
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
-                Name = "name",
+                Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
                 Rules =
                 [
@@ -37,14 +37,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
 
         Community expectedCommunity = new()
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -67,14 +67,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
         {
             Community = new()
             {
-                ID = "id",
+                ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
                 Description = "description",
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
-                Name = "name",
+                Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
                 Rules =
                 [
@@ -104,14 +104,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
         {
             Community = new()
             {
-                ID = "id",
+                ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
                 Description = "description",
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
-                Name = "name",
+                Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
                 Rules =
                 [
@@ -134,14 +134,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
 
         Community expectedCommunity = new()
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -164,14 +164,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
         {
             Community = new()
             {
-                ID = "id",
+                ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
                 Description = "description",
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
-                Name = "name",
+                Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
                 Rules =
                 [
@@ -195,14 +195,14 @@ public class CommunityRetrieveInfoResponseTest : TestBase
         {
             Community = new()
             {
-                ID = "id",
+                ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
                 Description = "description",
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
-                Name = "name",
+                Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
                 Rules =
                 [
@@ -229,14 +229,14 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -249,14 +249,14 @@ public class CommunityTest : TestBase
             ],
         };
 
-        string expectedID = "id";
+        string expectedID = "1500000000000000000";
         string expectedBannerUrl = "banner_url";
         string expectedCreatedAt = "created_at";
         string expectedDescription = "description";
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
-        string expectedName = "name";
+        string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
         List<Rule> expectedRules =
         [
@@ -290,14 +290,14 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -321,14 +321,14 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -348,14 +348,14 @@ public class CommunityTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "1500000000000000000";
         string expectedBannerUrl = "banner_url";
         string expectedCreatedAt = "created_at";
         string expectedDescription = "description";
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
-        string expectedName = "name";
+        string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
         List<Rule> expectedRules =
         [
@@ -389,14 +389,14 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [
@@ -415,7 +415,7 @@ public class CommunityTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Community { ID = "id" };
+        var model = new Community { ID = "1500000000000000000" };
 
         Assert.Null(model.BannerUrl);
         Assert.False(model.RawData.ContainsKey("banner_url"));
@@ -440,7 +440,7 @@ public class CommunityTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Community { ID = "id" };
+        var model = new Community { ID = "1500000000000000000" };
 
         model.Validate();
     }
@@ -450,7 +450,7 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
 
             // Null should be interpreted as omitted for these properties
             BannerUrl = null,
@@ -489,7 +489,7 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
 
             // Null should be interpreted as omitted for these properties
             BannerUrl = null,
@@ -511,14 +511,14 @@ public class CommunityTest : TestBase
     {
         var model = new Community
         {
-            ID = "id",
+            ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
             Description = "description",
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
-            Name = "name",
+            Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
             Rules =
             [

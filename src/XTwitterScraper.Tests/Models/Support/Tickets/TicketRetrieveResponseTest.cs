@@ -13,36 +13,36 @@ public class TicketRetrieveResponseTest : TestBase
     {
         var model = new TicketRetrieveResponse
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Messages =
             [
                 new()
                 {
-                    Body = "body",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Sender = "sender",
+                    Body = "I am unable to connect my X account.",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Sender = "user",
                 },
             ],
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<Message> expectedMessages =
         [
             new()
             {
-                Body = "body",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Sender = "sender",
+                Body = "I am unable to connect my X account.",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Sender = "user",
             },
         ];
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
-        string expectedSubject = "subject";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "open";
+        string expectedSubject = "Cannot connect X account";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.NotNull(model.Messages);
@@ -62,20 +62,20 @@ public class TicketRetrieveResponseTest : TestBase
     {
         var model = new TicketRetrieveResponse
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Messages =
             [
                 new()
                 {
-                    Body = "body",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Sender = "sender",
+                    Body = "I am unable to connect my X account.",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Sender = "user",
                 },
             ],
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -92,20 +92,20 @@ public class TicketRetrieveResponseTest : TestBase
     {
         var model = new TicketRetrieveResponse
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Messages =
             [
                 new()
                 {
-                    Body = "body",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Sender = "sender",
+                    Body = "I am unable to connect my X account.",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Sender = "user",
                 },
             ],
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -115,20 +115,20 @@ public class TicketRetrieveResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<Message> expectedMessages =
         [
             new()
             {
-                Body = "body",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Sender = "sender",
+                Body = "I am unable to connect my X account.",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Sender = "user",
             },
         ];
-        string expectedPublicID = "publicId";
-        string expectedStatus = "status";
-        string expectedSubject = "subject";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedPublicID = "tk_abc123";
+        string expectedStatus = "open";
+        string expectedSubject = "Cannot connect X account";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.NotNull(deserialized.Messages);
@@ -148,20 +148,20 @@ public class TicketRetrieveResponseTest : TestBase
     {
         var model = new TicketRetrieveResponse
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Messages =
             [
                 new()
                 {
-                    Body = "body",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Sender = "sender",
+                    Body = "I am unable to connect my X account.",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Sender = "user",
                 },
             ],
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         model.Validate();
@@ -244,20 +244,20 @@ public class TicketRetrieveResponseTest : TestBase
     {
         var model = new TicketRetrieveResponse
         {
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Messages =
             [
                 new()
                 {
-                    Body = "body",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Sender = "sender",
+                    Body = "I am unable to connect my X account.",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Sender = "user",
                 },
             ],
-            PublicID = "publicId",
-            Status = "status",
-            Subject = "subject",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PublicID = "tk_abc123",
+            Status = "open",
+            Subject = "Cannot connect X account",
+            UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
 
         TicketRetrieveResponse copied = new(model);
@@ -273,14 +273,14 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            Body = "body",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Sender = "sender",
+            Body = "I am unable to connect my X account.",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Sender = "user",
         };
 
-        string expectedBody = "body";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedSender = "sender";
+        string expectedBody = "I am unable to connect my X account.";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedSender = "user";
 
         Assert.Equal(expectedBody, model.Body);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -292,9 +292,9 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            Body = "body",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Sender = "sender",
+            Body = "I am unable to connect my X account.",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Sender = "user",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -308,9 +308,9 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            Body = "body",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Sender = "sender",
+            Body = "I am unable to connect my X account.",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Sender = "user",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -320,9 +320,9 @@ public class MessageTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedBody = "body";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedSender = "sender";
+        string expectedBody = "I am unable to connect my X account.";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedSender = "user";
 
         Assert.Equal(expectedBody, deserialized.Body);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -334,9 +334,9 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            Body = "body",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Sender = "sender",
+            Body = "I am unable to connect my X account.",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Sender = "user",
         };
 
         model.Validate();
@@ -401,9 +401,9 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            Body = "body",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Sender = "sender",
+            Body = "I am unable to connect my X account.",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Sender = "user",
         };
 
         Message copied = new(model);

@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Drafts;
 
+/// <summary>
+/// Full tweet draft including update timestamp.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DraftRetrieveResponse, DraftRetrieveResponseFromRaw>))]
 public sealed record class DraftRetrieveResponse : JsonModel
 {

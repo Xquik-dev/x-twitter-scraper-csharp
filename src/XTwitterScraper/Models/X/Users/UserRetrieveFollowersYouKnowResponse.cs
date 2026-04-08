@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Users;
 
+/// <summary>
+/// Paginated list of user profiles with cursor-based navigation.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
         UserRetrieveFollowersYouKnowResponse,
@@ -36,16 +39,18 @@ public sealed record class UserRetrieveFollowersYouKnowResponse : JsonModel
         init { this._rawData.Set("next_cursor", value); }
     }
 
-    public required IReadOnlyList<User> Users
+    public required IReadOnlyList<UserRetrieveFollowersYouKnowResponseUser> Users
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<User>>("users");
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<UserRetrieveFollowersYouKnowResponseUser>
+            >("users");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<User>>(
+            this._rawData.Set<ImmutableArray<UserRetrieveFollowersYouKnowResponseUser>>(
                 "users",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -104,8 +109,16 @@ class UserRetrieveFollowersYouKnowResponseFromRaw
     ) => UserRetrieveFollowersYouKnowResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<User, UserFromRaw>))]
-public sealed record class User : JsonModel
+/// <summary>
+/// X user profile with bio, follower counts, and verification status.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        UserRetrieveFollowersYouKnowResponseUser,
+        UserRetrieveFollowersYouKnowResponseUserFromRaw
+    >)
+)]
+public sealed record class UserRetrieveFollowersYouKnowResponseUser : JsonModel
 {
     public required string ID
     {
@@ -297,37 +310,45 @@ public sealed record class User : JsonModel
         _ = this.Verified;
     }
 
-    public User() { }
+    public UserRetrieveFollowersYouKnowResponseUser() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public User(User user)
-        : base(user) { }
+    public UserRetrieveFollowersYouKnowResponseUser(
+        UserRetrieveFollowersYouKnowResponseUser userRetrieveFollowersYouKnowResponseUser
+    )
+        : base(userRetrieveFollowersYouKnowResponseUser) { }
 #pragma warning restore CS8618
 
-    public User(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UserRetrieveFollowersYouKnowResponseUser(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    User(FrozenDictionary<string, JsonElement> rawData)
+    UserRetrieveFollowersYouKnowResponseUser(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UserFromRaw.FromRawUnchecked"/>
-    public static User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="UserRetrieveFollowersYouKnowResponseUserFromRaw.FromRawUnchecked"/>
+    public static UserRetrieveFollowersYouKnowResponseUser FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UserFromRaw : IFromRawJson<User>
+class UserRetrieveFollowersYouKnowResponseUserFromRaw
+    : IFromRawJson<UserRetrieveFollowersYouKnowResponseUser>
 {
     /// <inheritdoc/>
-    public User FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        User.FromRawUnchecked(rawData);
+    public UserRetrieveFollowersYouKnowResponseUser FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => UserRetrieveFollowersYouKnowResponseUser.FromRawUnchecked(rawData);
 }

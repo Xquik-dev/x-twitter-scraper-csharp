@@ -7,9 +7,10 @@ public class TweetServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
-        await this.client.X.Communities.Tweets.List(
+        var tweets = await this.client.X.Communities.Tweets.List(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
+        tweets.Validate();
     }
 }

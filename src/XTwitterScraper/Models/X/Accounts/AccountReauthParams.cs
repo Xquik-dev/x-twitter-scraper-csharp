@@ -27,7 +27,7 @@ public record class AccountReauthParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Account password
+    /// Updated account password
     /// </summary>
     public required string Password
     {
@@ -40,7 +40,7 @@ public record class AccountReauthParams : ParamsBase
     }
 
     /// <summary>
-    /// TOTP secret for 2FA
+    /// TOTP secret for 2FA re-authentication
     /// </summary>
     public string? TotpSecret
     {

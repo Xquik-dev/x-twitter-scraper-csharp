@@ -42,7 +42,10 @@ public interface ITweetService
     /// <summary>
     /// Get multiple tweets by IDs
     /// </summary>
-    Task List(TweetListParams parameters, CancellationToken cancellationToken = default);
+    Task<TweetListResponse> List(
+        TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// Get users who liked a tweet
@@ -158,7 +161,7 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> List(
+    Task<HttpResponse<TweetListResponse>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     );

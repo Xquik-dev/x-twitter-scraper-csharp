@@ -7,30 +7,33 @@ public class ListServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveFollowers_Works()
     {
-        await this.client.X.Lists.RetrieveFollowers(
+        var response = await this.client.X.Lists.RetrieveFollowers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveMembers_Works()
     {
-        await this.client.X.Lists.RetrieveMembers(
+        var response = await this.client.X.Lists.RetrieveMembers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveTweets_Works()
     {
-        await this.client.X.Lists.RetrieveTweets(
+        var response = await this.client.X.Lists.RetrieveTweets(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 }

@@ -16,7 +16,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -25,7 +25,7 @@ public class ExtractionJobTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, ExtractionJobStatus> expectedStatus = ExtractionJobStatus.Running;
         ApiEnum<string, ExtractionJobToolType> expectedToolType =
-            ExtractionJobToolType.ArticleExtractor;
+            ExtractionJobToolType.FollowerExplorer;
         long expectedTotalResults = 0;
         DateTimeOffset expectedCompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
@@ -45,7 +45,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -67,7 +67,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -83,7 +83,7 @@ public class ExtractionJobTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, ExtractionJobStatus> expectedStatus = ExtractionJobStatus.Running;
         ApiEnum<string, ExtractionJobToolType> expectedToolType =
-            ExtractionJobToolType.ArticleExtractor;
+            ExtractionJobToolType.FollowerExplorer;
         long expectedTotalResults = 0;
         DateTimeOffset expectedCompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
@@ -103,7 +103,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -119,7 +119,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
         };
 
@@ -135,7 +135,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
         };
 
@@ -150,7 +150,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
 
             // Null should be interpreted as omitted for these properties
@@ -169,7 +169,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
 
             // Null should be interpreted as omitted for these properties
@@ -187,7 +187,7 @@ public class ExtractionJobTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionJobStatus.Running,
-            ToolType = ExtractionJobToolType.ArticleExtractor,
+            ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };

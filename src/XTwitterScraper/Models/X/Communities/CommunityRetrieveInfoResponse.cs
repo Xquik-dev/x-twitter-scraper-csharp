@@ -86,7 +86,7 @@ class CommunityRetrieveInfoResponseFromRaw : IFromRawJson<CommunityRetrieveInfoR
 public sealed record class Community : JsonModel
 {
     /// <summary>
-    /// Community ID
+    /// Unique community identifier
     /// </summary>
     public required string ID
     {
@@ -141,7 +141,7 @@ public sealed record class Community : JsonModel
     }
 
     /// <summary>
-    /// Community description
+    /// About text for the community
     /// </summary>
     public string? Description
     {
@@ -225,7 +225,7 @@ public sealed record class Community : JsonModel
     }
 
     /// <summary>
-    /// Community name
+    /// Display name of the community
     /// </summary>
     public string? Name
     {

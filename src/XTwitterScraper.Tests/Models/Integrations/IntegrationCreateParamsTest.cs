@@ -14,18 +14,19 @@ public class IntegrationCreateParamsTest : TestBase
     {
         var parameters = new Integrations::IntegrationCreateParams
         {
-            Config = new("chatId"),
-            EventTypes = [Integrations::EventType.TweetNew],
-            Name = "name",
+            Config = new("-1001234567890"),
+            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
 
-        Integrations::Config expectedConfig = new("chatId");
+        Integrations::Config expectedConfig = new("-1001234567890");
         List<ApiEnum<string, Integrations::EventType>> expectedEventTypes =
         [
             Integrations::EventType.TweetNew,
+            Integrations::EventType.FollowerGained,
         ];
-        string expectedName = "name";
+        string expectedName = "My Telegram Bot";
         ApiEnum<string, Integrations::Type> expectedType = Integrations::Type.Telegram;
 
         Assert.Equal(expectedConfig, parameters.Config);
@@ -43,9 +44,9 @@ public class IntegrationCreateParamsTest : TestBase
     {
         Integrations::IntegrationCreateParams parameters = new()
         {
-            Config = new("chatId"),
-            EventTypes = [Integrations::EventType.TweetNew],
-            Name = "name",
+            Config = new("-1001234567890"),
+            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
 
@@ -59,9 +60,9 @@ public class IntegrationCreateParamsTest : TestBase
     {
         var parameters = new Integrations::IntegrationCreateParams
         {
-            Config = new("chatId"),
-            EventTypes = [Integrations::EventType.TweetNew],
-            Name = "name",
+            Config = new("-1001234567890"),
+            EventTypes = [Integrations::EventType.TweetNew, Integrations::EventType.FollowerGained],
+            Name = "My Telegram Bot",
             Type = Integrations::Type.Telegram,
         };
 
@@ -76,9 +77,9 @@ public class ConfigTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Integrations::Config { ChatID = "chatId" };
+        var model = new Integrations::Config { ChatID = "-1001234567890" };
 
-        string expectedChatID = "chatId";
+        string expectedChatID = "-1001234567890";
 
         Assert.Equal(expectedChatID, model.ChatID);
     }
@@ -86,7 +87,7 @@ public class ConfigTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Integrations::Config { ChatID = "chatId" };
+        var model = new Integrations::Config { ChatID = "-1001234567890" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Integrations::Config>(
@@ -100,7 +101,7 @@ public class ConfigTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Integrations::Config { ChatID = "chatId" };
+        var model = new Integrations::Config { ChatID = "-1001234567890" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Integrations::Config>(
@@ -109,7 +110,7 @@ public class ConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedChatID = "chatId";
+        string expectedChatID = "-1001234567890";
 
         Assert.Equal(expectedChatID, deserialized.ChatID);
     }
@@ -117,7 +118,7 @@ public class ConfigTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Integrations::Config { ChatID = "chatId" };
+        var model = new Integrations::Config { ChatID = "-1001234567890" };
 
         model.Validate();
     }
@@ -125,7 +126,7 @@ public class ConfigTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Integrations::Config { ChatID = "chatId" };
+        var model = new Integrations::Config { ChatID = "-1001234567890" };
 
         Integrations::Config copied = new(model);
 

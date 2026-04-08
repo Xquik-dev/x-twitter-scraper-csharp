@@ -12,9 +12,9 @@ public class ProfileUpdateBannerParamsTest : TestBase
     {
         BinaryContent file = Encoding.UTF8.GetBytes("Example data");
 
-        var parameters = new ProfileUpdateBannerParams { Account = "account", File = file };
+        var parameters = new ProfileUpdateBannerParams { Account = "@elonmusk", File = file };
 
-        string expectedAccount = "account";
+        string expectedAccount = "@elonmusk";
         BinaryContent expectedFile = file;
 
         Assert.Equal(expectedAccount, parameters.Account);
@@ -26,7 +26,7 @@ public class ProfileUpdateBannerParamsTest : TestBase
     {
         ProfileUpdateBannerParams parameters = new()
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = Encoding.UTF8.GetBytes("Example data"),
         };
 
@@ -40,7 +40,7 @@ public class ProfileUpdateBannerParamsTest : TestBase
     {
         var parameters = new ProfileUpdateBannerParams
         {
-            Account = "account",
+            Account = "@elonmusk",
             File = Encoding.UTF8.GetBytes("Example data"),
         };
 

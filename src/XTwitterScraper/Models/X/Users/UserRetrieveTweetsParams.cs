@@ -20,7 +20,7 @@ public record class UserRetrieveTweetsParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for user tweets
     /// </summary>
     public string? Cursor
     {

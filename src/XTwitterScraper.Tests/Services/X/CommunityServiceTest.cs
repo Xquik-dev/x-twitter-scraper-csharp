@@ -8,7 +8,7 @@ public class CommunityServiceTest : TestBase
     public async Task Create_Works()
     {
         var community = await this.client.X.Communities.Create(
-            new() { Account = "account", Name = "name" },
+            new() { Account = "@elonmusk", Name = "Example Name" },
             TestContext.Current.CancellationToken
         );
         community.Validate();
@@ -19,7 +19,7 @@ public class CommunityServiceTest : TestBase
     {
         var community = await this.client.X.Communities.Delete(
             "id",
-            new() { Account = "account", CommunityName = "community_name" },
+            new() { Account = "@elonmusk", CommunityName = "Tesla Fans" },
             TestContext.Current.CancellationToken
         );
         community.Validate();
@@ -39,29 +39,32 @@ public class CommunityServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveMembers_Works()
     {
-        await this.client.X.Communities.RetrieveMembers(
+        var response = await this.client.X.Communities.RetrieveMembers(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveModerators_Works()
     {
-        await this.client.X.Communities.RetrieveModerators(
+        var response = await this.client.X.Communities.RetrieveModerators(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveSearch_Works()
     {
-        await this.client.X.Communities.RetrieveSearch(
+        var response = await this.client.X.Communities.RetrieveSearch(
             new() { Q = "q" },
             TestContext.Current.CancellationToken
         );
+        response.Validate();
     }
 }

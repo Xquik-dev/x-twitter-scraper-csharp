@@ -8,6 +8,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.X.Communities;
 
+/// <summary>
+/// Result of a community join or leave action.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<CommunityActionResult, CommunityActionResultFromRaw>))]
 public sealed record class CommunityActionResult : JsonModel
 {

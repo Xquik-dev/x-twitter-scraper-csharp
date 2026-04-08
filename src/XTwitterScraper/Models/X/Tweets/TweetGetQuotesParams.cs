@@ -20,7 +20,7 @@ public record class TweetGetQuotesParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for quote tweets
     /// </summary>
     public string? Cursor
     {
@@ -41,7 +41,7 @@ public record class TweetGetQuotesParams : ParamsBase
     }
 
     /// <summary>
-    /// Include replies (default false)
+    /// Include reply quotes (default false)
     /// </summary>
     public bool? IncludeReplies
     {
@@ -62,7 +62,7 @@ public record class TweetGetQuotesParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter after
+    /// Unix timestamp - return quotes posted after this time
     /// </summary>
     public string? SinceTime
     {
@@ -83,7 +83,7 @@ public record class TweetGetQuotesParams : ParamsBase
     }
 
     /// <summary>
-    /// Unix timestamp - filter before
+    /// Unix timestamp - return quotes posted before this time
     /// </summary>
     public string? UntilTime
     {

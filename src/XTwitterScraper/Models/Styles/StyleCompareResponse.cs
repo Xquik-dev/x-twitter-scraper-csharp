@@ -12,6 +12,9 @@ namespace XTwitterScraper.Models.Styles;
 [JsonConverter(typeof(JsonModelConverter<StyleCompareResponse, StyleCompareResponseFromRaw>))]
 public sealed record class StyleCompareResponse : JsonModel
 {
+    /// <summary>
+    /// Full style profile with sampled tweets used for tone analysis.
+    /// </summary>
     public required Style1 Style1
     {
         get
@@ -22,6 +25,9 @@ public sealed record class StyleCompareResponse : JsonModel
         init { this._rawData.Set("style1", value); }
     }
 
+    /// <summary>
+    /// Full style profile with sampled tweets used for tone analysis.
+    /// </summary>
     public required Style2 Style2
     {
         get
@@ -77,6 +83,9 @@ class StyleCompareResponseFromRaw : IFromRawJson<StyleCompareResponse>
     ) => StyleCompareResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Full style profile with sampled tweets used for tone analysis.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Style1, Style1FromRaw>))]
 public sealed record class Style1 : JsonModel
 {
@@ -287,6 +296,9 @@ class Style1TweetFromRaw : IFromRawJson<Style1Tweet>
         Style1Tweet.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Full style profile with sampled tweets used for tone analysis.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Style2, Style2FromRaw>))]
 public sealed record class Style2 : JsonModel
 {

@@ -93,6 +93,9 @@ class RadarRetrieveTrendingTopicsResponseFromRaw : IFromRawJson<RadarRetrieveTre
     ) => RadarRetrieveTrendingTopicsResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Trending topic with score, category, source, and region.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Item, ItemFromRaw>))]
 public sealed record class Item : JsonModel
 {

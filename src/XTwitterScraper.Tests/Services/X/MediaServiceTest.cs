@@ -19,7 +19,7 @@ public class MediaServiceTest : TestBase
     public async Task Upload_Works()
     {
         var response = await this.client.X.Media.Upload(
-            new() { Account = "account", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
             TestContext.Current.CancellationToken
         );
         response.Validate();

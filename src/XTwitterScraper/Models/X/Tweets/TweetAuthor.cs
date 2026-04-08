@@ -7,6 +7,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Tweets;
 
+/// <summary>
+/// Author of a tweet with follower count and verification status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<TweetAuthor, TweetAuthorFromRaw>))]
 public sealed record class TweetAuthor : JsonModel
 {

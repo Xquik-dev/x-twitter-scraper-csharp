@@ -85,6 +85,9 @@ class IntegrationListResponseFromRaw : IFromRawJson<IntegrationListResponse>
     ) => IntegrationListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Third-party integration (e.g. Telegram) subscribed to monitor events.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
         IntegrationListResponseIntegration,
@@ -132,6 +135,9 @@ public sealed record class IntegrationListResponseIntegration : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<
         ApiEnum<string, IntegrationListResponseIntegrationEventType>
     > EventTypes
@@ -320,6 +326,9 @@ class IntegrationListResponseIntegrationFromRaw : IFromRawJson<IntegrationListRe
     ) => IntegrationListResponseIntegration.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(IntegrationListResponseIntegrationEventTypeConverter))]
 public enum IntegrationListResponseIntegrationEventType
 {

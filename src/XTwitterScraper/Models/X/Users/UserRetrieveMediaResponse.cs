@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Users;
 
+/// <summary>
+/// Paginated list of tweets with cursor-based navigation.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<UserRetrieveMediaResponse, UserRetrieveMediaResponseFromRaw>)
 )]
@@ -100,6 +103,9 @@ class UserRetrieveMediaResponseFromRaw : IFromRawJson<UserRetrieveMediaResponse>
     ) => UserRetrieveMediaResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Tweet returned from search results with inline author info.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
         UserRetrieveMediaResponseTweet,
@@ -183,7 +189,7 @@ public sealed record class UserRetrieveMediaResponseTweet : JsonModel
     }
 
     /// <summary>
-    /// Whether this is a Note Tweet (long-form post, up to 25,000 characters)
+    /// True for Note Tweets (long-form content, up to 25,000 characters)
     /// </summary>
     public bool? IsNoteTweet
     {

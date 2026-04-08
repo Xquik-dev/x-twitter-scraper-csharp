@@ -104,6 +104,9 @@ class DraftListResponseFromRaw : IFromRawJson<DraftListResponse>
         DraftListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Saved tweet draft with optional topic and goal.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DraftListResponseDraft, DraftListResponseDraftFromRaw>))]
 public sealed record class DraftListResponseDraft : JsonModel
 {

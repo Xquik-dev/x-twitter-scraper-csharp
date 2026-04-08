@@ -9,9 +9,9 @@ public class TicketCreateResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TicketCreateResponse { PublicID = "publicId" };
+        var model = new TicketCreateResponse { PublicID = "tk_abc123" };
 
-        string expectedPublicID = "publicId";
+        string expectedPublicID = "tk_abc123";
 
         Assert.Equal(expectedPublicID, model.PublicID);
     }
@@ -19,7 +19,7 @@ public class TicketCreateResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TicketCreateResponse { PublicID = "publicId" };
+        var model = new TicketCreateResponse { PublicID = "tk_abc123" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketCreateResponse>(
@@ -33,7 +33,7 @@ public class TicketCreateResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TicketCreateResponse { PublicID = "publicId" };
+        var model = new TicketCreateResponse { PublicID = "tk_abc123" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketCreateResponse>(
@@ -42,7 +42,7 @@ public class TicketCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedPublicID = "publicId";
+        string expectedPublicID = "tk_abc123";
 
         Assert.Equal(expectedPublicID, deserialized.PublicID);
     }
@@ -50,7 +50,7 @@ public class TicketCreateResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TicketCreateResponse { PublicID = "publicId" };
+        var model = new TicketCreateResponse { PublicID = "tk_abc123" };
 
         model.Validate();
     }
@@ -100,7 +100,7 @@ public class TicketCreateResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TicketCreateResponse { PublicID = "publicId" };
+        var model = new TicketCreateResponse { PublicID = "tk_abc123" };
 
         TicketCreateResponse copied = new(model);
 

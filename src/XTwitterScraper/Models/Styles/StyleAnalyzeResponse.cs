@@ -9,6 +9,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Styles;
 
+/// <summary>
+/// Full style profile with sampled tweets used for tone analysis.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<StyleAnalyzeResponse, StyleAnalyzeResponseFromRaw>))]
 public sealed record class StyleAnalyzeResponse : JsonModel
 {

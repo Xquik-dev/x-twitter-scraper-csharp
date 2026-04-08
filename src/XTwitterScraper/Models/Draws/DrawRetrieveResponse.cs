@@ -12,6 +12,9 @@ namespace XTwitterScraper.Models.Draws;
 [JsonConverter(typeof(JsonModelConverter<DrawRetrieveResponse, DrawRetrieveResponseFromRaw>))]
 public sealed record class DrawRetrieveResponse : JsonModel
 {
+    /// <summary>
+    /// Full giveaway draw with tweet metrics, entries, and timing.
+    /// </summary>
     public required Draw Draw
     {
         get
@@ -88,6 +91,9 @@ class DrawRetrieveResponseFromRaw : IFromRawJson<DrawRetrieveResponse>
     ) => DrawRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Full giveaway draw with tweet metrics, entries, and timing.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Draw, DrawFromRaw>))]
 public sealed record class Draw : JsonModel
 {
@@ -293,6 +299,9 @@ class DrawFromRaw : IFromRawJson<Draw>
         Draw.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Giveaway draw winner with position and backup flag.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<DrawRetrieveResponseWinner, DrawRetrieveResponseWinnerFromRaw>)
 )]

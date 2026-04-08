@@ -72,13 +72,13 @@ public interface ICommunityService
     /// <summary>
     /// Get community members
     /// </summary>
-    Task RetrieveMembers(
+    Task<CommunityRetrieveMembersResponse> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>
-    Task RetrieveMembers(
+    Task<CommunityRetrieveMembersResponse> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -87,13 +87,13 @@ public interface ICommunityService
     /// <summary>
     /// Get community moderators
     /// </summary>
-    Task RetrieveModerators(
+    Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>
-    Task RetrieveModerators(
+    Task<CommunityRetrieveModeratorsResponse> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -102,7 +102,7 @@ public interface ICommunityService
     /// <summary>
     /// Search tweets across communities
     /// </summary>
-    Task RetrieveSearch(
+    Task<CommunityRetrieveSearchResponse> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -170,13 +170,13 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/{id}/members</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveMembers(
+    Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveMembers(CommunityRetrieveMembersParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveMembers(
+    Task<HttpResponse<CommunityRetrieveMembersResponse>> RetrieveMembers(
         string id,
         CommunityRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -186,13 +186,13 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/{id}/moderators</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveModerators(
+    Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="RetrieveModerators(CommunityRetrieveModeratorsParams, CancellationToken)"/>
-    Task<HttpResponse> RetrieveModerators(
+    Task<HttpResponse<CommunityRetrieveModeratorsResponse>> RetrieveModerators(
         string id,
         CommunityRetrieveModeratorsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -202,7 +202,7 @@ public interface ICommunityServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/search</c>, but is otherwise the
     /// same as <see cref="ICommunityService.RetrieveSearch(CommunityRetrieveSearchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> RetrieveSearch(
+    Task<HttpResponse<CommunityRetrieveSearchResponse>> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );

@@ -84,6 +84,9 @@ class WebhookListResponseFromRaw : IFromRawJson<WebhookListResponse>
         WebhookListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Webhook endpoint registered to receive event deliveries.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<WebhookListResponseWebhook, WebhookListResponseWebhookFromRaw>)
 )]
@@ -109,6 +112,9 @@ public sealed record class WebhookListResponseWebhook : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, WebhookListResponseWebhookEventType>> EventTypes
     {
         get
@@ -198,6 +204,9 @@ class WebhookListResponseWebhookFromRaw : IFromRawJson<WebhookListResponseWebhoo
     ) => WebhookListResponseWebhook.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(WebhookListResponseWebhookEventTypeConverter))]
 public enum WebhookListResponseWebhookEventType
 {

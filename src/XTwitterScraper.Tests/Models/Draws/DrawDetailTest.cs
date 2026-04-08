@@ -12,7 +12,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -28,7 +28,7 @@ public class DrawDetailTest : TestBase
             DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string expectedID = "id";
+        string expectedID = "https://example.com/webhook";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -64,7 +64,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -94,7 +94,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -117,7 +117,7 @@ public class DrawDetailTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "https://example.com/webhook";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -153,7 +153,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -177,7 +177,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -201,7 +201,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -224,7 +224,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -251,7 +251,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -277,7 +277,7 @@ public class DrawDetailTest : TestBase
     {
         var model = new DrawDetail
         {
-            ID = "id",
+            ID = "https://example.com/webhook",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,

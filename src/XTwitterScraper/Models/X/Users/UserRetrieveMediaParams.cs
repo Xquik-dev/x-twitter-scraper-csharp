@@ -20,7 +20,7 @@ public record class UserRetrieveMediaParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for media tweets
     /// </summary>
     public string? Cursor
     {

@@ -20,7 +20,7 @@ public record class ListRetrieveTweetsParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for list tweets
     /// </summary>
     public string? Cursor
     {

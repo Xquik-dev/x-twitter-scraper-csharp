@@ -27,6 +27,9 @@ public record class WebhookCreateParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
     {
         get
@@ -168,6 +171,9 @@ public record class WebhookCreateParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(EventTypeConverter))]
 public enum EventType
 {

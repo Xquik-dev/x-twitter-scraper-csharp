@@ -8,9 +8,9 @@ public class BookmarkListParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new BookmarkListParams { Cursor = "cursor", FolderID = "folderId" };
+        var parameters = new BookmarkListParams { Cursor = "folders_value", FolderID = "folderId" };
 
-        string expectedCursor = "cursor";
+        string expectedCursor = "folders_value";
         string expectedFolderID = "folderId";
 
         Assert.Equal(expectedCursor, parameters.Cursor);
@@ -47,12 +47,12 @@ public class BookmarkListParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        BookmarkListParams parameters = new() { Cursor = "cursor", FolderID = "folderId" };
+        BookmarkListParams parameters = new() { Cursor = "folders_value", FolderID = "folderId" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.Equal(
-            new Uri("https://xquik.com/api/v1/x/bookmarks?cursor=cursor&folderId=folderId"),
+            new Uri("https://xquik.com/api/v1/x/bookmarks?cursor=folders_value&folderId=folderId"),
             url
         );
     }
@@ -60,7 +60,7 @@ public class BookmarkListParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new BookmarkListParams { Cursor = "cursor", FolderID = "folderId" };
+        var parameters = new BookmarkListParams { Cursor = "folders_value", FolderID = "folderId" };
 
         BookmarkListParams copied = new(parameters);
 

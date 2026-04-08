@@ -13,29 +13,29 @@ public class ExtractionEstimateCostParamsTest : TestBase
     {
         var parameters = new ExtractionEstimateCostParams
         {
-            ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor,
-            AdvancedQuery = "advancedQuery",
-            ExactPhrase = "exactPhrase",
-            ExcludeWords = "excludeWords",
-            SearchQuery = "searchQuery",
-            TargetCommunityID = "targetCommunityId",
-            TargetListID = "targetListId",
-            TargetSpaceID = "targetSpaceId",
-            TargetTweetID = "targetTweetId",
-            TargetUsername = "targetUsername",
+            ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer,
+            AdvancedQuery = "min_faves:100",
+            ExactPhrase = "artificial intelligence",
+            ExcludeWords = "spam",
+            SearchQuery = "AI trends 2025",
+            TargetCommunityID = "1500000000000000000",
+            TargetListID = "1234567890",
+            TargetSpaceID = "1vOGwMdBqpwGB",
+            TargetTweetID = "1234567890",
+            TargetUsername = "elonmusk",
         };
 
         ApiEnum<string, ExtractionEstimateCostParamsToolType> expectedToolType =
-            ExtractionEstimateCostParamsToolType.ArticleExtractor;
-        string expectedAdvancedQuery = "advancedQuery";
-        string expectedExactPhrase = "exactPhrase";
-        string expectedExcludeWords = "excludeWords";
-        string expectedSearchQuery = "searchQuery";
-        string expectedTargetCommunityID = "targetCommunityId";
-        string expectedTargetListID = "targetListId";
-        string expectedTargetSpaceID = "targetSpaceId";
-        string expectedTargetTweetID = "targetTweetId";
-        string expectedTargetUsername = "targetUsername";
+            ExtractionEstimateCostParamsToolType.FollowerExplorer;
+        string expectedAdvancedQuery = "min_faves:100";
+        string expectedExactPhrase = "artificial intelligence";
+        string expectedExcludeWords = "spam";
+        string expectedSearchQuery = "AI trends 2025";
+        string expectedTargetCommunityID = "1500000000000000000";
+        string expectedTargetListID = "1234567890";
+        string expectedTargetSpaceID = "1vOGwMdBqpwGB";
+        string expectedTargetTweetID = "1234567890";
+        string expectedTargetUsername = "elonmusk";
 
         Assert.Equal(expectedToolType, parameters.ToolType);
         Assert.Equal(expectedAdvancedQuery, parameters.AdvancedQuery);
@@ -54,7 +54,7 @@ public class ExtractionEstimateCostParamsTest : TestBase
     {
         var parameters = new ExtractionEstimateCostParams
         {
-            ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor,
+            ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer,
         };
 
         Assert.Null(parameters.AdvancedQuery);
@@ -82,7 +82,7 @@ public class ExtractionEstimateCostParamsTest : TestBase
     {
         var parameters = new ExtractionEstimateCostParams
         {
-            ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor,
+            ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer,
 
             // Null should be interpreted as omitted for these properties
             AdvancedQuery = null,
@@ -121,7 +121,7 @@ public class ExtractionEstimateCostParamsTest : TestBase
     {
         ExtractionEstimateCostParams parameters = new()
         {
-            ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor,
+            ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer,
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -134,16 +134,16 @@ public class ExtractionEstimateCostParamsTest : TestBase
     {
         var parameters = new ExtractionEstimateCostParams
         {
-            ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor,
-            AdvancedQuery = "advancedQuery",
-            ExactPhrase = "exactPhrase",
-            ExcludeWords = "excludeWords",
-            SearchQuery = "searchQuery",
-            TargetCommunityID = "targetCommunityId",
-            TargetListID = "targetListId",
-            TargetSpaceID = "targetSpaceId",
-            TargetTweetID = "targetTweetId",
-            TargetUsername = "targetUsername",
+            ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer,
+            AdvancedQuery = "min_faves:100",
+            ExactPhrase = "artificial intelligence",
+            ExcludeWords = "spam",
+            SearchQuery = "AI trends 2025",
+            TargetCommunityID = "1500000000000000000",
+            TargetListID = "1234567890",
+            TargetSpaceID = "1vOGwMdBqpwGB",
+            TargetTweetID = "1234567890",
+            TargetUsername = "elonmusk",
         };
 
         ExtractionEstimateCostParams copied = new(parameters);

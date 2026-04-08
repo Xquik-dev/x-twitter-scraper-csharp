@@ -11,18 +11,18 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            CacheHit = true,
-            GalleryUrl = "galleryUrl",
-            TotalMedia = 0,
-            TotalTweets = 0,
-            TweetID = "tweetId",
+            CacheHit = false,
+            GalleryUrl = "https://xquik.com/gallery/abc123",
+            TotalMedia = 5,
+            TotalTweets = 2,
+            TweetID = "1234567890",
         };
 
-        bool expectedCacheHit = true;
-        string expectedGalleryUrl = "galleryUrl";
-        long expectedTotalMedia = 0;
-        long expectedTotalTweets = 0;
-        string expectedTweetID = "tweetId";
+        bool expectedCacheHit = false;
+        string expectedGalleryUrl = "https://xquik.com/gallery/abc123";
+        long expectedTotalMedia = 5;
+        long expectedTotalTweets = 2;
+        string expectedTweetID = "1234567890";
 
         Assert.Equal(expectedCacheHit, model.CacheHit);
         Assert.Equal(expectedGalleryUrl, model.GalleryUrl);
@@ -36,11 +36,11 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            CacheHit = true,
-            GalleryUrl = "galleryUrl",
-            TotalMedia = 0,
-            TotalTweets = 0,
-            TweetID = "tweetId",
+            CacheHit = false,
+            GalleryUrl = "https://xquik.com/gallery/abc123",
+            TotalMedia = 5,
+            TotalTweets = 2,
+            TweetID = "1234567890",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -57,11 +57,11 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            CacheHit = true,
-            GalleryUrl = "galleryUrl",
-            TotalMedia = 0,
-            TotalTweets = 0,
-            TweetID = "tweetId",
+            CacheHit = false,
+            GalleryUrl = "https://xquik.com/gallery/abc123",
+            TotalMedia = 5,
+            TotalTweets = 2,
+            TweetID = "1234567890",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -71,11 +71,11 @@ public class MediaDownloadResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        bool expectedCacheHit = true;
-        string expectedGalleryUrl = "galleryUrl";
-        long expectedTotalMedia = 0;
-        long expectedTotalTweets = 0;
-        string expectedTweetID = "tweetId";
+        bool expectedCacheHit = false;
+        string expectedGalleryUrl = "https://xquik.com/gallery/abc123";
+        long expectedTotalMedia = 5;
+        long expectedTotalTweets = 2;
+        string expectedTweetID = "1234567890";
 
         Assert.Equal(expectedCacheHit, deserialized.CacheHit);
         Assert.Equal(expectedGalleryUrl, deserialized.GalleryUrl);
@@ -89,11 +89,11 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            CacheHit = true,
-            GalleryUrl = "galleryUrl",
-            TotalMedia = 0,
-            TotalTweets = 0,
-            TweetID = "tweetId",
+            CacheHit = false,
+            GalleryUrl = "https://xquik.com/gallery/abc123",
+            TotalMedia = 5,
+            TotalTweets = 2,
+            TweetID = "1234567890",
         };
 
         model.Validate();
@@ -170,11 +170,11 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            CacheHit = true,
-            GalleryUrl = "galleryUrl",
-            TotalMedia = 0,
-            TotalTweets = 0,
-            TweetID = "tweetId",
+            CacheHit = false,
+            GalleryUrl = "https://xquik.com/gallery/abc123",
+            TotalMedia = 5,
+            TotalTweets = 2,
+            TweetID = "1234567890",
         };
 
         MediaDownloadResponse copied = new(model);

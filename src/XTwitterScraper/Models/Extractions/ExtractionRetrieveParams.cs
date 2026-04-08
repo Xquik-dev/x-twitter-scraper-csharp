@@ -20,7 +20,7 @@ public record class ExtractionRetrieveParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Cursor for pagination
+    /// Cursor for keyset pagination
     /// </summary>
     public string? After
     {
@@ -40,6 +40,9 @@ public record class ExtractionRetrieveParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum number of results to return (1-1000, default 100)
+    /// </summary>
     public long? Limit
     {
         get

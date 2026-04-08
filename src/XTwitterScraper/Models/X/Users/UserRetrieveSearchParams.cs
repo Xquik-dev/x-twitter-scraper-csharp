@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.X.Users;
 public record class UserRetrieveSearchParams : ParamsBase
 {
     /// <summary>
-    /// Search query
+    /// User search query
     /// </summary>
     public required string Q
     {
@@ -31,7 +31,7 @@ public record class UserRetrieveSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for user search
     /// </summary>
     public string? Cursor
     {

@@ -105,6 +105,9 @@ class EventListResponseFromRaw : IFromRawJson<EventListResponse>
         EventListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Monitor event summary with type, username, and occurrence time.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<EventListResponseEvent, EventListResponseEventFromRaw>))]
 public sealed record class EventListResponseEvent : JsonModel
 {
@@ -154,6 +157,9 @@ public sealed record class EventListResponseEvent : JsonModel
         init { this._rawData.Set("occurredAt", value); }
     }
 
+    /// <summary>
+    /// Type of monitor event fired when account activity occurs.
+    /// </summary>
     public required ApiEnum<string, EventListResponseEventType> Type
     {
         get
@@ -225,6 +231,9 @@ class EventListResponseEventFromRaw : IFromRawJson<EventListResponseEvent>
     ) => EventListResponseEvent.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(EventListResponseEventTypeConverter))]
 public enum EventListResponseEventType
 {

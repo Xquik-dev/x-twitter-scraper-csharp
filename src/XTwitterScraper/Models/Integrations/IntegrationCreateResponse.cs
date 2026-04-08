@@ -10,6 +10,9 @@ using System = System;
 
 namespace XTwitterScraper.Models.Integrations;
 
+/// <summary>
+/// Third-party integration (e.g. Telegram) subscribed to monitor events.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<IntegrationCreateResponse, IntegrationCreateResponseFromRaw>)
 )]
@@ -54,6 +57,9 @@ public sealed record class IntegrationCreateResponse : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, IntegrationCreateResponseEventType>> EventTypes
     {
         get
@@ -239,6 +245,9 @@ class IntegrationCreateResponseFromRaw : IFromRawJson<IntegrationCreateResponse>
     ) => IntegrationCreateResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(IntegrationCreateResponseEventTypeConverter))]
 public enum IntegrationCreateResponseEventType
 {

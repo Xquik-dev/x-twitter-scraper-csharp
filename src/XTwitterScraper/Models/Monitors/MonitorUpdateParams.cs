@@ -29,6 +29,9 @@ public record class MonitorUpdateParams : ParamsBase
 
     public string? ID { get; init; }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public IReadOnlyList<ApiEnum<string, MonitorUpdateParamsEventType>>? EventTypes
     {
         get
@@ -190,6 +193,9 @@ public record class MonitorUpdateParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(MonitorUpdateParamsEventTypeConverter))]
 public enum MonitorUpdateParamsEventType
 {

@@ -17,30 +17,30 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         List<DraftListResponseDraft> expectedDrafts =
         [
             new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Text = "text",
-                Goal = "goal",
-                Topic = "topic",
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Text = "Draft tweet about AI trends",
+                Goal = "Engagement",
+                Topic = "Technology",
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedDrafts.Count, model.Drafts.Count);
         for (int i = 0; i < expectedDrafts.Count; i++)
@@ -60,15 +60,15 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -89,15 +89,15 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -111,15 +111,15 @@ public class DraftListResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Text = "text",
-                Goal = "goal",
-                Topic = "topic",
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Text = "Draft tweet about AI trends",
+                Goal = "Engagement",
+                Topic = "Technology",
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedDrafts.Count, deserialized.Drafts.Count);
         for (int i = 0; i < expectedDrafts.Count; i++)
@@ -139,15 +139,15 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         model.Validate();
@@ -162,14 +162,14 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         Assert.Null(model.NextCursor);
@@ -185,14 +185,14 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         model.Validate();
@@ -207,14 +207,14 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -233,14 +233,14 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -258,15 +258,15 @@ public class DraftListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    Text = "text",
-                    Goal = "goal",
-                    Topic = "topic",
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Text = "Draft tweet about AI trends",
+                    Goal = "Engagement",
+                    Topic = "Technology",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         DraftListResponse copied = new(model);
@@ -282,18 +282,18 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedText = "text";
-        string expectedGoal = "goal";
-        string expectedTopic = "topic";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedText = "Draft tweet about AI trends";
+        string expectedGoal = "Engagement";
+        string expectedTopic = "Technology";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -307,11 +307,11 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -328,11 +328,11 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -342,11 +342,11 @@ public class DraftListResponseDraftTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedText = "text";
-        string expectedGoal = "goal";
-        string expectedTopic = "topic";
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedText = "Draft tweet about AI trends";
+        string expectedGoal = "Engagement";
+        string expectedTopic = "Technology";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -360,11 +360,11 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         model.Validate();
@@ -375,9 +375,9 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
         };
 
         Assert.Null(model.Goal);
@@ -391,9 +391,9 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
         };
 
         model.Validate();
@@ -404,9 +404,9 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
 
             // Null should be interpreted as omitted for these properties
             Goal = null,
@@ -424,9 +424,9 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
 
             // Null should be interpreted as omitted for these properties
             Goal = null,
@@ -441,11 +441,11 @@ public class DraftListResponseDraftTest : TestBase
     {
         var model = new DraftListResponseDraft
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Text = "text",
-            Goal = "goal",
-            Topic = "topic",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Text = "Draft tweet about AI trends",
+            Goal = "Engagement",
+            Topic = "Technology",
         };
 
         DraftListResponseDraft copied = new(model);

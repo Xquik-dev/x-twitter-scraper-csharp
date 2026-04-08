@@ -20,7 +20,7 @@ namespace XTwitterScraper.Models.X;
 public record class XGetNotificationsParams : ParamsBase
 {
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for notifications
     /// </summary>
     public string? Cursor
     {

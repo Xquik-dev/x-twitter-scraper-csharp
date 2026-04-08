@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Radar;
 
+/// <summary>
+/// Trending topic with score, category, source, and region.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<RadarItem, RadarItemFromRaw>))]
 public sealed record class RadarItem : JsonModel
 {

@@ -26,6 +26,9 @@ public record class ExtractionRunParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionRunParamsToolType> ToolType
     {
         get
@@ -319,6 +322,9 @@ public record class ExtractionRunParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionRunParamsToolTypeConverter))]
 public enum ExtractionRunParamsToolType
 {

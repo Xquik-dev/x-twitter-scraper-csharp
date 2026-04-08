@@ -115,6 +115,9 @@ class DrawRunResponseFromRaw : IFromRawJson<DrawRunResponse>
         DrawRunResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Giveaway draw winner with position and backup flag.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DrawRunResponseWinner, DrawRunResponseWinnerFromRaw>))]
 public sealed record class DrawRunResponseWinner : JsonModel
 {

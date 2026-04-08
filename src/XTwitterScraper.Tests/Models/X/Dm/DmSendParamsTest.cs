@@ -12,17 +12,17 @@ public class DmSendParamsTest : TestBase
         var parameters = new DmSendParams
         {
             UserID = "userId",
-            Account = "account",
-            Text = "text",
-            MediaIds = ["string"],
-            ReplyToMessageID = "reply_to_message_id",
+            Account = "@elonmusk",
+            Text = "Example text content",
+            MediaIds = ["1234567890123456789"],
+            ReplyToMessageID = "1234567890123456789",
         };
 
         string expectedUserID = "userId";
-        string expectedAccount = "account";
-        string expectedText = "text";
-        List<string> expectedMediaIds = ["string"];
-        string expectedReplyToMessageID = "reply_to_message_id";
+        string expectedAccount = "@elonmusk";
+        string expectedText = "Example text content";
+        List<string> expectedMediaIds = ["1234567890123456789"];
+        string expectedReplyToMessageID = "1234567890123456789";
 
         Assert.Equal(expectedUserID, parameters.UserID);
         Assert.Equal(expectedAccount, parameters.Account);
@@ -42,8 +42,8 @@ public class DmSendParamsTest : TestBase
         var parameters = new DmSendParams
         {
             UserID = "userId",
-            Account = "account",
-            Text = "text",
+            Account = "@elonmusk",
+            Text = "Example text content",
         };
 
         Assert.Null(parameters.MediaIds);
@@ -58,8 +58,8 @@ public class DmSendParamsTest : TestBase
         var parameters = new DmSendParams
         {
             UserID = "userId",
-            Account = "account",
-            Text = "text",
+            Account = "@elonmusk",
+            Text = "Example text content",
 
             // Null should be interpreted as omitted for these properties
             MediaIds = null,
@@ -78,8 +78,8 @@ public class DmSendParamsTest : TestBase
         DmSendParams parameters = new()
         {
             UserID = "userId",
-            Account = "account",
-            Text = "text",
+            Account = "@elonmusk",
+            Text = "Example text content",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -93,10 +93,10 @@ public class DmSendParamsTest : TestBase
         var parameters = new DmSendParams
         {
             UserID = "userId",
-            Account = "account",
-            Text = "text",
-            MediaIds = ["string"],
-            ReplyToMessageID = "reply_to_message_id",
+            Account = "@elonmusk",
+            Text = "Example text content",
+            MediaIds = ["1234567890123456789"],
+            ReplyToMessageID = "1234567890123456789",
         };
 
         DmSendParams copied = new(parameters);

@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Webhooks;
 
+/// <summary>
+/// Webhook delivery attempt record with status and retry count.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Delivery, DeliveryFromRaw>))]
 public sealed record class Delivery : JsonModel
 {

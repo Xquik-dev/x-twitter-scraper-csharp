@@ -20,7 +20,7 @@ public record class UserRetrieveFollowingParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for following list
     /// </summary>
     public string? Cursor
     {
@@ -41,7 +41,7 @@ public record class UserRetrieveFollowingParams : ParamsBase
     }
 
     /// <summary>
-    /// Items per page (20-200, default 200)
+    /// Results per page (20-200, default 200)
     /// </summary>
     public long? PageSize
     {

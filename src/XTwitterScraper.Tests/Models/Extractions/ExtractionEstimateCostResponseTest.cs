@@ -12,17 +12,17 @@ public class ExtractionEstimateCostResponseTest : TestBase
         var model = new ExtractionEstimateCostResponse
         {
             Allowed = true,
-            EstimatedResults = 0,
-            ProjectedPercent = 0,
-            Source = "source",
-            UsagePercent = 0,
+            EstimatedResults = 500,
+            ProjectedPercent = 30,
+            Source = "api_count",
+            UsagePercent = 25,
         };
 
         bool expectedAllowed = true;
-        long expectedEstimatedResults = 0;
-        double expectedProjectedPercent = 0;
-        string expectedSource = "source";
-        double expectedUsagePercent = 0;
+        long expectedEstimatedResults = 500;
+        double expectedProjectedPercent = 30;
+        string expectedSource = "api_count";
+        double expectedUsagePercent = 25;
 
         Assert.Equal(expectedAllowed, model.Allowed);
         Assert.Equal(expectedEstimatedResults, model.EstimatedResults);
@@ -37,10 +37,10 @@ public class ExtractionEstimateCostResponseTest : TestBase
         var model = new ExtractionEstimateCostResponse
         {
             Allowed = true,
-            EstimatedResults = 0,
-            ProjectedPercent = 0,
-            Source = "source",
-            UsagePercent = 0,
+            EstimatedResults = 500,
+            ProjectedPercent = 30,
+            Source = "api_count",
+            UsagePercent = 25,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -58,10 +58,10 @@ public class ExtractionEstimateCostResponseTest : TestBase
         var model = new ExtractionEstimateCostResponse
         {
             Allowed = true,
-            EstimatedResults = 0,
-            ProjectedPercent = 0,
-            Source = "source",
-            UsagePercent = 0,
+            EstimatedResults = 500,
+            ProjectedPercent = 30,
+            Source = "api_count",
+            UsagePercent = 25,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -72,10 +72,10 @@ public class ExtractionEstimateCostResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedAllowed = true;
-        long expectedEstimatedResults = 0;
-        double expectedProjectedPercent = 0;
-        string expectedSource = "source";
-        double expectedUsagePercent = 0;
+        long expectedEstimatedResults = 500;
+        double expectedProjectedPercent = 30;
+        string expectedSource = "api_count";
+        double expectedUsagePercent = 25;
 
         Assert.Equal(expectedAllowed, deserialized.Allowed);
         Assert.Equal(expectedEstimatedResults, deserialized.EstimatedResults);
@@ -90,10 +90,10 @@ public class ExtractionEstimateCostResponseTest : TestBase
         var model = new ExtractionEstimateCostResponse
         {
             Allowed = true,
-            EstimatedResults = 0,
-            ProjectedPercent = 0,
-            Source = "source",
-            UsagePercent = 0,
+            EstimatedResults = 500,
+            ProjectedPercent = 30,
+            Source = "api_count",
+            UsagePercent = 25,
         };
 
         model.Validate();
@@ -105,10 +105,10 @@ public class ExtractionEstimateCostResponseTest : TestBase
         var model = new ExtractionEstimateCostResponse
         {
             Allowed = true,
-            EstimatedResults = 0,
-            ProjectedPercent = 0,
-            Source = "source",
-            UsagePercent = 0,
+            EstimatedResults = 500,
+            ProjectedPercent = 30,
+            Source = "api_count",
+            UsagePercent = 25,
         };
 
         ExtractionEstimateCostResponse copied = new(model);

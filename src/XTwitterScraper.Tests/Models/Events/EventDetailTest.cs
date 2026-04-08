@@ -14,28 +14,28 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
-            XEventID = "xEventId",
+            Username = "elonmusk",
+            XEventID = "1234567890",
         };
 
-        string expectedID = "id";
+        string expectedID = "42";
         Dictionary<string, JsonElement> expectedData = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "tweetId", JsonSerializer.SerializeToElement("bar") },
         };
-        string expectedMonitorID = "monitorId";
-        DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedMonitorID = "10";
+        DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, EventDetailType> expectedType = EventDetailType.TweetNew;
-        string expectedUsername = "username";
-        string expectedXEventID = "xEventId";
+        string expectedUsername = "elonmusk";
+        string expectedXEventID = "1234567890";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedData.Count, model.Data.Count);
@@ -57,16 +57,16 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
-            XEventID = "xEventId",
+            Username = "elonmusk",
+            XEventID = "1234567890",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -83,16 +83,16 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
-            XEventID = "xEventId",
+            Username = "elonmusk",
+            XEventID = "1234567890",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -102,16 +102,16 @@ public class EventDetailTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "42";
         Dictionary<string, JsonElement> expectedData = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "tweetId", JsonSerializer.SerializeToElement("bar") },
         };
-        string expectedMonitorID = "monitorId";
-        DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedMonitorID = "10";
+        DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, EventDetailType> expectedType = EventDetailType.TweetNew;
-        string expectedUsername = "username";
-        string expectedXEventID = "xEventId";
+        string expectedUsername = "elonmusk";
+        string expectedXEventID = "1234567890";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedData.Count, deserialized.Data.Count);
@@ -133,16 +133,16 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
-            XEventID = "xEventId",
+            Username = "elonmusk",
+            XEventID = "1234567890",
         };
 
         model.Validate();
@@ -153,15 +153,15 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
+            Username = "elonmusk",
         };
 
         Assert.Null(model.XEventID);
@@ -173,15 +173,15 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
+            Username = "elonmusk",
         };
 
         model.Validate();
@@ -192,15 +192,15 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             XEventID = null,
@@ -215,15 +215,15 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             XEventID = null,
@@ -237,16 +237,16 @@ public class EventDetailTest : TestBase
     {
         var model = new EventDetail
         {
-            ID = "id",
+            ID = "42",
             Data = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
-            MonitorID = "monitorId",
-            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            MonitorID = "10",
+            OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventDetailType.TweetNew,
-            Username = "username",
-            XEventID = "xEventId",
+            Username = "elonmusk",
+            XEventID = "1234567890",
         };
 
         EventDetail copied = new(model);
