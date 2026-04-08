@@ -36,7 +36,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetListPage> List(
+    public async Task<PaginatedTweets> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -48,7 +48,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<TweetListByCommunityPage> ListByCommunity(
+    public async Task<PaginatedTweets> ListByCommunity(
         TweetListByCommunityParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -60,7 +60,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<TweetListByCommunityPage> ListByCommunity(
+    public Task<PaginatedTweets> ListByCommunity(
         string id,
         TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -89,7 +89,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetListPage>> List(
+    public async Task<HttpResponse<PaginatedTweets>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -104,18 +104,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var page = await response.Deserialize<PaginatedTweets>(token).ConfigureAwait(false);
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
+                    .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    page.Validate();
+                    paginatedTweets.Validate();
                 }
-                return new TweetListPage(this, parameters, page);
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+    public async Task<HttpResponse<PaginatedTweets>> ListByCommunity(
         TweetListByCommunityParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -135,18 +137,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             response,
             async (token) =>
             {
-                var page = await response.Deserialize<PaginatedTweets>(token).ConfigureAwait(false);
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
+                    .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    page.Validate();
+                    paginatedTweets.Validate();
                 }
-                return new TweetListByCommunityPage(this, parameters, page);
+                return paginatedTweets;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<TweetListByCommunityPage>> ListByCommunity(
+    public Task<HttpResponse<PaginatedTweets>> ListByCommunity(
         string id,
         TweetListByCommunityParams? parameters = null,
         CancellationToken cancellationToken = default

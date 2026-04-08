@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Bookmarks;
 
 namespace XTwitterScraper.Services.X;
@@ -31,7 +32,7 @@ public interface IBookmarkService
     /// <summary>
     /// Get bookmarked tweets
     /// </summary>
-    Task<BookmarkListPage> List(
+    Task<PaginatedTweets> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -62,7 +63,7 @@ public interface IBookmarkServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/bookmarks</c>, but is otherwise the
     /// same as <see cref="IBookmarkService.List(BookmarkListParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<BookmarkListPage>> List(
+    Task<HttpResponse<PaginatedTweets>> List(
         BookmarkListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
