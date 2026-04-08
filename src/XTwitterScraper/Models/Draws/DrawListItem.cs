@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Draws;
 
+/// <summary>
+/// Giveaway draw summary with entry counts and status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DrawListItem, DrawListItemFromRaw>))]
 public sealed record class DrawListItem : JsonModel
 {

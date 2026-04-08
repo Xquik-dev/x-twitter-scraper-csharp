@@ -11,13 +11,13 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
-        string expectedCommunityID = "communityId";
+        string expectedCommunityID = "1500000000000000000";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedCommunityName = "communityName";
+        string expectedCommunityName = "Tesla Fans";
 
         Assert.Equal(expectedCommunityID, model.CommunityID);
         Assert.True(JsonElement.DeepEquals(expectedSuccess, model.Success));
@@ -29,8 +29,8 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -47,8 +47,8 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -58,9 +58,9 @@ public class CommunityCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedCommunityID = "communityId";
+        string expectedCommunityID = "1500000000000000000";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
-        string expectedCommunityName = "communityName";
+        string expectedCommunityName = "Tesla Fans";
 
         Assert.Equal(expectedCommunityID, deserialized.CommunityID);
         Assert.True(JsonElement.DeepEquals(expectedSuccess, deserialized.Success));
@@ -72,8 +72,8 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         model.Validate();
@@ -82,7 +82,7 @@ public class CommunityCreateResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new CommunityCreateResponse { CommunityID = "communityId" };
+        var model = new CommunityCreateResponse { CommunityID = "1500000000000000000" };
 
         Assert.Null(model.CommunityName);
         Assert.False(model.RawData.ContainsKey("communityName"));
@@ -91,7 +91,7 @@ public class CommunityCreateResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new CommunityCreateResponse { CommunityID = "communityId" };
+        var model = new CommunityCreateResponse { CommunityID = "1500000000000000000" };
 
         model.Validate();
     }
@@ -101,7 +101,7 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
+            CommunityID = "1500000000000000000",
 
             // Null should be interpreted as omitted for these properties
             CommunityName = null,
@@ -116,7 +116,7 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
+            CommunityID = "1500000000000000000",
 
             // Null should be interpreted as omitted for these properties
             CommunityName = null,
@@ -130,8 +130,8 @@ public class CommunityCreateResponseTest : TestBase
     {
         var model = new CommunityCreateResponse
         {
-            CommunityID = "communityId",
-            CommunityName = "communityName",
+            CommunityID = "1500000000000000000",
+            CommunityName = "Tesla Fans",
         };
 
         CommunityCreateResponse copied = new(model);

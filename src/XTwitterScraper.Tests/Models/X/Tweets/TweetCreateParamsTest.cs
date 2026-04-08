@@ -11,22 +11,22 @@ public class TweetCreateParamsTest : TestBase
     {
         var parameters = new TweetCreateParams
         {
-            Account = "account",
-            Text = "text",
-            AttachmentUrl = "attachment_url",
-            CommunityID = "community_id",
-            IsNoteTweet = true,
-            MediaIds = ["string"],
-            ReplyToTweetID = "reply_to_tweet_id",
+            Account = "@elonmusk",
+            Text = "Just launched our new feature!",
+            AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
+            CommunityID = "1500000000000000000",
+            IsNoteTweet = false,
+            MediaIds = ["1234567890123456789"],
+            ReplyToTweetID = "1234567890",
         };
 
-        string expectedAccount = "account";
-        string expectedText = "text";
-        string expectedAttachmentUrl = "attachment_url";
-        string expectedCommunityID = "community_id";
-        bool expectedIsNoteTweet = true;
-        List<string> expectedMediaIds = ["string"];
-        string expectedReplyToTweetID = "reply_to_tweet_id";
+        string expectedAccount = "@elonmusk";
+        string expectedText = "Just launched our new feature!";
+        string expectedAttachmentUrl = "https://x.com/elonmusk/status/1234567890";
+        string expectedCommunityID = "1500000000000000000";
+        bool expectedIsNoteTweet = false;
+        List<string> expectedMediaIds = ["1234567890123456789"];
+        string expectedReplyToTweetID = "1234567890";
 
         Assert.Equal(expectedAccount, parameters.Account);
         Assert.Equal(expectedText, parameters.Text);
@@ -45,7 +45,11 @@ public class TweetCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new TweetCreateParams { Account = "account", Text = "text" };
+        var parameters = new TweetCreateParams
+        {
+            Account = "@elonmusk",
+            Text = "Just launched our new feature!",
+        };
 
         Assert.Null(parameters.AttachmentUrl);
         Assert.False(parameters.RawBodyData.ContainsKey("attachment_url"));
@@ -64,8 +68,8 @@ public class TweetCreateParamsTest : TestBase
     {
         var parameters = new TweetCreateParams
         {
-            Account = "account",
-            Text = "text",
+            Account = "@elonmusk",
+            Text = "Just launched our new feature!",
 
             // Null should be interpreted as omitted for these properties
             AttachmentUrl = null,
@@ -90,7 +94,11 @@ public class TweetCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        TweetCreateParams parameters = new() { Account = "account", Text = "text" };
+        TweetCreateParams parameters = new()
+        {
+            Account = "@elonmusk",
+            Text = "Just launched our new feature!",
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -102,13 +110,13 @@ public class TweetCreateParamsTest : TestBase
     {
         var parameters = new TweetCreateParams
         {
-            Account = "account",
-            Text = "text",
-            AttachmentUrl = "attachment_url",
-            CommunityID = "community_id",
-            IsNoteTweet = true,
-            MediaIds = ["string"],
-            ReplyToTweetID = "reply_to_tweet_id",
+            Account = "@elonmusk",
+            Text = "Just launched our new feature!",
+            AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
+            CommunityID = "1500000000000000000",
+            IsNoteTweet = false,
+            MediaIds = ["1234567890123456789"],
+            ReplyToTweetID = "1234567890",
         };
 
         TweetCreateParams copied = new(parameters);

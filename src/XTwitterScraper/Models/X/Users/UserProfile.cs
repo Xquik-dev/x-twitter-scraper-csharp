@@ -7,6 +7,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Users;
 
+/// <summary>
+/// X user profile with bio, follower counts, and verification status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<UserProfile, UserProfileFromRaw>))]
 public sealed record class UserProfile : JsonModel
 {

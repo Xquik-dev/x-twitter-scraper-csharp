@@ -14,29 +14,29 @@ public class ComposeCreateParamsTest : TestBase
         var parameters = new ComposeCreateParams
         {
             Step = Step.Compose,
-            AdditionalContext = "additionalContext",
-            CallToAction = "callToAction",
-            Draft = "draft",
+            AdditionalContext = "https://x.com/elonmusk/status/1234567890",
+            CallToAction = "Follow for more",
+            Draft = "AI is changing everything. Here's why.",
             Goal = Goal.Engagement,
-            HasLink = true,
-            HasMedia = true,
-            MediaType = MediaType.Photo,
-            StyleUsername = "styleUsername",
-            Tone = "tone",
-            Topic = "topic",
+            HasLink = false,
+            HasMedia = false,
+            MediaType = MediaType.None,
+            StyleUsername = "elonmusk",
+            Tone = "professional",
+            Topic = "AI trends in 2025",
         };
 
         ApiEnum<string, Step> expectedStep = Step.Compose;
-        string expectedAdditionalContext = "additionalContext";
-        string expectedCallToAction = "callToAction";
-        string expectedDraft = "draft";
+        string expectedAdditionalContext = "https://x.com/elonmusk/status/1234567890";
+        string expectedCallToAction = "Follow for more";
+        string expectedDraft = "AI is changing everything. Here's why.";
         ApiEnum<string, Goal> expectedGoal = Goal.Engagement;
-        bool expectedHasLink = true;
-        bool expectedHasMedia = true;
-        ApiEnum<string, MediaType> expectedMediaType = MediaType.Photo;
-        string expectedStyleUsername = "styleUsername";
-        string expectedTone = "tone";
-        string expectedTopic = "topic";
+        bool expectedHasLink = false;
+        bool expectedHasMedia = false;
+        ApiEnum<string, MediaType> expectedMediaType = MediaType.None;
+        string expectedStyleUsername = "elonmusk";
+        string expectedTone = "professional";
+        string expectedTopic = "AI trends in 2025";
 
         Assert.Equal(expectedStep, parameters.Step);
         Assert.Equal(expectedAdditionalContext, parameters.AdditionalContext);
@@ -136,16 +136,16 @@ public class ComposeCreateParamsTest : TestBase
         var parameters = new ComposeCreateParams
         {
             Step = Step.Compose,
-            AdditionalContext = "additionalContext",
-            CallToAction = "callToAction",
-            Draft = "draft",
+            AdditionalContext = "https://x.com/elonmusk/status/1234567890",
+            CallToAction = "Follow for more",
+            Draft = "AI is changing everything. Here's why.",
             Goal = Goal.Engagement,
-            HasLink = true,
-            HasMedia = true,
-            MediaType = MediaType.Photo,
-            StyleUsername = "styleUsername",
-            Tone = "tone",
-            Topic = "topic",
+            HasLink = false,
+            HasMedia = false,
+            MediaType = MediaType.None,
+            StyleUsername = "elonmusk",
+            Tone = "professional",
+            Topic = "AI trends in 2025",
         };
 
         ComposeCreateParams copied = new(parameters);

@@ -90,6 +90,9 @@ class WebhookListDeliveriesResponseFromRaw : IFromRawJson<WebhookListDeliveriesR
     ) => WebhookListDeliveriesResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Webhook delivery attempt record with status and retry count.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
         WebhookListDeliveriesResponseDelivery,

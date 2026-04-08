@@ -89,6 +89,9 @@ class IntegrationListDeliveriesResponseFromRaw : IFromRawJson<IntegrationListDel
     ) => IntegrationListDeliveriesResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Integration delivery attempt record with status and retry count.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Delivery, DeliveryFromRaw>))]
 public sealed record class Delivery : JsonModel
 {

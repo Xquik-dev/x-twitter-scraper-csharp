@@ -11,9 +11,9 @@ public class IntegrationServiceTest : TestBase
         var integration = await this.client.Integrations.Create(
             new()
             {
-                Config = new("chatId"),
-                EventTypes = [EventType.TweetNew],
-                Name = "name",
+                Config = new("-1001234567890"),
+                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                Name = "My Telegram Bot",
                 Type = Type.Telegram,
             },
             TestContext.Current.CancellationToken

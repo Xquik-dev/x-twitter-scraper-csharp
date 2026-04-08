@@ -78,6 +78,9 @@ class ApiKeyListResponseFromRaw : IFromRawJson<ApiKeyListResponse>
         ApiKeyListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// API key metadata returned when listing keys.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Key, KeyFromRaw>))]
 public sealed record class Key : JsonModel
 {

@@ -13,29 +13,29 @@ public class XGetNotificationsResponseTest : TestBase
         var model = new XGetNotificationsResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Notifications =
             [
                 new()
                 {
-                    ID = "id",
-                    Message = "message",
-                    Timestamp = "timestamp",
-                    Type = "type",
+                    ID = "1234567890",
+                    Message = "elonmusk liked your tweet",
+                    Timestamp = "2025-01-15T12:00:00Z",
+                    Type = "like",
                 },
             ],
         };
 
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
         List<Notification> expectedNotifications =
         [
             new()
             {
-                ID = "id",
-                Message = "message",
-                Timestamp = "timestamp",
-                Type = "type",
+                ID = "1234567890",
+                Message = "elonmusk liked your tweet",
+                Timestamp = "2025-01-15T12:00:00Z",
+                Type = "like",
             },
         ];
 
@@ -54,15 +54,15 @@ public class XGetNotificationsResponseTest : TestBase
         var model = new XGetNotificationsResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Notifications =
             [
                 new()
                 {
-                    ID = "id",
-                    Message = "message",
-                    Timestamp = "timestamp",
-                    Type = "type",
+                    ID = "1234567890",
+                    Message = "elonmusk liked your tweet",
+                    Timestamp = "2025-01-15T12:00:00Z",
+                    Type = "like",
                 },
             ],
         };
@@ -82,15 +82,15 @@ public class XGetNotificationsResponseTest : TestBase
         var model = new XGetNotificationsResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Notifications =
             [
                 new()
                 {
-                    ID = "id",
-                    Message = "message",
-                    Timestamp = "timestamp",
-                    Type = "type",
+                    ID = "1234567890",
+                    Message = "elonmusk liked your tweet",
+                    Timestamp = "2025-01-15T12:00:00Z",
+                    Type = "like",
                 },
             ],
         };
@@ -103,15 +103,15 @@ public class XGetNotificationsResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
         List<Notification> expectedNotifications =
         [
             new()
             {
-                ID = "id",
-                Message = "message",
-                Timestamp = "timestamp",
-                Type = "type",
+                ID = "1234567890",
+                Message = "elonmusk liked your tweet",
+                Timestamp = "2025-01-15T12:00:00Z",
+                Type = "like",
             },
         ];
 
@@ -130,15 +130,15 @@ public class XGetNotificationsResponseTest : TestBase
         var model = new XGetNotificationsResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Notifications =
             [
                 new()
                 {
-                    ID = "id",
-                    Message = "message",
-                    Timestamp = "timestamp",
-                    Type = "type",
+                    ID = "1234567890",
+                    Message = "elonmusk liked your tweet",
+                    Timestamp = "2025-01-15T12:00:00Z",
+                    Type = "like",
                 },
             ],
         };
@@ -152,15 +152,15 @@ public class XGetNotificationsResponseTest : TestBase
         var model = new XGetNotificationsResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Notifications =
             [
                 new()
                 {
-                    ID = "id",
-                    Message = "message",
-                    Timestamp = "timestamp",
-                    Type = "type",
+                    ID = "1234567890",
+                    Message = "elonmusk liked your tweet",
+                    Timestamp = "2025-01-15T12:00:00Z",
+                    Type = "like",
                 },
             ],
         };
@@ -178,16 +178,16 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
-            Message = "message",
-            Timestamp = "timestamp",
-            Type = "type",
+            ID = "1234567890",
+            Message = "elonmusk liked your tweet",
+            Timestamp = "2025-01-15T12:00:00Z",
+            Type = "like",
         };
 
-        string expectedID = "id";
-        string expectedMessage = "message";
-        string expectedTimestamp = "timestamp";
-        string expectedType = "type";
+        string expectedID = "1234567890";
+        string expectedMessage = "elonmusk liked your tweet";
+        string expectedTimestamp = "2025-01-15T12:00:00Z";
+        string expectedType = "like";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedMessage, model.Message);
@@ -200,10 +200,10 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
-            Message = "message",
-            Timestamp = "timestamp",
-            Type = "type",
+            ID = "1234567890",
+            Message = "elonmusk liked your tweet",
+            Timestamp = "2025-01-15T12:00:00Z",
+            Type = "like",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -220,10 +220,10 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
-            Message = "message",
-            Timestamp = "timestamp",
-            Type = "type",
+            ID = "1234567890",
+            Message = "elonmusk liked your tweet",
+            Timestamp = "2025-01-15T12:00:00Z",
+            Type = "like",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -233,10 +233,10 @@ public class NotificationTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedMessage = "message";
-        string expectedTimestamp = "timestamp";
-        string expectedType = "type";
+        string expectedID = "1234567890";
+        string expectedMessage = "elonmusk liked your tweet";
+        string expectedTimestamp = "2025-01-15T12:00:00Z";
+        string expectedType = "like";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedMessage, deserialized.Message);
@@ -249,10 +249,10 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
-            Message = "message",
-            Timestamp = "timestamp",
-            Type = "type",
+            ID = "1234567890",
+            Message = "elonmusk liked your tweet",
+            Timestamp = "2025-01-15T12:00:00Z",
+            Type = "like",
         };
 
         model.Validate();
@@ -261,7 +261,7 @@ public class NotificationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Notification { ID = "id" };
+        var model = new Notification { ID = "1234567890" };
 
         Assert.Null(model.Message);
         Assert.False(model.RawData.ContainsKey("message"));
@@ -274,7 +274,7 @@ public class NotificationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Notification { ID = "id" };
+        var model = new Notification { ID = "1234567890" };
 
         model.Validate();
     }
@@ -284,7 +284,7 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
+            ID = "1234567890",
 
             // Null should be interpreted as omitted for these properties
             Message = null,
@@ -305,7 +305,7 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
+            ID = "1234567890",
 
             // Null should be interpreted as omitted for these properties
             Message = null,
@@ -321,10 +321,10 @@ public class NotificationTest : TestBase
     {
         var model = new Notification
         {
-            ID = "id",
-            Message = "message",
-            Timestamp = "timestamp",
-            Type = "type",
+            ID = "1234567890",
+            Message = "elonmusk liked your tweet",
+            Timestamp = "2025-01-15T12:00:00Z",
+            Type = "like",
         };
 
         Notification copied = new(model);

@@ -9,6 +9,9 @@ using System = System;
 
 namespace XTwitterScraper.Models.Events;
 
+/// <summary>
+/// Full monitor event including payload data and optional X event ID.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<EventRetrieveResponse, EventRetrieveResponseFromRaw>))]
 public sealed record class EventRetrieveResponse : JsonModel
 {
@@ -61,6 +64,9 @@ public sealed record class EventRetrieveResponse : JsonModel
         init { this._rawData.Set("occurredAt", value); }
     }
 
+    /// <summary>
+    /// Type of monitor event fired when account activity occurs.
+    /// </summary>
     public required ApiEnum<string, EventRetrieveResponseType> Type
     {
         get
@@ -151,6 +157,9 @@ class EventRetrieveResponseFromRaw : IFromRawJson<EventRetrieveResponse>
     ) => EventRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(EventRetrieveResponseTypeConverter))]
 public enum EventRetrieveResponseType
 {

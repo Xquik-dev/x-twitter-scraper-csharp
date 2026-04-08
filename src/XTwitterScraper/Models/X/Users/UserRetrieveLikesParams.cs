@@ -20,7 +20,7 @@ public record class UserRetrieveLikesParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor from previous response
+    /// Pagination cursor for liked tweets
     /// </summary>
     public string? Cursor
     {

@@ -14,12 +14,16 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew],
-            Username = "username",
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
         };
 
-        List<ApiEnum<string, EventType>> expectedEventTypes = [EventType.TweetNew];
-        string expectedUsername = "username";
+        List<ApiEnum<string, EventType>> expectedEventTypes =
+        [
+            EventType.TweetNew,
+            EventType.FollowerGained,
+        ];
+        string expectedUsername = "elonmusk";
 
         Assert.Equal(expectedEventTypes.Count, parameters.EventTypes.Count);
         for (int i = 0; i < expectedEventTypes.Count; i++)
@@ -34,8 +38,8 @@ public class MonitorCreateParamsTest : TestBase
     {
         MonitorCreateParams parameters = new()
         {
-            EventTypes = [EventType.TweetNew],
-            Username = "username",
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -48,8 +52,8 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew],
-            Username = "username",
+            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            Username = "elonmusk",
         };
 
         MonitorCreateParams copied = new(parameters);

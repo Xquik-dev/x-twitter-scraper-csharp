@@ -19,7 +19,7 @@ public class AccountServiceTest : TestBase
     public async Task SetXUsername_Works()
     {
         var response = await this.client.Account.SetXUsername(
-            new() { Username = "username" },
+            new() { Username = "elonmusk" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

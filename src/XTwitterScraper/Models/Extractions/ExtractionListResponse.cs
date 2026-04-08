@@ -106,6 +106,9 @@ class ExtractionListResponseFromRaw : IFromRawJson<ExtractionListResponse>
     ) => ExtractionListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Extraction job tracking status, tool type, and result count.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Extraction, ExtractionFromRaw>))]
 public sealed record class Extraction : JsonModel
 {
@@ -139,6 +142,9 @@ public sealed record class Extraction : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionToolType> ToolType
     {
         get
@@ -270,6 +276,9 @@ sealed class ExtractionStatusConverter : JsonConverter<ExtractionStatus>
     }
 }
 
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionToolTypeConverter))]
 public enum ExtractionToolType
 {

@@ -8,7 +8,7 @@ public class DraftServiceTest : TestBase
     public async Task Create_Works()
     {
         var draft = await this.client.Drafts.Create(
-            new() { Text = "text" },
+            new() { Text = "AI is the future of productivity" },
             TestContext.Current.CancellationToken
         );
         draft.Validate();

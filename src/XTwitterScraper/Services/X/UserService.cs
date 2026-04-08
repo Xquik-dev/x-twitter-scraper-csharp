@@ -43,25 +43,31 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveBatch(
+    public async Task<UserRetrieveBatchResponse> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveBatch(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveBatch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveFollowers(
+    public async Task<UserRetrieveFollowersResponse> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveFollowers(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveFollowers(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveFollowers(
+    public Task<UserRetrieveFollowersResponse> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -69,8 +75,7 @@ public sealed class UserService : IUserService
     {
         parameters ??= new();
 
-        await this.RetrieveFollowers(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveFollowers(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -98,16 +103,19 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveFollowing(
+    public async Task<UserRetrieveFollowingResponse> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveFollowing(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveFollowing(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveFollowing(
+    public Task<UserRetrieveFollowingResponse> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -115,8 +123,7 @@ public sealed class UserService : IUserService
     {
         parameters ??= new();
 
-        await this.RetrieveFollowing(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveFollowing(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -168,16 +175,19 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveMentions(
+    public async Task<UserRetrieveMentionsResponse> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveMentions(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveMentions(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveMentions(
+    public Task<UserRetrieveMentionsResponse> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -185,17 +195,19 @@ public sealed class UserService : IUserService
     {
         parameters ??= new();
 
-        await this.RetrieveMentions(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveMentions(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveSearch(
+    public async Task<UserRetrieveSearchResponse> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveSearch(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveSearch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
@@ -223,16 +235,19 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveVerifiedFollowers(
+    public async Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveVerifiedFollowers(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveVerifiedFollowers(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveVerifiedFollowers(
+    public Task<UserRetrieveVerifiedFollowersResponse> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -240,8 +255,7 @@ public sealed class UserService : IUserService
     {
         parameters ??= new();
 
-        await this.RetrieveVerifiedFollowers(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveVerifiedFollowers(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -270,7 +284,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveBatch(
+    public async Task<HttpResponse<UserRetrieveBatchResponse>> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -280,11 +294,25 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveBatchResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowers(
+    public async Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -299,11 +327,25 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveFollowersResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowers(
+    public Task<HttpResponse<UserRetrieveFollowersResponse>> RetrieveFollowers(
         string id,
         UserRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -360,7 +402,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowing(
+    public async Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -375,11 +417,25 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveFollowingResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowing(
+    public Task<HttpResponse<UserRetrieveFollowingResponse>> RetrieveFollowing(
         string id,
         UserRetrieveFollowingParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -481,7 +537,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMentions(
+    public async Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -496,11 +552,25 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveMentionsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMentions(
+    public Task<HttpResponse<UserRetrieveMentionsResponse>> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -512,7 +582,7 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveSearch(
+    public async Task<HttpResponse<UserRetrieveSearchResponse>> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -522,7 +592,21 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveSearchResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
@@ -571,7 +655,9 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveVerifiedFollowers(
+    public async Task<
+        HttpResponse<UserRetrieveVerifiedFollowersResponse>
+    > RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -586,11 +672,25 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveVerifiedFollowersResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveVerifiedFollowers(
+    public Task<HttpResponse<UserRetrieveVerifiedFollowersResponse>> RetrieveVerifiedFollowers(
         string id,
         UserRetrieveVerifiedFollowersParams? parameters = null,
         CancellationToken cancellationToken = default

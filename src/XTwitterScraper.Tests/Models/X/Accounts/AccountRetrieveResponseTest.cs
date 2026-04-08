@@ -12,24 +12,24 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
-            CookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            ProxyCountry = "proxyCountry",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+            CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
+            ProxyCountry = "US",
+            UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        string expectedXUserID = "xUserId";
-        string expectedXUsername = "xUsername";
-        DateTimeOffset expectedCookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedProxyCountry = "proxyCountry";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedStatus = "active";
+        string expectedXUserID = "9876543210";
+        string expectedXUsername = "elonmusk";
+        DateTimeOffset expectedCookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z");
+        string expectedProxyCountry = "US";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z");
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -46,14 +46,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
-            CookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            ProxyCountry = "proxyCountry",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+            CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
+            ProxyCountry = "US",
+            UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -70,14 +70,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
-            CookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            ProxyCountry = "proxyCountry",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+            CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
+            ProxyCountry = "US",
+            UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -87,14 +87,14 @@ public class AccountRetrieveResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedStatus = "status";
-        string expectedXUserID = "xUserId";
-        string expectedXUsername = "xUsername";
-        DateTimeOffset expectedCookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedProxyCountry = "proxyCountry";
-        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedStatus = "active";
+        string expectedXUserID = "9876543210";
+        string expectedXUsername = "elonmusk";
+        DateTimeOffset expectedCookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z");
+        string expectedProxyCountry = "US";
+        DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z");
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -111,14 +111,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
-            CookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            ProxyCountry = "proxyCountry",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+            CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
+            ProxyCountry = "US",
+            UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
         };
 
         model.Validate();
@@ -129,11 +129,11 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         Assert.Null(model.CookiesObtainedAt);
@@ -149,11 +149,11 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -164,11 +164,11 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             CookiesObtainedAt = null,
@@ -189,11 +189,11 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             CookiesObtainedAt = null,
@@ -209,14 +209,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Status = "status",
-            XUserID = "xUserId",
-            XUsername = "xUsername",
-            CookiesObtainedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            ProxyCountry = "proxyCountry",
-            UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Status = "active",
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+            CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
+            ProxyCountry = "US",
+            UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
         };
 
         AccountRetrieveResponse copied = new(model);

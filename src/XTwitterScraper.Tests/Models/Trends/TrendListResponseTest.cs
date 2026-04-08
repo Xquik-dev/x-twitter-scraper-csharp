@@ -12,32 +12,32 @@ public class TrendListResponseTest : TestBase
     {
         var model = new TrendListResponse
         {
-            Total = 0,
+            Total = 30,
             Trends =
             [
                 new()
                 {
-                    Name = "name",
-                    Description = "description",
-                    Query = "query",
-                    Rank = 0,
+                    Name = "#AI",
+                    Description = "Artificial intelligence discussions",
+                    Query = "%23AI",
+                    Rank = 1,
                 },
             ],
-            Woeid = 0,
+            Woeid = 1,
         };
 
-        long expectedTotal = 0;
+        long expectedTotal = 30;
         List<Trend> expectedTrends =
         [
             new()
             {
-                Name = "name",
-                Description = "description",
-                Query = "query",
-                Rank = 0,
+                Name = "#AI",
+                Description = "Artificial intelligence discussions",
+                Query = "%23AI",
+                Rank = 1,
             },
         ];
-        long expectedWoeid = 0;
+        long expectedWoeid = 1;
 
         Assert.Equal(expectedTotal, model.Total);
         Assert.Equal(expectedTrends.Count, model.Trends.Count);
@@ -53,18 +53,18 @@ public class TrendListResponseTest : TestBase
     {
         var model = new TrendListResponse
         {
-            Total = 0,
+            Total = 30,
             Trends =
             [
                 new()
                 {
-                    Name = "name",
-                    Description = "description",
-                    Query = "query",
-                    Rank = 0,
+                    Name = "#AI",
+                    Description = "Artificial intelligence discussions",
+                    Query = "%23AI",
+                    Rank = 1,
                 },
             ],
-            Woeid = 0,
+            Woeid = 1,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -81,18 +81,18 @@ public class TrendListResponseTest : TestBase
     {
         var model = new TrendListResponse
         {
-            Total = 0,
+            Total = 30,
             Trends =
             [
                 new()
                 {
-                    Name = "name",
-                    Description = "description",
-                    Query = "query",
-                    Rank = 0,
+                    Name = "#AI",
+                    Description = "Artificial intelligence discussions",
+                    Query = "%23AI",
+                    Rank = 1,
                 },
             ],
-            Woeid = 0,
+            Woeid = 1,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -102,18 +102,18 @@ public class TrendListResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        long expectedTotal = 0;
+        long expectedTotal = 30;
         List<Trend> expectedTrends =
         [
             new()
             {
-                Name = "name",
-                Description = "description",
-                Query = "query",
-                Rank = 0,
+                Name = "#AI",
+                Description = "Artificial intelligence discussions",
+                Query = "%23AI",
+                Rank = 1,
             },
         ];
-        long expectedWoeid = 0;
+        long expectedWoeid = 1;
 
         Assert.Equal(expectedTotal, deserialized.Total);
         Assert.Equal(expectedTrends.Count, deserialized.Trends.Count);
@@ -129,18 +129,18 @@ public class TrendListResponseTest : TestBase
     {
         var model = new TrendListResponse
         {
-            Total = 0,
+            Total = 30,
             Trends =
             [
                 new()
                 {
-                    Name = "name",
-                    Description = "description",
-                    Query = "query",
-                    Rank = 0,
+                    Name = "#AI",
+                    Description = "Artificial intelligence discussions",
+                    Query = "%23AI",
+                    Rank = 1,
                 },
             ],
-            Woeid = 0,
+            Woeid = 1,
         };
 
         model.Validate();
@@ -151,18 +151,18 @@ public class TrendListResponseTest : TestBase
     {
         var model = new TrendListResponse
         {
-            Total = 0,
+            Total = 30,
             Trends =
             [
                 new()
                 {
-                    Name = "name",
-                    Description = "description",
-                    Query = "query",
-                    Rank = 0,
+                    Name = "#AI",
+                    Description = "Artificial intelligence discussions",
+                    Query = "%23AI",
+                    Rank = 1,
                 },
             ],
-            Woeid = 0,
+            Woeid = 1,
         };
 
         TrendListResponse copied = new(model);
@@ -178,16 +178,16 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
-            Description = "description",
-            Query = "query",
-            Rank = 0,
+            Name = "#AI",
+            Description = "Artificial intelligence discussions",
+            Query = "%23AI",
+            Rank = 1,
         };
 
-        string expectedName = "name";
-        string expectedDescription = "description";
-        string expectedQuery = "query";
-        long expectedRank = 0;
+        string expectedName = "#AI";
+        string expectedDescription = "Artificial intelligence discussions";
+        string expectedQuery = "%23AI";
+        long expectedRank = 1;
 
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedDescription, model.Description);
@@ -200,10 +200,10 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
-            Description = "description",
-            Query = "query",
-            Rank = 0,
+            Name = "#AI",
+            Description = "Artificial intelligence discussions",
+            Query = "%23AI",
+            Rank = 1,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -217,20 +217,20 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
-            Description = "description",
-            Query = "query",
-            Rank = 0,
+            Name = "#AI",
+            Description = "Artificial intelligence discussions",
+            Query = "%23AI",
+            Rank = 1,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Trend>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        string expectedName = "name";
-        string expectedDescription = "description";
-        string expectedQuery = "query";
-        long expectedRank = 0;
+        string expectedName = "#AI";
+        string expectedDescription = "Artificial intelligence discussions";
+        string expectedQuery = "%23AI";
+        long expectedRank = 1;
 
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedDescription, deserialized.Description);
@@ -243,10 +243,10 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
-            Description = "description",
-            Query = "query",
-            Rank = 0,
+            Name = "#AI",
+            Description = "Artificial intelligence discussions",
+            Query = "%23AI",
+            Rank = 1,
         };
 
         model.Validate();
@@ -255,7 +255,7 @@ public class TrendTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Trend { Name = "name" };
+        var model = new Trend { Name = "#AI" };
 
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
@@ -268,7 +268,7 @@ public class TrendTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Trend { Name = "name" };
+        var model = new Trend { Name = "#AI" };
 
         model.Validate();
     }
@@ -278,7 +278,7 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
+            Name = "#AI",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -299,7 +299,7 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
+            Name = "#AI",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -315,10 +315,10 @@ public class TrendTest : TestBase
     {
         var model = new Trend
         {
-            Name = "name",
-            Description = "description",
-            Query = "query",
-            Rank = 0,
+            Name = "#AI",
+            Description = "Artificial intelligence discussions",
+            Query = "%23AI",
+            Rank = 1,
         };
 
         Trend copied = new(model);

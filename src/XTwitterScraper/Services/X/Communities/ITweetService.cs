@@ -31,7 +31,10 @@ public interface ITweetService
     /// <summary>
     /// Search tweets across all communities
     /// </summary>
-    Task List(TweetListParams parameters, CancellationToken cancellationToken = default);
+    Task<TweetListResponse> List(
+        TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -51,7 +54,7 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/communities/tweets</c>, but is otherwise the
     /// same as <see cref="ITweetService.List(TweetListParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> List(
+    Task<HttpResponse<TweetListResponse>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     );

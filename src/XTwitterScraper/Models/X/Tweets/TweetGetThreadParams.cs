@@ -20,7 +20,7 @@ public record class TweetGetThreadParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for thread tweets
     /// </summary>
     public string? Cursor
     {

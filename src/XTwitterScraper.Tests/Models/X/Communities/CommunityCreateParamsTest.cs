@@ -10,14 +10,14 @@ public class CommunityCreateParamsTest : TestBase
     {
         var parameters = new CommunityCreateParams
         {
-            Account = "account",
-            Name = "name",
-            Description = "description",
+            Account = "@elonmusk",
+            Name = "Example Name",
+            Description = "A community for Tesla enthusiasts",
         };
 
-        string expectedAccount = "account";
-        string expectedName = "name";
-        string expectedDescription = "description";
+        string expectedAccount = "@elonmusk";
+        string expectedName = "Example Name";
+        string expectedDescription = "A community for Tesla enthusiasts";
 
         Assert.Equal(expectedAccount, parameters.Account);
         Assert.Equal(expectedName, parameters.Name);
@@ -27,7 +27,7 @@ public class CommunityCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new CommunityCreateParams { Account = "account", Name = "name" };
+        var parameters = new CommunityCreateParams { Account = "@elonmusk", Name = "Example Name" };
 
         Assert.Null(parameters.Description);
         Assert.False(parameters.RawBodyData.ContainsKey("description"));
@@ -38,8 +38,8 @@ public class CommunityCreateParamsTest : TestBase
     {
         var parameters = new CommunityCreateParams
         {
-            Account = "account",
-            Name = "name",
+            Account = "@elonmusk",
+            Name = "Example Name",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -52,7 +52,7 @@ public class CommunityCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        CommunityCreateParams parameters = new() { Account = "account", Name = "name" };
+        CommunityCreateParams parameters = new() { Account = "@elonmusk", Name = "Example Name" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -64,9 +64,9 @@ public class CommunityCreateParamsTest : TestBase
     {
         var parameters = new CommunityCreateParams
         {
-            Account = "account",
-            Name = "name",
-            Description = "description",
+            Account = "@elonmusk",
+            Name = "Example Name",
+            Description = "A community for Tesla enthusiasts",
         };
 
         CommunityCreateParams copied = new(parameters);

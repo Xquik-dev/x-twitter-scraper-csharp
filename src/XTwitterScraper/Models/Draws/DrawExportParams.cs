@@ -21,6 +21,9 @@ public record class DrawExportParams : ParamsBase
 {
     public string? ID { get; init; }
 
+    /// <summary>
+    /// Export output format
+    /// </summary>
     public ApiEnum<string, Format>? Format
     {
         get
@@ -164,6 +167,9 @@ public record class DrawExportParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Export output format
+/// </summary>
 [JsonConverter(typeof(FormatConverter))]
 public enum Format
 {

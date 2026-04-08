@@ -25,7 +25,7 @@ public record class CommunityCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or account ID)
+    /// X account (@username or ID) creating the community
     /// </summary>
     public required string Account
     {

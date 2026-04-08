@@ -29,8 +29,8 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         List<EventListResponseEvent> expectedEvents =
@@ -48,8 +48,8 @@ public class EventListResponseTest : TestBase
                 Username = "username",
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedEvents.Count, model.Events.Count);
         for (int i = 0; i < expectedEvents.Count; i++)
@@ -80,8 +80,8 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -113,8 +113,8 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -139,8 +139,8 @@ public class EventListResponseTest : TestBase
                 Username = "username",
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedEvents.Count, deserialized.Events.Count);
         for (int i = 0; i < expectedEvents.Count; i++)
@@ -171,8 +171,8 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         model.Validate();
@@ -198,7 +198,7 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         Assert.Null(model.NextCursor);
@@ -225,7 +225,7 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         model.Validate();
@@ -251,7 +251,7 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -281,7 +281,7 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -310,8 +310,8 @@ public class EventListResponseTest : TestBase
                     Username = "username",
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         EventListResponse copied = new(model);

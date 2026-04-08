@@ -14,21 +14,26 @@ public class WebhookUpdateResponseTest : TestBase
     {
         var model = new WebhookUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookUpdateResponseEventType.TweetNew,
+                WebhookUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Url = "https://example.com",
+            Url = "https://example.com/webhooks/xquik",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, WebhookUpdateResponseEventType>> expectedEventTypes =
         [
             WebhookUpdateResponseEventType.TweetNew,
+            WebhookUpdateResponseEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUrl = "https://example.com";
+        string expectedUrl = "https://example.com/webhooks/xquik";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -46,11 +51,15 @@ public class WebhookUpdateResponseTest : TestBase
     {
         var model = new WebhookUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookUpdateResponseEventType.TweetNew,
+                WebhookUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Url = "https://example.com",
+            Url = "https://example.com/webhooks/xquik",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,11 +76,15 @@ public class WebhookUpdateResponseTest : TestBase
     {
         var model = new WebhookUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookUpdateResponseEventType.TweetNew,
+                WebhookUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Url = "https://example.com",
+            Url = "https://example.com/webhooks/xquik",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -81,14 +94,15 @@ public class WebhookUpdateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, WebhookUpdateResponseEventType>> expectedEventTypes =
         [
             WebhookUpdateResponseEventType.TweetNew,
+            WebhookUpdateResponseEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUrl = "https://example.com";
+        string expectedUrl = "https://example.com/webhooks/xquik";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -106,11 +120,15 @@ public class WebhookUpdateResponseTest : TestBase
     {
         var model = new WebhookUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookUpdateResponseEventType.TweetNew,
+                WebhookUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Url = "https://example.com",
+            Url = "https://example.com/webhooks/xquik",
         };
 
         model.Validate();
@@ -121,11 +139,15 @@ public class WebhookUpdateResponseTest : TestBase
     {
         var model = new WebhookUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookUpdateResponseEventType.TweetNew,
+                WebhookUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Url = "https://example.com",
+            Url = "https://example.com/webhooks/xquik",
         };
 
         WebhookUpdateResponse copied = new(model);

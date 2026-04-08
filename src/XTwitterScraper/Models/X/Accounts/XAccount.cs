@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Accounts;
 
+/// <summary>
+/// Linked X account summary with username and connection status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<XAccount, XAccountFromRaw>))]
 public sealed record class XAccount : JsonModel
 {

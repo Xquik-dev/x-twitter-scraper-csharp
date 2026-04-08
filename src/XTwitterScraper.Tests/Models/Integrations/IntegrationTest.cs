@@ -14,45 +14,46 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
             Filters = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "minFollowers", JsonSerializer.SerializeToElement("bar") },
             },
-            MessageTemplate = "messageTemplate",
+            MessageTemplate = "New event: {{event.type}}",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
-        string expectedID = "id";
+        string expectedID = "42";
         Dictionary<string, JsonElement> expectedConfig = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "chatId", JsonSerializer.SerializeToElement("bar") },
         };
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, IntegrationEventType>> expectedEventTypes =
         [
             IntegrationEventType.TweetNew,
+            IntegrationEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedName = "name";
+        string expectedName = "My Telegram Bot";
         ApiEnum<string, IntegrationType> expectedType = IntegrationType.Telegram;
         Dictionary<string, JsonElement> expectedFilters = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "minFollowers", JsonSerializer.SerializeToElement("bar") },
         };
-        string expectedMessageTemplate = "messageTemplate";
+        string expectedMessageTemplate = "New event: {{event.type}}";
         bool expectedScopeAllMonitors = true;
-        bool expectedSilentPush = true;
+        bool expectedSilentPush = false;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedConfig.Count, model.Config.Count);
@@ -89,23 +90,23 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
             Filters = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "minFollowers", JsonSerializer.SerializeToElement("bar") },
             },
-            MessageTemplate = "messageTemplate",
+            MessageTemplate = "New event: {{event.type}}",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -122,23 +123,23 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
             Filters = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "minFollowers", JsonSerializer.SerializeToElement("bar") },
             },
-            MessageTemplate = "messageTemplate",
+            MessageTemplate = "New event: {{event.type}}",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -148,26 +149,27 @@ public class IntegrationTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "42";
         Dictionary<string, JsonElement> expectedConfig = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "chatId", JsonSerializer.SerializeToElement("bar") },
         };
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, IntegrationEventType>> expectedEventTypes =
         [
             IntegrationEventType.TweetNew,
+            IntegrationEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedName = "name";
+        string expectedName = "My Telegram Bot";
         ApiEnum<string, IntegrationType> expectedType = IntegrationType.Telegram;
         Dictionary<string, JsonElement> expectedFilters = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            { "minFollowers", JsonSerializer.SerializeToElement("bar") },
         };
-        string expectedMessageTemplate = "messageTemplate";
+        string expectedMessageTemplate = "New event: {{event.type}}";
         bool expectedScopeAllMonitors = true;
-        bool expectedSilentPush = true;
+        bool expectedSilentPush = false;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedConfig.Count, deserialized.Config.Count);
@@ -204,23 +206,23 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
             Filters = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "minFollowers", JsonSerializer.SerializeToElement("bar") },
             },
-            MessageTemplate = "messageTemplate",
+            MessageTemplate = "New event: {{event.type}}",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         model.Validate();
@@ -231,15 +233,15 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
         };
 
@@ -258,15 +260,15 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
         };
 
@@ -278,15 +280,15 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
 
             // Null should be interpreted as omitted for these properties
@@ -311,15 +313,15 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
 
             // Null should be interpreted as omitted for these properties
@@ -337,23 +339,23 @@ public class IntegrationTest : TestBase
     {
         var model = new Integration
         {
-            ID = "id",
+            ID = "42",
             Config = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "chatId", JsonSerializer.SerializeToElement("bar") },
             },
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [IntegrationEventType.TweetNew],
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes = [IntegrationEventType.TweetNew, IntegrationEventType.FollowerGained],
             IsActive = true,
-            Name = "name",
+            Name = "My Telegram Bot",
             Type = IntegrationType.Telegram,
             Filters = new Dictionary<string, JsonElement>()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                { "minFollowers", JsonSerializer.SerializeToElement("bar") },
             },
-            MessageTemplate = "messageTemplate",
+            MessageTemplate = "New event: {{event.type}}",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         Integration copied = new(model);

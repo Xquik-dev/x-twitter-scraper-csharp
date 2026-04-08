@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Draws;
 
+/// <summary>
+/// Full giveaway draw with tweet metrics, entries, and timing.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<DrawDetail, DrawDetailFromRaw>))]
 public sealed record class DrawDetail : JsonModel
 {

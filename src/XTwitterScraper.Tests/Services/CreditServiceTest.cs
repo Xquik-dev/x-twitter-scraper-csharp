@@ -18,7 +18,7 @@ public class CreditServiceTest : TestBase
     public async Task TopupBalance_Works()
     {
         var response = await this.client.Credits.TopupBalance(
-            new() { Amount = 0 },
+            new() { Amount = 10000 },
             TestContext.Current.CancellationToken
         );
         response.Validate();

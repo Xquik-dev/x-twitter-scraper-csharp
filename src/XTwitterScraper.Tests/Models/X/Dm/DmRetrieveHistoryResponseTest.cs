@@ -17,14 +17,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = "createdAt",
-                    ReceiverID = "receiverId",
-                    SenderID = "senderId",
-                    Text = "text",
+                    ID = "1234567890123456789",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    ReceiverID = "1234567890",
+                    SenderID = "9876543210",
+                    Text = "Hey, how are you?",
                 },
             ],
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         bool expectedHasNextPage = true;
@@ -32,14 +32,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
-                CreatedAt = "createdAt",
-                ReceiverID = "receiverId",
-                SenderID = "senderId",
-                Text = "text",
+                ID = "1234567890123456789",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                ReceiverID = "1234567890",
+                SenderID = "9876543210",
+                Text = "Hey, how are you?",
             },
         ];
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
 
         Assert.Equal(expectedHasNextPage, model.HasNextPage);
         Assert.Equal(expectedMessages.Count, model.Messages.Count);
@@ -60,14 +60,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = "createdAt",
-                    ReceiverID = "receiverId",
-                    SenderID = "senderId",
-                    Text = "text",
+                    ID = "1234567890123456789",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    ReceiverID = "1234567890",
+                    SenderID = "9876543210",
+                    Text = "Hey, how are you?",
                 },
             ],
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -89,14 +89,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = "createdAt",
-                    ReceiverID = "receiverId",
-                    SenderID = "senderId",
-                    Text = "text",
+                    ID = "1234567890123456789",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    ReceiverID = "1234567890",
+                    SenderID = "9876543210",
+                    Text = "Hey, how are you?",
                 },
             ],
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -111,14 +111,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
-                CreatedAt = "createdAt",
-                ReceiverID = "receiverId",
-                SenderID = "senderId",
-                Text = "text",
+                ID = "1234567890123456789",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                ReceiverID = "1234567890",
+                SenderID = "9876543210",
+                Text = "Hey, how are you?",
             },
         ];
-        string expectedNextCursor = "next_cursor";
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
 
         Assert.Equal(expectedHasNextPage, deserialized.HasNextPage);
         Assert.Equal(expectedMessages.Count, deserialized.Messages.Count);
@@ -139,14 +139,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = "createdAt",
-                    ReceiverID = "receiverId",
-                    SenderID = "senderId",
-                    Text = "text",
+                    ID = "1234567890123456789",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    ReceiverID = "1234567890",
+                    SenderID = "9876543210",
+                    Text = "Hey, how are you?",
                 },
             ],
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         model.Validate();
@@ -162,14 +162,14 @@ public class DmRetrieveHistoryResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = "createdAt",
-                    ReceiverID = "receiverId",
-                    SenderID = "senderId",
-                    Text = "text",
+                    ID = "1234567890123456789",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    ReceiverID = "1234567890",
+                    SenderID = "9876543210",
+                    Text = "Hey, how are you?",
                 },
             ],
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
         };
 
         DmRetrieveHistoryResponse copied = new(model);
@@ -185,18 +185,18 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
-            CreatedAt = "createdAt",
-            ReceiverID = "receiverId",
-            SenderID = "senderId",
-            Text = "text",
+            ID = "1234567890123456789",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+            Text = "Hey, how are you?",
         };
 
-        string expectedID = "id";
-        string expectedCreatedAt = "createdAt";
-        string expectedReceiverID = "receiverId";
-        string expectedSenderID = "senderId";
-        string expectedText = "text";
+        string expectedID = "1234567890123456789";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        string expectedReceiverID = "1234567890";
+        string expectedSenderID = "9876543210";
+        string expectedText = "Hey, how are you?";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -210,11 +210,11 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
-            CreatedAt = "createdAt",
-            ReceiverID = "receiverId",
-            SenderID = "senderId",
-            Text = "text",
+            ID = "1234567890123456789",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+            Text = "Hey, how are you?",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -228,11 +228,11 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
-            CreatedAt = "createdAt",
-            ReceiverID = "receiverId",
-            SenderID = "senderId",
-            Text = "text",
+            ID = "1234567890123456789",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+            Text = "Hey, how are you?",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -242,11 +242,11 @@ public class MessageTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedCreatedAt = "createdAt";
-        string expectedReceiverID = "receiverId";
-        string expectedSenderID = "senderId";
-        string expectedText = "text";
+        string expectedID = "1234567890123456789";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        string expectedReceiverID = "1234567890";
+        string expectedSenderID = "9876543210";
+        string expectedText = "Hey, how are you?";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -260,11 +260,11 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
-            CreatedAt = "createdAt",
-            ReceiverID = "receiverId",
-            SenderID = "senderId",
-            Text = "text",
+            ID = "1234567890123456789",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+            Text = "Hey, how are you?",
         };
 
         model.Validate();
@@ -273,7 +273,7 @@ public class MessageTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Message { ID = "id" };
+        var model = new Message { ID = "1234567890123456789" };
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
@@ -288,7 +288,7 @@ public class MessageTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Message { ID = "id" };
+        var model = new Message { ID = "1234567890123456789" };
 
         model.Validate();
     }
@@ -298,7 +298,7 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
+            ID = "1234567890123456789",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -322,7 +322,7 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
+            ID = "1234567890123456789",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -339,11 +339,11 @@ public class MessageTest : TestBase
     {
         var model = new Message
         {
-            ID = "id",
-            CreatedAt = "createdAt",
-            ReceiverID = "receiverId",
-            SenderID = "senderId",
-            Text = "text",
+            ID = "1234567890123456789",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+            Text = "Hey, how are you?",
         };
 
         Message copied = new(model);

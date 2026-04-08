@@ -8,10 +8,10 @@ public class JoinDeleteAllParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new JoinDeleteAllParams { ID = "id", Account = "account" };
+        var parameters = new JoinDeleteAllParams { ID = "id", Account = "@elonmusk" };
 
         string expectedID = "id";
-        string expectedAccount = "account";
+        string expectedAccount = "@elonmusk";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedAccount, parameters.Account);
@@ -20,7 +20,7 @@ public class JoinDeleteAllParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        JoinDeleteAllParams parameters = new() { ID = "id", Account = "account" };
+        JoinDeleteAllParams parameters = new() { ID = "id", Account = "@elonmusk" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -30,7 +30,7 @@ public class JoinDeleteAllParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new JoinDeleteAllParams { ID = "id", Account = "account" };
+        var parameters = new JoinDeleteAllParams { ID = "id", Account = "@elonmusk" };
 
         JoinDeleteAllParams copied = new(parameters);
 

@@ -21,13 +21,13 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         List<Extraction> expectedExtractions =
@@ -37,13 +37,13 @@ public class ExtractionListResponseTest : TestBase
                 ID = "id",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = ExtractionStatus.Running,
-                ToolType = ExtractionToolType.ArticleExtractor,
+                ToolType = ExtractionToolType.FollowerExplorer,
                 TotalResults = 0,
                 CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedExtractions.Count, model.Extractions.Count);
         for (int i = 0; i < expectedExtractions.Count; i++)
@@ -66,13 +66,13 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -96,13 +96,13 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -119,13 +119,13 @@ public class ExtractionListResponseTest : TestBase
                 ID = "id",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = ExtractionStatus.Running,
-                ToolType = ExtractionToolType.ArticleExtractor,
+                ToolType = ExtractionToolType.FollowerExplorer,
                 TotalResults = 0,
                 CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
         ];
-        bool expectedHasMore = true;
-        string expectedNextCursor = "nextCursor";
+        bool expectedHasMore = false;
+        string expectedNextCursor = "abc123";
 
         Assert.Equal(expectedExtractions.Count, deserialized.Extractions.Count);
         for (int i = 0; i < expectedExtractions.Count; i++)
@@ -148,13 +148,13 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         model.Validate();
@@ -172,12 +172,12 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         Assert.Null(model.NextCursor);
@@ -196,12 +196,12 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
         };
 
         model.Validate();
@@ -219,12 +219,12 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -246,12 +246,12 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
+            HasMore = false,
 
             // Null should be interpreted as omitted for these properties
             NextCursor = null,
@@ -272,13 +272,13 @@ public class ExtractionListResponseTest : TestBase
                     ID = "id",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = ExtractionStatus.Running,
-                    ToolType = ExtractionToolType.ArticleExtractor,
+                    ToolType = ExtractionToolType.FollowerExplorer,
                     TotalResults = 0,
                     CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 },
             ],
-            HasMore = true,
-            NextCursor = "nextCursor",
+            HasMore = false,
+            NextCursor = "abc123",
         };
 
         ExtractionListResponse copied = new(model);
@@ -297,7 +297,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -305,7 +305,7 @@ public class ExtractionTest : TestBase
         string expectedID = "id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, ExtractionStatus> expectedStatus = ExtractionStatus.Running;
-        ApiEnum<string, ExtractionToolType> expectedToolType = ExtractionToolType.ArticleExtractor;
+        ApiEnum<string, ExtractionToolType> expectedToolType = ExtractionToolType.FollowerExplorer;
         long expectedTotalResults = 0;
         DateTimeOffset expectedCompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
@@ -325,7 +325,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -347,7 +347,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -362,7 +362,7 @@ public class ExtractionTest : TestBase
         string expectedID = "id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, ExtractionStatus> expectedStatus = ExtractionStatus.Running;
-        ApiEnum<string, ExtractionToolType> expectedToolType = ExtractionToolType.ArticleExtractor;
+        ApiEnum<string, ExtractionToolType> expectedToolType = ExtractionToolType.FollowerExplorer;
         long expectedTotalResults = 0;
         DateTimeOffset expectedCompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
@@ -382,7 +382,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
@@ -398,7 +398,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
         };
 
@@ -414,7 +414,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
         };
 
@@ -429,7 +429,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
 
             // Null should be interpreted as omitted for these properties
@@ -448,7 +448,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
 
             // Null should be interpreted as omitted for these properties
@@ -466,7 +466,7 @@ public class ExtractionTest : TestBase
             ID = "id",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = ExtractionStatus.Running,
-            ToolType = ExtractionToolType.ArticleExtractor,
+            ToolType = ExtractionToolType.FollowerExplorer,
             TotalResults = 0,
             CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };

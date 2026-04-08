@@ -11,13 +11,13 @@ public class CommunityDeleteParamsTest : TestBase
         var parameters = new CommunityDeleteParams
         {
             ID = "id",
-            Account = "account",
-            CommunityName = "community_name",
+            Account = "@elonmusk",
+            CommunityName = "Tesla Fans",
         };
 
         string expectedID = "id";
-        string expectedAccount = "account";
-        string expectedCommunityName = "community_name";
+        string expectedAccount = "@elonmusk";
+        string expectedCommunityName = "Tesla Fans";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedAccount, parameters.Account);
@@ -30,8 +30,8 @@ public class CommunityDeleteParamsTest : TestBase
         CommunityDeleteParams parameters = new()
         {
             ID = "id",
-            Account = "account",
-            CommunityName = "community_name",
+            Account = "@elonmusk",
+            CommunityName = "Tesla Fans",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -45,8 +45,8 @@ public class CommunityDeleteParamsTest : TestBase
         var parameters = new CommunityDeleteParams
         {
             ID = "id",
-            Account = "account",
-            CommunityName = "community_name",
+            Account = "@elonmusk",
+            CommunityName = "Tesla Fans",
         };
 
         CommunityDeleteParams copied = new(parameters);

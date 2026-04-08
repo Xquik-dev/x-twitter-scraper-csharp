@@ -29,6 +29,9 @@ public record class IntegrationUpdateParams : ParamsBase
 
     public string? ID { get; init; }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public IReadOnlyList<ApiEnum<string, IntegrationUpdateParamsEventType>>? EventTypes
     {
         get
@@ -295,6 +298,9 @@ public record class IntegrationUpdateParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(IntegrationUpdateParamsEventTypeConverter))]
 public enum IntegrationUpdateParamsEventType
 {

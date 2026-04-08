@@ -20,7 +20,7 @@ public class DmServiceTest : TestBase
     {
         var response = await this.client.X.Dm.Send(
             "userId",
-            new() { Account = "account", Text = "text" },
+            new() { Account = "@elonmusk", Text = "Example text content" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

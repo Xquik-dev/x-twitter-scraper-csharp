@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.X.Communities.Tweets;
 public record class TweetListParams : ParamsBase
 {
     /// <summary>
-    /// Search query
+    /// Search query for cross-community tweets
     /// </summary>
     public required string Q
     {
@@ -31,7 +31,7 @@ public record class TweetListParams : ParamsBase
     }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for cross-community results
     /// </summary>
     public string? Cursor
     {
@@ -52,7 +52,7 @@ public record class TweetListParams : ParamsBase
     }
 
     /// <summary>
-    /// Sort order (Latest or Top)
+    /// Sort order for cross-community results (Latest or Top)
     /// </summary>
     public string? QueryType
     {

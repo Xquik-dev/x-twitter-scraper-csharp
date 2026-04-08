@@ -15,38 +15,31 @@ public class IntegrationUpdateParamsTest : TestBase
         var parameters = new IntegrationUpdateParams
         {
             ID = "id",
-            EventTypes = [IntegrationUpdateParamsEventType.TweetNew],
-            Filters = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
+            EventTypes =
+            [
+                IntegrationUpdateParamsEventType.TweetNew,
+                IntegrationUpdateParamsEventType.FollowerGained,
+            ],
+            Filters = new Dictionary<string, JsonElement>(),
             IsActive = true,
-            MessageTemplate = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-            Name = "name",
+            MessageTemplate = new Dictionary<string, JsonElement>(),
+            Name = "My Telegram Bot",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         string expectedID = "id";
         List<ApiEnum<string, IntegrationUpdateParamsEventType>> expectedEventTypes =
         [
             IntegrationUpdateParamsEventType.TweetNew,
+            IntegrationUpdateParamsEventType.FollowerGained,
         ];
-        Dictionary<string, JsonElement> expectedFilters = new()
-        {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
-        };
+        Dictionary<string, JsonElement> expectedFilters = new();
         bool expectedIsActive = true;
-        Dictionary<string, JsonElement> expectedMessageTemplate = new()
-        {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
-        };
-        string expectedName = "name";
+        Dictionary<string, JsonElement> expectedMessageTemplate = new();
+        string expectedName = "My Telegram Bot";
         bool expectedScopeAllMonitors = true;
-        bool expectedSilentPush = true;
+        bool expectedSilentPush = false;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.NotNull(parameters.EventTypes);
@@ -147,19 +140,17 @@ public class IntegrationUpdateParamsTest : TestBase
         var parameters = new IntegrationUpdateParams
         {
             ID = "id",
-            EventTypes = [IntegrationUpdateParamsEventType.TweetNew],
-            Filters = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
+            EventTypes =
+            [
+                IntegrationUpdateParamsEventType.TweetNew,
+                IntegrationUpdateParamsEventType.FollowerGained,
+            ],
+            Filters = new Dictionary<string, JsonElement>(),
             IsActive = true,
-            MessageTemplate = new Dictionary<string, JsonElement>()
-            {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
-            },
-            Name = "name",
+            MessageTemplate = new Dictionary<string, JsonElement>(),
+            Name = "My Telegram Bot",
             ScopeAllMonitors = true,
-            SilentPush = true,
+            SilentPush = false,
         };
 
         IntegrationUpdateParams copied = new(parameters);

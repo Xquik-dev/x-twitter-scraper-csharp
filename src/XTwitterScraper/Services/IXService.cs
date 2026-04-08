@@ -83,7 +83,7 @@ public interface IXService
     /// <summary>
     /// Get trending topics
     /// </summary>
-    Task GetTrends(
+    Task<XGetTrendsResponse> GetTrends(
         XGetTrendsParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -160,7 +160,7 @@ public interface IXServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/trends</c>, but is otherwise the
     /// same as <see cref="IXService.GetTrends(XGetTrendsParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse> GetTrends(
+    Task<HttpResponse<XGetTrendsResponse>> GetTrends(
         XGetTrendsParams? parameters = null,
         CancellationToken cancellationToken = default
     );

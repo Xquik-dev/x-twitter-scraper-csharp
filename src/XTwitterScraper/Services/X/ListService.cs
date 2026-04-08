@@ -35,16 +35,19 @@ public sealed class ListService : IListService
     }
 
     /// <inheritdoc/>
-    public Task RetrieveFollowers(
+    public async Task<ListRetrieveFollowersResponse> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveFollowers(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveFollowers(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveFollowers(
+    public Task<ListRetrieveFollowersResponse> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -52,21 +55,23 @@ public sealed class ListService : IListService
     {
         parameters ??= new();
 
-        await this.RetrieveFollowers(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveFollowers(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveMembers(
+    public async Task<ListRetrieveMembersResponse> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveMembers(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveMembers(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveMembers(
+    public Task<ListRetrieveMembersResponse> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -74,21 +79,23 @@ public sealed class ListService : IListService
     {
         parameters ??= new();
 
-        await this.RetrieveMembers(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveMembers(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task RetrieveTweets(
+    public async Task<ListRetrieveTweetsResponse> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        return this.WithRawResponse.RetrieveTweets(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.RetrieveTweets(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
-    public async Task RetrieveTweets(
+    public Task<ListRetrieveTweetsResponse> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -96,8 +103,7 @@ public sealed class ListService : IListService
     {
         parameters ??= new();
 
-        await this.RetrieveTweets(parameters with { ID = id }, cancellationToken)
-            .ConfigureAwait(false);
+        return this.RetrieveTweets(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -118,7 +124,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowers(
+    public async Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -133,11 +139,25 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<ListRetrieveFollowersResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveFollowers(
+    public Task<HttpResponse<ListRetrieveFollowersResponse>> RetrieveFollowers(
         string id,
         ListRetrieveFollowersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -149,7 +169,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMembers(
+    public async Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
         ListRetrieveMembersParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -164,11 +184,25 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<ListRetrieveMembersResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveMembers(
+    public Task<HttpResponse<ListRetrieveMembersResponse>> RetrieveMembers(
         string id,
         ListRetrieveMembersParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -180,7 +214,7 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveTweets(
+    public async Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
         ListRetrieveTweetsParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -195,11 +229,25 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<ListRetrieveTweetsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> RetrieveTweets(
+    public Task<HttpResponse<ListRetrieveTweetsResponse>> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default

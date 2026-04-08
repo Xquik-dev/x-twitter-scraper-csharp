@@ -40,6 +40,9 @@ public record class IntegrationCreateParams : ParamsBase
         init { this._rawBodyData.Set("config", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
     {
         get
@@ -254,6 +257,9 @@ class ConfigFromRaw : IFromRawJson<Config>
         Config.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(EventTypeConverter))]
 public enum EventType
 {

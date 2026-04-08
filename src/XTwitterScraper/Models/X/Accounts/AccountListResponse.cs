@@ -83,6 +83,9 @@ class AccountListResponseFromRaw : IFromRawJson<AccountListResponse>
         AccountListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Linked X account summary with username and connection status.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<AccountListResponseAccount, AccountListResponseAccountFromRaw>)
 )]

@@ -15,18 +15,23 @@ public class WebhookUpdateParamsTest : TestBase
         var parameters = new WebhookUpdateParams
         {
             ID = "id",
-            EventTypes = [WebhookUpdateParamsEventType.TweetNew],
+            EventTypes =
+            [
+                WebhookUpdateParamsEventType.TweetNew,
+                WebhookUpdateParamsEventType.FollowerGained,
+            ],
             IsActive = true,
-            UrlValue = "https://example.com",
+            UrlValue = "https://example.com/webhook",
         };
 
         string expectedID = "id";
         List<ApiEnum<string, WebhookUpdateParamsEventType>> expectedEventTypes =
         [
             WebhookUpdateParamsEventType.TweetNew,
+            WebhookUpdateParamsEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUrlValue = "https://example.com";
+        string expectedUrlValue = "https://example.com/webhook";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.NotNull(parameters.EventTypes);
@@ -89,9 +94,13 @@ public class WebhookUpdateParamsTest : TestBase
         var parameters = new WebhookUpdateParams
         {
             ID = "id",
-            EventTypes = [WebhookUpdateParamsEventType.TweetNew],
+            EventTypes =
+            [
+                WebhookUpdateParamsEventType.TweetNew,
+                WebhookUpdateParamsEventType.FollowerGained,
+            ],
             IsActive = true,
-            UrlValue = "https://example.com",
+            UrlValue = "https://example.com/webhook",
         };
 
         WebhookUpdateParams copied = new(parameters);

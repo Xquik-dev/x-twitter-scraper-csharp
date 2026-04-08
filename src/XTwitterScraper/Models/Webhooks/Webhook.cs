@@ -10,6 +10,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Webhooks;
 
+/// <summary>
+/// Webhook endpoint registered to receive event deliveries.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Webhook, WebhookFromRaw>))]
 public sealed record class Webhook : JsonModel
 {
@@ -33,6 +36,9 @@ public sealed record class Webhook : JsonModel
         init { this._rawData.Set("createdAt", value); }
     }
 
+    /// <summary>
+    /// Array of event types to subscribe to.
+    /// </summary>
     public required IReadOnlyList<ApiEnum<string, WebhookEventType>> EventTypes
     {
         get
@@ -119,6 +125,9 @@ class WebhookFromRaw : IFromRawJson<Webhook>
         Webhook.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(WebhookEventTypeConverter))]
 public enum WebhookEventType
 {

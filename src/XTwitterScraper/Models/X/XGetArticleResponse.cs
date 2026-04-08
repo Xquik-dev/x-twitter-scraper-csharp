@@ -21,6 +21,9 @@ public sealed record class XGetArticleResponse : JsonModel
         init { this._rawData.Set("article", value); }
     }
 
+    /// <summary>
+    /// Author of a tweet with follower count and verification status.
+    /// </summary>
     public Author? Author
     {
         get
@@ -455,6 +458,9 @@ class ContentFromRaw : IFromRawJson<Content>
         Content.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Author of a tweet with follower count and verification status.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Author, AuthorFromRaw>))]
 public sealed record class Author : JsonModel
 {

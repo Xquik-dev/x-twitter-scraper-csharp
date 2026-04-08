@@ -38,6 +38,9 @@ public record class DraftListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum number of items to return (1-100, default 50)
+    /// </summary>
     public long? Limit
     {
         get

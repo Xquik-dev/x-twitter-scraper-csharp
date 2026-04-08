@@ -11,13 +11,13 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password",
-            TotpSecret = "totp_secret",
+            Password = "password_value",
+            TotpSecret = "totp_secret_value",
         };
 
         string expectedID = "id";
-        string expectedPassword = "password";
-        string expectedTotpSecret = "totp_secret";
+        string expectedPassword = "password_value";
+        string expectedTotpSecret = "totp_secret_value";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedPassword, parameters.Password);
@@ -27,7 +27,7 @@ public class AccountReauthParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new AccountReauthParams { ID = "id", Password = "password" };
+        var parameters = new AccountReauthParams { ID = "id", Password = "password_value" };
 
         Assert.Null(parameters.TotpSecret);
         Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
@@ -39,7 +39,7 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password",
+            Password = "password_value",
 
             // Null should be interpreted as omitted for these properties
             TotpSecret = null,
@@ -52,7 +52,7 @@ public class AccountReauthParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        AccountReauthParams parameters = new() { ID = "id", Password = "password" };
+        AccountReauthParams parameters = new() { ID = "id", Password = "password_value" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -65,8 +65,8 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password",
-            TotpSecret = "totp_secret",
+            Password = "password_value",
+            TotpSecret = "totp_secret_value",
         };
 
         AccountReauthParams copied = new(parameters);

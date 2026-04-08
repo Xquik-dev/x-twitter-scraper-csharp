@@ -9,7 +9,7 @@ public class ProfileServiceTest : TestBase
     public async Task Update_Works()
     {
         var profile = await this.client.X.Profile.Update(
-            new() { Account = "account" },
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         profile.Validate();
@@ -19,7 +19,7 @@ public class ProfileServiceTest : TestBase
     public async Task UpdateAvatar_Works()
     {
         var response = await this.client.X.Profile.UpdateAvatar(
-            new() { Account = "account", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
             TestContext.Current.CancellationToken
         );
         response.Validate();
@@ -29,7 +29,7 @@ public class ProfileServiceTest : TestBase
     public async Task UpdateBanner_Works()
     {
         var response = await this.client.X.Profile.UpdateBanner(
-            new() { Account = "account", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
             TestContext.Current.CancellationToken
         );
         response.Validate();

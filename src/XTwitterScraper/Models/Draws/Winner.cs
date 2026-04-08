@@ -7,6 +7,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Draws;
 
+/// <summary>
+/// Giveaway draw winner with position and backup flag.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Winner, WinnerFromRaw>))]
 public sealed record class Winner : JsonModel
 {

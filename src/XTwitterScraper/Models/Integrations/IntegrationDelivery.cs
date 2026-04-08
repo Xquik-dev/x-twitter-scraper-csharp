@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Integrations;
 
+/// <summary>
+/// Integration delivery attempt record with status and retry count.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<IntegrationDelivery, IntegrationDeliveryFromRaw>))]
 public sealed record class IntegrationDelivery : JsonModel
 {

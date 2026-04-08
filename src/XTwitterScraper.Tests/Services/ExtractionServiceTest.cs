@@ -30,7 +30,7 @@ public class ExtractionServiceTest : TestBase
     public async Task EstimateCost_Works()
     {
         var response = await this.client.Extractions.EstimateCost(
-            new() { ToolType = ExtractionEstimateCostParamsToolType.ArticleExtractor },
+            new() { ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer },
             TestContext.Current.CancellationToken
         );
         response.Validate();
@@ -50,7 +50,7 @@ public class ExtractionServiceTest : TestBase
     public async Task Run_Works()
     {
         var response = await this.client.Extractions.Run(
-            new() { ToolType = ExtractionRunParamsToolType.ArticleExtractor },
+            new() { ToolType = ExtractionRunParamsToolType.FollowerExplorer },
             TestContext.Current.CancellationToken
         );
         response.Validate();

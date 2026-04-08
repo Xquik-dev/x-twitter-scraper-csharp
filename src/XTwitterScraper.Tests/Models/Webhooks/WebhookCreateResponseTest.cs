@@ -14,21 +14,26 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookCreateResponseEventType.TweetNew],
-            Secret = "secret",
-            Url = "https://example.com",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookCreateResponseEventType.TweetNew,
+                WebhookCreateResponseEventType.FollowerGained,
+            ],
+            Secret = "whsec_abc123def456",
+            Url = "https://example.com/webhook",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, WebhookCreateResponseEventType>> expectedEventTypes =
         [
             WebhookCreateResponseEventType.TweetNew,
+            WebhookCreateResponseEventType.FollowerGained,
         ];
-        string expectedSecret = "secret";
-        string expectedUrl = "https://example.com";
+        string expectedSecret = "whsec_abc123def456";
+        string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -46,11 +51,15 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookCreateResponseEventType.TweetNew],
-            Secret = "secret",
-            Url = "https://example.com",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookCreateResponseEventType.TweetNew,
+                WebhookCreateResponseEventType.FollowerGained,
+            ],
+            Secret = "whsec_abc123def456",
+            Url = "https://example.com/webhook",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,11 +76,15 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookCreateResponseEventType.TweetNew],
-            Secret = "secret",
-            Url = "https://example.com",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookCreateResponseEventType.TweetNew,
+                WebhookCreateResponseEventType.FollowerGained,
+            ],
+            Secret = "whsec_abc123def456",
+            Url = "https://example.com/webhook",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -81,14 +94,15 @@ public class WebhookCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, WebhookCreateResponseEventType>> expectedEventTypes =
         [
             WebhookCreateResponseEventType.TweetNew,
+            WebhookCreateResponseEventType.FollowerGained,
         ];
-        string expectedSecret = "secret";
-        string expectedUrl = "https://example.com";
+        string expectedSecret = "whsec_abc123def456";
+        string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -106,11 +120,15 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookCreateResponseEventType.TweetNew],
-            Secret = "secret",
-            Url = "https://example.com",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookCreateResponseEventType.TweetNew,
+                WebhookCreateResponseEventType.FollowerGained,
+            ],
+            Secret = "whsec_abc123def456",
+            Url = "https://example.com/webhook",
         };
 
         model.Validate();
@@ -121,11 +139,15 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [WebhookCreateResponseEventType.TweetNew],
-            Secret = "secret",
-            Url = "https://example.com",
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                WebhookCreateResponseEventType.TweetNew,
+                WebhookCreateResponseEventType.FollowerGained,
+            ],
+            Secret = "whsec_abc123def456",
+            Url = "https://example.com/webhook",
         };
 
         WebhookCreateResponse copied = new(model);

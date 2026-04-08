@@ -9,7 +9,11 @@ public class MonitorServiceTest : TestBase
     public async Task Create_Works()
     {
         var monitor = await this.client.Monitors.Create(
-            new() { EventTypes = [EventType.TweetNew], Username = "username" },
+            new()
+            {
+                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                Username = "elonmusk",
+            },
             TestContext.Current.CancellationToken
         );
         monitor.Validate();

@@ -11,12 +11,12 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams
         {
-            TweetIds = ["string"],
-            TweetInput = "tweetInput",
+            TweetIds = ["1234567890", "1234567891"],
+            TweetInput = "https://x.com/elonmusk/status/1234567890",
         };
 
-        List<string> expectedTweetIds = ["string"];
-        string expectedTweetInput = "tweetInput";
+        List<string> expectedTweetIds = ["1234567890", "1234567891"];
+        string expectedTweetInput = "https://x.com/elonmusk/status/1234567890";
 
         Assert.NotNull(parameters.TweetIds);
         Assert.Equal(expectedTweetIds.Count, parameters.TweetIds.Count);
@@ -69,8 +69,8 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams
         {
-            TweetIds = ["string"],
-            TweetInput = "tweetInput",
+            TweetIds = ["1234567890", "1234567891"],
+            TweetInput = "https://x.com/elonmusk/status/1234567890",
         };
 
         MediaDownloadParams copied = new(parameters);

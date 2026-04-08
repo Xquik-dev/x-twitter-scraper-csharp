@@ -12,16 +12,16 @@ public class ComposeCreateResponseTest : TestBase
     {
         var model = new ComposeCreateResponse
         {
-            Feedback = "feedback",
-            Score = 0,
-            Suggestions = ["string"],
-            Text = "text",
+            Feedback = "Strong hook. Consider adding a call to action.",
+            Score = 78,
+            Suggestions = ["Add a thread hook", "Include a relevant hashtag"],
+            Text = "AI is reshaping every industry. Here are 5 trends to watch in 2025.",
         };
 
-        string expectedFeedback = "feedback";
-        double expectedScore = 0;
-        List<string> expectedSuggestions = ["string"];
-        string expectedText = "text";
+        string expectedFeedback = "Strong hook. Consider adding a call to action.";
+        double expectedScore = 78;
+        List<string> expectedSuggestions = ["Add a thread hook", "Include a relevant hashtag"];
+        string expectedText = "AI is reshaping every industry. Here are 5 trends to watch in 2025.";
 
         Assert.Equal(expectedFeedback, model.Feedback);
         Assert.Equal(expectedScore, model.Score);
@@ -39,10 +39,10 @@ public class ComposeCreateResponseTest : TestBase
     {
         var model = new ComposeCreateResponse
         {
-            Feedback = "feedback",
-            Score = 0,
-            Suggestions = ["string"],
-            Text = "text",
+            Feedback = "Strong hook. Consider adding a call to action.",
+            Score = 78,
+            Suggestions = ["Add a thread hook", "Include a relevant hashtag"],
+            Text = "AI is reshaping every industry. Here are 5 trends to watch in 2025.",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -59,10 +59,10 @@ public class ComposeCreateResponseTest : TestBase
     {
         var model = new ComposeCreateResponse
         {
-            Feedback = "feedback",
-            Score = 0,
-            Suggestions = ["string"],
-            Text = "text",
+            Feedback = "Strong hook. Consider adding a call to action.",
+            Score = 78,
+            Suggestions = ["Add a thread hook", "Include a relevant hashtag"],
+            Text = "AI is reshaping every industry. Here are 5 trends to watch in 2025.",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -72,10 +72,10 @@ public class ComposeCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedFeedback = "feedback";
-        double expectedScore = 0;
-        List<string> expectedSuggestions = ["string"];
-        string expectedText = "text";
+        string expectedFeedback = "Strong hook. Consider adding a call to action.";
+        double expectedScore = 78;
+        List<string> expectedSuggestions = ["Add a thread hook", "Include a relevant hashtag"];
+        string expectedText = "AI is reshaping every industry. Here are 5 trends to watch in 2025.";
 
         Assert.Equal(expectedFeedback, deserialized.Feedback);
         Assert.Equal(expectedScore, deserialized.Score);
@@ -93,10 +93,10 @@ public class ComposeCreateResponseTest : TestBase
     {
         var model = new ComposeCreateResponse
         {
-            Feedback = "feedback",
-            Score = 0,
-            Suggestions = ["string"],
-            Text = "text",
+            Feedback = "Strong hook. Consider adding a call to action.",
+            Score = 78,
+            Suggestions = ["Add a thread hook", "Include a relevant hashtag"],
+            Text = "AI is reshaping every industry. Here are 5 trends to watch in 2025.",
         };
 
         model.Validate();
@@ -167,10 +167,10 @@ public class ComposeCreateResponseTest : TestBase
     {
         var model = new ComposeCreateResponse
         {
-            Feedback = "feedback",
-            Score = 0,
-            Suggestions = ["string"],
-            Text = "text",
+            Feedback = "Strong hook. Consider adding a call to action.",
+            Score = 78,
+            Suggestions = ["Add a thread hook", "Include a relevant hashtag"],
+            Text = "AI is reshaping every industry. Here are 5 trends to watch in 2025.",
         };
 
         ComposeCreateResponse copied = new(model);

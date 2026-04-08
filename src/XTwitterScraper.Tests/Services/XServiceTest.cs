@@ -38,6 +38,7 @@ public class XServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetTrends_Works()
     {
-        await this.client.X.GetTrends(new(), TestContext.Current.CancellationToken);
+        var response = await this.client.X.GetTrends(new(), TestContext.Current.CancellationToken);
+        response.Validate();
     }
 }

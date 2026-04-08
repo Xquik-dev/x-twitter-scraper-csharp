@@ -34,9 +34,15 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task List(TweetListParams parameters, CancellationToken cancellationToken = default)
+    public async Task<TweetListResponse> List(
+        TweetListParams parameters,
+        CancellationToken cancellationToken = default
+    )
     {
-        return this.WithRawResponse.List(parameters, cancellationToken);
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 }
 
@@ -57,7 +63,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse> List(
+    public async Task<HttpResponse<TweetListResponse>> List(
         TweetListParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -67,6 +73,20 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             Method = HttpMethod.Get,
             Params = parameters,
         };
-        return this._client.Execute(request, cancellationToken);
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var tweets = await response
+                    .Deserialize<TweetListResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    tweets.Validate();
+                }
+                return tweets;
+            }
+        );
     }
 }

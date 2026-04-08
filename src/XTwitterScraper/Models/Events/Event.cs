@@ -9,6 +9,9 @@ using System = System;
 
 namespace XTwitterScraper.Models.Events;
 
+/// <summary>
+/// Monitor event summary with type, username, and occurrence time.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Event, EventFromRaw>))]
 public sealed record class Event : JsonModel
 {
@@ -58,6 +61,9 @@ public sealed record class Event : JsonModel
         init { this._rawData.Set("occurredAt", value); }
     }
 
+    /// <summary>
+    /// Type of monitor event fired when account activity occurs.
+    /// </summary>
     public required ApiEnum<string, global::XTwitterScraper.Models.Events.Type> Type
     {
         get
@@ -126,6 +132,9 @@ class EventFromRaw : IFromRawJson<Event>
         Event.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(TypeConverter))]
 public enum Type
 {

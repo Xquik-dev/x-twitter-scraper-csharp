@@ -5,6 +5,9 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models;
 
+/// <summary>
+/// Type of monitor event fired when account activity occurs.
+/// </summary>
 [JsonConverter(typeof(EventTypeConverter))]
 public enum EventType
 {

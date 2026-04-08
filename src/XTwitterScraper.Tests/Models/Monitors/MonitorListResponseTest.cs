@@ -18,12 +18,16 @@ public class MonitorListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    EventTypes =
+                    [
+                        MonitorListResponseMonitorEventType.TweetNew,
+                        MonitorListResponseMonitorEventType.FollowerGained,
+                    ],
                     IsActive = true,
-                    Username = "username",
-                    XUserID = "xUserId",
+                    Username = "elonmusk",
+                    XUserID = "9876543210",
                 },
             ],
             Total = 0,
@@ -33,12 +37,16 @@ public class MonitorListResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                EventTypes =
+                [
+                    MonitorListResponseMonitorEventType.TweetNew,
+                    MonitorListResponseMonitorEventType.FollowerGained,
+                ],
                 IsActive = true,
-                Username = "username",
-                XUserID = "xUserId",
+                Username = "elonmusk",
+                XUserID = "9876543210",
             },
         ];
         long expectedTotal = 0;
@@ -60,12 +68,16 @@ public class MonitorListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    EventTypes =
+                    [
+                        MonitorListResponseMonitorEventType.TweetNew,
+                        MonitorListResponseMonitorEventType.FollowerGained,
+                    ],
                     IsActive = true,
-                    Username = "username",
-                    XUserID = "xUserId",
+                    Username = "elonmusk",
+                    XUserID = "9876543210",
                 },
             ],
             Total = 0,
@@ -89,12 +101,16 @@ public class MonitorListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    EventTypes =
+                    [
+                        MonitorListResponseMonitorEventType.TweetNew,
+                        MonitorListResponseMonitorEventType.FollowerGained,
+                    ],
                     IsActive = true,
-                    Username = "username",
-                    XUserID = "xUserId",
+                    Username = "elonmusk",
+                    XUserID = "9876543210",
                 },
             ],
             Total = 0,
@@ -111,12 +127,16 @@ public class MonitorListResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
-                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                ID = "42",
+                CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                EventTypes =
+                [
+                    MonitorListResponseMonitorEventType.TweetNew,
+                    MonitorListResponseMonitorEventType.FollowerGained,
+                ],
                 IsActive = true,
-                Username = "username",
-                XUserID = "xUserId",
+                Username = "elonmusk",
+                XUserID = "9876543210",
             },
         ];
         long expectedTotal = 0;
@@ -138,12 +158,16 @@ public class MonitorListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    EventTypes =
+                    [
+                        MonitorListResponseMonitorEventType.TweetNew,
+                        MonitorListResponseMonitorEventType.FollowerGained,
+                    ],
                     IsActive = true,
-                    Username = "username",
-                    XUserID = "xUserId",
+                    Username = "elonmusk",
+                    XUserID = "9876543210",
                 },
             ],
             Total = 0,
@@ -161,12 +185,16 @@ public class MonitorListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
-                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                    EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+                    ID = "42",
+                    CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    EventTypes =
+                    [
+                        MonitorListResponseMonitorEventType.TweetNew,
+                        MonitorListResponseMonitorEventType.FollowerGained,
+                    ],
                     IsActive = true,
-                    Username = "username",
-                    XUserID = "xUserId",
+                    Username = "elonmusk",
+                    XUserID = "9876543210",
                 },
             ],
             Total = 0,
@@ -185,23 +213,28 @@ public class MonitorListResponseMonitorTest : TestBase
     {
         var model = new MonitorListResponseMonitor
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorListResponseMonitorEventType.TweetNew,
+                MonitorListResponseMonitorEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, MonitorListResponseMonitorEventType>> expectedEventTypes =
         [
             MonitorListResponseMonitorEventType.TweetNew,
+            MonitorListResponseMonitorEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "9876543210";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -220,12 +253,16 @@ public class MonitorListResponseMonitorTest : TestBase
     {
         var model = new MonitorListResponseMonitor
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorListResponseMonitorEventType.TweetNew,
+                MonitorListResponseMonitorEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -242,12 +279,16 @@ public class MonitorListResponseMonitorTest : TestBase
     {
         var model = new MonitorListResponseMonitor
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorListResponseMonitorEventType.TweetNew,
+                MonitorListResponseMonitorEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -257,15 +298,16 @@ public class MonitorListResponseMonitorTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, MonitorListResponseMonitorEventType>> expectedEventTypes =
         [
             MonitorListResponseMonitorEventType.TweetNew,
+            MonitorListResponseMonitorEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "9876543210";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -284,12 +326,16 @@ public class MonitorListResponseMonitorTest : TestBase
     {
         var model = new MonitorListResponseMonitor
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorListResponseMonitorEventType.TweetNew,
+                MonitorListResponseMonitorEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         model.Validate();
@@ -300,12 +346,16 @@ public class MonitorListResponseMonitorTest : TestBase
     {
         var model = new MonitorListResponseMonitor
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorListResponseMonitorEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorListResponseMonitorEventType.TweetNew,
+                MonitorListResponseMonitorEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         MonitorListResponseMonitor copied = new(model);

@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.Drafts;
 
+/// <summary>
+/// Saved tweet draft with optional topic and goal.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Draft, DraftFromRaw>))]
 public sealed record class Draft : JsonModel
 {

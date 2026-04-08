@@ -31,7 +31,7 @@ public record class CommunityRetrieveSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for community search
     /// </summary>
     public string? Cursor
     {

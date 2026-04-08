@@ -13,55 +13,55 @@ public class TweetGetQuotesResponseTest : TestBase
         var model = new TweetGetQuotesResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
                     Author = new()
                     {
-                        ID = "id",
-                        Name = "name",
-                        Username = "username",
+                        ID = "9876543210",
+                        Name = "Elon Musk",
+                        Username = "elonmusk",
                         Verified = true,
                     },
-                    BookmarkCount = 0,
-                    CreatedAt = "createdAt",
-                    IsNoteTweet = true,
-                    LikeCount = 0,
-                    QuoteCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    BookmarkCount = 2,
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    IsNoteTweet = false,
+                    LikeCount = 42,
+                    QuoteCount = 1,
+                    ReplyCount = 3,
+                    RetweetCount = 5,
+                    ViewCount = 1500,
                 },
             ],
         };
 
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
-        List<Tweet> expectedTweets =
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
+        List<TweetGetQuotesResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
+                ID = "1234567890",
+                Text = "Just launched our new feature!",
                 Author = new()
                 {
-                    ID = "id",
-                    Name = "name",
-                    Username = "username",
+                    ID = "9876543210",
+                    Name = "Elon Musk",
+                    Username = "elonmusk",
                     Verified = true,
                 },
-                BookmarkCount = 0,
-                CreatedAt = "createdAt",
-                IsNoteTweet = true,
-                LikeCount = 0,
-                QuoteCount = 0,
-                ReplyCount = 0,
-                RetweetCount = 0,
-                ViewCount = 0,
+                BookmarkCount = 2,
+                CreatedAt = "2025-01-15T12:00:00Z",
+                IsNoteTweet = false,
+                LikeCount = 42,
+                QuoteCount = 1,
+                ReplyCount = 3,
+                RetweetCount = 5,
+                ViewCount = 1500,
             },
         ];
 
@@ -80,28 +80,28 @@ public class TweetGetQuotesResponseTest : TestBase
         var model = new TweetGetQuotesResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
                     Author = new()
                     {
-                        ID = "id",
-                        Name = "name",
-                        Username = "username",
+                        ID = "9876543210",
+                        Name = "Elon Musk",
+                        Username = "elonmusk",
                         Verified = true,
                     },
-                    BookmarkCount = 0,
-                    CreatedAt = "createdAt",
-                    IsNoteTweet = true,
-                    LikeCount = 0,
-                    QuoteCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    BookmarkCount = 2,
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    IsNoteTweet = false,
+                    LikeCount = 42,
+                    QuoteCount = 1,
+                    ReplyCount = 3,
+                    RetweetCount = 5,
+                    ViewCount = 1500,
                 },
             ],
         };
@@ -121,28 +121,28 @@ public class TweetGetQuotesResponseTest : TestBase
         var model = new TweetGetQuotesResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
                     Author = new()
                     {
-                        ID = "id",
-                        Name = "name",
-                        Username = "username",
+                        ID = "9876543210",
+                        Name = "Elon Musk",
+                        Username = "elonmusk",
                         Verified = true,
                     },
-                    BookmarkCount = 0,
-                    CreatedAt = "createdAt",
-                    IsNoteTweet = true,
-                    LikeCount = 0,
-                    QuoteCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    BookmarkCount = 2,
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    IsNoteTweet = false,
+                    LikeCount = 42,
+                    QuoteCount = 1,
+                    ReplyCount = 3,
+                    RetweetCount = 5,
+                    ViewCount = 1500,
                 },
             ],
         };
@@ -155,28 +155,28 @@ public class TweetGetQuotesResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         bool expectedHasNextPage = true;
-        string expectedNextCursor = "next_cursor";
-        List<Tweet> expectedTweets =
+        string expectedNextCursor = "DAACCgACGRElMJcAAA";
+        List<TweetGetQuotesResponseTweet> expectedTweets =
         [
             new()
             {
-                ID = "id",
-                Text = "text",
+                ID = "1234567890",
+                Text = "Just launched our new feature!",
                 Author = new()
                 {
-                    ID = "id",
-                    Name = "name",
-                    Username = "username",
+                    ID = "9876543210",
+                    Name = "Elon Musk",
+                    Username = "elonmusk",
                     Verified = true,
                 },
-                BookmarkCount = 0,
-                CreatedAt = "createdAt",
-                IsNoteTweet = true,
-                LikeCount = 0,
-                QuoteCount = 0,
-                ReplyCount = 0,
-                RetweetCount = 0,
-                ViewCount = 0,
+                BookmarkCount = 2,
+                CreatedAt = "2025-01-15T12:00:00Z",
+                IsNoteTweet = false,
+                LikeCount = 42,
+                QuoteCount = 1,
+                ReplyCount = 3,
+                RetweetCount = 5,
+                ViewCount = 1500,
             },
         ];
 
@@ -195,28 +195,28 @@ public class TweetGetQuotesResponseTest : TestBase
         var model = new TweetGetQuotesResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
                     Author = new()
                     {
-                        ID = "id",
-                        Name = "name",
-                        Username = "username",
+                        ID = "9876543210",
+                        Name = "Elon Musk",
+                        Username = "elonmusk",
                         Verified = true,
                     },
-                    BookmarkCount = 0,
-                    CreatedAt = "createdAt",
-                    IsNoteTweet = true,
-                    LikeCount = 0,
-                    QuoteCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    BookmarkCount = 2,
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    IsNoteTweet = false,
+                    LikeCount = 42,
+                    QuoteCount = 1,
+                    ReplyCount = 3,
+                    RetweetCount = 5,
+                    ViewCount = 1500,
                 },
             ],
         };
@@ -230,28 +230,28 @@ public class TweetGetQuotesResponseTest : TestBase
         var model = new TweetGetQuotesResponse
         {
             HasNextPage = true,
-            NextCursor = "next_cursor",
+            NextCursor = "DAACCgACGRElMJcAAA",
             Tweets =
             [
                 new()
                 {
-                    ID = "id",
-                    Text = "text",
+                    ID = "1234567890",
+                    Text = "Just launched our new feature!",
                     Author = new()
                     {
-                        ID = "id",
-                        Name = "name",
-                        Username = "username",
+                        ID = "9876543210",
+                        Name = "Elon Musk",
+                        Username = "elonmusk",
                         Verified = true,
                     },
-                    BookmarkCount = 0,
-                    CreatedAt = "createdAt",
-                    IsNoteTweet = true,
-                    LikeCount = 0,
-                    QuoteCount = 0,
-                    ReplyCount = 0,
-                    RetweetCount = 0,
-                    ViewCount = 0,
+                    BookmarkCount = 2,
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    IsNoteTweet = false,
+                    LikeCount = 42,
+                    QuoteCount = 1,
+                    ReplyCount = 3,
+                    RetweetCount = 5,
+                    ViewCount = 1500,
                 },
             ],
         };
@@ -262,49 +262,49 @@ public class TweetGetQuotesResponseTest : TestBase
     }
 }
 
-public class TweetTest : TestBase
+public class TweetGetQuotesResponseTweetTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
             Author = new()
             {
-                ID = "id",
-                Name = "name",
-                Username = "username",
+                ID = "9876543210",
+                Name = "Elon Musk",
+                Username = "elonmusk",
                 Verified = true,
             },
-            BookmarkCount = 0,
-            CreatedAt = "createdAt",
-            IsNoteTweet = true,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            BookmarkCount = 2,
+            CreatedAt = "2025-01-15T12:00:00Z",
+            IsNoteTweet = false,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            ViewCount = 1500,
         };
 
-        string expectedID = "id";
-        string expectedText = "text";
-        AuthorModel expectedAuthor = new()
+        string expectedID = "1234567890";
+        string expectedText = "Just launched our new feature!";
+        TweetGetQuotesResponseTweetAuthor expectedAuthor = new()
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
-        long expectedBookmarkCount = 0;
-        string expectedCreatedAt = "createdAt";
-        bool expectedIsNoteTweet = true;
-        long expectedLikeCount = 0;
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        long expectedViewCount = 0;
+        long expectedBookmarkCount = 2;
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        bool expectedIsNoteTweet = false;
+        long expectedLikeCount = 42;
+        long expectedQuoteCount = 1;
+        long expectedReplyCount = 3;
+        long expectedRetweetCount = 5;
+        long expectedViewCount = 1500;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedText, model.Text);
@@ -322,29 +322,32 @@ public class TweetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
             Author = new()
             {
-                ID = "id",
-                Name = "name",
-                Username = "username",
+                ID = "9876543210",
+                Name = "Elon Musk",
+                Username = "elonmusk",
                 Verified = true,
             },
-            BookmarkCount = 0,
-            CreatedAt = "createdAt",
-            IsNoteTweet = true,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            BookmarkCount = 2,
+            CreatedAt = "2025-01-15T12:00:00Z",
+            IsNoteTweet = false,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            ViewCount = 1500,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tweet>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweet>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -352,48 +355,51 @@ public class TweetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
             Author = new()
             {
-                ID = "id",
-                Name = "name",
-                Username = "username",
+                ID = "9876543210",
+                Name = "Elon Musk",
+                Username = "elonmusk",
                 Verified = true,
             },
-            BookmarkCount = 0,
-            CreatedAt = "createdAt",
-            IsNoteTweet = true,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            BookmarkCount = 2,
+            CreatedAt = "2025-01-15T12:00:00Z",
+            IsNoteTweet = false,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            ViewCount = 1500,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tweet>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweet>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedText = "text";
-        AuthorModel expectedAuthor = new()
+        string expectedID = "1234567890";
+        string expectedText = "Just launched our new feature!";
+        TweetGetQuotesResponseTweetAuthor expectedAuthor = new()
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
-        long expectedBookmarkCount = 0;
-        string expectedCreatedAt = "createdAt";
-        bool expectedIsNoteTweet = true;
-        long expectedLikeCount = 0;
-        long expectedQuoteCount = 0;
-        long expectedReplyCount = 0;
-        long expectedRetweetCount = 0;
-        long expectedViewCount = 0;
+        long expectedBookmarkCount = 2;
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        bool expectedIsNoteTweet = false;
+        long expectedLikeCount = 42;
+        long expectedQuoteCount = 1;
+        long expectedReplyCount = 3;
+        long expectedRetweetCount = 5;
+        long expectedViewCount = 1500;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedText, deserialized.Text);
@@ -411,25 +417,25 @@ public class TweetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
             Author = new()
             {
-                ID = "id",
-                Name = "name",
-                Username = "username",
+                ID = "9876543210",
+                Name = "Elon Musk",
+                Username = "elonmusk",
                 Verified = true,
             },
-            BookmarkCount = 0,
-            CreatedAt = "createdAt",
-            IsNoteTweet = true,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            BookmarkCount = 2,
+            CreatedAt = "2025-01-15T12:00:00Z",
+            IsNoteTweet = false,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            ViewCount = 1500,
         };
 
         model.Validate();
@@ -438,7 +444,11 @@ public class TweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tweet { ID = "id", Text = "text" };
+        var model = new TweetGetQuotesResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+        };
 
         Assert.Null(model.Author);
         Assert.False(model.RawData.ContainsKey("author"));
@@ -463,7 +473,11 @@ public class TweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tweet { ID = "id", Text = "text" };
+        var model = new TweetGetQuotesResponseTweet
+        {
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
+        };
 
         model.Validate();
     }
@@ -471,10 +485,10 @@ public class TweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
 
             // Null should be interpreted as omitted for these properties
             Author = null,
@@ -511,10 +525,10 @@ public class TweetTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
 
             // Null should be interpreted as omitted for these properties
             Author = null,
@@ -534,49 +548,49 @@ public class TweetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Tweet
+        var model = new TweetGetQuotesResponseTweet
         {
-            ID = "id",
-            Text = "text",
+            ID = "1234567890",
+            Text = "Just launched our new feature!",
             Author = new()
             {
-                ID = "id",
-                Name = "name",
-                Username = "username",
+                ID = "9876543210",
+                Name = "Elon Musk",
+                Username = "elonmusk",
                 Verified = true,
             },
-            BookmarkCount = 0,
-            CreatedAt = "createdAt",
-            IsNoteTweet = true,
-            LikeCount = 0,
-            QuoteCount = 0,
-            ReplyCount = 0,
-            RetweetCount = 0,
-            ViewCount = 0,
+            BookmarkCount = 2,
+            CreatedAt = "2025-01-15T12:00:00Z",
+            IsNoteTweet = false,
+            LikeCount = 42,
+            QuoteCount = 1,
+            ReplyCount = 3,
+            RetweetCount = 5,
+            ViewCount = 1500,
         };
 
-        Tweet copied = new(model);
+        TweetGetQuotesResponseTweet copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class AuthorModelTest : TestBase
+public class TweetGetQuotesResponseTweetAuthorTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
 
-        string expectedID = "id";
-        string expectedName = "name";
-        string expectedUsername = "username";
+        string expectedID = "9876543210";
+        string expectedName = "Elon Musk";
+        string expectedUsername = "elonmusk";
         bool expectedVerified = true;
 
         Assert.Equal(expectedID, model.ID);
@@ -588,16 +602,16 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AuthorModel>(
+        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweetAuthor>(
             json,
             ModelBase.SerializerOptions
         );
@@ -608,24 +622,24 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AuthorModel>(
+        var deserialized = JsonSerializer.Deserialize<TweetGetQuotesResponseTweetAuthor>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedName = "name";
-        string expectedUsername = "username";
+        string expectedID = "9876543210";
+        string expectedName = "Elon Musk";
+        string expectedUsername = "elonmusk";
         bool expectedVerified = true;
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -637,11 +651,11 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
 
@@ -651,11 +665,11 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
         };
 
         Assert.Null(model.Verified);
@@ -665,11 +679,11 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
         };
 
         model.Validate();
@@ -678,11 +692,11 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             Verified = null,
@@ -695,11 +709,11 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             Verified = null,
@@ -711,15 +725,15 @@ public class AuthorModelTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new AuthorModel
+        var model = new TweetGetQuotesResponseTweetAuthor
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
             Verified = true,
         };
 
-        AuthorModel copied = new(model);
+        TweetGetQuotesResponseTweetAuthor copied = new(model);
 
         Assert.Equal(model, copied);
     }

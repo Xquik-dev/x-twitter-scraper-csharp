@@ -14,23 +14,28 @@ public class MonitorUpdateResponseTest : TestBase
     {
         var model = new MonitorUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorUpdateResponseEventType.TweetNew,
+                MonitorUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, MonitorUpdateResponseEventType>> expectedEventTypes =
         [
             MonitorUpdateResponseEventType.TweetNew,
+            MonitorUpdateResponseEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "9876543210";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -49,12 +54,16 @@ public class MonitorUpdateResponseTest : TestBase
     {
         var model = new MonitorUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorUpdateResponseEventType.TweetNew,
+                MonitorUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -71,12 +80,16 @@ public class MonitorUpdateResponseTest : TestBase
     {
         var model = new MonitorUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorUpdateResponseEventType.TweetNew,
+                MonitorUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -86,15 +99,16 @@ public class MonitorUpdateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedID = "42";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         List<ApiEnum<string, MonitorUpdateResponseEventType>> expectedEventTypes =
         [
             MonitorUpdateResponseEventType.TweetNew,
+            MonitorUpdateResponseEventType.FollowerGained,
         ];
         bool expectedIsActive = true;
-        string expectedUsername = "username";
-        string expectedXUserID = "xUserId";
+        string expectedUsername = "elonmusk";
+        string expectedXUserID = "9876543210";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -113,12 +127,16 @@ public class MonitorUpdateResponseTest : TestBase
     {
         var model = new MonitorUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorUpdateResponseEventType.TweetNew,
+                MonitorUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         model.Validate();
@@ -129,12 +147,16 @@ public class MonitorUpdateResponseTest : TestBase
     {
         var model = new MonitorUpdateResponse
         {
-            ID = "id",
-            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            EventTypes = [MonitorUpdateResponseEventType.TweetNew],
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            EventTypes =
+            [
+                MonitorUpdateResponseEventType.TweetNew,
+                MonitorUpdateResponseEventType.FollowerGained,
+            ],
             IsActive = true,
-            Username = "username",
-            XUserID = "xUserId",
+            Username = "elonmusk",
+            XUserID = "9876543210",
         };
 
         MonitorUpdateResponse copied = new(model);

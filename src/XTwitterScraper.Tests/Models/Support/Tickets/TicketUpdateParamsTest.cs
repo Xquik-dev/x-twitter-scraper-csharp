@@ -11,10 +11,10 @@ public class TicketUpdateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Open };
+        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Resolved };
 
         string expectedID = "id";
-        ApiEnum<string, Status> expectedStatus = Status.Open;
+        ApiEnum<string, Status> expectedStatus = Status.Resolved;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedStatus, parameters.Status);
@@ -23,7 +23,7 @@ public class TicketUpdateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        TicketUpdateParams parameters = new() { ID = "id", Status = Status.Open };
+        TicketUpdateParams parameters = new() { ID = "id", Status = Status.Resolved };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -33,7 +33,7 @@ public class TicketUpdateParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Open };
+        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Resolved };
 
         TicketUpdateParams copied = new(parameters);
 

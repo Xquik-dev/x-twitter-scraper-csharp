@@ -11,29 +11,29 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
-            CreatedAt = "createdAt",
-            Description = "description",
-            Followers = 0,
-            Following = 0,
-            Location = "location",
-            ProfilePicture = "profilePicture",
-            StatusesCount = 0,
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
+            CreatedAt = "2009-06-02T20:12:29Z",
+            Description = "CEO of Tesla, SpaceX, and X",
+            Followers = 150000000,
+            Following = 500,
+            Location = "Austin, TX",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            StatusesCount = 35000,
             Verified = true,
         };
 
-        string expectedID = "id";
-        string expectedName = "name";
-        string expectedUsername = "username";
-        string expectedCreatedAt = "createdAt";
-        string expectedDescription = "description";
-        long expectedFollowers = 0;
-        long expectedFollowing = 0;
-        string expectedLocation = "location";
-        string expectedProfilePicture = "profilePicture";
-        long expectedStatusesCount = 0;
+        string expectedID = "9876543210";
+        string expectedName = "Elon Musk";
+        string expectedUsername = "elonmusk";
+        string expectedCreatedAt = "2009-06-02T20:12:29Z";
+        string expectedDescription = "CEO of Tesla, SpaceX, and X";
+        long expectedFollowers = 150000000;
+        long expectedFollowing = 500;
+        string expectedLocation = "Austin, TX";
+        string expectedProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg";
+        long expectedStatusesCount = 35000;
         bool expectedVerified = true;
 
         Assert.Equal(expectedID, model.ID);
@@ -54,16 +54,16 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
-            CreatedAt = "createdAt",
-            Description = "description",
-            Followers = 0,
-            Following = 0,
-            Location = "location",
-            ProfilePicture = "profilePicture",
-            StatusesCount = 0,
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
+            CreatedAt = "2009-06-02T20:12:29Z",
+            Description = "CEO of Tesla, SpaceX, and X",
+            Followers = 150000000,
+            Following = 500,
+            Location = "Austin, TX",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            StatusesCount = 35000,
             Verified = true,
         };
 
@@ -81,16 +81,16 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
-            CreatedAt = "createdAt",
-            Description = "description",
-            Followers = 0,
-            Following = 0,
-            Location = "location",
-            ProfilePicture = "profilePicture",
-            StatusesCount = 0,
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
+            CreatedAt = "2009-06-02T20:12:29Z",
+            Description = "CEO of Tesla, SpaceX, and X",
+            Followers = 150000000,
+            Following = 500,
+            Location = "Austin, TX",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            StatusesCount = 35000,
             Verified = true,
         };
 
@@ -101,16 +101,16 @@ public class UserProfileTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
-        string expectedName = "name";
-        string expectedUsername = "username";
-        string expectedCreatedAt = "createdAt";
-        string expectedDescription = "description";
-        long expectedFollowers = 0;
-        long expectedFollowing = 0;
-        string expectedLocation = "location";
-        string expectedProfilePicture = "profilePicture";
-        long expectedStatusesCount = 0;
+        string expectedID = "9876543210";
+        string expectedName = "Elon Musk";
+        string expectedUsername = "elonmusk";
+        string expectedCreatedAt = "2009-06-02T20:12:29Z";
+        string expectedDescription = "CEO of Tesla, SpaceX, and X";
+        long expectedFollowers = 150000000;
+        long expectedFollowing = 500;
+        string expectedLocation = "Austin, TX";
+        string expectedProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg";
+        long expectedStatusesCount = 35000;
         bool expectedVerified = true;
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -131,16 +131,16 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
-            CreatedAt = "createdAt",
-            Description = "description",
-            Followers = 0,
-            Following = 0,
-            Location = "location",
-            ProfilePicture = "profilePicture",
-            StatusesCount = 0,
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
+            CreatedAt = "2009-06-02T20:12:29Z",
+            Description = "CEO of Tesla, SpaceX, and X",
+            Followers = 150000000,
+            Following = 500,
+            Location = "Austin, TX",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            StatusesCount = 35000,
             Verified = true,
         };
 
@@ -152,9 +152,9 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
         };
 
         Assert.Null(model.CreatedAt);
@@ -180,9 +180,9 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
         };
 
         model.Validate();
@@ -193,9 +193,9 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -231,9 +231,9 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
@@ -254,16 +254,16 @@ public class UserProfileTest : TestBase
     {
         var model = new UserProfile
         {
-            ID = "id",
-            Name = "name",
-            Username = "username",
-            CreatedAt = "createdAt",
-            Description = "description",
-            Followers = 0,
-            Following = 0,
-            Location = "location",
-            ProfilePicture = "profilePicture",
-            StatusesCount = 0,
+            ID = "9876543210",
+            Name = "Elon Musk",
+            Username = "elonmusk",
+            CreatedAt = "2009-06-02T20:12:29Z",
+            Description = "CEO of Tesla, SpaceX, and X",
+            Followers = 150000000,
+            Following = 500,
+            Location = "Austin, TX",
+            ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            StatusesCount = 35000,
             Verified = true,
         };
 

@@ -26,6 +26,9 @@ public record class ExtractionEstimateCostParams : ParamsBase
         get { return this._rawBodyData.Freeze(); }
     }
 
+    /// <summary>
+    /// Identifier for the extraction tool used to run a job.
+    /// </summary>
     public required ApiEnum<string, ExtractionEstimateCostParamsToolType> ToolType
     {
         get
@@ -39,7 +42,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Raw advanced search query appended as-is (tweet_search_extractor)
+    /// Raw advanced query string appended to the estimate (tweet_search_extractor)
     /// </summary>
     public string? AdvancedQuery
     {
@@ -60,7 +63,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Exact phrase to match (tweet_search_extractor)
+    /// Exact phrase filter for search estimation
     /// </summary>
     public string? ExactPhrase
     {
@@ -81,7 +84,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Words to exclude from results (tweet_search_extractor)
+    /// Words excluded from estimated search results
     /// </summary>
     public string? ExcludeWords
     {
@@ -319,6 +322,9 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 }
 
+/// <summary>
+/// Identifier for the extraction tool used to run a job.
+/// </summary>
 [JsonConverter(typeof(ExtractionEstimateCostParamsToolTypeConverter))]
 public enum ExtractionEstimateCostParamsToolType
 {

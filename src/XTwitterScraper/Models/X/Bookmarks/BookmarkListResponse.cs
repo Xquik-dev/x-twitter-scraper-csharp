@@ -8,6 +8,9 @@ using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Models.X.Bookmarks;
 
+/// <summary>
+/// Paginated list of tweets with cursor-based navigation.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<BookmarkListResponse, BookmarkListResponseFromRaw>))]
 public sealed record class BookmarkListResponse : JsonModel
 {
@@ -96,6 +99,9 @@ class BookmarkListResponseFromRaw : IFromRawJson<BookmarkListResponse>
     ) => BookmarkListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Tweet returned from search results with inline author info.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Tweet, TweetFromRaw>))]
 public sealed record class Tweet : JsonModel
 {
@@ -174,7 +180,7 @@ public sealed record class Tweet : JsonModel
     }
 
     /// <summary>
-    /// Whether this is a Note Tweet (long-form post, up to 25,000 characters)
+    /// True for Note Tweets (long-form content, up to 25,000 characters)
     /// </summary>
     public bool? IsNoteTweet
     {

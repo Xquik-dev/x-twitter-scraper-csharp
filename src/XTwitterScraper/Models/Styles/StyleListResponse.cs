@@ -81,6 +81,9 @@ class StyleListResponseFromRaw : IFromRawJson<StyleListResponse>
         StyleListResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Style profile summary with tweet count and ownership flag.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Style, StyleFromRaw>))]
 public sealed record class Style : JsonModel
 {

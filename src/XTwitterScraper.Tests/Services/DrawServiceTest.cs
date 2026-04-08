@@ -32,7 +32,7 @@ public class DrawServiceTest : TestBase
     public async Task Run_Works()
     {
         var response = await this.client.Draws.Run(
-            new() { TweetUrl = "https://example.com" },
+            new() { TweetUrl = "https://x.com/elonmusk/status/1234567890" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

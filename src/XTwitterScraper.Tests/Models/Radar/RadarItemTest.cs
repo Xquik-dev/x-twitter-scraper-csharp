@@ -12,26 +12,26 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
-            Description = "description",
-            ImageUrl = "imageUrl",
-            Url = "url",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
+            Description = "AI is transforming every industry",
+            ImageUrl = "https://example.com/images/ai.jpg",
+            Url = "https://example.com/article/ai-revolution",
         };
 
-        string expectedCategory = "category";
-        DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedRegion = "region";
-        double expectedScore = 0;
-        string expectedSource = "source";
-        string expectedTitle = "title";
-        string expectedDescription = "description";
-        string expectedImageUrl = "imageUrl";
-        string expectedUrl = "url";
+        string expectedCategory = "Technology";
+        DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedRegion = "US";
+        double expectedScore = 95.5;
+        string expectedSource = "X";
+        string expectedTitle = "AI Revolution in 2025";
+        string expectedDescription = "AI is transforming every industry";
+        string expectedImageUrl = "https://example.com/images/ai.jpg";
+        string expectedUrl = "https://example.com/article/ai-revolution";
 
         Assert.Equal(expectedCategory, model.Category);
         Assert.Equal(expectedPublishedAt, model.PublishedAt);
@@ -49,15 +49,15 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
-            Description = "description",
-            ImageUrl = "imageUrl",
-            Url = "url",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
+            Description = "AI is transforming every industry",
+            ImageUrl = "https://example.com/images/ai.jpg",
+            Url = "https://example.com/article/ai-revolution",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -71,15 +71,15 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
-            Description = "description",
-            ImageUrl = "imageUrl",
-            Url = "url",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
+            Description = "AI is transforming every industry",
+            ImageUrl = "https://example.com/images/ai.jpg",
+            Url = "https://example.com/article/ai-revolution",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -89,15 +89,15 @@ public class RadarItemTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedCategory = "category";
-        DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        string expectedRegion = "region";
-        double expectedScore = 0;
-        string expectedSource = "source";
-        string expectedTitle = "title";
-        string expectedDescription = "description";
-        string expectedImageUrl = "imageUrl";
-        string expectedUrl = "url";
+        string expectedCategory = "Technology";
+        DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedRegion = "US";
+        double expectedScore = 95.5;
+        string expectedSource = "X";
+        string expectedTitle = "AI Revolution in 2025";
+        string expectedDescription = "AI is transforming every industry";
+        string expectedImageUrl = "https://example.com/images/ai.jpg";
+        string expectedUrl = "https://example.com/article/ai-revolution";
 
         Assert.Equal(expectedCategory, deserialized.Category);
         Assert.Equal(expectedPublishedAt, deserialized.PublishedAt);
@@ -115,15 +115,15 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
-            Description = "description",
-            ImageUrl = "imageUrl",
-            Url = "url",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
+            Description = "AI is transforming every industry",
+            ImageUrl = "https://example.com/images/ai.jpg",
+            Url = "https://example.com/article/ai-revolution",
         };
 
         model.Validate();
@@ -134,12 +134,12 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
         };
 
         Assert.Null(model.Description);
@@ -155,12 +155,12 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
         };
 
         model.Validate();
@@ -171,12 +171,12 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -197,12 +197,12 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -218,15 +218,15 @@ public class RadarItemTest : TestBase
     {
         var model = new RadarItem
         {
-            Category = "category",
-            PublishedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Region = "region",
-            Score = 0,
-            Source = "source",
-            Title = "title",
-            Description = "description",
-            ImageUrl = "imageUrl",
-            Url = "url",
+            Category = "Technology",
+            PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Region = "US",
+            Score = 95.5,
+            Source = "X",
+            Title = "AI Revolution in 2025",
+            Description = "AI is transforming every industry",
+            ImageUrl = "https://example.com/images/ai.jpg",
+            Url = "https://example.com/article/ai-revolution",
         };
 
         RadarItem copied = new(model);

@@ -20,7 +20,7 @@ public record class TweetGetRetweetersParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Pagination cursor
+    /// Pagination cursor for retweeters
     /// </summary>
     public string? Cursor
     {

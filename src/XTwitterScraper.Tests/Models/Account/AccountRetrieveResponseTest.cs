@@ -13,25 +13,25 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
             CurrentPeriod = new()
             {
-                End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsagePercent = 0,
+                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+                UsagePercent = 42.5,
             },
         };
 
-        long expectedMonitorsAllowed = 0;
-        long expectedMonitorsUsed = 0;
+        long expectedMonitorsAllowed = 10;
+        long expectedMonitorsUsed = 3;
         ApiEnum<string, Plan> expectedPlan = Plan.Active;
         CurrentPeriod expectedCurrentPeriod = new()
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         Assert.Equal(expectedMonitorsAllowed, model.MonitorsAllowed);
@@ -45,14 +45,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
             CurrentPeriod = new()
             {
-                End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsagePercent = 0,
+                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+                UsagePercent = 42.5,
             },
         };
 
@@ -70,14 +70,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
             CurrentPeriod = new()
             {
-                End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsagePercent = 0,
+                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+                UsagePercent = 42.5,
             },
         };
 
@@ -88,14 +88,14 @@ public class AccountRetrieveResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        long expectedMonitorsAllowed = 0;
-        long expectedMonitorsUsed = 0;
+        long expectedMonitorsAllowed = 10;
+        long expectedMonitorsUsed = 3;
         ApiEnum<string, Plan> expectedPlan = Plan.Active;
         CurrentPeriod expectedCurrentPeriod = new()
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         Assert.Equal(expectedMonitorsAllowed, deserialized.MonitorsAllowed);
@@ -109,14 +109,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
             CurrentPeriod = new()
             {
-                End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsagePercent = 0,
+                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+                UsagePercent = 42.5,
             },
         };
 
@@ -128,8 +128,8 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
         };
 
@@ -142,8 +142,8 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
         };
 
@@ -155,8 +155,8 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
 
             // Null should be interpreted as omitted for these properties
@@ -172,8 +172,8 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
 
             // Null should be interpreted as omitted for these properties
@@ -188,14 +188,14 @@ public class AccountRetrieveResponseTest : TestBase
     {
         var model = new AccountRetrieveResponse
         {
-            MonitorsAllowed = 0,
-            MonitorsUsed = 0,
+            MonitorsAllowed = 10,
+            MonitorsUsed = 3,
             Plan = Plan.Active,
             CurrentPeriod = new()
             {
-                End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                UsagePercent = 0,
+                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+                UsagePercent = 42.5,
             },
         };
 
@@ -270,14 +270,14 @@ public class CurrentPeriodTest : TestBase
     {
         var model = new CurrentPeriod
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
-        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DateTimeOffset expectedStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        double expectedUsagePercent = 0;
+        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2025-02-01T00:00:00Z");
+        DateTimeOffset expectedStart = DateTimeOffset.Parse("2025-01-01T00:00:00Z");
+        double expectedUsagePercent = 42.5;
 
         Assert.Equal(expectedEnd, model.End);
         Assert.Equal(expectedStart, model.Start);
@@ -289,9 +289,9 @@ public class CurrentPeriodTest : TestBase
     {
         var model = new CurrentPeriod
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -308,9 +308,9 @@ public class CurrentPeriodTest : TestBase
     {
         var model = new CurrentPeriod
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -320,9 +320,9 @@ public class CurrentPeriodTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DateTimeOffset expectedStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        double expectedUsagePercent = 0;
+        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2025-02-01T00:00:00Z");
+        DateTimeOffset expectedStart = DateTimeOffset.Parse("2025-01-01T00:00:00Z");
+        double expectedUsagePercent = 42.5;
 
         Assert.Equal(expectedEnd, deserialized.End);
         Assert.Equal(expectedStart, deserialized.Start);
@@ -334,9 +334,9 @@ public class CurrentPeriodTest : TestBase
     {
         var model = new CurrentPeriod
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         model.Validate();
@@ -347,9 +347,9 @@ public class CurrentPeriodTest : TestBase
     {
         var model = new CurrentPeriod
         {
-            End = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Start = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            UsagePercent = 0,
+            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
+            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
+            UsagePercent = 42.5,
         };
 
         CurrentPeriod copied = new(model);
