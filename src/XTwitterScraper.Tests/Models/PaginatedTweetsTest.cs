@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models;
-using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Tests.Models;
 

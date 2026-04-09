@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Models;
 
