@@ -55,11 +55,7 @@ Or manually:
 ```csharp
 using XTwitterScraper;
 
-XTwitterScraperClient client = new()
-{
-    ApiKey = "My API Key",
-    BearerToken = "My Bearer Token",
-};
+XTwitterScraperClient client = new() { ApiKey = "My API Key" };
 ```
 
 Or using a combination of the two approaches.

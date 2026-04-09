@@ -41,7 +41,7 @@ public class WebhookCreateParamsTest : TestBase
             UrlValue = "https://example.com/webhook",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://xquik.com/api/v1/webhooks"), url);
     }

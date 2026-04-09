@@ -147,13 +147,13 @@ public record class DrawExportParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/draws/{0}/export", this.ID)
         )
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         request.Headers.Add("Accept", "application/octet-stream");
         foreach (var item in this.RawHeaderData)
         {

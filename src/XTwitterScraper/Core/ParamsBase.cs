@@ -156,7 +156,7 @@ public abstract record class ParamsBase
         }
     }
 
-    internal string QueryString(ClientOptions options, SecurityOptions security)
+    internal string QueryString(ClientOptions options)
     {
         NameValueCollection collection = new();
         foreach (var item in this.RawQueryData)
@@ -189,22 +189,18 @@ public abstract record class ParamsBase
         return null;
     }
 
-    internal static void AddDefaultHeaders(
-        HttpRequestMessage request,
-        ClientOptions options,
-        SecurityOptions security
-    )
+    internal static void AddDefaultHeaders(HttpRequestMessage request, ClientOptions options)
     {
         foreach (var header in defaultHeaders)
         {
             request.Headers.Add(header.Key, header.Value);
         }
 
-        if (security.ApiKey && options.ApiKey != null)
+        if (options.ApiKey != null)
         {
             request.Headers.Add("X-Api-Key", options.ApiKey);
         }
-        if (security.OAuthBearer && options.BearerToken != null)
+        if (options.BearerToken != null)
         {
             request.Headers.Add("Authorization", string.Format("Bearer {0}", options.BearerToken));
         }
