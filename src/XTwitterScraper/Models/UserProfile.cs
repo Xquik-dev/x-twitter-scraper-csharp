@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 
-namespace XTwitterScraper.Models.X.Users;
+namespace XTwitterScraper.Models;
 
 /// <summary>
 /// X user profile with bio, follower counts, and verification status.

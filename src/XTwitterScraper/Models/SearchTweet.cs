@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 
-namespace XTwitterScraper.Models.X.Tweets;
+namespace XTwitterScraper.Models;
 
 /// <summary>
 /// Tweet returned from search results with inline author info.
