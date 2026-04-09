@@ -22,7 +22,7 @@ public class FollowerCheckParamsTest : TestBase
     {
         FollowerCheckParams parameters = new() { Source = "source", Target = "target" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri("https://xquik.com/api/v1/x/followers/check?source=source&target=target"),

@@ -63,7 +63,7 @@ public class CommunityRetrieveSearchParamsTest : TestBase
             QueryType = "queryType",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(

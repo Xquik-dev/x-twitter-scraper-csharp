@@ -46,7 +46,7 @@ public class IntegrationListDeliveriesParamsTest : TestBase
     {
         IntegrationListDeliveriesParams parameters = new() { ID = "id", Limit = 1 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://xquik.com/api/v1/integrations/id/deliveries?limit=1"), url);
     }

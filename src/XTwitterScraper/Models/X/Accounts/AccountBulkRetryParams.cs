@@ -89,13 +89,13 @@ public record class AccountBulkRetryParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/accounts/bulk-retry")
         {
-            Query = this.QueryString(options, new() { ApiKey = true }),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, new() { ApiKey = true });
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

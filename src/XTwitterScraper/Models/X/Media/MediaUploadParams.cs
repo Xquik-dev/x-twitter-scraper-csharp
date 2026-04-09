@@ -149,7 +149,7 @@ public record class MediaUploadParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/media")
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -160,7 +160,7 @@ public record class MediaUploadParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

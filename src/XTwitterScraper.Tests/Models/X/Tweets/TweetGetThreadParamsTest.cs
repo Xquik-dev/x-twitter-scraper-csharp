@@ -46,7 +46,7 @@ public class TweetGetThreadParamsTest : TestBase
     {
         TweetGetThreadParams parameters = new() { ID = "id", Cursor = "cursor" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(new Uri("https://xquik.com/api/v1/x/tweets/id/thread?cursor=cursor"), url);
     }

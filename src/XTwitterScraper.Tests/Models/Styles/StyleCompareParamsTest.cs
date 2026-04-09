@@ -26,7 +26,7 @@ public class StyleCompareParamsTest : TestBase
     {
         StyleCompareParams parameters = new() { Username1 = "username1", Username2 = "username2" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.Equal(
             new Uri(
