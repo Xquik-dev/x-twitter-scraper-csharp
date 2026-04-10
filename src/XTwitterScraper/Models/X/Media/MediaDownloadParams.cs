@@ -11,7 +11,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Media;
 
 /// <summary>
-/// Download tweet media
+/// Download images &amp; videos from tweets
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

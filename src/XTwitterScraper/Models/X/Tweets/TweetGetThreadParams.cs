@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Get thread context for a tweet
+/// Get full conversation thread for a tweet
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

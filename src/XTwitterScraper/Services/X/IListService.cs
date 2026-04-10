@@ -8,7 +8,7 @@ using XTwitterScraper.Models.X.Lists;
 namespace XTwitterScraper.Services.X;
 
 /// <summary>
-/// X data lookups (subscription required)
+/// X List followers, members, and tweets
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -30,7 +30,7 @@ public interface IListService
     IListService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Get list followers
+    /// List followers of an X List
     /// </summary>
     Task<PaginatedUsers> RetrieveFollowers(
         ListRetrieveFollowersParams parameters,
@@ -45,7 +45,7 @@ public interface IListService
     );
 
     /// <summary>
-    /// Get list members
+    /// List members of an X List
     /// </summary>
     Task<PaginatedUsers> RetrieveMembers(
         ListRetrieveMembersParams parameters,
@@ -60,7 +60,7 @@ public interface IListService
     );
 
     /// <summary>
-    /// Get list tweets
+    /// List tweets from an X List
     /// </summary>
     Task<PaginatedTweets> RetrieveTweets(
         ListRetrieveTweetsParams parameters,

@@ -7,7 +7,7 @@ using XTwitterScraper.Models.Trends;
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// Trending topics by region
+/// Trending topics and hashtags by region
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -29,7 +29,7 @@ public interface ITrendService
     ITrendService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Get regional trending topics
+    /// Get trending hashtags & topics by region (alias)
     /// </summary>
     Task<TrendListResponse> List(
         TrendListParams? parameters = null,
