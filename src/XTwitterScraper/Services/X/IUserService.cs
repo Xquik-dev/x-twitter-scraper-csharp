@@ -9,7 +9,7 @@ using XTwitterScraper.Services.X.Users;
 namespace XTwitterScraper.Services.X;
 
 /// <summary>
-/// X data lookups (subscription required)
+/// Look up, search, and explore user profiles and relationships
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -33,7 +33,7 @@ public interface IUserService
     IFollowService Follow { get; }
 
     /// <summary>
-    /// Look up X user
+    /// Get user profile with follower counts & verification
     /// </summary>
     Task<UserProfile> Retrieve(
         UserRetrieveParams parameters,
@@ -48,7 +48,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get multiple users by IDs
+    /// Look up multiple users by IDs in one call
     /// </summary>
     Task<PaginatedUsers> RetrieveBatch(
         UserRetrieveBatchParams parameters,
@@ -56,7 +56,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get user followers
+    /// List followers of a user
     /// </summary>
     Task<PaginatedUsers> RetrieveFollowers(
         UserRetrieveFollowersParams parameters,
@@ -71,7 +71,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get followers you know for a user
+    /// List mutual followers between you and a user
     /// </summary>
     Task<PaginatedUsers> RetrieveFollowersYouKnow(
         UserRetrieveFollowersYouKnowParams parameters,
@@ -86,7 +86,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get users this user follows
+    /// List accounts a user follows
     /// </summary>
     Task<PaginatedUsers> RetrieveFollowing(
         UserRetrieveFollowingParams parameters,
@@ -101,7 +101,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get tweets liked by a user
+    /// List tweets liked by a user
     /// </summary>
     Task<PaginatedTweets> RetrieveLikes(
         UserRetrieveLikesParams parameters,
@@ -116,7 +116,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get media tweets by a user
+    /// List media tweets posted by a user
     /// </summary>
     Task<PaginatedTweets> RetrieveMedia(
         UserRetrieveMediaParams parameters,
@@ -131,7 +131,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get tweets mentioning a user
+    /// List tweets mentioning a user
     /// </summary>
     Task<PaginatedTweets> RetrieveMentions(
         UserRetrieveMentionsParams parameters,
@@ -154,7 +154,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get recent tweets by a user
+    /// List recent tweets posted by a user
     /// </summary>
     Task<PaginatedTweets> RetrieveTweets(
         UserRetrieveTweetsParams parameters,
@@ -169,7 +169,7 @@ public interface IUserService
     );
 
     /// <summary>
-    /// Get verified followers
+    /// List verified followers of a user
     /// </summary>
     Task<PaginatedUsers> RetrieveVerifiedFollowers(
         UserRetrieveVerifiedFollowersParams parameters,

@@ -9,11 +9,9 @@ using X = XTwitterScraper.Services.X;
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// X data lookups (subscription required)
-///
-/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
 /// </summary>
 public interface IXService
 {
@@ -82,7 +80,7 @@ public interface IXService
     );
 
     /// <summary>
-    /// Get trending topics
+    /// Get trending hashtags & topics from X by region
     /// </summary>
     Task<XGetTrendsResponse> GetTrends(
         XGetTrendsParams? parameters = null,

@@ -41,7 +41,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Look up tweet
+    /// Get tweet with full text, author, metrics & media
     /// </summary>
     Task<TweetRetrieveResponse> Retrieve(
         TweetRetrieveParams parameters,
@@ -79,7 +79,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get users who liked a tweet
+    /// List users who liked a tweet
     /// </summary>
     Task<PaginatedUsers> GetFavoriters(
         TweetGetFavoritersParams parameters,
@@ -94,7 +94,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get quote tweets of a tweet
+    /// List quote tweets of a tweet
     /// </summary>
     Task<PaginatedTweets> GetQuotes(
         TweetGetQuotesParams parameters,
@@ -109,7 +109,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get replies to a tweet
+    /// List replies to a tweet
     /// </summary>
     Task<PaginatedTweets> GetReplies(
         TweetGetRepliesParams parameters,
@@ -124,7 +124,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get users who retweeted a tweet
+    /// List users who retweeted a tweet
     /// </summary>
     Task<PaginatedUsers> GetRetweeters(
         TweetGetRetweetersParams parameters,
@@ -139,7 +139,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get thread context for a tweet
+    /// Get full conversation thread for a tweet
     /// </summary>
     Task<PaginatedTweets> GetThread(
         TweetGetThreadParams parameters,
@@ -154,7 +154,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Search tweets
+    /// Search tweets with X query operators & pagination
     /// </summary>
     Task<PaginatedTweets> Search(
         TweetSearchParams parameters,

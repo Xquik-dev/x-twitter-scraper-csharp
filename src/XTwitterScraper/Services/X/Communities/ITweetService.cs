@@ -8,7 +8,7 @@ using XTwitterScraper.Models.X.Communities.Tweets;
 namespace XTwitterScraper.Services.X.Communities;
 
 /// <summary>
-/// X data lookups (subscription required)
+/// X Community info, members, and tweets
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -30,7 +30,7 @@ public interface ITweetService
     ITweetService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Search tweets across all communities
+    /// List tweets across all communities
     /// </summary>
     Task<PaginatedTweets> List(
         TweetListParams parameters,
@@ -38,7 +38,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get community tweets
+    /// List tweets posted in a community
     /// </summary>
     Task<PaginatedTweets> ListByCommunity(
         TweetListByCommunityParams parameters,

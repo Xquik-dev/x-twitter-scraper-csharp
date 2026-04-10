@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Trends;
 
 /// <summary>
-/// Get regional trending topics
+/// Get trending hashtags &amp; topics by region (alias)
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
