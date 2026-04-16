@@ -83,11 +83,13 @@ public class ListRetrieveTweetsParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://xquik.com/api/v1/x/lists/id/tweets?cursor=cursor&includeReplies=true&sinceTime=sinceTime&untilTime=untilTime"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/x/lists/id/tweets?cursor=cursor&includeReplies=true&sinceTime=sinceTime&untilTime=untilTime"
+                ),
+                url
+            )
         );
     }
 

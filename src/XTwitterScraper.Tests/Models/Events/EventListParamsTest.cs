@@ -79,11 +79,13 @@ public class EventListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://xquik.com/api/v1/events?after=after&eventType=tweet.new&limit=1&monitorId=monitorId"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/events?after=after&eventType=tweet.new&limit=1&monitorId=monitorId"
+                ),
+                url
+            )
         );
     }
 

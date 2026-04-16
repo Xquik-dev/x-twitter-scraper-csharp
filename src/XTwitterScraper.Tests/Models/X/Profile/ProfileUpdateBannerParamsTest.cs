@@ -32,7 +32,7 @@ public class ProfileUpdateBannerParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/profile/banner"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/profile/banner"), url));
     }
 
     [Fact]

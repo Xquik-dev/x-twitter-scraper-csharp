@@ -24,7 +24,9 @@ public class RetweetDeleteParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/tweets/id/retweet"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/tweets/id/retweet"), url)
+        );
     }
 
     [Fact]

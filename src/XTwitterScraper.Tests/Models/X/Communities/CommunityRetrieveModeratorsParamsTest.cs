@@ -48,9 +48,11 @@ public class CommunityRetrieveModeratorsParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://xquik.com/api/v1/x/communities/id/moderators?cursor=cursor"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/x/communities/id/moderators?cursor=cursor"),
+                url
+            )
         );
     }
 

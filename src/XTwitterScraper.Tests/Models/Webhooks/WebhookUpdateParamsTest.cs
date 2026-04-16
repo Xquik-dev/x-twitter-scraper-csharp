@@ -76,7 +76,7 @@ public class WebhookUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/webhooks/id"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/webhooks/id"), url));
     }
 
     [Fact]

@@ -84,7 +84,7 @@ public class DmSendParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/dm/userId"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/dm/userId"), url));
     }
 
     [Fact]

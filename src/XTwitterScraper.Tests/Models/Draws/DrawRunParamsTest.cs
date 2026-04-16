@@ -151,7 +151,7 @@ public class DrawRunParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/draws"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/draws"), url));
     }
 
     [Fact]
