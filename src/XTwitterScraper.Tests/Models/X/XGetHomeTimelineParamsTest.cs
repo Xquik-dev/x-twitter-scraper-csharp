@@ -59,9 +59,13 @@ public class XGetHomeTimelineParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://xquik.com/api/v1/x/timeline?cursor=cursor&seenTweetIds=seenTweetIds"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/x/timeline?cursor=cursor&seenTweetIds=seenTweetIds"
+                ),
+                url
+            )
         );
     }
 

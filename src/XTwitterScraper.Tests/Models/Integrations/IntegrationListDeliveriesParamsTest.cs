@@ -48,7 +48,12 @@ public class IntegrationListDeliveriesParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/integrations/id/deliveries?limit=1"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/integrations/id/deliveries?limit=1"),
+                url
+            )
+        );
     }
 
     [Fact]

@@ -89,11 +89,13 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://xquik.com/api/v1/radar?category=category&count=0&hours=0&region=region&source=github"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/radar?category=category&count=0&hours=0&region=region&source=github"
+                ),
+                url
+            )
         );
     }
 

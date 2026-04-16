@@ -22,7 +22,9 @@ public class StyleGetPerformanceParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/id/performance"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/styles/id/performance"), url)
+        );
     }
 
     [Fact]
