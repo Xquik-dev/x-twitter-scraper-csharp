@@ -29,7 +29,7 @@ public interface ITrendService
     ITrendService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Get trending hashtags & topics by region (alias)
+    /// Get trending hashtags and topics by region (alias)
     /// </summary>
     Task<TrendListResponse> List(
         TrendListParams? parameters = null,
