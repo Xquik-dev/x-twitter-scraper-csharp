@@ -46,9 +46,14 @@ public class UserRetrieveSearchParamsTest : TestBase
     {
         UserRetrieveSearchParams parameters = new() { Q = "q", Cursor = "cursor" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/users/search?q=q&cursor=cursor"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/x/users/search?q=q&cursor=cursor"),
+                url
+            )
+        );
     }
 
     [Fact]

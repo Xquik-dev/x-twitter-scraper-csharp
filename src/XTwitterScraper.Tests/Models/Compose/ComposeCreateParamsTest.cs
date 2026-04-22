@@ -125,9 +125,9 @@ public class ComposeCreateParamsTest : TestBase
     {
         ComposeCreateParams parameters = new() { Step = Step.Compose };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/compose"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/compose"), url));
     }
 
     [Fact]

@@ -77,13 +77,15 @@ public class EventListParamsTest : TestBase
             MonitorID = "monitorId",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://xquik.com/api/v1/events?after=after&eventType=tweet.new&limit=1&monitorId=monitorId"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/events?after=after&eventType=tweet.new&limit=1&monitorId=monitorId"
+                ),
+                url
+            )
         );
     }
 

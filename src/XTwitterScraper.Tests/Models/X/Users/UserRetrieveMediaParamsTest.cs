@@ -46,9 +46,14 @@ public class UserRetrieveMediaParamsTest : TestBase
     {
         UserRetrieveMediaParams parameters = new() { ID = "id", Cursor = "cursor" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/users/id/media?cursor=cursor"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/x/users/id/media?cursor=cursor"),
+                url
+            )
+        );
     }
 
     [Fact]

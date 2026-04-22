@@ -63,9 +63,14 @@ public class ExtractionRetrieveParamsTest : TestBase
             Limit = 1,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/extractions/id?after=after&limit=1"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/extractions/id?after=after&limit=1"),
+                url
+            )
+        );
     }
 
     [Fact]

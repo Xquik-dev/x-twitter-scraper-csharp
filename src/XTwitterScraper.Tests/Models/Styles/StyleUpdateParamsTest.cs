@@ -41,9 +41,9 @@ public class StyleUpdateParamsTest : TestBase
             Tweets = [new("Excited to share our latest research findings.")],
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/styles/id"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/styles/id"), url));
     }
 
     [Fact]

@@ -1,8 +1,8 @@
 using System.Text.Json;
 using XTwitterScraper.Core;
-using XTwitterScraper.Models.X.Users;
+using XTwitterScraper.Models;
 
-namespace XTwitterScraper.Tests.Models.X.Users;
+namespace XTwitterScraper.Tests.Models;
 
 public class UserProfileTest : TestBase
 {

@@ -66,11 +66,13 @@ public class DrawExportParamsTest : TestBase
             Type = Draws::Type.Winners,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://xquik.com/api/v1/draws/id/export?format=csv&type=winners"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/draws/id/export?format=csv&type=winners"),
+                url
+            )
         );
     }
 

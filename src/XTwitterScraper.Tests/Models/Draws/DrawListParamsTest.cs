@@ -49,9 +49,11 @@ public class DrawListParamsTest : TestBase
     {
         DrawListParams parameters = new() { After = "after", Limit = 1 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/draws?after=after&limit=1"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/draws?after=after&limit=1"), url)
+        );
     }
 
     [Fact]

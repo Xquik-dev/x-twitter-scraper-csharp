@@ -20,9 +20,9 @@ public class WebhookTestParamsTest : TestBase
     {
         WebhookTestParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/webhooks/id/test"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/webhooks/id/test"), url));
     }
 
     [Fact]

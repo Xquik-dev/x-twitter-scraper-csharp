@@ -8,7 +8,7 @@ public class TweetServiceTest : TestBase
     public async Task Create_Works()
     {
         var tweet = await this.client.X.Tweets.Create(
-            new() { Account = "@elonmusk", Text = "Just launched our new feature!" },
+            new() { Account = "@elonmusk" },
             TestContext.Current.CancellationToken
         );
         tweet.Validate();

@@ -151,12 +151,6 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         get { return _webhooks.Value; }
     }
 
-    readonly Lazy<IIntegrationService> _integrations;
-    public IIntegrationService Integrations
-    {
-        get { return _integrations.Value; }
-    }
-
     readonly Lazy<IXService> _x;
     public IXService X
     {
@@ -167,12 +161,6 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
     public ITrendService Trends
     {
         get { return _trends.Value; }
-    }
-
-    readonly Lazy<IBotService> _bot;
-    public IBotService Bot
-    {
-        get { return _bot.Value; }
     }
 
     readonly Lazy<ISupportService> _support;
@@ -206,10 +194,8 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         _extractions = new(() => new ExtractionService(this));
         _draws = new(() => new DrawService(this));
         _webhooks = new(() => new WebhookService(this));
-        _integrations = new(() => new IntegrationService(this));
         _x = new(() => new XService(this));
         _trends = new(() => new TrendService(this));
-        _bot = new(() => new BotService(this));
         _support = new(() => new SupportService(this));
         _credits = new(() => new CreditService(this));
     }
@@ -368,12 +354,6 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         get { return _webhooks.Value; }
     }
 
-    readonly Lazy<IIntegrationServiceWithRawResponse> _integrations;
-    public IIntegrationServiceWithRawResponse Integrations
-    {
-        get { return _integrations.Value; }
-    }
-
     readonly Lazy<IXServiceWithRawResponse> _x;
     public IXServiceWithRawResponse X
     {
@@ -384,12 +364,6 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
     public ITrendServiceWithRawResponse Trends
     {
         get { return _trends.Value; }
-    }
-
-    readonly Lazy<IBotServiceWithRawResponse> _bot;
-    public IBotServiceWithRawResponse Bot
-    {
-        get { return _bot.Value; }
     }
 
     readonly Lazy<ISupportServiceWithRawResponse> _support;
@@ -614,10 +588,8 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         _extractions = new(() => new ExtractionServiceWithRawResponse(this));
         _draws = new(() => new DrawServiceWithRawResponse(this));
         _webhooks = new(() => new WebhookServiceWithRawResponse(this));
-        _integrations = new(() => new IntegrationServiceWithRawResponse(this));
         _x = new(() => new XServiceWithRawResponse(this));
         _trends = new(() => new TrendServiceWithRawResponse(this));
-        _bot = new(() => new BotServiceWithRawResponse(this));
         _support = new(() => new SupportServiceWithRawResponse(this));
         _credits = new(() => new CreditServiceWithRawResponse(this));
     }

@@ -20,14 +20,35 @@ namespace XTwitterScraper.Models.Radar;
 public record class RadarRetrieveTrendingTopicsParams : ParamsBase
 {
     /// <summary>
-    /// Filter by category (general, tech, dev, etc.)
+    /// Cursor for pagination (from prior response nextCursor).
     /// </summary>
-    public string? Category
+    public string? After
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("category");
+            return this._rawQueryData.GetNullableClass<string>("after");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("after", value);
+        }
+    }
+
+    /// <summary>
+    /// Filter by category.
+    /// </summary>
+    public ApiEnum<string, Category>? Category
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, Category>>("category");
         }
         init
         {
@@ -41,28 +62,7 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     }
 
     /// <summary>
-    /// Number of items to return
-    /// </summary>
-    public long? Count
-    {
-        get
-        {
-            this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<long>("count");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawQueryData.Set("count", value);
-        }
-    }
-
-    /// <summary>
-    /// Lookback window in hours
+    /// Lookback window in hours (1-168, default 24).
     /// </summary>
     public long? Hours
     {
@@ -79,6 +79,27 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
             }
 
             this._rawQueryData.Set("hours", value);
+        }
+    }
+
+    /// <summary>
+    /// Number of items to return (1-100, default 50).
+    /// </summary>
+    public long? Limit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
         }
     }
 
@@ -198,13 +219,13 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/radar")
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -214,6 +235,67 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
+    }
+}
+
+/// <summary>
+/// Filter by category.
+/// </summary>
+[JsonConverter(typeof(CategoryConverter))]
+public enum Category
+{
+    General,
+    Tech,
+    Dev,
+    Science,
+    Culture,
+    Politics,
+    Business,
+    Entertainment,
+}
+
+sealed class CategoryConverter : JsonConverter<Category>
+{
+    public override Category Read(
+        ref Utf8JsonReader reader,
+        Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "general" => Category.General,
+            "tech" => Category.Tech,
+            "dev" => Category.Dev,
+            "science" => Category.Science,
+            "culture" => Category.Culture,
+            "politics" => Category.Politics,
+            "business" => Category.Business,
+            "entertainment" => Category.Entertainment,
+            _ => (Category)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Category value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Category.General => "general",
+                Category.Tech => "tech",
+                Category.Dev => "dev",
+                Category.Science => "science",
+                Category.Culture => "culture",
+                Category.Politics => "politics",
+                Category.Business => "business",
+                Category.Entertainment => "entertainment",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }
 

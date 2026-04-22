@@ -20,9 +20,9 @@ public class CreditTopupBalanceParamsTest : TestBase
     {
         CreditTopupBalanceParams parameters = new() { Amount = 10000 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/credits/topup"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/credits/topup"), url));
     }
 
     [Fact]

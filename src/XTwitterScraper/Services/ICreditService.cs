@@ -7,7 +7,7 @@ using XTwitterScraper.Models.Credits;
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// Subscription &amp; billing
+/// Subscription, billing, and credits
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

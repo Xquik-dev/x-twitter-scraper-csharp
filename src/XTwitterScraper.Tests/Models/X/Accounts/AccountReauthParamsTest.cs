@@ -12,15 +12,21 @@ public class AccountReauthParamsTest : TestBase
         {
             ID = "id",
             Password = "password_value",
+            Email = "user@example.com",
+            ProxyCountry = "US",
             TotpSecret = "totp_secret_value",
         };
 
         string expectedID = "id";
         string expectedPassword = "password_value";
+        string expectedEmail = "user@example.com";
+        string expectedProxyCountry = "US";
         string expectedTotpSecret = "totp_secret_value";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedPassword, parameters.Password);
+        Assert.Equal(expectedEmail, parameters.Email);
+        Assert.Equal(expectedProxyCountry, parameters.ProxyCountry);
         Assert.Equal(expectedTotpSecret, parameters.TotpSecret);
     }
 
@@ -29,6 +35,10 @@ public class AccountReauthParamsTest : TestBase
     {
         var parameters = new AccountReauthParams { ID = "id", Password = "password_value" };
 
+        Assert.Null(parameters.Email);
+        Assert.False(parameters.RawBodyData.ContainsKey("email"));
+        Assert.Null(parameters.ProxyCountry);
+        Assert.False(parameters.RawBodyData.ContainsKey("proxy_country"));
         Assert.Null(parameters.TotpSecret);
         Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
     }
@@ -42,9 +52,15 @@ public class AccountReauthParamsTest : TestBase
             Password = "password_value",
 
             // Null should be interpreted as omitted for these properties
+            Email = null,
+            ProxyCountry = null,
             TotpSecret = null,
         };
 
+        Assert.Null(parameters.Email);
+        Assert.False(parameters.RawBodyData.ContainsKey("email"));
+        Assert.Null(parameters.ProxyCountry);
+        Assert.False(parameters.RawBodyData.ContainsKey("proxy_country"));
         Assert.Null(parameters.TotpSecret);
         Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
     }
@@ -54,9 +70,11 @@ public class AccountReauthParamsTest : TestBase
     {
         AccountReauthParams parameters = new() { ID = "id", Password = "password_value" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/accounts/id/reauth"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts/id/reauth"), url)
+        );
     }
 
     [Fact]
@@ -66,6 +84,8 @@ public class AccountReauthParamsTest : TestBase
         {
             ID = "id",
             Password = "password_value",
+            Email = "user@example.com",
+            ProxyCountry = "US",
             TotpSecret = "totp_secret_value",
         };
 

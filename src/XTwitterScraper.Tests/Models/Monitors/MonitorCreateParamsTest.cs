@@ -13,14 +13,14 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedUsername = "elonmusk";
 
@@ -37,13 +37,13 @@ public class MonitorCreateParamsTest : TestBase
     {
         MonitorCreateParams parameters = new()
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/monitors"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/monitors"), url));
     }
 
     [Fact]
@@ -51,7 +51,7 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 

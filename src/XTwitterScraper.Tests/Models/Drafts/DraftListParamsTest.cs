@@ -49,11 +49,13 @@ public class DraftListParamsTest : TestBase
     {
         DraftListParams parameters = new() { AfterCursor = "afterCursor", Limit = 1 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://xquik.com/api/v1/drafts?afterCursor=afterCursor&limit=1"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/drafts?afterCursor=afterCursor&limit=1"),
+                url
+            )
         );
     }
 

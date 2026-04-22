@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Users;
 
 /// <summary>
-/// Get recent tweets by a user
+/// List recent tweets posted by a user
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -164,13 +164,13 @@ public record class UserRetrieveTweetsParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/users/{0}/tweets", this.ID)
         )
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

@@ -56,7 +56,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Get community details
+    /// Get community name, description & member count
     /// </summary>
     Task<CommunityRetrieveInfoResponse> RetrieveInfo(
         CommunityRetrieveInfoParams parameters,
@@ -71,7 +71,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Get community members
+    /// List members of a community
     /// </summary>
     Task<PaginatedUsers> RetrieveMembers(
         CommunityRetrieveMembersParams parameters,
@@ -86,7 +86,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Get community moderators
+    /// List moderators of a community
     /// </summary>
     Task<PaginatedUsers> RetrieveModerators(
         CommunityRetrieveModeratorsParams parameters,
@@ -101,7 +101,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Search tweets across communities
+    /// Search for communities by keyword
     /// </summary>
     Task<PaginatedTweets> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,

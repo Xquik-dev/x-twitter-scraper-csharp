@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X;
 
 /// <summary>
-/// Get trending topics
+/// Get trending hashtags &amp; topics from X by region
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -17,6 +17,48 @@ namespace XTwitterScraper.Models.X;
 /// </summary>
 public record class XGetTrendsParams : ParamsBase
 {
+    /// <summary>
+    /// Number of trending topics to return (1-50, default 30)
+    /// </summary>
+    public long? Count
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("count");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("count", value);
+        }
+    }
+
+    /// <summary>
+    /// Region WOEID (1=Worldwide, 23424977=US, 23424975=UK, 23424969=Turkey)
+    /// </summary>
+    public long? Woeid
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("woeid");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("woeid", value);
+        }
+    }
+
     public XGetTrendsParams() { }
 
 #pragma warning disable CS8618
@@ -88,13 +130,13 @@ public record class XGetTrendsParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/trends")
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

@@ -16,7 +16,7 @@ public class WebhookCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Secret = "whsec_abc123def456",
             Url = "https://example.com/webhook",
         };
@@ -26,7 +26,7 @@ public class WebhookCreateResponseTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedSecret = "whsec_abc123def456";
         string expectedUrl = "https://example.com/webhook";
@@ -49,7 +49,7 @@ public class WebhookCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Secret = "whsec_abc123def456",
             Url = "https://example.com/webhook",
         };
@@ -70,7 +70,7 @@ public class WebhookCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Secret = "whsec_abc123def456",
             Url = "https://example.com/webhook",
         };
@@ -87,7 +87,7 @@ public class WebhookCreateResponseTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedSecret = "whsec_abc123def456";
         string expectedUrl = "https://example.com/webhook";
@@ -110,7 +110,7 @@ public class WebhookCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Secret = "whsec_abc123def456",
             Url = "https://example.com/webhook",
         };
@@ -125,7 +125,7 @@ public class WebhookCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Secret = "whsec_abc123def456",
             Url = "https://example.com/webhook",
         };

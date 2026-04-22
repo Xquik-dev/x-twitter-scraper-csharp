@@ -7,7 +7,7 @@ using XTwitterScraper.Models.X.Media;
 namespace XTwitterScraper.Services.X;
 
 /// <summary>
-/// Media upload &amp; download
+/// Media upload and download
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -29,7 +29,7 @@ public interface IMediaService
     IMediaService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Download tweet media
+    /// Download images & videos from tweets
     /// </summary>
     Task<MediaDownloadResponse> Download(
         MediaDownloadParams? parameters = null,

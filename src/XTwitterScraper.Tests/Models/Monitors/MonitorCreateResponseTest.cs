@@ -16,7 +16,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -26,7 +26,7 @@ public class MonitorCreateResponseTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedUsername = "elonmusk";
         string expectedXUserID = "1234567890";
@@ -49,7 +49,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -70,7 +70,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -87,7 +87,7 @@ public class MonitorCreateResponseTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedUsername = "elonmusk";
         string expectedXUserID = "1234567890";
@@ -110,7 +110,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
             XUserID = "1234567890",
         };
@@ -125,7 +125,7 @@ public class MonitorCreateResponseTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
             XUserID = "1234567890",
         };

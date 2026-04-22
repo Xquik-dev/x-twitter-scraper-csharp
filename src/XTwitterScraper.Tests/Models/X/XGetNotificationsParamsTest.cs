@@ -52,11 +52,13 @@ public class XGetNotificationsParamsTest : TestBase
     {
         X::XGetNotificationsParams parameters = new() { Cursor = "cursor", Type = X::Type.All };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://xquik.com/api/v1/x/notifications?cursor=cursor&type=All"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/x/notifications?cursor=cursor&type=All"),
+                url
+            )
         );
     }
 

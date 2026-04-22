@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Users;
 
 /// <summary>
-/// Get multiple users by IDs
+/// Look up multiple users by IDs in one call
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -101,13 +101,13 @@ public record class UserRetrieveBatchParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/users/batch")
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

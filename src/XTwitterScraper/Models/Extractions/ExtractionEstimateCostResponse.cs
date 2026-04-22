@@ -25,6 +25,26 @@ public sealed record class ExtractionEstimateCostResponse : JsonModel
         init { this._rawData.Set("allowed", value); }
     }
 
+    public required string CreditsAvailable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("creditsAvailable");
+        }
+        init { this._rawData.Set("creditsAvailable", value); }
+    }
+
+    public required string CreditsRequired
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("creditsRequired");
+        }
+        init { this._rawData.Set("creditsRequired", value); }
+    }
+
     public required long EstimatedResults
     {
         get
@@ -33,16 +53,6 @@ public sealed record class ExtractionEstimateCostResponse : JsonModel
             return this._rawData.GetNotNullStruct<long>("estimatedResults");
         }
         init { this._rawData.Set("estimatedResults", value); }
-    }
-
-    public required double ProjectedPercent
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("projectedPercent");
-        }
-        init { this._rawData.Set("projectedPercent", value); }
     }
 
     public required string Source
@@ -55,24 +65,33 @@ public sealed record class ExtractionEstimateCostResponse : JsonModel
         init { this._rawData.Set("source", value); }
     }
 
-    public required double UsagePercent
+    public string? ResolvedXUserID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("usagePercent");
+            return this._rawData.GetNullableClass<string>("resolvedXUserId");
         }
-        init { this._rawData.Set("usagePercent", value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("resolvedXUserId", value);
+        }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Allowed;
+        _ = this.CreditsAvailable;
+        _ = this.CreditsRequired;
         _ = this.EstimatedResults;
-        _ = this.ProjectedPercent;
         _ = this.Source;
-        _ = this.UsagePercent;
+        _ = this.ResolvedXUserID;
     }
 
     public ExtractionEstimateCostResponse() { }

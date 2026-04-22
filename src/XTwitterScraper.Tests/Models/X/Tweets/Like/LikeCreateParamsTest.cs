@@ -22,9 +22,9 @@ public class LikeCreateParamsTest : TestBase
     {
         LikeCreateParams parameters = new() { ID = "id", Account = "@elonmusk" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/tweets/id/like"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/tweets/id/like"), url));
     }
 
     [Fact]

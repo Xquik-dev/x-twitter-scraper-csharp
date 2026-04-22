@@ -56,11 +56,7 @@ Or manually:
 ```csharp
 using XTwitterScraper;
 
-XTwitterScraperClient client = new()
-{
-    ApiKey = "My API Key",
-    BearerToken = "My Bearer Token",
-};
+XTwitterScraperClient client = new() { ApiKey = "My API Key" };
 ```
 
 Or using a combination of the two approaches.
@@ -319,46 +315,6 @@ var parameters = TweetSearchParams.FromRawUnchecked
         }
     }
 );
-```
-
-### Nested Parameters
-
-Undocumented properties, or undocumented values of documented properties, on nested parameters can be set similarly, using a dictionary in the constructor of the nested parameter.
-
-```csharp
-using System.Collections.Generic;
-using System.Text.Json;
-using XTwitterScraper.Models.Integrations;
-
-IntegrationCreateParams parameters = new()
-{
-    Config = new
-    (
-        new Dictionary<string, JsonElement>
-        {
-            { "custom_nested_param", JsonSerializer.SerializeToElement(42) }
-        }
-    )
-};
-```
-
-Required properties on the nested parameter can also be changed or omitted using the `FromRawUnchecked` method:
-
-```csharp
-using System.Collections.Generic;
-using System.Text.Json;
-using XTwitterScraper.Models.Integrations;
-
-IntegrationCreateParams parameters = new()
-{
-    Config = Config.FromRawUnchecked
-    (
-        new Dictionary<string, JsonElement>
-        {
-            { "required_property", JsonSerializer.SerializeToElement("custom value") }
-        }
-    )
-};
 ```
 
 ### Response properties

@@ -40,6 +40,48 @@ public record class AccountReauthParams : ParamsBase
     }
 
     /// <summary>
+    /// Email for the X account (updates stored email)
+    /// </summary>
+    public string? Email
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("email");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("email", value);
+        }
+    }
+
+    /// <summary>
+    /// Two-letter country code for login proxy region
+    /// </summary>
+    public string? ProxyCountry
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("proxy_country");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("proxy_country", value);
+        }
+    }
+
+    /// <summary>
     /// TOTP secret for 2FA re-authentication
     /// </summary>
     public string? TotpSecret
@@ -153,7 +195,7 @@ public record class AccountReauthParams : ParamsBase
                 + string.Format("/x/accounts/{0}/reauth", this.ID)
         )
         {
-            Query = this.QueryString(options, new() { ApiKey = true }),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
@@ -168,7 +210,7 @@ public record class AccountReauthParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, new() { ApiKey = true });
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

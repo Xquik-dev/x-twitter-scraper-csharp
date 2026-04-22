@@ -15,8 +15,6 @@ public enum EventType
     TweetReply,
     TweetRetweet,
     TweetQuote,
-    FollowerGained,
-    FollowerLost,
 }
 
 sealed class EventTypeConverter : JsonConverter<EventType>
@@ -33,8 +31,6 @@ sealed class EventTypeConverter : JsonConverter<EventType>
             "tweet.reply" => EventType.TweetReply,
             "tweet.retweet" => EventType.TweetRetweet,
             "tweet.quote" => EventType.TweetQuote,
-            "follower.gained" => EventType.FollowerGained,
-            "follower.lost" => EventType.FollowerLost,
             _ => (EventType)(-1),
         };
     }
@@ -53,8 +49,6 @@ sealed class EventTypeConverter : JsonConverter<EventType>
                 EventType.TweetReply => "tweet.reply",
                 EventType.TweetRetweet => "tweet.retweet",
                 EventType.TweetQuote => "tweet.quote",
-                EventType.FollowerGained => "follower.gained",
-                EventType.FollowerLost => "follower.lost",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

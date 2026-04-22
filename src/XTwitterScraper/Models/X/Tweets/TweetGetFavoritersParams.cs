@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Get users who liked a tweet
+/// List users who liked a tweet
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -123,13 +123,13 @@ public record class TweetGetFavoritersParams : ParamsBase
                 + string.Format("/x/tweets/{0}/favoriters", this.ID)
         )
         {
-            Query = this.QueryString(options, SecurityOptions.All()),
+            Query = this.QueryString(options),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
+        ParamsBase.AddDefaultHeaders(request, options);
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

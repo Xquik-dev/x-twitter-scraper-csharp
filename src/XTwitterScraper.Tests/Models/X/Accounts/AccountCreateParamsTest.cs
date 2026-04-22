@@ -76,9 +76,9 @@ public class AccountCreateParamsTest : TestBase
             Username = "elonmusk",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://xquik.com/api/v1/x/accounts"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts"), url));
     }
 
     [Fact]
