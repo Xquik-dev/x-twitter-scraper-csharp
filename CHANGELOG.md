@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.4.0 (2026-04-22)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([739e7ff](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/739e7ff053b9f231bd7f4a76803a2631439d3947))
+* **api:** api update ([8d82368](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/8d823689cec9b413e618c9bfdc5a7d4b837b21b4))
+* **api:** api update ([3a5a9e7](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3a5a9e7d951ad61707709a91bffee20594eb58e9))
+* **api:** api update ([5000bc9](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/5000bc965aa7184aaabaeec001679bd7b37f5b88))
+
+
+### Bug Fixes
+
+* **tests:** round-trip urls correctly ([1773360](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/1773360afd7751305c2fbad2350919bcc2e14e5e))
+
+
+### Chores
+
+* sync OpenAPI spec ([9ad82a2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/9ad82a28788a0fa5853bc28666c04d8bf35220b9))
+* wire production_repo for all targets ([3eb0d89](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3eb0d897f16b37a69272cd99292c95243c27515b))
+
 ## 0.3.0 (2026-04-08)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.2.0...v0.3.0)
