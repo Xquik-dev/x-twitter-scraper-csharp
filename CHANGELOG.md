@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 (2026-04-22)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.0...v0.4.1)
+
+### Bug Fixes
+
+* escape ampersand in OpenAPI summaries for C# XML docs ([db25273](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/db25273389ef55215ca88f8828ac62a63ef92b7d))
+
 ## 0.4.0 (2026-04-22)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.3.0...v0.4.0)
