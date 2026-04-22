@@ -19,6 +19,7 @@ public class AccountListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Health = Health.Healthy,
                     Status = "active",
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
@@ -32,6 +33,7 @@ public class AccountListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Health = Health.Healthy,
                 Status = "active",
                 XUserID = "9876543210",
                 XUsername = "elonmusk",
@@ -56,6 +58,7 @@ public class AccountListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Health = Health.Healthy,
                     Status = "active",
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
@@ -83,6 +86,7 @@ public class AccountListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Health = Health.Healthy,
                     Status = "active",
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
@@ -103,6 +107,7 @@ public class AccountListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                Health = Health.Healthy,
                 Status = "active",
                 XUserID = "9876543210",
                 XUsername = "elonmusk",
@@ -127,6 +132,7 @@ public class AccountListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Health = Health.Healthy,
                     Status = "active",
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
@@ -148,6 +154,7 @@ public class AccountListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    Health = Health.Healthy,
                     Status = "active",
                     XUserID = "9876543210",
                     XUsername = "elonmusk",

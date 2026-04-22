@@ -13,22 +13,25 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
     {
         var parameters = new RadarRetrieveTrendingTopicsParams
         {
-            Category = "category",
-            Count = 0,
-            Hours = 0,
+            After = "after",
+            Category = Category.General,
+            Hours = 1,
+            Limit = 1,
             Region = "region",
             Source = Source.GitHub,
         };
 
-        string expectedCategory = "category";
-        long expectedCount = 0;
-        long expectedHours = 0;
+        string expectedAfter = "after";
+        ApiEnum<string, Category> expectedCategory = Category.General;
+        long expectedHours = 1;
+        long expectedLimit = 1;
         string expectedRegion = "region";
         ApiEnum<string, Source> expectedSource = Source.GitHub;
 
+        Assert.Equal(expectedAfter, parameters.After);
         Assert.Equal(expectedCategory, parameters.Category);
-        Assert.Equal(expectedCount, parameters.Count);
         Assert.Equal(expectedHours, parameters.Hours);
+        Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedRegion, parameters.Region);
         Assert.Equal(expectedSource, parameters.Source);
     }
@@ -38,12 +41,14 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
     {
         var parameters = new RadarRetrieveTrendingTopicsParams { };
 
+        Assert.Null(parameters.After);
+        Assert.False(parameters.RawQueryData.ContainsKey("after"));
         Assert.Null(parameters.Category);
         Assert.False(parameters.RawQueryData.ContainsKey("category"));
-        Assert.Null(parameters.Count);
-        Assert.False(parameters.RawQueryData.ContainsKey("count"));
         Assert.Null(parameters.Hours);
         Assert.False(parameters.RawQueryData.ContainsKey("hours"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Region);
         Assert.False(parameters.RawQueryData.ContainsKey("region"));
         Assert.Null(parameters.Source);
@@ -56,19 +61,22 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
         var parameters = new RadarRetrieveTrendingTopicsParams
         {
             // Null should be interpreted as omitted for these properties
+            After = null,
             Category = null,
-            Count = null,
             Hours = null,
+            Limit = null,
             Region = null,
             Source = null,
         };
 
+        Assert.Null(parameters.After);
+        Assert.False(parameters.RawQueryData.ContainsKey("after"));
         Assert.Null(parameters.Category);
         Assert.False(parameters.RawQueryData.ContainsKey("category"));
-        Assert.Null(parameters.Count);
-        Assert.False(parameters.RawQueryData.ContainsKey("count"));
         Assert.Null(parameters.Hours);
         Assert.False(parameters.RawQueryData.ContainsKey("hours"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Region);
         Assert.False(parameters.RawQueryData.ContainsKey("region"));
         Assert.Null(parameters.Source);
@@ -80,9 +88,10 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
     {
         RadarRetrieveTrendingTopicsParams parameters = new()
         {
-            Category = "category",
-            Count = 0,
-            Hours = 0,
+            After = "after",
+            Category = Category.General,
+            Hours = 1,
+            Limit = 1,
             Region = "region",
             Source = Source.GitHub,
         };
@@ -92,7 +101,7 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/radar?category=category&count=0&hours=0&region=region&source=github"
+                    "https://xquik.com/api/v1/radar?after=after&category=general&hours=1&limit=1&region=region&source=github"
                 ),
                 url
             )
@@ -104,9 +113,10 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
     {
         var parameters = new RadarRetrieveTrendingTopicsParams
         {
-            Category = "category",
-            Count = 0,
-            Hours = 0,
+            After = "after",
+            Category = Category.General,
+            Hours = 1,
+            Limit = 1,
             Region = "region",
             Source = Source.GitHub,
         };
@@ -114,6 +124,76 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
         RadarRetrieveTrendingTopicsParams copied = new(parameters);
 
         Assert.Equal(parameters, copied);
+    }
+}
+
+public class CategoryTest : TestBase
+{
+    [Theory]
+    [InlineData(Category.General)]
+    [InlineData(Category.Tech)]
+    [InlineData(Category.Dev)]
+    [InlineData(Category.Science)]
+    [InlineData(Category.Culture)]
+    [InlineData(Category.Politics)]
+    [InlineData(Category.Business)]
+    [InlineData(Category.Entertainment)]
+    public void Validation_Works(Category rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Category> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Category>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Category.General)]
+    [InlineData(Category.Tech)]
+    [InlineData(Category.Dev)]
+    [InlineData(Category.Science)]
+    [InlineData(Category.Culture)]
+    [InlineData(Category.Politics)]
+    [InlineData(Category.Business)]
+    [InlineData(Category.Entertainment)]
+    public void SerializationRoundtrip_Works(Category rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Category> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Category>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Category>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Category>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

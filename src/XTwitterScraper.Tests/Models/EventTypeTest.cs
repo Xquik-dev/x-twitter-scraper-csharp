@@ -12,8 +12,6 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.TweetReply)]
     [InlineData(EventType.TweetRetweet)]
     [InlineData(EventType.TweetQuote)]
-    [InlineData(EventType.FollowerGained)]
-    [InlineData(EventType.FollowerLost)]
     public void Validation_Works(EventType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -38,8 +36,6 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.TweetReply)]
     [InlineData(EventType.TweetRetweet)]
     [InlineData(EventType.TweetQuote)]
-    [InlineData(EventType.FollowerGained)]
-    [InlineData(EventType.FollowerLost)]
     public void SerializationRoundtrip_Works(EventType rawValue)
     {
         // force implicit conversion because Theory can't do that for us

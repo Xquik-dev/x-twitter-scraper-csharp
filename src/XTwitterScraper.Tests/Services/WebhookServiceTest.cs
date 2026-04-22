@@ -11,7 +11,7 @@ public class WebhookServiceTest : TestBase
         var webhook = await this.client.Webhooks.Create(
             new()
             {
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 UrlValue = "https://example.com/webhook",
             },
             TestContext.Current.CancellationToken

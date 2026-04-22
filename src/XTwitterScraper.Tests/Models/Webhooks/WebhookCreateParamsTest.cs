@@ -13,14 +13,14 @@ public class WebhookCreateParamsTest : TestBase
     {
         var parameters = new WebhookCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             UrlValue = "https://example.com/webhook",
         };
 
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedUrlValue = "https://example.com/webhook";
 
@@ -37,7 +37,7 @@ public class WebhookCreateParamsTest : TestBase
     {
         WebhookCreateParams parameters = new()
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             UrlValue = "https://example.com/webhook",
         };
 
@@ -51,7 +51,7 @@ public class WebhookCreateParamsTest : TestBase
     {
         var parameters = new WebhookCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             UrlValue = "https://example.com/webhook",
         };
 

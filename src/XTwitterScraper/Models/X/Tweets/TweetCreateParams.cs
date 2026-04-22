@@ -38,16 +38,6 @@ public record class TweetCreateParams : ParamsBase
         init { this._rawBodyData.Set("account", value); }
     }
 
-    public required string Text
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<string>("text");
-        }
-        init { this._rawBodyData.Set("text", value); }
-    }
-
     public string? AttachmentUrl
     {
         get
@@ -102,6 +92,33 @@ public record class TweetCreateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Array of media URLs to attach (mutually exclusive with media_ids)
+    /// </summary>
+    public IReadOnlyList<string>? Media
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("media");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "media",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Array of media IDs to attach (mutually exclusive with media)
+    /// </summary>
     public IReadOnlyList<string>? MediaIds
     {
         get
@@ -138,6 +155,27 @@ public record class TweetCreateParams : ParamsBase
             }
 
             this._rawBodyData.Set("reply_to_tweet_id", value);
+        }
+    }
+
+    /// <summary>
+    /// Tweet text (optional when media is provided)
+    /// </summary>
+    public string? Text
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("text");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("text", value);
         }
     }
 

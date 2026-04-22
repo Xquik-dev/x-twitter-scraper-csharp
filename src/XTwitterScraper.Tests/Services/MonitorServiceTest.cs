@@ -11,7 +11,7 @@ public class MonitorServiceTest : TestBase
         var monitor = await this.client.Monitors.Create(
             new()
             {
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 Username = "elonmusk",
             },
             TestContext.Current.CancellationToken

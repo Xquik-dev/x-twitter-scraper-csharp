@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.X.Accounts;
 
 namespace XTwitterScraper.Tests.Models.X.Accounts;
@@ -14,6 +15,7 @@ public class XAccountTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = Health.Healthy,
             Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
@@ -21,12 +23,14 @@ public class XAccountTest : TestBase
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        ApiEnum<string, Health> expectedHealth = Health.Healthy;
         string expectedStatus = "active";
         string expectedXUserID = "9876543210";
         string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedHealth, model.Health);
         Assert.Equal(expectedStatus, model.Status);
         Assert.Equal(expectedXUserID, model.XUserID);
         Assert.Equal(expectedXUsername, model.XUsername);
@@ -39,6 +43,7 @@ public class XAccountTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = Health.Healthy,
             Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
@@ -57,6 +62,7 @@ public class XAccountTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = Health.Healthy,
             Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
@@ -71,12 +77,14 @@ public class XAccountTest : TestBase
 
         string expectedID = "42";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        ApiEnum<string, Health> expectedHealth = Health.Healthy;
         string expectedStatus = "active";
         string expectedXUserID = "9876543210";
         string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedHealth, deserialized.Health);
         Assert.Equal(expectedStatus, deserialized.Status);
         Assert.Equal(expectedXUserID, deserialized.XUserID);
         Assert.Equal(expectedXUsername, deserialized.XUsername);
@@ -89,6 +97,7 @@ public class XAccountTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = Health.Healthy,
             Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
@@ -104,6 +113,7 @@ public class XAccountTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = Health.Healthy,
             Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
@@ -112,5 +122,71 @@ public class XAccountTest : TestBase
         XAccount copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class HealthTest : TestBase
+{
+    [Theory]
+    [InlineData(Health.Healthy)]
+    [InlineData(Health.Locked)]
+    [InlineData(Health.NeedsReauth)]
+    [InlineData(Health.Recovering)]
+    [InlineData(Health.Suspended)]
+    [InlineData(Health.TemporaryIssue)]
+    public void Validation_Works(Health rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Health> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Health.Healthy)]
+    [InlineData(Health.Locked)]
+    [InlineData(Health.NeedsReauth)]
+    [InlineData(Health.Recovering)]
+    [InlineData(Health.Suspended)]
+    [InlineData(Health.TemporaryIssue)]
+    public void SerializationRoundtrip_Works(Health rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Health> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
