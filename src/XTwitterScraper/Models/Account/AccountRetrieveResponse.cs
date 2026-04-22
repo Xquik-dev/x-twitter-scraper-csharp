@@ -42,12 +42,12 @@ public sealed record class AccountRetrieveResponse : JsonModel
         init { this._rawData.Set("plan", value); }
     }
 
-    public CurrentPeriod? CurrentPeriod
+    public CreditInfo? CreditInfo
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<CurrentPeriod>("currentPeriod");
+            return this._rawData.GetNullableClass<CreditInfo>("creditInfo");
         }
         init
         {
@@ -56,7 +56,7 @@ public sealed record class AccountRetrieveResponse : JsonModel
                 return;
             }
 
-            this._rawData.Set("currentPeriod", value);
+            this._rawData.Set("creditInfo", value);
         }
     }
 
@@ -66,7 +66,7 @@ public sealed record class AccountRetrieveResponse : JsonModel
         _ = this.MonitorsAllowed;
         _ = this.MonitorsUsed;
         this.Plan.Validate();
-        this.CurrentPeriod?.Validate();
+        this.CreditInfo?.Validate();
     }
 
     public AccountRetrieveResponse() { }
@@ -147,78 +147,89 @@ sealed class PlanConverter : JsonConverter<Plan>
     }
 }
 
-[JsonConverter(typeof(JsonModelConverter<CurrentPeriod, CurrentPeriodFromRaw>))]
-public sealed record class CurrentPeriod : JsonModel
+[JsonConverter(typeof(JsonModelConverter<CreditInfo, CreditInfoFromRaw>))]
+public sealed record class CreditInfo : JsonModel
 {
-    public required DateTimeOffset End
+    public required bool AutoTopupEnabled
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("end");
+            return this._rawData.GetNotNullStruct<bool>("autoTopupEnabled");
         }
-        init { this._rawData.Set("end", value); }
+        init { this._rawData.Set("autoTopupEnabled", value); }
     }
 
-    public required DateTimeOffset Start
+    public required long Balance
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("start");
+            return this._rawData.GetNotNullStruct<long>("balance");
         }
-        init { this._rawData.Set("start", value); }
+        init { this._rawData.Set("balance", value); }
     }
 
-    public required double UsagePercent
+    public required long LifetimePurchased
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("usagePercent");
+            return this._rawData.GetNotNullStruct<long>("lifetimePurchased");
         }
-        init { this._rawData.Set("usagePercent", value); }
+        init { this._rawData.Set("lifetimePurchased", value); }
+    }
+
+    public required long LifetimeUsed
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("lifetimeUsed");
+        }
+        init { this._rawData.Set("lifetimeUsed", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.End;
-        _ = this.Start;
-        _ = this.UsagePercent;
+        _ = this.AutoTopupEnabled;
+        _ = this.Balance;
+        _ = this.LifetimePurchased;
+        _ = this.LifetimeUsed;
     }
 
-    public CurrentPeriod() { }
+    public CreditInfo() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public CurrentPeriod(CurrentPeriod currentPeriod)
-        : base(currentPeriod) { }
+    public CreditInfo(CreditInfo creditInfo)
+        : base(creditInfo) { }
 #pragma warning restore CS8618
 
-    public CurrentPeriod(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CreditInfo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CurrentPeriod(FrozenDictionary<string, JsonElement> rawData)
+    CreditInfo(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="CurrentPeriodFromRaw.FromRawUnchecked"/>
-    public static CurrentPeriod FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="CreditInfoFromRaw.FromRawUnchecked"/>
+    public static CreditInfo FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class CurrentPeriodFromRaw : IFromRawJson<CurrentPeriod>
+class CreditInfoFromRaw : IFromRawJson<CreditInfo>
 {
     /// <inheritdoc/>
-    public CurrentPeriod FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        CurrentPeriod.FromRawUnchecked(rawData);
+    public CreditInfo FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CreditInfo.FromRawUnchecked(rawData);
 }

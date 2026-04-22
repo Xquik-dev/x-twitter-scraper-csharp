@@ -80,13 +80,9 @@ public interface IXTwitterScraperClient : IDisposable
 
     IWebhookService Webhooks { get; }
 
-    IIntegrationService Integrations { get; }
-
     IXService X { get; }
 
     ITrendService Trends { get; }
-
-    IBotService Bot { get; }
 
     ISupportService Support { get; }
 
@@ -151,13 +147,9 @@ public interface IXTwitterScraperClientWithRawResponse : IDisposable
 
     IWebhookServiceWithRawResponse Webhooks { get; }
 
-    IIntegrationServiceWithRawResponse Integrations { get; }
-
     IXServiceWithRawResponse X { get; }
 
     ITrendServiceWithRawResponse Trends { get; }
-
-    IBotServiceWithRawResponse Bot { get; }
 
     ISupportServiceWithRawResponse Support { get; }
 

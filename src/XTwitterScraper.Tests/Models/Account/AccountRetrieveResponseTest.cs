@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
@@ -16,28 +15,30 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsAllowed = 10,
             MonitorsUsed = 3,
             Plan = Plan.Active,
-            CurrentPeriod = new()
+            CreditInfo = new()
             {
-                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-                UsagePercent = 42.5,
+                AutoTopupEnabled = false,
+                Balance = 50000,
+                LifetimePurchased = 140000,
+                LifetimeUsed = 90000,
             },
         };
 
         long expectedMonitorsAllowed = 10;
         long expectedMonitorsUsed = 3;
         ApiEnum<string, Plan> expectedPlan = Plan.Active;
-        CurrentPeriod expectedCurrentPeriod = new()
+        CreditInfo expectedCreditInfo = new()
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
         Assert.Equal(expectedMonitorsAllowed, model.MonitorsAllowed);
         Assert.Equal(expectedMonitorsUsed, model.MonitorsUsed);
         Assert.Equal(expectedPlan, model.Plan);
-        Assert.Equal(expectedCurrentPeriod, model.CurrentPeriod);
+        Assert.Equal(expectedCreditInfo, model.CreditInfo);
     }
 
     [Fact]
@@ -48,11 +49,12 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsAllowed = 10,
             MonitorsUsed = 3,
             Plan = Plan.Active,
-            CurrentPeriod = new()
+            CreditInfo = new()
             {
-                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-                UsagePercent = 42.5,
+                AutoTopupEnabled = false,
+                Balance = 50000,
+                LifetimePurchased = 140000,
+                LifetimeUsed = 90000,
             },
         };
 
@@ -73,11 +75,12 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsAllowed = 10,
             MonitorsUsed = 3,
             Plan = Plan.Active,
-            CurrentPeriod = new()
+            CreditInfo = new()
             {
-                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-                UsagePercent = 42.5,
+                AutoTopupEnabled = false,
+                Balance = 50000,
+                LifetimePurchased = 140000,
+                LifetimeUsed = 90000,
             },
         };
 
@@ -91,17 +94,18 @@ public class AccountRetrieveResponseTest : TestBase
         long expectedMonitorsAllowed = 10;
         long expectedMonitorsUsed = 3;
         ApiEnum<string, Plan> expectedPlan = Plan.Active;
-        CurrentPeriod expectedCurrentPeriod = new()
+        CreditInfo expectedCreditInfo = new()
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
         Assert.Equal(expectedMonitorsAllowed, deserialized.MonitorsAllowed);
         Assert.Equal(expectedMonitorsUsed, deserialized.MonitorsUsed);
         Assert.Equal(expectedPlan, deserialized.Plan);
-        Assert.Equal(expectedCurrentPeriod, deserialized.CurrentPeriod);
+        Assert.Equal(expectedCreditInfo, deserialized.CreditInfo);
     }
 
     [Fact]
@@ -112,11 +116,12 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsAllowed = 10,
             MonitorsUsed = 3,
             Plan = Plan.Active,
-            CurrentPeriod = new()
+            CreditInfo = new()
             {
-                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-                UsagePercent = 42.5,
+                AutoTopupEnabled = false,
+                Balance = 50000,
+                LifetimePurchased = 140000,
+                LifetimeUsed = 90000,
             },
         };
 
@@ -133,8 +138,8 @@ public class AccountRetrieveResponseTest : TestBase
             Plan = Plan.Active,
         };
 
-        Assert.Null(model.CurrentPeriod);
-        Assert.False(model.RawData.ContainsKey("currentPeriod"));
+        Assert.Null(model.CreditInfo);
+        Assert.False(model.RawData.ContainsKey("creditInfo"));
     }
 
     [Fact]
@@ -160,11 +165,11 @@ public class AccountRetrieveResponseTest : TestBase
             Plan = Plan.Active,
 
             // Null should be interpreted as omitted for these properties
-            CurrentPeriod = null,
+            CreditInfo = null,
         };
 
-        Assert.Null(model.CurrentPeriod);
-        Assert.False(model.RawData.ContainsKey("currentPeriod"));
+        Assert.Null(model.CreditInfo);
+        Assert.False(model.RawData.ContainsKey("creditInfo"));
     }
 
     [Fact]
@@ -177,7 +182,7 @@ public class AccountRetrieveResponseTest : TestBase
             Plan = Plan.Active,
 
             // Null should be interpreted as omitted for these properties
-            CurrentPeriod = null,
+            CreditInfo = null,
         };
 
         model.Validate();
@@ -191,11 +196,12 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsAllowed = 10,
             MonitorsUsed = 3,
             Plan = Plan.Active,
-            CurrentPeriod = new()
+            CreditInfo = new()
             {
-                End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-                Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-                UsagePercent = 42.5,
+                AutoTopupEnabled = false,
+                Balance = 50000,
+                LifetimePurchased = 140000,
+                LifetimeUsed = 90000,
             },
         };
 
@@ -263,39 +269,43 @@ public class PlanTest : TestBase
     }
 }
 
-public class CurrentPeriodTest : TestBase
+public class CreditInfoTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CurrentPeriod
+        var model = new CreditInfo
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
-        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2025-02-01T00:00:00Z");
-        DateTimeOffset expectedStart = DateTimeOffset.Parse("2025-01-01T00:00:00Z");
-        double expectedUsagePercent = 42.5;
+        bool expectedAutoTopupEnabled = false;
+        long expectedBalance = 50000;
+        long expectedLifetimePurchased = 140000;
+        long expectedLifetimeUsed = 90000;
 
-        Assert.Equal(expectedEnd, model.End);
-        Assert.Equal(expectedStart, model.Start);
-        Assert.Equal(expectedUsagePercent, model.UsagePercent);
+        Assert.Equal(expectedAutoTopupEnabled, model.AutoTopupEnabled);
+        Assert.Equal(expectedBalance, model.Balance);
+        Assert.Equal(expectedLifetimePurchased, model.LifetimePurchased);
+        Assert.Equal(expectedLifetimeUsed, model.LifetimeUsed);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CurrentPeriod
+        var model = new CreditInfo
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CurrentPeriod>(
+        var deserialized = JsonSerializer.Deserialize<CreditInfo>(
             json,
             ModelBase.SerializerOptions
         );
@@ -306,37 +316,41 @@ public class CurrentPeriodTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CurrentPeriod
+        var model = new CreditInfo
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CurrentPeriod>(
+        var deserialized = JsonSerializer.Deserialize<CreditInfo>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        DateTimeOffset expectedEnd = DateTimeOffset.Parse("2025-02-01T00:00:00Z");
-        DateTimeOffset expectedStart = DateTimeOffset.Parse("2025-01-01T00:00:00Z");
-        double expectedUsagePercent = 42.5;
+        bool expectedAutoTopupEnabled = false;
+        long expectedBalance = 50000;
+        long expectedLifetimePurchased = 140000;
+        long expectedLifetimeUsed = 90000;
 
-        Assert.Equal(expectedEnd, deserialized.End);
-        Assert.Equal(expectedStart, deserialized.Start);
-        Assert.Equal(expectedUsagePercent, deserialized.UsagePercent);
+        Assert.Equal(expectedAutoTopupEnabled, deserialized.AutoTopupEnabled);
+        Assert.Equal(expectedBalance, deserialized.Balance);
+        Assert.Equal(expectedLifetimePurchased, deserialized.LifetimePurchased);
+        Assert.Equal(expectedLifetimeUsed, deserialized.LifetimeUsed);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new CurrentPeriod
+        var model = new CreditInfo
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
         model.Validate();
@@ -345,14 +359,15 @@ public class CurrentPeriodTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new CurrentPeriod
+        var model = new CreditInfo
         {
-            End = DateTimeOffset.Parse("2025-02-01T00:00:00Z"),
-            Start = DateTimeOffset.Parse("2025-01-01T00:00:00Z"),
-            UsagePercent = 42.5,
+            AutoTopupEnabled = false,
+            Balance = 50000,
+            LifetimePurchased = 140000,
+            LifetimeUsed = 90000,
         };
 
-        CurrentPeriod copied = new(model);
+        CreditInfo copied = new(model);
 
         Assert.Equal(model, copied);
     }

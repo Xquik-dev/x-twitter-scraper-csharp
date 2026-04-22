@@ -20,7 +20,7 @@ public class WebhookListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -33,7 +33,7 @@ public class WebhookListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 IsActive = true,
                 Url = "https://example.com/webhooks/xquik",
             },
@@ -57,7 +57,7 @@ public class WebhookListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -84,7 +84,7 @@ public class WebhookListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -104,7 +104,7 @@ public class WebhookListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 IsActive = true,
                 Url = "https://example.com/webhooks/xquik",
             },
@@ -128,7 +128,7 @@ public class WebhookListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -149,7 +149,7 @@ public class WebhookListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },

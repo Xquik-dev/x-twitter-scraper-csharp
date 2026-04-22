@@ -20,7 +20,7 @@ public class MonitorListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Username = "elonmusk",
                     XUserID = "9876543210",
@@ -35,7 +35,7 @@ public class MonitorListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 IsActive = true,
                 Username = "elonmusk",
                 XUserID = "9876543210",
@@ -62,7 +62,7 @@ public class MonitorListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Username = "elonmusk",
                     XUserID = "9876543210",
@@ -91,7 +91,7 @@ public class MonitorListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Username = "elonmusk",
                     XUserID = "9876543210",
@@ -113,7 +113,7 @@ public class MonitorListResponseTest : TestBase
             {
                 ID = "42",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                EventTypes = [EventType.TweetNew, EventType.TweetReply],
                 IsActive = true,
                 Username = "elonmusk",
                 XUserID = "9876543210",
@@ -140,7 +140,7 @@ public class MonitorListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Username = "elonmusk",
                     XUserID = "9876543210",
@@ -163,7 +163,7 @@ public class MonitorListResponseTest : TestBase
                 {
                     ID = "42",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+                    EventTypes = [EventType.TweetNew, EventType.TweetReply],
                     IsActive = true,
                     Username = "elonmusk",
                     XUserID = "9876543210",

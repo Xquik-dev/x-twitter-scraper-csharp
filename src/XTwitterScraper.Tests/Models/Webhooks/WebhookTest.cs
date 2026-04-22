@@ -16,7 +16,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -26,7 +26,7 @@ public class WebhookTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";
@@ -49,7 +49,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -67,7 +67,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -84,7 +84,7 @@ public class WebhookTest : TestBase
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";
@@ -107,7 +107,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };
@@ -122,7 +122,7 @@ public class WebhookTest : TestBase
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
             Url = "https://example.com/webhooks/xquik",
         };

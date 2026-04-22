@@ -16,6 +16,16 @@ namespace XTwitterScraper.Models.Radar;
 )]
 public sealed record class RadarRetrieveTrendingTopicsResponse : JsonModel
 {
+    public required bool HasMore
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("hasMore");
+        }
+        init { this._rawData.Set("hasMore", value); }
+    }
+
     public required IReadOnlyList<RadarItem> Items
     {
         get
@@ -32,24 +42,36 @@ public sealed record class RadarRetrieveTrendingTopicsResponse : JsonModel
         }
     }
 
-    public required long Total
+    /// <summary>
+    /// Opaque cursor for the next page (present only when hasMore is true).
+    /// </summary>
+    public string? NextCursor
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("total");
+            return this._rawData.GetNullableClass<string>("nextCursor");
         }
-        init { this._rawData.Set("total", value); }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("nextCursor", value);
+        }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.HasMore;
         foreach (var item in this.Items)
         {
             item.Validate();
         }
-        _ = this.Total;
+        _ = this.NextCursor;
     }
 
     public RadarRetrieveTrendingTopicsResponse() { }

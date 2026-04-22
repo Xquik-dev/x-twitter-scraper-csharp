@@ -13,14 +13,14 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
-            EventType.FollowerGained,
+            EventType.TweetReply,
         ];
         string expectedUsername = "elonmusk";
 
@@ -37,7 +37,7 @@ public class MonitorCreateParamsTest : TestBase
     {
         MonitorCreateParams parameters = new()
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 
@@ -51,7 +51,7 @@ public class MonitorCreateParamsTest : TestBase
     {
         var parameters = new MonitorCreateParams
         {
-            EventTypes = [EventType.TweetNew, EventType.FollowerGained],
+            EventTypes = [EventType.TweetNew, EventType.TweetReply],
             Username = "elonmusk",
         };
 
