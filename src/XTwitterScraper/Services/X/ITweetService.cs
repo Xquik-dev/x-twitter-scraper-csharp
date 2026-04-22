@@ -41,7 +41,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Get tweet with full text, author, metrics & media
+    /// Get tweet with full text, author, metrics and media
     /// </summary>
     Task<TweetRetrieveResponse> Retrieve(
         TweetRetrieveParams parameters,
@@ -154,7 +154,7 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Search tweets with X query operators & pagination
+    /// Search tweets with X query operators and pagination
     /// </summary>
     Task<PaginatedTweets> Search(
         TweetSearchParams parameters,

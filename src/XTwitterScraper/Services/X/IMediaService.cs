@@ -29,7 +29,7 @@ public interface IMediaService
     IMediaService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Download images & videos from tweets
+    /// Download images and videos from tweets
     /// </summary>
     Task<MediaDownloadResponse> Download(
         MediaDownloadParams? parameters = null,

@@ -33,7 +33,7 @@ public interface IUserService
     IFollowService Follow { get; }
 
     /// <summary>
-    /// Get user profile with follower counts & verification
+    /// Get user profile with follower counts and verification
     /// </summary>
     Task<UserProfile> Retrieve(
         UserRetrieveParams parameters,

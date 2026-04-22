@@ -11,7 +11,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Search tweets with X query operators &amp; pagination
+/// Search tweets with X query operators and pagination
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
