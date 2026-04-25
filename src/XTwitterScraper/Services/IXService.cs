@@ -80,7 +80,7 @@ public interface IXService
     );
 
     /// <summary>
-    /// Get trending hashtags & topics from X by region
+    /// Get trending hashtags and topics from X by region
     /// </summary>
     Task<XGetTrendsResponse> GetTrends(
         XGetTrendsParams? parameters = null,

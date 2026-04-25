@@ -56,7 +56,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Get community name, description & member count
+    /// Get community name, description and member count
     /// </summary>
     Task<CommunityRetrieveInfoResponse> RetrieveInfo(
         CommunityRetrieveInfoParams parameters,
