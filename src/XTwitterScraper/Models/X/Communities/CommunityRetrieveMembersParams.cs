@@ -40,6 +40,27 @@ public record class CommunityRetrieveMembersParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Items per page (20-200, default 20)
+    /// </summary>
+    public long? PageSize
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
     public CommunityRetrieveMembersParams() { }
 
 #pragma warning disable CS8618

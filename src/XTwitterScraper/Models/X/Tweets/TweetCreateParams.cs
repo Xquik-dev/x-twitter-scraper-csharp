@@ -93,7 +93,8 @@ public record class TweetCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Array of media URLs to attach (mutually exclusive with media_ids)
+    /// Array of public image URLs to attach (max 4). Each URL must be publicly reachable
+    /// - the browser composer fetches them directly.
     /// </summary>
     public IReadOnlyList<string>? Media
     {
@@ -111,30 +112,6 @@ public record class TweetCreateParams : ParamsBase
 
             this._rawBodyData.Set<ImmutableArray<string>?>(
                 "media",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
-    /// <summary>
-    /// Array of media IDs to attach (mutually exclusive with media)
-    /// </summary>
-    public IReadOnlyList<string>? MediaIds
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("media_ids");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set<ImmutableArray<string>?>(
-                "media_ids",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }

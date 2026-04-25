@@ -60,6 +60,27 @@ public sealed record class AccountRetrieveResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Linked X username, omitted when no X account is connected.
+    /// </summary>
+    public string? XUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("xUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("xUsername", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -67,6 +88,7 @@ public sealed record class AccountRetrieveResponse : JsonModel
         _ = this.MonitorsUsed;
         this.Plan.Validate();
         this.CreditInfo?.Validate();
+        _ = this.XUsername;
     }
 
     public AccountRetrieveResponse() { }

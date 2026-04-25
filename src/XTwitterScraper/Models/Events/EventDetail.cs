@@ -25,7 +25,7 @@ public sealed record class EventDetail : JsonModel
     }
 
     /// <summary>
-    /// Event payload — shape varies by event type (JSON)
+    /// Event payload - shape varies by event type (JSON)
     /// </summary>
     public required IReadOnlyDictionary<string, JsonElement> Data
     {

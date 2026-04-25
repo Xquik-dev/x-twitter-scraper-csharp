@@ -37,7 +37,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Url = "https://example.com/article/ai-revolution",
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=",
         };
 
         bool expectedHasMore = false;
@@ -64,7 +64,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 Url = "https://example.com/article/ai-revolution",
             },
         ];
-        string expectedNextCursor = "nextCursor";
+        string expectedNextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=";
 
         Assert.Equal(expectedHasMore, model.HasMore);
         Assert.Equal(expectedItems.Count, model.Items.Count);
@@ -104,7 +104,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Url = "https://example.com/article/ai-revolution",
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -145,7 +145,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Url = "https://example.com/article/ai-revolution",
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -179,7 +179,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 Url = "https://example.com/article/ai-revolution",
             },
         ];
-        string expectedNextCursor = "nextCursor";
+        string expectedNextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=";
 
         Assert.Equal(expectedHasMore, deserialized.HasMore);
         Assert.Equal(expectedItems.Count, deserialized.Items.Count);
@@ -219,7 +219,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Url = "https://example.com/article/ai-revolution",
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=",
         };
 
         model.Validate();
@@ -398,7 +398,7 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Url = "https://example.com/article/ai-revolution",
                 },
             ],
-            NextCursor = "nextCursor",
+            NextCursor = "eyJ0IjoxNzM5OTcyODAwLCJpIjoiOTk5In0=",
         };
 
         RadarRetrieveTrendingTopicsResponse copied = new(model);

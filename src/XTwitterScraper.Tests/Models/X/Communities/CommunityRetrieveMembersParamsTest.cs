@@ -8,13 +8,20 @@ public class CommunityRetrieveMembersParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new CommunityRetrieveMembersParams { ID = "id", Cursor = "cursor" };
+        var parameters = new CommunityRetrieveMembersParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 0,
+        };
 
         string expectedID = "id";
         string expectedCursor = "cursor";
+        long expectedPageSize = 0;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedCursor, parameters.Cursor);
+        Assert.Equal(expectedPageSize, parameters.PageSize);
     }
 
     [Fact]
@@ -24,6 +31,8 @@ public class CommunityRetrieveMembersParamsTest : TestBase
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
@@ -35,22 +44,32 @@ public class CommunityRetrieveMembersParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Cursor = null,
+            PageSize = null,
         };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
     public void Url_Works()
     {
-        CommunityRetrieveMembersParams parameters = new() { ID = "id", Cursor = "cursor" };
+        CommunityRetrieveMembersParams parameters = new()
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 0,
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/x/communities/id/members?cursor=cursor"),
+                new Uri(
+                    "https://xquik.com/api/v1/x/communities/id/members?cursor=cursor&pageSize=0"
+                ),
                 url
             )
         );
@@ -59,7 +78,12 @@ public class CommunityRetrieveMembersParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new CommunityRetrieveMembersParams { ID = "id", Cursor = "cursor" };
+        var parameters = new CommunityRetrieveMembersParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 0,
+        };
 
         CommunityRetrieveMembersParams copied = new(parameters);
 

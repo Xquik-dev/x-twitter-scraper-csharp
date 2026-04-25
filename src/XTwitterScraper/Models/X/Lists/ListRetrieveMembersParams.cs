@@ -40,6 +40,27 @@ public record class ListRetrieveMembersParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Members per page (20-200, default 20)
+    /// </summary>
+    public long? PageSize
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
     public ListRetrieveMembersParams() { }
 
 #pragma warning disable CS8618

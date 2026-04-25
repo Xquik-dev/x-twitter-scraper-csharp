@@ -22,6 +22,7 @@ public class AccountRetrieveResponseTest : TestBase
                 LifetimePurchased = 140000,
                 LifetimeUsed = 90000,
             },
+            XUsername = "elonmusk",
         };
 
         long expectedMonitorsAllowed = 10;
@@ -34,11 +35,13 @@ public class AccountRetrieveResponseTest : TestBase
             LifetimePurchased = 140000,
             LifetimeUsed = 90000,
         };
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedMonitorsAllowed, model.MonitorsAllowed);
         Assert.Equal(expectedMonitorsUsed, model.MonitorsUsed);
         Assert.Equal(expectedPlan, model.Plan);
         Assert.Equal(expectedCreditInfo, model.CreditInfo);
+        Assert.Equal(expectedXUsername, model.XUsername);
     }
 
     [Fact]
@@ -56,6 +59,7 @@ public class AccountRetrieveResponseTest : TestBase
                 LifetimePurchased = 140000,
                 LifetimeUsed = 90000,
             },
+            XUsername = "elonmusk",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -82,6 +86,7 @@ public class AccountRetrieveResponseTest : TestBase
                 LifetimePurchased = 140000,
                 LifetimeUsed = 90000,
             },
+            XUsername = "elonmusk",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -101,11 +106,13 @@ public class AccountRetrieveResponseTest : TestBase
             LifetimePurchased = 140000,
             LifetimeUsed = 90000,
         };
+        string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedMonitorsAllowed, deserialized.MonitorsAllowed);
         Assert.Equal(expectedMonitorsUsed, deserialized.MonitorsUsed);
         Assert.Equal(expectedPlan, deserialized.Plan);
         Assert.Equal(expectedCreditInfo, deserialized.CreditInfo);
+        Assert.Equal(expectedXUsername, deserialized.XUsername);
     }
 
     [Fact]
@@ -123,6 +130,7 @@ public class AccountRetrieveResponseTest : TestBase
                 LifetimePurchased = 140000,
                 LifetimeUsed = 90000,
             },
+            XUsername = "elonmusk",
         };
 
         model.Validate();
@@ -140,6 +148,8 @@ public class AccountRetrieveResponseTest : TestBase
 
         Assert.Null(model.CreditInfo);
         Assert.False(model.RawData.ContainsKey("creditInfo"));
+        Assert.Null(model.XUsername);
+        Assert.False(model.RawData.ContainsKey("xUsername"));
     }
 
     [Fact]
@@ -166,10 +176,13 @@ public class AccountRetrieveResponseTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             CreditInfo = null,
+            XUsername = null,
         };
 
         Assert.Null(model.CreditInfo);
         Assert.False(model.RawData.ContainsKey("creditInfo"));
+        Assert.Null(model.XUsername);
+        Assert.False(model.RawData.ContainsKey("xUsername"));
     }
 
     [Fact]
@@ -183,6 +196,7 @@ public class AccountRetrieveResponseTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             CreditInfo = null,
+            XUsername = null,
         };
 
         model.Validate();
@@ -203,6 +217,7 @@ public class AccountRetrieveResponseTest : TestBase
                 LifetimePurchased = 140000,
                 LifetimeUsed = 90000,
             },
+            XUsername = "elonmusk",
         };
 
         AccountRetrieveResponse copied = new(model);

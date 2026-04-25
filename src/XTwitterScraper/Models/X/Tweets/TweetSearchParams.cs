@@ -11,7 +11,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Search tweets with X query operators and pagination
+/// Search tweets with X query operators &amp; pagination
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -75,7 +75,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Sort order — Latest (chronological) or Top (engagement-ranked)
+    /// Sort order - Latest (chronological) or Top (engagement-ranked)
     /// </summary>
     public ApiEnum<string, QueryType>? QueryType
     {
@@ -96,7 +96,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets after this time
+    /// ISO 8601 timestamp - only return tweets after this time
     /// </summary>
     public string? SinceTime
     {
@@ -117,7 +117,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets before this time
+    /// ISO 8601 timestamp - only return tweets before this time
     /// </summary>
     public string? UntilTime
     {
@@ -228,7 +228,7 @@ public record class TweetSearchParams : ParamsBase
 }
 
 /// <summary>
-/// Sort order — Latest (chronological) or Top (engagement-ranked)
+/// Sort order - Latest (chronological) or Top (engagement-ranked)
 /// </summary>
 [JsonConverter(typeof(QueryTypeConverter))]
 public enum QueryType

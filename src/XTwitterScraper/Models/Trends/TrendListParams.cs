@@ -9,7 +9,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Trends;
 
 /// <summary>
-/// Get trending hashtags and topics by region (alias)
+/// Get trending hashtags &amp; topics by region (alias)
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.Trends;
 public record class TrendListParams : ParamsBase
 {
     /// <summary>
-    /// Number of trending topics to return (1-50, default 30)
+    /// Number of trending topics returned (1-50, default 30)
     /// </summary>
     public long? Count
     {
@@ -39,7 +39,7 @@ public record class TrendListParams : ParamsBase
     }
 
     /// <summary>
-    /// Region WOEID (1=Worldwide, 23424977=US, 23424975=UK, 23424969=Turkey)
+    /// Region Yahoo WOEID code (1=Worldwide, 23424977=US, 23424975=UK, 23424969=Turkey)
     /// </summary>
     public long? Woeid
     {
