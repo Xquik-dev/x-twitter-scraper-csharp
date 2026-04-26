@@ -1,6 +1,6 @@
-# X Twitter Scraper C# API Library
+# Xquik API Library
 
-The X Twitter Scraper C# SDK provides convenient access to the [X Twitter Scraper REST API](https://xquik.com) from applications written in C#.
+The Xquik SDK provides convenient access to the [X Twitter Scraper REST API](https://xquik.com) from applications written in C#.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
