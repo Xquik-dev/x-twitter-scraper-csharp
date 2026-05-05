@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.2 (2026-04-25)
+
+Full Changelog: [v0.4.1...v0.4.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.1...v0.4.2)
+
+### Documentation
+
+* add Contributor Covenant 2.1 Code of Conduct ([#2192](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/2192)) ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
+
 ## 0.4.1 (2026-04-22)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.0...v0.4.1)
