@@ -7,3 +7,36 @@ obj/
 
 # do not edit! excludes generated files used internally
 .artifacts/
+
+# Public repo local safety
+.env
+.env.*
+!.env.example
+!.env.sample
+.npmrc
+.pypirc
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.token
+*.secret
+*.log
+*.log.*
+TestResults/
+*.user
+*.suo
+.cache/
+.tmp/
+tmp/
+temp/
+.codex/
+.agents/
+.claude/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
