@@ -5,7 +5,7 @@
     <PackageTags>sdk;api-client;twitter;twitter-api;x-api;tweet-search;profile-tweets;followers;automation</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 X Twitter Scraper</Copyright>
-    <PackageProjectUrl>https://xquik.com</PackageProjectUrl>
+    <PackageProjectUrl>https://docs.xquik.com/sdks/csharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
