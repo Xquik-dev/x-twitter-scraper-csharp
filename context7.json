@@ -1,7 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "Xquik C# SDK",
-  "description": "Official C# SDK for Xquik's X/Twitter API with typed methods for tweet search, user lookup, media workflows, monitors, webhooks, posting, and bulk extractions.",
+  "description": "Xquik C# SDK for X/Twitter workflows with typed methods for tweet search, user lookup, media workflows, monitors, webhooks, posting, and bulk extractions. Not affiliated with X Corp.",
   "branch": "main",
   "excludeFolders": [
     ".github",

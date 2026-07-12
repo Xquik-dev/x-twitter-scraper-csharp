@@ -1,5 +1,8 @@
 # X (Twitter) Scraper C# SDK: Tweet Search, Profile Tweets, Followers & Posting
 
+> **Xquik is an independent third-party service.** Not affiliated with X Corp.
+> "Twitter" and "X" are trademarks of X Corp.
+
 [![Ask DeepWiki](https://deepwiki.com/badge.svg?url=https%3A%2F%2Fgithub.com%2FXquik-dev%2Fx-twitter-scraper-csharp)](https://deepwiki.com/Xquik-dev/x-twitter-scraper-csharp)
 [![Skills.sh x-twitter-scraper Skill](https://skills.sh/b/xquik-dev/x-twitter-scraper)](https://skills.sh/xquik-dev/x-twitter-scraper)
 
