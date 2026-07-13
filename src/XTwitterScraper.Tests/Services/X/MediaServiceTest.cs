@@ -1,4 +1,3 @@
-using System.Text;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -19,7 +18,7 @@ public class MediaServiceTest : TestBase
     public async Task Upload_Works()
     {
         var response = await this.client.X.Media.Upload(
-            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", UrlValue = "https://example.com/image.png" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

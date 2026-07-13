@@ -13,12 +13,12 @@ public class DrawExportParamsTest : TestBase
     {
         var parameters = new Draws::DrawExportParams
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             Format = Draws::Format.Csv,
             Type = Draws::Type.Winners,
         };
 
-        string expectedID = "id";
+        string expectedID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345";
         ApiEnum<string, Draws::Format> expectedFormat = Draws::Format.Csv;
         ApiEnum<string, Draws::Type> expectedType = Draws::Type.Winners;
 
@@ -30,10 +30,12 @@ public class DrawExportParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new Draws::DrawExportParams { ID = "id" };
+        var parameters = new Draws::DrawExportParams
+        {
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
+            Format = Draws::Format.Csv,
+        };
 
-        Assert.Null(parameters.Format);
-        Assert.False(parameters.RawQueryData.ContainsKey("format"));
         Assert.Null(parameters.Type);
         Assert.False(parameters.RawQueryData.ContainsKey("type"));
     }
@@ -43,15 +45,13 @@ public class DrawExportParamsTest : TestBase
     {
         var parameters = new Draws::DrawExportParams
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
+            Format = Draws::Format.Csv,
 
             // Null should be interpreted as omitted for these properties
-            Format = null,
             Type = null,
         };
 
-        Assert.Null(parameters.Format);
-        Assert.False(parameters.RawQueryData.ContainsKey("format"));
         Assert.Null(parameters.Type);
         Assert.False(parameters.RawQueryData.ContainsKey("type"));
     }
@@ -61,16 +61,18 @@ public class DrawExportParamsTest : TestBase
     {
         Draws::DrawExportParams parameters = new()
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             Format = Draws::Format.Csv,
             Type = Draws::Type.Winners,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/draws/id/export?format=csv&type=winners"),
+                new Uri(
+                    "https://xquik.com/api/v1/draws/f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345/export?format=csv&type=winners"
+                ),
                 url
             )
         );
@@ -81,7 +83,7 @@ public class DrawExportParamsTest : TestBase
     {
         var parameters = new Draws::DrawExportParams
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             Format = Draws::Format.Csv,
             Type = Draws::Type.Winners,
         };

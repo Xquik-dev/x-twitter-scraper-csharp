@@ -9,7 +9,7 @@ public class DmServiceTest : TestBase
     {
         var response = await this.client.X.Dm.RetrieveHistory(
             "userId",
-            new(),
+            new() { Account = "account" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

@@ -52,7 +52,7 @@ public class XGetNotificationsParamsTest : TestBase
     {
         X::XGetNotificationsParams parameters = new() { Cursor = "cursor", Type = X::Type.All };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(

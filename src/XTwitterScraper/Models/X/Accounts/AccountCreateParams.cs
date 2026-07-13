@@ -64,27 +64,6 @@ public record class AccountCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Proxy country code
-    /// </summary>
-    public string? ProxyCountry
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("proxy_country");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("proxy_country", value);
-        }
-    }
-
-    /// <summary>
     /// TOTP secret for 2FA
     /// </summary>
     public string? TotpSecret
@@ -187,7 +166,7 @@ public record class AccountCreateParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/accounts")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -202,7 +181,7 @@ public record class AccountCreateParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

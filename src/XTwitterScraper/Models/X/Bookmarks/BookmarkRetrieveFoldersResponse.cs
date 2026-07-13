@@ -32,6 +32,9 @@ public sealed record class BookmarkRetrieveFoldersResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Always false for the current bookmark folder route
+    /// </summary>
     public required bool HasNextPage
     {
         get
@@ -42,6 +45,9 @@ public sealed record class BookmarkRetrieveFoldersResponse : JsonModel
         init { this._rawData.Set("has_next_page", value); }
     }
 
+    /// <summary>
+    /// Always empty for the current bookmark folder route
+    /// </summary>
     public required string NextCursor
     {
         get

@@ -111,6 +111,26 @@ public sealed record class Message : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    public required string ReceiverID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("receiverId");
+        }
+        init { this._rawData.Set("receiverId", value); }
+    }
+
+    public required string SenderID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("senderId");
+        }
+        init { this._rawData.Set("senderId", value); }
+    }
+
     public string? CreatedAt
     {
         get
@@ -129,12 +149,16 @@ public sealed record class Message : JsonModel
         }
     }
 
-    public string? ReceiverID
+    /// <summary>
+    /// URL of attached media (image, GIF, or video). Omitted when the message has
+    /// no media attachment.
+    /// </summary>
+    public string? MediaUrl
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("receiverId");
+            return this._rawData.GetNullableClass<string>("mediaUrl");
         }
         init
         {
@@ -143,25 +167,7 @@ public sealed record class Message : JsonModel
                 return;
             }
 
-            this._rawData.Set("receiverId", value);
-        }
-    }
-
-    public string? SenderID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("senderId");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("senderId", value);
+            this._rawData.Set("mediaUrl", value);
         }
     }
 
@@ -187,9 +193,10 @@ public sealed record class Message : JsonModel
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.CreatedAt;
         _ = this.ReceiverID;
         _ = this.SenderID;
+        _ = this.CreatedAt;
+        _ = this.MediaUrl;
         _ = this.Text;
     }
 
@@ -218,13 +225,6 @@ public sealed record class Message : JsonModel
     public static Message FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-
-    [SetsRequiredMembers]
-    public Message(string id)
-        : this()
-    {
-        this.ID = id;
     }
 }
 

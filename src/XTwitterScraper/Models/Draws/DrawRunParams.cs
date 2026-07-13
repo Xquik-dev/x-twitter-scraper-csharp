@@ -11,7 +11,10 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Draws;
 
 /// <summary>
-/// Run giveaway draw
+/// Runs a giveaway draw from a source tweet. The draw first checks the minimum credits
+/// needed to inspect the source tweet and at least one candidate. Remaining credits
+/// cap how many replies and retweeters can be inspected before filters and winner
+/// selection run.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -324,7 +327,7 @@ public record class DrawRunParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/draws")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -339,7 +342,7 @@ public record class DrawRunParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

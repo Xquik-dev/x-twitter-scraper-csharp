@@ -28,6 +28,8 @@ public interface IXService
     /// </summary>
     IXService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
+    X::IWriteActionService WriteActions { get; }
+
     X::ITweetService Tweets { get; }
 
     X::IUserService Users { get; }
@@ -44,12 +46,15 @@ public interface IXService
 
     X::IAccountService Accounts { get; }
 
+    X::IAccountConnectionChallengeService AccountConnectionChallenges { get; }
+
     X::IBookmarkService Bookmarks { get; }
 
     X::IListService Lists { get; }
 
     /// <summary>
-    /// Retrieve the full content of an X Article (long-form post) by tweet ID.
+    /// Retrieve the full content of an X Article (long-form post) by numeric tweet ID.
+    /// Returns article_not_found when the tweet is valid but is not an X Article.
     /// </summary>
     Task<XGetArticleResponse> GetArticle(
         XGetArticleParams parameters,
@@ -101,6 +106,8 @@ public interface IXServiceWithRawResponse
     /// </summary>
     IXServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
+    X::IWriteActionServiceWithRawResponse WriteActions { get; }
+
     X::ITweetServiceWithRawResponse Tweets { get; }
 
     X::IUserServiceWithRawResponse Users { get; }
@@ -116,6 +123,8 @@ public interface IXServiceWithRawResponse
     X::ICommunityServiceWithRawResponse Communities { get; }
 
     X::IAccountServiceWithRawResponse Accounts { get; }
+
+    X::IAccountConnectionChallengeServiceWithRawResponse AccountConnectionChallenges { get; }
 
     X::IBookmarkServiceWithRawResponse Bookmarks { get; }
 

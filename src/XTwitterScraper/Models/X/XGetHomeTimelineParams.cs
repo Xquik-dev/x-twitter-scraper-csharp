@@ -39,7 +39,7 @@ public record class XGetHomeTimelineParams : ParamsBase
     }
 
     /// <summary>
-    /// Comma-separated tweet IDs to exclude from results
+    /// Comma-separated tweet IDs to exclude from results. Empty entries are ignored.
     /// </summary>
     public string? SeenTweetIds
     {
@@ -130,13 +130,13 @@ public record class XGetHomeTimelineParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/timeline")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

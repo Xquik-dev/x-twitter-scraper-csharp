@@ -23,7 +23,7 @@ public class TicketServiceTest : TestBase
     public async Task Retrieve_Works()
     {
         var ticket = await this.client.Support.Tickets.Retrieve(
-            "messages_value",
+            "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             new(),
             TestContext.Current.CancellationToken
         );
@@ -34,7 +34,7 @@ public class TicketServiceTest : TestBase
     public async Task Update_Works()
     {
         var ticket = await this.client.Support.Tickets.Update(
-            "id",
+            "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             new() { Status = Status.Resolved },
             TestContext.Current.CancellationToken
         );
@@ -55,7 +55,7 @@ public class TicketServiceTest : TestBase
     public async Task Reply_Works()
     {
         var response = await this.client.Support.Tickets.Reply(
-            "id",
+            "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             new() { Body = "Thank you for the update." },
             TestContext.Current.CancellationToken
         );

@@ -8,9 +8,9 @@ public class TicketRetrieveParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new TicketRetrieveParams { ID = "messages_value" };
+        var parameters = new TicketRetrieveParams { ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
-        string expectedID = "messages_value";
+        string expectedID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
 
         Assert.Equal(expectedID, parameters.ID);
     }
@@ -18,13 +18,13 @@ public class TicketRetrieveParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        TicketRetrieveParams parameters = new() { ID = "messages_value" };
+        TicketRetrieveParams parameters = new() { ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/support/tickets/messages_value"),
+                new Uri("https://xquik.com/api/v1/support/tickets/tkt_a1b2c3d4e5f6a1b2c3d4e5f6"),
                 url
             )
         );
@@ -33,7 +33,7 @@ public class TicketRetrieveParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new TicketRetrieveParams { ID = "messages_value" };
+        var parameters = new TicketRetrieveParams { ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
         TicketRetrieveParams copied = new(parameters);
 

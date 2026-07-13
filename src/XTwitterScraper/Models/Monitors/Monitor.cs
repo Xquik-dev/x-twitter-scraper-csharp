@@ -66,6 +66,19 @@ public sealed record class Monitor : JsonModel
         init { this._rawData.Set("isActive", value); }
     }
 
+    /// <summary>
+    /// Next hourly credit charge time for this account monitor.
+    /// </summary>
+    public required DateTimeOffset NextBillingAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("nextBillingAt");
+        }
+        init { this._rawData.Set("nextBillingAt", value); }
+    }
+
     public required string Username
     {
         get
@@ -96,6 +109,7 @@ public sealed record class Monitor : JsonModel
             item.Validate();
         }
         _ = this.IsActive;
+        _ = this.NextBillingAt;
         _ = this.Username;
         _ = this.XUserID;
     }

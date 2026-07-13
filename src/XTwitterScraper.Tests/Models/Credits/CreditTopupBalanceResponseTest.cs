@@ -9,17 +9,29 @@ public class CreditTopupBalanceResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CreditTopupBalanceResponse { };
+        var model = new CreditTopupBalanceResponse
+        {
+            RedirectUrl = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+            Url = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+        };
 
-        JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
+        string expectedRedirectUrl =
+            "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123";
+        string expectedUrl =
+            "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123";
 
-        Assert.True(JsonElement.DeepEquals(expectedSuccess, model.Success));
+        Assert.Equal(expectedRedirectUrl, model.RedirectUrl);
+        Assert.Equal(expectedUrl, model.Url);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CreditTopupBalanceResponse { };
+        var model = new CreditTopupBalanceResponse
+        {
+            RedirectUrl = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+            Url = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<CreditTopupBalanceResponse>(
@@ -33,7 +45,11 @@ public class CreditTopupBalanceResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CreditTopupBalanceResponse { };
+        var model = new CreditTopupBalanceResponse
+        {
+            RedirectUrl = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+            Url = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<CreditTopupBalanceResponse>(
@@ -42,15 +58,23 @@ public class CreditTopupBalanceResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
+        string expectedRedirectUrl =
+            "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123";
+        string expectedUrl =
+            "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123";
 
-        Assert.True(JsonElement.DeepEquals(expectedSuccess, deserialized.Success));
+        Assert.Equal(expectedRedirectUrl, deserialized.RedirectUrl);
+        Assert.Equal(expectedUrl, deserialized.Url);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new CreditTopupBalanceResponse { };
+        var model = new CreditTopupBalanceResponse
+        {
+            RedirectUrl = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+            Url = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+        };
 
         model.Validate();
     }
@@ -58,7 +82,11 @@ public class CreditTopupBalanceResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new CreditTopupBalanceResponse { };
+        var model = new CreditTopupBalanceResponse
+        {
+            RedirectUrl = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+            Url = "https://xquik.com/api/v1/credits/topup/redirect?session_id=cs_test_123",
+        };
 
         CreditTopupBalanceResponse copied = new(model);
 

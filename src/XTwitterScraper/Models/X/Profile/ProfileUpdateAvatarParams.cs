@@ -24,7 +24,7 @@ public record class ProfileUpdateAvatarParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or ID) for avatar update
+    /// X account (@username or ID) receiving avatar from URL
     /// </summary>
     public required string Account
     {
@@ -37,16 +37,16 @@ public record class ProfileUpdateAvatarParams : ParamsBase
     }
 
     /// <summary>
-    /// Avatar image (max 716KB)
+    /// HTTPS URL to the avatar image to download
     /// </summary>
-    public required BinaryContent File
+    public required string UrlValue
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<BinaryContent>("file");
+            return this._rawBodyData.GetNotNullClass<string>("url");
         }
-        init { this._rawBodyData.Set("file", value); }
+        init { this._rawBodyData.Set("url", value); }
     }
 
     public ProfileUpdateAvatarParams() { }
@@ -131,7 +131,7 @@ public record class ProfileUpdateAvatarParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/profile/avatar")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -142,7 +142,7 @@ public record class ProfileUpdateAvatarParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

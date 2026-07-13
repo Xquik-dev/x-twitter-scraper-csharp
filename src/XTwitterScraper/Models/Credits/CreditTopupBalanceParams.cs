@@ -10,7 +10,8 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Credits;
 
 /// <summary>
-/// Top up credits balance
+/// Create a Stripe Checkout session only after the user confirms. The request never
+/// completes payment or adds credits by itself.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -25,16 +26,37 @@ public record class CreditTopupBalanceParams : ParamsBase
     }
 
     /// <summary>
-    /// Amount to top up in credits
+    /// Amount to top up in US dollars. Minimum 10.
     /// </summary>
-    public required long Amount
+    public required long Dollars
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<long>("amount");
+            return this._rawBodyData.GetNotNullStruct<long>("dollars");
         }
-        init { this._rawBodyData.Set("amount", value); }
+        init { this._rawBodyData.Set("dollars", value); }
+    }
+
+    /// <summary>
+    /// Optional checkout locale. Defaults to en.
+    /// </summary>
+    public string? Locale
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("locale");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("locale", value);
+        }
     }
 
     public CreditTopupBalanceParams() { }
@@ -119,7 +141,7 @@ public record class CreditTopupBalanceParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/credits/topup")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -134,7 +156,7 @@ public record class CreditTopupBalanceParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

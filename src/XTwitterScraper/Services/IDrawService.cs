@@ -64,12 +64,15 @@ public interface IDrawService
     /// <inheritdoc cref="Export(DrawExportParams, CancellationToken)"/>
     Task<HttpResponse> Export(
         string id,
-        DrawExportParams? parameters = null,
+        DrawExportParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Run giveaway draw
+    /// Runs a giveaway draw from a source tweet. The draw first checks the minimum
+    /// credits needed to inspect the source tweet and at least one candidate. Remaining
+    /// credits cap how many replies and retweeters can be inspected before filters and
+    /// winner selection run.
     /// </summary>
     Task<DrawRunResponse> Run(
         DrawRunParams parameters,
@@ -127,7 +130,7 @@ public interface IDrawServiceWithRawResponse
     /// <inheritdoc cref="Export(DrawExportParams, CancellationToken)"/>
     Task<HttpResponse> Export(
         string id,
-        DrawExportParams? parameters = null,
+        DrawExportParams parameters,
         CancellationToken cancellationToken = default
     );
 

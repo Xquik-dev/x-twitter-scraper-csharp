@@ -24,7 +24,7 @@ public record class MediaUploadParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or ID) uploading media
+    /// X account (@username or ID) uploading media from URL
     /// </summary>
     public required string Account
     {
@@ -37,34 +37,16 @@ public record class MediaUploadParams : ParamsBase
     }
 
     /// <summary>
-    /// Media file to upload
+    /// HTTPS URL to download and upload as media
     /// </summary>
-    public required BinaryContent File
+    public required string UrlValue
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<BinaryContent>("file");
+            return this._rawBodyData.GetNotNullClass<string>("url");
         }
-        init { this._rawBodyData.Set("file", value); }
-    }
-
-    public bool? IsLongVideo
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("is_long_video");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("is_long_video", value);
-        }
+        init { this._rawBodyData.Set("url", value); }
     }
 
     public MediaUploadParams() { }
@@ -149,7 +131,7 @@ public record class MediaUploadParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/media")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -160,7 +142,7 @@ public record class MediaUploadParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

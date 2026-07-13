@@ -54,7 +54,7 @@ public class CommunityCreateParamsTest : TestBase
     {
         CommunityCreateParams parameters = new() { Account = "@elonmusk", Name = "Example Name" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/communities"), url));
     }

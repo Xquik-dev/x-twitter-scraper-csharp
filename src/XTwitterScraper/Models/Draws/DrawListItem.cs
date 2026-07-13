@@ -14,6 +14,9 @@ namespace XTwitterScraper.Models.Draws;
 [JsonConverter(typeof(JsonModelConverter<DrawListItem, DrawListItemFromRaw>))]
 public sealed record class DrawListItem : JsonModel
 {
+    /// <summary>
+    /// Draw public ID for detail responses.
+    /// </summary>
     public required string ID
     {
         get

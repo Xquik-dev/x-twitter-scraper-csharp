@@ -19,7 +19,7 @@ public class TicketListResponseTest : TestBase
                 {
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     MessageCount = 2,
-                    PublicID = "tk_abc123",
+                    PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                     Status = "open",
                     Subject = "Cannot connect X account",
                     UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -33,7 +33,7 @@ public class TicketListResponseTest : TestBase
             {
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 MessageCount = 2,
-                PublicID = "tk_abc123",
+                PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                 Status = "open",
                 Subject = "Cannot connect X account",
                 UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -59,7 +59,7 @@ public class TicketListResponseTest : TestBase
                 {
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     MessageCount = 2,
-                    PublicID = "tk_abc123",
+                    PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                     Status = "open",
                     Subject = "Cannot connect X account",
                     UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -87,7 +87,7 @@ public class TicketListResponseTest : TestBase
                 {
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     MessageCount = 2,
-                    PublicID = "tk_abc123",
+                    PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                     Status = "open",
                     Subject = "Cannot connect X account",
                     UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -108,7 +108,7 @@ public class TicketListResponseTest : TestBase
             {
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 MessageCount = 2,
-                PublicID = "tk_abc123",
+                PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                 Status = "open",
                 Subject = "Cannot connect X account",
                 UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -134,7 +134,7 @@ public class TicketListResponseTest : TestBase
                 {
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     MessageCount = 2,
-                    PublicID = "tk_abc123",
+                    PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                     Status = "open",
                     Subject = "Cannot connect X account",
                     UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -198,7 +198,7 @@ public class TicketListResponseTest : TestBase
                 {
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     MessageCount = 2,
-                    PublicID = "tk_abc123",
+                    PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
                     Status = "open",
                     Subject = "Cannot connect X account",
                     UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -221,7 +221,7 @@ public class TicketTest : TestBase
         {
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             MessageCount = 2,
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -229,7 +229,7 @@ public class TicketTest : TestBase
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         long expectedMessageCount = 2;
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "open";
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
@@ -249,7 +249,7 @@ public class TicketTest : TestBase
         {
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             MessageCount = 2,
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -268,7 +268,7 @@ public class TicketTest : TestBase
         {
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             MessageCount = 2,
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -280,7 +280,7 @@ public class TicketTest : TestBase
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         long expectedMessageCount = 2;
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "open";
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
@@ -300,7 +300,7 @@ public class TicketTest : TestBase
         {
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             MessageCount = 2,
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -388,7 +388,7 @@ public class TicketTest : TestBase
         {
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             MessageCount = 2,
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),

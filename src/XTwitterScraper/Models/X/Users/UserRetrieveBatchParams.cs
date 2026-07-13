@@ -18,7 +18,8 @@ namespace XTwitterScraper.Models.X.Users;
 public record class UserRetrieveBatchParams : ParamsBase
 {
     /// <summary>
-    /// Comma-separated user IDs (max 100)
+    /// Comma-separated numeric user IDs (1-100 values). Duplicate IDs are ignored
+    /// while preserving first-seen order.
     /// </summary>
     public required string Ids
     {
@@ -101,13 +102,13 @@ public record class UserRetrieveBatchParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/users/batch")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

@@ -46,7 +46,7 @@ public class CommunityRetrieveModeratorsParamsTest : TestBase
     {
         CommunityRetrieveModeratorsParams parameters = new() { ID = "id", Cursor = "cursor" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(

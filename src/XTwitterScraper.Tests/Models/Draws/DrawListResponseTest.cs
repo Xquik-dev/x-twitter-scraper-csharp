@@ -17,7 +17,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -34,7 +34,7 @@ public class DrawListResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -64,7 +64,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -95,7 +95,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -119,7 +119,7 @@ public class DrawListResponseTest : TestBase
         [
             new()
             {
-                ID = "id",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Status = "status",
                 TotalEntries = 0,
@@ -149,7 +149,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -174,7 +174,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -199,7 +199,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -223,7 +223,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -251,7 +251,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,
@@ -278,7 +278,7 @@ public class DrawListResponseTest : TestBase
             [
                 new()
                 {
-                    ID = "id",
+                    ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Status = "status",
                     TotalEntries = 0,

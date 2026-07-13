@@ -20,7 +20,7 @@ public class AccountSetXUsernameParamsTest : TestBase
     {
         AccountSetXUsernameParams parameters = new() { Username = "elonmusk" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/account/x-identity"), url)

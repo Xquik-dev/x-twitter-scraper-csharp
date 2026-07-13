@@ -21,8 +21,10 @@ public class AccountListResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Health = Health.Healthy,
                     Status = "active",
+                    UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
+                    CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 },
             ],
         };
@@ -35,8 +37,10 @@ public class AccountListResponseTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Health = Health.Healthy,
                 Status = "active",
+                UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 XUserID = "9876543210",
                 XUsername = "elonmusk",
+                CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
             },
         ];
 
@@ -60,8 +64,10 @@ public class AccountListResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Health = Health.Healthy,
                     Status = "active",
+                    UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
+                    CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 },
             ],
         };
@@ -88,8 +94,10 @@ public class AccountListResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Health = Health.Healthy,
                     Status = "active",
+                    UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
+                    CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 },
             ],
         };
@@ -109,8 +117,10 @@ public class AccountListResponseTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Health = Health.Healthy,
                 Status = "active",
+                UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 XUserID = "9876543210",
                 XUsername = "elonmusk",
+                CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
             },
         ];
 
@@ -134,8 +144,10 @@ public class AccountListResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Health = Health.Healthy,
                     Status = "active",
+                    UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
+                    CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 },
             ],
         };
@@ -156,8 +168,10 @@ public class AccountListResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Health = Health.Healthy,
                     Status = "active",
+                    UpdatedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                     XUserID = "9876543210",
                     XUsername = "elonmusk",
+                    CookiesObtainedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z"),
                 },
             ],
         };

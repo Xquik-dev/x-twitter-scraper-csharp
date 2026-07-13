@@ -12,7 +12,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -21,7 +21,7 @@ public class DrawListItemTest : TestBase
             DrawnAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
 
-        string expectedID = "id";
+        string expectedID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -43,7 +43,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -66,7 +66,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -82,7 +82,7 @@ public class DrawListItemTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "id";
+        string expectedID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedStatus = "status";
         long expectedTotalEntries = 0;
@@ -104,7 +104,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -121,7 +121,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -138,7 +138,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -154,7 +154,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -174,7 +174,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,
@@ -193,7 +193,7 @@ public class DrawListItemTest : TestBase
     {
         var model = new DrawListItem
         {
-            ID = "id",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Status = "status",
             TotalEntries = 0,

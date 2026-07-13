@@ -29,7 +29,8 @@ public interface ISubscribeService
     ISubscribeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Get checkout or billing URL
+    /// Create a subscription checkout or billing-management URL only after the user
+    /// confirms. The request never completes payment by itself.
     /// </summary>
     Task<SubscribeCreateResponse> Create(
         SubscribeCreateParams? parameters = null,

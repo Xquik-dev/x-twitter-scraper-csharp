@@ -140,6 +140,24 @@ public sealed record class Community : JsonModel
         }
     }
 
+    public Creator? Creator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Creator>("creator");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("creator", value);
+        }
+    }
+
     /// <summary>
     /// About text for the community
     /// </summary>
@@ -158,6 +176,69 @@ public sealed record class Community : JsonModel
             }
 
             this._rawData.Set("description", value);
+        }
+    }
+
+    /// <summary>
+    /// Invitation policy
+    /// </summary>
+    public string? InvitesPolicy
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invites_policy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("invites_policy", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the authenticated viewer is a member
+    /// </summary>
+    public bool? IsMember
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_member");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_member", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the community is marked sensitive
+    /// </summary>
+    public bool? IsNsfw
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("is_nsfw");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("is_nsfw", value);
         }
     }
 
@@ -267,6 +348,27 @@ public sealed record class Community : JsonModel
     }
 
     /// <summary>
+    /// Authenticated viewer's community role
+    /// </summary>
+    public string? Role
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("role");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("role", value);
+        }
+    }
+
+    /// <summary>
     /// Community rules
     /// </summary>
     public IReadOnlyList<Rule>? Rules
@@ -296,12 +398,17 @@ public sealed record class Community : JsonModel
         _ = this.ID;
         _ = this.BannerUrl;
         _ = this.CreatedAt;
+        this.Creator?.Validate();
         _ = this.Description;
+        _ = this.InvitesPolicy;
+        _ = this.IsMember;
+        _ = this.IsNsfw;
         _ = this.JoinPolicy;
         _ = this.MemberCount;
         _ = this.ModeratorCount;
         _ = this.Name;
         this.PrimaryTopic?.Validate();
+        _ = this.Role;
         foreach (var item in this.Rules ?? [])
         {
             item.Validate();
@@ -348,6 +455,101 @@ class CommunityFromRaw : IFromRawJson<Community>
     /// <inheritdoc/>
     public Community FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Community.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<Creator, CreatorFromRaw>))]
+public sealed record class Creator : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public required string Username
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("username");
+        }
+        init { this._rawData.Set("username", value); }
+    }
+
+    public required bool Verified
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("verified");
+        }
+        init { this._rawData.Set("verified", value); }
+    }
+
+    public string? Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.Username;
+        _ = this.Verified;
+        _ = this.Name;
+    }
+
+    public Creator() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Creator(Creator creator)
+        : base(creator) { }
+#pragma warning restore CS8618
+
+    public Creator(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Creator(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CreatorFromRaw.FromRawUnchecked"/>
+    public static Creator FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CreatorFromRaw : IFromRawJson<Creator>
+{
+    /// <inheritdoc/>
+    public Creator FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Creator.FromRawUnchecked(rawData);
 }
 
 /// <summary>

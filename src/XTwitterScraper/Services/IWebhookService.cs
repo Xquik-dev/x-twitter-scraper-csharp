@@ -90,6 +90,21 @@ public interface IWebhookService
     );
 
     /// <summary>
+    /// Test and resume webhook endpoint
+    /// </summary>
+    Task<WebhookResumeResponse> Resume(
+        WebhookResumeParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Resume(WebhookResumeParams, CancellationToken)"/>
+    Task<WebhookResumeResponse> Resume(
+        string id,
+        WebhookResumeParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Test webhook endpoint
     /// </summary>
     Task<WebhookTestResponse> Test(
@@ -181,6 +196,22 @@ public interface IWebhookServiceWithRawResponse
     Task<HttpResponse<WebhookListDeliveriesResponse>> ListDeliveries(
         string id,
         WebhookListDeliveriesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /webhooks/{id}/resume</c>, but is otherwise the
+    /// same as <see cref="IWebhookService.Resume(WebhookResumeParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<WebhookResumeResponse>> Resume(
+        WebhookResumeParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Resume(WebhookResumeParams, CancellationToken)"/>
+    Task<HttpResponse<WebhookResumeResponse>> Resume(
+        string id,
+        WebhookResumeParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

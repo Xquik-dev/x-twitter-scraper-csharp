@@ -12,6 +12,19 @@ namespace XTwitterScraper.Models.Credits;
 )]
 public sealed record class CreditRetrieveBalanceResponse : JsonModel
 {
+    /// <summary>
+    /// Configured dollar amount for each automatic top-up.
+    /// </summary>
+    public required double AutoTopupAmountDollars
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("auto_topup_amount_dollars");
+        }
+        init { this._rawData.Set("auto_topup_amount_dollars", value); }
+    }
+
     public required bool AutoTopupEnabled
     {
         get
@@ -22,32 +35,55 @@ public sealed record class CreditRetrieveBalanceResponse : JsonModel
         init { this._rawData.Set("auto_topup_enabled", value); }
     }
 
-    public required long Balance
+    /// <summary>
+    /// Credit balance threshold that triggers automatic top-up when enabled, represented
+    /// as a bigint string.
+    /// </summary>
+    public required string AutoTopupThreshold
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("balance");
+            return this._rawData.GetNotNullClass<string>("auto_topup_threshold");
+        }
+        init { this._rawData.Set("auto_topup_threshold", value); }
+    }
+
+    /// <summary>
+    /// Current credit balance as a bigint string to preserve precision above Number.MAX_SAFE_INTEGER.
+    /// </summary>
+    public required string Balance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("balance");
         }
         init { this._rawData.Set("balance", value); }
     }
 
-    public required long LifetimePurchased
+    /// <summary>
+    /// Lifetime purchased credits as a bigint string.
+    /// </summary>
+    public required string LifetimePurchased
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("lifetime_purchased");
+            return this._rawData.GetNotNullClass<string>("lifetime_purchased");
         }
         init { this._rawData.Set("lifetime_purchased", value); }
     }
 
-    public required long LifetimeUsed
+    /// <summary>
+    /// Lifetime consumed credits as a bigint string.
+    /// </summary>
+    public required string LifetimeUsed
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("lifetime_used");
+            return this._rawData.GetNotNullClass<string>("lifetime_used");
         }
         init { this._rawData.Set("lifetime_used", value); }
     }
@@ -55,7 +91,9 @@ public sealed record class CreditRetrieveBalanceResponse : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.AutoTopupAmountDollars;
         _ = this.AutoTopupEnabled;
+        _ = this.AutoTopupThreshold;
         _ = this.Balance;
         _ = this.LifetimePurchased;
         _ = this.LifetimeUsed;

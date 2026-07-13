@@ -11,15 +11,18 @@ public class DmRetrieveHistoryParamsTest : TestBase
         var parameters = new DmRetrieveHistoryParams
         {
             UserID = "userId",
+            Account = "account",
             Cursor = "cursor",
             MaxID = "maxId",
         };
 
         string expectedUserID = "userId";
+        string expectedAccount = "account";
         string expectedCursor = "cursor";
         string expectedMaxID = "maxId";
 
         Assert.Equal(expectedUserID, parameters.UserID);
+        Assert.Equal(expectedAccount, parameters.Account);
         Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedMaxID, parameters.MaxID);
     }
@@ -27,7 +30,7 @@ public class DmRetrieveHistoryParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new DmRetrieveHistoryParams { UserID = "userId" };
+        var parameters = new DmRetrieveHistoryParams { UserID = "userId", Account = "account" };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
@@ -41,6 +44,7 @@ public class DmRetrieveHistoryParamsTest : TestBase
         var parameters = new DmRetrieveHistoryParams
         {
             UserID = "userId",
+            Account = "account",
 
             // Null should be interpreted as omitted for these properties
             Cursor = null,
@@ -59,15 +63,18 @@ public class DmRetrieveHistoryParamsTest : TestBase
         DmRetrieveHistoryParams parameters = new()
         {
             UserID = "userId",
+            Account = "account",
             Cursor = "cursor",
             MaxID = "maxId",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/x/dm/userId/history?cursor=cursor&maxId=maxId"),
+                new Uri(
+                    "https://xquik.com/api/v1/x/dm/userId/history?account=account&cursor=cursor&maxId=maxId"
+                ),
                 url
             )
         );
@@ -79,6 +86,7 @@ public class DmRetrieveHistoryParamsTest : TestBase
         var parameters = new DmRetrieveHistoryParams
         {
             UserID = "userId",
+            Account = "account",
             Cursor = "cursor",
             MaxID = "maxId",
         };

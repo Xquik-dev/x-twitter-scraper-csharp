@@ -9,19 +9,29 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
+        var model = new MediaUploadResponse
+        {
+            MediaID = "1234567890123456789",
+            MediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png",
+        };
 
         string expectedMediaID = "1234567890123456789";
+        string expectedMediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMediaID, model.MediaID);
+        Assert.Equal(expectedMediaUrl, model.MediaUrl);
         Assert.True(JsonElement.DeepEquals(expectedSuccess, model.Success));
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
+        var model = new MediaUploadResponse
+        {
+            MediaID = "1234567890123456789",
+            MediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MediaUploadResponse>(
@@ -35,7 +45,11 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
+        var model = new MediaUploadResponse
+        {
+            MediaID = "1234567890123456789",
+            MediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<MediaUploadResponse>(
@@ -45,16 +59,22 @@ public class MediaUploadResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedMediaID = "1234567890123456789";
+        string expectedMediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png";
         JsonElement expectedSuccess = JsonSerializer.SerializeToElement(true);
 
         Assert.Equal(expectedMediaID, deserialized.MediaID);
+        Assert.Equal(expectedMediaUrl, deserialized.MediaUrl);
         Assert.True(JsonElement.DeepEquals(expectedSuccess, deserialized.Success));
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
+        var model = new MediaUploadResponse
+        {
+            MediaID = "1234567890123456789",
+            MediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png",
+        };
 
         model.Validate();
     }
@@ -62,7 +82,11 @@ public class MediaUploadResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new MediaUploadResponse { MediaID = "1234567890123456789" };
+        var model = new MediaUploadResponse
+        {
+            MediaID = "1234567890123456789",
+            MediaUrl = "https://media.xquik.com/uploads/1234567890123456789.png",
+        };
 
         MediaUploadResponse copied = new(model);
 

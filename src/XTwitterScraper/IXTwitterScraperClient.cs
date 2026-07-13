@@ -58,8 +58,6 @@ public interface IXTwitterScraperClient : IDisposable
 
     IAccountService Account { get; }
 
-    IApiKeyService ApiKeys { get; }
-
     ISubscribeService Subscribe { get; }
 
     IComposeService Compose { get; }
@@ -87,6 +85,8 @@ public interface IXTwitterScraperClient : IDisposable
     ISupportService Support { get; }
 
     ICreditService Credits { get; }
+
+    IGuestWalletService GuestWallets { get; }
 }
 
 /// <summary>
@@ -125,8 +125,6 @@ public interface IXTwitterScraperClientWithRawResponse : IDisposable
 
     IAccountServiceWithRawResponse Account { get; }
 
-    IApiKeyServiceWithRawResponse ApiKeys { get; }
-
     ISubscribeServiceWithRawResponse Subscribe { get; }
 
     IComposeServiceWithRawResponse Compose { get; }
@@ -154,6 +152,8 @@ public interface IXTwitterScraperClientWithRawResponse : IDisposable
     ISupportServiceWithRawResponse Support { get; }
 
     ICreditServiceWithRawResponse Credits { get; }
+
+    IGuestWalletServiceWithRawResponse GuestWallets { get; }
 
     /// <summary>
     /// Sends a request to the X Twitter Scraper REST API.

@@ -63,6 +63,17 @@ public class WebhookServiceTest : TestBase
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
+    public async Task Resume_Works()
+    {
+        var response = await this.client.Webhooks.Resume(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Test_Works()
     {
         var response = await this.client.Webhooks.Test(

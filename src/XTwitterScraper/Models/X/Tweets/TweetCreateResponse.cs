@@ -11,6 +11,30 @@ namespace XTwitterScraper.Models.X.Tweets;
 [JsonConverter(typeof(JsonModelConverter<TweetCreateResponse, TweetCreateResponseFromRaw>))]
 public sealed record class TweetCreateResponse : JsonModel
 {
+    public required bool Charged
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("charged");
+        }
+        init { this._rawData.Set("charged", value); }
+    }
+
+    /// <summary>
+    /// Credits charged for this tweet. Text-only tweets and replies cost 30 credits;
+    /// attached media adds 2 credits per started MB.
+    /// </summary>
+    public required string ChargedCredits
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("chargedCredits");
+        }
+        init { this._rawData.Set("chargedCredits", value); }
+    }
+
     public JsonElement Success
     {
         get
@@ -31,14 +55,35 @@ public sealed record class TweetCreateResponse : JsonModel
         init { this._rawData.Set("tweetId", value); }
     }
 
+    public string? WriteActionID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("writeActionId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("writeActionId", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.Charged;
+        _ = this.ChargedCredits;
         if (!JsonElement.DeepEquals(this.Success, JsonSerializer.SerializeToElement(true)))
         {
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
         }
         _ = this.TweetID;
+        _ = this.WriteActionID;
     }
 
     public TweetCreateResponse()
@@ -73,13 +118,6 @@ public sealed record class TweetCreateResponse : JsonModel
     )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-
-    [SetsRequiredMembers]
-    public TweetCreateResponse(string tweetID)
-        : this()
-    {
-        this.TweetID = tweetID;
     }
 }
 

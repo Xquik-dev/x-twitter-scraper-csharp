@@ -149,7 +149,7 @@ public class DrawRunParamsTest : TestBase
     {
         DrawRunParams parameters = new() { TweetUrl = "https://x.com/elonmusk/status/1234567890" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/draws"), url));
     }

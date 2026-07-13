@@ -11,18 +11,24 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
+            AutoTopupAmountDollars = 10,
             AutoTopupEnabled = false,
-            Balance = 50000,
-            LifetimePurchased = 200000,
-            LifetimeUsed = 150000,
+            AutoTopupThreshold = "50000",
+            Balance = "50000",
+            LifetimePurchased = "200000",
+            LifetimeUsed = "150000",
         };
 
+        double expectedAutoTopupAmountDollars = 10;
         bool expectedAutoTopupEnabled = false;
-        long expectedBalance = 50000;
-        long expectedLifetimePurchased = 200000;
-        long expectedLifetimeUsed = 150000;
+        string expectedAutoTopupThreshold = "50000";
+        string expectedBalance = "50000";
+        string expectedLifetimePurchased = "200000";
+        string expectedLifetimeUsed = "150000";
 
+        Assert.Equal(expectedAutoTopupAmountDollars, model.AutoTopupAmountDollars);
         Assert.Equal(expectedAutoTopupEnabled, model.AutoTopupEnabled);
+        Assert.Equal(expectedAutoTopupThreshold, model.AutoTopupThreshold);
         Assert.Equal(expectedBalance, model.Balance);
         Assert.Equal(expectedLifetimePurchased, model.LifetimePurchased);
         Assert.Equal(expectedLifetimeUsed, model.LifetimeUsed);
@@ -33,10 +39,12 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
+            AutoTopupAmountDollars = 10,
             AutoTopupEnabled = false,
-            Balance = 50000,
-            LifetimePurchased = 200000,
-            LifetimeUsed = 150000,
+            AutoTopupThreshold = "50000",
+            Balance = "50000",
+            LifetimePurchased = "200000",
+            LifetimeUsed = "150000",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -53,10 +61,12 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
+            AutoTopupAmountDollars = 10,
             AutoTopupEnabled = false,
-            Balance = 50000,
-            LifetimePurchased = 200000,
-            LifetimeUsed = 150000,
+            AutoTopupThreshold = "50000",
+            Balance = "50000",
+            LifetimePurchased = "200000",
+            LifetimeUsed = "150000",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -66,12 +76,16 @@ public class CreditRetrieveBalanceResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
+        double expectedAutoTopupAmountDollars = 10;
         bool expectedAutoTopupEnabled = false;
-        long expectedBalance = 50000;
-        long expectedLifetimePurchased = 200000;
-        long expectedLifetimeUsed = 150000;
+        string expectedAutoTopupThreshold = "50000";
+        string expectedBalance = "50000";
+        string expectedLifetimePurchased = "200000";
+        string expectedLifetimeUsed = "150000";
 
+        Assert.Equal(expectedAutoTopupAmountDollars, deserialized.AutoTopupAmountDollars);
         Assert.Equal(expectedAutoTopupEnabled, deserialized.AutoTopupEnabled);
+        Assert.Equal(expectedAutoTopupThreshold, deserialized.AutoTopupThreshold);
         Assert.Equal(expectedBalance, deserialized.Balance);
         Assert.Equal(expectedLifetimePurchased, deserialized.LifetimePurchased);
         Assert.Equal(expectedLifetimeUsed, deserialized.LifetimeUsed);
@@ -82,10 +96,12 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
+            AutoTopupAmountDollars = 10,
             AutoTopupEnabled = false,
-            Balance = 50000,
-            LifetimePurchased = 200000,
-            LifetimeUsed = 150000,
+            AutoTopupThreshold = "50000",
+            Balance = "50000",
+            LifetimePurchased = "200000",
+            LifetimeUsed = "150000",
         };
 
         model.Validate();
@@ -96,10 +112,12 @@ public class CreditRetrieveBalanceResponseTest : TestBase
     {
         var model = new CreditRetrieveBalanceResponse
         {
+            AutoTopupAmountDollars = 10,
             AutoTopupEnabled = false,
-            Balance = 50000,
-            LifetimePurchased = 200000,
-            LifetimeUsed = 150000,
+            AutoTopupThreshold = "50000",
+            Balance = "50000",
+            LifetimePurchased = "200000",
+            LifetimeUsed = "150000",
         };
 
         CreditRetrieveBalanceResponse copied = new(model);

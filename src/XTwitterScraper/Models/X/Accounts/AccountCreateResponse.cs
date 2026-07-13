@@ -10,11 +10,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Accounts;
 
 /// <summary>
-/// Sanitized X account summary returned by connect and reauth. Includes an optional
-/// `loginCountry` field surfaced only when the declared proxy region had no Driver
-/// capacity and the login fell back to a single US consumer device for this one-time
-/// action. Future activity continues to use the selected `proxy_country`; the field
-/// is omitted on normal logins.
+/// Sanitized X account summary returned by connect and reauth.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<AccountCreateResponse, AccountCreateResponseFromRaw>))]
 public sealed record class AccountCreateResponse : JsonModel
@@ -81,29 +77,6 @@ public sealed record class AccountCreateResponse : JsonModel
         init { this._rawData.Set("xUsername", value); }
     }
 
-    /// <summary>
-    /// ISO-3166-1 alpha-2 country code of the Driver consumer device used for this
-    /// login. Present only when the US fallback was triggered because Driver had
-    /// no capacity in the declared region. Omitted otherwise.
-    /// </summary>
-    public string? LoginCountry
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("loginCountry");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("loginCountry", value);
-        }
-    }
-
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -113,7 +86,6 @@ public sealed record class AccountCreateResponse : JsonModel
         _ = this.Status;
         _ = this.XUserID;
         _ = this.XUsername;
-        _ = this.LoginCountry;
     }
 
     public AccountCreateResponse() { }

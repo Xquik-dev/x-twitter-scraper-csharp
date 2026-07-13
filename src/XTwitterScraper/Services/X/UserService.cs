@@ -68,7 +68,29 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
-    public async Task<PaginatedUsers> RetrieveBatch(
+    public async Task<UserRemoveFollowerResponse> RemoveFollower(
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.RemoveFollower(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<UserRemoveFollowerResponse> RemoveFollower(
+        string id,
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.RemoveFollower(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<UserRetrieveBatchResponse> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -224,6 +246,30 @@ public sealed class UserService : IUserService
     }
 
     /// <inheritdoc/>
+    public async Task<PaginatedTweets> RetrieveReplies(
+        UserRetrieveRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.RetrieveReplies(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<PaginatedTweets> RetrieveReplies(
+        string id,
+        UserRetrieveRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.RetrieveReplies(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<PaginatedUsers> RetrieveSearch(
         UserRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
@@ -354,7 +400,50 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<PaginatedUsers>> RetrieveBatch(
+    public async Task<HttpResponse<UserRemoveFollowerResponse>> RemoveFollower(
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<UserRemoveFollowerParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<UserRemoveFollowerResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<UserRemoveFollowerResponse>> RemoveFollower(
+        string id,
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.RemoveFollower(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<UserRetrieveBatchResponse>> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -369,14 +458,14 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
             response,
             async (token) =>
             {
-                var paginatedUsers = await response
-                    .Deserialize<PaginatedUsers>(token)
+                var deserializedResponse = await response
+                    .Deserialize<UserRetrieveBatchResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    paginatedUsers.Validate();
+                    deserializedResponse.Validate();
                 }
-                return paginatedUsers;
+                return deserializedResponse;
             }
         );
     }
@@ -649,6 +738,51 @@ public sealed class UserServiceWithRawResponse : IUserServiceWithRawResponse
         parameters ??= new();
 
         return this.RetrieveMentions(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<PaginatedTweets>> RetrieveReplies(
+        UserRetrieveRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<UserRetrieveRepliesParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var paginatedTweets = await response
+                    .Deserialize<PaginatedTweets>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    paginatedTweets.Validate();
+                }
+                return paginatedTweets;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<PaginatedTweets>> RetrieveReplies(
+        string id,
+        UserRetrieveRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.RetrieveReplies(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>

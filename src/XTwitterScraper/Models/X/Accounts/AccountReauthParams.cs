@@ -61,27 +61,6 @@ public record class AccountReauthParams : ParamsBase
     }
 
     /// <summary>
-    /// Two-letter country code for login proxy region
-    /// </summary>
-    public string? ProxyCountry
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("proxy_country");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("proxy_country", value);
-        }
-    }
-
-    /// <summary>
     /// TOTP secret for 2FA re-authentication
     /// </summary>
     public string? TotpSecret
@@ -195,7 +174,7 @@ public record class AccountReauthParams : ParamsBase
                 + string.Format("/x/accounts/{0}/reauth", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -210,7 +189,7 @@ public record class AccountReauthParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

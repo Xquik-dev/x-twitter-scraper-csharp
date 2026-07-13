@@ -34,6 +34,7 @@ public sealed class XService : IXService
         _client = client;
 
         _withRawResponse = new(() => new XServiceWithRawResponse(client.WithRawResponse));
+        _writeActions = new(() => new X::WriteActionService(client));
         _tweets = new(() => new X::TweetService(client));
         _users = new(() => new X::UserService(client));
         _followers = new(() => new X::FollowerService(client));
@@ -42,8 +43,15 @@ public sealed class XService : IXService
         _profile = new(() => new X::ProfileService(client));
         _communities = new(() => new X::CommunityService(client));
         _accounts = new(() => new X::AccountService(client));
+        _accountConnectionChallenges = new(() => new X::AccountConnectionChallengeService(client));
         _bookmarks = new(() => new X::BookmarkService(client));
         _lists = new(() => new X::ListService(client));
+    }
+
+    readonly Lazy<X::IWriteActionService> _writeActions;
+    public X::IWriteActionService WriteActions
+    {
+        get { return _writeActions.Value; }
     }
 
     readonly Lazy<X::ITweetService> _tweets;
@@ -92,6 +100,12 @@ public sealed class XService : IXService
     public X::IAccountService Accounts
     {
         get { return _accounts.Value; }
+    }
+
+    readonly Lazy<X::IAccountConnectionChallengeService> _accountConnectionChallenges;
+    public X::IAccountConnectionChallengeService AccountConnectionChallenges
+    {
+        get { return _accountConnectionChallenges.Value; }
     }
 
     readonly Lazy<X::IBookmarkService> _bookmarks;
@@ -182,6 +196,7 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     {
         _client = client;
 
+        _writeActions = new(() => new X::WriteActionServiceWithRawResponse(client));
         _tweets = new(() => new X::TweetServiceWithRawResponse(client));
         _users = new(() => new X::UserServiceWithRawResponse(client));
         _followers = new(() => new X::FollowerServiceWithRawResponse(client));
@@ -190,8 +205,17 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
         _profile = new(() => new X::ProfileServiceWithRawResponse(client));
         _communities = new(() => new X::CommunityServiceWithRawResponse(client));
         _accounts = new(() => new X::AccountServiceWithRawResponse(client));
+        _accountConnectionChallenges = new(() =>
+            new X::AccountConnectionChallengeServiceWithRawResponse(client)
+        );
         _bookmarks = new(() => new X::BookmarkServiceWithRawResponse(client));
         _lists = new(() => new X::ListServiceWithRawResponse(client));
+    }
+
+    readonly Lazy<X::IWriteActionServiceWithRawResponse> _writeActions;
+    public X::IWriteActionServiceWithRawResponse WriteActions
+    {
+        get { return _writeActions.Value; }
     }
 
     readonly Lazy<X::ITweetServiceWithRawResponse> _tweets;
@@ -240,6 +264,12 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     public X::IAccountServiceWithRawResponse Accounts
     {
         get { return _accounts.Value; }
+    }
+
+    readonly Lazy<X::IAccountConnectionChallengeServiceWithRawResponse> _accountConnectionChallenges;
+    public X::IAccountConnectionChallengeServiceWithRawResponse AccountConnectionChallenges
+    {
+        get { return _accountConnectionChallenges.Value; }
     }
 
     readonly Lazy<X::IBookmarkServiceWithRawResponse> _bookmarks;

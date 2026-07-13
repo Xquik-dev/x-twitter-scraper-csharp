@@ -26,7 +26,28 @@ public record class MediaDownloadParams : ParamsBase
     }
 
     /// <summary>
-    /// Array of tweet URLs or IDs (bulk, max 50)
+    /// Numeric tweet ID alias for tweetInput
+    /// </summary>
+    public string? TweetID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("tweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("tweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Array of tweet URLs or IDs (bulk, max 50 string items)
     /// </summary>
     public IReadOnlyList<string>? TweetIds
     {
@@ -67,6 +88,27 @@ public record class MediaDownloadParams : ParamsBase
             }
 
             this._rawBodyData.Set("tweetInput", value);
+        }
+    }
+
+    /// <summary>
+    /// Tweet URL alias for tweetInput
+    /// </summary>
+    public string? TweetUrl
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("tweetUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("tweetUrl", value);
         }
     }
 
@@ -152,7 +194,7 @@ public record class MediaDownloadParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/media/download")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -167,7 +209,7 @@ public record class MediaDownloadParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

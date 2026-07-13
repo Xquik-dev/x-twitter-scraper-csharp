@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Credits;
 
@@ -13,29 +12,41 @@ namespace XTwitterScraper.Models.Credits;
 )]
 public sealed record class CreditTopupBalanceResponse : JsonModel
 {
-    public JsonElement Success
+    /// <summary>
+    /// Stable first-party Xquik redirect URL for the active Stripe Checkout session.
+    /// </summary>
+    public required string RedirectUrl
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("success");
+            return this._rawData.GetNotNullClass<string>("redirect_url");
         }
-        init { this._rawData.Set("success", value); }
+        init { this._rawData.Set("redirect_url", value); }
+    }
+
+    /// <summary>
+    /// Same stable first-party Xquik redirect URL as redirect_url. The response
+    /// never exposes a raw Stripe Checkout URL.
+    /// </summary>
+    public required string Url
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("url");
+        }
+        init { this._rawData.Set("url", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        if (!JsonElement.DeepEquals(this.Success, JsonSerializer.SerializeToElement(true)))
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
+        _ = this.RedirectUrl;
+        _ = this.Url;
     }
 
-    public CreditTopupBalanceResponse()
-    {
-        this.Success = JsonSerializer.SerializeToElement(true);
-    }
+    public CreditTopupBalanceResponse() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -46,8 +57,6 @@ public sealed record class CreditTopupBalanceResponse : JsonModel
     public CreditTopupBalanceResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
-
-        this.Success = JsonSerializer.SerializeToElement(true);
     }
 
 #pragma warning disable CS8618

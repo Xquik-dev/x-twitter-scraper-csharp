@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -20,14 +20,14 @@ namespace XTwitterScraper.Models.Extractions;
 public record class ExtractionListParams : ParamsBase
 {
     /// <summary>
-    /// Cursor for keyset pagination
+    /// Cursor for keyset pagination from prior response next_cursor
     /// </summary>
-    public string? After
+    public string? Cursor
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("after");
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
         init
         {
@@ -36,12 +36,15 @@ public record class ExtractionListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData.Set("after", value);
+            this._rawQueryData.Set("cursor", value);
         }
     }
 
     /// <summary>
-    /// Maximum number of items to return (1-100, default 50)
+    /// Maximum number of items to return (1-100, default 50). For paid per-result
+    /// endpoints, the returned count may be lower when remaining credits cannot cover
+    /// the requested page. If zero paid results are affordable, the endpoint returns
+    /// 402 insufficient_credits.
     /// </summary>
     public long? Limit
     {
@@ -170,17 +173,17 @@ public record class ExtractionListParams : ParamsBase
             && this._rawQueryData.Equals(other._rawQueryData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/extractions")
+        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/extractions")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -208,7 +211,7 @@ sealed class StatusConverter : JsonConverter<Status>
 {
     public override Status Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -250,6 +253,7 @@ public enum ToolType
     CommunityModeratorExplorer,
     CommunityPostExtractor,
     CommunitySearch,
+    Favoriters,
     FollowerExplorer,
     FollowingExplorer,
     ListFollowerExplorer,
@@ -264,6 +268,8 @@ public enum ToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserLikes,
+    UserMedia,
     VerifiedFollowerExplorer,
 }
 
@@ -271,7 +277,7 @@ sealed class ToolTypeConverter : JsonConverter<ToolType>
 {
     public override ToolType Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -282,6 +288,7 @@ sealed class ToolTypeConverter : JsonConverter<ToolType>
             "community_moderator_explorer" => ToolType.CommunityModeratorExplorer,
             "community_post_extractor" => ToolType.CommunityPostExtractor,
             "community_search" => ToolType.CommunitySearch,
+            "favoriters" => ToolType.Favoriters,
             "follower_explorer" => ToolType.FollowerExplorer,
             "following_explorer" => ToolType.FollowingExplorer,
             "list_follower_explorer" => ToolType.ListFollowerExplorer,
@@ -296,6 +303,8 @@ sealed class ToolTypeConverter : JsonConverter<ToolType>
             "space_explorer" => ToolType.SpaceExplorer,
             "thread_extractor" => ToolType.ThreadExtractor,
             "tweet_search_extractor" => ToolType.TweetSearchExtractor,
+            "user_likes" => ToolType.UserLikes,
+            "user_media" => ToolType.UserMedia,
             "verified_follower_explorer" => ToolType.VerifiedFollowerExplorer,
             _ => (ToolType)(-1),
         };
@@ -312,6 +321,7 @@ sealed class ToolTypeConverter : JsonConverter<ToolType>
                 ToolType.CommunityModeratorExplorer => "community_moderator_explorer",
                 ToolType.CommunityPostExtractor => "community_post_extractor",
                 ToolType.CommunitySearch => "community_search",
+                ToolType.Favoriters => "favoriters",
                 ToolType.FollowerExplorer => "follower_explorer",
                 ToolType.FollowingExplorer => "following_explorer",
                 ToolType.ListFollowerExplorer => "list_follower_explorer",
@@ -326,6 +336,8 @@ sealed class ToolTypeConverter : JsonConverter<ToolType>
                 ToolType.SpaceExplorer => "space_explorer",
                 ToolType.ThreadExtractor => "thread_extractor",
                 ToolType.TweetSearchExtractor => "tweet_search_extractor",
+                ToolType.UserLikes => "user_likes",
+                ToolType.UserMedia => "user_media",
                 ToolType.VerifiedFollowerExplorer => "verified_follower_explorer",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))

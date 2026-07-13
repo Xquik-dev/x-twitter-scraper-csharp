@@ -12,7 +12,7 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             TotalEntries = 250,
             TweetID = "1234567890",
             ValidEntries = 200,
@@ -28,7 +28,7 @@ public class DrawRunResponseTest : TestBase
             ],
         };
 
-        string expectedID = "42";
+        string expectedID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345";
         long expectedTotalEntries = 250;
         string expectedTweetID = "1234567890";
         long expectedValidEntries = 200;
@@ -59,7 +59,7 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             TotalEntries = 250,
             TweetID = "1234567890",
             ValidEntries = 200,
@@ -89,7 +89,7 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             TotalEntries = 250,
             TweetID = "1234567890",
             ValidEntries = 200,
@@ -112,7 +112,7 @@ public class DrawRunResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "42";
+        string expectedID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345";
         long expectedTotalEntries = 250;
         string expectedTweetID = "1234567890";
         long expectedValidEntries = 200;
@@ -143,7 +143,7 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             TotalEntries = 250,
             TweetID = "1234567890",
             ValidEntries = 200,
@@ -167,7 +167,7 @@ public class DrawRunResponseTest : TestBase
     {
         var model = new DrawRunResponse
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             TotalEntries = 250,
             TweetID = "1234567890",
             ValidEntries = 200,

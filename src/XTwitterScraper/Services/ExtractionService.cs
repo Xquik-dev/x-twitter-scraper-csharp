@@ -94,12 +94,10 @@ public sealed class ExtractionService : IExtractionService
     /// <inheritdoc/>
     public Task<HttpResponse> ExportResults(
         string id,
-        ExtractionExportResultsParams? parameters = null,
+        ExtractionExportResultsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.ExportResults(parameters with { ID = id }, cancellationToken);
     }
 
@@ -259,12 +257,10 @@ public sealed class ExtractionServiceWithRawResponse : IExtractionServiceWithRaw
     /// <inheritdoc/>
     public Task<HttpResponse> ExportResults(
         string id,
-        ExtractionExportResultsParams? parameters = null,
+        ExtractionExportResultsParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.ExportResults(parameters with { ID = id }, cancellationToken);
     }
 

@@ -7,7 +7,7 @@ using XTwitterScraper.Models.Extractions;
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// Bulk data extraction (20 tool types)
+/// Bulk data extraction (23 tool types)
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -72,7 +72,7 @@ public interface IExtractionService
     /// <inheritdoc cref="ExportResults(ExtractionExportResultsParams, CancellationToken)"/>
     Task<HttpResponse> ExportResults(
         string id,
-        ExtractionExportResultsParams? parameters = null,
+        ExtractionExportResultsParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -144,7 +144,7 @@ public interface IExtractionServiceWithRawResponse
     /// <inheritdoc cref="ExportResults(ExtractionExportResultsParams, CancellationToken)"/>
     Task<HttpResponse> ExportResults(
         string id,
-        ExtractionExportResultsParams? parameters = null,
+        ExtractionExportResultsParams parameters,
         CancellationToken cancellationToken = default
     );
 

@@ -22,7 +22,7 @@ public class FollowerCheckParamsTest : TestBase
     {
         FollowerCheckParams parameters = new() { Source = "source", Target = "target" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(

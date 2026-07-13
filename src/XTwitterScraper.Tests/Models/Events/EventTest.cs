@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.Events;
 
@@ -20,8 +21,11 @@ public class EventTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "keywordMonitorId",
+            Query = "query",
             Username = "username",
         };
 
@@ -31,8 +35,11 @@ public class EventTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedMonitorID = "monitorId";
+        ApiEnum<string, MonitorType> expectedMonitorType = MonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        string expectedKeywordMonitorID = "keywordMonitorId";
+        string expectedQuery = "query";
         string expectedUsername = "username";
 
         Assert.Equal(expectedID, model.ID);
@@ -44,8 +51,11 @@ public class EventTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, model.Data[item.Key]));
         }
         Assert.Equal(expectedMonitorID, model.MonitorID);
+        Assert.Equal(expectedMonitorType, model.MonitorType);
         Assert.Equal(expectedOccurredAt, model.OccurredAt);
         Assert.Equal(expectedType, model.Type);
+        Assert.Equal(expectedKeywordMonitorID, model.KeywordMonitorID);
+        Assert.Equal(expectedQuery, model.Query);
         Assert.Equal(expectedUsername, model.Username);
     }
 
@@ -60,8 +70,11 @@ public class EventTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "keywordMonitorId",
+            Query = "query",
             Username = "username",
         };
 
@@ -82,8 +95,11 @@ public class EventTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "keywordMonitorId",
+            Query = "query",
             Username = "username",
         };
 
@@ -97,8 +113,11 @@ public class EventTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedMonitorID = "monitorId";
+        ApiEnum<string, MonitorType> expectedMonitorType = MonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        string expectedKeywordMonitorID = "keywordMonitorId";
+        string expectedQuery = "query";
         string expectedUsername = "username";
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -110,8 +129,11 @@ public class EventTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, deserialized.Data[item.Key]));
         }
         Assert.Equal(expectedMonitorID, deserialized.MonitorID);
+        Assert.Equal(expectedMonitorType, deserialized.MonitorType);
         Assert.Equal(expectedOccurredAt, deserialized.OccurredAt);
         Assert.Equal(expectedType, deserialized.Type);
+        Assert.Equal(expectedKeywordMonitorID, deserialized.KeywordMonitorID);
+        Assert.Equal(expectedQuery, deserialized.Query);
         Assert.Equal(expectedUsername, deserialized.Username);
     }
 
@@ -126,9 +148,108 @@ public class EventTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "keywordMonitorId",
+            Query = "query",
             Username = "username",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Event
+        {
+            ID = "id",
+            Data = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
+            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Type = EventType.TweetNew,
+        };
+
+        Assert.Null(model.KeywordMonitorID);
+        Assert.False(model.RawData.ContainsKey("keywordMonitorId"));
+        Assert.Null(model.Query);
+        Assert.False(model.RawData.ContainsKey("query"));
+        Assert.Null(model.Username);
+        Assert.False(model.RawData.ContainsKey("username"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Event
+        {
+            ID = "id",
+            Data = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
+            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Type = EventType.TweetNew,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Event
+        {
+            ID = "id",
+            Data = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
+            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Type = EventType.TweetNew,
+
+            // Null should be interpreted as omitted for these properties
+            KeywordMonitorID = null,
+            Query = null,
+            Username = null,
+        };
+
+        Assert.Null(model.KeywordMonitorID);
+        Assert.False(model.RawData.ContainsKey("keywordMonitorId"));
+        Assert.Null(model.Query);
+        Assert.False(model.RawData.ContainsKey("query"));
+        Assert.Null(model.Username);
+        Assert.False(model.RawData.ContainsKey("username"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Event
+        {
+            ID = "id",
+            Data = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
+            OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Type = EventType.TweetNew,
+
+            // Null should be interpreted as omitted for these properties
+            KeywordMonitorID = null,
+            Query = null,
+            Username = null,
         };
 
         model.Validate();
@@ -145,13 +266,74 @@ public class EventTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "monitorId",
+            MonitorType = MonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "keywordMonitorId",
+            Query = "query",
             Username = "username",
         };
 
         Event copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class MonitorTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(MonitorType.Account)]
+    [InlineData(MonitorType.Keyword)]
+    public void Validation_Works(MonitorType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonitorType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(MonitorType.Account)]
+    [InlineData(MonitorType.Keyword)]
+    public void SerializationRoundtrip_Works(MonitorType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, MonitorType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MonitorType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, MonitorType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, MonitorType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

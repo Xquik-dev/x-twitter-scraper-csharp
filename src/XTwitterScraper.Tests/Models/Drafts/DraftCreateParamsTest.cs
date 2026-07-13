@@ -61,7 +61,7 @@ public class DraftCreateParamsTest : TestBase
     {
         DraftCreateParams parameters = new() { Text = "AI is the future of productivity" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/drafts"), url));
     }

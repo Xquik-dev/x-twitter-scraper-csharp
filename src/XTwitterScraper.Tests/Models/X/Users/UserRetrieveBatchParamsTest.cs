@@ -20,7 +20,7 @@ public class UserRetrieveBatchParamsTest : TestBase
     {
         UserRetrieveBatchParams parameters = new() { Ids = "ids" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/users/batch?ids=ids"), url)

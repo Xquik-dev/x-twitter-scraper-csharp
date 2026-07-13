@@ -85,12 +85,6 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         get { return _account.Value; }
     }
 
-    readonly Lazy<IApiKeyService> _apiKeys;
-    public IApiKeyService ApiKeys
-    {
-        get { return _apiKeys.Value; }
-    }
-
     readonly Lazy<ISubscribeService> _subscribe;
     public ISubscribeService Subscribe
     {
@@ -175,6 +169,12 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         get { return _credits.Value; }
     }
 
+    readonly Lazy<IGuestWalletService> _guestWallets;
+    public IGuestWalletService GuestWallets
+    {
+        get { return _guestWallets.Value; }
+    }
+
     public void Dispose() => this.HttpClient.Dispose();
 
     public XTwitterScraperClient()
@@ -183,7 +183,6 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
 
         _withRawResponse = new(() => new XTwitterScraperClientWithRawResponse(this._options));
         _account = new(() => new AccountService(this));
-        _apiKeys = new(() => new ApiKeyService(this));
         _subscribe = new(() => new SubscribeService(this));
         _compose = new(() => new ComposeService(this));
         _drafts = new(() => new DraftService(this));
@@ -198,6 +197,7 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         _trends = new(() => new TrendService(this));
         _support = new(() => new SupportService(this));
         _credits = new(() => new CreditService(this));
+        _guestWallets = new(() => new GuestWalletService(this));
     }
 
     public XTwitterScraperClient(ClientOptions options)
@@ -288,12 +288,6 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         get { return _account.Value; }
     }
 
-    readonly Lazy<IApiKeyServiceWithRawResponse> _apiKeys;
-    public IApiKeyServiceWithRawResponse ApiKeys
-    {
-        get { return _apiKeys.Value; }
-    }
-
     readonly Lazy<ISubscribeServiceWithRawResponse> _subscribe;
     public ISubscribeServiceWithRawResponse Subscribe
     {
@@ -376,6 +370,12 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
     public ICreditServiceWithRawResponse Credits
     {
         get { return _credits.Value; }
+    }
+
+    readonly Lazy<IGuestWalletServiceWithRawResponse> _guestWallets;
+    public IGuestWalletServiceWithRawResponse GuestWallets
+    {
+        get { return _guestWallets.Value; }
     }
 
     /// <inheritdoc/>
@@ -577,7 +577,6 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         _options = new();
 
         _account = new(() => new AccountServiceWithRawResponse(this));
-        _apiKeys = new(() => new ApiKeyServiceWithRawResponse(this));
         _subscribe = new(() => new SubscribeServiceWithRawResponse(this));
         _compose = new(() => new ComposeServiceWithRawResponse(this));
         _drafts = new(() => new DraftServiceWithRawResponse(this));
@@ -592,6 +591,7 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         _trends = new(() => new TrendServiceWithRawResponse(this));
         _support = new(() => new SupportServiceWithRawResponse(this));
         _credits = new(() => new CreditServiceWithRawResponse(this));
+        _guestWallets = new(() => new GuestWalletServiceWithRawResponse(this));
     }
 
     public XTwitterScraperClientWithRawResponse(ClientOptions options)
