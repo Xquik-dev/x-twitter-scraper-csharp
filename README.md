@@ -1,14 +1,6 @@
-# X (Twitter) Scraper C# SDK: Tweet Search, Profile Tweets, Followers & Posting
+# Xquik API Library
 
-> **Xquik is an independent third-party service.** Not affiliated with X Corp.
-> "Twitter" and "X" are trademarks of X Corp.
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg?url=https%3A%2F%2Fgithub.com%2FXquik-dev%2Fx-twitter-scraper-csharp)](https://deepwiki.com/Xquik-dev/x-twitter-scraper-csharp)
-[![Skills.sh x-twitter-scraper Skill](https://skills.sh/b/xquik-dev/x-twitter-scraper)](https://skills.sh/xquik-dev/x-twitter-scraper)
-
-The Xquik C# SDK is a Twitter API SDK and X API alternative for tweet search, advanced Twitter search queries, profile tweets, user lookup, follower export, media download, media upload, monitoring, webhooks, and posting automation.
-
-Use it from .NET applications to get tweets from profiles, search tweets by keyword or operator query, send tweets, post replies, like, repost, follow, DM, run giveaway draws, and automate X workflows.
+The Xquik SDK provides convenient access to the [X Twitter Scraper REST API](https://xquik.com) from applications written in C#.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -16,10 +8,9 @@ The REST API documentation can be found on [xquik.com](https://xquik.com).
 
 ## Installation
 
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
-
 ```bash
-dotnet add package XTwitterScraper
+git clone git@github.com:stainless-sdks/x-twitter-scraper-csharp.git
+dotnet add reference x-twitter-scraper-csharp/src/XTwitterScraper
 ```
 
 ## Requirements
@@ -84,7 +75,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with
         {
@@ -92,9 +83,9 @@ var paginatedTweets = await client
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -142,7 +133,7 @@ The SDK defines methods that deserialize responses into instances of C# classes.
 To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
 
 ```csharp
-var response = await client.WithRawResponse.X.Tweets.Search(parameters);
+var response = await client.WithRawResponse.Account.Retrieve();
 var statusCode = response.StatusCode;
 var headers = response.Headers;
 ```
@@ -153,10 +144,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using XTwitterScraper.Models;
+using XTwitterScraper.Models.Account;
 
-var response = await client.WithRawResponse.X.Tweets.Search(parameters);
-PaginatedTweets deserialized = await response.Deserialize();
+var response = await client.WithRawResponse.Account.Retrieve();
+AccountRetrieveResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -214,13 +205,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 ### Timeouts
@@ -241,13 +232,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 ### Proxies
@@ -385,4 +376,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/Xquik-dev/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.

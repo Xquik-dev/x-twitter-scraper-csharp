@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.Trends;
 public record class TrendListParams : ParamsBase
 {
     /// <summary>
-    /// Number of trending topics to return (1-50, default 30)
+    /// Number of trending topics returned (1-50, default 30)
     /// </summary>
     public long? Count
     {
@@ -39,7 +39,7 @@ public record class TrendListParams : ParamsBase
     }
 
     /// <summary>
-    /// Region WOEID (1=Worldwide, 23424977=US, 23424975=UK, 23424969=Turkey)
+    /// Region Yahoo WOEID code (1=Worldwide, 23424977=US, 23424975=UK, 23424969=Turkey)
     /// </summary>
     public long? Woeid
     {

@@ -75,7 +75,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Sort order — Latest (chronological) or Top (engagement-ranked)
+    /// Sort order - Latest (chronological) or Top (engagement-ranked)
     /// </summary>
     public ApiEnum<string, QueryType>? QueryType
     {
@@ -96,7 +96,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets after this time
+    /// ISO 8601 timestamp - only return tweets after this time
     /// </summary>
     public string? SinceTime
     {
@@ -117,7 +117,7 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets before this time
+    /// ISO 8601 timestamp - only return tweets before this time
     /// </summary>
     public string? UntilTime
     {
@@ -228,7 +228,7 @@ public record class TweetSearchParams : ParamsBase
 }
 
 /// <summary>
-/// Sort order — Latest (chronological) or Top (engagement-ranked)
+/// Sort order - Latest (chronological) or Top (engagement-ranked)
 /// </summary>
 [JsonConverter(typeof(QueryTypeConverter))]
 public enum QueryType
