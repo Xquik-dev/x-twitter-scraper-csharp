@@ -44,11 +44,13 @@ public class TestBase
         if (string.IsNullOrEmpty(query))
             return ret;
 
-        var pairs = query.TrimStart('?').Split(['&'], StringSplitOptions.RemoveEmptyEntries);
+        var pairs = query
+            .TrimStart('?')
+            .Split((char[])['&'], StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var pair in pairs)
         {
-            var parts = pair.Split(['&'], 2);
+            var parts = pair.Split((char[])['='], 2);
             var key = Uri.UnescapeDataString(parts[0]);
             var value = parts.Length > 1 ? Uri.UnescapeDataString(parts[1]) : string.Empty;
             ret[key] = value;

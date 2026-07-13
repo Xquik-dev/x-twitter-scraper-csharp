@@ -3,7 +3,7 @@
     <!-- Metadata -->
     <AssemblyTitle>X Twitter Scraper C#</AssemblyTitle>
     <AssemblyName>XTwitterScraper</AssemblyName>
-    <VersionPrefix>0.4.2</VersionPrefix>
+    <VersionPrefix>0.4.3</VersionPrefix>
     <Description>Xquik .NET SDK for tweet search, profile tweets, follower export, webhooks, and automation. Not affiliated with X Corp.</Description>
     <OutputType>Library</OutputType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -11,10 +11,10 @@
   <ItemGroup>
     <InternalsVisibleTo Include="XTwitterScraper.Tests"/>
     <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
-    <PackageReference Include="System.Text.Json" Version="9.0.9"/>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+    <PackageReference Include="System.Text.Json" Version="10.0.9"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.300" PrivateAssets="All"/>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Collections.Immutable" Version="8.0.0"/>
+    <PackageReference Include="System.Collections.Immutable" Version="10.0.9"/>
   </ItemGroup>
 </Project>

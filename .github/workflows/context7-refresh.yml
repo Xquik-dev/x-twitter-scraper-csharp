@@ -18,9 +18,15 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: context7-refresh-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   refresh:
-    runs-on: ubuntu-latest
+    name: Refresh Documentation Index
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - name: Trigger Context7 refresh
         env:

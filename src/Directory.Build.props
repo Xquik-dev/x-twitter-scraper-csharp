@@ -1,10 +1,10 @@
 <Project>
   <PropertyGroup>
-    <Authors>X Twitter Scraper</Authors>
-    <Company>X Twitter Scraper</Company>
+    <Authors>Xquik</Authors>
+    <Company>Xquik</Company>
     <PackageTags>sdk;api-client;twitter;twitter-api;x-api;tweet-search;profile-tweets;followers;automation</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Copyright>Copyright 2026 X Twitter Scraper</Copyright>
+    <Copyright>Copyright 2026 Xquik</Copyright>
     <PackageProjectUrl>https://docs.xquik.com/sdks/csharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

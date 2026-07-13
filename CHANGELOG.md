@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.3 (2026-07-13)
+
+Full Changelog: [v0.4.2...v0.4.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.2...v0.4.3)
+
+### Chores
+
+* publish accurate Xquik package metadata and non-affiliation copy
+* update stable build and test dependencies
+
+### Continuous Integration
+
+* replace the long-lived NuGet key with trusted publishing
+* pin and harden GitHub Actions workflows
+
 ## 0.4.2 (2026-04-25)
 
 Full Changelog: [v0.4.1...v0.4.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.1...v0.4.2)

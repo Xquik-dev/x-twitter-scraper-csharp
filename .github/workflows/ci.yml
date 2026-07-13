@@ -1,69 +1,82 @@
 name: CI
+
+permissions:
+  contents: read
+
+concurrency:
+  group: csharp-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
-      - '**'
-      - '!integrated/**'
-      - '!stl-preview-head/**'
-      - '!stl-preview-base/**'
-      - '!generated'
-      - '!codegen/**'
-      - 'codegen/stl/**'
+      - "**"
+      - "!integrated/**"
+      - "!stl-preview-head/**"
+      - "!stl-preview-base/**"
+      - "!generated"
+      - "!codegen/**"
+      - "codegen/stl/**"
   pull_request:
     branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+      - "stl-preview-head/**"
+      - "stl-preview-base/**"
 
 jobs:
   lint:
+    name: Lint
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
-    name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/x-twitter-scraper-csharp' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
-
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v5
+      - name: Check Out Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
 
-      - name: Run bootstrap
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Bootstrap
         run: ./scripts/bootstrap
 
-      - name: Run lints
+      - name: Run Lints
         run: ./scripts/lint
+
   build:
+    name: Build
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
-    name: build
-    runs-on: ${{ github.repository == 'stainless-sdks/x-twitter-scraper-csharp' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
-
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v5
+      - name: Check Out Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
+
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+        with:
+          dotnet-version: "10.0.x"
 
       - name: Build SDK
         run: ./scripts/build
 
   test:
+    name: Test
+    runs-on: windows-2025
     timeout-minutes: 10
-    name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/x-twitter-scraper-csharp' && 'depot-windows-2022' || 'windows-latest' }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v5
+      - name: Check Out Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
 
-      - name: Run tests
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Run Tests
         run: ./scripts/test
         shell: bash
