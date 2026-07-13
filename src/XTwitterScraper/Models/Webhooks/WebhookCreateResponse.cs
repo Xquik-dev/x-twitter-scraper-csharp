@@ -53,6 +53,9 @@ public sealed record class WebhookCreateResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Plaintext HMAC signing secret returned only at creation.
+    /// </summary>
     public required string Secret
     {
         get

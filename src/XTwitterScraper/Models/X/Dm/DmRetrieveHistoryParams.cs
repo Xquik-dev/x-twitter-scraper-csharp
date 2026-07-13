@@ -20,6 +20,20 @@ public record class DmRetrieveHistoryParams : ParamsBase
     public string? UserID { get; init; }
 
     /// <summary>
+    /// X handle (without the `@` prefix) of the connected X account used to read
+    /// the conversation. The account must be a participant in the conversation.
+    /// </summary>
+    public required string Account
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullClass<string>("account");
+        }
+        init { this._rawQueryData.Set("account", value); }
+    }
+
+    /// <summary>
     /// Pagination cursor for DM history
     /// </summary>
     public string? Cursor
@@ -144,13 +158,13 @@ public record class DmRetrieveHistoryParams : ParamsBase
                 + string.Format("/x/dm/{0}/history", this.UserID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

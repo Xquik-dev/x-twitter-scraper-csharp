@@ -20,7 +20,7 @@ public class AccountDeleteParamsTest : TestBase
     {
         AccountDeleteParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts/id"), url));
     }

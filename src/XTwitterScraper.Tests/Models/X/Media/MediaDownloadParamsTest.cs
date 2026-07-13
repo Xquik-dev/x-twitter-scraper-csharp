@@ -11,13 +11,18 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams
         {
+            TweetID = "1234567890",
             TweetIds = ["1234567890", "1234567891"],
             TweetInput = "https://x.com/elonmusk/status/1234567890",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
         };
 
+        string expectedTweetID = "1234567890";
         List<string> expectedTweetIds = ["1234567890", "1234567891"];
         string expectedTweetInput = "https://x.com/elonmusk/status/1234567890";
+        string expectedTweetUrl = "https://x.com/elonmusk/status/1234567890";
 
+        Assert.Equal(expectedTweetID, parameters.TweetID);
         Assert.NotNull(parameters.TweetIds);
         Assert.Equal(expectedTweetIds.Count, parameters.TweetIds.Count);
         for (int i = 0; i < expectedTweetIds.Count; i++)
@@ -25,6 +30,7 @@ public class MediaDownloadParamsTest : TestBase
             Assert.Equal(expectedTweetIds[i], parameters.TweetIds[i]);
         }
         Assert.Equal(expectedTweetInput, parameters.TweetInput);
+        Assert.Equal(expectedTweetUrl, parameters.TweetUrl);
     }
 
     [Fact]
@@ -32,10 +38,14 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams { };
 
+        Assert.Null(parameters.TweetID);
+        Assert.False(parameters.RawBodyData.ContainsKey("tweetId"));
         Assert.Null(parameters.TweetIds);
         Assert.False(parameters.RawBodyData.ContainsKey("tweetIds"));
         Assert.Null(parameters.TweetInput);
         Assert.False(parameters.RawBodyData.ContainsKey("tweetInput"));
+        Assert.Null(parameters.TweetUrl);
+        Assert.False(parameters.RawBodyData.ContainsKey("tweetUrl"));
     }
 
     [Fact]
@@ -44,14 +54,20 @@ public class MediaDownloadParamsTest : TestBase
         var parameters = new MediaDownloadParams
         {
             // Null should be interpreted as omitted for these properties
+            TweetID = null,
             TweetIds = null,
             TweetInput = null,
+            TweetUrl = null,
         };
 
+        Assert.Null(parameters.TweetID);
+        Assert.False(parameters.RawBodyData.ContainsKey("tweetId"));
         Assert.Null(parameters.TweetIds);
         Assert.False(parameters.RawBodyData.ContainsKey("tweetIds"));
         Assert.Null(parameters.TweetInput);
         Assert.False(parameters.RawBodyData.ContainsKey("tweetInput"));
+        Assert.Null(parameters.TweetUrl);
+        Assert.False(parameters.RawBodyData.ContainsKey("tweetUrl"));
     }
 
     [Fact]
@@ -59,7 +75,7 @@ public class MediaDownloadParamsTest : TestBase
     {
         MediaDownloadParams parameters = new();
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/media/download"), url));
     }
@@ -69,8 +85,10 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams
         {
+            TweetID = "1234567890",
             TweetIds = ["1234567890", "1234567891"],
             TweetInput = "https://x.com/elonmusk/status/1234567890",
+            TweetUrl = "https://x.com/elonmusk/status/1234567890",
         };
 
         MediaDownloadParams copied = new(parameters);

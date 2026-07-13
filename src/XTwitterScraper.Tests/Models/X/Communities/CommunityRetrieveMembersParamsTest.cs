@@ -12,12 +12,12 @@ public class CommunityRetrieveMembersParamsTest : TestBase
         {
             ID = "id",
             Cursor = "cursor",
-            PageSize = 0,
+            PageSize = 20,
         };
 
         string expectedID = "id";
         string expectedCursor = "cursor";
-        long expectedPageSize = 0;
+        long expectedPageSize = 20;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedCursor, parameters.Cursor);
@@ -60,15 +60,15 @@ public class CommunityRetrieveMembersParamsTest : TestBase
         {
             ID = "id",
             Cursor = "cursor",
-            PageSize = 0,
+            PageSize = 20,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/x/communities/id/members?cursor=cursor&pageSize=0"
+                    "https://xquik.com/api/v1/x/communities/id/members?cursor=cursor&pageSize=20"
                 ),
                 url
             )
@@ -82,7 +82,7 @@ public class CommunityRetrieveMembersParamsTest : TestBase
         {
             ID = "id",
             Cursor = "cursor",
-            PageSize = 0,
+            PageSize = 20,
         };
 
         CommunityRetrieveMembersParams copied = new(parameters);

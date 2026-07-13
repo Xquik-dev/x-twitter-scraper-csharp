@@ -30,7 +30,7 @@ public class TicketCreateParamsTest : TestBase
             Subject = "Cannot connect X account",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/support/tickets"), url));
     }

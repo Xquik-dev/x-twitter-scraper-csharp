@@ -9,9 +9,13 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
+        var model = new TicketUpdateResponse
+        {
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = "resolved",
+        };
 
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "resolved";
 
         Assert.Equal(expectedPublicID, model.PublicID);
@@ -21,7 +25,11 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
+        var model = new TicketUpdateResponse
+        {
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = "resolved",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketUpdateResponse>(
@@ -35,7 +43,11 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
+        var model = new TicketUpdateResponse
+        {
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = "resolved",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketUpdateResponse>(
@@ -44,7 +56,7 @@ public class TicketUpdateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "resolved";
 
         Assert.Equal(expectedPublicID, deserialized.PublicID);
@@ -54,7 +66,11 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
+        var model = new TicketUpdateResponse
+        {
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = "resolved",
+        };
 
         model.Validate();
     }
@@ -110,7 +126,11 @@ public class TicketUpdateResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TicketUpdateResponse { PublicID = "tk_abc123", Status = "resolved" };
+        var model = new TicketUpdateResponse
+        {
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = "resolved",
+        };
 
         TicketUpdateResponse copied = new(model);
 

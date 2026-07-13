@@ -13,6 +13,7 @@ public class ListRetrieveTweetsParamsTest : TestBase
             ID = "id",
             Cursor = "cursor",
             IncludeReplies = true,
+            PageSize = 1,
             SinceTime = "sinceTime",
             UntilTime = "untilTime",
         };
@@ -20,12 +21,14 @@ public class ListRetrieveTweetsParamsTest : TestBase
         string expectedID = "id";
         string expectedCursor = "cursor";
         bool expectedIncludeReplies = true;
+        long expectedPageSize = 1;
         string expectedSinceTime = "sinceTime";
         string expectedUntilTime = "untilTime";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedIncludeReplies, parameters.IncludeReplies);
+        Assert.Equal(expectedPageSize, parameters.PageSize);
         Assert.Equal(expectedSinceTime, parameters.SinceTime);
         Assert.Equal(expectedUntilTime, parameters.UntilTime);
     }
@@ -39,6 +42,8 @@ public class ListRetrieveTweetsParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.IncludeReplies);
         Assert.False(parameters.RawQueryData.ContainsKey("includeReplies"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
         Assert.Null(parameters.SinceTime);
         Assert.False(parameters.RawQueryData.ContainsKey("sinceTime"));
         Assert.Null(parameters.UntilTime);
@@ -55,6 +60,7 @@ public class ListRetrieveTweetsParamsTest : TestBase
             // Null should be interpreted as omitted for these properties
             Cursor = null,
             IncludeReplies = null,
+            PageSize = null,
             SinceTime = null,
             UntilTime = null,
         };
@@ -63,6 +69,8 @@ public class ListRetrieveTweetsParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.IncludeReplies);
         Assert.False(parameters.RawQueryData.ContainsKey("includeReplies"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
         Assert.Null(parameters.SinceTime);
         Assert.False(parameters.RawQueryData.ContainsKey("sinceTime"));
         Assert.Null(parameters.UntilTime);
@@ -77,16 +85,17 @@ public class ListRetrieveTweetsParamsTest : TestBase
             ID = "id",
             Cursor = "cursor",
             IncludeReplies = true,
+            PageSize = 1,
             SinceTime = "sinceTime",
             UntilTime = "untilTime",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/x/lists/id/tweets?cursor=cursor&includeReplies=true&sinceTime=sinceTime&untilTime=untilTime"
+                    "https://xquik.com/api/v1/x/lists/id/tweets?cursor=cursor&includeReplies=true&pageSize=1&sinceTime=sinceTime&untilTime=untilTime"
                 ),
                 url
             )
@@ -101,6 +110,7 @@ public class ListRetrieveTweetsParamsTest : TestBase
             ID = "id",
             Cursor = "cursor",
             IncludeReplies = true,
+            PageSize = 1,
             SinceTime = "sinceTime",
             UntilTime = "untilTime",
         };

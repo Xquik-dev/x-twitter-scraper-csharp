@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Radar;
 
@@ -16,7 +16,7 @@ namespace XTwitterScraper.Models.Radar;
 public sealed record class RadarItem : JsonModel
 {
     /// <summary>
-    /// Internal numeric identifier (stringified bigint).
+    /// Radar item identifier.
     /// </summary>
     public required string ID
     {
@@ -38,12 +38,12 @@ public sealed record class RadarItem : JsonModel
         init { this._rawData.Set("category", value); }
     }
 
-    public required DateTimeOffset CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
         }
         init { this._rawData.Set("createdAt", value); }
     }
@@ -83,12 +83,12 @@ public sealed record class RadarItem : JsonModel
         }
     }
 
-    public required DateTimeOffset PublishedAt
+    public required System::DateTimeOffset PublishedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("publishedAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("publishedAt");
         }
         init { this._rawData.Set("publishedAt", value); }
     }
@@ -271,7 +271,7 @@ sealed class RadarItemCategoryConverter : JsonConverter<RadarItemCategory>
 {
     public override RadarItemCategory Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -332,7 +332,7 @@ sealed class RadarItemSourceConverter : JsonConverter<RadarItemSource>
 {
     public override RadarItemSource Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

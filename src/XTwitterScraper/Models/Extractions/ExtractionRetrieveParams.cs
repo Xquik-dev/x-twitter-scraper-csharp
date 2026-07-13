@@ -20,14 +20,14 @@ public record class ExtractionRetrieveParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Cursor for keyset pagination
+    /// Cursor for keyset pagination from prior response next_cursor
     /// </summary>
-    public string? After
+    public string? Cursor
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("after");
+            return this._rawQueryData.GetNullableClass<string>("cursor");
         }
         init
         {
@@ -36,7 +36,7 @@ public record class ExtractionRetrieveParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData.Set("after", value);
+            this._rawQueryData.Set("cursor", value);
         }
     }
 
@@ -143,13 +143,13 @@ public record class ExtractionRetrieveParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/extractions/{0}", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

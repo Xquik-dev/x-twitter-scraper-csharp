@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Services.Monitors;
 using Monitors = XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Services;
@@ -32,6 +33,13 @@ public sealed class MonitorService : IMonitorService
         _client = client;
 
         _withRawResponse = new(() => new MonitorServiceWithRawResponse(client.WithRawResponse));
+        _keywords = new(() => new KeywordService(client));
+    }
+
+    readonly Lazy<IKeywordService> _keywords;
+    public IKeywordService Keywords
+    {
+        get { return _keywords.Value; }
     }
 
     /// <inheritdoc/>
@@ -145,6 +153,14 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     public MonitorServiceWithRawResponse(IXTwitterScraperClientWithRawResponse client)
     {
         _client = client;
+
+        _keywords = new(() => new KeywordServiceWithRawResponse(client));
+    }
+
+    readonly Lazy<IKeywordServiceWithRawResponse> _keywords;
+    public IKeywordServiceWithRawResponse Keywords
+    {
+        get { return _keywords.Value; }
     }
 
     /// <inheritdoc/>

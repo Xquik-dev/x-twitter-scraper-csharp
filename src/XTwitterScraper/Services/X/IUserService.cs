@@ -9,11 +9,9 @@ using XTwitterScraper.Services.X.Users;
 namespace XTwitterScraper.Services.X;
 
 /// <summary>
-/// Look up, search, and explore user profiles and relationships
-///
-/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
 /// </summary>
 public interface IUserService
 {
@@ -48,9 +46,24 @@ public interface IUserService
     );
 
     /// <summary>
+    /// Remove follower
+    /// </summary>
+    Task<UserRemoveFollowerResponse> RemoveFollower(
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RemoveFollower(UserRemoveFollowerParams, CancellationToken)"/>
+    Task<UserRemoveFollowerResponse> RemoveFollower(
+        string id,
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Look up multiple users by IDs in one call
     /// </summary>
-    Task<PaginatedUsers> RetrieveBatch(
+    Task<UserRetrieveBatchResponse> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -146,6 +159,21 @@ public interface IUserService
     );
 
     /// <summary>
+    /// Returns the user's timeline with replies included by default.
+    /// </summary>
+    Task<PaginatedTweets> RetrieveReplies(
+        UserRetrieveRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RetrieveReplies(UserRetrieveRepliesParams, CancellationToken)"/>
+    Task<PaginatedTweets> RetrieveReplies(
+        string id,
+        UserRetrieveRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Search users by name or username
     /// </summary>
     Task<PaginatedUsers> RetrieveSearch(
@@ -216,10 +244,26 @@ public interface IUserServiceWithRawResponse
     );
 
     /// <summary>
+    /// Returns a raw HTTP response for <c>post /x/users/{id}/remove-follower</c>, but is otherwise the
+    /// same as <see cref="IUserService.RemoveFollower(UserRemoveFollowerParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<UserRemoveFollowerResponse>> RemoveFollower(
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RemoveFollower(UserRemoveFollowerParams, CancellationToken)"/>
+    Task<HttpResponse<UserRemoveFollowerResponse>> RemoveFollower(
+        string id,
+        UserRemoveFollowerParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns a raw HTTP response for <c>get /x/users/batch</c>, but is otherwise the
     /// same as <see cref="IUserService.RetrieveBatch(UserRetrieveBatchParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedUsers>> RetrieveBatch(
+    Task<HttpResponse<UserRetrieveBatchResponse>> RetrieveBatch(
         UserRetrieveBatchParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -317,6 +361,22 @@ public interface IUserServiceWithRawResponse
     Task<HttpResponse<PaginatedTweets>> RetrieveMentions(
         string id,
         UserRetrieveMentionsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/users/{id}/replies</c>, but is otherwise the
+    /// same as <see cref="IUserService.RetrieveReplies(UserRetrieveRepliesParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<PaginatedTweets>> RetrieveReplies(
+        UserRetrieveRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RetrieveReplies(UserRetrieveRepliesParams, CancellationToken)"/>
+    Task<HttpResponse<PaginatedTweets>> RetrieveReplies(
+        string id,
+        UserRetrieveRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

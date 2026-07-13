@@ -19,8 +19,11 @@ public class WebhookListResponseTest : TestBase
                 new()
                 {
                     ID = "42",
+                    ConsecutiveFailures = 0,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    DeliveryStatus = DeliveryStatus.Active,
                     EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                    FailureHardCap = 200,
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -32,8 +35,11 @@ public class WebhookListResponseTest : TestBase
             new()
             {
                 ID = "42",
+                ConsecutiveFailures = 0,
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                DeliveryStatus = DeliveryStatus.Active,
                 EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                FailureHardCap = 200,
                 IsActive = true,
                 Url = "https://example.com/webhooks/xquik",
             },
@@ -56,8 +62,11 @@ public class WebhookListResponseTest : TestBase
                 new()
                 {
                     ID = "42",
+                    ConsecutiveFailures = 0,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    DeliveryStatus = DeliveryStatus.Active,
                     EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                    FailureHardCap = 200,
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -83,8 +92,11 @@ public class WebhookListResponseTest : TestBase
                 new()
                 {
                     ID = "42",
+                    ConsecutiveFailures = 0,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    DeliveryStatus = DeliveryStatus.Active,
                     EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                    FailureHardCap = 200,
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -103,8 +115,11 @@ public class WebhookListResponseTest : TestBase
             new()
             {
                 ID = "42",
+                ConsecutiveFailures = 0,
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                DeliveryStatus = DeliveryStatus.Active,
                 EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                FailureHardCap = 200,
                 IsActive = true,
                 Url = "https://example.com/webhooks/xquik",
             },
@@ -127,8 +142,11 @@ public class WebhookListResponseTest : TestBase
                 new()
                 {
                     ID = "42",
+                    ConsecutiveFailures = 0,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    DeliveryStatus = DeliveryStatus.Active,
                     EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                    FailureHardCap = 200,
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },
@@ -148,8 +166,11 @@ public class WebhookListResponseTest : TestBase
                 new()
                 {
                     ID = "42",
+                    ConsecutiveFailures = 0,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+                    DeliveryStatus = DeliveryStatus.Active,
                     EventTypes = [EventType.TweetNew, EventType.TweetReply],
+                    FailureHardCap = 200,
                     IsActive = true,
                     Url = "https://example.com/webhooks/xquik",
                 },

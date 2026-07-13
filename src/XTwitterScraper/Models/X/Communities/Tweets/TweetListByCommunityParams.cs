@@ -40,6 +40,31 @@ public record class TweetListByCommunityParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum items requested from this page (1-100, default 20). The response can
+    /// contain fewer items because the source returned fewer, filters removed items,
+    /// or remaining credits cover fewer results. Keep requesting next_cursor while
+    /// has_next_page is true, even when a page is empty. The deprecated limit and
+    /// count aliases remain accepted.
+    /// </summary>
+    public long? PageSize
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
     public TweetListByCommunityParams() { }
 
 #pragma warning disable CS8618
@@ -123,13 +148,13 @@ public record class TweetListByCommunityParams : ParamsBase
                 + string.Format("/x/communities/{0}/tweets", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

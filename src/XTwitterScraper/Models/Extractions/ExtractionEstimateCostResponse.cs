@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -55,12 +57,12 @@ public sealed record class ExtractionEstimateCostResponse : JsonModel
         init { this._rawData.Set("estimatedResults", value); }
     }
 
-    public required string Source
+    public required ApiEnum<string, Source> Source
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("source");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Source>>("source");
         }
         init { this._rawData.Set("source", value); }
     }
@@ -90,7 +92,7 @@ public sealed record class ExtractionEstimateCostResponse : JsonModel
         _ = this.CreditsAvailable;
         _ = this.CreditsRequired;
         _ = this.EstimatedResults;
-        _ = this.Source;
+        this.Source.Validate();
         _ = this.ResolvedXUserID;
     }
 
@@ -132,4 +134,65 @@ class ExtractionEstimateCostResponseFromRaw : IFromRawJson<ExtractionEstimateCos
     public ExtractionEstimateCostResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => ExtractionEstimateCostResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(SourceConverter))]
+public enum Source
+{
+    Followers,
+    Following,
+    PaginationCap,
+    Posts,
+    QuoteCount,
+    ReplyCount,
+    ResultsLimit,
+    RetweetCount,
+    Unknown,
+}
+
+sealed class SourceConverter : JsonConverter<Source>
+{
+    public override Source Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "followers" => Source.Followers,
+            "following" => Source.Following,
+            "paginationCap" => Source.PaginationCap,
+            "posts" => Source.Posts,
+            "quoteCount" => Source.QuoteCount,
+            "replyCount" => Source.ReplyCount,
+            "resultsLimit" => Source.ResultsLimit,
+            "retweetCount" => Source.RetweetCount,
+            "unknown" => Source.Unknown,
+            _ => (Source)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Source value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Source.Followers => "followers",
+                Source.Following => "following",
+                Source.PaginationCap => "paginationCap",
+                Source.Posts => "posts",
+                Source.QuoteCount => "quoteCount",
+                Source.ReplyCount => "replyCount",
+                Source.ResultsLimit => "resultsLimit",
+                Source.RetweetCount => "retweetCount",
+                Source.Unknown => "unknown",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

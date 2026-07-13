@@ -1,6 +1,4 @@
 using System;
-using System.Text;
-using XTwitterScraper.Core;
 using XTwitterScraper.Models.X.Profile;
 
 namespace XTwitterScraper.Tests.Models.X.Profile;
@@ -10,15 +8,17 @@ public class ProfileUpdateBannerParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        BinaryContent file = Encoding.UTF8.GetBytes("Example data");
-
-        var parameters = new ProfileUpdateBannerParams { Account = "@elonmusk", File = file };
+        var parameters = new ProfileUpdateBannerParams
+        {
+            Account = "@elonmusk",
+            UrlValue = "https://example.com/banner.png",
+        };
 
         string expectedAccount = "@elonmusk";
-        BinaryContent expectedFile = file;
+        string expectedUrlValue = "https://example.com/banner.png";
 
         Assert.Equal(expectedAccount, parameters.Account);
-        Assert.Equal(expectedFile, parameters.File);
+        Assert.Equal(expectedUrlValue, parameters.UrlValue);
     }
 
     [Fact]
@@ -27,10 +27,10 @@ public class ProfileUpdateBannerParamsTest : TestBase
         ProfileUpdateBannerParams parameters = new()
         {
             Account = "@elonmusk",
-            File = Encoding.UTF8.GetBytes("Example data"),
+            UrlValue = "https://example.com/banner.png",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/profile/banner"), url));
     }
@@ -41,7 +41,7 @@ public class ProfileUpdateBannerParamsTest : TestBase
         var parameters = new ProfileUpdateBannerParams
         {
             Account = "@elonmusk",
-            File = Encoding.UTF8.GetBytes("Example data"),
+            UrlValue = "https://example.com/banner.png",
         };
 
         ProfileUpdateBannerParams copied = new(parameters);

@@ -13,20 +13,17 @@ public class AccountCreateParamsTest : TestBase
             Email = "user@example.com",
             Password = "s3cur3Pa$$w0rd",
             Username = "elonmusk",
-            ProxyCountry = "US",
             TotpSecret = "JBSWY3DPEHPK3PXP",
         };
 
         string expectedEmail = "user@example.com";
         string expectedPassword = "s3cur3Pa$$w0rd";
         string expectedUsername = "elonmusk";
-        string expectedProxyCountry = "US";
         string expectedTotpSecret = "JBSWY3DPEHPK3PXP";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
         Assert.Equal(expectedUsername, parameters.Username);
-        Assert.Equal(expectedProxyCountry, parameters.ProxyCountry);
         Assert.Equal(expectedTotpSecret, parameters.TotpSecret);
     }
 
@@ -40,8 +37,6 @@ public class AccountCreateParamsTest : TestBase
             Username = "elonmusk",
         };
 
-        Assert.Null(parameters.ProxyCountry);
-        Assert.False(parameters.RawBodyData.ContainsKey("proxy_country"));
         Assert.Null(parameters.TotpSecret);
         Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
     }
@@ -56,12 +51,9 @@ public class AccountCreateParamsTest : TestBase
             Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
-            ProxyCountry = null,
             TotpSecret = null,
         };
 
-        Assert.Null(parameters.ProxyCountry);
-        Assert.False(parameters.RawBodyData.ContainsKey("proxy_country"));
         Assert.Null(parameters.TotpSecret);
         Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
     }
@@ -76,7 +68,7 @@ public class AccountCreateParamsTest : TestBase
             Username = "elonmusk",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts"), url));
     }
@@ -89,7 +81,6 @@ public class AccountCreateParamsTest : TestBase
             Email = "user@example.com",
             Password = "s3cur3Pa$$w0rd",
             Username = "elonmusk",
-            ProxyCountry = "US",
             TotpSecret = "JBSWY3DPEHPK3PXP",
         };
 

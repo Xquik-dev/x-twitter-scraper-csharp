@@ -11,9 +11,13 @@ public class TicketUpdateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Resolved };
+        var parameters = new TicketUpdateParams
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = Status.Resolved,
+        };
 
-        string expectedID = "id";
+        string expectedID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         ApiEnum<string, Status> expectedStatus = Status.Resolved;
 
         Assert.Equal(expectedID, parameters.ID);
@@ -23,19 +27,30 @@ public class TicketUpdateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        TicketUpdateParams parameters = new() { ID = "id", Status = Status.Resolved };
+        TicketUpdateParams parameters = new()
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = Status.Resolved,
+        };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
-            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/support/tickets/id"), url)
+            TestBase.UrisEqual(
+                new Uri("https://xquik.com/api/v1/support/tickets/tkt_a1b2c3d4e5f6a1b2c3d4e5f6"),
+                url
+            )
         );
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new TicketUpdateParams { ID = "id", Status = Status.Resolved };
+        var parameters = new TicketUpdateParams
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Status = Status.Resolved,
+        };
 
         TicketUpdateParams copied = new(parameters);
 

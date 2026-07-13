@@ -30,7 +30,7 @@ public interface ITweetService
     ITweetService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// List tweets across all communities
+    /// Requires a Community ID and keyword query.
     /// </summary>
     Task<PaginatedTweets> List(
         TweetListParams parameters,

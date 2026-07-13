@@ -8,7 +8,7 @@ public class TweetServiceTest : TestBase
     public async Task List_Works()
     {
         var paginatedTweets = await this.client.X.Communities.Tweets.List(
-            new() { Q = "q" },
+            new() { CommunityID = "321669910225", Q = "q" },
             TestContext.Current.CancellationToken
         );
         paginatedTweets.Validate();

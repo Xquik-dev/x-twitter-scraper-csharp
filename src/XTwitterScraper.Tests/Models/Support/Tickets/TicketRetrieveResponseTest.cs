@@ -23,7 +23,7 @@ public class TicketRetrieveResponseTest : TestBase
                     Sender = "user",
                 },
             ],
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -39,7 +39,7 @@ public class TicketRetrieveResponseTest : TestBase
                 Sender = "user",
             },
         ];
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "open";
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
@@ -72,7 +72,7 @@ public class TicketRetrieveResponseTest : TestBase
                     Sender = "user",
                 },
             ],
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -102,7 +102,7 @@ public class TicketRetrieveResponseTest : TestBase
                     Sender = "user",
                 },
             ],
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -125,7 +125,7 @@ public class TicketRetrieveResponseTest : TestBase
                 Sender = "user",
             },
         ];
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedStatus = "open";
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
@@ -158,7 +158,7 @@ public class TicketRetrieveResponseTest : TestBase
                     Sender = "user",
                 },
             ],
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
@@ -254,7 +254,7 @@ public class TicketRetrieveResponseTest : TestBase
                     Sender = "user",
                 },
             ],
-            PublicID = "tk_abc123",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Status = "open",
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),

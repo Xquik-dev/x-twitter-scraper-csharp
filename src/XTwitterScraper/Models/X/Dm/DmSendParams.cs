@@ -50,6 +50,9 @@ public record class DmSendParams : ParamsBase
         init { this._rawBodyData.Set("text", value); }
     }
 
+    /// <summary>
+    /// Optional array containing exactly 1 uploaded media ID.
+    /// </summary>
     public IReadOnlyList<string>? MediaIds
     {
         get
@@ -68,24 +71,6 @@ public record class DmSendParams : ParamsBase
                 "media_ids",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
-        }
-    }
-
-    public string? ReplyToMessageID
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("reply_to_message_id");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("reply_to_message_id", value);
         }
     }
 
@@ -181,7 +166,7 @@ public record class DmSendParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/dm/{0}", this.UserID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -196,7 +181,7 @@ public record class DmSendParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

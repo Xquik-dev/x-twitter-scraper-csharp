@@ -41,7 +41,7 @@ public class ExtractionServiceTest : TestBase
     {
         await this.client.Extractions.ExportResults(
             "id",
-            new(),
+            new() { Format = Format.Csv },
             TestContext.Current.CancellationToken
         );
     }

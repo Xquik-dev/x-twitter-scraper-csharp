@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -8,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -63,6 +63,91 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
+    /// Alternative words or quoted phrases for estimated results. Separate with
+    /// spaces, commas, or lines.
+    /// </summary>
+    public string? AnyWords
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("anyWords");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("anyWords", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo bounding box used for estimation, e.g. -74.1 40.6 -73.9 40.8 (tweet_search_extractor)
+    /// </summary>
+    public string? BoundingBox
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("boundingBox");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("boundingBox", value);
+        }
+    }
+
+    /// <summary>
+    /// Cashtags applied to the estimate, separated by spaces, commas, or lines.
+    /// </summary>
+    public string? Cashtags
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("cashtags");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("cashtags", value);
+        }
+    }
+
+    /// <summary>
+    /// Conversation ID filter used for estimation (tweet_search_extractor)
+    /// </summary>
+    public string? ConversationID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("conversationId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("conversationId", value);
+        }
+    }
+
+    /// <summary>
     /// Exact phrase filter for search estimation
     /// </summary>
     public string? ExactPhrase
@@ -84,7 +169,8 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Words excluded from estimated search results
+    /// Words or quoted phrases excluded from estimated results. Separate with spaces,
+    /// commas, or lines.
     /// </summary>
     public string? ExcludeWords
     {
@@ -104,6 +190,430 @@ public record class ExtractionEstimateCostParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Estimate only tweets from this author username (tweet_search_extractor)
+    /// </summary>
+    public string? FromUser
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("fromUser");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("fromUser", value);
+        }
+    }
+
+    /// <summary>
+    /// Hashtags applied to the estimate, separated by spaces, commas, or lines.
+    /// </summary>
+    public string? Hashtags
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("hashtags");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("hashtags", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate only replies to this tweet ID (tweet_search_extractor)
+    /// </summary>
+    public string? InReplyToTweetID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("inReplyToTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("inReplyToTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Language code used for estimate filtering (tweet_search_extractor)
+    /// </summary>
+    public string? Language
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("language");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("language", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate search results within this list ID (tweet_search_extractor)
+    /// </summary>
+    public string? ListID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("listId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("listId", value);
+        }
+    }
+
+    /// <summary>
+    /// Media type used for estimate filtering (tweet_search_extractor)
+    /// </summary>
+    public ApiEnum<string, MediaType>? MediaType
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<ApiEnum<string, MediaType>>("mediaType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("mediaType", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate tweets mentioning this username (tweet_search_extractor)
+    /// </summary>
+    public string? Mentioning
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("mentioning");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("mentioning", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum likes threshold for estimated results (tweet_search_extractor)
+    /// </summary>
+    public long? MinFaves
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("minFaves");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("minFaves", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum quote count threshold for estimated results (tweet_search_extractor)
+    /// </summary>
+    public long? MinQuotes
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("minQuotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("minQuotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum replies threshold for estimated results (tweet_search_extractor)
+    /// </summary>
+    public long? MinReplies
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("minReplies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("minReplies", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum retweets threshold for estimated results (tweet_search_extractor)
+    /// </summary>
+    public long? MinRetweets
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("minRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("minRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate search results within this place ID (tweet_search_extractor)
+    /// </summary>
+    public string? Place
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("place");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("place", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate search results within this country code (tweet_search_extractor)
+    /// </summary>
+    public string? PlaceCountry
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("placeCountry");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("placeCountry", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo point radius used for estimation, e.g. -73.99 40.73 25mi (tweet_search_extractor)
+    /// </summary>
+    public string? PointRadius
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("pointRadius");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("pointRadius", value);
+        }
+    }
+
+    /// <summary>
+    /// Quote mode used for estimation (tweet_search_extractor)
+    /// </summary>
+    public ApiEnum<string, Quotes>? Quotes
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<ApiEnum<string, Quotes>>("quotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("quotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate only quotes of this tweet ID (tweet_search_extractor)
+    /// </summary>
+    public string? QuotesOfTweetID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("quotesOfTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("quotesOfTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Reply mode used for estimation (tweet_search_extractor)
+    /// </summary>
+    public ApiEnum<string, Replies>? Replies
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<ApiEnum<string, Replies>>("replies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("replies", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum number of results to estimate. When set, the estimate caps projected
+    /// results to this value.
+    /// </summary>
+    public long? ResultsLimit
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<long>("resultsLimit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("resultsLimit", value);
+        }
+    }
+
+    /// <summary>
+    /// Retweet mode used for estimation (tweet_search_extractor)
+    /// </summary>
+    public ApiEnum<string, Retweets>? Retweets
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<ApiEnum<string, Retweets>>("retweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("retweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate only retweets of this tweet ID (tweet_search_extractor)
+    /// </summary>
+    public string? RetweetsOfTweetID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("retweetsOfTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("retweetsOfTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Required for tweet_search_extractor &amp; community_search.
+    /// </summary>
     public string? SearchQuery
     {
         get
@@ -122,6 +632,30 @@ public record class ExtractionEstimateCostParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Estimate start date in YYYY-MM-DD format (tweet_search_extractor)
+    /// </summary>
+    public string? SinceDate
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("sinceDate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("sinceDate", value);
+        }
+    }
+
+    /// <summary>
+    /// Required for community_post_extractor &amp; community_search.
+    /// </summary>
     public string? TargetCommunityID
     {
         get
@@ -140,6 +674,9 @@ public record class ExtractionEstimateCostParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Required for list_follower_explorer, list_member_extractor &amp; list_post_extractor.
+    /// </summary>
     public string? TargetListID
     {
         get
@@ -158,6 +695,9 @@ public record class ExtractionEstimateCostParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Required for space_explorer.
+    /// </summary>
     public string? TargetSpaceID
     {
         get
@@ -209,6 +749,90 @@ public record class ExtractionEstimateCostParams : ParamsBase
             }
 
             this._rawBodyData.Set("targetUsername", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate replies sent to this username (tweet_search_extractor)
+    /// </summary>
+    public string? ToUser
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("toUser");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("toUser", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate end date in YYYY-MM-DD format (tweet_search_extractor)
+    /// </summary>
+    public string? UntilDate
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("untilDate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("untilDate", value);
+        }
+    }
+
+    /// <summary>
+    /// URL substring or domain filter used for estimation (tweet_search_extractor)
+    /// </summary>
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("url", value);
+        }
+    }
+
+    /// <summary>
+    /// Estimate only verified authors (tweet_search_extractor)
+    /// </summary>
+    public bool? VerifiedOnly
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("verifiedOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("verifiedOnly", value);
         }
     }
 
@@ -290,11 +914,13 @@ public record class ExtractionEstimateCostParams : ParamsBase
             && this._rawBodyData.Equals(other._rawBodyData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/extractions/estimate")
+        return new System::UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + "/extractions/estimate"
+        )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -309,7 +935,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -333,6 +959,7 @@ public enum ExtractionEstimateCostParamsToolType
     CommunityModeratorExplorer,
     CommunityPostExtractor,
     CommunitySearch,
+    Favoriters,
     FollowerExplorer,
     FollowingExplorer,
     ListFollowerExplorer,
@@ -347,6 +974,8 @@ public enum ExtractionEstimateCostParamsToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserLikes,
+    UserMedia,
     VerifiedFollowerExplorer,
 }
 
@@ -355,7 +984,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
 {
     public override ExtractionEstimateCostParamsToolType Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -368,6 +997,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
             "community_post_extractor" =>
                 ExtractionEstimateCostParamsToolType.CommunityPostExtractor,
             "community_search" => ExtractionEstimateCostParamsToolType.CommunitySearch,
+            "favoriters" => ExtractionEstimateCostParamsToolType.Favoriters,
             "follower_explorer" => ExtractionEstimateCostParamsToolType.FollowerExplorer,
             "following_explorer" => ExtractionEstimateCostParamsToolType.FollowingExplorer,
             "list_follower_explorer" => ExtractionEstimateCostParamsToolType.ListFollowerExplorer,
@@ -382,6 +1012,8 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
             "space_explorer" => ExtractionEstimateCostParamsToolType.SpaceExplorer,
             "thread_extractor" => ExtractionEstimateCostParamsToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionEstimateCostParamsToolType.TweetSearchExtractor,
+            "user_likes" => ExtractionEstimateCostParamsToolType.UserLikes,
+            "user_media" => ExtractionEstimateCostParamsToolType.UserMedia,
             "verified_follower_explorer" =>
                 ExtractionEstimateCostParamsToolType.VerifiedFollowerExplorer,
             _ => (ExtractionEstimateCostParamsToolType)(-1),
@@ -405,6 +1037,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
                 ExtractionEstimateCostParamsToolType.CommunityPostExtractor =>
                     "community_post_extractor",
                 ExtractionEstimateCostParamsToolType.CommunitySearch => "community_search",
+                ExtractionEstimateCostParamsToolType.Favoriters => "favoriters",
                 ExtractionEstimateCostParamsToolType.FollowerExplorer => "follower_explorer",
                 ExtractionEstimateCostParamsToolType.FollowingExplorer => "following_explorer",
                 ExtractionEstimateCostParamsToolType.ListFollowerExplorer =>
@@ -421,8 +1054,207 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
                 ExtractionEstimateCostParamsToolType.ThreadExtractor => "thread_extractor",
                 ExtractionEstimateCostParamsToolType.TweetSearchExtractor =>
                     "tweet_search_extractor",
+                ExtractionEstimateCostParamsToolType.UserLikes => "user_likes",
+                ExtractionEstimateCostParamsToolType.UserMedia => "user_media",
                 ExtractionEstimateCostParamsToolType.VerifiedFollowerExplorer =>
                     "verified_follower_explorer",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Media type used for estimate filtering (tweet_search_extractor)
+/// </summary>
+[JsonConverter(typeof(MediaTypeConverter))]
+public enum MediaType
+{
+    Images,
+    Videos,
+    Gifs,
+    Media,
+    Links,
+    None,
+}
+
+sealed class MediaTypeConverter : JsonConverter<MediaType>
+{
+    public override MediaType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "images" => MediaType.Images,
+            "videos" => MediaType.Videos,
+            "gifs" => MediaType.Gifs,
+            "media" => MediaType.Media,
+            "links" => MediaType.Links,
+            "none" => MediaType.None,
+            _ => (MediaType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MediaType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MediaType.Images => "images",
+                MediaType.Videos => "videos",
+                MediaType.Gifs => "gifs",
+                MediaType.Media => "media",
+                MediaType.Links => "links",
+                MediaType.None => "none",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Quote mode used for estimation (tweet_search_extractor)
+/// </summary>
+[JsonConverter(typeof(QuotesConverter))]
+public enum Quotes
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class QuotesConverter : JsonConverter<Quotes>
+{
+    public override Quotes Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => Quotes.Include,
+            "exclude" => Quotes.Exclude,
+            "only" => Quotes.Only,
+            _ => (Quotes)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Quotes value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Quotes.Include => "include",
+                Quotes.Exclude => "exclude",
+                Quotes.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Reply mode used for estimation (tweet_search_extractor)
+/// </summary>
+[JsonConverter(typeof(RepliesConverter))]
+public enum Replies
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class RepliesConverter : JsonConverter<Replies>
+{
+    public override Replies Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => Replies.Include,
+            "exclude" => Replies.Exclude,
+            "only" => Replies.Only,
+            _ => (Replies)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Replies value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Replies.Include => "include",
+                Replies.Exclude => "exclude",
+                Replies.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Retweet mode used for estimation (tweet_search_extractor)
+/// </summary>
+[JsonConverter(typeof(RetweetsConverter))]
+public enum Retweets
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class RetweetsConverter : JsonConverter<Retweets>
+{
+    public override Retweets Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => Retweets.Include,
+            "exclude" => Retweets.Exclude,
+            "only" => Retweets.Only,
+            _ => (Retweets)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Retweets value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Retweets.Include => "include",
+                Retweets.Exclude => "exclude",
+                Retweets.Only => "only",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

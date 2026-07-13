@@ -105,6 +105,7 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.CommunityModeratorExplorer)]
     [InlineData(ExtractionRunResponseToolType.CommunityPostExtractor)]
     [InlineData(ExtractionRunResponseToolType.CommunitySearch)]
+    [InlineData(ExtractionRunResponseToolType.Favoriters)]
     [InlineData(ExtractionRunResponseToolType.FollowerExplorer)]
     [InlineData(ExtractionRunResponseToolType.FollowingExplorer)]
     [InlineData(ExtractionRunResponseToolType.ListFollowerExplorer)]
@@ -119,6 +120,8 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.SpaceExplorer)]
     [InlineData(ExtractionRunResponseToolType.ThreadExtractor)]
     [InlineData(ExtractionRunResponseToolType.TweetSearchExtractor)]
+    [InlineData(ExtractionRunResponseToolType.UserLikes)]
+    [InlineData(ExtractionRunResponseToolType.UserMedia)]
     [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ExtractionRunResponseToolType rawValue)
     {
@@ -145,6 +148,7 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.CommunityModeratorExplorer)]
     [InlineData(ExtractionRunResponseToolType.CommunityPostExtractor)]
     [InlineData(ExtractionRunResponseToolType.CommunitySearch)]
+    [InlineData(ExtractionRunResponseToolType.Favoriters)]
     [InlineData(ExtractionRunResponseToolType.FollowerExplorer)]
     [InlineData(ExtractionRunResponseToolType.FollowingExplorer)]
     [InlineData(ExtractionRunResponseToolType.ListFollowerExplorer)]
@@ -159,6 +163,8 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.SpaceExplorer)]
     [InlineData(ExtractionRunResponseToolType.ThreadExtractor)]
     [InlineData(ExtractionRunResponseToolType.TweetSearchExtractor)]
+    [InlineData(ExtractionRunResponseToolType.UserLikes)]
+    [InlineData(ExtractionRunResponseToolType.UserMedia)]
     [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ExtractionRunResponseToolType rawValue)
     {

@@ -41,7 +41,7 @@ public record class XGetNotificationsParams : ParamsBase
     }
 
     /// <summary>
-    /// Notification type filter
+    /// Notification type filter. Unrecognized values fall back to All.
     /// </summary>
     public ApiEnum<string, global::XTwitterScraper.Models.X.Type>? Type
     {
@@ -134,13 +134,13 @@ public record class XGetNotificationsParams : ParamsBase
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/notifications")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -154,7 +154,7 @@ public record class XGetNotificationsParams : ParamsBase
 }
 
 /// <summary>
-/// Notification type filter
+/// Notification type filter. Unrecognized values fall back to All.
 /// </summary>
 [JsonConverter(typeof(TypeConverter))]
 public enum Type

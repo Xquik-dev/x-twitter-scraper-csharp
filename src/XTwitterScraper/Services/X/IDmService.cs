@@ -37,7 +37,7 @@ public interface IDmService
     /// <inheritdoc cref="RetrieveHistory(DmRetrieveHistoryParams, CancellationToken)"/>
     Task<DmRetrieveHistoryResponse> RetrieveHistory(
         string userID,
-        DmRetrieveHistoryParams? parameters = null,
+        DmRetrieveHistoryParams parameters,
         CancellationToken cancellationToken = default
     );
 
@@ -82,7 +82,7 @@ public interface IDmServiceWithRawResponse
     /// <inheritdoc cref="RetrieveHistory(DmRetrieveHistoryParams, CancellationToken)"/>
     Task<HttpResponse<DmRetrieveHistoryResponse>> RetrieveHistory(
         string userID,
-        DmRetrieveHistoryParams? parameters = null,
+        DmRetrieveHistoryParams parameters,
         CancellationToken cancellationToken = default
     );
 

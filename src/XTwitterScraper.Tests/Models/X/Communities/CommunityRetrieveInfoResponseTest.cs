@@ -17,12 +17,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
+                Creator = new()
+                {
+                    ID = "id",
+                    Username = "username",
+                    Verified = true,
+                    Name = "name",
+                },
                 Description = "description",
+                InvitesPolicy = "invites_policy",
+                IsMember = true,
+                IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
+                Role = "role",
                 Rules =
                 [
                     new()
@@ -40,12 +51,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -70,12 +92,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
+                Creator = new()
+                {
+                    ID = "id",
+                    Username = "username",
+                    Verified = true,
+                    Name = "name",
+                },
                 Description = "description",
+                InvitesPolicy = "invites_policy",
+                IsMember = true,
+                IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
+                Role = "role",
                 Rules =
                 [
                     new()
@@ -107,12 +140,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
+                Creator = new()
+                {
+                    ID = "id",
+                    Username = "username",
+                    Verified = true,
+                    Name = "name",
+                },
                 Description = "description",
+                InvitesPolicy = "invites_policy",
+                IsMember = true,
+                IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
+                Role = "role",
                 Rules =
                 [
                     new()
@@ -137,12 +181,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -167,12 +222,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
+                Creator = new()
+                {
+                    ID = "id",
+                    Username = "username",
+                    Verified = true,
+                    Name = "name",
+                },
                 Description = "description",
+                InvitesPolicy = "invites_policy",
+                IsMember = true,
+                IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
+                Role = "role",
                 Rules =
                 [
                     new()
@@ -198,12 +264,23 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 ID = "1500000000000000000",
                 BannerUrl = "banner_url",
                 CreatedAt = "created_at",
+                Creator = new()
+                {
+                    ID = "id",
+                    Username = "username",
+                    Verified = true,
+                    Name = "name",
+                },
                 Description = "description",
+                InvitesPolicy = "invites_policy",
+                IsMember = true,
+                IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
+                Role = "role",
                 Rules =
                 [
                     new()
@@ -232,12 +309,23 @@ public class CommunityTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -252,12 +340,23 @@ public class CommunityTest : TestBase
         string expectedID = "1500000000000000000";
         string expectedBannerUrl = "banner_url";
         string expectedCreatedAt = "created_at";
+        Creator expectedCreator = new()
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
         string expectedDescription = "description";
+        string expectedInvitesPolicy = "invites_policy";
+        bool expectedIsMember = true;
+        bool expectedIsNsfw = true;
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
         string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
+        string expectedRole = "role";
         List<Rule> expectedRules =
         [
             new()
@@ -271,12 +370,17 @@ public class CommunityTest : TestBase
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBannerUrl, model.BannerUrl);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCreator, model.Creator);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedInvitesPolicy, model.InvitesPolicy);
+        Assert.Equal(expectedIsMember, model.IsMember);
+        Assert.Equal(expectedIsNsfw, model.IsNsfw);
         Assert.Equal(expectedJoinPolicy, model.JoinPolicy);
         Assert.Equal(expectedMemberCount, model.MemberCount);
         Assert.Equal(expectedModeratorCount, model.ModeratorCount);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPrimaryTopic, model.PrimaryTopic);
+        Assert.Equal(expectedRole, model.Role);
         Assert.NotNull(model.Rules);
         Assert.Equal(expectedRules.Count, model.Rules.Count);
         for (int i = 0; i < expectedRules.Count; i++)
@@ -293,12 +397,23 @@ public class CommunityTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -324,12 +439,23 @@ public class CommunityTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -351,12 +477,23 @@ public class CommunityTest : TestBase
         string expectedID = "1500000000000000000";
         string expectedBannerUrl = "banner_url";
         string expectedCreatedAt = "created_at";
+        Creator expectedCreator = new()
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
         string expectedDescription = "description";
+        string expectedInvitesPolicy = "invites_policy";
+        bool expectedIsMember = true;
+        bool expectedIsNsfw = true;
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
         string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
+        string expectedRole = "role";
         List<Rule> expectedRules =
         [
             new()
@@ -370,12 +507,17 @@ public class CommunityTest : TestBase
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBannerUrl, deserialized.BannerUrl);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCreator, deserialized.Creator);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.Equal(expectedInvitesPolicy, deserialized.InvitesPolicy);
+        Assert.Equal(expectedIsMember, deserialized.IsMember);
+        Assert.Equal(expectedIsNsfw, deserialized.IsNsfw);
         Assert.Equal(expectedJoinPolicy, deserialized.JoinPolicy);
         Assert.Equal(expectedMemberCount, deserialized.MemberCount);
         Assert.Equal(expectedModeratorCount, deserialized.ModeratorCount);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedPrimaryTopic, deserialized.PrimaryTopic);
+        Assert.Equal(expectedRole, deserialized.Role);
         Assert.NotNull(deserialized.Rules);
         Assert.Equal(expectedRules.Count, deserialized.Rules.Count);
         for (int i = 0; i < expectedRules.Count; i++)
@@ -392,12 +534,23 @@ public class CommunityTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -421,8 +574,16 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("banner_url"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("created_at"));
+        Assert.Null(model.Creator);
+        Assert.False(model.RawData.ContainsKey("creator"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.InvitesPolicy);
+        Assert.False(model.RawData.ContainsKey("invites_policy"));
+        Assert.Null(model.IsMember);
+        Assert.False(model.RawData.ContainsKey("is_member"));
+        Assert.Null(model.IsNsfw);
+        Assert.False(model.RawData.ContainsKey("is_nsfw"));
         Assert.Null(model.JoinPolicy);
         Assert.False(model.RawData.ContainsKey("join_policy"));
         Assert.Null(model.MemberCount);
@@ -433,6 +594,8 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.PrimaryTopic);
         Assert.False(model.RawData.ContainsKey("primary_topic"));
+        Assert.Null(model.Role);
+        Assert.False(model.RawData.ContainsKey("role"));
         Assert.Null(model.Rules);
         Assert.False(model.RawData.ContainsKey("rules"));
     }
@@ -455,12 +618,17 @@ public class CommunityTest : TestBase
             // Null should be interpreted as omitted for these properties
             BannerUrl = null,
             CreatedAt = null,
+            Creator = null,
             Description = null,
+            InvitesPolicy = null,
+            IsMember = null,
+            IsNsfw = null,
             JoinPolicy = null,
             MemberCount = null,
             ModeratorCount = null,
             Name = null,
             PrimaryTopic = null,
+            Role = null,
             Rules = null,
         };
 
@@ -468,8 +636,16 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("banner_url"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("created_at"));
+        Assert.Null(model.Creator);
+        Assert.False(model.RawData.ContainsKey("creator"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.InvitesPolicy);
+        Assert.False(model.RawData.ContainsKey("invites_policy"));
+        Assert.Null(model.IsMember);
+        Assert.False(model.RawData.ContainsKey("is_member"));
+        Assert.Null(model.IsNsfw);
+        Assert.False(model.RawData.ContainsKey("is_nsfw"));
         Assert.Null(model.JoinPolicy);
         Assert.False(model.RawData.ContainsKey("join_policy"));
         Assert.Null(model.MemberCount);
@@ -480,6 +656,8 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.PrimaryTopic);
         Assert.False(model.RawData.ContainsKey("primary_topic"));
+        Assert.Null(model.Role);
+        Assert.False(model.RawData.ContainsKey("role"));
         Assert.Null(model.Rules);
         Assert.False(model.RawData.ContainsKey("rules"));
     }
@@ -494,12 +672,17 @@ public class CommunityTest : TestBase
             // Null should be interpreted as omitted for these properties
             BannerUrl = null,
             CreatedAt = null,
+            Creator = null,
             Description = null,
+            InvitesPolicy = null,
+            IsMember = null,
+            IsNsfw = null,
             JoinPolicy = null,
             MemberCount = null,
             ModeratorCount = null,
             Name = null,
             PrimaryTopic = null,
+            Role = null,
             Rules = null,
         };
 
@@ -514,12 +697,23 @@ public class CommunityTest : TestBase
             ID = "1500000000000000000",
             BannerUrl = "banner_url",
             CreatedAt = "created_at",
+            Creator = new()
+            {
+                ID = "id",
+                Username = "username",
+                Verified = true,
+                Name = "name",
+            },
             Description = "description",
+            InvitesPolicy = "invites_policy",
+            IsMember = true,
+            IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
+            Role = "role",
             Rules =
             [
                 new()
@@ -532,6 +726,167 @@ public class CommunityTest : TestBase
         };
 
         Community copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class CreatorTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
+
+        string expectedID = "id";
+        string expectedUsername = "username";
+        bool expectedVerified = true;
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedUsername, model.Username);
+        Assert.Equal(expectedVerified, model.Verified);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Creator>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Creator>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        string expectedUsername = "username";
+        bool expectedVerified = true;
+        string expectedName = "name";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedUsername, deserialized.Username);
+        Assert.Equal(expectedVerified, deserialized.Verified);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+        };
+
+        Assert.Null(model.Name);
+        Assert.False(model.RawData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+
+            // Null should be interpreted as omitted for these properties
+            Name = null,
+        };
+
+        Assert.Null(model.Name);
+        Assert.False(model.RawData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+
+            // Null should be interpreted as omitted for these properties
+            Name = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Creator
+        {
+            ID = "id",
+            Username = "username",
+            Verified = true,
+            Name = "name",
+        };
+
+        Creator copied = new(model);
 
         Assert.Equal(model, copied);
     }

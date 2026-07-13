@@ -15,14 +15,12 @@ public class DmSendParamsTest : TestBase
             Account = "@elonmusk",
             Text = "Example text content",
             MediaIds = ["1234567890123456789"],
-            ReplyToMessageID = "1234567890123456789",
         };
 
         string expectedUserID = "userId";
         string expectedAccount = "@elonmusk";
         string expectedText = "Example text content";
         List<string> expectedMediaIds = ["1234567890123456789"];
-        string expectedReplyToMessageID = "1234567890123456789";
 
         Assert.Equal(expectedUserID, parameters.UserID);
         Assert.Equal(expectedAccount, parameters.Account);
@@ -33,7 +31,6 @@ public class DmSendParamsTest : TestBase
         {
             Assert.Equal(expectedMediaIds[i], parameters.MediaIds[i]);
         }
-        Assert.Equal(expectedReplyToMessageID, parameters.ReplyToMessageID);
     }
 
     [Fact]
@@ -48,8 +45,6 @@ public class DmSendParamsTest : TestBase
 
         Assert.Null(parameters.MediaIds);
         Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
-        Assert.Null(parameters.ReplyToMessageID);
-        Assert.False(parameters.RawBodyData.ContainsKey("reply_to_message_id"));
     }
 
     [Fact]
@@ -63,13 +58,10 @@ public class DmSendParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             MediaIds = null,
-            ReplyToMessageID = null,
         };
 
         Assert.Null(parameters.MediaIds);
         Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
-        Assert.Null(parameters.ReplyToMessageID);
-        Assert.False(parameters.RawBodyData.ContainsKey("reply_to_message_id"));
     }
 
     [Fact]
@@ -82,7 +74,7 @@ public class DmSendParamsTest : TestBase
             Text = "Example text content",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/dm/userId"), url));
     }
@@ -96,7 +88,6 @@ public class DmSendParamsTest : TestBase
             Account = "@elonmusk",
             Text = "Example text content",
             MediaIds = ["1234567890123456789"],
-            ReplyToMessageID = "1234567890123456789",
         };
 
         DmSendParams copied = new(parameters);

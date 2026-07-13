@@ -93,8 +93,9 @@ public record class TweetCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Array of public image URLs to attach (max 4). Each URL must be publicly reachable
-    /// - the browser composer fetches them directly.
+    /// Array of public media URLs to attach. Supports up to 4 images or exactly
+    /// 1 MP4 video up to 100 MB. Each URL must be publicly reachable. Attached media
+    /// adds 2 credits per started MB across all files.
     /// </summary>
     public IReadOnlyList<string>? Media
     {
@@ -238,7 +239,7 @@ public record class TweetCreateParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/tweets")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -253,7 +254,7 @@ public record class TweetCreateParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

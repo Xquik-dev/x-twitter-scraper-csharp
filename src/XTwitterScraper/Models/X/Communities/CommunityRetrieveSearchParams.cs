@@ -1,15 +1,17 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.X.Communities;
 
 /// <summary>
-/// Search for communities by keyword
+/// Returns tweets, not community records. Requires a Community ID.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -17,6 +19,19 @@ namespace XTwitterScraper.Models.X.Communities;
 /// </summary>
 public record class CommunityRetrieveSearchParams : ParamsBase
 {
+    /// <summary>
+    /// Numeric ID of the community whose posts to search
+    /// </summary>
+    public required string CommunityID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNotNullClass<string>("communityId");
+        }
+        init { this._rawQueryData.Set("communityId", value); }
+    }
+
     /// <summary>
     /// Search query
     /// </summary>
@@ -52,14 +67,39 @@ public record class CommunityRetrieveSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Sort order (Latest or Top)
+    /// Maximum items requested from this page (1-100, default 20). The response can
+    /// contain fewer items because the source returned fewer, filters removed items,
+    /// or remaining credits cover fewer results. Keep requesting next_cursor while
+    /// has_next_page is true, even when a page is empty. The deprecated limit and
+    /// count aliases remain accepted.
     /// </summary>
-    public string? QueryType
+    public long? PageSize
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("queryType");
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
+    /// <summary>
+    /// Sort order (Latest or Top)
+    /// </summary>
+    public ApiEnum<string, QueryType>? QueryType
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, QueryType>>("queryType");
         }
         init
         {
@@ -141,17 +181,19 @@ public record class CommunityRetrieveSearchParams : ParamsBase
             && this._rawQueryData.Equals(other._rawQueryData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/communities/search")
+        return new System::UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + "/x/communities/search"
+        )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -161,5 +203,52 @@ public record class CommunityRetrieveSearchParams : ParamsBase
     public override int GetHashCode()
     {
         return 0;
+    }
+}
+
+/// <summary>
+/// Sort order (Latest or Top)
+/// </summary>
+[JsonConverter(typeof(QueryTypeConverter))]
+public enum QueryType
+{
+    Latest,
+    Top,
+}
+
+sealed class QueryTypeConverter : JsonConverter<QueryType>
+{
+    public override QueryType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "Latest" => QueryType.Latest,
+            "Top" => QueryType.Top,
+            _ => (QueryType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        QueryType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                QueryType.Latest => "Latest",
+                QueryType.Top => "Top",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
     }
 }

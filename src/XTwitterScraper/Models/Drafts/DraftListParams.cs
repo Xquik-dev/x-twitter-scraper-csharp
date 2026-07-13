@@ -39,7 +39,10 @@ public record class DraftListParams : ParamsBase
     }
 
     /// <summary>
-    /// Maximum number of items to return (1-100, default 50)
+    /// Maximum number of items to return (1-100, default 50). For paid per-result
+    /// endpoints, the returned count may be lower when remaining credits cannot cover
+    /// the requested page. If zero paid results are affordable, the endpoint returns
+    /// 402 insufficient_credits.
     /// </summary>
     public long? Limit
     {
@@ -130,13 +133,13 @@ public record class DraftListParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/drafts")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

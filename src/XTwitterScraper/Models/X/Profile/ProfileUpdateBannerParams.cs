@@ -24,7 +24,7 @@ public record class ProfileUpdateBannerParams : ParamsBase
     }
 
     /// <summary>
-    /// X account (@username or ID) for banner update
+    /// X account (@username or ID) receiving banner from URL
     /// </summary>
     public required string Account
     {
@@ -37,16 +37,16 @@ public record class ProfileUpdateBannerParams : ParamsBase
     }
 
     /// <summary>
-    /// Banner image (max 2MB)
+    /// HTTPS URL to the banner image to download
     /// </summary>
-    public required BinaryContent File
+    public required string UrlValue
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<BinaryContent>("file");
+            return this._rawBodyData.GetNotNullClass<string>("url");
         }
-        init { this._rawBodyData.Set("file", value); }
+        init { this._rawBodyData.Set("url", value); }
     }
 
     public ProfileUpdateBannerParams() { }
@@ -131,7 +131,7 @@ public record class ProfileUpdateBannerParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/profile/banner")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -142,7 +142,7 @@ public record class ProfileUpdateBannerParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

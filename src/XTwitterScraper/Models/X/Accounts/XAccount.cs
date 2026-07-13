@@ -10,7 +10,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Accounts;
 
 /// <summary>
-/// Linked X account summary with username and connection status.
+/// Linked X account summary with connection status, health, and timestamp metadata.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<XAccount, XAccountFromRaw>))]
 public sealed record class XAccount : JsonModel
@@ -62,6 +62,16 @@ public sealed record class XAccount : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
+    public required System::DateTimeOffset UpdatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("updatedAt");
+        }
+        init { this._rawData.Set("updatedAt", value); }
+    }
+
     public required string XUserID
     {
         get
@@ -82,6 +92,24 @@ public sealed record class XAccount : JsonModel
         init { this._rawData.Set("xUsername", value); }
     }
 
+    public System::DateTimeOffset? CookiesObtainedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("cookiesObtainedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("cookiesObtainedAt", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -89,8 +117,10 @@ public sealed record class XAccount : JsonModel
         _ = this.CreatedAt;
         this.Health.Validate();
         _ = this.Status;
+        _ = this.UpdatedAt;
         _ = this.XUserID;
         _ = this.XUsername;
+        _ = this.CookiesObtainedAt;
     }
 
     public XAccount() { }

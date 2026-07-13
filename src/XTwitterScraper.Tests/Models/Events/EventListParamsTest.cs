@@ -12,18 +12,18 @@ public class EventListParamsTest : TestBase
     {
         var parameters = new EventListParams
         {
-            After = "after",
+            Cursor = "cursor",
             EventType = EventType.TweetNew,
             Limit = 1,
             MonitorID = "monitorId",
         };
 
-        string expectedAfter = "after";
+        string expectedCursor = "cursor";
         ApiEnum<string, EventType> expectedEventType = EventType.TweetNew;
         long expectedLimit = 1;
         string expectedMonitorID = "monitorId";
 
-        Assert.Equal(expectedAfter, parameters.After);
+        Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedEventType, parameters.EventType);
         Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedMonitorID, parameters.MonitorID);
@@ -34,8 +34,8 @@ public class EventListParamsTest : TestBase
     {
         var parameters = new EventListParams { };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.EventType);
         Assert.False(parameters.RawQueryData.ContainsKey("eventType"));
         Assert.Null(parameters.Limit);
@@ -50,14 +50,14 @@ public class EventListParamsTest : TestBase
         var parameters = new EventListParams
         {
             // Null should be interpreted as omitted for these properties
-            After = null,
+            Cursor = null,
             EventType = null,
             Limit = null,
             MonitorID = null,
         };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.EventType);
         Assert.False(parameters.RawQueryData.ContainsKey("eventType"));
         Assert.Null(parameters.Limit);
@@ -71,18 +71,18 @@ public class EventListParamsTest : TestBase
     {
         EventListParams parameters = new()
         {
-            After = "after",
+            Cursor = "cursor",
             EventType = EventType.TweetNew,
             Limit = 1,
             MonitorID = "monitorId",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/events?after=after&eventType=tweet.new&limit=1&monitorId=monitorId"
+                    "https://xquik.com/api/v1/events?cursor=cursor&eventType=tweet.new&limit=1&monitorId=monitorId"
                 ),
                 url
             )
@@ -94,7 +94,7 @@ public class EventListParamsTest : TestBase
     {
         var parameters = new EventListParams
         {
-            After = "after",
+            Cursor = "cursor",
             EventType = EventType.TweetNew,
             Limit = 1,
             MonitorID = "monitorId",

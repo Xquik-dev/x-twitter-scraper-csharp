@@ -41,7 +41,9 @@ public record class CommunityRetrieveMembersParams : ParamsBase
     }
 
     /// <summary>
-    /// Items per page (20-200, default 20)
+    /// Items per page (20-200, default 20). This is an upper bound for paid authenticated
+    /// calls: remaining credits can reduce the returned page size, and zero affordable
+    /// results returns 402 insufficient_credits.
     /// </summary>
     public long? PageSize
     {
@@ -146,13 +148,13 @@ public record class CommunityRetrieveMembersParams : ParamsBase
                 + string.Format("/x/communities/{0}/members", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

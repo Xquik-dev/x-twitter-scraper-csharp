@@ -11,16 +11,22 @@ public class UserRetrieveFollowingParamsTest : TestBase
         var parameters = new UserRetrieveFollowingParams
         {
             ID = "id",
+            After = "after",
             Cursor = "cursor",
-            PageSize = 0,
+            Limit = 0,
+            PageSize = 20,
         };
 
         string expectedID = "id";
+        string expectedAfter = "after";
         string expectedCursor = "cursor";
-        long expectedPageSize = 0;
+        long expectedLimit = 0;
+        long expectedPageSize = 20;
 
         Assert.Equal(expectedID, parameters.ID);
+        Assert.Equal(expectedAfter, parameters.After);
         Assert.Equal(expectedCursor, parameters.Cursor);
+        Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedPageSize, parameters.PageSize);
     }
 
@@ -29,8 +35,12 @@ public class UserRetrieveFollowingParamsTest : TestBase
     {
         var parameters = new UserRetrieveFollowingParams { ID = "id" };
 
+        Assert.Null(parameters.After);
+        Assert.False(parameters.RawQueryData.ContainsKey("after"));
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.PageSize);
         Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
@@ -43,12 +53,18 @@ public class UserRetrieveFollowingParamsTest : TestBase
             ID = "id",
 
             // Null should be interpreted as omitted for these properties
+            After = null,
             Cursor = null,
+            Limit = null,
             PageSize = null,
         };
 
+        Assert.Null(parameters.After);
+        Assert.False(parameters.RawQueryData.ContainsKey("after"));
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.PageSize);
         Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
@@ -59,15 +75,19 @@ public class UserRetrieveFollowingParamsTest : TestBase
         UserRetrieveFollowingParams parameters = new()
         {
             ID = "id",
+            After = "after",
             Cursor = "cursor",
-            PageSize = 0,
+            Limit = 0,
+            PageSize = 20,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/x/users/id/following?cursor=cursor&pageSize=0"),
+                new Uri(
+                    "https://xquik.com/api/v1/x/users/id/following?after=after&cursor=cursor&limit=0&pageSize=20"
+                ),
                 url
             )
         );
@@ -79,8 +99,10 @@ public class UserRetrieveFollowingParamsTest : TestBase
         var parameters = new UserRetrieveFollowingParams
         {
             ID = "id",
+            After = "after",
             Cursor = "cursor",
-            PageSize = 0,
+            Limit = 0,
+            PageSize = 20,
         };
 
         UserRetrieveFollowingParams copied = new(parameters);

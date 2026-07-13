@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.Events;
 
@@ -20,8 +21,11 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "21",
+            Query = "xquik OR \"x api\"",
             Username = "elonmusk",
             XEventID = "1234567890",
         };
@@ -32,8 +36,12 @@ public class EventDetailTest : TestBase
             { "tweetId", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedMonitorID = "10";
+        ApiEnum<string, EventDetailMonitorType> expectedMonitorType =
+            EventDetailMonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        string expectedKeywordMonitorID = "21";
+        string expectedQuery = "xquik OR \"x api\"";
         string expectedUsername = "elonmusk";
         string expectedXEventID = "1234567890";
 
@@ -46,8 +54,11 @@ public class EventDetailTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, model.Data[item.Key]));
         }
         Assert.Equal(expectedMonitorID, model.MonitorID);
+        Assert.Equal(expectedMonitorType, model.MonitorType);
         Assert.Equal(expectedOccurredAt, model.OccurredAt);
         Assert.Equal(expectedType, model.Type);
+        Assert.Equal(expectedKeywordMonitorID, model.KeywordMonitorID);
+        Assert.Equal(expectedQuery, model.Query);
         Assert.Equal(expectedUsername, model.Username);
         Assert.Equal(expectedXEventID, model.XEventID);
     }
@@ -63,8 +74,11 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "21",
+            Query = "xquik OR \"x api\"",
             Username = "elonmusk",
             XEventID = "1234567890",
         };
@@ -89,8 +103,11 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "21",
+            Query = "xquik OR \"x api\"",
             Username = "elonmusk",
             XEventID = "1234567890",
         };
@@ -108,8 +125,12 @@ public class EventDetailTest : TestBase
             { "tweetId", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedMonitorID = "10";
+        ApiEnum<string, EventDetailMonitorType> expectedMonitorType =
+            EventDetailMonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        string expectedKeywordMonitorID = "21";
+        string expectedQuery = "xquik OR \"x api\"";
         string expectedUsername = "elonmusk";
         string expectedXEventID = "1234567890";
 
@@ -122,8 +143,11 @@ public class EventDetailTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, deserialized.Data[item.Key]));
         }
         Assert.Equal(expectedMonitorID, deserialized.MonitorID);
+        Assert.Equal(expectedMonitorType, deserialized.MonitorType);
         Assert.Equal(expectedOccurredAt, deserialized.OccurredAt);
         Assert.Equal(expectedType, deserialized.Type);
+        Assert.Equal(expectedKeywordMonitorID, deserialized.KeywordMonitorID);
+        Assert.Equal(expectedQuery, deserialized.Query);
         Assert.Equal(expectedUsername, deserialized.Username);
         Assert.Equal(expectedXEventID, deserialized.XEventID);
     }
@@ -139,8 +163,11 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "21",
+            Query = "xquik OR \"x api\"",
             Username = "elonmusk",
             XEventID = "1234567890",
         };
@@ -159,11 +186,17 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
-            Username = "elonmusk",
         };
 
+        Assert.Null(model.KeywordMonitorID);
+        Assert.False(model.RawData.ContainsKey("keywordMonitorId"));
+        Assert.Null(model.Query);
+        Assert.False(model.RawData.ContainsKey("query"));
+        Assert.Null(model.Username);
+        Assert.False(model.RawData.ContainsKey("username"));
         Assert.Null(model.XEventID);
         Assert.False(model.RawData.ContainsKey("xEventId"));
     }
@@ -179,9 +212,9 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
-            Username = "elonmusk",
         };
 
         model.Validate();
@@ -198,14 +231,23 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
-            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
+            KeywordMonitorID = null,
+            Query = null,
+            Username = null,
             XEventID = null,
         };
 
+        Assert.Null(model.KeywordMonitorID);
+        Assert.False(model.RawData.ContainsKey("keywordMonitorId"));
+        Assert.Null(model.Query);
+        Assert.False(model.RawData.ContainsKey("query"));
+        Assert.Null(model.Username);
+        Assert.False(model.RawData.ContainsKey("username"));
         Assert.Null(model.XEventID);
         Assert.False(model.RawData.ContainsKey("xEventId"));
     }
@@ -221,11 +263,14 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
-            Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
+            KeywordMonitorID = null,
+            Query = null,
+            Username = null,
             XEventID = null,
         };
 
@@ -243,8 +288,11 @@ public class EventDetailTest : TestBase
                 { "tweetId", JsonSerializer.SerializeToElement("bar") },
             },
             MonitorID = "10",
+            MonitorType = EventDetailMonitorType.Account,
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
+            KeywordMonitorID = "21",
+            Query = "xquik OR \"x api\"",
             Username = "elonmusk",
             XEventID = "1234567890",
         };
@@ -252,5 +300,63 @@ public class EventDetailTest : TestBase
         EventDetail copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class EventDetailMonitorTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(EventDetailMonitorType.Account)]
+    [InlineData(EventDetailMonitorType.Keyword)]
+    public void Validation_Works(EventDetailMonitorType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventDetailMonitorType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventDetailMonitorType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(EventDetailMonitorType.Account)]
+    [InlineData(EventDetailMonitorType.Keyword)]
+    public void SerializationRoundtrip_Works(EventDetailMonitorType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, EventDetailMonitorType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventDetailMonitorType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, EventDetailMonitorType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, EventDetailMonitorType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

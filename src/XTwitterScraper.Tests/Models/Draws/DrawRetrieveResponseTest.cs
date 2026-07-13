@@ -15,7 +15,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "42",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Status = "completed",
                 TotalEntries = 250,
@@ -44,7 +44,7 @@ public class DrawRetrieveResponseTest : TestBase
 
         DrawDetail expectedDraw = new()
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Status = "completed",
             TotalEntries = 250,
@@ -85,7 +85,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "42",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Status = "completed",
                 TotalEntries = 250,
@@ -128,7 +128,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "42",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Status = "completed",
                 TotalEntries = 250,
@@ -164,7 +164,7 @@ public class DrawRetrieveResponseTest : TestBase
 
         DrawDetail expectedDraw = new()
         {
-            ID = "42",
+            ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Status = "completed",
             TotalEntries = 250,
@@ -205,7 +205,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "42",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Status = "completed",
                 TotalEntries = 250,
@@ -242,7 +242,7 @@ public class DrawRetrieveResponseTest : TestBase
         {
             Draw = new()
             {
-                ID = "42",
+                ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Status = "completed",
                 TotalEntries = 250,

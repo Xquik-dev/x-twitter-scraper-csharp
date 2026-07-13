@@ -16,6 +16,7 @@ public class TestBase
             BaseUrl =
                 Environment.GetEnvironmentVariable("TEST_API_BASE_URL") ?? "http://localhost:4010",
             ApiKey = "My API Key",
+            BearerToken = "My Bearer Token",
         };
     }
 
@@ -37,6 +38,9 @@ public class TestBase
         return Enumerable.SequenceEqual(query1, query2);
     }
 
+    private static readonly char[] _ampersandArray = ['&'];
+    private static readonly char[] _equalsArray = ['='];
+
     static SortedDictionary<string, string> ParseQueryString(string query)
     {
         var ret = new SortedDictionary<string, string>(StringComparer.Ordinal);
@@ -44,11 +48,13 @@ public class TestBase
         if (string.IsNullOrEmpty(query))
             return ret;
 
-        var pairs = query.TrimStart('?').Split(['&'], StringSplitOptions.RemoveEmptyEntries);
+        var pairs = query
+            .TrimStart('?')
+            .Split(_ampersandArray, StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var pair in pairs)
         {
-            var parts = pair.Split(['&'], 2);
+            var parts = pair.Split(_equalsArray, 2);
             var key = Uri.UnescapeDataString(parts[0]);
             var value = parts.Length > 1 ? Uri.UnescapeDataString(parts[1]) : string.Empty;
             ret[key] = value;

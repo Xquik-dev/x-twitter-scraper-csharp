@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -25,12 +25,12 @@ public sealed record class ExtractionJob : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
-    public required DateTimeOffset CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
         }
         init { this._rawData.Set("createdAt", value); }
     }
@@ -70,12 +70,12 @@ public sealed record class ExtractionJob : JsonModel
         init { this._rawData.Set("totalResults", value); }
     }
 
-    public DateTimeOffset? CompletedAt
+    public System::DateTimeOffset? CompletedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<DateTimeOffset>("completedAt");
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("completedAt");
         }
         init
         {
@@ -146,7 +146,7 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
 {
     public override ExtractionJobStatus Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -192,6 +192,7 @@ public enum ExtractionJobToolType
     CommunityModeratorExplorer,
     CommunityPostExtractor,
     CommunitySearch,
+    Favoriters,
     FollowerExplorer,
     FollowingExplorer,
     ListFollowerExplorer,
@@ -206,6 +207,8 @@ public enum ExtractionJobToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserLikes,
+    UserMedia,
     VerifiedFollowerExplorer,
 }
 
@@ -213,7 +216,7 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
 {
     public override ExtractionJobToolType Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -224,6 +227,7 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
             "community_moderator_explorer" => ExtractionJobToolType.CommunityModeratorExplorer,
             "community_post_extractor" => ExtractionJobToolType.CommunityPostExtractor,
             "community_search" => ExtractionJobToolType.CommunitySearch,
+            "favoriters" => ExtractionJobToolType.Favoriters,
             "follower_explorer" => ExtractionJobToolType.FollowerExplorer,
             "following_explorer" => ExtractionJobToolType.FollowingExplorer,
             "list_follower_explorer" => ExtractionJobToolType.ListFollowerExplorer,
@@ -238,6 +242,8 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
             "space_explorer" => ExtractionJobToolType.SpaceExplorer,
             "thread_extractor" => ExtractionJobToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionJobToolType.TweetSearchExtractor,
+            "user_likes" => ExtractionJobToolType.UserLikes,
+            "user_media" => ExtractionJobToolType.UserMedia,
             "verified_follower_explorer" => ExtractionJobToolType.VerifiedFollowerExplorer,
             _ => (ExtractionJobToolType)(-1),
         };
@@ -258,6 +264,7 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
                 ExtractionJobToolType.CommunityModeratorExplorer => "community_moderator_explorer",
                 ExtractionJobToolType.CommunityPostExtractor => "community_post_extractor",
                 ExtractionJobToolType.CommunitySearch => "community_search",
+                ExtractionJobToolType.Favoriters => "favoriters",
                 ExtractionJobToolType.FollowerExplorer => "follower_explorer",
                 ExtractionJobToolType.FollowingExplorer => "following_explorer",
                 ExtractionJobToolType.ListFollowerExplorer => "list_follower_explorer",
@@ -272,6 +279,8 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
                 ExtractionJobToolType.SpaceExplorer => "space_explorer",
                 ExtractionJobToolType.ThreadExtractor => "thread_extractor",
                 ExtractionJobToolType.TweetSearchExtractor => "tweet_search_extractor",
+                ExtractionJobToolType.UserLikes => "user_likes",
+                ExtractionJobToolType.UserMedia => "user_media",
                 ExtractionJobToolType.VerifiedFollowerExplorer => "verified_follower_explorer",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))

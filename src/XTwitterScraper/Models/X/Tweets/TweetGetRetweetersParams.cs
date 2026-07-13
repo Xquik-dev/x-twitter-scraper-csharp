@@ -40,6 +40,30 @@ public record class TweetGetRetweetersParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Maximum user profiles requested from this page (20-200, default 200). The
+    /// response can contain fewer profiles because the source returned fewer or
+    /// remaining credits cover fewer results. Keep requesting next_cursor while has_next_page
+    /// is true. The deprecated limit and count aliases remain accepted.
+    /// </summary>
+    public long? PageSize
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
     public TweetGetRetweetersParams() { }
 
 #pragma warning disable CS8618
@@ -123,13 +147,13 @@ public record class TweetGetRetweetersParams : ParamsBase
                 + string.Format("/x/tweets/{0}/retweeters", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

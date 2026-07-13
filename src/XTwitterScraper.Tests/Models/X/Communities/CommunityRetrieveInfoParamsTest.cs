@@ -20,7 +20,7 @@ public class CommunityRetrieveInfoParamsTest : TestBase
     {
         CommunityRetrieveInfoParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/communities/id/info"), url)
