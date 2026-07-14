@@ -82,12 +82,10 @@ public sealed class DrawService : IDrawService
     /// <inheritdoc/>
     public Task<HttpResponse> Export(
         string id,
-        DrawExportParams? parameters = null,
+        DrawExportParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.Export(parameters with { ID = id }, cancellationToken);
     }
 
@@ -217,12 +215,10 @@ public sealed class DrawServiceWithRawResponse : IDrawServiceWithRawResponse
     /// <inheritdoc/>
     public Task<HttpResponse> Export(
         string id,
-        DrawExportParams? parameters = null,
+        DrawExportParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.Export(parameters with { ID = id }, cancellationToken);
     }
 

@@ -21,35 +21,11 @@ public class ExtractionExportResultsParamsTest : TestBase
     }
 
     [Fact]
-    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
-    {
-        var parameters = new ExtractionExportResultsParams { ID = "id" };
-
-        Assert.Null(parameters.Format);
-        Assert.False(parameters.RawQueryData.ContainsKey("format"));
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
-    {
-        var parameters = new ExtractionExportResultsParams
-        {
-            ID = "id",
-
-            // Null should be interpreted as omitted for these properties
-            Format = null,
-        };
-
-        Assert.Null(parameters.Format);
-        Assert.False(parameters.RawQueryData.ContainsKey("format"));
-    }
-
-    [Fact]
     public void Url_Works()
     {
         ExtractionExportResultsParams parameters = new() { ID = "id", Format = Format.Csv };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(

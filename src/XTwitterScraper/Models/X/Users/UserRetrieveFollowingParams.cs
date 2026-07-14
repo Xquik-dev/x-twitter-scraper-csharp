@@ -20,6 +20,27 @@ public record class UserRetrieveFollowingParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
+    /// Legacy cursor alias. Prefer cursor.
+    /// </summary>
+    public string? After
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("after");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("after", value);
+        }
+    }
+
+    /// <summary>
     /// Pagination cursor for following list
     /// </summary>
     public string? Cursor
@@ -41,7 +62,31 @@ public record class UserRetrieveFollowingParams : ParamsBase
     }
 
     /// <summary>
-    /// Results per page (20-200, default 200)
+    /// Legacy page size alias. Prefer pageSize.
+    /// </summary>
+    public long? Limit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum user profiles requested from this page (20-200, default 200). The
+    /// response can contain fewer profiles because the source returned fewer or
+    /// remaining credits cover fewer results. Keep requesting next_cursor while has_next_page
+    /// is true. The deprecated limit and count aliases remain accepted.
     /// </summary>
     public long? PageSize
     {
@@ -144,13 +189,13 @@ public record class UserRetrieveFollowingParams : ParamsBase
                 + string.Format("/x/users/{0}/following", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

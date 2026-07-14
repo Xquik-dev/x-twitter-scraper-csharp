@@ -15,8 +15,7 @@ public class TweetCreateParamsTest : TestBase
             AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
-            Media = ["https://example.com/image.jpg"],
-            MediaIds = ["1234567890123456789"],
+            Media = ["https://example.com/video.mp4"],
             ReplyToTweetID = "1234567890",
             Text = "Just launched our new feature!",
         };
@@ -25,8 +24,7 @@ public class TweetCreateParamsTest : TestBase
         string expectedAttachmentUrl = "https://x.com/elonmusk/status/1234567890";
         string expectedCommunityID = "1500000000000000000";
         bool expectedIsNoteTweet = false;
-        List<string> expectedMedia = ["https://example.com/image.jpg"];
-        List<string> expectedMediaIds = ["1234567890123456789"];
+        List<string> expectedMedia = ["https://example.com/video.mp4"];
         string expectedReplyToTweetID = "1234567890";
         string expectedText = "Just launched our new feature!";
 
@@ -39,12 +37,6 @@ public class TweetCreateParamsTest : TestBase
         for (int i = 0; i < expectedMedia.Count; i++)
         {
             Assert.Equal(expectedMedia[i], parameters.Media[i]);
-        }
-        Assert.NotNull(parameters.MediaIds);
-        Assert.Equal(expectedMediaIds.Count, parameters.MediaIds.Count);
-        for (int i = 0; i < expectedMediaIds.Count; i++)
-        {
-            Assert.Equal(expectedMediaIds[i], parameters.MediaIds[i]);
         }
         Assert.Equal(expectedReplyToTweetID, parameters.ReplyToTweetID);
         Assert.Equal(expectedText, parameters.Text);
@@ -63,8 +55,6 @@ public class TweetCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("is_note_tweet"));
         Assert.Null(parameters.Media);
         Assert.False(parameters.RawBodyData.ContainsKey("media"));
-        Assert.Null(parameters.MediaIds);
-        Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
         Assert.Null(parameters.ReplyToTweetID);
         Assert.False(parameters.RawBodyData.ContainsKey("reply_to_tweet_id"));
         Assert.Null(parameters.Text);
@@ -83,7 +73,6 @@ public class TweetCreateParamsTest : TestBase
             CommunityID = null,
             IsNoteTweet = null,
             Media = null,
-            MediaIds = null,
             ReplyToTweetID = null,
             Text = null,
         };
@@ -96,8 +85,6 @@ public class TweetCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("is_note_tweet"));
         Assert.Null(parameters.Media);
         Assert.False(parameters.RawBodyData.ContainsKey("media"));
-        Assert.Null(parameters.MediaIds);
-        Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
         Assert.Null(parameters.ReplyToTweetID);
         Assert.False(parameters.RawBodyData.ContainsKey("reply_to_tweet_id"));
         Assert.Null(parameters.Text);
@@ -109,7 +96,7 @@ public class TweetCreateParamsTest : TestBase
     {
         TweetCreateParams parameters = new() { Account = "@elonmusk" };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/tweets"), url));
     }
@@ -123,8 +110,7 @@ public class TweetCreateParamsTest : TestBase
             AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
-            Media = ["https://example.com/image.jpg"],
-            MediaIds = ["1234567890123456789"],
+            Media = ["https://example.com/video.mp4"],
             ReplyToTweetID = "1234567890",
             Text = "Just launched our new feature!",
         };

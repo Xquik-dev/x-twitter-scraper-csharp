@@ -266,6 +266,7 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.CommunityModeratorExplorer)]
     [InlineData(ExtractionJobToolType.CommunityPostExtractor)]
     [InlineData(ExtractionJobToolType.CommunitySearch)]
+    [InlineData(ExtractionJobToolType.Favoriters)]
     [InlineData(ExtractionJobToolType.FollowerExplorer)]
     [InlineData(ExtractionJobToolType.FollowingExplorer)]
     [InlineData(ExtractionJobToolType.ListFollowerExplorer)]
@@ -280,6 +281,8 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.SpaceExplorer)]
     [InlineData(ExtractionJobToolType.ThreadExtractor)]
     [InlineData(ExtractionJobToolType.TweetSearchExtractor)]
+    [InlineData(ExtractionJobToolType.UserLikes)]
+    [InlineData(ExtractionJobToolType.UserMedia)]
     [InlineData(ExtractionJobToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ExtractionJobToolType rawValue)
     {
@@ -306,6 +309,7 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.CommunityModeratorExplorer)]
     [InlineData(ExtractionJobToolType.CommunityPostExtractor)]
     [InlineData(ExtractionJobToolType.CommunitySearch)]
+    [InlineData(ExtractionJobToolType.Favoriters)]
     [InlineData(ExtractionJobToolType.FollowerExplorer)]
     [InlineData(ExtractionJobToolType.FollowingExplorer)]
     [InlineData(ExtractionJobToolType.ListFollowerExplorer)]
@@ -320,6 +324,8 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.SpaceExplorer)]
     [InlineData(ExtractionJobToolType.ThreadExtractor)]
     [InlineData(ExtractionJobToolType.TweetSearchExtractor)]
+    [InlineData(ExtractionJobToolType.UserLikes)]
+    [InlineData(ExtractionJobToolType.UserMedia)]
     [InlineData(ExtractionJobToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ExtractionJobToolType rawValue)
     {

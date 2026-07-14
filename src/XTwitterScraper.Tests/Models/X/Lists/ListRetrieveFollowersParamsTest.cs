@@ -8,13 +8,20 @@ public class ListRetrieveFollowersParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new ListRetrieveFollowersParams { ID = "id", Cursor = "cursor" };
+        var parameters = new ListRetrieveFollowersParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 20,
+        };
 
         string expectedID = "id";
         string expectedCursor = "cursor";
+        long expectedPageSize = 20;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedCursor, parameters.Cursor);
+        Assert.Equal(expectedPageSize, parameters.PageSize);
     }
 
     [Fact]
@@ -24,6 +31,8 @@ public class ListRetrieveFollowersParamsTest : TestBase
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
@@ -35,22 +44,30 @@ public class ListRetrieveFollowersParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Cursor = null,
+            PageSize = null,
         };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
     public void Url_Works()
     {
-        ListRetrieveFollowersParams parameters = new() { ID = "id", Cursor = "cursor" };
+        ListRetrieveFollowersParams parameters = new()
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 20,
+        };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/x/lists/id/followers?cursor=cursor"),
+                new Uri("https://xquik.com/api/v1/x/lists/id/followers?cursor=cursor&pageSize=20"),
                 url
             )
         );
@@ -59,7 +76,12 @@ public class ListRetrieveFollowersParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new ListRetrieveFollowersParams { ID = "id", Cursor = "cursor" };
+        var parameters = new ListRetrieveFollowersParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 20,
+        };
 
         ListRetrieveFollowersParams copied = new(parameters);
 

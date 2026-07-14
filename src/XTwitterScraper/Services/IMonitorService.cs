@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
+using XTwitterScraper.Services.Monitors;
 using Monitors = XTwitterScraper.Models.Monitors;
 
 namespace XTwitterScraper.Services;
@@ -28,8 +29,13 @@ public interface IMonitorService
     /// </summary>
     IMonitorService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
+    IKeywordService Keywords { get; }
+
     /// <summary>
-    /// Create monitor
+    /// Creates an instant monitor. Monitors are unlimited. Active monitors check every
+    /// 1 second and cost 21 credits per hour. Events and webhook deliveries are
+    /// included. Creation requires available credits for the first hourly charge and
+    /// username lookup.
     /// </summary>
     Task<Monitors::MonitorCreateResponse> Create(
         Monitors::MonitorCreateParams parameters,
@@ -75,7 +81,7 @@ public interface IMonitorService
     );
 
     /// <summary>
-    /// Deactivate monitor
+    /// Delete monitor
     /// </summary>
     Task<Monitors::MonitorDeactivateResponse> Deactivate(
         Monitors::MonitorDeactivateParams parameters,
@@ -102,6 +108,8 @@ public interface IMonitorServiceWithRawResponse
     /// <para>The original service is not modified.</para>
     /// </summary>
     IMonitorServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IKeywordServiceWithRawResponse Keywords { get; }
 
     /// <summary>
     /// Returns a raw HTTP response for <c>post /monitors</c>, but is otherwise the

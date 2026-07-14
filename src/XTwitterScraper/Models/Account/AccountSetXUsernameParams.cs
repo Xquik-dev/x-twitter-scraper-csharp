@@ -119,7 +119,7 @@ public record class AccountSetXUsernameParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/account/x-identity")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -134,7 +134,7 @@ public record class AccountSetXUsernameParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

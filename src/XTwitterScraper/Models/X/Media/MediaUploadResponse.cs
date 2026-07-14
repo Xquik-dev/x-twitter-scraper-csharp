@@ -21,6 +21,19 @@ public sealed record class MediaUploadResponse : JsonModel
         init { this._rawData.Set("mediaId", value); }
     }
 
+    /// <summary>
+    /// Public media URL for tweet `media` arrays.
+    /// </summary>
+    public required string MediaUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("mediaUrl");
+        }
+        init { this._rawData.Set("mediaUrl", value); }
+    }
+
     public JsonElement Success
     {
         get
@@ -35,6 +48,7 @@ public sealed record class MediaUploadResponse : JsonModel
     public override void Validate()
     {
         _ = this.MediaID;
+        _ = this.MediaUrl;
         if (!JsonElement.DeepEquals(this.Success, JsonSerializer.SerializeToElement(true)))
         {
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
@@ -73,13 +87,6 @@ public sealed record class MediaUploadResponse : JsonModel
     )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-
-    [SetsRequiredMembers]
-    public MediaUploadResponse(string mediaID)
-        : this()
-    {
-        this.MediaID = mediaID;
     }
 }
 

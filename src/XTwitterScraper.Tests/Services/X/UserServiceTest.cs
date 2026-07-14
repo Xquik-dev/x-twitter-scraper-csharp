@@ -16,13 +16,24 @@ public class UserServiceTest : TestBase
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
+    public async Task RemoveFollower_Works()
+    {
+        var response = await this.client.X.Users.RemoveFollower(
+            "id",
+            new() { Account = "@elonmusk" },
+            TestContext.Current.CancellationToken
+        );
+        response.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task RetrieveBatch_Works()
     {
-        var paginatedUsers = await this.client.X.Users.RetrieveBatch(
+        var response = await this.client.X.Users.RetrieveBatch(
             new() { Ids = "ids" },
             TestContext.Current.CancellationToken
         );
-        paginatedUsers.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -84,6 +95,17 @@ public class UserServiceTest : TestBase
     public async Task RetrieveMentions_Works()
     {
         var paginatedTweets = await this.client.X.Users.RetrieveMentions(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        paginatedTweets.Validate();
+    }
+
+    [Fact(Skip = "Mock server tests are disabled")]
+    public async Task RetrieveReplies_Works()
+    {
+        var paginatedTweets = await this.client.X.Users.RetrieveReplies(
             "id",
             new(),
             TestContext.Current.CancellationToken

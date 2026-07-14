@@ -101,7 +101,7 @@ public interface ICommunityService
     );
 
     /// <summary>
-    /// Search for communities by keyword
+    /// Returns tweets, not community records. Requires a Community ID.
     /// </summary>
     Task<PaginatedTweets> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,

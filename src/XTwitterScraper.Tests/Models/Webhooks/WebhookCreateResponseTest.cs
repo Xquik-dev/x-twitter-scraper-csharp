@@ -17,7 +17,7 @@ public class WebhookCreateResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "whsec_abc123def456",
+            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
             Url = "https://example.com/webhook",
         };
 
@@ -28,7 +28,7 @@ public class WebhookCreateResponseTest : TestBase
             EventType.TweetNew,
             EventType.TweetReply,
         ];
-        string expectedSecret = "whsec_abc123def456";
+        string expectedSecret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
         string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, model.ID);
@@ -50,7 +50,7 @@ public class WebhookCreateResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "whsec_abc123def456",
+            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
             Url = "https://example.com/webhook",
         };
 
@@ -71,7 +71,7 @@ public class WebhookCreateResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "whsec_abc123def456",
+            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
             Url = "https://example.com/webhook",
         };
 
@@ -89,7 +89,7 @@ public class WebhookCreateResponseTest : TestBase
             EventType.TweetNew,
             EventType.TweetReply,
         ];
-        string expectedSecret = "whsec_abc123def456";
+        string expectedSecret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
         string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -111,7 +111,7 @@ public class WebhookCreateResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "whsec_abc123def456",
+            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
             Url = "https://example.com/webhook",
         };
 
@@ -126,7 +126,7 @@ public class WebhookCreateResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "whsec_abc123def456",
+            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
             Url = "https://example.com/webhook",
         };
 

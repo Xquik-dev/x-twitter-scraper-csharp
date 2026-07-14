@@ -21,6 +21,10 @@ public sealed record class DrawRunResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// Candidate entries inspected for this draw after the credit-derived cap. This
+    /// may be lower than the source tweet's full reply count.
+    /// </summary>
     public required long TotalEntries
     {
         get
@@ -41,6 +45,10 @@ public sealed record class DrawRunResponse : JsonModel
         init { this._rawData.Set("tweetId", value); }
     }
 
+    /// <summary>
+    /// Entries from the inspected candidate set that passed all filters. This is
+    /// not necessarily every valid reply on the source tweet when credits cap inspection.
+    /// </summary>
     public required long ValidEntries
     {
         get

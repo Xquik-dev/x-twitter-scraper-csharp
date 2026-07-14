@@ -13,18 +13,18 @@ public class ExtractionListParamsTest : TestBase
     {
         var parameters = new ExtractionListParams
         {
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
             Status = Status.Running,
             ToolType = ToolType.FollowerExplorer,
         };
 
-        string expectedAfter = "after";
+        string expectedCursor = "cursor";
         long expectedLimit = 1;
         ApiEnum<string, Status> expectedStatus = Status.Running;
         ApiEnum<string, ToolType> expectedToolType = ToolType.FollowerExplorer;
 
-        Assert.Equal(expectedAfter, parameters.After);
+        Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedStatus, parameters.Status);
         Assert.Equal(expectedToolType, parameters.ToolType);
@@ -35,8 +35,8 @@ public class ExtractionListParamsTest : TestBase
     {
         var parameters = new ExtractionListParams { };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Status);
@@ -51,14 +51,14 @@ public class ExtractionListParamsTest : TestBase
         var parameters = new ExtractionListParams
         {
             // Null should be interpreted as omitted for these properties
-            After = null,
+            Cursor = null,
             Limit = null,
             Status = null,
             ToolType = null,
         };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.Status);
@@ -72,18 +72,18 @@ public class ExtractionListParamsTest : TestBase
     {
         ExtractionListParams parameters = new()
         {
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
             Status = Status.Running,
             ToolType = ToolType.FollowerExplorer,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/extractions?after=after&limit=1&status=running&toolType=follower_explorer"
+                    "https://xquik.com/api/v1/extractions?cursor=cursor&limit=1&status=running&toolType=follower_explorer"
                 ),
                 url
             )
@@ -95,7 +95,7 @@ public class ExtractionListParamsTest : TestBase
     {
         var parameters = new ExtractionListParams
         {
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
             Status = Status.Running,
             ToolType = ToolType.FollowerExplorer,
@@ -175,6 +175,7 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.CommunityModeratorExplorer)]
     [InlineData(ToolType.CommunityPostExtractor)]
     [InlineData(ToolType.CommunitySearch)]
+    [InlineData(ToolType.Favoriters)]
     [InlineData(ToolType.FollowerExplorer)]
     [InlineData(ToolType.FollowingExplorer)]
     [InlineData(ToolType.ListFollowerExplorer)]
@@ -189,6 +190,8 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.SpaceExplorer)]
     [InlineData(ToolType.ThreadExtractor)]
     [InlineData(ToolType.TweetSearchExtractor)]
+    [InlineData(ToolType.UserLikes)]
+    [InlineData(ToolType.UserMedia)]
     [InlineData(ToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ToolType rawValue)
     {
@@ -215,6 +218,7 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.CommunityModeratorExplorer)]
     [InlineData(ToolType.CommunityPostExtractor)]
     [InlineData(ToolType.CommunitySearch)]
+    [InlineData(ToolType.Favoriters)]
     [InlineData(ToolType.FollowerExplorer)]
     [InlineData(ToolType.FollowingExplorer)]
     [InlineData(ToolType.ListFollowerExplorer)]
@@ -229,6 +233,8 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.SpaceExplorer)]
     [InlineData(ToolType.ThreadExtractor)]
     [InlineData(ToolType.TweetSearchExtractor)]
+    [InlineData(ToolType.UserLikes)]
+    [InlineData(ToolType.UserMedia)]
     [InlineData(ToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ToolType rawValue)
     {

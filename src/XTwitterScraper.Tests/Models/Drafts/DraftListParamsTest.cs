@@ -49,7 +49,7 @@ public class DraftListParamsTest : TestBase
     {
         DraftListParams parameters = new() { AfterCursor = "afterCursor", Limit = 1 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(

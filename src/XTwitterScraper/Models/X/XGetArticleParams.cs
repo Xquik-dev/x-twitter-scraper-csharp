@@ -9,7 +9,8 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X;
 
 /// <summary>
-/// Retrieve the full content of an X Article (long-form post) by tweet ID.
+/// Retrieve the full content of an X Article (long-form post) by numeric tweet ID.
+/// Returns article_not_found when the tweet is valid but is not an X Article.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -101,13 +102,13 @@ public record class XGetArticleParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/articles/{0}", this.TweetID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

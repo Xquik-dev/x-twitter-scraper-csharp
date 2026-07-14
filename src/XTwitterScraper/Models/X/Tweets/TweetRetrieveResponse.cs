@@ -11,7 +11,8 @@ namespace XTwitterScraper.Models.X.Tweets;
 public sealed record class TweetRetrieveResponse : JsonModel
 {
     /// <summary>
-    /// Full tweet with text, engagement metrics, media, and metadata.
+    /// Full tweet with text, engagement metrics, media, and metadata. A zero metric
+    /// can mean X did not report the count.
     /// </summary>
     public required TweetDetail Tweet
     {
@@ -24,7 +25,8 @@ public sealed record class TweetRetrieveResponse : JsonModel
     }
 
     /// <summary>
-    /// Author of a tweet with follower count and verification status.
+    /// Tweet author profile. The lookup route always includes follower count and
+    /// verification state. Other profile fields appear when available.
     /// </summary>
     public TweetAuthor? Author
     {

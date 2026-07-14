@@ -8,13 +8,20 @@ public class TweetGetThreadParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new TweetGetThreadParams { ID = "id", Cursor = "cursor" };
+        var parameters = new TweetGetThreadParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 1,
+        };
 
         string expectedID = "id";
         string expectedCursor = "cursor";
+        long expectedPageSize = 1;
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedCursor, parameters.Cursor);
+        Assert.Equal(expectedPageSize, parameters.PageSize);
     }
 
     [Fact]
@@ -24,6 +31,8 @@ public class TweetGetThreadParamsTest : TestBase
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
@@ -35,22 +44,30 @@ public class TweetGetThreadParamsTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Cursor = null,
+            PageSize = null,
         };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
+        Assert.Null(parameters.PageSize);
+        Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
     }
 
     [Fact]
     public void Url_Works()
     {
-        TweetGetThreadParams parameters = new() { ID = "id", Cursor = "cursor" };
+        TweetGetThreadParams parameters = new()
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 1,
+        };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/x/tweets/id/thread?cursor=cursor"),
+                new Uri("https://xquik.com/api/v1/x/tweets/id/thread?cursor=cursor&pageSize=1"),
                 url
             )
         );
@@ -59,7 +76,12 @@ public class TweetGetThreadParamsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new TweetGetThreadParams { ID = "id", Cursor = "cursor" };
+        var parameters = new TweetGetThreadParams
+        {
+            ID = "id",
+            Cursor = "cursor",
+            PageSize = 1,
+        };
 
         TweetGetThreadParams copied = new(parameters);
 

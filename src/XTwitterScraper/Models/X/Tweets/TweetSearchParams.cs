@@ -11,7 +11,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Search tweets with X query operators and pagination
+/// Search tweets by query, Tweet ID, X status URL, or account date window
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -30,6 +30,112 @@ public record class TweetSearchParams : ParamsBase
             return this._rawQueryData.GetNotNullClass<string>("q");
         }
         init { this._rawQueryData.Set("q", value); }
+    }
+
+    /// <summary>
+    /// Raw advanced search query appended as-is.
+    /// </summary>
+    public string? AdvancedQuery
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("advancedQuery");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("advancedQuery", value);
+        }
+    }
+
+    /// <summary>
+    /// Words or quoted phrases where any one can match. Separate with spaces, commas,
+    /// or lines.
+    /// </summary>
+    public string? AnyWords
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("anyWords");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("anyWords", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo bounding box, e.g. -74.1 40.6 -73.9 40.8.
+    /// </summary>
+    public string? BoundingBox
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("boundingBox");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("boundingBox", value);
+        }
+    }
+
+    /// <summary>
+    /// Cashtags separated by spaces, commas, or lines.
+    /// </summary>
+    public string? Cashtags
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cashtags");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("cashtags", value);
+        }
+    }
+
+    /// <summary>
+    /// Conversation ID filter.
+    /// </summary>
+    public string? ConversationID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("conversationId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("conversationId", value);
+        }
     }
 
     /// <summary>
@@ -54,7 +160,135 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
+    /// Exact phrase to match.
+    /// </summary>
+    public string? ExactPhrase
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("exactPhrase");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("exactPhrase", value);
+        }
+    }
+
+    /// <summary>
+    /// Words or quoted phrases to exclude. Separate with spaces, commas, or lines.
+    /// </summary>
+    public string? ExcludeWords
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("excludeWords");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("excludeWords", value);
+        }
+    }
+
+    /// <summary>
+    /// Filter by author username.
+    /// </summary>
+    public string? FromUser
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("fromUser");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("fromUser", value);
+        }
+    }
+
+    /// <summary>
+    /// Hashtags separated by spaces, commas, or lines.
+    /// </summary>
+    public string? Hashtags
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("hashtags");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("hashtags", value);
+        }
+    }
+
+    /// <summary>
+    /// Only replies to this tweet ID.
+    /// </summary>
+    public string? InReplyToTweetID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("inReplyToTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("inReplyToTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Language code filter, e.g. en or tr.
+    /// </summary>
+    public string? Language
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("language");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("language", value);
+        }
+    }
+
+    /// <summary>
     /// Max tweets to return (server paginates internally). Omit for single page (~20).
+    /// This is an upper bound for paid authenticated calls: remaining credits can
+    /// reduce the returned page size, and zero affordable results returns 402 insufficient_credits.
     /// </summary>
     public long? Limit
     {
@@ -75,7 +309,219 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// Sort order — Latest (chronological) or Top (engagement-ranked)
+    /// Search within a list ID.
+    /// </summary>
+    public string? ListID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("listId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("listId", value);
+        }
+    }
+
+    /// <summary>
+    /// Filter by media type.
+    /// </summary>
+    public ApiEnum<string, TweetSearchParamsMediaType>? MediaType
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetSearchParamsMediaType>>(
+                "mediaType"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("mediaType", value);
+        }
+    }
+
+    /// <summary>
+    /// Filter tweets mentioning a username.
+    /// </summary>
+    public string? Mentioning
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("mentioning");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("mentioning", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum likes threshold.
+    /// </summary>
+    public long? MinFaves
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minFaves");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minFaves", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum quote count threshold.
+    /// </summary>
+    public long? MinQuotes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minQuotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minQuotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum replies threshold.
+    /// </summary>
+    public long? MinReplies
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minReplies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minReplies", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum retweets threshold.
+    /// </summary>
+    public long? MinRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Search within a place ID.
+    /// </summary>
+    public string? Place
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("place");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("place", value);
+        }
+    }
+
+    /// <summary>
+    /// Search within a country code.
+    /// </summary>
+    public string? PlaceCountry
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("placeCountry");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("placeCountry", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo point radius, e.g. -73.99 40.73 25mi.
+    /// </summary>
+    public string? PointRadius
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("pointRadius");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pointRadius", value);
+        }
+    }
+
+    /// <summary>
+    /// Sort order - Latest (chronological) or Top (engagement-ranked)
     /// </summary>
     public ApiEnum<string, QueryType>? QueryType
     {
@@ -96,7 +542,139 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets after this time
+    /// Quote mode.
+    /// </summary>
+    public ApiEnum<string, TweetSearchParamsQuotes>? Quotes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetSearchParamsQuotes>>(
+                "quotes"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("quotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Only quotes of this tweet ID.
+    /// </summary>
+    public string? QuotesOfTweetID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("quotesOfTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("quotesOfTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Reply mode.
+    /// </summary>
+    public ApiEnum<string, TweetSearchParamsReplies>? Replies
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetSearchParamsReplies>>(
+                "replies"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("replies", value);
+        }
+    }
+
+    /// <summary>
+    /// Retweet mode.
+    /// </summary>
+    public ApiEnum<string, TweetSearchParamsRetweets>? Retweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetSearchParamsRetweets>>(
+                "retweets"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("retweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Only retweets of this tweet ID.
+    /// </summary>
+    public string? RetweetsOfTweetID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("retweetsOfTweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("retweetsOfTweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Start date in YYYY-MM-DD format.
+    /// </summary>
+    public string? SinceDate
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("sinceDate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sinceDate", value);
+        }
+    }
+
+    /// <summary>
+    /// ISO 8601 timestamp - only return tweets after this time
     /// </summary>
     public string? SinceTime
     {
@@ -117,7 +695,49 @@ public record class TweetSearchParams : ParamsBase
     }
 
     /// <summary>
-    /// ISO 8601 timestamp — only return tweets before this time
+    /// Filter replies sent to a username.
+    /// </summary>
+    public string? ToUser
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("toUser");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("toUser", value);
+        }
+    }
+
+    /// <summary>
+    /// End date in YYYY-MM-DD format.
+    /// </summary>
+    public string? UntilDate
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("untilDate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("untilDate", value);
+        }
+    }
+
+    /// <summary>
+    /// ISO 8601 timestamp - only return tweets before this time
     /// </summary>
     public string? UntilTime
     {
@@ -134,6 +754,48 @@ public record class TweetSearchParams : ParamsBase
             }
 
             this._rawQueryData.Set("untilTime", value);
+        }
+    }
+
+    /// <summary>
+    /// URL substring or domain filter.
+    /// </summary>
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("url", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return tweets from verified authors.
+    /// </summary>
+    public bool? VerifiedOnly
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("verifiedOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("verifiedOnly", value);
         }
     }
 
@@ -208,13 +870,13 @@ public record class TweetSearchParams : ParamsBase
     {
         return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/x/tweets/search")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -228,7 +890,66 @@ public record class TweetSearchParams : ParamsBase
 }
 
 /// <summary>
-/// Sort order — Latest (chronological) or Top (engagement-ranked)
+/// Filter by media type.
+/// </summary>
+[JsonConverter(typeof(TweetSearchParamsMediaTypeConverter))]
+public enum TweetSearchParamsMediaType
+{
+    Images,
+    Videos,
+    Gifs,
+    Media,
+    Links,
+    None,
+}
+
+sealed class TweetSearchParamsMediaTypeConverter : JsonConverter<TweetSearchParamsMediaType>
+{
+    public override TweetSearchParamsMediaType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "images" => TweetSearchParamsMediaType.Images,
+            "videos" => TweetSearchParamsMediaType.Videos,
+            "gifs" => TweetSearchParamsMediaType.Gifs,
+            "media" => TweetSearchParamsMediaType.Media,
+            "links" => TweetSearchParamsMediaType.Links,
+            "none" => TweetSearchParamsMediaType.None,
+            _ => (TweetSearchParamsMediaType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetSearchParamsMediaType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetSearchParamsMediaType.Images => "images",
+                TweetSearchParamsMediaType.Videos => "videos",
+                TweetSearchParamsMediaType.Gifs => "gifs",
+                TweetSearchParamsMediaType.Media => "media",
+                TweetSearchParamsMediaType.Links => "links",
+                TweetSearchParamsMediaType.None => "none",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Sort order - Latest (chronological) or Top (engagement-ranked)
 /// </summary>
 [JsonConverter(typeof(QueryTypeConverter))]
 public enum QueryType
@@ -265,6 +986,156 @@ sealed class QueryTypeConverter : JsonConverter<QueryType>
             {
                 QueryType.Latest => "Latest",
                 QueryType.Top => "Top",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Quote mode.
+/// </summary>
+[JsonConverter(typeof(TweetSearchParamsQuotesConverter))]
+public enum TweetSearchParamsQuotes
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class TweetSearchParamsQuotesConverter : JsonConverter<TweetSearchParamsQuotes>
+{
+    public override TweetSearchParamsQuotes Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => TweetSearchParamsQuotes.Include,
+            "exclude" => TweetSearchParamsQuotes.Exclude,
+            "only" => TweetSearchParamsQuotes.Only,
+            _ => (TweetSearchParamsQuotes)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetSearchParamsQuotes value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetSearchParamsQuotes.Include => "include",
+                TweetSearchParamsQuotes.Exclude => "exclude",
+                TweetSearchParamsQuotes.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Reply mode.
+/// </summary>
+[JsonConverter(typeof(TweetSearchParamsRepliesConverter))]
+public enum TweetSearchParamsReplies
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class TweetSearchParamsRepliesConverter : JsonConverter<TweetSearchParamsReplies>
+{
+    public override TweetSearchParamsReplies Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => TweetSearchParamsReplies.Include,
+            "exclude" => TweetSearchParamsReplies.Exclude,
+            "only" => TweetSearchParamsReplies.Only,
+            _ => (TweetSearchParamsReplies)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetSearchParamsReplies value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetSearchParamsReplies.Include => "include",
+                TweetSearchParamsReplies.Exclude => "exclude",
+                TweetSearchParamsReplies.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Retweet mode.
+/// </summary>
+[JsonConverter(typeof(TweetSearchParamsRetweetsConverter))]
+public enum TweetSearchParamsRetweets
+{
+    Include,
+    Exclude,
+    Only,
+}
+
+sealed class TweetSearchParamsRetweetsConverter : JsonConverter<TweetSearchParamsRetweets>
+{
+    public override TweetSearchParamsRetweets Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "include" => TweetSearchParamsRetweets.Include,
+            "exclude" => TweetSearchParamsRetweets.Exclude,
+            "only" => TweetSearchParamsRetweets.Only,
+            _ => (TweetSearchParamsRetweets)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetSearchParamsRetweets value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetSearchParamsRetweets.Include => "include",
+                TweetSearchParamsRetweets.Exclude => "exclude",
+                TweetSearchParamsRetweets.Only => "only",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

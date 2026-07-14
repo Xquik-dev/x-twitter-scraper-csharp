@@ -5,13 +5,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
-using XTwitterScraper.Exceptions;
-using System = System;
 
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Full tweet with text, engagement metrics, media, and metadata.
+/// Full tweet with text, engagement metrics, media, and metadata. A zero metric
+/// can mean X did not report the count.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<TweetDetail, TweetDetailFromRaw>))]
 public sealed record class TweetDetail : JsonModel
@@ -97,6 +96,50 @@ public sealed record class TweetDetail : JsonModel
     }
 
     /// <summary>
+    /// Tweet author profile. The lookup route always includes follower count and
+    /// verification state. Other profile fields appear when available.
+    /// </summary>
+    public TweetAuthor? Author
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TweetAuthor>("author");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("author", value);
+        }
+    }
+
+    /// <summary>
+    /// Content disclosure metadata shown by X when a tweet is labeled as paid partnership
+    /// content or AI-generated media.
+    /// </summary>
+    public ContentDisclosure? ContentDisclosure
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ContentDisclosure>("contentDisclosure");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("contentDisclosure", value);
+        }
+    }
+
+    /// <summary>
     /// ID of the root tweet in the conversation thread
     /// </summary>
     public string? ConversationID
@@ -136,6 +179,30 @@ public sealed record class TweetDetail : JsonModel
     }
 
     /// <summary>
+    /// Start and end offsets for rendered tweet text
+    /// </summary>
+    public IReadOnlyList<long>? DisplayTextRange
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<long>>("displayTextRange");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<long>?>(
+                "displayTextRange",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Parsed entities from the tweet text (URLs, mentions, hashtags, media)
     /// </summary>
     public IReadOnlyDictionary<string, JsonElement>? Entities
@@ -158,6 +225,90 @@ public sealed record class TweetDetail : JsonModel
                 "entities",
                 value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
             );
+        }
+    }
+
+    /// <summary>
+    /// Tweet ID being replied to
+    /// </summary>
+    public string? InReplyToID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("inReplyToId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("inReplyToId", value);
+        }
+    }
+
+    /// <summary>
+    /// User ID being replied to
+    /// </summary>
+    public string? InReplyToUserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("inReplyToUserId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("inReplyToUserId", value);
+        }
+    }
+
+    /// <summary>
+    /// Username being replied to
+    /// </summary>
+    public string? InReplyToUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("inReplyToUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("inReplyToUsername", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether replies are limited for this tweet
+    /// </summary>
+    public bool? IsLimitedReply
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isLimitedReply");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isLimitedReply", value);
         }
     }
 
@@ -225,14 +376,14 @@ public sealed record class TweetDetail : JsonModel
     }
 
     /// <summary>
-    /// Attached media items, omitted when the tweet has no media
+    /// Tweet language code
     /// </summary>
-    public IReadOnlyList<TweetDetailMedia>? Media
+    public string? Lang
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<TweetDetailMedia>>("media");
+            return this._rawData.GetNullableClass<string>("lang");
         }
         init
         {
@@ -241,7 +392,28 @@ public sealed record class TweetDetail : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<TweetDetailMedia>?>(
+            this._rawData.Set("lang", value);
+        }
+    }
+
+    /// <summary>
+    /// Attached media items, omitted when the tweet has no media
+    /// </summary>
+    public IReadOnlyList<TweetMedia>? Media
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<TweetMedia>>("media");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<TweetMedia>?>(
                 "media",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -249,16 +421,16 @@ public sealed record class TweetDetail : JsonModel
     }
 
     /// <summary>
-    /// The quoted tweet object, present when isQuoteStatus is true
+    /// Quoted or retweeted tweet context. Every object includes id, text, and engagement
+    /// metrics. A zero metric can mean X did not report the count. Author, media,
+    /// and conversation fields appear when available.
     /// </summary>
-    public IReadOnlyDictionary<string, JsonElement>? QuotedTweet
+    public EmbeddedTweet? QuotedTweet
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
-                "quoted_tweet"
-            );
+            return this._rawData.GetNullableClass<EmbeddedTweet>("quoted_tweet");
         }
         init
         {
@@ -267,10 +439,30 @@ public sealed record class TweetDetail : JsonModel
                 return;
             }
 
-            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
-                "quoted_tweet",
-                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
-            );
+            this._rawData.Set("quoted_tweet", value);
+        }
+    }
+
+    /// <summary>
+    /// Quoted or retweeted tweet context. Every object includes id, text, and engagement
+    /// metrics. A zero metric can mean X did not report the count. Author, media,
+    /// and conversation fields appear when available.
+    /// </summary>
+    public EmbeddedTweet? RetweetedTweet
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<EmbeddedTweet>("retweeted_tweet");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retweeted_tweet", value);
         }
     }
 
@@ -295,6 +487,48 @@ public sealed record class TweetDetail : JsonModel
         }
     }
 
+    /// <summary>
+    /// Tweet result type
+    /// </summary>
+    public string? Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("type", value);
+        }
+    }
+
+    /// <summary>
+    /// Tweet permalink URL
+    /// </summary>
+    public string? Url
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -306,18 +540,29 @@ public sealed record class TweetDetail : JsonModel
         _ = this.RetweetCount;
         _ = this.Text;
         _ = this.ViewCount;
+        this.Author?.Validate();
+        this.ContentDisclosure?.Validate();
         _ = this.ConversationID;
         _ = this.CreatedAt;
+        _ = this.DisplayTextRange;
         _ = this.Entities;
+        _ = this.InReplyToID;
+        _ = this.InReplyToUserID;
+        _ = this.InReplyToUsername;
+        _ = this.IsLimitedReply;
         _ = this.IsNoteTweet;
         _ = this.IsQuoteStatus;
         _ = this.IsReply;
+        _ = this.Lang;
         foreach (var item in this.Media ?? [])
         {
             item.Validate();
         }
-        _ = this.QuotedTweet;
+        this.QuotedTweet?.Validate();
+        this.RetweetedTweet?.Validate();
         _ = this.Source;
+        _ = this.Type;
+        _ = this.Url;
     }
 
     public TweetDetail() { }
@@ -353,155 +598,4 @@ class TweetDetailFromRaw : IFromRawJson<TweetDetail>
     /// <inheritdoc/>
     public TweetDetail FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TweetDetail.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(JsonModelConverter<TweetDetailMedia, TweetDetailMediaFromRaw>))]
-public sealed record class TweetDetailMedia : JsonModel
-{
-    public string? MediaUrl
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("mediaUrl");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("mediaUrl", value);
-        }
-    }
-
-    public ApiEnum<string, global::XTwitterScraper.Models.X.Tweets.Type>? Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, global::XTwitterScraper.Models.X.Tweets.Type>
-            >("type");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("type", value);
-        }
-    }
-
-    public string? Url
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("url");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("url", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.MediaUrl;
-        this.Type?.Validate();
-        _ = this.Url;
-    }
-
-    public TweetDetailMedia() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public TweetDetailMedia(TweetDetailMedia tweetDetailMedia)
-        : base(tweetDetailMedia) { }
-#pragma warning restore CS8618
-
-    public TweetDetailMedia(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    TweetDetailMedia(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="TweetDetailMediaFromRaw.FromRawUnchecked"/>
-    public static TweetDetailMedia FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class TweetDetailMediaFromRaw : IFromRawJson<TweetDetailMedia>
-{
-    /// <inheritdoc/>
-    public TweetDetailMedia FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        TweetDetailMedia.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(TypeConverter))]
-public enum Type
-{
-    Photo,
-    Video,
-    AnimatedGif,
-}
-
-sealed class TypeConverter : JsonConverter<global::XTwitterScraper.Models.X.Tweets.Type>
-{
-    public override global::XTwitterScraper.Models.X.Tweets.Type Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "photo" => global::XTwitterScraper.Models.X.Tweets.Type.Photo,
-            "video" => global::XTwitterScraper.Models.X.Tweets.Type.Video,
-            "animated_gif" => global::XTwitterScraper.Models.X.Tweets.Type.AnimatedGif,
-            _ => (global::XTwitterScraper.Models.X.Tweets.Type)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::XTwitterScraper.Models.X.Tweets.Type value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                global::XTwitterScraper.Models.X.Tweets.Type.Photo => "photo",
-                global::XTwitterScraper.Models.X.Tweets.Type.Video => "video",
-                global::XTwitterScraper.Models.X.Tweets.Type.AnimatedGif => "animated_gif",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
 }

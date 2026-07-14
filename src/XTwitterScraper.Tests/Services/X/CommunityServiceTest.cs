@@ -62,7 +62,7 @@ public class CommunityServiceTest : TestBase
     public async Task RetrieveSearch_Works()
     {
         var paginatedTweets = await this.client.X.Communities.RetrieveSearch(
-            new() { Q = "q" },
+            new() { CommunityID = "321669910225", Q = "q" },
             TestContext.Current.CancellationToken
         );
         paginatedTweets.Validate();

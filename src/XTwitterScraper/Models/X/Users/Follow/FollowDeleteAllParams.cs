@@ -131,7 +131,7 @@ public record class FollowDeleteAllParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/x/users/{0}/follow", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -146,7 +146,7 @@ public record class FollowDeleteAllParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

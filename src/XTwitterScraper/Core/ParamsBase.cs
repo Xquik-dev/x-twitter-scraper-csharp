@@ -18,7 +18,7 @@ public abstract record class ParamsBase
     static ParamsBase()
     {
         var runtime = GetRuntime();
-        defaultHeaders = new Dictionary<string, string>
+        var headers = new Dictionary<string, string>
         {
             ["User-Agent"] = GetUserAgent(),
             ["X-Stainless-Arch"] = GetOSArch(),
@@ -28,6 +28,23 @@ public abstract record class ParamsBase
             ["X-Stainless-Runtime"] = runtime.Name,
             ["X-Stainless-Runtime-Version"] = runtime.Version,
         };
+
+        var customHeadersEnv = Environment.GetEnvironmentVariable(
+            "X_TWITTER_SCRAPER_CUSTOM_HEADERS"
+        );
+        if (customHeadersEnv != null)
+        {
+            foreach (var line in customHeadersEnv.Split('\n'))
+            {
+                var colon = line.IndexOf(':');
+                if (colon >= 0)
+                {
+                    headers[line.Substring(0, colon).Trim()] = line.Substring(colon + 1).Trim();
+                }
+            }
+        }
+
+        defaultHeaders = headers;
     }
 
     private protected JsonDictionary _rawQueryData = new();
@@ -156,7 +173,7 @@ public abstract record class ParamsBase
         }
     }
 
-    internal string QueryString(ClientOptions options)
+    internal string QueryString(ClientOptions options, SecurityOptions security)
     {
         NameValueCollection collection = new();
         foreach (var item in this.RawQueryData)
@@ -189,18 +206,22 @@ public abstract record class ParamsBase
         return null;
     }
 
-    internal static void AddDefaultHeaders(HttpRequestMessage request, ClientOptions options)
+    internal static void AddDefaultHeaders(
+        HttpRequestMessage request,
+        ClientOptions options,
+        SecurityOptions security
+    )
     {
         foreach (var header in defaultHeaders)
         {
             request.Headers.Add(header.Key, header.Value);
         }
 
-        if (options.ApiKey != null)
+        if (security.ApiKey && options.ApiKey != null)
         {
-            request.Headers.Add("X-Api-Key", options.ApiKey);
+            request.Headers.Add("x-api-key", options.ApiKey);
         }
-        if (options.BearerToken != null)
+        if (security.OAuthBearer && options.BearerToken != null)
         {
             request.Headers.Add("Authorization", string.Format("Bearer {0}", options.BearerToken));
         }

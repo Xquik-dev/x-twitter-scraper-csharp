@@ -18,9 +18,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
                 new()
                 {
                     ID = "1234567890123456789",
-                    CreatedAt = "2025-01-15T12:00:00Z",
                     ReceiverID = "1234567890",
                     SenderID = "9876543210",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                     Text = "Hey, how are you?",
                 },
             ],
@@ -33,9 +34,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
             new()
             {
                 ID = "1234567890123456789",
-                CreatedAt = "2025-01-15T12:00:00Z",
                 ReceiverID = "1234567890",
                 SenderID = "9876543210",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                 Text = "Hey, how are you?",
             },
         ];
@@ -61,9 +63,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
                 new()
                 {
                     ID = "1234567890123456789",
-                    CreatedAt = "2025-01-15T12:00:00Z",
                     ReceiverID = "1234567890",
                     SenderID = "9876543210",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                     Text = "Hey, how are you?",
                 },
             ],
@@ -90,9 +93,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
                 new()
                 {
                     ID = "1234567890123456789",
-                    CreatedAt = "2025-01-15T12:00:00Z",
                     ReceiverID = "1234567890",
                     SenderID = "9876543210",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                     Text = "Hey, how are you?",
                 },
             ],
@@ -112,9 +116,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
             new()
             {
                 ID = "1234567890123456789",
-                CreatedAt = "2025-01-15T12:00:00Z",
                 ReceiverID = "1234567890",
                 SenderID = "9876543210",
+                CreatedAt = "2025-01-15T12:00:00Z",
+                MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                 Text = "Hey, how are you?",
             },
         ];
@@ -140,9 +145,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
                 new()
                 {
                     ID = "1234567890123456789",
-                    CreatedAt = "2025-01-15T12:00:00Z",
                     ReceiverID = "1234567890",
                     SenderID = "9876543210",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                     Text = "Hey, how are you?",
                 },
             ],
@@ -163,9 +169,10 @@ public class DmRetrieveHistoryResponseTest : TestBase
                 new()
                 {
                     ID = "1234567890123456789",
-                    CreatedAt = "2025-01-15T12:00:00Z",
                     ReceiverID = "1234567890",
                     SenderID = "9876543210",
+                    CreatedAt = "2025-01-15T12:00:00Z",
+                    MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
                     Text = "Hey, how are you?",
                 },
             ],
@@ -186,22 +193,25 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
-            CreatedAt = "2025-01-15T12:00:00Z",
             ReceiverID = "1234567890",
             SenderID = "9876543210",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
             Text = "Hey, how are you?",
         };
 
         string expectedID = "1234567890123456789";
-        string expectedCreatedAt = "2025-01-15T12:00:00Z";
         string expectedReceiverID = "1234567890";
         string expectedSenderID = "9876543210";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        string expectedMediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg";
         string expectedText = "Hey, how are you?";
 
         Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedReceiverID, model.ReceiverID);
         Assert.Equal(expectedSenderID, model.SenderID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedMediaUrl, model.MediaUrl);
         Assert.Equal(expectedText, model.Text);
     }
 
@@ -211,9 +221,10 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
-            CreatedAt = "2025-01-15T12:00:00Z",
             ReceiverID = "1234567890",
             SenderID = "9876543210",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
             Text = "Hey, how are you?",
         };
 
@@ -229,9 +240,10 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
-            CreatedAt = "2025-01-15T12:00:00Z",
             ReceiverID = "1234567890",
             SenderID = "9876543210",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
             Text = "Hey, how are you?",
         };
 
@@ -243,15 +255,17 @@ public class MessageTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "1234567890123456789";
-        string expectedCreatedAt = "2025-01-15T12:00:00Z";
         string expectedReceiverID = "1234567890";
         string expectedSenderID = "9876543210";
+        string expectedCreatedAt = "2025-01-15T12:00:00Z";
+        string expectedMediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg";
         string expectedText = "Hey, how are you?";
 
         Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedReceiverID, deserialized.ReceiverID);
         Assert.Equal(expectedSenderID, deserialized.SenderID);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedMediaUrl, deserialized.MediaUrl);
         Assert.Equal(expectedText, deserialized.Text);
     }
 
@@ -261,9 +275,10 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
-            CreatedAt = "2025-01-15T12:00:00Z",
             ReceiverID = "1234567890",
             SenderID = "9876543210",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
             Text = "Hey, how are you?",
         };
 
@@ -273,14 +288,17 @@ public class MessageTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Message { ID = "1234567890123456789" };
+        var model = new Message
+        {
+            ID = "1234567890123456789",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+        };
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.ReceiverID);
-        Assert.False(model.RawData.ContainsKey("receiverId"));
-        Assert.Null(model.SenderID);
-        Assert.False(model.RawData.ContainsKey("senderId"));
+        Assert.Null(model.MediaUrl);
+        Assert.False(model.RawData.ContainsKey("mediaUrl"));
         Assert.Null(model.Text);
         Assert.False(model.RawData.ContainsKey("text"));
     }
@@ -288,7 +306,12 @@ public class MessageTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Message { ID = "1234567890123456789" };
+        var model = new Message
+        {
+            ID = "1234567890123456789",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
+        };
 
         model.Validate();
     }
@@ -299,20 +322,19 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
-            ReceiverID = null,
-            SenderID = null,
+            MediaUrl = null,
             Text = null,
         };
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.ReceiverID);
-        Assert.False(model.RawData.ContainsKey("receiverId"));
-        Assert.Null(model.SenderID);
-        Assert.False(model.RawData.ContainsKey("senderId"));
+        Assert.Null(model.MediaUrl);
+        Assert.False(model.RawData.ContainsKey("mediaUrl"));
         Assert.Null(model.Text);
         Assert.False(model.RawData.ContainsKey("text"));
     }
@@ -323,11 +345,12 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
+            ReceiverID = "1234567890",
+            SenderID = "9876543210",
 
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
-            ReceiverID = null,
-            SenderID = null,
+            MediaUrl = null,
             Text = null,
         };
 
@@ -340,9 +363,10 @@ public class MessageTest : TestBase
         var model = new Message
         {
             ID = "1234567890123456789",
-            CreatedAt = "2025-01-15T12:00:00Z",
             ReceiverID = "1234567890",
             SenderID = "9876543210",
+            CreatedAt = "2025-01-15T12:00:00Z",
+            MediaUrl = "https://pbs.twimg.com/dm_media/abc.jpg",
             Text = "Hey, how are you?",
         };
 

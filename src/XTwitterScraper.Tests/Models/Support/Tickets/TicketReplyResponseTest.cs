@@ -9,9 +9,9 @@ public class TicketReplyResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TicketReplyResponse { PublicID = "tk_abc123" };
+        var model = new TicketReplyResponse { PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
 
         Assert.Equal(expectedPublicID, model.PublicID);
     }
@@ -19,7 +19,7 @@ public class TicketReplyResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TicketReplyResponse { PublicID = "tk_abc123" };
+        var model = new TicketReplyResponse { PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketReplyResponse>(
@@ -33,7 +33,7 @@ public class TicketReplyResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TicketReplyResponse { PublicID = "tk_abc123" };
+        var model = new TicketReplyResponse { PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TicketReplyResponse>(
@@ -42,7 +42,7 @@ public class TicketReplyResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedPublicID = "tk_abc123";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
 
         Assert.Equal(expectedPublicID, deserialized.PublicID);
     }
@@ -50,7 +50,7 @@ public class TicketReplyResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TicketReplyResponse { PublicID = "tk_abc123" };
+        var model = new TicketReplyResponse { PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
         model.Validate();
     }
@@ -100,7 +100,7 @@ public class TicketReplyResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TicketReplyResponse { PublicID = "tk_abc123" };
+        var model = new TicketReplyResponse { PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6" };
 
         TicketReplyResponse copied = new(model);
 

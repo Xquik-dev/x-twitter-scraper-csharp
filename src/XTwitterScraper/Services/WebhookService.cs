@@ -131,6 +131,30 @@ public sealed class WebhookService : IWebhookService
     }
 
     /// <inheritdoc/>
+    public async Task<WebhookResumeResponse> Resume(
+        WebhookResumeParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Resume(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<WebhookResumeResponse> Resume(
+        string id,
+        WebhookResumeParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Resume(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<WebhookTestResponse> Test(
         WebhookTestParams parameters,
         CancellationToken cancellationToken = default
@@ -360,6 +384,51 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
         parameters ??= new();
 
         return this.ListDeliveries(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<WebhookResumeResponse>> Resume(
+        WebhookResumeParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<WebhookResumeParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<WebhookResumeResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<WebhookResumeResponse>> Resume(
+        string id,
+        WebhookResumeParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Resume(parameters with { ID = id }, cancellationToken);
     }
 
     /// <inheritdoc/>

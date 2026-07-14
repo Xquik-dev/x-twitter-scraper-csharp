@@ -24,22 +24,14 @@ public record class DrawExportParams : ParamsBase
     /// <summary>
     /// Export output format
     /// </summary>
-    public ApiEnum<string, Format>? Format
+    public required ApiEnum<string, Format> Format
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<ApiEnum<string, Format>>("format");
+            return this._rawQueryData.GetNotNullClass<ApiEnum<string, Format>>("format");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawQueryData.Set("format", value);
-        }
+        init { this._rawQueryData.Set("format", value); }
     }
 
     /// <summary>
@@ -147,13 +139,13 @@ public record class DrawExportParams : ParamsBase
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/draws/{0}/export", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         request.Headers.Add("Accept", "application/octet-stream");
         foreach (var item in this.RawHeaderData)
         {

@@ -12,18 +12,18 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-            Message = "Checkout session created",
+            Message = "Billing session created",
             Status = Status.CheckoutCreated,
+            Url = "https://xquik.com/billing/session",
         };
 
-        string expectedUrl = "https://checkout.stripe.com/c/pay/cs_test_123";
-        string expectedMessage = "Checkout session created";
+        string expectedMessage = "Billing session created";
         ApiEnum<string, Status> expectedStatus = Status.CheckoutCreated;
+        string expectedUrl = "https://xquik.com/billing/session";
 
-        Assert.Equal(expectedUrl, model.Url);
         Assert.Equal(expectedMessage, model.Message);
         Assert.Equal(expectedStatus, model.Status);
+        Assert.Equal(expectedUrl, model.Url);
     }
 
     [Fact]
@@ -31,9 +31,9 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-            Message = "Checkout session created",
+            Message = "Billing session created",
             Status = Status.CheckoutCreated,
+            Url = "https://xquik.com/billing/session",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -50,9 +50,9 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-            Message = "Checkout session created",
+            Message = "Billing session created",
             Status = Status.CheckoutCreated,
+            Url = "https://xquik.com/billing/session",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -62,13 +62,13 @@ public class SubscribeCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedUrl = "https://checkout.stripe.com/c/pay/cs_test_123";
-        string expectedMessage = "Checkout session created";
+        string expectedMessage = "Billing session created";
         ApiEnum<string, Status> expectedStatus = Status.CheckoutCreated;
+        string expectedUrl = "https://xquik.com/billing/session";
 
-        Assert.Equal(expectedUrl, deserialized.Url);
         Assert.Equal(expectedMessage, deserialized.Message);
         Assert.Equal(expectedStatus, deserialized.Status);
+        Assert.Equal(expectedUrl, deserialized.Url);
     }
 
     [Fact]
@@ -76,67 +76,9 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-            Message = "Checkout session created",
+            Message = "Billing session created",
             Status = Status.CheckoutCreated,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new SubscribeCreateResponse
-        {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-        };
-
-        Assert.Null(model.Message);
-        Assert.False(model.RawData.ContainsKey("message"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new SubscribeCreateResponse
-        {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new SubscribeCreateResponse
-        {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-
-            // Null should be interpreted as omitted for these properties
-            Message = null,
-            Status = null,
-        };
-
-        Assert.Null(model.Message);
-        Assert.False(model.RawData.ContainsKey("message"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new SubscribeCreateResponse
-        {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-
-            // Null should be interpreted as omitted for these properties
-            Message = null,
-            Status = null,
+            Url = "https://xquik.com/billing/session",
         };
 
         model.Validate();
@@ -147,9 +89,9 @@ public class SubscribeCreateResponseTest : TestBase
     {
         var model = new SubscribeCreateResponse
         {
-            Url = "https://checkout.stripe.com/c/pay/cs_test_123",
-            Message = "Checkout session created",
+            Message = "Billing session created",
             Status = Status.CheckoutCreated,
+            Url = "https://xquik.com/billing/session",
         };
 
         SubscribeCreateResponse copied = new(model);

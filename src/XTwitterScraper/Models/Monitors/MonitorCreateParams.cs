@@ -11,7 +11,9 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.Monitors;
 
 /// <summary>
-/// Create monitor
+/// Creates an instant monitor. Monitors are unlimited. Active monitors check every
+/// 1 second and cost 21 credits per hour. Events and webhook deliveries are included.
+/// Creation requires available credits for the first hourly charge and username lookup.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -141,7 +143,7 @@ public record class MonitorCreateParams : ParamsBase
     {
         return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/monitors")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
@@ -156,7 +158,7 @@ public record class MonitorCreateParams : ParamsBase
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);

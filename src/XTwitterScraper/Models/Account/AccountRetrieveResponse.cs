@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,12 +5,27 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Account;
 
 [JsonConverter(typeof(JsonModelConverter<AccountRetrieveResponse, AccountRetrieveResponseFromRaw>))]
 public sealed record class AccountRetrieveResponse : JsonModel
 {
+    public required MonitorBilling MonitorBilling
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<MonitorBilling>("monitorBilling");
+        }
+        init { this._rawData.Set("monitorBilling", value); }
+    }
+
+    /// <summary>
+    /// Deprecated. Monitor slots are unlimited, so this is always Number.MAX_SAFE_INTEGER.
+    /// </summary>
+    [System::Obsolete("Monitor slots are unlimited. Use monitorBilling.unlimitedSlots instead.")]
     public required long MonitorsAllowed
     {
         get
@@ -60,29 +74,56 @@ public sealed record class AccountRetrieveResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Linked X username, omitted when no X account is connected.
+    /// </summary>
+    public string? XUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("xUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("xUsername", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
+        this.MonitorBilling.Validate();
         _ = this.MonitorsAllowed;
         _ = this.MonitorsUsed;
         this.Plan.Validate();
         this.CreditInfo?.Validate();
+        _ = this.XUsername;
     }
 
+    [System::Obsolete("Required properties are deprecated: monitorsAllowed")]
     public AccountRetrieveResponse() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: monitorsAllowed")]
     public AccountRetrieveResponse(AccountRetrieveResponse accountRetrieveResponse)
         : base(accountRetrieveResponse) { }
 #pragma warning restore CS8618
 
+    [System::Obsolete("Required properties are deprecated: monitorsAllowed")]
     public AccountRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
+    [System::Obsolete("Required properties are deprecated: monitorsAllowed")]
     [SetsRequiredMembers]
     AccountRetrieveResponse(FrozenDictionary<string, JsonElement> rawData)
     {
@@ -107,6 +148,147 @@ class AccountRetrieveResponseFromRaw : IFromRawJson<AccountRetrieveResponse>
     ) => AccountRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+[JsonConverter(typeof(JsonModelConverter<MonitorBilling, MonitorBillingFromRaw>))]
+public sealed record class MonitorBilling : JsonModel
+{
+    /// <summary>
+    /// Estimated daily credits for currently active monitors.
+    /// </summary>
+    public required string ActiveDailyEstimate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("activeDailyEstimate");
+        }
+        init { this._rawData.Set("activeDailyEstimate", value); }
+    }
+
+    /// <summary>
+    /// Credits charged each hour for currently active monitors.
+    /// </summary>
+    public required string ActiveHourlyBurn
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("activeHourlyBurn");
+        }
+        init { this._rawData.Set("activeHourlyBurn", value); }
+    }
+
+    /// <summary>
+    /// Estimated daily credits for 1 active instant monitor.
+    /// </summary>
+    public required string CreditsPerActiveMonitorDay
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("creditsPerActiveMonitorDay");
+        }
+        init { this._rawData.Set("creditsPerActiveMonitorDay", value); }
+    }
+
+    /// <summary>
+    /// Hourly credits charged for 1 active instant monitor.
+    /// </summary>
+    public required string CreditsPerActiveMonitorHour
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("creditsPerActiveMonitorHour");
+        }
+        init { this._rawData.Set("creditsPerActiveMonitorHour", value); }
+    }
+
+    /// <summary>
+    /// Webhook and event deliveries are included in monitor billing.
+    /// </summary>
+    public required bool EventsIncluded
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("eventsIncluded");
+        }
+        init { this._rawData.Set("eventsIncluded", value); }
+    }
+
+    /// <summary>
+    /// Active monitors check every 1 second.
+    /// </summary>
+    public required long InstantCheckIntervalSeconds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("instantCheckIntervalSeconds");
+        }
+        init { this._rawData.Set("instantCheckIntervalSeconds", value); }
+    }
+
+    /// <summary>
+    /// Monitor slot count is unlimited.
+    /// </summary>
+    public required bool UnlimitedSlots
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("unlimitedSlots");
+        }
+        init { this._rawData.Set("unlimitedSlots", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ActiveDailyEstimate;
+        _ = this.ActiveHourlyBurn;
+        _ = this.CreditsPerActiveMonitorDay;
+        _ = this.CreditsPerActiveMonitorHour;
+        _ = this.EventsIncluded;
+        _ = this.InstantCheckIntervalSeconds;
+        _ = this.UnlimitedSlots;
+    }
+
+    public MonitorBilling() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MonitorBilling(MonitorBilling monitorBilling)
+        : base(monitorBilling) { }
+#pragma warning restore CS8618
+
+    public MonitorBilling(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    MonitorBilling(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="MonitorBillingFromRaw.FromRawUnchecked"/>
+    public static MonitorBilling FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class MonitorBillingFromRaw : IFromRawJson<MonitorBilling>
+{
+    /// <inheritdoc/>
+    public MonitorBilling FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        MonitorBilling.FromRawUnchecked(rawData);
+}
+
 [JsonConverter(typeof(PlanConverter))]
 public enum Plan
 {
@@ -118,7 +300,7 @@ sealed class PlanConverter : JsonConverter<Plan>
 {
     public override Plan Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -150,6 +332,19 @@ sealed class PlanConverter : JsonConverter<Plan>
 [JsonConverter(typeof(JsonModelConverter<CreditInfo, CreditInfoFromRaw>))]
 public sealed record class CreditInfo : JsonModel
 {
+    /// <summary>
+    /// Dollar amount charged when automatic top-up runs.
+    /// </summary>
+    public required double AutoTopupAmountDollars
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("autoTopupAmountDollars");
+        }
+        init { this._rawData.Set("autoTopupAmountDollars", value); }
+    }
+
     public required bool AutoTopupEnabled
     {
         get
@@ -160,32 +355,54 @@ public sealed record class CreditInfo : JsonModel
         init { this._rawData.Set("autoTopupEnabled", value); }
     }
 
-    public required long Balance
+    /// <summary>
+    /// Bigint string threshold that triggers automatic top-up when enabled.
+    /// </summary>
+    public required string AutoTopupThreshold
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("balance");
+            return this._rawData.GetNotNullClass<string>("autoTopupThreshold");
+        }
+        init { this._rawData.Set("autoTopupThreshold", value); }
+    }
+
+    /// <summary>
+    /// Bigint string to preserve precision above Number.MAX_SAFE_INTEGER.
+    /// </summary>
+    public required string Balance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("balance");
         }
         init { this._rawData.Set("balance", value); }
     }
 
-    public required long LifetimePurchased
+    /// <summary>
+    /// Total purchased credits as a bigint string.
+    /// </summary>
+    public required string LifetimePurchased
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("lifetimePurchased");
+            return this._rawData.GetNotNullClass<string>("lifetimePurchased");
         }
         init { this._rawData.Set("lifetimePurchased", value); }
     }
 
-    public required long LifetimeUsed
+    /// <summary>
+    /// Total consumed credits as a bigint string.
+    /// </summary>
+    public required string LifetimeUsed
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<long>("lifetimeUsed");
+            return this._rawData.GetNotNullClass<string>("lifetimeUsed");
         }
         init { this._rawData.Set("lifetimeUsed", value); }
     }
@@ -193,7 +410,9 @@ public sealed record class CreditInfo : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.AutoTopupAmountDollars;
         _ = this.AutoTopupEnabled;
+        _ = this.AutoTopupThreshold;
         _ = this.Balance;
         _ = this.LifetimePurchased;
         _ = this.LifetimeUsed;

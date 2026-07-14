@@ -8,12 +8,12 @@ public class DrawListParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new DrawListParams { After = "after", Limit = 1 };
+        var parameters = new DrawListParams { Cursor = "cursor", Limit = 1 };
 
-        string expectedAfter = "after";
+        string expectedCursor = "cursor";
         long expectedLimit = 1;
 
-        Assert.Equal(expectedAfter, parameters.After);
+        Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedLimit, parameters.Limit);
     }
 
@@ -22,8 +22,8 @@ public class DrawListParamsTest : TestBase
     {
         var parameters = new DrawListParams { };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
     }
@@ -34,12 +34,12 @@ public class DrawListParamsTest : TestBase
         var parameters = new DrawListParams
         {
             // Null should be interpreted as omitted for these properties
-            After = null,
+            Cursor = null,
             Limit = null,
         };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
     }
@@ -47,19 +47,19 @@ public class DrawListParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        DrawListParams parameters = new() { After = "after", Limit = 1 };
+        DrawListParams parameters = new() { Cursor = "cursor", Limit = 1 };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
-            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/draws?after=after&limit=1"), url)
+            TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/draws?cursor=cursor&limit=1"), url)
         );
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new DrawListParams { After = "after", Limit = 1 };
+        var parameters = new DrawListParams { Cursor = "cursor", Limit = 1 };
 
         DrawListParams copied = new(parameters);
 

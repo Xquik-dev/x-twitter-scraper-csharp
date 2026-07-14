@@ -1,4 +1,3 @@
-using System.Text;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -19,7 +18,7 @@ public class ProfileServiceTest : TestBase
     public async Task UpdateAvatar_Works()
     {
         var response = await this.client.X.Profile.UpdateAvatar(
-            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", UrlValue = "https://example.com/avatar.png" },
             TestContext.Current.CancellationToken
         );
         response.Validate();
@@ -29,7 +28,7 @@ public class ProfileServiceTest : TestBase
     public async Task UpdateBanner_Works()
     {
         var response = await this.client.X.Profile.UpdateBanner(
-            new() { Account = "@elonmusk", File = Encoding.UTF8.GetBytes("Example data") },
+            new() { Account = "@elonmusk", UrlValue = "https://example.com/banner.png" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

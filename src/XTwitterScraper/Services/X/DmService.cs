@@ -49,12 +49,10 @@ public sealed class DmService : IDmService
     /// <inheritdoc/>
     public Task<DmRetrieveHistoryResponse> RetrieveHistory(
         string userID,
-        DmRetrieveHistoryParams? parameters = null,
+        DmRetrieveHistoryParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.RetrieveHistory(parameters with { UserID = userID }, cancellationToken);
     }
 
@@ -133,12 +131,10 @@ public sealed class DmServiceWithRawResponse : IDmServiceWithRawResponse
     /// <inheritdoc/>
     public Task<HttpResponse<DmRetrieveHistoryResponse>> RetrieveHistory(
         string userID,
-        DmRetrieveHistoryParams? parameters = null,
+        DmRetrieveHistoryParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        parameters ??= new();
-
         return this.RetrieveHistory(parameters with { UserID = userID }, cancellationToken);
     }
 

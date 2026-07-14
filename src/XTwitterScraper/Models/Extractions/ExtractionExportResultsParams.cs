@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -24,22 +24,14 @@ public record class ExtractionExportResultsParams : ParamsBase
     /// <summary>
     /// Export file format
     /// </summary>
-    public ApiEnum<string, Format>? Format
+    public required ApiEnum<string, Format> Format
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<ApiEnum<string, Format>>("format");
+            return this._rawQueryData.GetNotNullClass<ApiEnum<string, Format>>("format");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawQueryData.Set("format", value);
-        }
+        init { this._rawQueryData.Set("format", value); }
     }
 
     public ExtractionExportResultsParams() { }
@@ -120,20 +112,20 @@ public record class ExtractionExportResultsParams : ParamsBase
             && this._rawQueryData.Equals(other._rawQueryData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/extractions/{0}/export", this.ID)
         )
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         request.Headers.Add("Accept", "application/octet-stream");
         foreach (var item in this.RawHeaderData)
         {
@@ -166,7 +158,7 @@ sealed class FormatConverter : JsonConverter<Format>
 {
     public override Format Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

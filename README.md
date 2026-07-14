@@ -64,7 +64,11 @@ Or manually:
 ```csharp
 using XTwitterScraper;
 
-XTwitterScraperClient client = new() { ApiKey = "My API Key" };
+XTwitterScraperClient client = new()
+{
+    ApiKey = "My API Key",
+    BearerToken = "My Bearer Token",
+};
 ```
 
 Or using a combination of the two approaches.
@@ -84,7 +88,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with
         {
@@ -92,9 +96,9 @@ var paginatedTweets = await client
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -117,7 +121,11 @@ These methods return `HttpResponse`:
 using System;
 using XTwitterScraper.Models.Extractions;
 
-ExtractionExportResultsParams parameters = new() { ID = "id" };
+ExtractionExportResultsParams parameters = new()
+{
+    ID = "id",
+    Format = Format.Csv,
+};
 
 var response = await client.Extractions.ExportResults(parameters);
 
@@ -142,7 +150,7 @@ The SDK defines methods that deserialize responses into instances of C# classes.
 To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
 
 ```csharp
-var response = await client.WithRawResponse.X.Tweets.Search(parameters);
+var response = await client.WithRawResponse.Account.Retrieve();
 var statusCode = response.StatusCode;
 var headers = response.Headers;
 ```
@@ -153,10 +161,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using XTwitterScraper.Models;
+using XTwitterScraper.Models.Account;
 
-var response = await client.WithRawResponse.X.Tweets.Search(parameters);
-PaginatedTweets deserialized = await response.Deserialize();
+var response = await client.WithRawResponse.Account.Retrieve();
+AccountRetrieveResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -214,13 +222,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 ### Timeouts
@@ -241,13 +249,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var paginatedTweets = await client
+var account = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
-    .X.Tweets.Search(parameters);
+    .Account.Retrieve(parameters);
 
-Console.WriteLine(paginatedTweets);
+Console.WriteLine(account);
 ```
 
 ### Proxies

@@ -13,13 +13,13 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         var model = new BookmarkRetrieveFoldersResponse
         {
             Folders = [new() { ID = "1234567890", Name = "Read Later" }],
-            HasNextPage = true,
-            NextCursor = "DAACCgACGRElMJcAAA",
+            HasNextPage = false,
+            NextCursor = "",
         };
 
         List<Folder> expectedFolders = [new() { ID = "1234567890", Name = "Read Later" }];
-        bool expectedHasNextPage = true;
-        string expectedNextCursor = "DAACCgACGRElMJcAAA";
+        bool expectedHasNextPage = false;
+        string expectedNextCursor = "";
 
         Assert.Equal(expectedFolders.Count, model.Folders.Count);
         for (int i = 0; i < expectedFolders.Count; i++)
@@ -36,8 +36,8 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         var model = new BookmarkRetrieveFoldersResponse
         {
             Folders = [new() { ID = "1234567890", Name = "Read Later" }],
-            HasNextPage = true,
-            NextCursor = "DAACCgACGRElMJcAAA",
+            HasNextPage = false,
+            NextCursor = "",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -55,8 +55,8 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         var model = new BookmarkRetrieveFoldersResponse
         {
             Folders = [new() { ID = "1234567890", Name = "Read Later" }],
-            HasNextPage = true,
-            NextCursor = "DAACCgACGRElMJcAAA",
+            HasNextPage = false,
+            NextCursor = "",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,8 +67,8 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         List<Folder> expectedFolders = [new() { ID = "1234567890", Name = "Read Later" }];
-        bool expectedHasNextPage = true;
-        string expectedNextCursor = "DAACCgACGRElMJcAAA";
+        bool expectedHasNextPage = false;
+        string expectedNextCursor = "";
 
         Assert.Equal(expectedFolders.Count, deserialized.Folders.Count);
         for (int i = 0; i < expectedFolders.Count; i++)
@@ -85,8 +85,8 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         var model = new BookmarkRetrieveFoldersResponse
         {
             Folders = [new() { ID = "1234567890", Name = "Read Later" }],
-            HasNextPage = true,
-            NextCursor = "DAACCgACGRElMJcAAA",
+            HasNextPage = false,
+            NextCursor = "",
         };
 
         model.Validate();
@@ -98,8 +98,8 @@ public class BookmarkRetrieveFoldersResponseTest : TestBase
         var model = new BookmarkRetrieveFoldersResponse
         {
             Folders = [new() { ID = "1234567890", Name = "Read Later" }],
-            HasNextPage = true,
-            NextCursor = "DAACCgACGRElMJcAAA",
+            HasNextPage = false,
+            NextCursor = "",
         };
 
         BookmarkRetrieveFoldersResponse copied = new(model);

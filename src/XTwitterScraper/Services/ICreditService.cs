@@ -29,6 +29,14 @@ public interface ICreditService
     ICreditService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
+    /// Redirect to an active top-up payment page
+    /// </summary>
+    Task RedirectTopupCheckout(
+        CreditRedirectTopupCheckoutParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Get credits balance
     /// </summary>
     Task<CreditRetrieveBalanceResponse> RetrieveBalance(
@@ -37,7 +45,16 @@ public interface ICreditService
     );
 
     /// <summary>
-    /// Top up credits balance
+    /// Get top-up billing status
+    /// </summary>
+    Task<CreditRetrieveTopupStatusResponse> RetrieveTopupStatus(
+        CreditRetrieveTopupStatusParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Create a Stripe Checkout session only after the user confirms. The request never
+    /// completes payment or adds credits by itself.
     /// </summary>
     Task<CreditTopupBalanceResponse> TopupBalance(
         CreditTopupBalanceParams parameters,
@@ -59,11 +76,29 @@ public interface ICreditServiceWithRawResponse
     ICreditServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
+    /// Returns a raw HTTP response for <c>get /credits/topup/redirect</c>, but is otherwise the
+    /// same as <see cref="ICreditService.RedirectTopupCheckout(CreditRedirectTopupCheckoutParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse> RedirectTopupCheckout(
+        CreditRedirectTopupCheckoutParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns a raw HTTP response for <c>get /credits</c>, but is otherwise the
     /// same as <see cref="ICreditService.RetrieveBalance(CreditRetrieveBalanceParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditRetrieveBalanceResponse>> RetrieveBalance(
         CreditRetrieveBalanceParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /credits/topup/status</c>, but is otherwise the
+    /// same as <see cref="ICreditService.RetrieveTopupStatus(CreditRetrieveTopupStatusParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditRetrieveTopupStatusResponse>> RetrieveTopupStatus(
+        CreditRetrieveTopupStatusParams parameters,
         CancellationToken cancellationToken = default
     );
 

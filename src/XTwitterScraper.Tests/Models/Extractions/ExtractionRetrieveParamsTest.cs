@@ -11,16 +11,16 @@ public class ExtractionRetrieveParamsTest : TestBase
         var parameters = new ExtractionRetrieveParams
         {
             ID = "id",
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
         };
 
         string expectedID = "id";
-        string expectedAfter = "after";
+        string expectedCursor = "cursor";
         long expectedLimit = 1;
 
         Assert.Equal(expectedID, parameters.ID);
-        Assert.Equal(expectedAfter, parameters.After);
+        Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedLimit, parameters.Limit);
     }
 
@@ -29,8 +29,8 @@ public class ExtractionRetrieveParamsTest : TestBase
     {
         var parameters = new ExtractionRetrieveParams { ID = "id" };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
     }
@@ -43,12 +43,12 @@ public class ExtractionRetrieveParamsTest : TestBase
             ID = "id",
 
             // Null should be interpreted as omitted for these properties
-            After = null,
+            Cursor = null,
             Limit = null,
         };
 
-        Assert.Null(parameters.After);
-        Assert.False(parameters.RawQueryData.ContainsKey("after"));
+        Assert.Null(parameters.Cursor);
+        Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
         Assert.Null(parameters.Limit);
         Assert.False(parameters.RawQueryData.ContainsKey("limit"));
     }
@@ -59,15 +59,15 @@ public class ExtractionRetrieveParamsTest : TestBase
         ExtractionRetrieveParams parameters = new()
         {
             ID = "id",
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(
             TestBase.UrisEqual(
-                new Uri("https://xquik.com/api/v1/extractions/id?after=after&limit=1"),
+                new Uri("https://xquik.com/api/v1/extractions/id?cursor=cursor&limit=1"),
                 url
             )
         );
@@ -79,7 +79,7 @@ public class ExtractionRetrieveParamsTest : TestBase
         var parameters = new ExtractionRetrieveParams
         {
             ID = "id",
-            After = "after",
+            Cursor = "cursor",
             Limit = 1,
         };
 

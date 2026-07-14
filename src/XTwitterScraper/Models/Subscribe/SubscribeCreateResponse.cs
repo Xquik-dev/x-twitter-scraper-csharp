@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,12 +5,33 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Subscribe;
 
 [JsonConverter(typeof(JsonModelConverter<SubscribeCreateResponse, SubscribeCreateResponseFromRaw>))]
 public sealed record class SubscribeCreateResponse : JsonModel
 {
+    public required string Message
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("message");
+        }
+        init { this._rawData.Set("message", value); }
+    }
+
+    public required ApiEnum<string, Status> Status
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
+        }
+        init { this._rawData.Set("status", value); }
+    }
+
     public required string Url
     {
         get
@@ -22,48 +42,12 @@ public sealed record class SubscribeCreateResponse : JsonModel
         init { this._rawData.Set("url", value); }
     }
 
-    public string? Message
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("message");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("message", value);
-        }
-    }
-
-    public ApiEnum<string, Status>? Status
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<ApiEnum<string, Status>>("status");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("status", value);
-        }
-    }
-
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.Url;
         _ = this.Message;
-        this.Status?.Validate();
+        this.Status.Validate();
+        _ = this.Url;
     }
 
     public SubscribeCreateResponse() { }
@@ -94,13 +78,6 @@ public sealed record class SubscribeCreateResponse : JsonModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
-
-    [SetsRequiredMembers]
-    public SubscribeCreateResponse(string url)
-        : this()
-    {
-        this.Url = url;
-    }
 }
 
 class SubscribeCreateResponseFromRaw : IFromRawJson<SubscribeCreateResponse>
@@ -123,7 +100,7 @@ sealed class StatusConverter : JsonConverter<Status>
 {
     public override Status Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

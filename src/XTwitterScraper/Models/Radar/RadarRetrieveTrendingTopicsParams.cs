@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Radar;
 
@@ -62,7 +62,7 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     }
 
     /// <summary>
-    /// Lookback window in hours (1-168, default 24).
+    /// Lookback window in hours (1-72, default 6).
     /// </summary>
     public long? Hours
     {
@@ -104,7 +104,7 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
     }
 
     /// <summary>
-    /// Region filter (us, global, etc.)
+    /// Region filter. Use `global` or a region code such as `US`, `GB`, `TR`, or `ES`.
     /// </summary>
     public string? Region
     {
@@ -215,17 +215,17 @@ public record class RadarRetrieveTrendingTopicsParams : ParamsBase
             && this._rawQueryData.Equals(other._rawQueryData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/radar")
+        return new System::UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/radar")
         {
-            Query = this.QueryString(options),
+            Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
-        ParamsBase.AddDefaultHeaders(request, options);
+        ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());
         foreach (var item in this.RawHeaderData)
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
@@ -258,7 +258,7 @@ sealed class CategoryConverter : JsonConverter<Category>
 {
     public override Category Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -319,7 +319,7 @@ sealed class SourceConverter : JsonConverter<Source>
 {
     public override Source Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

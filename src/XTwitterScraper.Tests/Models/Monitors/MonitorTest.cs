@@ -18,6 +18,7 @@ public class MonitorTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
+            NextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Username = "elonmusk",
             XUserID = "9876543210",
         };
@@ -30,6 +31,7 @@ public class MonitorTest : TestBase
             EventType.TweetReply,
         ];
         bool expectedIsActive = true;
+        DateTimeOffset expectedNextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         string expectedUsername = "elonmusk";
         string expectedXUserID = "9876543210";
 
@@ -41,6 +43,7 @@ public class MonitorTest : TestBase
             Assert.Equal(expectedEventTypes[i], model.EventTypes[i]);
         }
         Assert.Equal(expectedIsActive, model.IsActive);
+        Assert.Equal(expectedNextBillingAt, model.NextBillingAt);
         Assert.Equal(expectedUsername, model.Username);
         Assert.Equal(expectedXUserID, model.XUserID);
     }
@@ -54,6 +57,7 @@ public class MonitorTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
+            NextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Username = "elonmusk",
             XUserID = "9876543210",
         };
@@ -73,6 +77,7 @@ public class MonitorTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
+            NextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Username = "elonmusk",
             XUserID = "9876543210",
         };
@@ -92,6 +97,7 @@ public class MonitorTest : TestBase
             EventType.TweetReply,
         ];
         bool expectedIsActive = true;
+        DateTimeOffset expectedNextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         string expectedUsername = "elonmusk";
         string expectedXUserID = "9876543210";
 
@@ -103,6 +109,7 @@ public class MonitorTest : TestBase
             Assert.Equal(expectedEventTypes[i], deserialized.EventTypes[i]);
         }
         Assert.Equal(expectedIsActive, deserialized.IsActive);
+        Assert.Equal(expectedNextBillingAt, deserialized.NextBillingAt);
         Assert.Equal(expectedUsername, deserialized.Username);
         Assert.Equal(expectedXUserID, deserialized.XUserID);
     }
@@ -116,6 +123,7 @@ public class MonitorTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
+            NextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Username = "elonmusk",
             XUserID = "9876543210",
         };
@@ -132,6 +140,7 @@ public class MonitorTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
             IsActive = true,
+            NextBillingAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Username = "elonmusk",
             XUserID = "9876543210",
         };

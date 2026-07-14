@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
@@ -112,6 +112,7 @@ public enum ExtractionRunResponseToolType
     CommunityModeratorExplorer,
     CommunityPostExtractor,
     CommunitySearch,
+    Favoriters,
     FollowerExplorer,
     FollowingExplorer,
     ListFollowerExplorer,
@@ -126,6 +127,8 @@ public enum ExtractionRunResponseToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserLikes,
+    UserMedia,
     VerifiedFollowerExplorer,
 }
 
@@ -133,7 +136,7 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
 {
     public override ExtractionRunResponseToolType Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -145,6 +148,7 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
                 ExtractionRunResponseToolType.CommunityModeratorExplorer,
             "community_post_extractor" => ExtractionRunResponseToolType.CommunityPostExtractor,
             "community_search" => ExtractionRunResponseToolType.CommunitySearch,
+            "favoriters" => ExtractionRunResponseToolType.Favoriters,
             "follower_explorer" => ExtractionRunResponseToolType.FollowerExplorer,
             "following_explorer" => ExtractionRunResponseToolType.FollowingExplorer,
             "list_follower_explorer" => ExtractionRunResponseToolType.ListFollowerExplorer,
@@ -159,6 +163,8 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
             "space_explorer" => ExtractionRunResponseToolType.SpaceExplorer,
             "thread_extractor" => ExtractionRunResponseToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionRunResponseToolType.TweetSearchExtractor,
+            "user_likes" => ExtractionRunResponseToolType.UserLikes,
+            "user_media" => ExtractionRunResponseToolType.UserMedia,
             "verified_follower_explorer" => ExtractionRunResponseToolType.VerifiedFollowerExplorer,
             _ => (ExtractionRunResponseToolType)(-1),
         };
@@ -180,6 +186,7 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
                     "community_moderator_explorer",
                 ExtractionRunResponseToolType.CommunityPostExtractor => "community_post_extractor",
                 ExtractionRunResponseToolType.CommunitySearch => "community_search",
+                ExtractionRunResponseToolType.Favoriters => "favoriters",
                 ExtractionRunResponseToolType.FollowerExplorer => "follower_explorer",
                 ExtractionRunResponseToolType.FollowingExplorer => "following_explorer",
                 ExtractionRunResponseToolType.ListFollowerExplorer => "list_follower_explorer",
@@ -194,6 +201,8 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
                 ExtractionRunResponseToolType.SpaceExplorer => "space_explorer",
                 ExtractionRunResponseToolType.ThreadExtractor => "thread_extractor",
                 ExtractionRunResponseToolType.TweetSearchExtractor => "tweet_search_extractor",
+                ExtractionRunResponseToolType.UserLikes => "user_likes",
+                ExtractionRunResponseToolType.UserMedia => "user_media",
                 ExtractionRunResponseToolType.VerifiedFollowerExplorer =>
                     "verified_follower_explorer",
                 _ => throw new XTwitterScraperInvalidDataException(

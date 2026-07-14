@@ -53,6 +53,29 @@ public sealed record class MonitorCreateResponse : JsonModel
         }
     }
 
+    public required bool IsActive
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("isActive");
+        }
+        init { this._rawData.Set("isActive", value); }
+    }
+
+    /// <summary>
+    /// Next hourly credit charge time. New active monitors are due immediately.
+    /// </summary>
+    public required DateTimeOffset NextBillingAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("nextBillingAt");
+        }
+        init { this._rawData.Set("nextBillingAt", value); }
+    }
+
     public required string Username
     {
         get
@@ -82,6 +105,8 @@ public sealed record class MonitorCreateResponse : JsonModel
         {
             item.Validate();
         }
+        _ = this.IsActive;
+        _ = this.NextBillingAt;
         _ = this.Username;
         _ = this.XUserID;
     }
