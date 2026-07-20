@@ -25,6 +25,8 @@
     <Configurations>Debug;Release</Configurations>
     <BuildPackage>true</BuildPackage>
     <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>disable</ImplicitUsings>
