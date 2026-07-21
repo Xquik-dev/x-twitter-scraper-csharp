@@ -10,17 +10,39 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "message",
+            Reason = "reason",
+            RetryAfter = 1,
+            RetryAfterMs = 1,
+        };
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
+        string expectedMessage = "message";
+        string expectedReason = "reason";
+        long expectedRetryAfter = 1;
+        long expectedRetryAfterMs = 1;
 
         Assert.Equal(expectedErrorValue, model.ErrorValue);
+        Assert.Equal(expectedMessage, model.Message);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedRetryAfter, model.RetryAfter);
+        Assert.Equal(expectedRetryAfterMs, model.RetryAfterMs);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "message",
+            Reason = "reason",
+            RetryAfter = 1,
+            RetryAfterMs = 1,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(json, ModelBase.SerializerOptions);
@@ -31,19 +53,64 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "message",
+            Reason = "reason",
+            RetryAfter = 1,
+            RetryAfterMs = 1,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
+        string expectedMessage = "message";
+        string expectedReason = "reason";
+        long expectedRetryAfter = 1;
+        long expectedRetryAfterMs = 1;
 
         Assert.Equal(expectedErrorValue, deserialized.ErrorValue);
+        Assert.Equal(expectedMessage, deserialized.Message);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedRetryAfter, deserialized.RetryAfter);
+        Assert.Equal(expectedRetryAfterMs, deserialized.RetryAfterMs);
     }
 
     [Fact]
     public void Validation_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "message",
+            Reason = "reason",
+            RetryAfter = 1,
+            RetryAfterMs = 1,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+
+        Assert.Null(model.Message);
+        Assert.False(model.RawData.ContainsKey("message"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
+        Assert.Null(model.RetryAfter);
+        Assert.False(model.RawData.ContainsKey("retryAfter"));
+        Assert.Null(model.RetryAfterMs);
+        Assert.False(model.RawData.ContainsKey("retryAfterMs"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
         var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
 
@@ -51,9 +118,57 @@ public class ErrorTest : TestBase
     }
 
     [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+
+            // Null should be interpreted as omitted for these properties
+            Message = null,
+            Reason = null,
+            RetryAfter = null,
+            RetryAfterMs = null,
+        };
+
+        Assert.Null(model.Message);
+        Assert.False(model.RawData.ContainsKey("message"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
+        Assert.Null(model.RetryAfter);
+        Assert.False(model.RawData.ContainsKey("retryAfter"));
+        Assert.Null(model.RetryAfterMs);
+        Assert.False(model.RawData.ContainsKey("retryAfterMs"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+
+            // Null should be interpreted as omitted for these properties
+            Message = null,
+            Reason = null,
+            RetryAfter = null,
+            RetryAfterMs = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "message",
+            Reason = "reason",
+            RetryAfter = 1,
+            RetryAfterMs = 1,
+        };
 
         Error copied = new(model);
 
@@ -183,7 +298,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XUserLookupFailed)]
     [InlineData(LegacyErrorCode.XWriteAmbiguous)]
     [InlineData(LegacyErrorCode.XWriteFailed)]
-    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     public void Validation_Works(LegacyErrorCode rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -270,7 +384,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XUserLookupFailed)]
     [InlineData(LegacyErrorCode.XWriteAmbiguous)]
     [InlineData(LegacyErrorCode.XWriteFailed)]
-    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     public void SerializationRoundtrip_Works(LegacyErrorCode rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -466,7 +579,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XUserLookupFailed)]
     [InlineData(Code.XWriteAmbiguous)]
     [InlineData(Code.XWriteFailed)]
-    [InlineData(Code.XWriteUnconfirmed)]
     public void Validation_Works(Code rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -553,7 +665,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XUserLookupFailed)]
     [InlineData(Code.XWriteAmbiguous)]
     [InlineData(Code.XWriteFailed)]
-    [InlineData(Code.XWriteUnconfirmed)]
     public void SerializationRoundtrip_Works(Code rawValue)
     {
         // force implicit conversion because Theory can't do that for us

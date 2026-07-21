@@ -49,6 +49,16 @@ public record class ProfileUpdateAvatarParams : ParamsBase
         init { this._rawBodyData.Set("url", value); }
     }
 
+    public required string IdempotencyKey
+    {
+        get
+        {
+            this._rawHeaderData.Freeze();
+            return this._rawHeaderData.GetNotNullClass<string>("Idempotency-Key");
+        }
+        init { this._rawHeaderData.Set("Idempotency-Key", value); }
+    }
+
     public ProfileUpdateAvatarParams() { }
 
 #pragma warning disable CS8618

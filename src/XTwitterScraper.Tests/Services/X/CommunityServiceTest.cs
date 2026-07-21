@@ -8,7 +8,12 @@ public class CommunityServiceTest : TestBase
     public async Task Create_Works()
     {
         var community = await this.client.X.Communities.Create(
-            new() { Account = "@elonmusk", Name = "Example Name" },
+            new()
+            {
+                Account = "@elonmusk",
+                Name = "Example Name",
+                IdempotencyKey = "Idempotency-Key",
+            },
             TestContext.Current.CancellationToken
         );
         community.Validate();
@@ -19,7 +24,12 @@ public class CommunityServiceTest : TestBase
     {
         var community = await this.client.X.Communities.Delete(
             "id",
-            new() { Account = "@elonmusk", CommunityName = "Tesla Fans" },
+            new()
+            {
+                Account = "@elonmusk",
+                CommunityName = "Tesla Fans",
+                IdempotencyKey = "Idempotency-Key",
+            },
             TestContext.Current.CancellationToken
         );
         community.Validate();
