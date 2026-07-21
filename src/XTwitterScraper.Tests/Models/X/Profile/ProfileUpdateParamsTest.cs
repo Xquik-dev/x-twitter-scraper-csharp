@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using XTwitterScraper.Models.X.Profile;
 
 namespace XTwitterScraper.Tests.Models.X.Profile;
@@ -11,6 +12,7 @@ public class ProfileUpdateParamsTest : TestBase
         var parameters = new ProfileUpdateParams
         {
             Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
             Description = "description_value",
             Location = "location_value",
             Name = "Example Name",
@@ -18,12 +20,14 @@ public class ProfileUpdateParamsTest : TestBase
         };
 
         string expectedAccount = "@elonmusk";
+        string expectedIdempotencyKey = "Idempotency-Key";
         string expectedDescription = "description_value";
         string expectedLocation = "location_value";
         string expectedName = "Example Name";
         string expectedUrlValue = "https://xquik.com/example";
 
         Assert.Equal(expectedAccount, parameters.Account);
+        Assert.Equal(expectedIdempotencyKey, parameters.IdempotencyKey);
         Assert.Equal(expectedDescription, parameters.Description);
         Assert.Equal(expectedLocation, parameters.Location);
         Assert.Equal(expectedName, parameters.Name);
@@ -33,7 +37,11 @@ public class ProfileUpdateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new ProfileUpdateParams { Account = "@elonmusk" };
+        var parameters = new ProfileUpdateParams
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         Assert.Null(parameters.Description);
         Assert.False(parameters.RawBodyData.ContainsKey("description"));
@@ -51,6 +59,7 @@ public class ProfileUpdateParamsTest : TestBase
         var parameters = new ProfileUpdateParams
         {
             Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
 
             // Null should be interpreted as omitted for these properties
             Description = null,
@@ -72,11 +81,33 @@ public class ProfileUpdateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        ProfileUpdateParams parameters = new() { Account = "@elonmusk" };
+        ProfileUpdateParams parameters = new()
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/profile"), url));
+    }
+
+    [Fact]
+    public void AddHeadersToRequest_Works()
+    {
+        HttpRequestMessage requestMessage = new();
+        ProfileUpdateParams parameters = new()
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
+
+        parameters.AddHeadersToRequest(
+            requestMessage,
+            new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" }
+        );
+
+        Assert.Equal(["Idempotency-Key"], requestMessage.Headers.GetValues("Idempotency-Key"));
     }
 
     [Fact]
@@ -85,6 +116,7 @@ public class ProfileUpdateParamsTest : TestBase
         var parameters = new ProfileUpdateParams
         {
             Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
             Description = "description_value",
             Location = "location_value",
             Name = "Example Name",

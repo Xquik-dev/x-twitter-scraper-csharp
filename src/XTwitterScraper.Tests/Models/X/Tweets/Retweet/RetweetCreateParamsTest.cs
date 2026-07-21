@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using XTwitterScraper.Models.X.Tweets.Retweet;
 
 namespace XTwitterScraper.Tests.Models.X.Tweets.Retweet;
@@ -8,19 +9,31 @@ public class RetweetCreateParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new RetweetCreateParams { ID = "id", Account = "@elonmusk" };
+        var parameters = new RetweetCreateParams
+        {
+            ID = "id",
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         string expectedID = "id";
         string expectedAccount = "@elonmusk";
+        string expectedIdempotencyKey = "Idempotency-Key";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedAccount, parameters.Account);
+        Assert.Equal(expectedIdempotencyKey, parameters.IdempotencyKey);
     }
 
     [Fact]
     public void Url_Works()
     {
-        RetweetCreateParams parameters = new() { ID = "id", Account = "@elonmusk" };
+        RetweetCreateParams parameters = new()
+        {
+            ID = "id",
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -30,9 +43,33 @@ public class RetweetCreateParamsTest : TestBase
     }
 
     [Fact]
+    public void AddHeadersToRequest_Works()
+    {
+        HttpRequestMessage requestMessage = new();
+        RetweetCreateParams parameters = new()
+        {
+            ID = "id",
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
+
+        parameters.AddHeadersToRequest(
+            requestMessage,
+            new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" }
+        );
+
+        Assert.Equal(["Idempotency-Key"], requestMessage.Headers.GetValues("Idempotency-Key"));
+    }
+
+    [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new RetweetCreateParams { ID = "id", Account = "@elonmusk" };
+        var parameters = new RetweetCreateParams
+        {
+            ID = "id",
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         RetweetCreateParams copied = new(parameters);
 

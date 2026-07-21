@@ -26,10 +26,98 @@ public sealed record class Error : JsonModel
         init { this._rawData.Set("error", value); }
     }
 
+    /// <summary>
+    /// Human-readable error guidance.
+    /// </summary>
+    public string? Message
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("message", value);
+        }
+    }
+
+    /// <summary>
+    /// Machine-readable reason for a login cooldown.
+    /// </summary>
+    public string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("reason", value);
+        }
+    }
+
+    /// <summary>
+    /// Required wait in seconds.
+    /// </summary>
+    public long? RetryAfter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retryAfter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retryAfter", value);
+        }
+    }
+
+    /// <summary>
+    /// Required wait in milliseconds.
+    /// </summary>
+    public long? RetryAfterMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retryAfterMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retryAfterMs", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         this.ErrorValue.Validate();
+        _ = this.Message;
+        _ = this.Reason;
+        _ = this.RetryAfter;
+        _ = this.RetryAfterMs;
     }
 
     public Error() { }
@@ -411,7 +499,6 @@ public enum LegacyErrorCode
     XUserLookupFailed,
     XWriteAmbiguous,
     XWriteFailed,
-    XWriteUnconfirmed,
 }
 
 sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
@@ -490,7 +577,6 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
             "x_user_lookup_failed" => LegacyErrorCode.XUserLookupFailed,
             "x_write_ambiguous" => LegacyErrorCode.XWriteAmbiguous,
             "x_write_failed" => LegacyErrorCode.XWriteFailed,
-            "x_write_unconfirmed" => LegacyErrorCode.XWriteUnconfirmed,
             _ => (LegacyErrorCode)(-1),
         };
     }
@@ -571,7 +657,6 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
                 LegacyErrorCode.XUserLookupFailed => "x_user_lookup_failed",
                 LegacyErrorCode.XWriteAmbiguous => "x_write_ambiguous",
                 LegacyErrorCode.XWriteFailed => "x_write_failed",
-                LegacyErrorCode.XWriteUnconfirmed => "x_write_unconfirmed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -728,7 +813,6 @@ public enum Code
     XUserLookupFailed,
     XWriteAmbiguous,
     XWriteFailed,
-    XWriteUnconfirmed,
 }
 
 sealed class CodeConverter : JsonConverter<Code>
@@ -807,7 +891,6 @@ sealed class CodeConverter : JsonConverter<Code>
             "x_user_lookup_failed" => Code.XUserLookupFailed,
             "x_write_ambiguous" => Code.XWriteAmbiguous,
             "x_write_failed" => Code.XWriteFailed,
-            "x_write_unconfirmed" => Code.XWriteUnconfirmed,
             _ => (Code)(-1),
         };
     }
@@ -884,7 +967,6 @@ sealed class CodeConverter : JsonConverter<Code>
                 Code.XUserLookupFailed => "x_user_lookup_failed",
                 Code.XWriteAmbiguous => "x_write_ambiguous",
                 Code.XWriteFailed => "x_write_failed",
-                Code.XWriteUnconfirmed => "x_write_unconfirmed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

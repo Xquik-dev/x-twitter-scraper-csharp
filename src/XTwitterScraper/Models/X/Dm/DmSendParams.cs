@@ -50,6 +50,16 @@ public record class DmSendParams : ParamsBase
         init { this._rawBodyData.Set("text", value); }
     }
 
+    public required string IdempotencyKey
+    {
+        get
+        {
+            this._rawHeaderData.Freeze();
+            return this._rawHeaderData.GetNotNullClass<string>("Idempotency-Key");
+        }
+        init { this._rawHeaderData.Set("Idempotency-Key", value); }
+    }
+
     /// <summary>
     /// Optional array containing exactly 1 uploaded media ID.
     /// </summary>

@@ -8,7 +8,7 @@ public class TweetServiceTest : TestBase
     public async Task Create_Works()
     {
         var tweet = await this.client.X.Tweets.Create(
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         tweet.Validate();
@@ -40,7 +40,7 @@ public class TweetServiceTest : TestBase
     {
         var tweet = await this.client.X.Tweets.Delete(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         tweet.Validate();

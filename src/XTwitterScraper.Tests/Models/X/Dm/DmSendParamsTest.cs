@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using XTwitterScraper.Models.X.Dm;
 
 namespace XTwitterScraper.Tests.Models.X.Dm;
@@ -14,17 +15,20 @@ public class DmSendParamsTest : TestBase
             UserID = "userId",
             Account = "@elonmusk",
             Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
             MediaIds = ["1234567890123456789"],
         };
 
         string expectedUserID = "userId";
         string expectedAccount = "@elonmusk";
         string expectedText = "Example text content";
+        string expectedIdempotencyKey = "Idempotency-Key";
         List<string> expectedMediaIds = ["1234567890123456789"];
 
         Assert.Equal(expectedUserID, parameters.UserID);
         Assert.Equal(expectedAccount, parameters.Account);
         Assert.Equal(expectedText, parameters.Text);
+        Assert.Equal(expectedIdempotencyKey, parameters.IdempotencyKey);
         Assert.NotNull(parameters.MediaIds);
         Assert.Equal(expectedMediaIds.Count, parameters.MediaIds.Count);
         for (int i = 0; i < expectedMediaIds.Count; i++)
@@ -41,6 +45,7 @@ public class DmSendParamsTest : TestBase
             UserID = "userId",
             Account = "@elonmusk",
             Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
         };
 
         Assert.Null(parameters.MediaIds);
@@ -55,6 +60,7 @@ public class DmSendParamsTest : TestBase
             UserID = "userId",
             Account = "@elonmusk",
             Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
 
             // Null should be interpreted as omitted for these properties
             MediaIds = null,
@@ -72,11 +78,32 @@ public class DmSendParamsTest : TestBase
             UserID = "userId",
             Account = "@elonmusk",
             Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/dm/userId"), url));
+    }
+
+    [Fact]
+    public void AddHeadersToRequest_Works()
+    {
+        HttpRequestMessage requestMessage = new();
+        DmSendParams parameters = new()
+        {
+            UserID = "userId",
+            Account = "@elonmusk",
+            Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
+        };
+
+        parameters.AddHeadersToRequest(
+            requestMessage,
+            new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" }
+        );
+
+        Assert.Equal(["Idempotency-Key"], requestMessage.Headers.GetValues("Idempotency-Key"));
     }
 
     [Fact]
@@ -87,6 +114,7 @@ public class DmSendParamsTest : TestBase
             UserID = "userId",
             Account = "@elonmusk",
             Text = "Example text content",
+            IdempotencyKey = "Idempotency-Key",
             MediaIds = ["1234567890123456789"],
         };
 

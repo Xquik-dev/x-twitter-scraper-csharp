@@ -79,7 +79,9 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// List users who liked a tweet
+    /// Returns liker profiles that X makes visible for the post. X can withhold liker
+    /// identities even when the post reports likes. In that case this endpoint returns
+    /// 424 `favoriters_unavailable` instead of a misleading empty success.
     /// </summary>
     Task<PaginatedUsers> GetFavoriters(
         TweetGetFavoritersParams parameters,
@@ -109,7 +111,11 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// List replies to a tweet
+    /// Returns visible replies. For an unfiltered first page, Xquik compares a terminal
+    /// page with the post's reported reply count. If the page is visibly incomplete,
+    /// the endpoint returns 424 `replies_incomplete` instead of presenting partial
+    /// coverage as complete. Use tweet search with a `conversation_id:{id}` query as
+    /// the broader fallback.
     /// </summary>
     Task<PaginatedTweets> GetReplies(
         TweetGetRepliesParams parameters,

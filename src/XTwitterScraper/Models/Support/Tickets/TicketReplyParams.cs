@@ -3,7 +3,6 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using XTwitterScraper.Core;
 
@@ -18,8 +17,8 @@ namespace XTwitterScraper.Models.Support.Tickets;
 /// </summary>
 public record class TicketReplyParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    readonly MultipartJsonDictionary _rawBodyData = new();
+    public IReadOnlyDictionary<string, MultipartJsonElement> RawBodyData
     {
         get { return this._rawBodyData.Freeze(); }
     }
@@ -34,6 +33,24 @@ public record class TicketReplyParams : ParamsBase
             return this._rawBodyData.GetNotNullClass<string>("body");
         }
         init { this._rawBodyData.Set("body", value); }
+    }
+
+    public string? IdempotencyKey
+    {
+        get
+        {
+            this._rawHeaderData.Freeze();
+            return this._rawHeaderData.GetNullableClass<string>("Idempotency-Key");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawHeaderData.Set("Idempotency-Key", value);
+        }
     }
 
     public TicketReplyParams() { }
@@ -52,7 +69,7 @@ public record class TicketReplyParams : ParamsBase
     public TicketReplyParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, MultipartJsonElement> rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
@@ -65,7 +82,7 @@ public record class TicketReplyParams : ParamsBase
     TicketReplyParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
+        FrozenDictionary<string, MultipartJsonElement> rawBodyData,
         string id
     )
     {
@@ -80,7 +97,7 @@ public record class TicketReplyParams : ParamsBase
     public static TicketReplyParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        IReadOnlyDictionary<string, MultipartJsonElement> rawBodyData,
         string id
     )
     {
@@ -95,7 +112,7 @@ public record class TicketReplyParams : ParamsBase
     public override string ToString() =>
         JsonSerializer.Serialize(
             FriendlyJsonPrinter.PrintValue(
-                new Dictionary<string, JsonElement>()
+                new Dictionary<string, MultipartJsonElement>()
                 {
                     ["ID"] = JsonSerializer.SerializeToElement(this.ID),
                     ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
@@ -135,11 +152,7 @@ public record class TicketReplyParams : ParamsBase
 
     internal override HttpContent? BodyContent()
     {
-        return new StringContent(
-            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
-            Encoding.UTF8,
-            "application/json"
-        );
+        return MultipartJsonSerializer.Serialize(RawBodyData);
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

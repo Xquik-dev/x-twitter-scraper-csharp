@@ -38,22 +38,14 @@ public record class TweetCreateParams : ParamsBase
         init { this._rawBodyData.Set("account", value); }
     }
 
-    public string? AttachmentUrl
+    public required string IdempotencyKey
     {
         get
         {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("attachment_url");
+            this._rawHeaderData.Freeze();
+            return this._rawHeaderData.GetNotNullClass<string>("Idempotency-Key");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("attachment_url", value);
-        }
+        init { this._rawHeaderData.Set("Idempotency-Key", value); }
     }
 
     public string? CommunityID

@@ -18,7 +18,12 @@ public class MediaServiceTest : TestBase
     public async Task Upload_Works()
     {
         var response = await this.client.X.Media.Upload(
-            new() { Account = "@elonmusk", UrlValue = "https://example.com/image.png" },
+            new()
+            {
+                Account = "@elonmusk",
+                UrlValue = "https://example.com/image.png",
+                IdempotencyKey = "Idempotency-Key",
+            },
             TestContext.Current.CancellationToken
         );
         response.Validate();

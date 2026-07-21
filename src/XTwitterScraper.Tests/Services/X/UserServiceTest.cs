@@ -20,7 +20,7 @@ public class UserServiceTest : TestBase
     {
         var response = await this.client.X.Users.RemoveFollower(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

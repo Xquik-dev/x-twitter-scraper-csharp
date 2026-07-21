@@ -9,7 +9,7 @@ public class RetweetServiceTest : TestBase
     {
         var retweet = await this.client.X.Tweets.Retweet.Create(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         retweet.Validate();
@@ -20,7 +20,7 @@ public class RetweetServiceTest : TestBase
     {
         var retweet = await this.client.X.Tweets.Retweet.Delete(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         retweet.Validate();
