@@ -9,7 +9,7 @@ public class AccountConnectionChallengeServiceTest : TestBase
     {
         var response = await this.client.X.AccountConnectionChallenges.Submit(
             "id",
-            new() { EmailCode = "123456" },
+            new() { EmailCode = "<EMAIL_VERIFICATION_CODE>" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

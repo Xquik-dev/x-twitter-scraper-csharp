@@ -11,11 +11,11 @@ public class AccountConnectionChallengeSubmitParamsTest : TestBase
         var parameters = new AccountConnectionChallengeSubmitParams
         {
             ID = "id",
-            EmailCode = "123456",
+            EmailCode = "<EMAIL_VERIFICATION_CODE>",
         };
 
         string expectedID = "id";
-        string expectedEmailCode = "123456";
+        string expectedEmailCode = "<EMAIL_VERIFICATION_CODE>";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedEmailCode, parameters.EmailCode);
@@ -27,7 +27,7 @@ public class AccountConnectionChallengeSubmitParamsTest : TestBase
         AccountConnectionChallengeSubmitParams parameters = new()
         {
             ID = "id",
-            EmailCode = "123456",
+            EmailCode = "<EMAIL_VERIFICATION_CODE>",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -46,7 +46,7 @@ public class AccountConnectionChallengeSubmitParamsTest : TestBase
         var parameters = new AccountConnectionChallengeSubmitParams
         {
             ID = "id",
-            EmailCode = "123456",
+            EmailCode = "<EMAIL_VERIFICATION_CODE>",
         };
 
         AccountConnectionChallengeSubmitParams copied = new(parameters);

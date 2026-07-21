@@ -125,11 +125,21 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, AccountConnectionChallenges::Health>(),
             new ApiEnumConverter<string, Tickets::Status>(),
             new ApiEnumConverter<string, Credits::Status>(),
+            new ApiEnumConverter<string, GuestWallets::Header>(),
+            new ApiEnumConverter<string, GuestWallets::Scheme>(),
             new ApiEnumConverter<string, GuestWallets::Status>(),
             new ApiEnumConverter<string, GuestWallets::LatestPurchaseStatus>(),
             new ApiEnumConverter<long, GuestWallets::PollAfterSeconds>(),
             new ApiEnumConverter<string, GuestWallets::GuestWalletRetrieveStatusResponseStatus>(),
             new ApiEnumConverter<string, GuestWallets::GuestWalletTopupResponseStatus>(),
+            new ApiEnumConverter<
+                string,
+                GuestWallets::GuestWalletTopupResponseAuthorizationHeader
+            >(),
+            new ApiEnumConverter<
+                string,
+                GuestWallets::GuestWalletTopupResponseAuthorizationScheme
+            >(),
             new ApiEnumConverter<string, GuestWallets::CredentialNotice>(),
         },
     };

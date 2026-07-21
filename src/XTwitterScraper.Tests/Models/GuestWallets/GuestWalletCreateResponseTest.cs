@@ -15,6 +15,7 @@ public class GuestWalletCreateResponseTest : TestBase
         {
             Amount = new(1000),
             ApiKey = "xq_example_returned_once",
+            Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
@@ -26,14 +27,11 @@ public class GuestWalletCreateResponseTest : TestBase
         JsonElement expectedAccountRequired = JsonSerializer.SerializeToElement(false);
         GuestWalletAmount expectedAmount = new(1000);
         string expectedApiKey = "xq_example_returned_once";
-        JsonElement expectedAuthorization = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "header": "Authorization",
-              "scheme": "Bearer"
-            }
-            """
-        );
+        Authorization expectedAuthorization = new()
+        {
+            Header = Header.Authorization,
+            Scheme = Scheme.Bearer,
+        };
         string expectedCheckoutUrl = "https://buy.stripe.com/example";
         JsonElement expectedCredentialNotice = JsonSerializer.SerializeToElement(
             "Store api_key and the Idempotency-Key securely before sharing checkout_url. No email recovery is available."
@@ -55,7 +53,7 @@ public class GuestWalletCreateResponseTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedAccountRequired, model.AccountRequired));
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedApiKey, model.ApiKey);
-        Assert.True(JsonElement.DeepEquals(expectedAuthorization, model.Authorization));
+        Assert.Equal(expectedAuthorization, model.Authorization);
         Assert.Equal(expectedCheckoutUrl, model.CheckoutUrl);
         Assert.True(JsonElement.DeepEquals(expectedCredentialNotice, model.CredentialNotice));
         Assert.Equal(expectedCredits, model.Credits);
@@ -78,6 +76,7 @@ public class GuestWalletCreateResponseTest : TestBase
         {
             Amount = new(1000),
             ApiKey = "xq_example_returned_once",
+            Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
@@ -102,6 +101,7 @@ public class GuestWalletCreateResponseTest : TestBase
         {
             Amount = new(1000),
             ApiKey = "xq_example_returned_once",
+            Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
@@ -120,14 +120,11 @@ public class GuestWalletCreateResponseTest : TestBase
         JsonElement expectedAccountRequired = JsonSerializer.SerializeToElement(false);
         GuestWalletAmount expectedAmount = new(1000);
         string expectedApiKey = "xq_example_returned_once";
-        JsonElement expectedAuthorization = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "header": "Authorization",
-              "scheme": "Bearer"
-            }
-            """
-        );
+        Authorization expectedAuthorization = new()
+        {
+            Header = Header.Authorization,
+            Scheme = Scheme.Bearer,
+        };
         string expectedCheckoutUrl = "https://buy.stripe.com/example";
         JsonElement expectedCredentialNotice = JsonSerializer.SerializeToElement(
             "Store api_key and the Idempotency-Key securely before sharing checkout_url. No email recovery is available."
@@ -149,7 +146,7 @@ public class GuestWalletCreateResponseTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedAccountRequired, deserialized.AccountRequired));
         Assert.Equal(expectedAmount, deserialized.Amount);
         Assert.Equal(expectedApiKey, deserialized.ApiKey);
-        Assert.True(JsonElement.DeepEquals(expectedAuthorization, deserialized.Authorization));
+        Assert.Equal(expectedAuthorization, deserialized.Authorization);
         Assert.Equal(expectedCheckoutUrl, deserialized.CheckoutUrl);
         Assert.True(
             JsonElement.DeepEquals(expectedCredentialNotice, deserialized.CredentialNotice)
@@ -179,6 +176,7 @@ public class GuestWalletCreateResponseTest : TestBase
         {
             Amount = new(1000),
             ApiKey = "xq_example_returned_once",
+            Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
@@ -197,6 +195,7 @@ public class GuestWalletCreateResponseTest : TestBase
         {
             Amount = new(1000),
             ApiKey = "xq_example_returned_once",
+            Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
@@ -208,6 +207,184 @@ public class GuestWalletCreateResponseTest : TestBase
         GuestWalletCreateResponse copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class AuthorizationTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Authorization { Header = Header.Authorization, Scheme = Scheme.Bearer };
+
+        ApiEnum<string, Header> expectedHeader = Header.Authorization;
+        ApiEnum<string, Scheme> expectedScheme = Scheme.Bearer;
+
+        Assert.Equal(expectedHeader, model.Header);
+        Assert.Equal(expectedScheme, model.Scheme);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Authorization { Header = Header.Authorization, Scheme = Scheme.Bearer };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Authorization>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Authorization { Header = Header.Authorization, Scheme = Scheme.Bearer };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Authorization>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, Header> expectedHeader = Header.Authorization;
+        ApiEnum<string, Scheme> expectedScheme = Scheme.Bearer;
+
+        Assert.Equal(expectedHeader, deserialized.Header);
+        Assert.Equal(expectedScheme, deserialized.Scheme);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Authorization { Header = Header.Authorization, Scheme = Scheme.Bearer };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Authorization { Header = Header.Authorization, Scheme = Scheme.Bearer };
+
+        Authorization copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class HeaderTest : TestBase
+{
+    [Theory]
+    [InlineData(Header.Authorization)]
+    public void Validation_Works(Header rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Header> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Header>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Header.Authorization)]
+    public void SerializationRoundtrip_Works(Header rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Header> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Header>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Header>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Header>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SchemeTest : TestBase
+{
+    [Theory]
+    [InlineData(Scheme.Bearer)]
+    public void Validation_Works(Scheme rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Scheme> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Scheme>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Scheme.Bearer)]
+    public void SerializationRoundtrip_Works(Scheme rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Scheme> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Scheme>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Scheme>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Scheme>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

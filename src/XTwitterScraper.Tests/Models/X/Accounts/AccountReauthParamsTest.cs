@@ -11,15 +11,15 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password_value",
-            Email = "user@example.com",
-            TotpSecret = "totp_secret_value",
+            Password = "<ACCOUNT_PASSWORD>",
+            Email = "account@example.invalid",
+            TotpSecret = "<TOTP_SECRET>",
         };
 
         string expectedID = "id";
-        string expectedPassword = "password_value";
-        string expectedEmail = "user@example.com";
-        string expectedTotpSecret = "totp_secret_value";
+        string expectedPassword = "<ACCOUNT_PASSWORD>";
+        string expectedEmail = "account@example.invalid";
+        string expectedTotpSecret = "<TOTP_SECRET>";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedPassword, parameters.Password);
@@ -30,7 +30,7 @@ public class AccountReauthParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new AccountReauthParams { ID = "id", Password = "password_value" };
+        var parameters = new AccountReauthParams { ID = "id", Password = "<ACCOUNT_PASSWORD>" };
 
         Assert.Null(parameters.Email);
         Assert.False(parameters.RawBodyData.ContainsKey("email"));
@@ -44,7 +44,7 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password_value",
+            Password = "<ACCOUNT_PASSWORD>",
 
             // Null should be interpreted as omitted for these properties
             Email = null,
@@ -60,7 +60,7 @@ public class AccountReauthParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        AccountReauthParams parameters = new() { ID = "id", Password = "password_value" };
+        AccountReauthParams parameters = new() { ID = "id", Password = "<ACCOUNT_PASSWORD>" };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -75,9 +75,9 @@ public class AccountReauthParamsTest : TestBase
         var parameters = new AccountReauthParams
         {
             ID = "id",
-            Password = "password_value",
-            Email = "user@example.com",
-            TotpSecret = "totp_secret_value",
+            Password = "<ACCOUNT_PASSWORD>",
+            Email = "account@example.invalid",
+            TotpSecret = "<TOTP_SECRET>",
         };
 
         AccountReauthParams copied = new(parameters);
