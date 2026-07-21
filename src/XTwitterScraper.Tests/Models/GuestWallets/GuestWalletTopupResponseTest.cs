@@ -21,7 +21,11 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
             ApiKey = "xq_example_returned_once",
-            Authorization = new(),
+            Authorization = new()
+            {
+                Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+                Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            },
             CredentialNotice =
                 CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable,
         };
@@ -44,7 +48,11 @@ public class GuestWalletTopupResponseTest : TestBase
         );
         string expectedWalletID = "gw_example";
         string expectedApiKey = "xq_example_returned_once";
-        Authorization expectedAuthorization = new();
+        GuestWalletTopupResponseAuthorization expectedAuthorization = new()
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
         ApiEnum<string, CredentialNotice> expectedCredentialNotice =
             CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable;
 
@@ -80,7 +88,11 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
             ApiKey = "xq_example_returned_once",
-            Authorization = new(),
+            Authorization = new()
+            {
+                Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+                Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            },
             CredentialNotice =
                 CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable,
         };
@@ -107,7 +119,11 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
             ApiKey = "xq_example_returned_once",
-            Authorization = new(),
+            Authorization = new()
+            {
+                Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+                Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            },
             CredentialNotice =
                 CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable,
         };
@@ -137,7 +153,11 @@ public class GuestWalletTopupResponseTest : TestBase
         );
         string expectedWalletID = "gw_example";
         string expectedApiKey = "xq_example_returned_once";
-        Authorization expectedAuthorization = new();
+        GuestWalletTopupResponseAuthorization expectedAuthorization = new()
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
         ApiEnum<string, CredentialNotice> expectedCredentialNotice =
             CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable;
 
@@ -178,7 +198,11 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
             ApiKey = "xq_example_returned_once",
-            Authorization = new(),
+            Authorization = new()
+            {
+                Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+                Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            },
             CredentialNotice =
                 CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable,
         };
@@ -287,7 +311,11 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
             ApiKey = "xq_example_returned_once",
-            Authorization = new(),
+            Authorization = new()
+            {
+                Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+                Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            },
             CredentialNotice =
                 CredentialNotice.StoreApiKeyAndTheIdempotencyKeySecurelyBeforeSharingCheckoutUrlNoEmailRecoveryIsAvailable,
         };
@@ -364,27 +392,37 @@ public class GuestWalletTopupResponseStatusTest : TestBase
     }
 }
 
-public class AuthorizationTest : TestBase
+public class GuestWalletTopupResponseAuthorizationTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Authorization { };
+        var model = new GuestWalletTopupResponseAuthorization
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
 
-        JsonElement expectedHeader = JsonSerializer.SerializeToElement("Authorization");
-        JsonElement expectedScheme = JsonSerializer.SerializeToElement("Bearer");
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> expectedHeader =
+            GuestWalletTopupResponseAuthorizationHeader.Authorization;
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> expectedScheme =
+            GuestWalletTopupResponseAuthorizationScheme.Bearer;
 
-        Assert.True(JsonElement.DeepEquals(expectedHeader, model.Header));
-        Assert.True(JsonElement.DeepEquals(expectedScheme, model.Scheme));
+        Assert.Equal(expectedHeader, model.Header);
+        Assert.Equal(expectedScheme, model.Scheme);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Authorization { };
+        var model = new GuestWalletTopupResponseAuthorization
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Authorization>(
+        var deserialized = JsonSerializer.Deserialize<GuestWalletTopupResponseAuthorization>(
             json,
             ModelBase.SerializerOptions
         );
@@ -395,26 +433,36 @@ public class AuthorizationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Authorization { };
+        var model = new GuestWalletTopupResponseAuthorization
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Authorization>(
+        var deserialized = JsonSerializer.Deserialize<GuestWalletTopupResponseAuthorization>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        JsonElement expectedHeader = JsonSerializer.SerializeToElement("Authorization");
-        JsonElement expectedScheme = JsonSerializer.SerializeToElement("Bearer");
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> expectedHeader =
+            GuestWalletTopupResponseAuthorizationHeader.Authorization;
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> expectedScheme =
+            GuestWalletTopupResponseAuthorizationScheme.Bearer;
 
-        Assert.True(JsonElement.DeepEquals(expectedHeader, deserialized.Header));
-        Assert.True(JsonElement.DeepEquals(expectedScheme, deserialized.Scheme));
+        Assert.Equal(expectedHeader, deserialized.Header);
+        Assert.Equal(expectedScheme, deserialized.Scheme);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new Authorization { };
+        var model = new GuestWalletTopupResponseAuthorization
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
 
         model.Validate();
     }
@@ -422,11 +470,119 @@ public class AuthorizationTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Authorization { };
+        var model = new GuestWalletTopupResponseAuthorization
+        {
+            Header = GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            Scheme = GuestWalletTopupResponseAuthorizationScheme.Bearer,
+        };
 
-        Authorization copied = new(model);
+        GuestWalletTopupResponseAuthorization copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class GuestWalletTopupResponseAuthorizationHeaderTest : TestBase
+{
+    [Theory]
+    [InlineData(GuestWalletTopupResponseAuthorizationHeader.Authorization)]
+    public void Validation_Works(GuestWalletTopupResponseAuthorizationHeader rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(GuestWalletTopupResponseAuthorizationHeader.Authorization)]
+    public void SerializationRoundtrip_Works(GuestWalletTopupResponseAuthorizationHeader rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class GuestWalletTopupResponseAuthorizationSchemeTest : TestBase
+{
+    [Theory]
+    [InlineData(GuestWalletTopupResponseAuthorizationScheme.Bearer)]
+    public void Validation_Works(GuestWalletTopupResponseAuthorizationScheme rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(GuestWalletTopupResponseAuthorizationScheme.Bearer)]
+    public void SerializationRoundtrip_Works(GuestWalletTopupResponseAuthorizationScheme rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
     }
 }
 
