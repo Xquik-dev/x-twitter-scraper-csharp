@@ -32,7 +32,9 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: Restore Dependencies
-        run: dotnet restore XTwitterScraper.sln --locked-mode
+        run: >-
+          dotnet restore src/XTwitterScraper/XTwitterScraper.csproj
+          --locked-mode
 
       - name: Build Package
         run: >-

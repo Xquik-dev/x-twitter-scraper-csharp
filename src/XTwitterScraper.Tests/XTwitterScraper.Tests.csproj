@@ -3,6 +3,8 @@
     <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
     <OutputType>Exe</OutputType>
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+    <RestoreLockedMode>false</RestoreLockedMode>
 
     <!-- Run tests on net8.0, which will use the SDK's net8.0 DLL, and on net472, which will use the
     SDK's netstandard2.0 DLL. -->
