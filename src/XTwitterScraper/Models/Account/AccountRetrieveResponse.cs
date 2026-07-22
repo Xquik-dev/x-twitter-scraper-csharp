@@ -178,7 +178,7 @@ public sealed record class MonitorBilling : JsonModel
     }
 
     /// <summary>
-    /// Estimated daily credits for 1 active instant monitor.
+    /// Rounded daily estimate for 1 active monitor.
     /// </summary>
     public required string CreditsPerActiveMonitorDay
     {
@@ -191,7 +191,7 @@ public sealed record class MonitorBilling : JsonModel
     }
 
     /// <summary>
-    /// Hourly credits charged for 1 active instant monitor.
+    /// Hourly credits charged for 1 active monitor.
     /// </summary>
     public required string CreditsPerActiveMonitorHour
     {
