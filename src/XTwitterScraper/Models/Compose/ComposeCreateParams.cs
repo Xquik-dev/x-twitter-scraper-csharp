@@ -977,7 +977,7 @@ public sealed record class ComposeScoreRequest : JsonModel
     /// <summary>
     /// Accepted for backward compatibility. Text checks ignore this field.
     /// </summary>
-    [System::Obsolete("deprecated")]
+    [System::Obsolete("Ignored. Remove this field. Use hasLink for a separate link card.")]
     public bool? HasMedia
     {
         get
