@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.2 (2026-07-22)
+
+Full Changelog: [v0.5.1...v0.5.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.1...v0.5.2)
+
+### Chores
+
+* sync released C# SDK ([090f22d](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/090f22df8463334b7ec0c1413225f8782d12aac9))
+
 ## 0.5.1 (2026-07-22)
 
 Full Changelog: [v0.5.0...v0.5.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.0...v0.5.1)
