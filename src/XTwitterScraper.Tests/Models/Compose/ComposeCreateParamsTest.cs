@@ -13,117 +13,36 @@ public class ComposeCreateParamsTest : TestBase
     {
         var parameters = new ComposeCreateParams
         {
-            Step = Step.Compose,
-            AdditionalContext = "https://x.com/elonmusk/status/1234567890",
-            CallToAction = "Follow for more",
-            Draft = "AI is changing everything. Here's why.",
-            Goal = Goal.Engagement,
-            HasLink = false,
-            HasMedia = false,
-            MediaType = MediaType.None,
-            StyleUsername = "elonmusk",
-            Tone = "professional",
-            Topic = "AI trends in 2025",
+            Body = new ComposePrepareRequest()
+            {
+                Topic = "PostgreSQL query planning",
+                Goal = Goal.Engagement,
+                StyleUsername = "x",
+            },
         };
 
-        ApiEnum<string, Step> expectedStep = Step.Compose;
-        string expectedAdditionalContext = "https://x.com/elonmusk/status/1234567890";
-        string expectedCallToAction = "Follow for more";
-        string expectedDraft = "AI is changing everything. Here's why.";
-        ApiEnum<string, Goal> expectedGoal = Goal.Engagement;
-        bool expectedHasLink = false;
-        bool expectedHasMedia = false;
-        ApiEnum<string, MediaType> expectedMediaType = MediaType.None;
-        string expectedStyleUsername = "elonmusk";
-        string expectedTone = "professional";
-        string expectedTopic = "AI trends in 2025";
-
-        Assert.Equal(expectedStep, parameters.Step);
-        Assert.Equal(expectedAdditionalContext, parameters.AdditionalContext);
-        Assert.Equal(expectedCallToAction, parameters.CallToAction);
-        Assert.Equal(expectedDraft, parameters.Draft);
-        Assert.Equal(expectedGoal, parameters.Goal);
-        Assert.Equal(expectedHasLink, parameters.HasLink);
-        Assert.Equal(expectedHasMedia, parameters.HasMedia);
-        Assert.Equal(expectedMediaType, parameters.MediaType);
-        Assert.Equal(expectedStyleUsername, parameters.StyleUsername);
-        Assert.Equal(expectedTone, parameters.Tone);
-        Assert.Equal(expectedTopic, parameters.Topic);
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
-    {
-        var parameters = new ComposeCreateParams { Step = Step.Compose };
-
-        Assert.Null(parameters.AdditionalContext);
-        Assert.False(parameters.RawBodyData.ContainsKey("additionalContext"));
-        Assert.Null(parameters.CallToAction);
-        Assert.False(parameters.RawBodyData.ContainsKey("callToAction"));
-        Assert.Null(parameters.Draft);
-        Assert.False(parameters.RawBodyData.ContainsKey("draft"));
-        Assert.Null(parameters.Goal);
-        Assert.False(parameters.RawBodyData.ContainsKey("goal"));
-        Assert.Null(parameters.HasLink);
-        Assert.False(parameters.RawBodyData.ContainsKey("hasLink"));
-        Assert.Null(parameters.HasMedia);
-        Assert.False(parameters.RawBodyData.ContainsKey("hasMedia"));
-        Assert.Null(parameters.MediaType);
-        Assert.False(parameters.RawBodyData.ContainsKey("mediaType"));
-        Assert.Null(parameters.StyleUsername);
-        Assert.False(parameters.RawBodyData.ContainsKey("styleUsername"));
-        Assert.Null(parameters.Tone);
-        Assert.False(parameters.RawBodyData.ContainsKey("tone"));
-        Assert.Null(parameters.Topic);
-        Assert.False(parameters.RawBodyData.ContainsKey("topic"));
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
-    {
-        var parameters = new ComposeCreateParams
+        Body expectedBody = new ComposePrepareRequest()
         {
-            Step = Step.Compose,
-
-            // Null should be interpreted as omitted for these properties
-            AdditionalContext = null,
-            CallToAction = null,
-            Draft = null,
-            Goal = null,
-            HasLink = null,
-            HasMedia = null,
-            MediaType = null,
-            StyleUsername = null,
-            Tone = null,
-            Topic = null,
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
         };
 
-        Assert.Null(parameters.AdditionalContext);
-        Assert.False(parameters.RawBodyData.ContainsKey("additionalContext"));
-        Assert.Null(parameters.CallToAction);
-        Assert.False(parameters.RawBodyData.ContainsKey("callToAction"));
-        Assert.Null(parameters.Draft);
-        Assert.False(parameters.RawBodyData.ContainsKey("draft"));
-        Assert.Null(parameters.Goal);
-        Assert.False(parameters.RawBodyData.ContainsKey("goal"));
-        Assert.Null(parameters.HasLink);
-        Assert.False(parameters.RawBodyData.ContainsKey("hasLink"));
-        Assert.Null(parameters.HasMedia);
-        Assert.False(parameters.RawBodyData.ContainsKey("hasMedia"));
-        Assert.Null(parameters.MediaType);
-        Assert.False(parameters.RawBodyData.ContainsKey("mediaType"));
-        Assert.Null(parameters.StyleUsername);
-        Assert.False(parameters.RawBodyData.ContainsKey("styleUsername"));
-        Assert.Null(parameters.Tone);
-        Assert.False(parameters.RawBodyData.ContainsKey("tone"));
-        Assert.Null(parameters.Topic);
-        Assert.False(parameters.RawBodyData.ContainsKey("topic"));
+        Assert.Equal(expectedBody, parameters.Body);
     }
 
     [Fact]
     public void Url_Works()
     {
-        ComposeCreateParams parameters = new() { Step = Step.Compose };
+        ComposeCreateParams parameters = new()
+        {
+            Body = new ComposePrepareRequest()
+            {
+                Topic = "PostgreSQL query planning",
+                Goal = Goal.Engagement,
+                StyleUsername = "x",
+            },
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
@@ -135,17 +54,12 @@ public class ComposeCreateParamsTest : TestBase
     {
         var parameters = new ComposeCreateParams
         {
-            Step = Step.Compose,
-            AdditionalContext = "https://x.com/elonmusk/status/1234567890",
-            CallToAction = "Follow for more",
-            Draft = "AI is changing everything. Here's why.",
-            Goal = Goal.Engagement,
-            HasLink = false,
-            HasMedia = false,
-            MediaType = MediaType.None,
-            StyleUsername = "elonmusk",
-            Tone = "professional",
-            Topic = "AI trends in 2025",
+            Body = new ComposePrepareRequest()
+            {
+                Topic = "PostgreSQL query planning",
+                Goal = Goal.Engagement,
+                StyleUsername = "x",
+            },
         };
 
         ComposeCreateParams copied = new(parameters);
@@ -154,63 +68,244 @@ public class ComposeCreateParamsTest : TestBase
     }
 }
 
-public class StepTest : TestBase
+public class BodyTest : TestBase
 {
-    [Theory]
-    [InlineData(Step.Compose)]
-    [InlineData(Step.Refine)]
-    [InlineData(Step.Score)]
-    public void Validation_Works(Step rawValue)
+    [Fact]
+    public void ComposePrepareRequestValidationWorks()
     {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Step> value = rawValue;
+        Body value = new ComposePrepareRequest()
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
         value.Validate();
     }
 
     [Fact]
-    public void InvalidEnumValidationThrows_Works()
+    public void ComposeRefineRequestValidationWorks()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Step>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+        Body value = new ComposeRefineRequest()
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+        value.Validate();
     }
 
-    [Theory]
-    [InlineData(Step.Compose)]
-    [InlineData(Step.Refine)]
-    [InlineData(Step.Score)]
-    public void SerializationRoundtrip_Works(Step rawValue)
+    [Fact]
+    public void ComposeScoreRequestValidationWorks()
     {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Step> value = rawValue;
+        Body value = new ComposeScoreRequest()
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+        value.Validate();
+    }
 
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Step>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+    [Fact]
+    public void ComposePrepareRequestSerializationRoundtripWorks()
+    {
+        Body value = new ComposePrepareRequest()
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 
     [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
+    public void ComposeRefineRequestSerializationRoundtripWorks()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Step>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Step>>(
+        Body value = new ComposeRefineRequest()
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void ComposeScoreRequestSerializationRoundtripWorks()
+    {
+        Body value = new ComposeScoreRequest()
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Body>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ComposePrepareRequestTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("compose");
+        string expectedTopic = "PostgreSQL query planning";
+        ApiEnum<string, Goal> expectedGoal = Goal.Engagement;
+        string expectedStyleUsername = "x";
+
+        Assert.True(JsonElement.DeepEquals(expectedStep, model.Step));
+        Assert.Equal(expectedTopic, model.Topic);
+        Assert.Equal(expectedGoal, model.Goal);
+        Assert.Equal(expectedStyleUsername, model.StyleUsername);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposePrepareRequest>(
             json,
             ModelBase.SerializerOptions
         );
 
-        Assert.Equal(value, deserialized);
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposePrepareRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("compose");
+        string expectedTopic = "PostgreSQL query planning";
+        ApiEnum<string, Goal> expectedGoal = Goal.Engagement;
+        string expectedStyleUsername = "x";
+
+        Assert.True(JsonElement.DeepEquals(expectedStep, deserialized.Step));
+        Assert.Equal(expectedTopic, deserialized.Topic);
+        Assert.Equal(expectedGoal, deserialized.Goal);
+        Assert.Equal(expectedStyleUsername, deserialized.StyleUsername);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ComposePrepareRequest { Topic = "PostgreSQL query planning" };
+
+        Assert.Null(model.Goal);
+        Assert.False(model.RawData.ContainsKey("goal"));
+        Assert.Null(model.StyleUsername);
+        Assert.False(model.RawData.ContainsKey("styleUsername"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ComposePrepareRequest { Topic = "PostgreSQL query planning" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+
+            // Null should be interpreted as omitted for these properties
+            Goal = null,
+            StyleUsername = null,
+        };
+
+        Assert.Null(model.Goal);
+        Assert.False(model.RawData.ContainsKey("goal"));
+        Assert.Null(model.StyleUsername);
+        Assert.False(model.RawData.ContainsKey("styleUsername"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+
+            // Null should be interpreted as omitted for these properties
+            Goal = null,
+            StyleUsername = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ComposePrepareRequest
+        {
+            Topic = "PostgreSQL query planning",
+            Goal = Goal.Engagement,
+            StyleUsername = "x",
+        };
+
+        ComposePrepareRequest copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -276,6 +371,268 @@ public class GoalTest : TestBase
     }
 }
 
+public class ComposeRefineRequestTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+
+        ApiEnum<string, ComposeRefineRequestGoal> expectedGoal =
+            ComposeRefineRequestGoal.Engagement;
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("refine");
+        string expectedTone = "professional";
+        string expectedTopic = "x";
+        string expectedAdditionalContext = "x";
+        string expectedCallToAction = "x";
+        ApiEnum<string, MediaType> expectedMediaType = MediaType.Photo;
+
+        Assert.Equal(expectedGoal, model.Goal);
+        Assert.True(JsonElement.DeepEquals(expectedStep, model.Step));
+        Assert.Equal(expectedTone, model.Tone);
+        Assert.Equal(expectedTopic, model.Topic);
+        Assert.Equal(expectedAdditionalContext, model.AdditionalContext);
+        Assert.Equal(expectedCallToAction, model.CallToAction);
+        Assert.Equal(expectedMediaType, model.MediaType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposeRefineRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposeRefineRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, ComposeRefineRequestGoal> expectedGoal =
+            ComposeRefineRequestGoal.Engagement;
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("refine");
+        string expectedTone = "professional";
+        string expectedTopic = "x";
+        string expectedAdditionalContext = "x";
+        string expectedCallToAction = "x";
+        ApiEnum<string, MediaType> expectedMediaType = MediaType.Photo;
+
+        Assert.Equal(expectedGoal, deserialized.Goal);
+        Assert.True(JsonElement.DeepEquals(expectedStep, deserialized.Step));
+        Assert.Equal(expectedTone, deserialized.Tone);
+        Assert.Equal(expectedTopic, deserialized.Topic);
+        Assert.Equal(expectedAdditionalContext, deserialized.AdditionalContext);
+        Assert.Equal(expectedCallToAction, deserialized.CallToAction);
+        Assert.Equal(expectedMediaType, deserialized.MediaType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+        };
+
+        Assert.Null(model.AdditionalContext);
+        Assert.False(model.RawData.ContainsKey("additionalContext"));
+        Assert.Null(model.CallToAction);
+        Assert.False(model.RawData.ContainsKey("callToAction"));
+        Assert.Null(model.MediaType);
+        Assert.False(model.RawData.ContainsKey("mediaType"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+
+            // Null should be interpreted as omitted for these properties
+            AdditionalContext = null,
+            CallToAction = null,
+            MediaType = null,
+        };
+
+        Assert.Null(model.AdditionalContext);
+        Assert.False(model.RawData.ContainsKey("additionalContext"));
+        Assert.Null(model.CallToAction);
+        Assert.False(model.RawData.ContainsKey("callToAction"));
+        Assert.Null(model.MediaType);
+        Assert.False(model.RawData.ContainsKey("mediaType"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+
+            // Null should be interpreted as omitted for these properties
+            AdditionalContext = null,
+            CallToAction = null,
+            MediaType = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ComposeRefineRequest
+        {
+            Goal = ComposeRefineRequestGoal.Engagement,
+            Tone = "professional",
+            Topic = "x",
+            AdditionalContext = "x",
+            CallToAction = "x",
+            MediaType = MediaType.Photo,
+        };
+
+        ComposeRefineRequest copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class ComposeRefineRequestGoalTest : TestBase
+{
+    [Theory]
+    [InlineData(ComposeRefineRequestGoal.Engagement)]
+    [InlineData(ComposeRefineRequestGoal.Followers)]
+    [InlineData(ComposeRefineRequestGoal.Authority)]
+    [InlineData(ComposeRefineRequestGoal.Conversation)]
+    public void Validation_Works(ComposeRefineRequestGoal rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ComposeRefineRequestGoal> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, ComposeRefineRequestGoal>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(ComposeRefineRequestGoal.Engagement)]
+    [InlineData(ComposeRefineRequestGoal.Followers)]
+    [InlineData(ComposeRefineRequestGoal.Authority)]
+    [InlineData(ComposeRefineRequestGoal.Conversation)]
+    public void SerializationRoundtrip_Works(ComposeRefineRequestGoal rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, ComposeRefineRequestGoal> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ComposeRefineRequestGoal>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, ComposeRefineRequestGoal>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, ComposeRefineRequestGoal>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class MediaTypeTest : TestBase
 {
     [Theory]
@@ -333,5 +690,156 @@ public class MediaTypeTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class ComposeScoreRequestTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+
+        string expectedDraft = "x";
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("score");
+        bool expectedHasLink = true;
+        bool expectedHasMedia = true;
+
+        Assert.Equal(expectedDraft, model.Draft);
+        Assert.True(JsonElement.DeepEquals(expectedStep, model.Step));
+        Assert.Equal(expectedHasLink, model.HasLink);
+        Assert.Equal(expectedHasMedia, model.HasMedia);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposeScoreRequest>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ComposeScoreRequest>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedDraft = "x";
+        JsonElement expectedStep = JsonSerializer.SerializeToElement("score");
+        bool expectedHasLink = true;
+        bool expectedHasMedia = true;
+
+        Assert.Equal(expectedDraft, deserialized.Draft);
+        Assert.True(JsonElement.DeepEquals(expectedStep, deserialized.Step));
+        Assert.Equal(expectedHasLink, deserialized.HasLink);
+        Assert.Equal(expectedHasMedia, deserialized.HasMedia);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new ComposeScoreRequest { Draft = "x" };
+
+        Assert.Null(model.HasLink);
+        Assert.False(model.RawData.ContainsKey("hasLink"));
+        Assert.Null(model.HasMedia);
+        Assert.False(model.RawData.ContainsKey("hasMedia"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new ComposeScoreRequest { Draft = "x" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+
+            // Null should be interpreted as omitted for these properties
+            HasLink = null,
+            HasMedia = null,
+        };
+
+        Assert.Null(model.HasLink);
+        Assert.False(model.RawData.ContainsKey("hasLink"));
+        Assert.Null(model.HasMedia);
+        Assert.False(model.RawData.ContainsKey("hasMedia"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+
+            // Null should be interpreted as omitted for these properties
+            HasLink = null,
+            HasMedia = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ComposeScoreRequest
+        {
+            Draft = "x",
+            HasLink = true,
+            HasMedia = true,
+        };
+
+        ComposeScoreRequest copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
