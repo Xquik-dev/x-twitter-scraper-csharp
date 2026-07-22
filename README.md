@@ -1,10 +1,8 @@
-# Xquik API Library
+# Xquik C# SDK
 
-The Xquik SDK provides convenient access to the [X Twitter Scraper REST API](https://xquik.com) from applications written in C#.
+Use the Xquik API from C#.
 
-It is generated with [Stainless](https://www.stainless.com/).
-
-The REST API documentation can be found on [xquik.com](https://xquik.com).
+Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
 ## Installation
 
@@ -99,7 +97,7 @@ The `WithOptions` method does not affect the original client or service.
 
 ## Requests and responses
 
-To send a request to the X Twitter Scraper API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
+Build a `Params` instance and pass it to its client method. The SDK returns a typed C# model.
 
 For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
 
@@ -385,4 +383,6 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/Xquik-dev/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
+Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs, or suggestions.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.

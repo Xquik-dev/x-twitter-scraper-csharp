@@ -1,10 +1,10 @@
 <Project>
   <PropertyGroup>
-    <Authors>X Twitter Scraper</Authors>
-    <Company>X Twitter Scraper</Company>
+    <Authors>Xquik</Authors>
+    <Company>Xquik</Company>
     <PackageTags>sdk;api;http;library</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Copyright>Copyright 2026 X Twitter Scraper</Copyright>
+    <Copyright>Copyright 2026 Xquik</Copyright>
     <PackageProjectUrl>https://xquik.com</PackageProjectUrl>
     <RepositoryUrl>https://www.github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -25,6 +25,8 @@
     <Configurations>Debug;Release</Configurations>
     <BuildPackage>true</BuildPackage>
     <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>disable</ImplicitUsings>

@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.4.4 (2026-07-14)
+
+Full Changelog: [v0.4.3...v0.4.4](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.3...v0.4.4)
+
+### Features
+
+* regenerate the SDK from the finalized API contract
+* add guest wallets, credit top-ups, keyword monitors, webhook resume, account challenges, and write-action status
+* refresh current read and write request and response types
+
+### Security
+
+* retain OIDC trusted publishing and immutable GitHub Actions pins
+
+## 0.4.3 (2026-07-13)
+
+Full Changelog: [v0.4.2...v0.4.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.2...v0.4.3)
+
+### Chores
+
+* publish accurate Xquik package metadata and non-affiliation copy
+* update stable build and test dependencies
+
+### Continuous Integration
+
+* replace the long-lived NuGet key with trusted publishing
+* pin and harden GitHub Actions workflows
+
+## 0.4.2 (2026-04-25)
+
+Full Changelog: [v0.4.1...v0.4.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.1...v0.4.2)
+
+### Documentation
+
+* add Contributor Covenant 2.1 Code of Conduct ([#2192](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/2192)) ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
+
 ## 0.4.1 (2026-04-22)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.0...v0.4.1)

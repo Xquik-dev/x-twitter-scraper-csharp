@@ -1,21 +1,31 @@
 name: CI
+
+permissions:
+  contents: read
+
+concurrency:
+  group: csharp-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
-      - '**'
-      - '!integrated/**'
-      - '!stl-preview-head/**'
-      - '!stl-preview-base/**'
-      - '!generated'
-      - '!codegen/**'
-      - 'codegen/stl/**'
+      - "**"
+      - "!integrated/**"
+      - "!stl-preview-head/**"
+      - "!stl-preview-base/**"
+      - "!generated"
+      - "!codegen/**"
+      - "codegen/stl/**"
   pull_request:
     branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+      - "stl-preview-head/**"
+      - "stl-preview-base/**"
 
 jobs:
   lint:
+    name: Lint
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     name: lint
     runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
@@ -27,14 +37,22 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3.4.2
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
 
-      - name: Run bootstrap
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Bootstrap
         run: ./scripts/bootstrap
 
-      - name: Run lints
+      - name: Run Lints
         run: ./scripts/lint
+
   build:
+    name: Build
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     name: build
     runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
@@ -46,12 +64,19 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3.4.2
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
+
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.0.x"
 
       - name: Build SDK
         run: ./scripts/build
 
   test:
+    name: Test
+    runs-on: windows-2025
     timeout-minutes: 10
     name: test
     runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-windows-2022' || 'windows-latest' }}
@@ -62,8 +87,13 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
         with:
-          dotnet-version: '8.0.x'
+          persist-credentials: false
 
-      - name: Run tests
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Run Tests
         run: ./scripts/test
         shell: bash
