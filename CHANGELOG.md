@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.1 (2026-07-22)
+
+Full Changelog: [v0.5.0...v0.5.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.0...v0.5.1)
+
+### Fixes
+
+* Adds typed Compose, Refine, and Score request variants.
+* Explains why `hasMedia` is ignored.
+* Handles null-only scorer weights safely.
+
 ## 0.5.0 (2026-07-22)
 
 Full Changelog: [v0.4.5...v0.5.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.5...v0.5.0)

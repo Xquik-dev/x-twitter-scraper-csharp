@@ -8,7 +8,7 @@ using Monitors = XTwitterScraper.Models.Monitors;
 namespace XTwitterScraper.Services;
 
 /// <summary>
-/// Real-time X account monitoring
+/// X account monitoring with 1-second checks
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -32,7 +32,7 @@ public interface IMonitorService
     IKeywordService Keywords { get; }
 
     /// <summary>
-    /// Creates an instant monitor. Monitors are unlimited. Active monitors check every
+    /// Creates an account monitor. Monitors are unlimited. Active monitors check every
     /// 1 second and cost 21 credits per hour. Events and webhook deliveries are
     /// included. Creation requires available credits for the first hourly charge and
     /// username lookup.
