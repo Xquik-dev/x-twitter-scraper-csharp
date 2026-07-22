@@ -9,7 +9,15 @@ public class ComposeServiceTest : TestBase
     public async Task Create_Works()
     {
         var compose = await this.client.Compose.Create(
-            new() { Step = Step.Compose },
+            new()
+            {
+                Body = new ComposePrepareRequest()
+                {
+                    Topic = "PostgreSQL query planning",
+                    Goal = Goal.Engagement,
+                    StyleUsername = "x",
+                },
+            },
             TestContext.Current.CancellationToken
         );
         compose.Validate();

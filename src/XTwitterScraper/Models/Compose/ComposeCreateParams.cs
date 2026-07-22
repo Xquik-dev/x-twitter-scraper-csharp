@@ -12,7 +12,9 @@ using System = System;
 namespace XTwitterScraper.Models.Compose;
 
 /// <summary>
-/// Compose, refine, or score a tweet
+/// Run one step of Xquik's three-step writing workflow. Compose returns questions
+/// and editorial rules. Refine returns goal-specific guidance. Score applies deterministic
+/// text checks. It does not predict reach or expose X ranking weights.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -20,233 +22,12 @@ namespace XTwitterScraper.Models.Compose;
 /// </summary>
 public record class ComposeCreateParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
+    public JsonElement RawBodyData { get; private init; }
+
+    public required Body Body
     {
-        get { return this._rawBodyData.Freeze(); }
-    }
-
-    /// <summary>
-    /// Workflow step
-    /// </summary>
-    public required ApiEnum<string, Step> Step
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<ApiEnum<string, Step>>("step");
-        }
-        init { this._rawBodyData.Set("step", value); }
-    }
-
-    /// <summary>
-    /// Extra context or URLs (refine)
-    /// </summary>
-    public string? AdditionalContext
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("additionalContext");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("additionalContext", value);
-        }
-    }
-
-    /// <summary>
-    /// Desired call to action (refine)
-    /// </summary>
-    public string? CallToAction
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("callToAction");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("callToAction", value);
-        }
-    }
-
-    /// <summary>
-    /// Tweet draft text to evaluate (score)
-    /// </summary>
-    public string? Draft
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("draft");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("draft", value);
-        }
-    }
-
-    /// <summary>
-    /// Optimization goal
-    /// </summary>
-    public ApiEnum<string, Goal>? Goal
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<ApiEnum<string, Goal>>("goal");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("goal", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether a link is attached (score)
-    /// </summary>
-    public bool? HasLink
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("hasLink");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("hasLink", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether media is attached (score)
-    /// </summary>
-    public bool? HasMedia
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("hasMedia");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("hasMedia", value);
-        }
-    }
-
-    /// <summary>
-    /// Media type (refine)
-    /// </summary>
-    public ApiEnum<string, MediaType>? MediaType
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<ApiEnum<string, MediaType>>("mediaType");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("mediaType", value);
-        }
-    }
-
-    /// <summary>
-    /// Cached style username for voice matching (compose)
-    /// </summary>
-    public string? StyleUsername
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("styleUsername");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("styleUsername", value);
-        }
-    }
-
-    /// <summary>
-    /// Desired tone (refine)
-    /// </summary>
-    public string? Tone
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("tone");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("tone", value);
-        }
-    }
-
-    /// <summary>
-    /// Tweet topic (compose, refine)
-    /// </summary>
-    public string? Topic
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("topic");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("topic", value);
-        }
+        get { return WrappedJsonSerializer.GetNotNullClass<Body>(this.RawBodyData, "RawBodyData"); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public ComposeCreateParams() { }
@@ -256,19 +37,19 @@ public record class ComposeCreateParams : ParamsBase
     public ComposeCreateParams(ComposeCreateParams composeCreateParams)
         : base(composeCreateParams)
     {
-        this._rawBodyData = new(composeCreateParams._rawBodyData);
+        this.RawBodyData = composeCreateParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public ComposeCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -276,12 +57,12 @@ public record class ComposeCreateParams : ParamsBase
     ComposeCreateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 #pragma warning restore CS8618
 
@@ -289,13 +70,13 @@ public record class ComposeCreateParams : ParamsBase
     public static ComposeCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            rawBodyData
         );
     }
 
@@ -310,7 +91,7 @@ public record class ComposeCreateParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -324,7 +105,7 @@ public record class ComposeCreateParams : ParamsBase
         }
         return this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -359,54 +140,470 @@ public record class ComposeCreateParams : ParamsBase
     }
 }
 
-/// <summary>
-/// Workflow step
-/// </summary>
-[JsonConverter(typeof(StepConverter))]
-public enum Step
+[JsonConverter(typeof(BodyConverter))]
+public record class Body : ModelBase
 {
-    Compose,
-    Refine,
-    Score,
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public JsonElement Step
+    {
+        get
+        {
+            return Match(
+                composePrepareRequest: (x) => x.Step,
+                composeRefineRequest: (x) => x.Step,
+                composeScoreRequest: (x) => x.Step
+            );
+        }
+    }
+
+    public string? Topic
+    {
+        get
+        {
+            return Match<string?>(
+                composePrepareRequest: (x) => x.Topic,
+                composeRefineRequest: (x) => x.Topic,
+                composeScoreRequest: (_) => null
+            );
+        }
+    }
+
+    public Body(ComposePrepareRequest value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Body(ComposeRefineRequest value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Body(ComposeScoreRequest value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Body(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ComposePrepareRequest"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickComposePrepareRequest(out var value)) {
+    ///     // `value` is of type `ComposePrepareRequest`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickComposePrepareRequest([NotNullWhen(true)] out ComposePrepareRequest? value)
+    {
+        value = this.Value as ComposePrepareRequest;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ComposeRefineRequest"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickComposeRefineRequest(out var value)) {
+    ///     // `value` is of type `ComposeRefineRequest`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickComposeRefineRequest([NotNullWhen(true)] out ComposeRefineRequest? value)
+    {
+        value = this.Value as ComposeRefineRequest;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ComposeScoreRequest"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickComposeScoreRequest(out var value)) {
+    ///     // `value` is of type `ComposeScoreRequest`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickComposeScoreRequest([NotNullWhen(true)] out ComposeScoreRequest? value)
+    {
+        value = this.Value as ComposeScoreRequest;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (ComposePrepareRequest value) =&gt; {...},
+    ///     (ComposeRefineRequest value) =&gt; {...},
+    ///     (ComposeScoreRequest value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<ComposePrepareRequest> composePrepareRequest,
+        System::Action<ComposeRefineRequest> composeRefineRequest,
+        System::Action<ComposeScoreRequest> composeScoreRequest
+    )
+    {
+        switch (this.Value)
+        {
+            case ComposePrepareRequest value:
+                composePrepareRequest(value);
+                break;
+            case ComposeRefineRequest value:
+                composeRefineRequest(value);
+                break;
+            case ComposeScoreRequest value:
+                composeScoreRequest(value);
+                break;
+            default:
+                throw new XTwitterScraperInvalidDataException(
+                    "Data did not match any variant of Body"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (ComposePrepareRequest value) =&gt; {...},
+    ///     (ComposeRefineRequest value) =&gt; {...},
+    ///     (ComposeScoreRequest value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<ComposePrepareRequest, T> composePrepareRequest,
+        System::Func<ComposeRefineRequest, T> composeRefineRequest,
+        System::Func<ComposeScoreRequest, T> composeScoreRequest
+    )
+    {
+        return this.Value switch
+        {
+            ComposePrepareRequest value => composePrepareRequest(value),
+            ComposeRefineRequest value => composeRefineRequest(value),
+            ComposeScoreRequest value => composeScoreRequest(value),
+            _ => throw new XTwitterScraperInvalidDataException(
+                "Data did not match any variant of Body"
+            ),
+        };
+    }
+
+    public static implicit operator Body(ComposePrepareRequest value) => new(value);
+
+    public static implicit operator Body(ComposeRefineRequest value) => new(value);
+
+    public static implicit operator Body(ComposeScoreRequest value) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new XTwitterScraperInvalidDataException("Data did not match any variant of Body");
+        }
+        this.Switch(
+            (composePrepareRequest) => composePrepareRequest.Validate(),
+            (composeRefineRequest) => composeRefineRequest.Validate(),
+            (composeScoreRequest) => composeScoreRequest.Validate()
+        );
+    }
+
+    public virtual bool Equals(Body? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            ComposePrepareRequest _ => 0,
+            ComposeRefineRequest _ => 1,
+            ComposeScoreRequest _ => 2,
+            _ => -1,
+        };
+    }
 }
 
-sealed class StepConverter : JsonConverter<Step>
+sealed class BodyConverter : JsonConverter<Body>
 {
-    public override Step Read(
+    public override Body? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        try
         {
-            "compose" => Step.Compose,
-            "refine" => Step.Refine,
-            "score" => Step.Score,
-            _ => (Step)(-1),
-        };
+            var deserialized = JsonSerializer.Deserialize<ComposePrepareRequest>(element, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<ComposeRefineRequest>(element, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<ComposeScoreRequest>(element, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException)
+        {
+            // ignore
+        }
+
+        return new(element);
     }
 
-    public override void Write(Utf8JsonWriter writer, Step value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, Body value, JsonSerializerOptions options)
     {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                Step.Compose => "compose",
-                Step.Refine => "refine",
-                Step.Score => "score",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
+[JsonConverter(typeof(JsonModelConverter<ComposePrepareRequest, ComposePrepareRequestFromRaw>))]
+public sealed record class ComposePrepareRequest : JsonModel
+{
+    public JsonElement Step
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("step");
+        }
+        init { this._rawData.Set("step", value); }
+    }
+
+    /// <summary>
+    /// Subject for the post.
+    /// </summary>
+    public required string Topic
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("topic");
+        }
+        init { this._rawData.Set("topic", value); }
+    }
+
+    /// <summary>
+    /// Editorial goal used to order the rules and questions.
+    /// </summary>
+    public ApiEnum<string, Goal>? Goal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, Goal>>("goal");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("goal", value);
+        }
+    }
+
+    /// <summary>
+    /// Username from a style analysis saved to this account.
+    /// </summary>
+    public string? StyleUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("styleUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("styleUsername", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        if (!JsonElement.DeepEquals(this.Step, JsonSerializer.SerializeToElement("compose")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Topic;
+        this.Goal?.Validate();
+        _ = this.StyleUsername;
+    }
+
+    public ComposePrepareRequest()
+    {
+        this.Step = JsonSerializer.SerializeToElement("compose");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ComposePrepareRequest(ComposePrepareRequest composePrepareRequest)
+        : base(composePrepareRequest) { }
+#pragma warning restore CS8618
+
+    public ComposePrepareRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.Step = JsonSerializer.SerializeToElement("compose");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ComposePrepareRequest(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ComposePrepareRequestFromRaw.FromRawUnchecked"/>
+    public static ComposePrepareRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public ComposePrepareRequest(string topic)
+        : this()
+    {
+        this.Topic = topic;
+    }
+}
+
+class ComposePrepareRequestFromRaw : IFromRawJson<ComposePrepareRequest>
+{
+    /// <inheritdoc/>
+    public ComposePrepareRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ComposePrepareRequest.FromRawUnchecked(rawData);
+}
+
 /// <summary>
-/// Optimization goal
+/// Editorial goal used to order the rules and questions.
 /// </summary>
 [JsonConverter(typeof(GoalConverter))]
 public enum Goal
@@ -454,8 +651,234 @@ sealed class GoalConverter : JsonConverter<Goal>
     }
 }
 
+[JsonConverter(typeof(JsonModelConverter<ComposeRefineRequest, ComposeRefineRequestFromRaw>))]
+public sealed record class ComposeRefineRequest : JsonModel
+{
+    /// <summary>
+    /// Editorial goal for the guidance.
+    /// </summary>
+    public required ApiEnum<string, ComposeRefineRequestGoal> Goal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, ComposeRefineRequestGoal>>("goal");
+        }
+        init { this._rawData.Set("goal", value); }
+    }
+
+    public JsonElement Step
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("step");
+        }
+        init { this._rawData.Set("step", value); }
+    }
+
+    /// <summary>
+    /// Requested writing tone.
+    /// </summary>
+    public required string Tone
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("tone");
+        }
+        init { this._rawData.Set("tone", value); }
+    }
+
+    /// <summary>
+    /// Subject for the post.
+    /// </summary>
+    public required string Topic
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("topic");
+        }
+        init { this._rawData.Set("topic", value); }
+    }
+
+    /// <summary>
+    /// Audience, constraints, sources, or other writing context.
+    /// </summary>
+    public string? AdditionalContext
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("additionalContext");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("additionalContext", value);
+        }
+    }
+
+    /// <summary>
+    /// Specific action the draft should request.
+    /// </summary>
+    public string? CallToAction
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("callToAction");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("callToAction", value);
+        }
+    }
+
+    /// <summary>
+    /// Planned media type.
+    /// </summary>
+    public ApiEnum<string, MediaType>? MediaType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, MediaType>>("mediaType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("mediaType", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Goal.Validate();
+        if (!JsonElement.DeepEquals(this.Step, JsonSerializer.SerializeToElement("refine")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Tone;
+        _ = this.Topic;
+        _ = this.AdditionalContext;
+        _ = this.CallToAction;
+        this.MediaType?.Validate();
+    }
+
+    public ComposeRefineRequest()
+    {
+        this.Step = JsonSerializer.SerializeToElement("refine");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ComposeRefineRequest(ComposeRefineRequest composeRefineRequest)
+        : base(composeRefineRequest) { }
+#pragma warning restore CS8618
+
+    public ComposeRefineRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.Step = JsonSerializer.SerializeToElement("refine");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ComposeRefineRequest(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ComposeRefineRequestFromRaw.FromRawUnchecked"/>
+    public static ComposeRefineRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ComposeRefineRequestFromRaw : IFromRawJson<ComposeRefineRequest>
+{
+    /// <inheritdoc/>
+    public ComposeRefineRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => ComposeRefineRequest.FromRawUnchecked(rawData);
+}
+
 /// <summary>
-/// Media type (refine)
+/// Editorial goal for the guidance.
+/// </summary>
+[JsonConverter(typeof(ComposeRefineRequestGoalConverter))]
+public enum ComposeRefineRequestGoal
+{
+    Engagement,
+    Followers,
+    Authority,
+    Conversation,
+}
+
+sealed class ComposeRefineRequestGoalConverter : JsonConverter<ComposeRefineRequestGoal>
+{
+    public override ComposeRefineRequestGoal Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "engagement" => ComposeRefineRequestGoal.Engagement,
+            "followers" => ComposeRefineRequestGoal.Followers,
+            "authority" => ComposeRefineRequestGoal.Authority,
+            "conversation" => ComposeRefineRequestGoal.Conversation,
+            _ => (ComposeRefineRequestGoal)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ComposeRefineRequestGoal value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ComposeRefineRequestGoal.Engagement => "engagement",
+                ComposeRefineRequestGoal.Followers => "followers",
+                ComposeRefineRequestGoal.Authority => "authority",
+                ComposeRefineRequestGoal.Conversation => "conversation",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Planned media type.
 /// </summary>
 [JsonConverter(typeof(MediaTypeConverter))]
 public enum MediaType
@@ -502,4 +925,134 @@ sealed class MediaTypeConverter : JsonConverter<MediaType>
             options
         );
     }
+}
+
+[JsonConverter(typeof(JsonModelConverter<ComposeScoreRequest, ComposeScoreRequestFromRaw>))]
+public sealed record class ComposeScoreRequest : JsonModel
+{
+    /// <summary>
+    /// Full post text for deterministic editorial checks.
+    /// </summary>
+    public required string Draft
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("draft");
+        }
+        init { this._rawData.Set("draft", value); }
+    }
+
+    public JsonElement Step
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("step");
+        }
+        init { this._rawData.Set("step", value); }
+    }
+
+    /// <summary>
+    /// True when a separate link card is attached.
+    /// </summary>
+    public bool? HasLink
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasLink");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasLink", value);
+        }
+    }
+
+    /// <summary>
+    /// Accepted for backward compatibility. Text checks ignore this field.
+    /// </summary>
+    [System::Obsolete("deprecated")]
+    public bool? HasMedia
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasMedia");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasMedia", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Draft;
+        if (!JsonElement.DeepEquals(this.Step, JsonSerializer.SerializeToElement("score")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.HasLink;
+        _ = this.HasMedia;
+    }
+
+    public ComposeScoreRequest()
+    {
+        this.Step = JsonSerializer.SerializeToElement("score");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ComposeScoreRequest(ComposeScoreRequest composeScoreRequest)
+        : base(composeScoreRequest) { }
+#pragma warning restore CS8618
+
+    public ComposeScoreRequest(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.Step = JsonSerializer.SerializeToElement("score");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ComposeScoreRequest(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ComposeScoreRequestFromRaw.FromRawUnchecked"/>
+    public static ComposeScoreRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public ComposeScoreRequest(string draft)
+        : this()
+    {
+        this.Draft = draft;
+    }
+}
+
+class ComposeScoreRequestFromRaw : IFromRawJson<ComposeScoreRequest>
+{
+    /// <inheritdoc/>
+    public ComposeScoreRequest FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ComposeScoreRequest.FromRawUnchecked(rawData);
 }
