@@ -28,7 +28,7 @@ public class TicketRetrieveResponseTest : TestBase
                             Kind = Kind.Image,
                             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                             SizeBytes = 204800,
-                            Status = MessageAttachmentStatus.Pending,
+                            Status = MessageAttachmentStatus.Ready,
                             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         },
                     ],
@@ -57,7 +57,7 @@ public class TicketRetrieveResponseTest : TestBase
                         Kind = Kind.Image,
                         PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         SizeBytes = 204800,
-                        Status = MessageAttachmentStatus.Pending,
+                        Status = MessageAttachmentStatus.Ready,
                         Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     },
                 ],
@@ -103,7 +103,7 @@ public class TicketRetrieveResponseTest : TestBase
                             Kind = Kind.Image,
                             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                             SizeBytes = 204800,
-                            Status = MessageAttachmentStatus.Pending,
+                            Status = MessageAttachmentStatus.Ready,
                             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         },
                     ],
@@ -146,7 +146,7 @@ public class TicketRetrieveResponseTest : TestBase
                             Kind = Kind.Image,
                             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                             SizeBytes = 204800,
-                            Status = MessageAttachmentStatus.Pending,
+                            Status = MessageAttachmentStatus.Ready,
                             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         },
                     ],
@@ -182,7 +182,7 @@ public class TicketRetrieveResponseTest : TestBase
                         Kind = Kind.Image,
                         PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         SizeBytes = 204800,
-                        Status = MessageAttachmentStatus.Pending,
+                        Status = MessageAttachmentStatus.Ready,
                         Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     },
                 ],
@@ -228,7 +228,7 @@ public class TicketRetrieveResponseTest : TestBase
                             Kind = Kind.Image,
                             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                             SizeBytes = 204800,
-                            Status = MessageAttachmentStatus.Pending,
+                            Status = MessageAttachmentStatus.Ready,
                             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         },
                     ],
@@ -337,7 +337,7 @@ public class TicketRetrieveResponseTest : TestBase
                             Kind = Kind.Image,
                             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                             SizeBytes = 204800,
-                            Status = MessageAttachmentStatus.Pending,
+                            Status = MessageAttachmentStatus.Ready,
                             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                         },
                     ],
@@ -374,7 +374,7 @@ public class MessageTest : TestBase
                     Kind = Kind.Image,
                     PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     SizeBytes = 204800,
-                    Status = MessageAttachmentStatus.Pending,
+                    Status = MessageAttachmentStatus.Ready,
                     Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 },
             ],
@@ -392,7 +392,7 @@ public class MessageTest : TestBase
                 Kind = Kind.Image,
                 PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 SizeBytes = 204800,
-                Status = MessageAttachmentStatus.Pending,
+                Status = MessageAttachmentStatus.Ready,
                 Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
             },
         ];
@@ -425,7 +425,7 @@ public class MessageTest : TestBase
                     Kind = Kind.Image,
                     PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     SizeBytes = 204800,
-                    Status = MessageAttachmentStatus.Pending,
+                    Status = MessageAttachmentStatus.Ready,
                     Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 },
             ],
@@ -454,7 +454,7 @@ public class MessageTest : TestBase
                     Kind = Kind.Image,
                     PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     SizeBytes = 204800,
-                    Status = MessageAttachmentStatus.Pending,
+                    Status = MessageAttachmentStatus.Ready,
                     Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 },
             ],
@@ -479,7 +479,7 @@ public class MessageTest : TestBase
                 Kind = Kind.Image,
                 PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 SizeBytes = 204800,
-                Status = MessageAttachmentStatus.Pending,
+                Status = MessageAttachmentStatus.Ready,
                 Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
             },
         ];
@@ -512,7 +512,7 @@ public class MessageTest : TestBase
                     Kind = Kind.Image,
                     PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     SizeBytes = 204800,
-                    Status = MessageAttachmentStatus.Pending,
+                    Status = MessageAttachmentStatus.Ready,
                     Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 },
             ],
@@ -598,7 +598,7 @@ public class MessageTest : TestBase
                     Kind = Kind.Image,
                     PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
                     SizeBytes = 204800,
-                    Status = MessageAttachmentStatus.Pending,
+                    Status = MessageAttachmentStatus.Ready,
                     Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
                 },
             ],
@@ -625,7 +625,7 @@ public class MessageAttachmentTest : TestBase
             Kind = Kind.Image,
             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
             SizeBytes = 204800,
-            Status = MessageAttachmentStatus.Pending,
+            Status = MessageAttachmentStatus.Ready,
             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
@@ -634,7 +634,7 @@ public class MessageAttachmentTest : TestBase
         ApiEnum<string, Kind> expectedKind = Kind.Image;
         string expectedPublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6";
         long expectedSizeBytes = 204800;
-        ApiEnum<string, MessageAttachmentStatus> expectedStatus = MessageAttachmentStatus.Pending;
+        ApiEnum<string, MessageAttachmentStatus> expectedStatus = MessageAttachmentStatus.Ready;
         string expectedUrl = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6";
 
         Assert.Equal(expectedContentType, model.ContentType);
@@ -656,7 +656,7 @@ public class MessageAttachmentTest : TestBase
             Kind = Kind.Image,
             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
             SizeBytes = 204800,
-            Status = MessageAttachmentStatus.Pending,
+            Status = MessageAttachmentStatus.Ready,
             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
@@ -679,7 +679,7 @@ public class MessageAttachmentTest : TestBase
             Kind = Kind.Image,
             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
             SizeBytes = 204800,
-            Status = MessageAttachmentStatus.Pending,
+            Status = MessageAttachmentStatus.Ready,
             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
@@ -695,7 +695,7 @@ public class MessageAttachmentTest : TestBase
         ApiEnum<string, Kind> expectedKind = Kind.Image;
         string expectedPublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6";
         long expectedSizeBytes = 204800;
-        ApiEnum<string, MessageAttachmentStatus> expectedStatus = MessageAttachmentStatus.Pending;
+        ApiEnum<string, MessageAttachmentStatus> expectedStatus = MessageAttachmentStatus.Ready;
         string expectedUrl = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6";
 
         Assert.Equal(expectedContentType, deserialized.ContentType);
@@ -717,7 +717,7 @@ public class MessageAttachmentTest : TestBase
             Kind = Kind.Image,
             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
             SizeBytes = 204800,
-            Status = MessageAttachmentStatus.Pending,
+            Status = MessageAttachmentStatus.Ready,
             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
@@ -734,7 +734,7 @@ public class MessageAttachmentTest : TestBase
             Kind = Kind.Image,
             PublicID = "att_a1b2c3d4e5f6a1b2c3d4e5f6",
             SizeBytes = 204800,
-            Status = MessageAttachmentStatus.Pending,
+            Status = MessageAttachmentStatus.Ready,
             Url = "/api/v1/support/attachments/att_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 

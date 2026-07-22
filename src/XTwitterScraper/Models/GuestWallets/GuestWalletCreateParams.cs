@@ -29,7 +29,7 @@ public record class GuestWalletCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Confirmed USD amount in cents.
+    /// USD cents accepted for this checkout.
     /// </summary>
     public required long AmountMinor
     {

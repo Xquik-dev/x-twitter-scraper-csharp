@@ -20,7 +20,7 @@ public record class UserRetrieveFollowingParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Legacy cursor alias. Prefer cursor.
+    /// Deprecated following cursor alias. Prefer cursor.
     /// </summary>
     public string? After
     {

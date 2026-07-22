@@ -303,9 +303,15 @@ class MessageFromRaw : IFromRawJson<Message>
         Message.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Downloadable image or video attached to a support message.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<MessageAttachment, MessageAttachmentFromRaw>))]
 public sealed record class MessageAttachment : JsonModel
 {
+    /// <summary>
+    /// Validated media type.
+    /// </summary>
     public required ApiEnum<string, ContentType> ContentType
     {
         get
@@ -326,6 +332,9 @@ public sealed record class MessageAttachment : JsonModel
         init { this._rawData.Set("filename", value); }
     }
 
+    /// <summary>
+    /// Attachment media class.
+    /// </summary>
     public required ApiEnum<string, Kind> Kind
     {
         get
@@ -356,6 +365,9 @@ public sealed record class MessageAttachment : JsonModel
         init { this._rawData.Set("sizeBytes", value); }
     }
 
+    /// <summary>
+    /// Storage processing state.
+    /// </summary>
     public required ApiEnum<string, MessageAttachmentStatus> Status
     {
         get
@@ -427,6 +439,9 @@ class MessageAttachmentFromRaw : IFromRawJson<MessageAttachment>
         MessageAttachment.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Validated media type.
+/// </summary>
 [JsonConverter(typeof(ContentTypeConverter))]
 public enum ContentType
 {
@@ -486,6 +501,9 @@ sealed class ContentTypeConverter : JsonConverter<ContentType>
     }
 }
 
+/// <summary>
+/// Attachment media class.
+/// </summary>
 [JsonConverter(typeof(KindConverter))]
 public enum Kind
 {
@@ -526,6 +544,9 @@ sealed class KindConverter : JsonConverter<Kind>
     }
 }
 
+/// <summary>
+/// Storage processing state.
+/// </summary>
 [JsonConverter(typeof(MessageAttachmentStatusConverter))]
 public enum MessageAttachmentStatus
 {
