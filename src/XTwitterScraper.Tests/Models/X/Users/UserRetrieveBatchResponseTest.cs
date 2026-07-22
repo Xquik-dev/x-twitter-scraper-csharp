@@ -14,10 +14,10 @@ public class UserRetrieveBatchResponseTest : TestBase
         var model = new UserRetrieveBatchResponse
         {
             NextCursor = "",
-            ProcessedCount = 0,
-            RequestedCount = 0,
-            ReturnedCount = 0,
-            UnavailableIds = ["321669910225"],
+            ProcessedCount = 2,
+            RequestedCount = 2,
+            ReturnedCount = 1,
+            UnavailableIds = ["1234567890"],
             UnprocessedIds = ["321669910225"],
             Users =
             [
@@ -67,10 +67,10 @@ public class UserRetrieveBatchResponseTest : TestBase
 
         JsonElement expectedHasNextPage = JsonSerializer.SerializeToElement(false);
         string expectedNextCursor = "";
-        long expectedProcessedCount = 0;
-        long expectedRequestedCount = 0;
-        long expectedReturnedCount = 0;
-        List<string> expectedUnavailableIds = ["321669910225"];
+        long expectedProcessedCount = 2;
+        long expectedRequestedCount = 2;
+        long expectedReturnedCount = 1;
+        List<string> expectedUnavailableIds = ["1234567890"];
         List<string> expectedUnprocessedIds = ["321669910225"];
         List<UserProfile> expectedUsers =
         [
@@ -145,10 +145,10 @@ public class UserRetrieveBatchResponseTest : TestBase
         var model = new UserRetrieveBatchResponse
         {
             NextCursor = "",
-            ProcessedCount = 0,
-            RequestedCount = 0,
-            ReturnedCount = 0,
-            UnavailableIds = ["321669910225"],
+            ProcessedCount = 2,
+            RequestedCount = 2,
+            ReturnedCount = 1,
+            UnavailableIds = ["1234567890"],
             UnprocessedIds = ["321669910225"],
             Users =
             [
@@ -211,10 +211,10 @@ public class UserRetrieveBatchResponseTest : TestBase
         var model = new UserRetrieveBatchResponse
         {
             NextCursor = "",
-            ProcessedCount = 0,
-            RequestedCount = 0,
-            ReturnedCount = 0,
-            UnavailableIds = ["321669910225"],
+            ProcessedCount = 2,
+            RequestedCount = 2,
+            ReturnedCount = 1,
+            UnavailableIds = ["1234567890"],
             UnprocessedIds = ["321669910225"],
             Users =
             [
@@ -271,10 +271,10 @@ public class UserRetrieveBatchResponseTest : TestBase
 
         JsonElement expectedHasNextPage = JsonSerializer.SerializeToElement(false);
         string expectedNextCursor = "";
-        long expectedProcessedCount = 0;
-        long expectedRequestedCount = 0;
-        long expectedReturnedCount = 0;
-        List<string> expectedUnavailableIds = ["321669910225"];
+        long expectedProcessedCount = 2;
+        long expectedRequestedCount = 2;
+        long expectedReturnedCount = 1;
+        List<string> expectedUnavailableIds = ["1234567890"];
         List<string> expectedUnprocessedIds = ["321669910225"];
         List<UserProfile> expectedUsers =
         [
@@ -349,10 +349,10 @@ public class UserRetrieveBatchResponseTest : TestBase
         var model = new UserRetrieveBatchResponse
         {
             NextCursor = "",
-            ProcessedCount = 0,
-            RequestedCount = 0,
-            ReturnedCount = 0,
-            UnavailableIds = ["321669910225"],
+            ProcessedCount = 2,
+            RequestedCount = 2,
+            ReturnedCount = 1,
+            UnavailableIds = ["1234567890"],
             UnprocessedIds = ["321669910225"],
             Users =
             [
@@ -409,10 +409,10 @@ public class UserRetrieveBatchResponseTest : TestBase
         var model = new UserRetrieveBatchResponse
         {
             NextCursor = "",
-            ProcessedCount = 0,
-            RequestedCount = 0,
-            ReturnedCount = 0,
-            UnavailableIds = ["321669910225"],
+            ProcessedCount = 2,
+            RequestedCount = 2,
+            ReturnedCount = 1,
+            UnavailableIds = ["1234567890"],
             UnprocessedIds = ["321669910225"],
             Users =
             [

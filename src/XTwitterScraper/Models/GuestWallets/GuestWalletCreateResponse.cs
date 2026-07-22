@@ -54,12 +54,12 @@ public sealed record class GuestWalletCreateResponse : JsonModel
         init { this._rawData.Set("api_key", value); }
     }
 
-    public JsonElement Authorization
+    public required Authorization Authorization
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("authorization");
+            return this._rawData.GetNotNullClass<Authorization>("authorization");
         }
         init { this._rawData.Set("authorization", value); }
     }
@@ -195,22 +195,7 @@ public sealed record class GuestWalletCreateResponse : JsonModel
         }
         this.Amount.Validate();
         _ = this.ApiKey;
-        if (
-            !JsonElement.DeepEquals(
-                this.Authorization,
-                JsonSerializer.Deserialize<JsonElement>(
-                    """
-                    {
-                      "header": "Authorization",
-                      "scheme": "Bearer"
-                    }
-                    """
-                )
-            )
-        )
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
+        this.Authorization.Validate();
         _ = this.CheckoutUrl;
         if (
             !JsonElement.DeepEquals(
@@ -266,14 +251,6 @@ public sealed record class GuestWalletCreateResponse : JsonModel
     public GuestWalletCreateResponse()
     {
         this.AccountRequired = JsonSerializer.SerializeToElement(false);
-        this.Authorization = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "header": "Authorization",
-              "scheme": "Bearer"
-            }
-            """
-        );
         this.CredentialNotice = JsonSerializer.SerializeToElement(
             "Store api_key and the Idempotency-Key securely before sharing checkout_url. No email recovery is available."
         );
@@ -298,14 +275,6 @@ public sealed record class GuestWalletCreateResponse : JsonModel
         this._rawData = new(rawData);
 
         this.AccountRequired = JsonSerializer.SerializeToElement(false);
-        this.Authorization = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "header": "Authorization",
-              "scheme": "Bearer"
-            }
-            """
-        );
         this.CredentialNotice = JsonSerializer.SerializeToElement(
             "Store api_key and the Idempotency-Key securely before sharing checkout_url. No email recovery is available."
         );
@@ -342,6 +311,145 @@ class GuestWalletCreateResponseFromRaw : IFromRawJson<GuestWalletCreateResponse>
     public GuestWalletCreateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => GuestWalletCreateResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<Authorization, AuthorizationFromRaw>))]
+public sealed record class Authorization : JsonModel
+{
+    public required ApiEnum<string, Header> Header
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Header>>("header");
+        }
+        init { this._rawData.Set("header", value); }
+    }
+
+    public required ApiEnum<string, Scheme> Scheme
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Scheme>>("scheme");
+        }
+        init { this._rawData.Set("scheme", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Header.Validate();
+        this.Scheme.Validate();
+    }
+
+    public Authorization() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Authorization(Authorization authorization)
+        : base(authorization) { }
+#pragma warning restore CS8618
+
+    public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Authorization(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AuthorizationFromRaw.FromRawUnchecked"/>
+    public static Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AuthorizationFromRaw : IFromRawJson<Authorization>
+{
+    /// <inheritdoc/>
+    public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Authorization.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(HeaderConverter))]
+public enum Header
+{
+    Authorization,
+}
+
+sealed class HeaderConverter : JsonConverter<Header>
+{
+    public override Header Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "Authorization" => Header.Authorization,
+            _ => (Header)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Header value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Header.Authorization => "Authorization",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(SchemeConverter))]
+public enum Scheme
+{
+    Bearer,
+}
+
+sealed class SchemeConverter : JsonConverter<Scheme>
+{
+    public override Scheme Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "Bearer" => Scheme.Bearer,
+            _ => (Scheme)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Scheme value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Scheme.Bearer => "Bearer",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }
 
 [JsonConverter(typeof(StatusConverter))]

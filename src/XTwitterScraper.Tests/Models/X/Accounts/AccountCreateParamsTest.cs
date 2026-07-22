@@ -10,16 +10,16 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "s3cur3Pa$$w0rd",
-            Username = "elonmusk",
-            TotpSecret = "JBSWY3DPEHPK3PXP",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            Username = "your_x_username",
+            TotpSecret = "<TOTP_SECRET>",
         };
 
-        string expectedEmail = "user@example.com";
-        string expectedPassword = "s3cur3Pa$$w0rd";
-        string expectedUsername = "elonmusk";
-        string expectedTotpSecret = "JBSWY3DPEHPK3PXP";
+        string expectedEmail = "account@example.invalid";
+        string expectedPassword = "<ACCOUNT_PASSWORD>";
+        string expectedUsername = "your_x_username";
+        string expectedTotpSecret = "<TOTP_SECRET>";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
@@ -32,9 +32,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "s3cur3Pa$$w0rd",
-            Username = "elonmusk",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            Username = "your_x_username",
         };
 
         Assert.Null(parameters.TotpSecret);
@@ -46,9 +46,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "s3cur3Pa$$w0rd",
-            Username = "elonmusk",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            Username = "your_x_username",
 
             // Null should be interpreted as omitted for these properties
             TotpSecret = null,
@@ -63,9 +63,9 @@ public class AccountCreateParamsTest : TestBase
     {
         AccountCreateParams parameters = new()
         {
-            Email = "user@example.com",
-            Password = "s3cur3Pa$$w0rd",
-            Username = "elonmusk",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            Username = "your_x_username",
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
@@ -78,10 +78,10 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "s3cur3Pa$$w0rd",
-            Username = "elonmusk",
-            TotpSecret = "JBSWY3DPEHPK3PXP",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            Username = "your_x_username",
+            TotpSecret = "<TOTP_SECRET>",
         };
 
         AccountCreateParams copied = new(parameters);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Tests.Models.X.Tweets;
@@ -12,7 +13,7 @@ public class TweetCreateParamsTest : TestBase
         var parameters = new TweetCreateParams
         {
             Account = "@elonmusk",
-            AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
+            IdempotencyKey = "Idempotency-Key",
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
             Media = ["https://example.com/video.mp4"],
@@ -21,7 +22,7 @@ public class TweetCreateParamsTest : TestBase
         };
 
         string expectedAccount = "@elonmusk";
-        string expectedAttachmentUrl = "https://x.com/elonmusk/status/1234567890";
+        string expectedIdempotencyKey = "Idempotency-Key";
         string expectedCommunityID = "1500000000000000000";
         bool expectedIsNoteTweet = false;
         List<string> expectedMedia = ["https://example.com/video.mp4"];
@@ -29,7 +30,7 @@ public class TweetCreateParamsTest : TestBase
         string expectedText = "Just launched our new feature!";
 
         Assert.Equal(expectedAccount, parameters.Account);
-        Assert.Equal(expectedAttachmentUrl, parameters.AttachmentUrl);
+        Assert.Equal(expectedIdempotencyKey, parameters.IdempotencyKey);
         Assert.Equal(expectedCommunityID, parameters.CommunityID);
         Assert.Equal(expectedIsNoteTweet, parameters.IsNoteTweet);
         Assert.NotNull(parameters.Media);
@@ -45,10 +46,12 @@ public class TweetCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new TweetCreateParams { Account = "@elonmusk" };
+        var parameters = new TweetCreateParams
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
-        Assert.Null(parameters.AttachmentUrl);
-        Assert.False(parameters.RawBodyData.ContainsKey("attachment_url"));
         Assert.Null(parameters.CommunityID);
         Assert.False(parameters.RawBodyData.ContainsKey("community_id"));
         Assert.Null(parameters.IsNoteTweet);
@@ -67,9 +70,9 @@ public class TweetCreateParamsTest : TestBase
         var parameters = new TweetCreateParams
         {
             Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
 
             // Null should be interpreted as omitted for these properties
-            AttachmentUrl = null,
             CommunityID = null,
             IsNoteTweet = null,
             Media = null,
@@ -77,8 +80,6 @@ public class TweetCreateParamsTest : TestBase
             Text = null,
         };
 
-        Assert.Null(parameters.AttachmentUrl);
-        Assert.False(parameters.RawBodyData.ContainsKey("attachment_url"));
         Assert.Null(parameters.CommunityID);
         Assert.False(parameters.RawBodyData.ContainsKey("community_id"));
         Assert.Null(parameters.IsNoteTweet);
@@ -94,11 +95,33 @@ public class TweetCreateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        TweetCreateParams parameters = new() { Account = "@elonmusk" };
+        TweetCreateParams parameters = new()
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
 
         var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/tweets"), url));
+    }
+
+    [Fact]
+    public void AddHeadersToRequest_Works()
+    {
+        HttpRequestMessage requestMessage = new();
+        TweetCreateParams parameters = new()
+        {
+            Account = "@elonmusk",
+            IdempotencyKey = "Idempotency-Key",
+        };
+
+        parameters.AddHeadersToRequest(
+            requestMessage,
+            new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" }
+        );
+
+        Assert.Equal(["Idempotency-Key"], requestMessage.Headers.GetValues("Idempotency-Key"));
     }
 
     [Fact]
@@ -107,7 +130,7 @@ public class TweetCreateParamsTest : TestBase
         var parameters = new TweetCreateParams
         {
             Account = "@elonmusk",
-            AttachmentUrl = "https://x.com/elonmusk/status/1234567890",
+            IdempotencyKey = "Idempotency-Key",
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
             Media = ["https://example.com/video.mp4"],

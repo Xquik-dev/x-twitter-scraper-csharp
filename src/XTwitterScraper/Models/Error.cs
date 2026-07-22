@@ -26,10 +26,98 @@ public sealed record class Error : JsonModel
         init { this._rawData.Set("error", value); }
     }
 
+    /// <summary>
+    /// Human-readable error guidance.
+    /// </summary>
+    public string? Message
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("message", value);
+        }
+    }
+
+    /// <summary>
+    /// Machine-readable reason for a login cooldown.
+    /// </summary>
+    public string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("reason", value);
+        }
+    }
+
+    /// <summary>
+    /// Seconds until the next permitted request.
+    /// </summary>
+    public long? RetryAfter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retryAfter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retryAfter", value);
+        }
+    }
+
+    /// <summary>
+    /// Required wait in milliseconds.
+    /// </summary>
+    public long? RetryAfterMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retryAfterMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retryAfterMs", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         this.ErrorValue.Validate();
+        _ = this.Message;
+        _ = this.Reason;
+        _ = this.RetryAfter;
+        _ = this.RetryAfterMs;
     }
 
     public Error() { }
@@ -385,6 +473,39 @@ public enum LegacyErrorCode
     Unauthenticated,
     UnsupportedField,
     UserNotFound,
+    BodyTooLarge,
+    CheckoutUnavailable,
+    ConnectionChallengeExpired,
+    ConnectionChallengeInactive,
+    DraftNotFound,
+    FavoritersUnavailable,
+    Forbidden,
+    GuestWalletUnavailable,
+    GuestWalletsDisabled,
+    GuestWalletsUnavailable,
+    IdempotencyConflict,
+    IdempotencyKeyConflict,
+    InvalidCommunityID,
+    InvalidIdempotencyKey,
+    InvalidListID,
+    InvalidPaymentAmount,
+    InvalidRange,
+    LoginRateLimited,
+    MissingIdempotencyKey,
+    MissingIds,
+    NoCachedStyle,
+    PasskeyRequired,
+    RateLimited,
+    ReadRequestTimeout,
+    RepliesIncomplete,
+    SupportMediaRateLimit,
+    SupportRequestRateLimit,
+    TooManyIds,
+    UnknownField,
+    UnsupportedMediaType,
+    WebhookInactive,
+    WriteTrackingUnavailable,
+    XWriteUnconfirmed,
     XAccountFeatureRequired,
     XAccountProtected,
     XAccountSuspended,
@@ -411,7 +532,6 @@ public enum LegacyErrorCode
     XUserLookupFailed,
     XWriteAmbiguous,
     XWriteFailed,
-    XWriteUnconfirmed,
 }
 
 sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
@@ -464,6 +584,39 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
             "unauthenticated" => LegacyErrorCode.Unauthenticated,
             "unsupported_field" => LegacyErrorCode.UnsupportedField,
             "user_not_found" => LegacyErrorCode.UserNotFound,
+            "body_too_large" => LegacyErrorCode.BodyTooLarge,
+            "checkout_unavailable" => LegacyErrorCode.CheckoutUnavailable,
+            "connection_challenge_expired" => LegacyErrorCode.ConnectionChallengeExpired,
+            "connection_challenge_inactive" => LegacyErrorCode.ConnectionChallengeInactive,
+            "draft_not_found" => LegacyErrorCode.DraftNotFound,
+            "favoriters_unavailable" => LegacyErrorCode.FavoritersUnavailable,
+            "forbidden" => LegacyErrorCode.Forbidden,
+            "guest_wallet_unavailable" => LegacyErrorCode.GuestWalletUnavailable,
+            "guest_wallets_disabled" => LegacyErrorCode.GuestWalletsDisabled,
+            "guest_wallets_unavailable" => LegacyErrorCode.GuestWalletsUnavailable,
+            "idempotency_conflict" => LegacyErrorCode.IdempotencyConflict,
+            "idempotency_key_conflict" => LegacyErrorCode.IdempotencyKeyConflict,
+            "invalid_community_id" => LegacyErrorCode.InvalidCommunityID,
+            "invalid_idempotency_key" => LegacyErrorCode.InvalidIdempotencyKey,
+            "invalid_list_id" => LegacyErrorCode.InvalidListID,
+            "invalid_payment_amount" => LegacyErrorCode.InvalidPaymentAmount,
+            "invalid_range" => LegacyErrorCode.InvalidRange,
+            "login_rate_limited" => LegacyErrorCode.LoginRateLimited,
+            "missing_idempotency_key" => LegacyErrorCode.MissingIdempotencyKey,
+            "missing_ids" => LegacyErrorCode.MissingIds,
+            "no_cached_style" => LegacyErrorCode.NoCachedStyle,
+            "passkey_required" => LegacyErrorCode.PasskeyRequired,
+            "rate_limited" => LegacyErrorCode.RateLimited,
+            "read_request_timeout" => LegacyErrorCode.ReadRequestTimeout,
+            "replies_incomplete" => LegacyErrorCode.RepliesIncomplete,
+            "support_media_rate_limit" => LegacyErrorCode.SupportMediaRateLimit,
+            "support_request_rate_limit" => LegacyErrorCode.SupportRequestRateLimit,
+            "too_many_ids" => LegacyErrorCode.TooManyIds,
+            "unknown_field" => LegacyErrorCode.UnknownField,
+            "unsupported_media_type" => LegacyErrorCode.UnsupportedMediaType,
+            "webhook_inactive" => LegacyErrorCode.WebhookInactive,
+            "write_tracking_unavailable" => LegacyErrorCode.WriteTrackingUnavailable,
+            "x_write_unconfirmed" => LegacyErrorCode.XWriteUnconfirmed,
             "x_account_feature_required" => LegacyErrorCode.XAccountFeatureRequired,
             "x_account_protected" => LegacyErrorCode.XAccountProtected,
             "x_account_suspended" => LegacyErrorCode.XAccountSuspended,
@@ -490,7 +643,6 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
             "x_user_lookup_failed" => LegacyErrorCode.XUserLookupFailed,
             "x_write_ambiguous" => LegacyErrorCode.XWriteAmbiguous,
             "x_write_failed" => LegacyErrorCode.XWriteFailed,
-            "x_write_unconfirmed" => LegacyErrorCode.XWriteUnconfirmed,
             _ => (LegacyErrorCode)(-1),
         };
     }
@@ -545,6 +697,39 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
                 LegacyErrorCode.Unauthenticated => "unauthenticated",
                 LegacyErrorCode.UnsupportedField => "unsupported_field",
                 LegacyErrorCode.UserNotFound => "user_not_found",
+                LegacyErrorCode.BodyTooLarge => "body_too_large",
+                LegacyErrorCode.CheckoutUnavailable => "checkout_unavailable",
+                LegacyErrorCode.ConnectionChallengeExpired => "connection_challenge_expired",
+                LegacyErrorCode.ConnectionChallengeInactive => "connection_challenge_inactive",
+                LegacyErrorCode.DraftNotFound => "draft_not_found",
+                LegacyErrorCode.FavoritersUnavailable => "favoriters_unavailable",
+                LegacyErrorCode.Forbidden => "forbidden",
+                LegacyErrorCode.GuestWalletUnavailable => "guest_wallet_unavailable",
+                LegacyErrorCode.GuestWalletsDisabled => "guest_wallets_disabled",
+                LegacyErrorCode.GuestWalletsUnavailable => "guest_wallets_unavailable",
+                LegacyErrorCode.IdempotencyConflict => "idempotency_conflict",
+                LegacyErrorCode.IdempotencyKeyConflict => "idempotency_key_conflict",
+                LegacyErrorCode.InvalidCommunityID => "invalid_community_id",
+                LegacyErrorCode.InvalidIdempotencyKey => "invalid_idempotency_key",
+                LegacyErrorCode.InvalidListID => "invalid_list_id",
+                LegacyErrorCode.InvalidPaymentAmount => "invalid_payment_amount",
+                LegacyErrorCode.InvalidRange => "invalid_range",
+                LegacyErrorCode.LoginRateLimited => "login_rate_limited",
+                LegacyErrorCode.MissingIdempotencyKey => "missing_idempotency_key",
+                LegacyErrorCode.MissingIds => "missing_ids",
+                LegacyErrorCode.NoCachedStyle => "no_cached_style",
+                LegacyErrorCode.PasskeyRequired => "passkey_required",
+                LegacyErrorCode.RateLimited => "rate_limited",
+                LegacyErrorCode.ReadRequestTimeout => "read_request_timeout",
+                LegacyErrorCode.RepliesIncomplete => "replies_incomplete",
+                LegacyErrorCode.SupportMediaRateLimit => "support_media_rate_limit",
+                LegacyErrorCode.SupportRequestRateLimit => "support_request_rate_limit",
+                LegacyErrorCode.TooManyIds => "too_many_ids",
+                LegacyErrorCode.UnknownField => "unknown_field",
+                LegacyErrorCode.UnsupportedMediaType => "unsupported_media_type",
+                LegacyErrorCode.WebhookInactive => "webhook_inactive",
+                LegacyErrorCode.WriteTrackingUnavailable => "write_tracking_unavailable",
+                LegacyErrorCode.XWriteUnconfirmed => "x_write_unconfirmed",
                 LegacyErrorCode.XAccountFeatureRequired => "x_account_feature_required",
                 LegacyErrorCode.XAccountProtected => "x_account_protected",
                 LegacyErrorCode.XAccountSuspended => "x_account_suspended",
@@ -571,7 +756,6 @@ sealed class LegacyErrorCodeConverter : JsonConverter<LegacyErrorCode>
                 LegacyErrorCode.XUserLookupFailed => "x_user_lookup_failed",
                 LegacyErrorCode.XWriteAmbiguous => "x_write_ambiguous",
                 LegacyErrorCode.XWriteFailed => "x_write_failed",
-                LegacyErrorCode.XWriteUnconfirmed => "x_write_unconfirmed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -702,6 +886,39 @@ public enum Code
     Unauthenticated,
     UnsupportedField,
     UserNotFound,
+    BodyTooLarge,
+    CheckoutUnavailable,
+    ConnectionChallengeExpired,
+    ConnectionChallengeInactive,
+    DraftNotFound,
+    FavoritersUnavailable,
+    Forbidden,
+    GuestWalletUnavailable,
+    GuestWalletsDisabled,
+    GuestWalletsUnavailable,
+    IdempotencyConflict,
+    IdempotencyKeyConflict,
+    InvalidCommunityID,
+    InvalidIdempotencyKey,
+    InvalidListID,
+    InvalidPaymentAmount,
+    InvalidRange,
+    LoginRateLimited,
+    MissingIdempotencyKey,
+    MissingIds,
+    NoCachedStyle,
+    PasskeyRequired,
+    RateLimited,
+    ReadRequestTimeout,
+    RepliesIncomplete,
+    SupportMediaRateLimit,
+    SupportRequestRateLimit,
+    TooManyIds,
+    UnknownField,
+    UnsupportedMediaType,
+    WebhookInactive,
+    WriteTrackingUnavailable,
+    XWriteUnconfirmed,
     XAccountFeatureRequired,
     XAccountProtected,
     XAccountSuspended,
@@ -728,7 +945,6 @@ public enum Code
     XUserLookupFailed,
     XWriteAmbiguous,
     XWriteFailed,
-    XWriteUnconfirmed,
 }
 
 sealed class CodeConverter : JsonConverter<Code>
@@ -781,6 +997,39 @@ sealed class CodeConverter : JsonConverter<Code>
             "unauthenticated" => Code.Unauthenticated,
             "unsupported_field" => Code.UnsupportedField,
             "user_not_found" => Code.UserNotFound,
+            "body_too_large" => Code.BodyTooLarge,
+            "checkout_unavailable" => Code.CheckoutUnavailable,
+            "connection_challenge_expired" => Code.ConnectionChallengeExpired,
+            "connection_challenge_inactive" => Code.ConnectionChallengeInactive,
+            "draft_not_found" => Code.DraftNotFound,
+            "favoriters_unavailable" => Code.FavoritersUnavailable,
+            "forbidden" => Code.Forbidden,
+            "guest_wallet_unavailable" => Code.GuestWalletUnavailable,
+            "guest_wallets_disabled" => Code.GuestWalletsDisabled,
+            "guest_wallets_unavailable" => Code.GuestWalletsUnavailable,
+            "idempotency_conflict" => Code.IdempotencyConflict,
+            "idempotency_key_conflict" => Code.IdempotencyKeyConflict,
+            "invalid_community_id" => Code.InvalidCommunityID,
+            "invalid_idempotency_key" => Code.InvalidIdempotencyKey,
+            "invalid_list_id" => Code.InvalidListID,
+            "invalid_payment_amount" => Code.InvalidPaymentAmount,
+            "invalid_range" => Code.InvalidRange,
+            "login_rate_limited" => Code.LoginRateLimited,
+            "missing_idempotency_key" => Code.MissingIdempotencyKey,
+            "missing_ids" => Code.MissingIds,
+            "no_cached_style" => Code.NoCachedStyle,
+            "passkey_required" => Code.PasskeyRequired,
+            "rate_limited" => Code.RateLimited,
+            "read_request_timeout" => Code.ReadRequestTimeout,
+            "replies_incomplete" => Code.RepliesIncomplete,
+            "support_media_rate_limit" => Code.SupportMediaRateLimit,
+            "support_request_rate_limit" => Code.SupportRequestRateLimit,
+            "too_many_ids" => Code.TooManyIds,
+            "unknown_field" => Code.UnknownField,
+            "unsupported_media_type" => Code.UnsupportedMediaType,
+            "webhook_inactive" => Code.WebhookInactive,
+            "write_tracking_unavailable" => Code.WriteTrackingUnavailable,
+            "x_write_unconfirmed" => Code.XWriteUnconfirmed,
             "x_account_feature_required" => Code.XAccountFeatureRequired,
             "x_account_protected" => Code.XAccountProtected,
             "x_account_suspended" => Code.XAccountSuspended,
@@ -807,7 +1056,6 @@ sealed class CodeConverter : JsonConverter<Code>
             "x_user_lookup_failed" => Code.XUserLookupFailed,
             "x_write_ambiguous" => Code.XWriteAmbiguous,
             "x_write_failed" => Code.XWriteFailed,
-            "x_write_unconfirmed" => Code.XWriteUnconfirmed,
             _ => (Code)(-1),
         };
     }
@@ -858,6 +1106,39 @@ sealed class CodeConverter : JsonConverter<Code>
                 Code.Unauthenticated => "unauthenticated",
                 Code.UnsupportedField => "unsupported_field",
                 Code.UserNotFound => "user_not_found",
+                Code.BodyTooLarge => "body_too_large",
+                Code.CheckoutUnavailable => "checkout_unavailable",
+                Code.ConnectionChallengeExpired => "connection_challenge_expired",
+                Code.ConnectionChallengeInactive => "connection_challenge_inactive",
+                Code.DraftNotFound => "draft_not_found",
+                Code.FavoritersUnavailable => "favoriters_unavailable",
+                Code.Forbidden => "forbidden",
+                Code.GuestWalletUnavailable => "guest_wallet_unavailable",
+                Code.GuestWalletsDisabled => "guest_wallets_disabled",
+                Code.GuestWalletsUnavailable => "guest_wallets_unavailable",
+                Code.IdempotencyConflict => "idempotency_conflict",
+                Code.IdempotencyKeyConflict => "idempotency_key_conflict",
+                Code.InvalidCommunityID => "invalid_community_id",
+                Code.InvalidIdempotencyKey => "invalid_idempotency_key",
+                Code.InvalidListID => "invalid_list_id",
+                Code.InvalidPaymentAmount => "invalid_payment_amount",
+                Code.InvalidRange => "invalid_range",
+                Code.LoginRateLimited => "login_rate_limited",
+                Code.MissingIdempotencyKey => "missing_idempotency_key",
+                Code.MissingIds => "missing_ids",
+                Code.NoCachedStyle => "no_cached_style",
+                Code.PasskeyRequired => "passkey_required",
+                Code.RateLimited => "rate_limited",
+                Code.ReadRequestTimeout => "read_request_timeout",
+                Code.RepliesIncomplete => "replies_incomplete",
+                Code.SupportMediaRateLimit => "support_media_rate_limit",
+                Code.SupportRequestRateLimit => "support_request_rate_limit",
+                Code.TooManyIds => "too_many_ids",
+                Code.UnknownField => "unknown_field",
+                Code.UnsupportedMediaType => "unsupported_media_type",
+                Code.WebhookInactive => "webhook_inactive",
+                Code.WriteTrackingUnavailable => "write_tracking_unavailable",
+                Code.XWriteUnconfirmed => "x_write_unconfirmed",
                 Code.XAccountFeatureRequired => "x_account_feature_required",
                 Code.XAccountProtected => "x_account_protected",
                 Code.XAccountSuspended => "x_account_suspended",
@@ -884,7 +1165,6 @@ sealed class CodeConverter : JsonConverter<Code>
                 Code.XUserLookupFailed => "x_user_lookup_failed",
                 Code.XWriteAmbiguous => "x_write_ambiguous",
                 Code.XWriteFailed => "x_write_failed",
-                Code.XWriteUnconfirmed => "x_write_unconfirmed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

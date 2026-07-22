@@ -39,6 +39,16 @@ public record class RetweetDeleteParams : ParamsBase
         init { this._rawBodyData.Set("account", value); }
     }
 
+    public required string IdempotencyKey
+    {
+        get
+        {
+            this._rawHeaderData.Freeze();
+            return this._rawHeaderData.GetNotNullClass<string>("Idempotency-Key");
+        }
+        init { this._rawHeaderData.Set("Idempotency-Key", value); }
+    }
+
     public RetweetDeleteParams() { }
 
 #pragma warning disable CS8618

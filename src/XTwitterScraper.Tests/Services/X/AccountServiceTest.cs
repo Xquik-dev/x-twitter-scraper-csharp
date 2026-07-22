@@ -10,9 +10,9 @@ public class AccountServiceTest : TestBase
         var account = await this.client.X.Accounts.Create(
             new()
             {
-                Email = "user@example.com",
-                Password = "s3cur3Pa$$w0rd",
-                Username = "elonmusk",
+                Email = "account@example.invalid",
+                Password = "<ACCOUNT_PASSWORD>",
+                Username = "your_x_username",
             },
             TestContext.Current.CancellationToken
         );
@@ -66,7 +66,7 @@ public class AccountServiceTest : TestBase
     {
         var response = await this.client.X.Accounts.Reauth(
             "id",
-            new() { Password = "password_value" },
+            new() { Password = "<ACCOUNT_PASSWORD>" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

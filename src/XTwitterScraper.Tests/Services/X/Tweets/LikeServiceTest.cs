@@ -9,7 +9,7 @@ public class LikeServiceTest : TestBase
     {
         var like = await this.client.X.Tweets.Like.Create(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         like.Validate();
@@ -20,7 +20,7 @@ public class LikeServiceTest : TestBase
     {
         var like = await this.client.X.Tweets.Like.Delete(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         like.Validate();

@@ -176,12 +176,14 @@ public sealed record class GuestWalletTopupResponse : JsonModel
         }
     }
 
-    public Authorization? Authorization
+    public GuestWalletTopupResponseAuthorization? Authorization
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Authorization>("authorization");
+            return this._rawData.GetNullableClass<GuestWalletTopupResponseAuthorization>(
+                "authorization"
+            );
         }
         init
         {
@@ -384,25 +386,34 @@ sealed class GuestWalletTopupResponseStatusConverter : JsonConverter<GuestWallet
     }
 }
 
-[JsonConverter(typeof(JsonModelConverter<Authorization, AuthorizationFromRaw>))]
-public sealed record class Authorization : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GuestWalletTopupResponseAuthorization,
+        GuestWalletTopupResponseAuthorizationFromRaw
+    >)
+)]
+public sealed record class GuestWalletTopupResponseAuthorization : JsonModel
 {
-    public JsonElement Header
+    public required ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> Header
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("header");
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader>
+            >("header");
         }
         init { this._rawData.Set("header", value); }
     }
 
-    public JsonElement Scheme
+    public required ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> Scheme
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("scheme");
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme>
+            >("scheme");
         }
         init { this._rawData.Set("scheme", value); }
     }
@@ -410,58 +421,133 @@ public sealed record class Authorization : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        if (
-            !JsonElement.DeepEquals(this.Header, JsonSerializer.SerializeToElement("Authorization"))
-        )
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
-        if (!JsonElement.DeepEquals(this.Scheme, JsonSerializer.SerializeToElement("Bearer")))
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
+        this.Header.Validate();
+        this.Scheme.Validate();
     }
 
-    public Authorization()
-    {
-        this.Header = JsonSerializer.SerializeToElement("Authorization");
-        this.Scheme = JsonSerializer.SerializeToElement("Bearer");
-    }
+    public GuestWalletTopupResponseAuthorization() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Authorization(Authorization authorization)
-        : base(authorization) { }
+    public GuestWalletTopupResponseAuthorization(
+        GuestWalletTopupResponseAuthorization guestWalletTopupResponseAuthorization
+    )
+        : base(guestWalletTopupResponseAuthorization) { }
 #pragma warning restore CS8618
 
-    public Authorization(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GuestWalletTopupResponseAuthorization(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
-
-        this.Header = JsonSerializer.SerializeToElement("Authorization");
-        this.Scheme = JsonSerializer.SerializeToElement("Bearer");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Authorization(FrozenDictionary<string, JsonElement> rawData)
+    GuestWalletTopupResponseAuthorization(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="AuthorizationFromRaw.FromRawUnchecked"/>
-    public static Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="GuestWalletTopupResponseAuthorizationFromRaw.FromRawUnchecked"/>
+    public static GuestWalletTopupResponseAuthorization FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class AuthorizationFromRaw : IFromRawJson<Authorization>
+class GuestWalletTopupResponseAuthorizationFromRaw
+    : IFromRawJson<GuestWalletTopupResponseAuthorization>
 {
     /// <inheritdoc/>
-    public Authorization FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Authorization.FromRawUnchecked(rawData);
+    public GuestWalletTopupResponseAuthorization FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GuestWalletTopupResponseAuthorization.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(GuestWalletTopupResponseAuthorizationHeaderConverter))]
+public enum GuestWalletTopupResponseAuthorizationHeader
+{
+    Authorization,
+}
+
+sealed class GuestWalletTopupResponseAuthorizationHeaderConverter
+    : JsonConverter<GuestWalletTopupResponseAuthorizationHeader>
+{
+    public override GuestWalletTopupResponseAuthorizationHeader Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "Authorization" => GuestWalletTopupResponseAuthorizationHeader.Authorization,
+            _ => (GuestWalletTopupResponseAuthorizationHeader)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        GuestWalletTopupResponseAuthorizationHeader value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                GuestWalletTopupResponseAuthorizationHeader.Authorization => "Authorization",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(GuestWalletTopupResponseAuthorizationSchemeConverter))]
+public enum GuestWalletTopupResponseAuthorizationScheme
+{
+    Bearer,
+}
+
+sealed class GuestWalletTopupResponseAuthorizationSchemeConverter
+    : JsonConverter<GuestWalletTopupResponseAuthorizationScheme>
+{
+    public override GuestWalletTopupResponseAuthorizationScheme Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "Bearer" => GuestWalletTopupResponseAuthorizationScheme.Bearer,
+            _ => (GuestWalletTopupResponseAuthorizationScheme)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        GuestWalletTopupResponseAuthorizationScheme value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                GuestWalletTopupResponseAuthorizationScheme.Bearer => "Bearer",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }
 
 [JsonConverter(typeof(CredentialNoticeConverter))]

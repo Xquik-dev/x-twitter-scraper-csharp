@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using XTwitterScraper.Models.Support.Tickets;
 
 namespace XTwitterScraper.Tests.Models.Support.Tickets;
@@ -12,13 +13,45 @@ public class TicketReplyParamsTest : TestBase
         {
             ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Body = "Thank you for the update.",
+            IdempotencyKey = "Idempotency-Key",
         };
 
         string expectedID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
         string expectedBody = "Thank you for the update.";
+        string expectedIdempotencyKey = "Idempotency-Key";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedBody, parameters.Body);
+        Assert.Equal(expectedIdempotencyKey, parameters.IdempotencyKey);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new TicketReplyParams
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Body = "Thank you for the update.",
+        };
+
+        Assert.Null(parameters.IdempotencyKey);
+        Assert.False(parameters.RawHeaderData.ContainsKey("Idempotency-Key"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new TicketReplyParams
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Body = "Thank you for the update.",
+
+            // Null should be interpreted as omitted for these properties
+            IdempotencyKey = null,
+        };
+
+        Assert.Null(parameters.IdempotencyKey);
+        Assert.False(parameters.RawHeaderData.ContainsKey("Idempotency-Key"));
     }
 
     [Fact]
@@ -43,12 +76,32 @@ public class TicketReplyParamsTest : TestBase
     }
 
     [Fact]
+    public void AddHeadersToRequest_Works()
+    {
+        HttpRequestMessage requestMessage = new();
+        TicketReplyParams parameters = new()
+        {
+            ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
+            Body = "Thank you for the update.",
+            IdempotencyKey = "Idempotency-Key",
+        };
+
+        parameters.AddHeadersToRequest(
+            requestMessage,
+            new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" }
+        );
+
+        Assert.Equal(["Idempotency-Key"], requestMessage.Headers.GetValues("Idempotency-Key"));
+    }
+
+    [Fact]
     public void CopyConstructor_Works()
     {
         var parameters = new TicketReplyParams
         {
             ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Body = "Thank you for the update.",
+            IdempotencyKey = "Idempotency-Key",
         };
 
         TicketReplyParams copied = new(parameters);

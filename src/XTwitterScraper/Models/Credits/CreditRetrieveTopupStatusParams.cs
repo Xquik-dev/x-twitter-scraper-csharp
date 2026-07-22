@@ -18,7 +18,7 @@ namespace XTwitterScraper.Models.Credits;
 public record class CreditRetrieveTopupStatusParams : ParamsBase
 {
     /// <summary>
-    /// Billing session ID returned by the top-up billing flow.
+    /// Top-up session ID to inspect.
     /// </summary>
     public required string SessionID
     {

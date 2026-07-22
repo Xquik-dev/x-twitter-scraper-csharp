@@ -10,7 +10,7 @@ using System = System;
 namespace XTwitterScraper.Models.X.Accounts;
 
 /// <summary>
-/// Full X account details with status, cookies, and update timestamp.
+/// Connected X account details with health and timestamp metadata.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<XAccountDetail, XAccountDetailFromRaw>))]
 public sealed record class XAccountDetail : JsonModel

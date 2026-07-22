@@ -2,11 +2,11 @@
   <PropertyGroup>
     <Authors>Xquik</Authors>
     <Company>Xquik</Company>
-    <PackageTags>sdk;api-client;twitter;twitter-api;x-api;tweet-search;profile-tweets;followers;automation</PackageTags>
+    <PackageTags>sdk;api;http;library</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Xquik</Copyright>
-    <PackageProjectUrl>https://docs.xquik.com/sdks/csharp</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
+    <PackageProjectUrl>https://xquik.com</PackageProjectUrl>
+    <RepositoryUrl>https://www.github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <!-- Documentation-->

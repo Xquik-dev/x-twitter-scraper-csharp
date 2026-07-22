@@ -9,7 +9,7 @@ public class FollowServiceTest : TestBase
     {
         var follow = await this.client.X.Users.Follow.Create(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         follow.Validate();
@@ -20,7 +20,7 @@ public class FollowServiceTest : TestBase
     {
         var response = await this.client.X.Users.Follow.DeleteAll(
             "id",
-            new() { Account = "@elonmusk" },
+            new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

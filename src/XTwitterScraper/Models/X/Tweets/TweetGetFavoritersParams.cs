@@ -9,7 +9,9 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// List users who liked a tweet
+/// Returns liker profiles that X makes visible for the post. X can withhold liker
+/// identities even when the post reports likes. In that case this endpoint returns
+/// 424 `favoriters_unavailable` instead of a misleading empty success.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

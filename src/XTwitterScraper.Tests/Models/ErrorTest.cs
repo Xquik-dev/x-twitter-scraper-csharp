@@ -10,17 +10,39 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
+        };
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
+        string expectedMessage = "Invalid input. Check the request body.";
+        string expectedReason = "temporary_issue";
+        long expectedRetryAfter = 60;
+        long expectedRetryAfterMs = 60000;
 
         Assert.Equal(expectedErrorValue, model.ErrorValue);
+        Assert.Equal(expectedMessage, model.Message);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedRetryAfter, model.RetryAfter);
+        Assert.Equal(expectedRetryAfterMs, model.RetryAfterMs);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(json, ModelBase.SerializerOptions);
@@ -31,19 +53,64 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Error>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
+        string expectedMessage = "Invalid input. Check the request body.";
+        string expectedReason = "temporary_issue";
+        long expectedRetryAfter = 60;
+        long expectedRetryAfterMs = 60000;
 
         Assert.Equal(expectedErrorValue, deserialized.ErrorValue);
+        Assert.Equal(expectedMessage, deserialized.Message);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedRetryAfter, deserialized.RetryAfter);
+        Assert.Equal(expectedRetryAfterMs, deserialized.RetryAfterMs);
     }
 
     [Fact]
     public void Validation_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+
+        Assert.Null(model.Message);
+        Assert.False(model.RawData.ContainsKey("message"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
+        Assert.Null(model.RetryAfter);
+        Assert.False(model.RawData.ContainsKey("retryAfter"));
+        Assert.Null(model.RetryAfterMs);
+        Assert.False(model.RawData.ContainsKey("retryAfterMs"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
         var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
 
@@ -51,9 +118,57 @@ public class ErrorTest : TestBase
     }
 
     [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+
+            // Null should be interpreted as omitted for these properties
+            Message = null,
+            Reason = null,
+            RetryAfter = null,
+            RetryAfterMs = null,
+        };
+
+        Assert.Null(model.Message);
+        Assert.False(model.RawData.ContainsKey("message"));
+        Assert.Null(model.Reason);
+        Assert.False(model.RawData.ContainsKey("reason"));
+        Assert.Null(model.RetryAfter);
+        Assert.False(model.RawData.ContainsKey("retryAfter"));
+        Assert.Null(model.RetryAfterMs);
+        Assert.False(model.RawData.ContainsKey("retryAfterMs"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+
+            // Null should be interpreted as omitted for these properties
+            Message = null,
+            Reason = null,
+            RetryAfter = null,
+            RetryAfterMs = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Error { ErrorValue = LegacyErrorCode.InvalidInput };
+        var model = new Error
+        {
+            ErrorValue = LegacyErrorCode.InvalidInput,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
+        };
 
         Error copied = new(model);
 
@@ -157,6 +272,39 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.Unauthenticated)]
     [InlineData(LegacyErrorCode.UnsupportedField)]
     [InlineData(LegacyErrorCode.UserNotFound)]
+    [InlineData(LegacyErrorCode.BodyTooLarge)]
+    [InlineData(LegacyErrorCode.CheckoutUnavailable)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeExpired)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeInactive)]
+    [InlineData(LegacyErrorCode.DraftNotFound)]
+    [InlineData(LegacyErrorCode.FavoritersUnavailable)]
+    [InlineData(LegacyErrorCode.Forbidden)]
+    [InlineData(LegacyErrorCode.GuestWalletUnavailable)]
+    [InlineData(LegacyErrorCode.GuestWalletsDisabled)]
+    [InlineData(LegacyErrorCode.GuestWalletsUnavailable)]
+    [InlineData(LegacyErrorCode.IdempotencyConflict)]
+    [InlineData(LegacyErrorCode.IdempotencyKeyConflict)]
+    [InlineData(LegacyErrorCode.InvalidCommunityID)]
+    [InlineData(LegacyErrorCode.InvalidIdempotencyKey)]
+    [InlineData(LegacyErrorCode.InvalidListID)]
+    [InlineData(LegacyErrorCode.InvalidPaymentAmount)]
+    [InlineData(LegacyErrorCode.InvalidRange)]
+    [InlineData(LegacyErrorCode.LoginRateLimited)]
+    [InlineData(LegacyErrorCode.MissingIdempotencyKey)]
+    [InlineData(LegacyErrorCode.MissingIds)]
+    [InlineData(LegacyErrorCode.NoCachedStyle)]
+    [InlineData(LegacyErrorCode.PasskeyRequired)]
+    [InlineData(LegacyErrorCode.RateLimited)]
+    [InlineData(LegacyErrorCode.ReadRequestTimeout)]
+    [InlineData(LegacyErrorCode.RepliesIncomplete)]
+    [InlineData(LegacyErrorCode.SupportMediaRateLimit)]
+    [InlineData(LegacyErrorCode.SupportRequestRateLimit)]
+    [InlineData(LegacyErrorCode.TooManyIds)]
+    [InlineData(LegacyErrorCode.UnknownField)]
+    [InlineData(LegacyErrorCode.UnsupportedMediaType)]
+    [InlineData(LegacyErrorCode.WebhookInactive)]
+    [InlineData(LegacyErrorCode.WriteTrackingUnavailable)]
+    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     [InlineData(LegacyErrorCode.XAccountFeatureRequired)]
     [InlineData(LegacyErrorCode.XAccountProtected)]
     [InlineData(LegacyErrorCode.XAccountSuspended)]
@@ -183,7 +331,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XUserLookupFailed)]
     [InlineData(LegacyErrorCode.XWriteAmbiguous)]
     [InlineData(LegacyErrorCode.XWriteFailed)]
-    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     public void Validation_Works(LegacyErrorCode rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -244,6 +391,39 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.Unauthenticated)]
     [InlineData(LegacyErrorCode.UnsupportedField)]
     [InlineData(LegacyErrorCode.UserNotFound)]
+    [InlineData(LegacyErrorCode.BodyTooLarge)]
+    [InlineData(LegacyErrorCode.CheckoutUnavailable)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeExpired)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeInactive)]
+    [InlineData(LegacyErrorCode.DraftNotFound)]
+    [InlineData(LegacyErrorCode.FavoritersUnavailable)]
+    [InlineData(LegacyErrorCode.Forbidden)]
+    [InlineData(LegacyErrorCode.GuestWalletUnavailable)]
+    [InlineData(LegacyErrorCode.GuestWalletsDisabled)]
+    [InlineData(LegacyErrorCode.GuestWalletsUnavailable)]
+    [InlineData(LegacyErrorCode.IdempotencyConflict)]
+    [InlineData(LegacyErrorCode.IdempotencyKeyConflict)]
+    [InlineData(LegacyErrorCode.InvalidCommunityID)]
+    [InlineData(LegacyErrorCode.InvalidIdempotencyKey)]
+    [InlineData(LegacyErrorCode.InvalidListID)]
+    [InlineData(LegacyErrorCode.InvalidPaymentAmount)]
+    [InlineData(LegacyErrorCode.InvalidRange)]
+    [InlineData(LegacyErrorCode.LoginRateLimited)]
+    [InlineData(LegacyErrorCode.MissingIdempotencyKey)]
+    [InlineData(LegacyErrorCode.MissingIds)]
+    [InlineData(LegacyErrorCode.NoCachedStyle)]
+    [InlineData(LegacyErrorCode.PasskeyRequired)]
+    [InlineData(LegacyErrorCode.RateLimited)]
+    [InlineData(LegacyErrorCode.ReadRequestTimeout)]
+    [InlineData(LegacyErrorCode.RepliesIncomplete)]
+    [InlineData(LegacyErrorCode.SupportMediaRateLimit)]
+    [InlineData(LegacyErrorCode.SupportRequestRateLimit)]
+    [InlineData(LegacyErrorCode.TooManyIds)]
+    [InlineData(LegacyErrorCode.UnknownField)]
+    [InlineData(LegacyErrorCode.UnsupportedMediaType)]
+    [InlineData(LegacyErrorCode.WebhookInactive)]
+    [InlineData(LegacyErrorCode.WriteTrackingUnavailable)]
+    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     [InlineData(LegacyErrorCode.XAccountFeatureRequired)]
     [InlineData(LegacyErrorCode.XAccountProtected)]
     [InlineData(LegacyErrorCode.XAccountSuspended)]
@@ -270,7 +450,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XUserLookupFailed)]
     [InlineData(LegacyErrorCode.XWriteAmbiguous)]
     [InlineData(LegacyErrorCode.XWriteFailed)]
-    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     public void SerializationRoundtrip_Works(LegacyErrorCode rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -440,6 +619,39 @@ public class CodeTest : TestBase
     [InlineData(Code.Unauthenticated)]
     [InlineData(Code.UnsupportedField)]
     [InlineData(Code.UserNotFound)]
+    [InlineData(Code.BodyTooLarge)]
+    [InlineData(Code.CheckoutUnavailable)]
+    [InlineData(Code.ConnectionChallengeExpired)]
+    [InlineData(Code.ConnectionChallengeInactive)]
+    [InlineData(Code.DraftNotFound)]
+    [InlineData(Code.FavoritersUnavailable)]
+    [InlineData(Code.Forbidden)]
+    [InlineData(Code.GuestWalletUnavailable)]
+    [InlineData(Code.GuestWalletsDisabled)]
+    [InlineData(Code.GuestWalletsUnavailable)]
+    [InlineData(Code.IdempotencyConflict)]
+    [InlineData(Code.IdempotencyKeyConflict)]
+    [InlineData(Code.InvalidCommunityID)]
+    [InlineData(Code.InvalidIdempotencyKey)]
+    [InlineData(Code.InvalidListID)]
+    [InlineData(Code.InvalidPaymentAmount)]
+    [InlineData(Code.InvalidRange)]
+    [InlineData(Code.LoginRateLimited)]
+    [InlineData(Code.MissingIdempotencyKey)]
+    [InlineData(Code.MissingIds)]
+    [InlineData(Code.NoCachedStyle)]
+    [InlineData(Code.PasskeyRequired)]
+    [InlineData(Code.RateLimited)]
+    [InlineData(Code.ReadRequestTimeout)]
+    [InlineData(Code.RepliesIncomplete)]
+    [InlineData(Code.SupportMediaRateLimit)]
+    [InlineData(Code.SupportRequestRateLimit)]
+    [InlineData(Code.TooManyIds)]
+    [InlineData(Code.UnknownField)]
+    [InlineData(Code.UnsupportedMediaType)]
+    [InlineData(Code.WebhookInactive)]
+    [InlineData(Code.WriteTrackingUnavailable)]
+    [InlineData(Code.XWriteUnconfirmed)]
     [InlineData(Code.XAccountFeatureRequired)]
     [InlineData(Code.XAccountProtected)]
     [InlineData(Code.XAccountSuspended)]
@@ -466,7 +678,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XUserLookupFailed)]
     [InlineData(Code.XWriteAmbiguous)]
     [InlineData(Code.XWriteFailed)]
-    [InlineData(Code.XWriteUnconfirmed)]
     public void Validation_Works(Code rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -527,6 +738,39 @@ public class CodeTest : TestBase
     [InlineData(Code.Unauthenticated)]
     [InlineData(Code.UnsupportedField)]
     [InlineData(Code.UserNotFound)]
+    [InlineData(Code.BodyTooLarge)]
+    [InlineData(Code.CheckoutUnavailable)]
+    [InlineData(Code.ConnectionChallengeExpired)]
+    [InlineData(Code.ConnectionChallengeInactive)]
+    [InlineData(Code.DraftNotFound)]
+    [InlineData(Code.FavoritersUnavailable)]
+    [InlineData(Code.Forbidden)]
+    [InlineData(Code.GuestWalletUnavailable)]
+    [InlineData(Code.GuestWalletsDisabled)]
+    [InlineData(Code.GuestWalletsUnavailable)]
+    [InlineData(Code.IdempotencyConflict)]
+    [InlineData(Code.IdempotencyKeyConflict)]
+    [InlineData(Code.InvalidCommunityID)]
+    [InlineData(Code.InvalidIdempotencyKey)]
+    [InlineData(Code.InvalidListID)]
+    [InlineData(Code.InvalidPaymentAmount)]
+    [InlineData(Code.InvalidRange)]
+    [InlineData(Code.LoginRateLimited)]
+    [InlineData(Code.MissingIdempotencyKey)]
+    [InlineData(Code.MissingIds)]
+    [InlineData(Code.NoCachedStyle)]
+    [InlineData(Code.PasskeyRequired)]
+    [InlineData(Code.RateLimited)]
+    [InlineData(Code.ReadRequestTimeout)]
+    [InlineData(Code.RepliesIncomplete)]
+    [InlineData(Code.SupportMediaRateLimit)]
+    [InlineData(Code.SupportRequestRateLimit)]
+    [InlineData(Code.TooManyIds)]
+    [InlineData(Code.UnknownField)]
+    [InlineData(Code.UnsupportedMediaType)]
+    [InlineData(Code.WebhookInactive)]
+    [InlineData(Code.WriteTrackingUnavailable)]
+    [InlineData(Code.XWriteUnconfirmed)]
     [InlineData(Code.XAccountFeatureRequired)]
     [InlineData(Code.XAccountProtected)]
     [InlineData(Code.XAccountSuspended)]
@@ -553,7 +797,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XUserLookupFailed)]
     [InlineData(Code.XWriteAmbiguous)]
     [InlineData(Code.XWriteFailed)]
-    [InlineData(Code.XWriteUnconfirmed)]
     public void SerializationRoundtrip_Works(Code rawValue)
     {
         // force implicit conversion because Theory can't do that for us

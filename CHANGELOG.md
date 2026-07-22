@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0 (2026-07-22)
+
+Full Changelog: [v0.4.5...v0.5.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.5...v0.5.0)
+
+### Features
+
+* **api:** propagate durable write actions ([e46f68c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/e46f68cb1871e28aff9048612a0c68d3706cdb13))
+* **api:** propagate production write-action contract ([129c565](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/129c565aa4cebc2096e67d69b66b56cabeddb965))
+
+
+### Bug Fixes
+
+* restore valid SDK CI workflow ([842b80b](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/842b80b227b044bcf6a2c134552133a2364a45d4))
+
 ## 0.4.4 (2026-07-14)
 
 Full Changelog: [v0.4.3...v0.4.4](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.4.3...v0.4.4)

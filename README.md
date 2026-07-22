@@ -1,19 +1,8 @@
-# X (Twitter) Scraper C# SDK: Tweet Search, Profile Tweets, Followers & Posting
+# Xquik C# SDK
 
-> **Xquik is an independent third-party service.** Not affiliated with X Corp.
-> "Twitter" and "X" are trademarks of X Corp.
+Use the Xquik API from C#.
 
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg?url=https%3A%2F%2Fgithub.com%2FXquik-dev%2Fx-twitter-scraper-csharp)](https://deepwiki.com/Xquik-dev/x-twitter-scraper-csharp)
-[![Skills.sh x-twitter-scraper Skill](https://skills.sh/b/xquik-dev/x-twitter-scraper)](https://skills.sh/xquik-dev/x-twitter-scraper)
-
-The Xquik C# SDK is a Twitter API SDK and X API alternative for tweet search, advanced Twitter search queries, profile tweets, user lookup, follower export, media download, media upload, monitoring, webhooks, and posting automation.
-
-Use it from .NET applications to get tweets from profiles, search tweets by keyword or operator query, send tweets, post replies, like, repost, follow, DM, run giveaway draws, and automate X workflows.
-
-It is generated with [Stainless](https://www.stainless.com/).
-
-The REST API documentation can be found on [xquik.com](https://xquik.com).
+Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
 ## Installation
 
@@ -108,7 +97,7 @@ The `WithOptions` method does not affect the original client or service.
 
 ## Requests and responses
 
-To send a request to the X Twitter Scraper API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
+Build a `Params` instance and pass it to its client method. The SDK returns a typed C# model.
 
 For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
 
@@ -394,4 +383,6 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/Xquik-dev/x-twitter-scraper-csharp/issues) with questions, bugs, or suggestions.
+Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs, or suggestions.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
