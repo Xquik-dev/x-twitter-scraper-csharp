@@ -612,7 +612,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Required for tweet_search_extractor &amp; community_search.
+    /// Query used to price tweet_search_extractor or community_search.
     /// </summary>
     public string? SearchQuery
     {
@@ -654,7 +654,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Required for community_post_extractor &amp; community_search.
+    /// Community ID used to price community_post_extractor or community_search.
     /// </summary>
     public string? TargetCommunityID
     {
@@ -675,7 +675,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Required for list_follower_explorer, list_member_extractor &amp; list_post_extractor.
+    /// List ID used to price list_follower_explorer, list_member_extractor, or list_post_extractor.
     /// </summary>
     public string? TargetListID
     {
@@ -696,7 +696,7 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
-    /// Required for space_explorer.
+    /// Space ID used to price space_explorer.
     /// </summary>
     public string? TargetSpaceID
     {

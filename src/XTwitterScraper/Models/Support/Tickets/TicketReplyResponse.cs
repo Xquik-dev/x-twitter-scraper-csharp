@@ -13,51 +13,38 @@ namespace XTwitterScraper.Models.Support.Tickets;
 [JsonConverter(typeof(JsonModelConverter<TicketReplyResponse, TicketReplyResponseFromRaw>))]
 public sealed record class TicketReplyResponse : JsonModel
 {
-    public IReadOnlyList<TicketReplyResponseAttachment>? Attachments
+    public required IReadOnlyList<TicketReplyResponseAttachment> Attachments
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<TicketReplyResponseAttachment>>(
+            return this._rawData.GetNotNullStruct<ImmutableArray<TicketReplyResponseAttachment>>(
                 "attachments"
             );
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<TicketReplyResponseAttachment>?>(
+            this._rawData.Set<ImmutableArray<TicketReplyResponseAttachment>>(
                 "attachments",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
 
-    public string? PublicID
+    public required string PublicID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("publicId");
+            return this._rawData.GetNotNullClass<string>("publicId");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("publicId", value);
-        }
+        init { this._rawData.Set("publicId", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.Attachments ?? [])
+        foreach (var item in this.Attachments)
         {
             item.Validate();
         }
@@ -101,6 +88,9 @@ class TicketReplyResponseFromRaw : IFromRawJson<TicketReplyResponse>
         TicketReplyResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Attachment identifier and initial processing state.
+/// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<TicketReplyResponseAttachment, TicketReplyResponseAttachmentFromRaw>)
 )]

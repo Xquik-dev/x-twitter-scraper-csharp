@@ -13,17 +13,17 @@ public class ErrorTest : TestBase
         var model = new Error
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
-            Message = "message",
-            Reason = "reason",
-            RetryAfter = 1,
-            RetryAfterMs = 1,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
         };
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
-        string expectedMessage = "message";
-        string expectedReason = "reason";
-        long expectedRetryAfter = 1;
-        long expectedRetryAfterMs = 1;
+        string expectedMessage = "Invalid input. Check the request body.";
+        string expectedReason = "temporary_issue";
+        long expectedRetryAfter = 60;
+        long expectedRetryAfterMs = 60000;
 
         Assert.Equal(expectedErrorValue, model.ErrorValue);
         Assert.Equal(expectedMessage, model.Message);
@@ -38,10 +38,10 @@ public class ErrorTest : TestBase
         var model = new Error
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
-            Message = "message",
-            Reason = "reason",
-            RetryAfter = 1,
-            RetryAfterMs = 1,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -56,10 +56,10 @@ public class ErrorTest : TestBase
         var model = new Error
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
-            Message = "message",
-            Reason = "reason",
-            RetryAfter = 1,
-            RetryAfterMs = 1,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -67,10 +67,10 @@ public class ErrorTest : TestBase
         Assert.NotNull(deserialized);
 
         ErrorError expectedErrorValue = LegacyErrorCode.InvalidInput;
-        string expectedMessage = "message";
-        string expectedReason = "reason";
-        long expectedRetryAfter = 1;
-        long expectedRetryAfterMs = 1;
+        string expectedMessage = "Invalid input. Check the request body.";
+        string expectedReason = "temporary_issue";
+        long expectedRetryAfter = 60;
+        long expectedRetryAfterMs = 60000;
 
         Assert.Equal(expectedErrorValue, deserialized.ErrorValue);
         Assert.Equal(expectedMessage, deserialized.Message);
@@ -85,10 +85,10 @@ public class ErrorTest : TestBase
         var model = new Error
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
-            Message = "message",
-            Reason = "reason",
-            RetryAfter = 1,
-            RetryAfterMs = 1,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
         };
 
         model.Validate();
@@ -164,10 +164,10 @@ public class ErrorTest : TestBase
         var model = new Error
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
-            Message = "message",
-            Reason = "reason",
-            RetryAfter = 1,
-            RetryAfterMs = 1,
+            Message = "Invalid input. Check the request body.",
+            Reason = "temporary_issue",
+            RetryAfter = 60,
+            RetryAfterMs = 60000,
         };
 
         Error copied = new(model);
@@ -272,6 +272,39 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.Unauthenticated)]
     [InlineData(LegacyErrorCode.UnsupportedField)]
     [InlineData(LegacyErrorCode.UserNotFound)]
+    [InlineData(LegacyErrorCode.BodyTooLarge)]
+    [InlineData(LegacyErrorCode.CheckoutUnavailable)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeExpired)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeInactive)]
+    [InlineData(LegacyErrorCode.DraftNotFound)]
+    [InlineData(LegacyErrorCode.FavoritersUnavailable)]
+    [InlineData(LegacyErrorCode.Forbidden)]
+    [InlineData(LegacyErrorCode.GuestWalletUnavailable)]
+    [InlineData(LegacyErrorCode.GuestWalletsDisabled)]
+    [InlineData(LegacyErrorCode.GuestWalletsUnavailable)]
+    [InlineData(LegacyErrorCode.IdempotencyConflict)]
+    [InlineData(LegacyErrorCode.IdempotencyKeyConflict)]
+    [InlineData(LegacyErrorCode.InvalidCommunityID)]
+    [InlineData(LegacyErrorCode.InvalidIdempotencyKey)]
+    [InlineData(LegacyErrorCode.InvalidListID)]
+    [InlineData(LegacyErrorCode.InvalidPaymentAmount)]
+    [InlineData(LegacyErrorCode.InvalidRange)]
+    [InlineData(LegacyErrorCode.LoginRateLimited)]
+    [InlineData(LegacyErrorCode.MissingIdempotencyKey)]
+    [InlineData(LegacyErrorCode.MissingIds)]
+    [InlineData(LegacyErrorCode.NoCachedStyle)]
+    [InlineData(LegacyErrorCode.PasskeyRequired)]
+    [InlineData(LegacyErrorCode.RateLimited)]
+    [InlineData(LegacyErrorCode.ReadRequestTimeout)]
+    [InlineData(LegacyErrorCode.RepliesIncomplete)]
+    [InlineData(LegacyErrorCode.SupportMediaRateLimit)]
+    [InlineData(LegacyErrorCode.SupportRequestRateLimit)]
+    [InlineData(LegacyErrorCode.TooManyIds)]
+    [InlineData(LegacyErrorCode.UnknownField)]
+    [InlineData(LegacyErrorCode.UnsupportedMediaType)]
+    [InlineData(LegacyErrorCode.WebhookInactive)]
+    [InlineData(LegacyErrorCode.WriteTrackingUnavailable)]
+    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     [InlineData(LegacyErrorCode.XAccountFeatureRequired)]
     [InlineData(LegacyErrorCode.XAccountProtected)]
     [InlineData(LegacyErrorCode.XAccountSuspended)]
@@ -358,6 +391,39 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.Unauthenticated)]
     [InlineData(LegacyErrorCode.UnsupportedField)]
     [InlineData(LegacyErrorCode.UserNotFound)]
+    [InlineData(LegacyErrorCode.BodyTooLarge)]
+    [InlineData(LegacyErrorCode.CheckoutUnavailable)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeExpired)]
+    [InlineData(LegacyErrorCode.ConnectionChallengeInactive)]
+    [InlineData(LegacyErrorCode.DraftNotFound)]
+    [InlineData(LegacyErrorCode.FavoritersUnavailable)]
+    [InlineData(LegacyErrorCode.Forbidden)]
+    [InlineData(LegacyErrorCode.GuestWalletUnavailable)]
+    [InlineData(LegacyErrorCode.GuestWalletsDisabled)]
+    [InlineData(LegacyErrorCode.GuestWalletsUnavailable)]
+    [InlineData(LegacyErrorCode.IdempotencyConflict)]
+    [InlineData(LegacyErrorCode.IdempotencyKeyConflict)]
+    [InlineData(LegacyErrorCode.InvalidCommunityID)]
+    [InlineData(LegacyErrorCode.InvalidIdempotencyKey)]
+    [InlineData(LegacyErrorCode.InvalidListID)]
+    [InlineData(LegacyErrorCode.InvalidPaymentAmount)]
+    [InlineData(LegacyErrorCode.InvalidRange)]
+    [InlineData(LegacyErrorCode.LoginRateLimited)]
+    [InlineData(LegacyErrorCode.MissingIdempotencyKey)]
+    [InlineData(LegacyErrorCode.MissingIds)]
+    [InlineData(LegacyErrorCode.NoCachedStyle)]
+    [InlineData(LegacyErrorCode.PasskeyRequired)]
+    [InlineData(LegacyErrorCode.RateLimited)]
+    [InlineData(LegacyErrorCode.ReadRequestTimeout)]
+    [InlineData(LegacyErrorCode.RepliesIncomplete)]
+    [InlineData(LegacyErrorCode.SupportMediaRateLimit)]
+    [InlineData(LegacyErrorCode.SupportRequestRateLimit)]
+    [InlineData(LegacyErrorCode.TooManyIds)]
+    [InlineData(LegacyErrorCode.UnknownField)]
+    [InlineData(LegacyErrorCode.UnsupportedMediaType)]
+    [InlineData(LegacyErrorCode.WebhookInactive)]
+    [InlineData(LegacyErrorCode.WriteTrackingUnavailable)]
+    [InlineData(LegacyErrorCode.XWriteUnconfirmed)]
     [InlineData(LegacyErrorCode.XAccountFeatureRequired)]
     [InlineData(LegacyErrorCode.XAccountProtected)]
     [InlineData(LegacyErrorCode.XAccountSuspended)]
@@ -553,6 +619,39 @@ public class CodeTest : TestBase
     [InlineData(Code.Unauthenticated)]
     [InlineData(Code.UnsupportedField)]
     [InlineData(Code.UserNotFound)]
+    [InlineData(Code.BodyTooLarge)]
+    [InlineData(Code.CheckoutUnavailable)]
+    [InlineData(Code.ConnectionChallengeExpired)]
+    [InlineData(Code.ConnectionChallengeInactive)]
+    [InlineData(Code.DraftNotFound)]
+    [InlineData(Code.FavoritersUnavailable)]
+    [InlineData(Code.Forbidden)]
+    [InlineData(Code.GuestWalletUnavailable)]
+    [InlineData(Code.GuestWalletsDisabled)]
+    [InlineData(Code.GuestWalletsUnavailable)]
+    [InlineData(Code.IdempotencyConflict)]
+    [InlineData(Code.IdempotencyKeyConflict)]
+    [InlineData(Code.InvalidCommunityID)]
+    [InlineData(Code.InvalidIdempotencyKey)]
+    [InlineData(Code.InvalidListID)]
+    [InlineData(Code.InvalidPaymentAmount)]
+    [InlineData(Code.InvalidRange)]
+    [InlineData(Code.LoginRateLimited)]
+    [InlineData(Code.MissingIdempotencyKey)]
+    [InlineData(Code.MissingIds)]
+    [InlineData(Code.NoCachedStyle)]
+    [InlineData(Code.PasskeyRequired)]
+    [InlineData(Code.RateLimited)]
+    [InlineData(Code.ReadRequestTimeout)]
+    [InlineData(Code.RepliesIncomplete)]
+    [InlineData(Code.SupportMediaRateLimit)]
+    [InlineData(Code.SupportRequestRateLimit)]
+    [InlineData(Code.TooManyIds)]
+    [InlineData(Code.UnknownField)]
+    [InlineData(Code.UnsupportedMediaType)]
+    [InlineData(Code.WebhookInactive)]
+    [InlineData(Code.WriteTrackingUnavailable)]
+    [InlineData(Code.XWriteUnconfirmed)]
     [InlineData(Code.XAccountFeatureRequired)]
     [InlineData(Code.XAccountProtected)]
     [InlineData(Code.XAccountSuspended)]
@@ -639,6 +738,39 @@ public class CodeTest : TestBase
     [InlineData(Code.Unauthenticated)]
     [InlineData(Code.UnsupportedField)]
     [InlineData(Code.UserNotFound)]
+    [InlineData(Code.BodyTooLarge)]
+    [InlineData(Code.CheckoutUnavailable)]
+    [InlineData(Code.ConnectionChallengeExpired)]
+    [InlineData(Code.ConnectionChallengeInactive)]
+    [InlineData(Code.DraftNotFound)]
+    [InlineData(Code.FavoritersUnavailable)]
+    [InlineData(Code.Forbidden)]
+    [InlineData(Code.GuestWalletUnavailable)]
+    [InlineData(Code.GuestWalletsDisabled)]
+    [InlineData(Code.GuestWalletsUnavailable)]
+    [InlineData(Code.IdempotencyConflict)]
+    [InlineData(Code.IdempotencyKeyConflict)]
+    [InlineData(Code.InvalidCommunityID)]
+    [InlineData(Code.InvalidIdempotencyKey)]
+    [InlineData(Code.InvalidListID)]
+    [InlineData(Code.InvalidPaymentAmount)]
+    [InlineData(Code.InvalidRange)]
+    [InlineData(Code.LoginRateLimited)]
+    [InlineData(Code.MissingIdempotencyKey)]
+    [InlineData(Code.MissingIds)]
+    [InlineData(Code.NoCachedStyle)]
+    [InlineData(Code.PasskeyRequired)]
+    [InlineData(Code.RateLimited)]
+    [InlineData(Code.ReadRequestTimeout)]
+    [InlineData(Code.RepliesIncomplete)]
+    [InlineData(Code.SupportMediaRateLimit)]
+    [InlineData(Code.SupportRequestRateLimit)]
+    [InlineData(Code.TooManyIds)]
+    [InlineData(Code.UnknownField)]
+    [InlineData(Code.UnsupportedMediaType)]
+    [InlineData(Code.WebhookInactive)]
+    [InlineData(Code.WriteTrackingUnavailable)]
+    [InlineData(Code.XWriteUnconfirmed)]
     [InlineData(Code.XAccountFeatureRequired)]
     [InlineData(Code.XAccountProtected)]
     [InlineData(Code.XAccountSuspended)]

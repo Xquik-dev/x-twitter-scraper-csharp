@@ -13,49 +13,36 @@ namespace XTwitterScraper.Models.Support.Tickets;
 [JsonConverter(typeof(JsonModelConverter<TicketCreateResponse, TicketCreateResponseFromRaw>))]
 public sealed record class TicketCreateResponse : JsonModel
 {
-    public IReadOnlyList<Attachment>? Attachments
+    public required IReadOnlyList<Attachment> Attachments
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<Attachment>>("attachments");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Attachment>>("attachments");
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<Attachment>?>(
+            this._rawData.Set<ImmutableArray<Attachment>>(
                 "attachments",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
 
-    public string? PublicID
+    public required string PublicID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("publicId");
+            return this._rawData.GetNotNullClass<string>("publicId");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("publicId", value);
-        }
+        init { this._rawData.Set("publicId", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.Attachments ?? [])
+        foreach (var item in this.Attachments)
         {
             item.Validate();
         }
@@ -100,6 +87,9 @@ class TicketCreateResponseFromRaw : IFromRawJson<TicketCreateResponse>
     ) => TicketCreateResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// Attachment identifier and initial processing state.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<Attachment, AttachmentFromRaw>))]
 public sealed record class Attachment : JsonModel
 {

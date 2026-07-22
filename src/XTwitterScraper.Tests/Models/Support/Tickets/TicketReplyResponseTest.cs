@@ -21,7 +21,7 @@ public class TicketReplyResponseTest : TestBase
                     Status = TicketReplyResponseAttachmentStatus.Pending,
                 },
             ],
-            PublicID = "publicId",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
         List<TicketReplyResponseAttachment> expectedAttachments =
@@ -32,9 +32,8 @@ public class TicketReplyResponseTest : TestBase
                 Status = TicketReplyResponseAttachmentStatus.Pending,
             },
         ];
-        string expectedPublicID = "publicId";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
 
-        Assert.NotNull(model.Attachments);
         Assert.Equal(expectedAttachments.Count, model.Attachments.Count);
         for (int i = 0; i < expectedAttachments.Count; i++)
         {
@@ -56,7 +55,7 @@ public class TicketReplyResponseTest : TestBase
                     Status = TicketReplyResponseAttachmentStatus.Pending,
                 },
             ],
-            PublicID = "publicId",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -81,7 +80,7 @@ public class TicketReplyResponseTest : TestBase
                     Status = TicketReplyResponseAttachmentStatus.Pending,
                 },
             ],
-            PublicID = "publicId",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -99,9 +98,8 @@ public class TicketReplyResponseTest : TestBase
                 Status = TicketReplyResponseAttachmentStatus.Pending,
             },
         ];
-        string expectedPublicID = "publicId";
+        string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
 
-        Assert.NotNull(deserialized.Attachments);
         Assert.Equal(expectedAttachments.Count, deserialized.Attachments.Count);
         for (int i = 0; i < expectedAttachments.Count; i++)
         {
@@ -123,55 +121,7 @@ public class TicketReplyResponseTest : TestBase
                     Status = TicketReplyResponseAttachmentStatus.Pending,
                 },
             ],
-            PublicID = "publicId",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new TicketReplyResponse { };
-
-        Assert.Null(model.Attachments);
-        Assert.False(model.RawData.ContainsKey("attachments"));
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new TicketReplyResponse { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new TicketReplyResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            Attachments = null,
-            PublicID = null,
-        };
-
-        Assert.Null(model.Attachments);
-        Assert.False(model.RawData.ContainsKey("attachments"));
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new TicketReplyResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            Attachments = null,
-            PublicID = null,
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
         model.Validate();
@@ -190,7 +140,7 @@ public class TicketReplyResponseTest : TestBase
                     Status = TicketReplyResponseAttachmentStatus.Pending,
                 },
             ],
-            PublicID = "publicId",
+            PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
         };
 
         TicketReplyResponse copied = new(model);

@@ -178,7 +178,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// Start and end offsets for rendered tweet text
+    /// Rendered text's start and end offsets.
     /// </summary>
     public IReadOnlyList<long>? DisplayTextRange
     {
@@ -228,7 +228,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// Tweet ID being replied to
+    /// ID of the tweet this result replies to.
     /// </summary>
     public string? InReplyToID
     {
@@ -249,7 +249,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// User ID being replied to
+    /// ID of the user this result replies to.
     /// </summary>
     public string? InReplyToUserID
     {
@@ -270,7 +270,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// Username being replied to
+    /// Username this result replies to.
     /// </summary>
     public string? InReplyToUsername
     {
@@ -375,7 +375,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// Tweet language code
+    /// Search result language code.
     /// </summary>
     public string? Lang
     {
@@ -505,7 +505,7 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
-    /// Tweet permalink URL
+    /// Search result permalink.
     /// </summary>
     public string? Url
     {

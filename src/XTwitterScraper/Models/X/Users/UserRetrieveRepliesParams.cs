@@ -191,7 +191,7 @@ public record class UserRetrieveRepliesParams : ParamsBase
     }
 
     /// <summary>
-    /// Include parent tweet for replies
+    /// Include each reply's parent tweet.
     /// </summary>
     public bool? IncludeParentTweet
     {
