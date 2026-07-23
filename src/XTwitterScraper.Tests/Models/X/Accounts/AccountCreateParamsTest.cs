@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
+// SPDX-License-Identifier: Apache-2.0
+
 using System;
 using XTwitterScraper.Models.X.Accounts;
 
@@ -10,16 +13,16 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
-            TotpSecret = "<TOTP_SECRET>",
+            Email = "user@example.com",
+            Password = "test-password",
+            Username = "test-user",
+            TotpSecret = "test-totp-secret",
         };
 
-        string expectedEmail = "account@example.invalid";
-        string expectedPassword = "<ACCOUNT_PASSWORD>";
-        string expectedUsername = "your_x_username";
-        string expectedTotpSecret = "<TOTP_SECRET>";
+        string expectedEmail = "user@example.com";
+        string expectedPassword = "test-password";
+        string expectedUsername = "test-user";
+        string expectedTotpSecret = "test-totp-secret";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
@@ -32,9 +35,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
+            Email = "user@example.com",
+            Password = "test-password",
+            Username = "test-user",
         };
 
         Assert.Null(parameters.TotpSecret);
@@ -46,9 +49,9 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
+            Email = "user@example.com",
+            Password = "test-password",
+            Username = "test-user",
 
             // Null should be interpreted as omitted for these properties
             TotpSecret = null,
@@ -63,12 +66,14 @@ public class AccountCreateParamsTest : TestBase
     {
         AccountCreateParams parameters = new()
         {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
+            Email = "user@example.com",
+            Password = "test-password",
+            Username = "test-user",
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+        var url = parameters.Url(
+            new() { ApiKey = "test-api-key", BearerToken = "test-bearer-token" }
+        );
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts"), url));
     }
@@ -78,10 +83,10 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
-            TotpSecret = "<TOTP_SECRET>",
+            Email = "user@example.com",
+            Password = "test-password",
+            Username = "test-user",
+            TotpSecret = "test-totp-secret",
         };
 
         AccountCreateParams copied = new(parameters);
