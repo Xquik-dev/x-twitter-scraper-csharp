@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.3 (2026-07-23)
+
+Full Changelog: [v0.5.2...v0.5.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.2...v0.5.3)
+
+### Documentation
+
+* map common X data tasks ([#17](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/17)) ([71b727c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/71b727cdfa43bbadda0269120c396ea0272050f2))
+
 ## 0.5.2 (2026-07-23)
 
 Full Changelog: [v0.5.1...v0.5.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.1...v0.5.2)
