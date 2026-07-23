@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
+// SPDX-License-Identifier: Apache-2.0
+
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -14,21 +17,21 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            ID = "webhook-test-id",
+            CreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+            Secret = "test-webhook-secret",
             Url = "https://example.com/webhook",
         };
 
-        string expectedID = "42";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedID = "webhook-test-id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,
         ];
-        string expectedSecret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+        string expectedSecret = "test-webhook-secret";
         string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, model.ID);
@@ -47,10 +50,10 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            ID = "webhook-test-id",
+            CreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+            Secret = "test-webhook-secret",
             Url = "https://example.com/webhook",
         };
 
@@ -68,10 +71,10 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            ID = "webhook-test-id",
+            CreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+            Secret = "test-webhook-secret",
             Url = "https://example.com/webhook",
         };
 
@@ -82,14 +85,14 @@ public class WebhookCreateResponseTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        string expectedID = "42";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
+        string expectedID = "webhook-test-id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
         List<ApiEnum<string, EventType>> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,
         ];
-        string expectedSecret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+        string expectedSecret = "test-webhook-secret";
         string expectedUrl = "https://example.com/webhook";
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -108,10 +111,10 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            ID = "webhook-test-id",
+            CreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+            Secret = "test-webhook-secret",
             Url = "https://example.com/webhook",
         };
 
@@ -123,10 +126,10 @@ public class WebhookCreateResponseTest : TestBase
     {
         var model = new WebhookCreateResponse
         {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            ID = "webhook-test-id",
+            CreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z"),
             EventTypes = [EventType.TweetNew, EventType.TweetReply],
-            Secret = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+            Secret = "test-webhook-secret",
             Url = "https://example.com/webhook",
         };
 
