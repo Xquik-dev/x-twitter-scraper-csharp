@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 Xquik contributors
+//
+// SPDX-License-Identifier: Apache-2.0
+
 using System;
 using System.Net.Http;
 using XTwitterScraper.Models.X.Users;
