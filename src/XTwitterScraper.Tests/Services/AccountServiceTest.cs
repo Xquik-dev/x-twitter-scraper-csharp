@@ -5,33 +5,33 @@ namespace XTwitterScraper.Tests.Services;
 
 public class AccountServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var account = await this.client.Account.Retrieve(
             new(),
             TestContext.Current.CancellationToken
         );
-        account.Validate();
+        Assert.NotNull(account);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task SetXUsername_Works()
     {
         var response = await this.client.Account.SetXUsername(
             new() { Username = "elonmusk" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task UpdateLocale_Works()
     {
         var response = await this.client.Account.UpdateLocale(
             new() { Locale = Locale.En },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

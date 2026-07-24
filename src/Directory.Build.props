@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Authors>Xquik</Authors>
     <Company>Xquik</Company>
-    <PackageTags>sdk;api;http;library</PackageTags>
+    <PackageTags>x;twitter;scraper;tweet;timeline;followers;api;sdk;csharp;dotnet;automation</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Xquik</Copyright>
     <PackageProjectUrl>https://xquik.com</PackageProjectUrl>

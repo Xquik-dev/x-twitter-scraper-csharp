@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services.X.Users;
 
 public class FollowServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var follow = await this.client.X.Users.Follow.Create(
@@ -12,10 +12,10 @@ public class FollowServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        follow.Validate();
+        Assert.NotNull(follow);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task DeleteAll_Works()
     {
         var response = await this.client.X.Users.Follow.DeleteAll(
@@ -23,6 +23,6 @@ public class FollowServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

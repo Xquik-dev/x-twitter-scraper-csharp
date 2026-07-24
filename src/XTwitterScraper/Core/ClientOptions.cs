@@ -26,9 +26,16 @@ public record struct ClientOptions()
     /// own timeout handler and cause premature cancellation.</para>
     /// </summary>
     public HttpClient HttpClient { get; set; } =
-        new(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.Available })
+        new(CreateDefaultHttpClientHandler())
         {
             Timeout = global::System.Threading.Timeout.InfiniteTimeSpan,
+        };
+
+    internal static HttpClientHandler CreateDefaultHttpClientHandler() =>
+        new()
+        {
+            AllowAutoRedirect = false,
+            AutomaticDecompression = DecompressionMethods.Available,
         };
 
     Lazy<string> _baseUrl = new(() =>

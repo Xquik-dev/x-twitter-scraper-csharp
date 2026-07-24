@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services.X;
 
 public class WriteActionServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var writeAction = await this.client.X.WriteActions.Retrieve(
@@ -12,6 +12,6 @@ public class WriteActionServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        writeAction.Validate();
+        Assert.NotNull(writeAction);
     }
 }

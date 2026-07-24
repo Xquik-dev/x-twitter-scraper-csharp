@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-cd "$(dirname "$0")/.."
+cd -- "$(dirname -- "$0")/.."
 
 echo "==> Running dotnet build"
-dotnet build
+DOTNET_ROLL_FORWARD=Major dotnet build --no-restore

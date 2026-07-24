@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+reproducibility_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-reproducibility.XXXXXX")"
+trap 'rm -rf -- "$reproducibility_workspace"' EXIT
+
+copy_source()
+{
+  local destination="$1"
+  mkdir -p -- "$destination"
+  tar -cf - -T <(git ls-files --cached --others --exclude-standard) |
+    tar -xf - -C "$destination"
+  tar -cf - .git | tar -xf - -C "$destination"
+}
+
+echo "==> Building normalized NuGet packages in separate source roots"
+copy_source "$reproducibility_workspace/source-first"
+copy_source "$reproducibility_workspace/source-second"
+
+for source_root in source-first source-second; do
+  (
+    cd -- "$reproducibility_workspace/$source_root"
+    dotnet tool restore
+    dotnet restore --locked-mode
+    ./scripts/build-package \
+      "$reproducibility_workspace/${source_root#source-}" \
+      0.0.0-repro
+  )
+done
+
+for package_name in \
+  XTwitterScraper.0.0.0-repro.nupkg \
+  XTwitterScraper.0.0.0-repro.symbols.nupkg; do
+  cmp \
+    "$reproducibility_workspace/first/$package_name" \
+    "$reproducibility_workspace/second/$package_name"
+done
+
+archive_listing="$(
+  unzip -Z1 "$reproducibility_workspace/first/XTwitterScraper.0.0.0-repro.nupkg"
+)"
+for required_file in LICENSE README.md XTwitterScraper.nuspec; do
+  if ! grep -Fxq "$required_file" <<<"$archive_listing"; then
+    echo "NuGet package omits $required_file." >&2
+    exit 1
+  fi
+done
+
+echo "Normalized NuGet packages are reproducible."

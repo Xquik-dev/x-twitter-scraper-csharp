@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 cd -- "$(dirname -- "$0")/.."
 
-
-
 echo "==> Running tests"
-dotnet test
+case "$(uname -s)" in
+  MINGW* | MSYS* | CYGWIN*)
+    dotnet test --no-restore --logger "console;verbosity=minimal"
+    ;;
+  *)
+    DOTNET_ROLL_FORWARD=Major dotnet test \
+      src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
+      --framework net8.0 \
+      --no-restore \
+      --logger "console;verbosity=minimal"
+    ;;
+esac

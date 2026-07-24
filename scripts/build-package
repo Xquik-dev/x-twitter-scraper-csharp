@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+if [[ "$#" -lt 1 || "$#" -gt 2 ]]; then
+  echo "Usage: ./scripts/build-package <output-directory> [package-version]" >&2
+  exit 2
+fi
+
+output_directory="$(mkdir -p -- "$1" && cd -- "$1" && pwd)"
+package_version="${2:-}"
+package_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-build.XXXXXX")"
+trap 'rm -rf -- "$package_workspace"' EXIT
+
+pack_arguments=(
+  src/XTwitterScraper/XTwitterScraper.csproj
+  --configuration Release
+  --no-restore
+  --output "$package_workspace/raw"
+  -p:ContinuousIntegrationBuild=true
+)
+if [[ -n "$package_version" ]]; then
+  pack_arguments+=("-p:PackageVersion=$package_version")
+fi
+
+DOTNET_ROLL_FORWARD=Major dotnet pack "${pack_arguments[@]}"
+
+package_count=0
+while IFS= read -r package; do
+  package_count=$((package_count + 1))
+  ./scripts/normalize-package "$package" "$output_directory/$(basename -- "$package")"
+done < <(find "$package_workspace/raw" -maxdepth 1 -type f -name '*.nupkg' -print | sort)
+
+if [[ "$package_count" -ne 2 ]]; then
+  echo "Expected package and symbols package, found $package_count." >&2
+  exit 1
+fi

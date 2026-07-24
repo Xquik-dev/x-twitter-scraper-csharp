@@ -1,12 +1,5 @@
 name: CI
 
-permissions:
-  contents: read
-
-concurrency:
-  group: csharp-ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 on:
   push:
     branches:
@@ -22,61 +15,153 @@ on:
       - "stl-preview-head/**"
       - "stl-preview-base/**"
 
+permissions:
+  contents: read
+
+concurrency:
+  group: csharp-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
-    name: Lint
+    name: Lint & Licensing
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Check Out Repository
+      - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Set Up .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: "10.0.x"
+          dotnet-version: "10.0.301"
 
-      - name: Bootstrap
+      - name: Restore locked dependencies
         run: ./scripts/bootstrap
 
-      - name: Run Lints
+      - name: Check C#
         run: ./scripts/lint
+
+      - name: Check shell scripts
+        run: >-
+          shellcheck
+          scripts/audit
+          scripts/bootstrap
+          scripts/build
+          scripts/build-package
+          scripts/check-reproducible
+          scripts/coverage
+          scripts/format
+          scripts/lint
+          scripts/normalize-package
+          scripts/test
+
+      - name: Check workflows
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
+
+      - name: Check repository licensing
+        uses: fsfe/reuse-action@676e2d560c9a403aa252096d99fcab3e1132b0f5 # v6.0.0
 
   build:
     name: Build
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Check Out Repository
+      - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Set Up .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: "10.0.x"
+          dotnet-version: "10.0.301"
 
-      - name: Build SDK
+      - name: Restore locked dependencies
+        run: ./scripts/bootstrap
+
+      - name: Build all library targets
         run: ./scripts/build
 
   test:
-    name: Test
+    name: Tests .NET 8 & Framework 4.7.2
     runs-on: windows-2025
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Check Out Repository
+      - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Set Up .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: "10.0.x"
+          dotnet-version: |
+            8.0.x
+            10.0.301
 
-      - name: Run Tests
+      - name: Restore locked dependencies
+        run: ./scripts/bootstrap
+        shell: bash
+
+      - name: Run all test targets
         run: ./scripts/test
         shell: bash
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.301
+
+      - name: Restore locked dependencies
+        run: ./scripts/bootstrap
+
+      - name: Enforce coverage
+        env:
+          XQUIK_COVERAGE_OUTPUT: .artifacts/coverage.cobertura.xml
+        run: ./scripts/coverage
+
+      - name: Upload coverage evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: csharp-coverage
+          path: .artifacts/coverage.cobertura.xml
+          retention-days: 14
+
+  supply-chain:
+    name: Dependency & Build Security
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.0.301"
+
+      - name: Restore locked dependencies
+        run: ./scripts/bootstrap
+
+      - name: Audit dependencies and licenses
+        run: ./scripts/audit
+
+      - name: Verify reproducible packages
+        run: ./scripts/check-reproducible

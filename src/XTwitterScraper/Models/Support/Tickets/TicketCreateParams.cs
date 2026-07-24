@@ -152,6 +152,11 @@ public record class TicketCreateParams : ParamsBase
         return MultipartJsonSerializer.Serialize(RawBodyData);
     }
 
+    internal override bool BodyCanRetry()
+    {
+        return false;
+    }
+
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
         ParamsBase.AddDefaultHeaders(request, options, SecurityOptions.All());

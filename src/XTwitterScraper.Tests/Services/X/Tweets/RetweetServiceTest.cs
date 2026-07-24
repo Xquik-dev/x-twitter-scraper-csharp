@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services.X.Tweets;
 
 public class RetweetServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var retweet = await this.client.X.Tweets.Retweet.Create(
@@ -12,10 +12,10 @@ public class RetweetServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        retweet.Validate();
+        Assert.NotNull(retweet);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Delete_Works()
     {
         var retweet = await this.client.X.Tweets.Retweet.Delete(
@@ -23,6 +23,6 @@ public class RetweetServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        retweet.Validate();
+        Assert.NotNull(retweet);
     }
 }

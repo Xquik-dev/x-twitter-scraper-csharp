@@ -21,26 +21,26 @@ jobs:
       contents: read
       id-token: write # Required to exchange GitHub OIDC for a short-lived NuGet key.
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Set Up .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: "10.0.x"
+          dotnet-version: "10.0.301"
 
-      - name: Restore Dependencies
-        run: >-
-          dotnet restore src/XTwitterScraper/XTwitterScraper.csproj
-          --locked-mode
+      - name: Restore locked dependencies
+        run: ./scripts/bootstrap
 
-      - name: Build Package
-        run: >-
-          dotnet pack src/XTwitterScraper/XTwitterScraper.csproj
-          --configuration Release
-          --no-restore
-          --output artifacts/packages
+      - name: Audit dependencies and package reproducibility
+        run: |
+          ./scripts/audit
+          ./scripts/check-reproducible
+
+      - name: Build normalized packages
+        run: ./scripts/build-package artifacts/packages
 
       - name: Request Short-Lived NuGet Key
         id: nuget-login

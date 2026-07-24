@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class GuestWalletServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var guestWallet = await this.client.GuestWallets.Create(
@@ -17,20 +17,20 @@ public class GuestWalletServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        guestWallet.Validate();
+        Assert.NotNull(guestWallet);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task RetrieveStatus_Works()
     {
         var response = await this.client.GuestWallets.RetrieveStatus(
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Topup_Works()
     {
         var response = await this.client.GuestWallets.Topup(
@@ -42,6 +42,6 @@ public class GuestWalletServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

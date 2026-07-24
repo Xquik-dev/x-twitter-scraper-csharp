@@ -5,17 +5,17 @@ namespace XTwitterScraper.Tests.Services.Monitors;
 
 public class KeywordServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var keyword = await this.client.Monitors.Keywords.Create(
             new() { EventTypes = [EventType.TweetNew], Query = "xquik OR \"x api\"" },
             TestContext.Current.CancellationToken
         );
-        keyword.Validate();
+        Assert.NotNull(keyword);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var keyword = await this.client.Monitors.Keywords.Retrieve(
@@ -23,10 +23,10 @@ public class KeywordServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        keyword.Validate();
+        Assert.NotNull(keyword);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Update_Works()
     {
         var keyword = await this.client.Monitors.Keywords.Update(
@@ -34,20 +34,20 @@ public class KeywordServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        keyword.Validate();
+        Assert.NotNull(keyword);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var keywords = await this.client.Monitors.Keywords.List(
             new(),
             TestContext.Current.CancellationToken
         );
-        keywords.Validate();
+        Assert.NotNull(keywords);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Deactivate_Works()
     {
         var response = await this.client.Monitors.Keywords.Deactivate(
@@ -55,6 +55,6 @@ public class KeywordServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

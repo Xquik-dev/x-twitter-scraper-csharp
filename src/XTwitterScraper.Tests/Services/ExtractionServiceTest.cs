@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class ExtractionServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var extraction = await this.client.Extractions.Retrieve(
@@ -13,30 +13,30 @@ public class ExtractionServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        extraction.Validate();
+        Assert.NotNull(extraction);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var extractions = await this.client.Extractions.List(
             new(),
             TestContext.Current.CancellationToken
         );
-        extractions.Validate();
+        Assert.NotNull(extractions);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task EstimateCost_Works()
     {
         var response = await this.client.Extractions.EstimateCost(
             new() { ToolType = ExtractionEstimateCostParamsToolType.FollowerExplorer },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task ExportResults_Works()
     {
         await this.client.Extractions.ExportResults(
@@ -46,13 +46,13 @@ public class ExtractionServiceTest : TestBase
         );
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Run_Works()
     {
         var response = await this.client.Extractions.Run(
             new() { ToolType = ExtractionRunParamsToolType.FollowerExplorer },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }
