@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.4 (2026-07-24)
+
+Full Changelog: [v0.5.3...v0.5.4](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.3...v0.5.4)
+
+### Chores
+
+* add per-file license evidence ([816cf24](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/816cf24a302e25e9b7164170d519c4ddd87bd541))
+* enforce OpenSSF Gold technical controls ([030b107](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/030b10779d2fa7e5c36ed401c71780753aeb9ad0))
+
+
+### Documentation
+
+* clarify repository discovery ([e4a8544](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/e4a8544e19585b17a2f7a024e2cab21fd0641103))
+
 ## 0.5.3 (2026-07-23)
 
 Full Changelog: [v0.5.2...v0.5.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.2...v0.5.3)
