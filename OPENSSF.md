@@ -47,6 +47,16 @@ The default transport blocks redirects that could forward credentials.
 
 Multipart request bodies are not retried after consumption.
 
+## Outstanding Silver Blocker
+
+The release workflow now creates SLSA provenance for exact package bytes.
+
+It also attaches those packages and their Sigstore bundle to GitHub Releases.
+
+Run one post-merge release and verify its public artifact.
+
+Keep `signed_releases` Unmet until that verification succeeds.
+
 ## Outstanding Gold Blockers
 
 Human and organizational evidence remains incomplete.
@@ -74,6 +84,9 @@ Run these evidence commands before releases:
 ./scripts/audit
 reuse lint
 ./scripts/check-reproducible
+gh attestation verify PACKAGE \
+  --repo Xquik-dev/x-twitter-scraper-csharp \
+  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml
 ```
 
 Reassess the register before every major release.

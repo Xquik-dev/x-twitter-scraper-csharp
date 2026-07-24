@@ -49,6 +49,33 @@ Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper)
 dotnet add package XTwitterScraper
 ```
 
+## Verify a Release
+
+Verify project provenance before using a GitHub release package.
+
+Select a release containing `.nupkg` assets:
+
+```bash
+release_tag=vVERSION
+package_version="${release_tag#v}"
+
+gh release download "$release_tag" \
+  --repo Xquik-dev/x-twitter-scraper-csharp \
+  --pattern "XTwitterScraper.$package_version.nupkg"
+
+gh attestation verify "XTwitterScraper.$package_version.nupkg" \
+  --repo Xquik-dev/x-twitter-scraper-csharp \
+  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml \
+  --source-ref "refs/tags/$release_tag" \
+  --deny-self-hosted-runners
+```
+
+Require the Xquik-dev repository and expected release workflow.
+
+GitHub verifies the artifact digest, signer identity, and transparency proof.
+
+[NuGet.org applies repository signatures][nuget-signatures] to registry packages.
+
 ## Requirements
 
 This library requires .NET Standard 2.0 or later.
@@ -427,5 +454,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
 Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs, or suggestions.
+
+[nuget-signatures]: https://learn.microsoft.com/en-us/nuget/api/repository-signatures-resource
 
 Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
