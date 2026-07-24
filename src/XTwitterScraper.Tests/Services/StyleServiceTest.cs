@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class StyleServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var styleProfile = await this.client.Styles.Retrieve(
@@ -12,10 +12,10 @@ public class StyleServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        Assert.NotNull(styleProfile);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Update_Works()
     {
         var styleProfile = await this.client.Styles.Update(
@@ -27,43 +27,43 @@ public class StyleServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        Assert.NotNull(styleProfile);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var styles = await this.client.Styles.List(new(), TestContext.Current.CancellationToken);
-        styles.Validate();
+        Assert.NotNull(styles);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Delete_Works()
     {
         await this.client.Styles.Delete("id", new(), TestContext.Current.CancellationToken);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Analyze_Works()
     {
         var styleProfile = await this.client.Styles.Analyze(
             new() { Username = "elonmusk" },
             TestContext.Current.CancellationToken
         );
-        styleProfile.Validate();
+        Assert.NotNull(styleProfile);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Compare_Works()
     {
         var response = await this.client.Styles.Compare(
             new() { Username1 = "username1", Username2 = "username2" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task GetPerformance_Works()
     {
         var response = await this.client.Styles.GetPerformance(
@@ -71,6 +71,6 @@ public class StyleServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

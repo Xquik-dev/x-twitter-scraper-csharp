@@ -33,6 +33,8 @@ public class HttpResponse : IDisposable
 
     public Threading::CancellationToken CancellationToken { get; init; } = default;
 
+    internal Threading::CancellationTokenSource? CancellationSource { get; init; }
+
     public IEnumerable<string> GetHeaderValues(string name) => RawMessage.Headers.GetValues(name);
 
     public bool TryGetHeaderValues(
@@ -105,6 +107,7 @@ public class HttpResponse : IDisposable
 
     public void Dispose()
     {
+        this.CancellationSource?.Dispose();
         this.RawMessage.Dispose();
         GC.SuppressFinalize(this);
     }
@@ -128,15 +131,16 @@ public sealed class HttpResponse<T> : HttpResponse
     {
         this.RawMessage = response.RawMessage;
         this.CancellationToken = response.CancellationToken;
+        this.CancellationSource = response.CancellationSource;
     }
 
-    public Task<T> Deserialize(Threading::CancellationToken cancellationToken = default)
+    public async Task<T> Deserialize(Threading::CancellationToken cancellationToken = default)
     {
         using var cts = Threading::CancellationTokenSource.CreateLinkedTokenSource(
             this.CancellationToken,
             cancellationToken
         );
-        return this._deserialize(cts.Token);
+        return await this._deserialize(cts.Token).ConfigureAwait(false);
     }
 }
 
@@ -160,6 +164,7 @@ public sealed class StreamingHttpResponse<T> : HttpResponse
     {
         this.RawMessage = response.RawMessage;
         this.CancellationToken = response.CancellationToken;
+        this.CancellationSource = response.CancellationSource;
     }
 
     public async IAsyncEnumerable<T> Enumerate(

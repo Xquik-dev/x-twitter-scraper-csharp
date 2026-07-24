@@ -4,13 +4,14 @@
     <AssemblyTitle>Xquik C# SDK</AssemblyTitle>
     <AssemblyName>XTwitterScraper</AssemblyName>
     <VersionPrefix>0.5.3</VersionPrefix>
-    <Description>Xquik .NET SDK for tweet search, profile tweets, follower export, webhooks, and automation. Not affiliated with X Corp.</Description>
+    <Description>Xquik .NET SDK for tweet search, X timelines, follower exports, webhooks, and confirmed automation. Not affiliated with X Corp.</Description>
     <OutputType>Library</OutputType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="XTwitterScraper.Tests"/>
     <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\"/>
     <PackageReference Include="System.Text.Json" Version="10.0.10"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.301" PrivateAssets="All"/>
   </ItemGroup>

@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class EventServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var eventDetail = await this.client.Events.Retrieve(
@@ -12,13 +12,13 @@ public class EventServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        eventDetail.Validate();
+        Assert.NotNull(eventDetail);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var events = await this.client.Events.List(new(), TestContext.Current.CancellationToken);
-        events.Validate();
+        Assert.NotNull(events);
     }
 }

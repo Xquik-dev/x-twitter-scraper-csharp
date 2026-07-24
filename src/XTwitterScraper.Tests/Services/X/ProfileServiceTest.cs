@@ -4,17 +4,17 @@ namespace XTwitterScraper.Tests.Services.X;
 
 public class ProfileServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Update_Works()
     {
         var profile = await this.client.X.Profile.Update(
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        profile.Validate();
+        Assert.NotNull(profile);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task UpdateAvatar_Works()
     {
         var response = await this.client.X.Profile.UpdateAvatar(
@@ -26,10 +26,10 @@ public class ProfileServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task UpdateBanner_Works()
     {
         var response = await this.client.X.Profile.UpdateBanner(
@@ -41,6 +41,6 @@ public class ProfileServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

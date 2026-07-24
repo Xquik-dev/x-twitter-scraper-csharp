@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ "$#" -ne 2 ]]; then
+  echo "Usage: ./scripts/normalize-package <input.nupkg> <output.nupkg>" >&2
+  exit 2
+fi
+
+input_package="$(cd -- "$(dirname -- "$1")" && pwd)/$(basename -- "$1")"
+output_package="$(mkdir -p -- "$(dirname -- "$2")" && cd -- "$(dirname -- "$2")" && pwd)/$(basename -- "$2")"
+normalization_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-package.XXXXXX")"
+trap 'rm -rf -- "$normalization_workspace"' EXIT
+normalized_package="$normalization_workspace/normalized.nupkg"
+
+unzip -q "$input_package" -d "$normalization_workspace/content"
+node "$(dirname -- "$0")/normalize-package-metadata.mjs" \
+  "$normalization_workspace/content"
+find "$normalization_workspace/content" -exec touch -t 198001010000 {} +
+
+(
+  cd -- "$normalization_workspace/content"
+  find . -type f -print | LC_ALL=C sort | zip -X -q "$normalized_package" -@
+)
+
+unzip -tq "$normalized_package" >/dev/null
+mv -f -- "$normalized_package" "$output_package"

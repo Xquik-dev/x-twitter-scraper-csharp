@@ -1,8 +1,23 @@
 # X (Twitter) Scraper C# SDK: Tweet Search, Timelines, Followers & Posting
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
+[![CI](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml/badge.svg)](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml)
 
-Use Xquik's typed C# client for X data and confirmed actions.
+Use Xquik's typed NuGet SDK as an X API alternative.
+
+Search tweets, read timelines, export followers, and deliver webhooks.
+
+Confirmed methods also support posting and other account actions.
+
+## Is This A Twitter API Alternative?
+
+This package calls Xquik's documented REST API.
+
+It does not call or emulate the official X API.
+
+Use it for supported X data and automation workflows from .NET.
+
+## Documentation
 
 Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
@@ -13,12 +28,18 @@ Use the linked SDK guide for typed method names.
 | Customer Question | REST Route | Workflow Note |
 | --- | --- | --- |
 | How do I search tweets? | `GET /x/tweets/search` | Use keyword or advanced operator queries. |
-| How do I read a profile timeline? | `GET /x/users/{id}/tweets` | Paginate bounded results. |
-| How do I scrape followers? | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
-| How do I scrape following accounts? | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
+| How do I extract a profile timeline? | `GET /x/users/{id}/tweets` | Paginate bounded X timeline results. |
+| How do I scrape X followers? | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
+| How do I scrape X following accounts? | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
 | How do I read my home timeline? | `GET /x/timeline` | Approve this private read. |
+| How do I read lists or communities? | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
+| How do I export large X datasets? | `POST /extractions` | Poll status, then download results. |
 | How do I monitor an account? | `POST /monitors` | Deliver events through HMAC webhooks. |
 | How do I post or reply? | `POST /x/tweets` | Confirm the account and payload. |
+
+The [API reference](https://docs.xquik.com/api-reference/overview) lists every route.
+
+The SDK exposes matching typed services and request models.
 
 ## Installation
 
@@ -390,7 +411,13 @@ var paginatedTweets = await client
 Console.WriteLine(paginatedTweets);
 ```
 
-## Semantic versioning
+## Project Policies
+
+Read [Contributing](CONTRIBUTING.md), [Governance](GOVERNANCE.md), and [Security](SECURITY.md).
+
+See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
+
+## Semantic Versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 

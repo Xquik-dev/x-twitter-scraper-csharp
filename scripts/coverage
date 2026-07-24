@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+coverage_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-coverage.XXXXXX")"
+trap 'rm -rf -- "$coverage_workspace"' EXIT
+
+echo "==> Measuring full SDK coverage"
+DOTNET_ROLL_FORWARD=Major dotnet test \
+  src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
+  --framework net8.0 \
+  --no-restore \
+  --collect:"XPlat Code Coverage" \
+  --results-directory "$coverage_workspace" \
+  --logger "trx;LogFileName=tests.trx" \
+  --logger "console;verbosity=minimal"
+
+coverage_file="$(find "$coverage_workspace" -name coverage.cobertura.xml -print -quit)"
+test_results_file="$(find "$coverage_workspace" -name tests.trx -print -quit)"
+
+if [[ -z "$coverage_file" || -z "$test_results_file" ]]; then
+  echo "Coverage or test results are missing." >&2
+  exit 1
+fi
+
+if grep -Fq 'outcome="NotExecuted"' "$test_results_file"; then
+  echo "Skipped tests are not allowed." >&2
+  exit 1
+fi
+
+coverage_header="$(sed -n '2p' "$coverage_file")"
+line_rate="$(sed -n 's/.*line-rate="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+branch_rate="$(sed -n 's/.*branch-rate="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+lines_covered="$(sed -n 's/.*lines-covered="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+lines_valid="$(sed -n 's/.*lines-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+branches_covered="$(sed -n 's/.*branches-covered="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+branches_valid="$(sed -n 's/.*branches-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
+
+awk -v rate="$line_rate" 'BEGIN { exit(rate + 0 >= 0.90 ? 0 : 1) }' || {
+  echo "Line coverage ${line_rate} is below 0.90." >&2
+  exit 1
+}
+awk -v rate="$branch_rate" 'BEGIN { exit(rate + 0 >= 0.80 ? 0 : 1) }' || {
+  echo "Branch coverage ${branch_rate} is below 0.80." >&2
+  exit 1
+}
+
+echo "Line coverage: $lines_covered/$lines_valid ($line_rate)"
+echo "Branch coverage: $branches_covered/$branches_valid ($branch_rate)"
+
+if [[ -n "${XQUIK_COVERAGE_OUTPUT:-}" ]]; then
+  mkdir -p -- "$(dirname -- "$XQUIK_COVERAGE_OUTPUT")"
+  cp -- "$coverage_file" "$XQUIK_COVERAGE_OUTPUT"
+fi

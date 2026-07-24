@@ -206,6 +206,11 @@ public abstract record class ParamsBase
         return null;
     }
 
+    internal virtual bool BodyCanRetry()
+    {
+        return true;
+    }
+
     internal static void AddDefaultHeaders(
         HttpRequestMessage request,
         ClientOptions options,

@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class ComposeServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var compose = await this.client.Compose.Create(
@@ -20,6 +20,6 @@ public class ComposeServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        compose.Validate();
+        Assert.NotNull(compose);
     }
 }

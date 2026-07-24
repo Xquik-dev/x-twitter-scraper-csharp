@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class MonitorServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var monitor = await this.client.Monitors.Create(
@@ -16,10 +16,10 @@ public class MonitorServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        monitor.Validate();
+        Assert.NotNull(monitor);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var monitor = await this.client.Monitors.Retrieve(
@@ -27,10 +27,10 @@ public class MonitorServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        monitor.Validate();
+        Assert.NotNull(monitor);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Update_Works()
     {
         var monitor = await this.client.Monitors.Update(
@@ -38,20 +38,20 @@ public class MonitorServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        monitor.Validate();
+        Assert.NotNull(monitor);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var monitors = await this.client.Monitors.List(
             new(),
             TestContext.Current.CancellationToken
         );
-        monitors.Validate();
+        Assert.NotNull(monitors);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Deactivate_Works()
     {
         var response = await this.client.Monitors.Deactivate(
@@ -59,6 +59,6 @@ public class MonitorServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

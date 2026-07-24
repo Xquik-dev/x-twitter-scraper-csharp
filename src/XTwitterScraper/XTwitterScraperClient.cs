@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -385,7 +386,9 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
     )
         where T : ParamsBase
     {
-        var maxRetries = this.MaxRetries ?? ClientOptions.DefaultMaxRetries;
+        var maxRetries = request.Params.BodyCanRetry()
+            ? this.MaxRetries ?? ClientOptions.DefaultMaxRetries
+            : 0;
         var retries = 0;
         while (true)
         {
@@ -452,16 +455,11 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         {
             requestMessage.Headers.Add("x-stainless-retry-count", retryCount.ToString());
         }
-        using CancellationTokenSource timeoutCts = new(
-            this.Timeout ?? ClientOptions.DefaultTimeout
-        );
-        using var cts = CancellationTokenSource.CreateLinkedTokenSource(
-            timeoutCts.Token,
-            cancellationToken
-        );
+        var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         HttpResponseMessage responseMessage;
         try
         {
+            cts.CancelAfter(this.Timeout ?? ClientOptions.DefaultTimeout);
             responseMessage = await this
                 .HttpClient.SendAsync(
                     requestMessage,
@@ -472,12 +470,23 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         }
         catch (HttpRequestException e)
         {
+            cts.Dispose();
             throw new XTwitterScraperIOException("I/O exception", e);
         }
-        return new() { RawMessage = responseMessage, CancellationToken = cts.Token };
+        catch
+        {
+            cts.Dispose();
+            throw;
+        }
+        return new()
+        {
+            RawMessage = responseMessage,
+            CancellationToken = cts.Token,
+            CancellationSource = cts,
+        };
     }
 
-    static TimeSpan ComputeRetryBackoff(int retries, HttpResponse? response)
+    internal static TimeSpan ComputeRetryBackoff(int retries, HttpResponse? response)
     {
         TimeSpan? apiBackoff = ParseRetryAfterMsHeader(response) ?? ParseRetryAfterHeader(response);
         if (
@@ -497,7 +506,7 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         return TimeSpan.FromSeconds(backoffSeconds * jitter);
     }
 
-    static TimeSpan? ParseRetryAfterMsHeader(HttpResponse? response)
+    internal static TimeSpan? ParseRetryAfterMsHeader(HttpResponse? response)
     {
         IEnumerable<string>? headerValues = null;
         response?.TryGetHeaderValues("Retry-After-Ms", out headerValues);
@@ -507,7 +516,18 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
             return null;
         }
 
-        if (float.TryParse(headerValue, out var retryAfterMs))
+        if (
+            float.TryParse(
+                headerValue,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out var retryAfterMs
+            )
+            && !float.IsNaN(retryAfterMs)
+            && !float.IsInfinity(retryAfterMs)
+            && retryAfterMs >= TimeSpan.MinValue.TotalMilliseconds
+            && retryAfterMs <= TimeSpan.MaxValue.TotalMilliseconds
+        )
         {
             return TimeSpan.FromMilliseconds(retryAfterMs);
         }
@@ -515,7 +535,7 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         return null;
     }
 
-    static TimeSpan? ParseRetryAfterHeader(HttpResponse? response)
+    internal static TimeSpan? ParseRetryAfterHeader(HttpResponse? response)
     {
         IEnumerable<string>? headerValues = null;
         response?.TryGetHeaderValues("Retry-After", out headerValues);
@@ -525,19 +545,39 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
             return null;
         }
 
-        if (float.TryParse(headerValue, out var retryAfterSeconds))
+        if (
+            float.TryParse(
+                headerValue,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out var retryAfterSeconds
+            )
+            && !float.IsNaN(retryAfterSeconds)
+            && !float.IsInfinity(retryAfterSeconds)
+            && retryAfterSeconds >= TimeSpan.MinValue.TotalSeconds
+            && retryAfterSeconds <= TimeSpan.MaxValue.TotalSeconds
+        )
         {
             return TimeSpan.FromSeconds(retryAfterSeconds);
         }
-        else if (DateTimeOffset.TryParse(headerValue, out var retryAfterDate))
+        else if (
+            DateTimeOffset.TryParse(
+                headerValue,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.AllowWhiteSpaces
+                    | DateTimeStyles.AssumeUniversal
+                    | DateTimeStyles.AdjustToUniversal,
+                out var retryAfterDate
+            )
+        )
         {
-            return retryAfterDate - DateTimeOffset.Now;
+            return retryAfterDate - DateTimeOffset.UtcNow;
         }
 
         return null;
     }
 
-    static bool ShouldRetry(HttpResponse response)
+    internal static bool ShouldRetry(HttpResponse response)
     {
         if (
             response.TryGetHeaderValues("X-Should-Retry", out var headerValues)
@@ -565,7 +605,7 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         };
     }
 
-    static bool ShouldRetry(Exception e)
+    internal static bool ShouldRetry(Exception e)
     {
         return e is IOException || e is XTwitterScraperIOException;
     }

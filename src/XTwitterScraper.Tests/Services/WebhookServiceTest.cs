@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class WebhookServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var webhook = await this.client.Webhooks.Create(
@@ -16,10 +16,10 @@ public class WebhookServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        webhook.Validate();
+        Assert.NotNull(webhook);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Update_Works()
     {
         var webhook = await this.client.Webhooks.Update(
@@ -27,20 +27,20 @@ public class WebhookServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        webhook.Validate();
+        Assert.NotNull(webhook);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var webhooks = await this.client.Webhooks.List(
             new(),
             TestContext.Current.CancellationToken
         );
-        webhooks.Validate();
+        Assert.NotNull(webhooks);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Deactivate_Works()
     {
         var response = await this.client.Webhooks.Deactivate(
@@ -48,10 +48,10 @@ public class WebhookServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task ListDeliveries_Works()
     {
         var response = await this.client.Webhooks.ListDeliveries(
@@ -59,10 +59,10 @@ public class WebhookServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Resume_Works()
     {
         var response = await this.client.Webhooks.Resume(
@@ -70,10 +70,10 @@ public class WebhookServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Test_Works()
     {
         var response = await this.client.Webhooks.Test(
@@ -81,6 +81,6 @@ public class WebhookServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

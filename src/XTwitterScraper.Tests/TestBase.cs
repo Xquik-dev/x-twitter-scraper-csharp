@@ -1,11 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using XTwitterScraper;
 
 namespace XTwitterScraper.Tests;
 
-public class TestBase
+public class TestBase : IDisposable
 {
     protected IXTwitterScraperClient client;
 
@@ -13,11 +19,17 @@ public class TestBase
     {
         client = new XTwitterScraperClient()
         {
-            BaseUrl =
-                Environment.GetEnvironmentVariable("TEST_API_BASE_URL") ?? "http://localhost:4010",
+            BaseUrl = "http://127.0.0.1",
             ApiKey = "My API Key",
             BearerToken = "My Bearer Token",
+            HttpClient = new HttpClient(new LoopbackMockHandler()),
         };
+    }
+
+    public void Dispose()
+    {
+        client.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     internal static bool UrisEqual(Uri uri1, Uri uri2)
@@ -61,5 +73,44 @@ public class TestBase
         }
 
         return ret;
+    }
+}
+
+sealed class LoopbackMockHandler : HttpMessageHandler
+{
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken
+    )
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (
+            request.RequestUri is not { Scheme: "http", Host: "127.0.0.1" }
+            || !request.RequestUri.IsLoopback
+        )
+        {
+            throw new InvalidOperationException(
+                "Tests may only request the literal loopback host."
+            );
+        }
+
+        if (request.Content?.Headers.ContentType?.MediaType == "application/json")
+        {
+            var body = await request
+                .Content.ReadAsStringAsync(
+#if NET
+                    cancellationToken
+#endif
+                )
+                .ConfigureAwait(false);
+            using var _ = JsonDocument.Parse(body);
+        }
+
+        return new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StringContent("{}", Encoding.UTF8, "application/json"),
+            RequestMessage = request,
+        };
     }
 }

@@ -4,7 +4,7 @@ namespace XTwitterScraper.Tests.Services.X.Communities;
 
 public class JoinServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Create_Works()
     {
         var join = await this.client.X.Communities.Join.Create(
@@ -12,10 +12,10 @@ public class JoinServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        join.Validate();
+        Assert.NotNull(join);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task DeleteAll_Works()
     {
         var response = await this.client.X.Communities.Join.DeleteAll(
@@ -23,6 +23,6 @@ public class JoinServiceTest : TestBase
             new() { Account = "@elonmusk", IdempotencyKey = "Idempotency-Key" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

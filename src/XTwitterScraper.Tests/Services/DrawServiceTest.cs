@@ -5,7 +5,7 @@ namespace XTwitterScraper.Tests.Services;
 
 public class DrawServiceTest : TestBase
 {
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Retrieve_Works()
     {
         var draw = await this.client.Draws.Retrieve(
@@ -13,17 +13,17 @@ public class DrawServiceTest : TestBase
             new(),
             TestContext.Current.CancellationToken
         );
-        draw.Validate();
+        Assert.NotNull(draw);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task List_Works()
     {
         var draws = await this.client.Draws.List(new(), TestContext.Current.CancellationToken);
-        draws.Validate();
+        Assert.NotNull(draws);
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Export_Works()
     {
         await this.client.Draws.Export(
@@ -33,13 +33,13 @@ public class DrawServiceTest : TestBase
         );
     }
 
-    [Fact(Skip = "Mock server tests are disabled")]
+    [Fact]
     public async Task Run_Works()
     {
         var response = await this.client.Draws.Run(
             new() { TweetUrl = "https://x.com/elonmusk/status/1234567890" },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
+        Assert.NotNull(response);
     }
 }

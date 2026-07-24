@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+audit_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-audit.XXXXXX")"
+trap 'rm -rf -- "$audit_workspace"' EXIT
+
+echo "==> Auditing locked dependencies"
+DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
+  --vulnerable \
+  --include-transitive \
+  --format json \
+  --output-version 1 >"$audit_workspace/vulnerabilities.json"
+
+if grep -Eq '"(vulnerabilities|advisoryurl|severity)"[[:space:]]*:' \
+  "$audit_workspace/vulnerabilities.json"; then
+  cat "$audit_workspace/vulnerabilities.json"
+  echo "Vulnerable NuGet packages detected." >&2
+  exit 1
+fi
+
+echo "==> Checking dependency license policy"
+DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
+  --include-transitive \
+  --format json \
+  --output-version 1 >"$audit_workspace/packages.json"
+node scripts/verify-package-licenses.mjs "$audit_workspace/packages.json"
+
+echo "No vulnerable packages detected."
