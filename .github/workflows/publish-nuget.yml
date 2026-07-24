@@ -3,17 +3,76 @@ name: Publish to NuGet
 permissions: {}
 
 concurrency:
-  group: nuget-publish-${{ github.ref }}
+  group: nuget-publish
   cancel-in-progress: false
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".release-please-manifest.json"
   workflow_dispatch:
-  release:
-    types: [published]
+    inputs:
+      release_ref:
+        description: Exact release tag to publish
+        required: true
+        type: string
 
 jobs:
+  prepare:
+    name: Prepare Draft Release
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: write # Dispatch the tag-bound publisher.
+      contents: write # Create the exact release tag.
+    steps:
+      - name: Check out release commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Prepare immutable draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          version="$(jq -er '."."' .release-please-manifest.json)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z][0-9A-Za-z.-]*)?$ ]]
+          release_tag="v${version}"
+          release_json=""
+
+          for _ in {1..30}; do
+            if release_json="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${release_tag}" 2>/dev/null)"; then
+              break
+            fi
+            sleep 10
+          done
+
+          test -n "$release_json"
+          test "$(jq -r '.draft' <<<"$release_json")" = "true"
+          test "$(jq -r '.target_commitish' <<<"$release_json")" = "$GITHUB_SHA"
+
+          if remote_sha="$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${release_tag}" --jq '.object.sha' 2>/dev/null)"; then
+            test "$remote_sha" = "$GITHUB_SHA"
+          else
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/git/refs" \
+              -f ref="refs/tags/${release_tag}" \
+              -f sha="$GITHUB_SHA" >/dev/null
+          fi
+
+          gh workflow run publish-nuget.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$release_tag" \
+            -f release_ref="$release_tag"
+
   publish:
     name: Build & Publish Package
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: nuget
@@ -28,13 +87,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_ref }}
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Validate release tag
         id: release
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name || github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_ref }}
         run: |
+          set -euo pipefail
+
           if [[ "$GITHUB_REF_TYPE" != "tag" || "$RELEASE_TAG" != "$GITHUB_REF_NAME" ]]; then
             echo "Run this workflow from the matching release tag." >&2
             exit 1
@@ -44,6 +108,13 @@ jobs:
             echo "Release tag must contain a valid v-prefixed package version." >&2
             exit 1
           fi
+          version="$(jq -er '."."' .release-please-manifest.json)"
+          test "$RELEASE_TAG" = "v${version}"
+          release_json="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}")"
+          test "$(jq -r '.draft' <<<"$release_json")" = "true"
+          test "$(jq -r '.target_commitish' <<<"$release_json")" = "$GITHUB_SHA"
+          test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$GITHUB_SHA"
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
           echo "package_version=$package_version" >> "$GITHUB_OUTPUT"
           echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
 
@@ -142,4 +213,10 @@ jobs:
           gh release upload "$RELEASE_TAG" \
             "release-assets/XTwitterScraper.$PACKAGE_VERSION.nupkg" \
             "release-assets/XTwitterScraper.$PACKAGE_VERSION.sigstore.json" \
-            --repo "$GITHUB_REPOSITORY"
+            --repo "$GITHUB_REPOSITORY" \
+            --clobber
+          gh release edit "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --draft=false \
+            --latest \
+            --verify-tag
