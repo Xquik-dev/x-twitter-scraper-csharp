@@ -17,6 +17,12 @@ It does not call or emulate the official X API.
 
 Use it for supported X data and automation workflows from .NET.
 
+## Choose the C# SDK
+
+Choose this client for .NET services using asynchronous typed requests.
+Reuse the configurable `HttpClient` for shared transport settings.
+Use REST when a NuGet dependency does not fit.
+
 ## Documentation
 
 Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
