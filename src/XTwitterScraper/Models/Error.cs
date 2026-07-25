@@ -386,10 +386,7 @@ sealed class ErrorErrorConverter : JsonConverter<ErrorError>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ApiEnum<string, LegacyErrorCode>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<StructuredError>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -404,7 +401,10 @@ sealed class ErrorErrorConverter : JsonConverter<ErrorError>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<StructuredError>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ApiEnum<string, LegacyErrorCode>>(
+                element,
+                options
+            );
             if (deserialized != null)
             {
                 deserialized.Validate();
