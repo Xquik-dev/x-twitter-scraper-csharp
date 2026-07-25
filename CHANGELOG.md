@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.5 (2026-07-24)
+
+Full Changelog: [v0.5.4...v0.5.5](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.4...v0.5.5)
+
+### Bug Fixes
+
+* publish assets before immutable release ([#23](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/23)) ([b88673f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/b88673fcc9c55166bd9ac690ddea783d4c0e34a5))
+
 ## 0.5.4 (2026-07-24)
 
 Full Changelog: [v0.5.3...v0.5.4](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.3...v0.5.4)
