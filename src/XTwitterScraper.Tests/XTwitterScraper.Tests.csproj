@@ -21,6 +21,7 @@
       PrivateAssets="All"
       Condition="'$(TargetFramework)' == 'net472'"
     />
+    <PackageReference Include="FsCheck.Xunit.v3" Version="3.3.4" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.analyzers" Version="1.27.0" />
