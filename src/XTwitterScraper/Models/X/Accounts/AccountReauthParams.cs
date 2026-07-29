@@ -65,7 +65,7 @@ public record class AccountReauthParams : ParamsBase
     }
 
     /// <summary>
-    /// TOTP secret for 2FA re-authentication
+    /// Replacement Authenticator App TOTP secret. Omit it to reuse the saved secret.
     /// </summary>
     public string? TotpSecret
     {
