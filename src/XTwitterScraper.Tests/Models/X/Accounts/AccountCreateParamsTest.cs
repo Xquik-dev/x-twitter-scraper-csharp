@@ -31,37 +31,6 @@ public class AccountCreateParamsTest : TestBase
     }
 
     [Fact]
-    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
-    {
-        var parameters = new AccountCreateParams
-        {
-            Email = "user@example.com",
-            Password = "test-password",
-            Username = "test-user",
-        };
-
-        Assert.Null(parameters.TotpSecret);
-        Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
-    {
-        var parameters = new AccountCreateParams
-        {
-            Email = "user@example.com",
-            Password = "test-password",
-            Username = "test-user",
-
-            // Null should be interpreted as omitted for these properties
-            TotpSecret = null,
-        };
-
-        Assert.Null(parameters.TotpSecret);
-        Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
-    }
-
-    [Fact]
     public void Url_Works()
     {
         AccountCreateParams parameters = new()
@@ -69,6 +38,7 @@ public class AccountCreateParamsTest : TestBase
             Email = "user@example.com",
             Password = "test-password",
             Username = "test-user",
+            TotpSecret = "test-totp-secret",
         };
 
         var url = parameters.Url(

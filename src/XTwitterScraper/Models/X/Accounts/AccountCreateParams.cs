@@ -68,24 +68,16 @@ public record class AccountCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// TOTP secret for 2FA
+    /// Authenticator App TOTP secret required for durable login
     /// </summary>
-    public string? TotpSecret
+    public required string TotpSecret
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("totp_secret");
+            return this._rawBodyData.GetNotNullClass<string>("totp_secret");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("totp_secret", value);
-        }
+        init { this._rawBodyData.Set("totp_secret", value); }
     }
 
     public AccountCreateParams() { }
