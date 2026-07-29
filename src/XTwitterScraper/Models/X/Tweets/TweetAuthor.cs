@@ -49,6 +49,29 @@ public sealed record class TweetAuthor : JsonModel
         init { this._rawData.Set("username", value); }
     }
 
+    /// <summary>
+    /// Organization affiliation label shown on an X profile.
+    /// </summary>
+    public AffiliatesHighlightedLabel? AffiliatesHighlightedLabel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AffiliatesHighlightedLabel>(
+                "affiliatesHighlightedLabel"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("affiliatesHighlightedLabel", value);
+        }
+    }
+
     public string? AutomatedBy
     {
         get
@@ -67,6 +90,24 @@ public sealed record class TweetAuthor : JsonModel
         }
     }
 
+    public long? BusinessAccountAffiliatesCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("businessAccountAffiliatesCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("businessAccountAffiliatesCount", value);
+        }
+    }
+
     public bool? CanDm
     {
         get
@@ -82,6 +123,24 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("canDm", value);
+        }
+    }
+
+    public bool? CanMediaTag
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("canMediaTag");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("canMediaTag", value);
         }
     }
 
@@ -139,6 +198,24 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("createdAt", value);
+        }
+    }
+
+    public long? CreatorSubscriptionsCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("creatorSubscriptionsCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("creatorSubscriptionsCount", value);
         }
     }
 
@@ -214,6 +291,24 @@ public sealed record class TweetAuthor : JsonModel
         }
     }
 
+    public bool? FollowRequestSent
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("followRequestSent");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("followRequestSent", value);
+        }
+    }
+
     public bool? HasCustomTimelines
     {
         get
@@ -229,6 +324,84 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("hasCustomTimelines", value);
+        }
+    }
+
+    public bool? HasGraduatedAccess
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasGraduatedAccess");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasGraduatedAccess", value);
+        }
+    }
+
+    public bool? HasHiddenSubscriptionsOnProfile
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasHiddenSubscriptionsOnProfile");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasHiddenSubscriptionsOnProfile", value);
+        }
+    }
+
+    /// <summary>
+    /// Profile highlight availability and count metadata.
+    /// </summary>
+    public HighlightsInfo? HighlightsInfo
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<HighlightsInfo>("highlightsInfo");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("highlightsInfo", value);
+        }
+    }
+
+    /// <summary>
+    /// Identity verification metadata displayed by X.
+    /// </summary>
+    public IdentityVerification? IdentityVerification
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<IdentityVerification>("identityVerification");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("identityVerification", value);
         }
     }
 
@@ -268,6 +441,24 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("isBlueVerified", value);
+        }
+    }
+
+    public bool? IsProfileTranslatable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isProfileTranslatable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isProfileTranslatable", value);
         }
     }
 
@@ -343,6 +534,42 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("mediaCount", value);
+        }
+    }
+
+    public bool? NotificationsEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("notificationsEnabled");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("notificationsEnabled", value);
+        }
+    }
+
+    public string? ParodyCommentaryFanLabel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("parodyCommentaryFanLabel");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("parodyCommentaryFanLabel", value);
         }
     }
 
@@ -432,6 +659,60 @@ public sealed record class TweetAuthor : JsonModel
         }
     }
 
+    public string? ProfileDescriptionLanguage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileDescriptionLanguage");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileDescriptionLanguage", value);
+        }
+    }
+
+    public string? ProfileImageShape
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileImageShape");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileImageShape", value);
+        }
+    }
+
+    public string? ProfileInterstitialType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileInterstitialType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileInterstitialType", value);
+        }
+    }
+
     public string? ProfilePicture
     {
         get
@@ -447,6 +728,42 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("profilePicture", value);
+        }
+    }
+
+    public bool? ProfileSortEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("profileSortEnabled");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileSortEnabled", value);
+        }
+    }
+
+    public string? ProfileTranslatorType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileTranslatorType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileTranslatorType", value);
         }
     }
 
@@ -486,6 +803,60 @@ public sealed record class TweetAuthor : JsonModel
             }
 
             this._rawData.Set("statusesCount", value);
+        }
+    }
+
+    public bool? SuperFollowedBy
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("superFollowedBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("superFollowedBy", value);
+        }
+    }
+
+    public bool? SuperFollowEligible
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("superFollowEligible");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("superFollowEligible", value);
+        }
+    }
+
+    public bool? SuperFollowing
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("superFollowing");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("superFollowing", value);
         }
     }
 
@@ -579,6 +950,42 @@ public sealed record class TweetAuthor : JsonModel
         }
     }
 
+    public bool? ViewerBlockedBy
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("viewerBlockedBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("viewerBlockedBy", value);
+        }
+    }
+
+    public bool? ViewerBlocking
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("viewerBlocking");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("viewerBlocking", value);
+        }
+    }
+
     /// <summary>
     /// Whether this profile follows the authenticated viewer
     /// </summary>
@@ -621,6 +1028,42 @@ public sealed record class TweetAuthor : JsonModel
         }
     }
 
+    public bool? ViewerLiveFollowing
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("viewerLiveFollowing");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("viewerLiveFollowing", value);
+        }
+    }
+
+    public bool? ViewerMuting
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("viewerMuting");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("viewerMuting", value);
+        }
+    }
+
     public IReadOnlyList<string>? WithheldInCountries
     {
         get
@@ -648,36 +1091,60 @@ public sealed record class TweetAuthor : JsonModel
             ID = tweetAuthor.ID,
             Name = tweetAuthor.Name,
             Username = tweetAuthor.Username,
+            AffiliatesHighlightedLabel = tweetAuthor.AffiliatesHighlightedLabel,
             AutomatedBy = tweetAuthor.AutomatedBy,
+            BusinessAccountAffiliatesCount = tweetAuthor.BusinessAccountAffiliatesCount,
             CanDm = tweetAuthor.CanDm,
+            CanMediaTag = tweetAuthor.CanMediaTag,
             CommunityRole = tweetAuthor.CommunityRole,
             CoverPicture = tweetAuthor.CoverPicture,
             CreatedAt = tweetAuthor.CreatedAt,
+            CreatorSubscriptionsCount = tweetAuthor.CreatorSubscriptionsCount,
             Description = tweetAuthor.Description,
             FavouritesCount = tweetAuthor.FavouritesCount,
             Followers = tweetAuthor.Followers,
             Following = tweetAuthor.Following,
+            FollowRequestSent = tweetAuthor.FollowRequestSent,
             HasCustomTimelines = tweetAuthor.HasCustomTimelines,
+            HasGraduatedAccess = tweetAuthor.HasGraduatedAccess,
+            HasHiddenSubscriptionsOnProfile = tweetAuthor.HasHiddenSubscriptionsOnProfile,
+            HighlightsInfo = tweetAuthor.HighlightsInfo,
+            IdentityVerification = tweetAuthor.IdentityVerification,
             IsAutomated = tweetAuthor.IsAutomated,
             IsBlueVerified = tweetAuthor.IsBlueVerified,
+            IsProfileTranslatable = tweetAuthor.IsProfileTranslatable,
             IsTranslator = tweetAuthor.IsTranslator,
             IsVerified = tweetAuthor.IsVerified,
             Location = tweetAuthor.Location,
             MediaCount = tweetAuthor.MediaCount,
+            NotificationsEnabled = tweetAuthor.NotificationsEnabled,
+            ParodyCommentaryFanLabel = tweetAuthor.ParodyCommentaryFanLabel,
             PinnedTweetIds = tweetAuthor.PinnedTweetIds,
             PossiblySensitive = tweetAuthor.PossiblySensitive,
             ProfileBio = tweetAuthor.ProfileBio,
             ProfileBannerUrl = tweetAuthor.ProfileBannerUrl,
+            ProfileDescriptionLanguage = tweetAuthor.ProfileDescriptionLanguage,
+            ProfileImageShape = tweetAuthor.ProfileImageShape,
+            ProfileInterstitialType = tweetAuthor.ProfileInterstitialType,
             ProfilePicture = tweetAuthor.ProfilePicture,
+            ProfileSortEnabled = tweetAuthor.ProfileSortEnabled,
+            ProfileTranslatorType = tweetAuthor.ProfileTranslatorType,
             Protected = tweetAuthor.Protected,
             StatusesCount = tweetAuthor.StatusesCount,
+            SuperFollowedBy = tweetAuthor.SuperFollowedBy,
+            SuperFollowEligible = tweetAuthor.SuperFollowEligible,
+            SuperFollowing = tweetAuthor.SuperFollowing,
             Unavailable = tweetAuthor.Unavailable,
             UnavailableReason = tweetAuthor.UnavailableReason,
             Url = tweetAuthor.Url,
             Verified = tweetAuthor.Verified,
             VerifiedType = tweetAuthor.VerifiedType,
+            ViewerBlockedBy = tweetAuthor.ViewerBlockedBy,
+            ViewerBlocking = tweetAuthor.ViewerBlocking,
             ViewerFollowedBy = tweetAuthor.ViewerFollowedBy,
             ViewerFollowing = tweetAuthor.ViewerFollowing,
+            ViewerLiveFollowing = tweetAuthor.ViewerLiveFollowing,
+            ViewerMuting = tweetAuthor.ViewerMuting,
             WithheldInCountries = tweetAuthor.WithheldInCountries,
         };
 
@@ -687,36 +1154,60 @@ public sealed record class TweetAuthor : JsonModel
         _ = this.ID;
         _ = this.Name;
         _ = this.Username;
+        this.AffiliatesHighlightedLabel?.Validate();
         _ = this.AutomatedBy;
+        _ = this.BusinessAccountAffiliatesCount;
         _ = this.CanDm;
+        _ = this.CanMediaTag;
         _ = this.CommunityRole;
         _ = this.CoverPicture;
         _ = this.CreatedAt;
+        _ = this.CreatorSubscriptionsCount;
         _ = this.Description;
         _ = this.FavouritesCount;
         _ = this.Followers;
         _ = this.Following;
+        _ = this.FollowRequestSent;
         _ = this.HasCustomTimelines;
+        _ = this.HasGraduatedAccess;
+        _ = this.HasHiddenSubscriptionsOnProfile;
+        this.HighlightsInfo?.Validate();
+        this.IdentityVerification?.Validate();
         _ = this.IsAutomated;
         _ = this.IsBlueVerified;
+        _ = this.IsProfileTranslatable;
         _ = this.IsTranslator;
         _ = this.IsVerified;
         _ = this.Location;
         _ = this.MediaCount;
+        _ = this.NotificationsEnabled;
+        _ = this.ParodyCommentaryFanLabel;
         _ = this.PinnedTweetIds;
         _ = this.PossiblySensitive;
         _ = this.ProfileBio;
         _ = this.ProfileBannerUrl;
+        _ = this.ProfileDescriptionLanguage;
+        _ = this.ProfileImageShape;
+        _ = this.ProfileInterstitialType;
         _ = this.ProfilePicture;
+        _ = this.ProfileSortEnabled;
+        _ = this.ProfileTranslatorType;
         _ = this.Protected;
         _ = this.StatusesCount;
+        _ = this.SuperFollowedBy;
+        _ = this.SuperFollowEligible;
+        _ = this.SuperFollowing;
         _ = this.Unavailable;
         _ = this.UnavailableReason;
         _ = this.Url;
         _ = this.Verified;
         _ = this.VerifiedType;
+        _ = this.ViewerBlockedBy;
+        _ = this.ViewerBlocking;
         _ = this.ViewerFollowedBy;
         _ = this.ViewerFollowing;
+        _ = this.ViewerLiveFollowing;
+        _ = this.ViewerMuting;
         _ = this.WithheldInCountries;
     }
 
@@ -753,4 +1244,72 @@ class TweetAuthorFromRaw : IFromRawJson<TweetAuthor>
     /// <inheritdoc/>
     public TweetAuthor FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         TweetAuthor.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<TweetAuthorRequirements, TweetAuthorRequirementsFromRaw>))]
+public sealed record class TweetAuthorRequirements : JsonModel
+{
+    public required long Followers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("followers");
+        }
+        init { this._rawData.Set("followers", value); }
+    }
+
+    public required bool Verified
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("verified");
+        }
+        init { this._rawData.Set("verified", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Followers;
+        _ = this.Verified;
+    }
+
+    public TweetAuthorRequirements() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorRequirements(TweetAuthorRequirements tweetAuthorRequirements)
+        : base(tweetAuthorRequirements) { }
+#pragma warning restore CS8618
+
+    public TweetAuthorRequirements(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetAuthorRequirements(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetAuthorRequirementsFromRaw.FromRawUnchecked"/>
+    public static TweetAuthorRequirements FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetAuthorRequirementsFromRaw : IFromRawJson<TweetAuthorRequirements>
+{
+    /// <inheritdoc/>
+    public TweetAuthorRequirements FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetAuthorRequirements.FromRawUnchecked(rawData);
 }

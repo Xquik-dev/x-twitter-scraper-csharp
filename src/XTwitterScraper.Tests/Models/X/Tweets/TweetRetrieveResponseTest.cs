@@ -1,5 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
 // SPDX-License-Identifier: Apache-2.0
 
 using System.Collections.Generic;
@@ -27,27 +26,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -56,17 +91,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -81,10 +149,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -92,6 +170,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -100,6 +179,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -109,8 +240,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -121,27 +297,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -150,17 +362,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -175,10 +420,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -186,6 +441,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -194,6 +450,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -203,12 +511,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -219,27 +575,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -248,17 +640,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -273,10 +698,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -284,6 +719,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -292,6 +728,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -301,37 +789,114 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -340,16 +905,28 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
         };
@@ -364,27 +941,63 @@ public class TweetRetrieveResponseTest : TestBase
             RetweetCount = 5,
             Text = "Just launched our new feature!",
             ViewCount = 1500,
+            Article = new()
+            {
+                ID = "id",
+                CoverMediaUrl = "coverMediaUrl",
+                PreviewText = "previewText",
+                Title = "title",
+            },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -393,17 +1006,50 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
+            },
+            Bookmarked = true,
+            Card = new()
+            {
+                ID = "id",
+                BindingValues = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Name = "name",
+                Url = "url",
+            },
+            CommunityNote = new()
+            {
+                ID = "id",
+                DestinationUrl = "destinationUrl",
+                Footer = "footer",
+                ShortTitle = "shortTitle",
+                Subtitle = "subtitle",
+                Title = "title",
+                VisualStyle = "visualStyle",
             },
             ContentDisclosure = new()
             {
@@ -418,10 +1064,20 @@ public class TweetRetrieveResponseTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
+            Edit = new()
+            {
+                EditableUntilMsecs = "editableUntilMsecs",
+                EditsRemaining = "editsRemaining",
+                EditTweetIds = ["string"],
+                IsEditEligible = true,
+            },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            Favorited = true,
+            GrokAnalysisButton = true,
+            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -429,6 +1085,7 @@ public class TweetRetrieveResponseTest : TestBase
             IsNoteTweet = false,
             IsQuoteStatus = false,
             IsReply = false,
+            IsTranslatable = true,
             Lang = "en",
             Media =
             [
@@ -437,6 +1094,58 @@ public class TweetRetrieveResponseTest : TestBase
                     MediaUrl = "mediaUrl",
                     Type = TweetMediaType.Photo,
                     Url = "url",
+                    ID = "id",
+                    AllowDownload = true,
+                    AltText = "altText",
+                    AspectRatio = [0],
+                    AvailabilityStatus = "availabilityStatus",
+                    DisplayUrl = "displayUrl",
+                    DurationMillis = 0,
+                    ExpandedUrl = "expandedUrl",
+                    FaceRects = new Dictionary<
+                        string,
+                        IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                    >()
+                    {
+                        {
+                            "foo",
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ]
+                        },
+                    },
+                    FocusRects =
+                    [
+                        new()
+                        {
+                            H = 0,
+                            W = 0,
+                            X = 0,
+                            Y = 0,
+                        },
+                    ],
+                    Height = 0,
+                    Indices = [0],
+                    MediaKey = "mediaKey",
+                    Monetizable = true,
+                    Sizes = new Dictionary<string, SizesItem>()
+                    {
+                        {
+                            "foo",
+                            new()
+                            {
+                                H = 0,
+                                Resize = "resize",
+                                W = 0,
+                            }
+                        },
+                    },
                     VideoVariants =
                     [
                         new()
@@ -446,8 +1155,53 @@ public class TweetRetrieveResponseTest : TestBase
                             Bitrate = 0,
                         },
                     ],
+                    Width = 0,
                 },
             ],
+            NoteTweet = new()
+            {
+                Text = "text",
+                ID = "id",
+                Entities = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                IsExpandable = true,
+                RichtextTags =
+                [
+                    new()
+                    {
+                        FromIndex = 0,
+                        ToIndex = 0,
+                        Types = ["string"],
+                    },
+                ],
+            },
+            Place = new()
+            {
+                ID = "id",
+                BoundingBox = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Country = "country",
+                CountryCode = "countryCode",
+                FullName = "fullName",
+                Name = "name",
+                PlaceType = "placeType",
+                Url = "url",
+            },
+            PossiblySensitive = true,
+            PossiblySensitiveEditable = true,
+            PreviousCounts = new()
+            {
+                BookmarkCount = 0,
+                LikeCount = 0,
+                QuoteCount = 0,
+                ReplyCount = 0,
+                RetweetCount = 0,
+            },
+            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -458,27 +1212,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 0,
                 Text = "text",
                 ViewCount = 0,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -487,17 +1277,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -512,10 +1335,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "conversationId",
                 CreatedAt = "createdAt",
                 DisplayTextRange = [0],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -523,6 +1356,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = true,
                 IsQuoteStatus = true,
                 IsReply = true,
+                IsTranslatable = true,
                 Lang = "lang",
                 Media =
                 [
@@ -531,6 +1365,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -540,12 +1426,60 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
+                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
+                ViewState = "viewState",
             },
+            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -556,27 +1490,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 0,
                 Text = "text",
                 ViewCount = 0,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -585,17 +1555,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -610,10 +1613,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "conversationId",
                 CreatedAt = "createdAt",
                 DisplayTextRange = [0],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -621,6 +1634,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = true,
                 IsQuoteStatus = true,
                 IsReply = true,
+                IsTranslatable = true,
                 Lang = "lang",
                 Media =
                 [
@@ -629,6 +1643,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -638,37 +1704,114 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
+                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
+                ViewState = "viewState",
             },
             Source = "Twitter Web App",
             Type = "tweet",
             Url = "https://x.com/example_user/status/1234567890",
+            ViewState = "viewState",
         };
         TweetAuthor expectedAuthor = new()
         {
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
+            AffiliatesHighlightedLabel = new()
+            {
+                BadgeUrl = "badgeUrl",
+                Description = "description",
+                Url = "url",
+                UrlType = "urlType",
+                UserLabelDisplayType = "userLabelDisplayType",
+                UserLabelType = "userLabelType",
+            },
             AutomatedBy = "example_user",
+            BusinessAccountAffiliatesCount = 0,
             CanDm = false,
+            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
+            CreatorSubscriptionsCount = 0,
             Description = "CEO of Tesla, SpaceX, and X",
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
+            FollowRequestSent = true,
             HasCustomTimelines = true,
+            HasGraduatedAccess = true,
+            HasHiddenSubscriptionsOnProfile = true,
+            HighlightsInfo = new()
+            {
+                CanHighlightTweets = true,
+                HighlightedTweets = "highlightedTweets",
+            },
+            IdentityVerification = new()
+            {
+                Description = "description",
+                IsIdentityVerified = true,
+                VerifiedSinceMsec = "verifiedSinceMsec",
+            },
             IsAutomated = false,
             IsBlueVerified = true,
+            IsProfileTranslatable = true,
             IsTranslator = false,
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
+            NotificationsEnabled = true,
+            ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
             ProfileBio = new Dictionary<string, JsonElement>()
@@ -677,16 +1820,28 @@ public class TweetRetrieveResponseTest : TestBase
                 { "entities", JsonSerializer.SerializeToElement("bar") },
             },
             ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+            ProfileDescriptionLanguage = "profileDescriptionLanguage",
+            ProfileImageShape = "profileImageShape",
+            ProfileInterstitialType = "profileInterstitialType",
             ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            ProfileSortEnabled = true,
+            ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
+            SuperFollowedBy = true,
+            SuperFollowEligible = true,
+            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
+            ViewerBlockedBy = true,
+            ViewerBlocking = true,
             ViewerFollowedBy = false,
             ViewerFollowing = true,
+            ViewerLiveFollowing = true,
+            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -709,27 +1864,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -738,17 +1929,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -763,10 +1987,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -774,6 +2008,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -782,6 +2017,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -791,8 +2078,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -803,27 +2135,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -832,17 +2200,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -857,10 +2258,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -868,6 +2279,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -876,6 +2288,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -885,12 +2349,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -901,27 +2413,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -930,17 +2478,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -955,10 +2536,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -966,6 +2557,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -974,6 +2566,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -983,37 +2627,114 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -1022,16 +2743,28 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
         };
@@ -1060,27 +2793,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -1089,17 +2858,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -1114,10 +2916,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -1125,6 +2937,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -1133,6 +2946,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -1142,8 +3007,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -1154,27 +3064,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -1183,17 +3129,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -1208,10 +3187,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -1219,6 +3208,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -1227,6 +3217,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -1236,12 +3278,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -1252,27 +3342,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -1281,17 +3407,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -1306,10 +3465,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -1317,6 +3486,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -1325,6 +3495,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -1334,37 +3556,114 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -1373,16 +3672,28 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
         };
@@ -1404,27 +3715,63 @@ public class TweetRetrieveResponseTest : TestBase
             RetweetCount = 5,
             Text = "Just launched our new feature!",
             ViewCount = 1500,
+            Article = new()
+            {
+                ID = "id",
+                CoverMediaUrl = "coverMediaUrl",
+                PreviewText = "previewText",
+                Title = "title",
+            },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -1433,17 +3780,50 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
+            },
+            Bookmarked = true,
+            Card = new()
+            {
+                ID = "id",
+                BindingValues = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Name = "name",
+                Url = "url",
+            },
+            CommunityNote = new()
+            {
+                ID = "id",
+                DestinationUrl = "destinationUrl",
+                Footer = "footer",
+                ShortTitle = "shortTitle",
+                Subtitle = "subtitle",
+                Title = "title",
+                VisualStyle = "visualStyle",
             },
             ContentDisclosure = new()
             {
@@ -1458,10 +3838,20 @@ public class TweetRetrieveResponseTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
+            Edit = new()
+            {
+                EditableUntilMsecs = "editableUntilMsecs",
+                EditsRemaining = "editsRemaining",
+                EditTweetIds = ["string"],
+                IsEditEligible = true,
+            },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
+            Favorited = true,
+            GrokAnalysisButton = true,
+            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -1469,6 +3859,7 @@ public class TweetRetrieveResponseTest : TestBase
             IsNoteTweet = false,
             IsQuoteStatus = false,
             IsReply = false,
+            IsTranslatable = true,
             Lang = "en",
             Media =
             [
@@ -1477,6 +3868,58 @@ public class TweetRetrieveResponseTest : TestBase
                     MediaUrl = "mediaUrl",
                     Type = TweetMediaType.Photo,
                     Url = "url",
+                    ID = "id",
+                    AllowDownload = true,
+                    AltText = "altText",
+                    AspectRatio = [0],
+                    AvailabilityStatus = "availabilityStatus",
+                    DisplayUrl = "displayUrl",
+                    DurationMillis = 0,
+                    ExpandedUrl = "expandedUrl",
+                    FaceRects = new Dictionary<
+                        string,
+                        IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                    >()
+                    {
+                        {
+                            "foo",
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ]
+                        },
+                    },
+                    FocusRects =
+                    [
+                        new()
+                        {
+                            H = 0,
+                            W = 0,
+                            X = 0,
+                            Y = 0,
+                        },
+                    ],
+                    Height = 0,
+                    Indices = [0],
+                    MediaKey = "mediaKey",
+                    Monetizable = true,
+                    Sizes = new Dictionary<string, SizesItem>()
+                    {
+                        {
+                            "foo",
+                            new()
+                            {
+                                H = 0,
+                                Resize = "resize",
+                                W = 0,
+                            }
+                        },
+                    },
                     VideoVariants =
                     [
                         new()
@@ -1486,8 +3929,53 @@ public class TweetRetrieveResponseTest : TestBase
                             Bitrate = 0,
                         },
                     ],
+                    Width = 0,
                 },
             ],
+            NoteTweet = new()
+            {
+                Text = "text",
+                ID = "id",
+                Entities = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                IsExpandable = true,
+                RichtextTags =
+                [
+                    new()
+                    {
+                        FromIndex = 0,
+                        ToIndex = 0,
+                        Types = ["string"],
+                    },
+                ],
+            },
+            Place = new()
+            {
+                ID = "id",
+                BoundingBox = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Country = "country",
+                CountryCode = "countryCode",
+                FullName = "fullName",
+                Name = "name",
+                PlaceType = "placeType",
+                Url = "url",
+            },
+            PossiblySensitive = true,
+            PossiblySensitiveEditable = true,
+            PreviousCounts = new()
+            {
+                BookmarkCount = 0,
+                LikeCount = 0,
+                QuoteCount = 0,
+                ReplyCount = 0,
+                RetweetCount = 0,
+            },
+            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -1498,27 +3986,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 0,
                 Text = "text",
                 ViewCount = 0,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -1527,17 +4051,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -1552,10 +4109,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "conversationId",
                 CreatedAt = "createdAt",
                 DisplayTextRange = [0],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -1563,6 +4130,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = true,
                 IsQuoteStatus = true,
                 IsReply = true,
+                IsTranslatable = true,
                 Lang = "lang",
                 Media =
                 [
@@ -1571,6 +4139,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -1580,12 +4200,60 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
+                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
+                ViewState = "viewState",
             },
+            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -1596,27 +4264,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 0,
                 Text = "text",
                 ViewCount = 0,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -1625,17 +4329,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -1650,10 +4387,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "conversationId",
                 CreatedAt = "createdAt",
                 DisplayTextRange = [0],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -1661,6 +4408,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = true,
                 IsQuoteStatus = true,
                 IsReply = true,
+                IsTranslatable = true,
                 Lang = "lang",
                 Media =
                 [
@@ -1669,6 +4417,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -1678,37 +4478,114 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
+                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
+                ViewState = "viewState",
             },
             Source = "Twitter Web App",
             Type = "tweet",
             Url = "https://x.com/example_user/status/1234567890",
+            ViewState = "viewState",
         };
         TweetAuthor expectedAuthor = new()
         {
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
+            AffiliatesHighlightedLabel = new()
+            {
+                BadgeUrl = "badgeUrl",
+                Description = "description",
+                Url = "url",
+                UrlType = "urlType",
+                UserLabelDisplayType = "userLabelDisplayType",
+                UserLabelType = "userLabelType",
+            },
             AutomatedBy = "example_user",
+            BusinessAccountAffiliatesCount = 0,
             CanDm = false,
+            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
+            CreatorSubscriptionsCount = 0,
             Description = "CEO of Tesla, SpaceX, and X",
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
+            FollowRequestSent = true,
             HasCustomTimelines = true,
+            HasGraduatedAccess = true,
+            HasHiddenSubscriptionsOnProfile = true,
+            HighlightsInfo = new()
+            {
+                CanHighlightTweets = true,
+                HighlightedTweets = "highlightedTweets",
+            },
+            IdentityVerification = new()
+            {
+                Description = "description",
+                IsIdentityVerified = true,
+                VerifiedSinceMsec = "verifiedSinceMsec",
+            },
             IsAutomated = false,
             IsBlueVerified = true,
+            IsProfileTranslatable = true,
             IsTranslator = false,
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
+            NotificationsEnabled = true,
+            ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
             ProfileBio = new Dictionary<string, JsonElement>()
@@ -1717,16 +4594,28 @@ public class TweetRetrieveResponseTest : TestBase
                 { "entities", JsonSerializer.SerializeToElement("bar") },
             },
             ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+            ProfileDescriptionLanguage = "profileDescriptionLanguage",
+            ProfileImageShape = "profileImageShape",
+            ProfileInterstitialType = "profileInterstitialType",
             ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+            ProfileSortEnabled = true,
+            ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
+            SuperFollowedBy = true,
+            SuperFollowEligible = true,
+            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
+            ViewerBlockedBy = true,
+            ViewerBlocking = true,
             ViewerFollowedBy = false,
             ViewerFollowing = true,
+            ViewerLiveFollowing = true,
+            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -1749,27 +4638,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -1778,17 +4703,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -1803,10 +4761,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -1814,6 +4782,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -1822,6 +4791,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -1831,8 +4852,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -1843,27 +4909,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -1872,17 +4974,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -1897,10 +5032,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -1908,6 +5053,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -1916,6 +5062,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -1925,12 +5123,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -1941,27 +5187,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -1970,17 +5252,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -1995,10 +5310,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2006,6 +5331,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2014,6 +5340,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2023,37 +5401,114 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -2062,16 +5517,28 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
         };
@@ -2094,27 +5561,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -2123,17 +5626,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -2148,10 +5684,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -2159,6 +5705,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -2167,6 +5714,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -2176,8 +5775,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -2188,27 +5832,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2217,17 +5897,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2242,10 +5955,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2253,6 +5976,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2261,6 +5985,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2270,12 +6046,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -2286,27 +6110,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2315,17 +6175,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2340,10 +6233,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2351,6 +6254,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2359,6 +6263,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2368,15 +6324,63 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
         };
 
@@ -2399,27 +6403,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -2428,17 +6468,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -2453,10 +6526,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -2464,6 +6547,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -2472,6 +6556,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -2481,8 +6617,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -2493,27 +6674,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2522,17 +6739,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2547,10 +6797,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2558,6 +6818,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2566,6 +6827,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2575,12 +6888,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -2591,27 +6952,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2620,17 +7017,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2645,10 +7075,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2656,6 +7096,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2664,6 +7105,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2673,15 +7166,63 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
         };
 
@@ -2703,27 +7244,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -2732,17 +7309,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -2757,10 +7367,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -2768,6 +7388,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -2776,6 +7397,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -2785,8 +7458,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -2797,27 +7515,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2826,17 +7580,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2851,10 +7638,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2862,6 +7659,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2870,6 +7668,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2879,12 +7729,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -2895,27 +7793,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -2924,17 +7858,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -2949,10 +7916,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -2960,6 +7937,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -2968,6 +7946,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -2977,15 +8007,63 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
 
             // Null should be interpreted as omitted for these properties
@@ -3011,27 +8089,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -3040,17 +8154,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -3065,10 +8212,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -3076,6 +8233,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -3084,6 +8242,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -3093,8 +8303,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -3105,27 +8360,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -3134,17 +8425,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -3159,10 +8483,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -3170,6 +8504,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -3178,6 +8513,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -3187,12 +8574,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -3203,27 +8638,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -3232,17 +8703,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -3257,10 +8761,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -3268,6 +8782,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -3276,6 +8791,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -3285,15 +8852,63 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
 
             // Null should be interpreted as omitted for these properties
@@ -3318,27 +8933,63 @@ public class TweetRetrieveResponseTest : TestBase
                 RetweetCount = 5,
                 Text = "Just launched our new feature!",
                 ViewCount = 1500,
+                Article = new()
+                {
+                    ID = "id",
+                    CoverMediaUrl = "coverMediaUrl",
+                    PreviewText = "previewText",
+                    Title = "title",
+                },
                 Author = new()
                 {
                     ID = "9876543210",
                     Name = "Elon Musk",
                     Username = "elonmusk",
+                    AffiliatesHighlightedLabel = new()
+                    {
+                        BadgeUrl = "badgeUrl",
+                        Description = "description",
+                        Url = "url",
+                        UrlType = "urlType",
+                        UserLabelDisplayType = "userLabelDisplayType",
+                        UserLabelType = "userLabelType",
+                    },
                     AutomatedBy = "example_user",
+                    BusinessAccountAffiliatesCount = 0,
                     CanDm = false,
+                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
+                    CreatorSubscriptionsCount = 0,
                     Description = "CEO of Tesla, SpaceX, and X",
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
+                    FollowRequestSent = true,
                     HasCustomTimelines = true,
+                    HasGraduatedAccess = true,
+                    HasHiddenSubscriptionsOnProfile = true,
+                    HighlightsInfo = new()
+                    {
+                        CanHighlightTweets = true,
+                        HighlightedTweets = "highlightedTweets",
+                    },
+                    IdentityVerification = new()
+                    {
+                        Description = "description",
+                        IsIdentityVerified = true,
+                        VerifiedSinceMsec = "verifiedSinceMsec",
+                    },
                     IsAutomated = false,
                     IsBlueVerified = true,
+                    IsProfileTranslatable = true,
                     IsTranslator = false,
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
+                    NotificationsEnabled = true,
+                    ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
                     ProfileBio = new Dictionary<string, JsonElement>()
@@ -3347,17 +8998,50 @@ public class TweetRetrieveResponseTest : TestBase
                         { "entities", JsonSerializer.SerializeToElement("bar") },
                     },
                     ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                    ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                    ProfileImageShape = "profileImageShape",
+                    ProfileInterstitialType = "profileInterstitialType",
                     ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                    ProfileSortEnabled = true,
+                    ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
+                    SuperFollowedBy = true,
+                    SuperFollowEligible = true,
+                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
+                    ViewerBlockedBy = true,
+                    ViewerBlocking = true,
                     ViewerFollowedBy = false,
                     ViewerFollowing = true,
+                    ViewerLiveFollowing = true,
+                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
+                },
+                Bookmarked = true,
+                Card = new()
+                {
+                    ID = "id",
+                    BindingValues = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Name = "name",
+                    Url = "url",
+                },
+                CommunityNote = new()
+                {
+                    ID = "id",
+                    DestinationUrl = "destinationUrl",
+                    Footer = "footer",
+                    ShortTitle = "shortTitle",
+                    Subtitle = "subtitle",
+                    Title = "title",
+                    VisualStyle = "visualStyle",
                 },
                 ContentDisclosure = new()
                 {
@@ -3372,10 +9056,20 @@ public class TweetRetrieveResponseTest : TestBase
                 ConversationID = "1234567890",
                 CreatedAt = "2025-01-15T12:00:00Z",
                 DisplayTextRange = [0, 31],
+                Edit = new()
+                {
+                    EditableUntilMsecs = "editableUntilMsecs",
+                    EditsRemaining = "editsRemaining",
+                    EditTweetIds = ["string"],
+                    IsEditEligible = true,
+                },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
+                Favorited = true,
+                GrokAnalysisButton = true,
+                GrokImageEditable = true,
                 InReplyToID = "1234567890",
                 InReplyToUserID = "9876543210",
                 InReplyToUsername = "example_user",
@@ -3383,6 +9077,7 @@ public class TweetRetrieveResponseTest : TestBase
                 IsNoteTweet = false,
                 IsQuoteStatus = false,
                 IsReply = false,
+                IsTranslatable = true,
                 Lang = "en",
                 Media =
                 [
@@ -3391,6 +9086,58 @@ public class TweetRetrieveResponseTest : TestBase
                         MediaUrl = "mediaUrl",
                         Type = TweetMediaType.Photo,
                         Url = "url",
+                        ID = "id",
+                        AllowDownload = true,
+                        AltText = "altText",
+                        AspectRatio = [0],
+                        AvailabilityStatus = "availabilityStatus",
+                        DisplayUrl = "displayUrl",
+                        DurationMillis = 0,
+                        ExpandedUrl = "expandedUrl",
+                        FaceRects = new Dictionary<
+                            string,
+                            IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                        >()
+                        {
+                            {
+                                "foo",
+                                [
+                                    new()
+                                    {
+                                        H = 0,
+                                        W = 0,
+                                        X = 0,
+                                        Y = 0,
+                                    },
+                                ]
+                            },
+                        },
+                        FocusRects =
+                        [
+                            new()
+                            {
+                                H = 0,
+                                W = 0,
+                                X = 0,
+                                Y = 0,
+                            },
+                        ],
+                        Height = 0,
+                        Indices = [0],
+                        MediaKey = "mediaKey",
+                        Monetizable = true,
+                        Sizes = new Dictionary<string, SizesItem>()
+                        {
+                            {
+                                "foo",
+                                new()
+                                {
+                                    H = 0,
+                                    Resize = "resize",
+                                    W = 0,
+                                }
+                            },
+                        },
                         VideoVariants =
                         [
                             new()
@@ -3400,8 +9147,53 @@ public class TweetRetrieveResponseTest : TestBase
                                 Bitrate = 0,
                             },
                         ],
+                        Width = 0,
                     },
                 ],
+                NoteTweet = new()
+                {
+                    Text = "text",
+                    ID = "id",
+                    Entities = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    IsExpandable = true,
+                    RichtextTags =
+                    [
+                        new()
+                        {
+                            FromIndex = 0,
+                            ToIndex = 0,
+                            Types = ["string"],
+                        },
+                    ],
+                },
+                Place = new()
+                {
+                    ID = "id",
+                    BoundingBox = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Country = "country",
+                    CountryCode = "countryCode",
+                    FullName = "fullName",
+                    Name = "name",
+                    PlaceType = "placeType",
+                    Url = "url",
+                },
+                PossiblySensitive = true,
+                PossiblySensitiveEditable = true,
+                PreviousCounts = new()
+                {
+                    BookmarkCount = 0,
+                    LikeCount = 0,
+                    QuoteCount = 0,
+                    ReplyCount = 0,
+                    RetweetCount = 0,
+                },
+                QuickPromoteEligibility = "quickPromoteEligibility",
                 QuotedTweet = new()
                 {
                     ID = "id",
@@ -3412,27 +9204,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -3441,17 +9269,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -3466,10 +9327,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -3477,6 +9348,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -3485,6 +9357,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -3494,12 +9418,60 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
+                Retweeted = true,
                 RetweetedTweet = new()
                 {
                     ID = "id",
@@ -3510,27 +9482,63 @@ public class TweetRetrieveResponseTest : TestBase
                     RetweetCount = 0,
                     Text = "text",
                     ViewCount = 0,
+                    Article = new()
+                    {
+                        ID = "id",
+                        CoverMediaUrl = "coverMediaUrl",
+                        PreviewText = "previewText",
+                        Title = "title",
+                    },
                     Author = new()
                     {
                         ID = "9876543210",
                         Name = "Elon Musk",
                         Username = "elonmusk",
+                        AffiliatesHighlightedLabel = new()
+                        {
+                            BadgeUrl = "badgeUrl",
+                            Description = "description",
+                            Url = "url",
+                            UrlType = "urlType",
+                            UserLabelDisplayType = "userLabelDisplayType",
+                            UserLabelType = "userLabelType",
+                        },
                         AutomatedBy = "example_user",
+                        BusinessAccountAffiliatesCount = 0,
                         CanDm = false,
+                        CanMediaTag = true,
                         CommunityRole = "Member",
                         CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                         CreatedAt = "2009-06-02T20:12:29Z",
+                        CreatorSubscriptionsCount = 0,
                         Description = "CEO of Tesla, SpaceX, and X",
                         FavouritesCount = 18000,
                         Followers = 150000000,
                         Following = 500,
+                        FollowRequestSent = true,
                         HasCustomTimelines = true,
+                        HasGraduatedAccess = true,
+                        HasHiddenSubscriptionsOnProfile = true,
+                        HighlightsInfo = new()
+                        {
+                            CanHighlightTweets = true,
+                            HighlightedTweets = "highlightedTweets",
+                        },
+                        IdentityVerification = new()
+                        {
+                            Description = "description",
+                            IsIdentityVerified = true,
+                            VerifiedSinceMsec = "verifiedSinceMsec",
+                        },
                         IsAutomated = false,
                         IsBlueVerified = true,
+                        IsProfileTranslatable = true,
                         IsTranslator = false,
                         IsVerified = true,
                         Location = "Austin, TX",
                         MediaCount = 1200,
+                        NotificationsEnabled = true,
+                        ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                         PinnedTweetIds = ["1234567890"],
                         PossiblySensitive = false,
                         ProfileBio = new Dictionary<string, JsonElement>()
@@ -3539,17 +9547,50 @@ public class TweetRetrieveResponseTest : TestBase
                             { "entities", JsonSerializer.SerializeToElement("bar") },
                         },
                         ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                        ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                        ProfileImageShape = "profileImageShape",
+                        ProfileInterstitialType = "profileInterstitialType",
                         ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                        ProfileSortEnabled = true,
+                        ProfileTranslatorType = "profileTranslatorType",
                         Protected = false,
                         StatusesCount = 35000,
+                        SuperFollowedBy = true,
+                        SuperFollowEligible = true,
+                        SuperFollowing = true,
                         Unavailable = false,
                         UnavailableReason = "suspended",
                         Url = "https://xquik.com",
                         Verified = true,
                         VerifiedType = "Business",
+                        ViewerBlockedBy = true,
+                        ViewerBlocking = true,
                         ViewerFollowedBy = false,
                         ViewerFollowing = true,
+                        ViewerLiveFollowing = true,
+                        ViewerMuting = true,
                         WithheldInCountries = ["DE"],
+                    },
+                    Bookmarked = true,
+                    Card = new()
+                    {
+                        ID = "id",
+                        BindingValues = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Name = "name",
+                        Url = "url",
+                    },
+                    CommunityNote = new()
+                    {
+                        ID = "id",
+                        DestinationUrl = "destinationUrl",
+                        Footer = "footer",
+                        ShortTitle = "shortTitle",
+                        Subtitle = "subtitle",
+                        Title = "title",
+                        VisualStyle = "visualStyle",
                     },
                     ContentDisclosure = new()
                     {
@@ -3564,10 +9605,20 @@ public class TweetRetrieveResponseTest : TestBase
                     ConversationID = "conversationId",
                     CreatedAt = "createdAt",
                     DisplayTextRange = [0],
+                    Edit = new()
+                    {
+                        EditableUntilMsecs = "editableUntilMsecs",
+                        EditsRemaining = "editsRemaining",
+                        EditTweetIds = ["string"],
+                        IsEditEligible = true,
+                    },
                     Entities = new Dictionary<string, JsonElement>()
                     {
                         { "foo", JsonSerializer.SerializeToElement("bar") },
                     },
+                    Favorited = true,
+                    GrokAnalysisButton = true,
+                    GrokImageEditable = true,
                     InReplyToID = "inReplyToId",
                     InReplyToUserID = "inReplyToUserId",
                     InReplyToUsername = "inReplyToUsername",
@@ -3575,6 +9626,7 @@ public class TweetRetrieveResponseTest : TestBase
                     IsNoteTweet = true,
                     IsQuoteStatus = true,
                     IsReply = true,
+                    IsTranslatable = true,
                     Lang = "lang",
                     Media =
                     [
@@ -3583,6 +9635,58 @@ public class TweetRetrieveResponseTest : TestBase
                             MediaUrl = "mediaUrl",
                             Type = TweetMediaType.Photo,
                             Url = "url",
+                            ID = "id",
+                            AllowDownload = true,
+                            AltText = "altText",
+                            AspectRatio = [0],
+                            AvailabilityStatus = "availabilityStatus",
+                            DisplayUrl = "displayUrl",
+                            DurationMillis = 0,
+                            ExpandedUrl = "expandedUrl",
+                            FaceRects = new Dictionary<
+                                string,
+                                IReadOnlyList<UnnamedSchemaWithArrayParent0>
+                            >()
+                            {
+                                {
+                                    "foo",
+                                    [
+                                        new()
+                                        {
+                                            H = 0,
+                                            W = 0,
+                                            X = 0,
+                                            Y = 0,
+                                        },
+                                    ]
+                                },
+                            },
+                            FocusRects =
+                            [
+                                new()
+                                {
+                                    H = 0,
+                                    W = 0,
+                                    X = 0,
+                                    Y = 0,
+                                },
+                            ],
+                            Height = 0,
+                            Indices = [0],
+                            MediaKey = "mediaKey",
+                            Monetizable = true,
+                            Sizes = new Dictionary<string, SizesItem>()
+                            {
+                                {
+                                    "foo",
+                                    new()
+                                    {
+                                        H = 0,
+                                        Resize = "resize",
+                                        W = 0,
+                                    }
+                                },
+                            },
                             VideoVariants =
                             [
                                 new()
@@ -3592,37 +9696,114 @@ public class TweetRetrieveResponseTest : TestBase
                                     Bitrate = 0,
                                 },
                             ],
+                            Width = 0,
                         },
                     ],
+                    NoteTweet = new()
+                    {
+                        Text = "text",
+                        ID = "id",
+                        Entities = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        IsExpandable = true,
+                        RichtextTags =
+                        [
+                            new()
+                            {
+                                FromIndex = 0,
+                                ToIndex = 0,
+                                Types = ["string"],
+                            },
+                        ],
+                    },
+                    Place = new()
+                    {
+                        ID = "id",
+                        BoundingBox = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Country = "country",
+                        CountryCode = "countryCode",
+                        FullName = "fullName",
+                        Name = "name",
+                        PlaceType = "placeType",
+                        Url = "url",
+                    },
+                    PossiblySensitive = true,
+                    PossiblySensitiveEditable = true,
+                    PreviousCounts = new()
+                    {
+                        BookmarkCount = 0,
+                        LikeCount = 0,
+                        QuoteCount = 0,
+                        ReplyCount = 0,
+                        RetweetCount = 0,
+                    },
+                    QuickPromoteEligibility = "quickPromoteEligibility",
+                    Retweeted = true,
                     Source = "source",
                     Type = "type",
                     Url = "url",
+                    ViewState = "viewState",
                 },
                 Source = "Twitter Web App",
                 Type = "tweet",
                 Url = "https://x.com/example_user/status/1234567890",
+                ViewState = "viewState",
             },
             Author = new()
             {
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
+                AffiliatesHighlightedLabel = new()
+                {
+                    BadgeUrl = "badgeUrl",
+                    Description = "description",
+                    Url = "url",
+                    UrlType = "urlType",
+                    UserLabelDisplayType = "userLabelDisplayType",
+                    UserLabelType = "userLabelType",
+                },
                 AutomatedBy = "example_user",
+                BusinessAccountAffiliatesCount = 0,
                 CanDm = false,
+                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
+                CreatorSubscriptionsCount = 0,
                 Description = "CEO of Tesla, SpaceX, and X",
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
+                FollowRequestSent = true,
                 HasCustomTimelines = true,
+                HasGraduatedAccess = true,
+                HasHiddenSubscriptionsOnProfile = true,
+                HighlightsInfo = new()
+                {
+                    CanHighlightTweets = true,
+                    HighlightedTweets = "highlightedTweets",
+                },
+                IdentityVerification = new()
+                {
+                    Description = "description",
+                    IsIdentityVerified = true,
+                    VerifiedSinceMsec = "verifiedSinceMsec",
+                },
                 IsAutomated = false,
                 IsBlueVerified = true,
+                IsProfileTranslatable = true,
                 IsTranslator = false,
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
+                NotificationsEnabled = true,
+                ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
                 ProfileBio = new Dictionary<string, JsonElement>()
@@ -3631,16 +9812,28 @@ public class TweetRetrieveResponseTest : TestBase
                     { "entities", JsonSerializer.SerializeToElement("bar") },
                 },
                 ProfileBannerUrl = "https://pbs.twimg.com/profile_banners/example.jpg",
+                ProfileDescriptionLanguage = "profileDescriptionLanguage",
+                ProfileImageShape = "profileImageShape",
+                ProfileInterstitialType = "profileInterstitialType",
                 ProfilePicture = "https://pbs.twimg.com/profile_images/example.jpg",
+                ProfileSortEnabled = true,
+                ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
+                SuperFollowedBy = true,
+                SuperFollowEligible = true,
+                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
+                ViewerBlockedBy = true,
+                ViewerBlocking = true,
                 ViewerFollowedBy = false,
                 ViewerFollowing = true,
+                ViewerLiveFollowing = true,
+                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
         };

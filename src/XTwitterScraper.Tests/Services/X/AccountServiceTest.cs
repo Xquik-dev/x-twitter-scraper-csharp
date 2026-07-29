@@ -1,5 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
 // SPDX-License-Identifier: Apache-2.0
 
 using System.Threading.Tasks;
