@@ -7,16 +7,16 @@ public class AccountServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
-        var account = await this.client.X.Accounts.Create(
+        await this.client.X.Accounts.Create(
             new()
             {
                 Email = "account@example.invalid",
                 Password = "<ACCOUNT_PASSWORD>",
+                TotpSecret = "<TOTP_SECRET>",
                 Username = "your_x_username",
             },
             TestContext.Current.CancellationToken
         );
-        account.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

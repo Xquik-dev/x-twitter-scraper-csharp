@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
@@ -31,7 +32,7 @@ public interface IAccountService
     /// <summary>
     /// Connect X account
     /// </summary>
-    Task<AccountCreateResponse> Create(
+    Task<JsonElement> Create(
         AccountCreateParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -116,7 +117,7 @@ public interface IAccountServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /x/accounts</c>, but is otherwise the
     /// same as <see cref="IAccountService.Create(AccountCreateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<AccountCreateResponse>> Create(
+    Task<HttpResponse<JsonElement>> Create(
         AccountCreateParams parameters,
         CancellationToken cancellationToken = default
     );

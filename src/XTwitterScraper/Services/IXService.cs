@@ -48,6 +48,8 @@ public interface IXService
 
     X::IAccountConnectionChallengeService AccountConnectionChallenges { get; }
 
+    X::IAccountConnectionAttemptService AccountConnectionAttempts { get; }
+
     X::IBookmarkService Bookmarks { get; }
 
     X::IListService Lists { get; }
@@ -125,6 +127,8 @@ public interface IXServiceWithRawResponse
     X::IAccountServiceWithRawResponse Accounts { get; }
 
     X::IAccountConnectionChallengeServiceWithRawResponse AccountConnectionChallenges { get; }
+
+    X::IAccountConnectionAttemptServiceWithRawResponse AccountConnectionAttempts { get; }
 
     X::IBookmarkServiceWithRawResponse Bookmarks { get; }
 

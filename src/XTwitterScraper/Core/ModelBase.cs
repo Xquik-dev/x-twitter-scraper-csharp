@@ -4,11 +4,11 @@ using XTwitterScraper.Models;
 using XTwitterScraper.Models.Account;
 using XTwitterScraper.Models.Compose;
 using XTwitterScraper.Models.Events;
-using XTwitterScraper.Models.Radar;
 using XTwitterScraper.Models.Subscribe;
 using XTwitterScraper.Models.Webhooks;
 using XTwitterScraper.Models.X.Accounts;
 using XTwitterScraper.Models.X.Communities.Tweets;
+using AccountConnectionAttempts = XTwitterScraper.Models.X.AccountConnectionAttempts;
 using AccountConnectionChallenges = XTwitterScraper.Models.X.AccountConnectionChallenges;
 using Communities = XTwitterScraper.Models.X.Communities;
 using Credits = XTwitterScraper.Models.Credits;
@@ -22,6 +22,7 @@ using Join = XTwitterScraper.Models.X.Communities.Join;
 using Like = XTwitterScraper.Models.X.Tweets.Like;
 using Media = XTwitterScraper.Models.X.Media;
 using Profile = XTwitterScraper.Models.X.Profile;
+using Radar = XTwitterScraper.Models.Radar;
 using Retweet = XTwitterScraper.Models.X.Tweets.Retweet;
 using Tickets = XTwitterScraper.Models.Support.Tickets;
 using Tweets = XTwitterScraper.Models.X.Tweets;
@@ -57,14 +58,16 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Locale>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, Tier>(),
+            new ApiEnumConverter<string, Source>(),
             new ApiEnumConverter<string, Goal>(),
             new ApiEnumConverter<string, ComposeRefineRequestGoal>(),
             new ApiEnumConverter<string, MediaType>(),
             new ApiEnumConverter<string, Drafts::Goal>(),
-            new ApiEnumConverter<string, RadarItemCategory>(),
-            new ApiEnumConverter<string, RadarItemSource>(),
-            new ApiEnumConverter<string, Category>(),
-            new ApiEnumConverter<string, Source>(),
+            new ApiEnumConverter<string, Radar::RadarItemCategory>(),
+            new ApiEnumConverter<string, Radar::SourceFormat>(),
+            new ApiEnumConverter<string, Radar::RadarItemSource>(),
+            new ApiEnumConverter<string, Radar::Category>(),
+            new ApiEnumConverter<string, Radar::Source>(),
             new ApiEnumConverter<string, MonitorType>(),
             new ApiEnumConverter<string, EventDetailMonitorType>(),
             new ApiEnumConverter<string, Extractions::ExtractionJobStatus>(),
@@ -239,9 +242,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, QueryType>(),
             new ApiEnumConverter<string, Health>(),
             new ApiEnumConverter<string, XAccountDetailHealth>(),
-            new ApiEnumConverter<string, AccountCreateResponseHealth>(),
             new ApiEnumConverter<string, AccountReauthResponseHealth>(),
             new ApiEnumConverter<string, AccountConnectionChallenges::Health>(),
+            new ApiEnumConverter<string, AccountConnectionAttempts::Object>(),
+            new ApiEnumConverter<string, AccountConnectionAttempts::Status>(),
             new ApiEnumConverter<string, Tickets::AttachmentStatus>(),
             new ApiEnumConverter<string, Tickets::ContentType>(),
             new ApiEnumConverter<string, Tickets::Kind>(),

@@ -44,6 +44,7 @@ public sealed class XService : IXService
         _communities = new(() => new X::CommunityService(client));
         _accounts = new(() => new X::AccountService(client));
         _accountConnectionChallenges = new(() => new X::AccountConnectionChallengeService(client));
+        _accountConnectionAttempts = new(() => new X::AccountConnectionAttemptService(client));
         _bookmarks = new(() => new X::BookmarkService(client));
         _lists = new(() => new X::ListService(client));
     }
@@ -106,6 +107,12 @@ public sealed class XService : IXService
     public X::IAccountConnectionChallengeService AccountConnectionChallenges
     {
         get { return _accountConnectionChallenges.Value; }
+    }
+
+    readonly Lazy<X::IAccountConnectionAttemptService> _accountConnectionAttempts;
+    public X::IAccountConnectionAttemptService AccountConnectionAttempts
+    {
+        get { return _accountConnectionAttempts.Value; }
     }
 
     readonly Lazy<X::IBookmarkService> _bookmarks;
@@ -208,6 +215,9 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
         _accountConnectionChallenges = new(() =>
             new X::AccountConnectionChallengeServiceWithRawResponse(client)
         );
+        _accountConnectionAttempts = new(() =>
+            new X::AccountConnectionAttemptServiceWithRawResponse(client)
+        );
         _bookmarks = new(() => new X::BookmarkServiceWithRawResponse(client));
         _lists = new(() => new X::ListServiceWithRawResponse(client));
     }
@@ -270,6 +280,12 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     public X::IAccountConnectionChallengeServiceWithRawResponse AccountConnectionChallenges
     {
         get { return _accountConnectionChallenges.Value; }
+    }
+
+    readonly Lazy<X::IAccountConnectionAttemptServiceWithRawResponse> _accountConnectionAttempts;
+    public X::IAccountConnectionAttemptServiceWithRawResponse AccountConnectionAttempts
+    {
+        get { return _accountConnectionAttempts.Value; }
     }
 
     readonly Lazy<X::IBookmarkServiceWithRawResponse> _bookmarks;

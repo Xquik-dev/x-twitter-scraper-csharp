@@ -3,136 +3,68 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using XTwitterScraper.Core;
 
-namespace XTwitterScraper.Models.X.Accounts;
+namespace XTwitterScraper.Models.X.AccountConnectionAttempts;
 
 /// <summary>
-/// Re-authenticate X account
+/// Get X account connection status
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>
 /// </summary>
-public record class AccountReauthParams : ParamsBase
+public record class AccountConnectionAttemptRetrieveParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
-
     public string? ID { get; init; }
 
-    /// <summary>
-    /// Updated account password
-    /// </summary>
-    public required string Password
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<string>("password");
-        }
-        init { this._rawBodyData.Set("password", value); }
-    }
-
-    /// <summary>
-    /// Email for the X account (updates stored email)
-    /// </summary>
-    public string? Email
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("email");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("email", value);
-        }
-    }
-
-    /// <summary>
-    /// Replacement Authenticator App TOTP secret. Omit it to reuse the saved secret.
-    /// </summary>
-    public string? TotpSecret
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<string>("totp_secret");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("totp_secret", value);
-        }
-    }
-
-    public AccountReauthParams() { }
+    public AccountConnectionAttemptRetrieveParams() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public AccountReauthParams(AccountReauthParams accountReauthParams)
-        : base(accountReauthParams)
+    public AccountConnectionAttemptRetrieveParams(
+        AccountConnectionAttemptRetrieveParams accountConnectionAttemptRetrieveParams
+    )
+        : base(accountConnectionAttemptRetrieveParams)
     {
-        this.ID = accountReauthParams.ID;
-
-        this._rawBodyData = new(accountReauthParams._rawBodyData);
+        this.ID = accountConnectionAttemptRetrieveParams.ID;
     }
 #pragma warning restore CS8618
 
-    public AccountReauthParams(
+    public AccountConnectionAttemptRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    AccountReauthParams(
+    AccountConnectionAttemptRetrieveParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
         string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
         this.ID = id;
     }
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
-    public static AccountReauthParams FromRawUnchecked(
+    public static AccountConnectionAttemptRetrieveParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
         string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData),
             id
         );
     }
@@ -149,13 +81,12 @@ public record class AccountReauthParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
                 }
             ),
             ModelBase.ToStringSerializerOptions
         );
 
-    public virtual bool Equals(AccountReauthParams? other)
+    public virtual bool Equals(AccountConnectionAttemptRetrieveParams? other)
     {
         if (other == null)
         {
@@ -163,28 +94,18 @@ public record class AccountReauthParams : ParamsBase
         }
         return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
-            && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
     {
         return new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/')
-                + string.Format("/x/accounts/{0}/reauth", this.ID)
+                + string.Format("/x/account-connection-attempts/{0}", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),
         }.Uri;
-    }
-
-    internal override HttpContent? BodyContent()
-    {
-        return new StringContent(
-            JsonSerializer.Serialize(this.RawBodyData, ModelBase.SerializerOptions),
-            Encoding.UTF8,
-            "application/json"
-        );
     }
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)

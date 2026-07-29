@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Compose;
 
 namespace XTwitterScraper.Tests.Models.Compose;
@@ -59,6 +60,58 @@ public class ComposeCreateResponseTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -326,6 +379,58 @@ public class ComposeCreateResponseTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -614,6 +719,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -785,6 +942,58 @@ public class ComposePrepareResultTest : TestBase
         List<string> expectedFollowUpQuestions = ["string", "string", "string", "string"];
         string expectedIntentUrl = "https://example.com";
         string expectedNextStep = "nextStep";
+        List<RadarRecommendation> expectedRadarRecommendations =
+        [
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+        ];
         List<ScorerWeight> expectedScorerWeights =
         [
             new()
@@ -926,6 +1135,11 @@ public class ComposePrepareResultTest : TestBase
         }
         Assert.Equal(expectedIntentUrl, model.IntentUrl);
         Assert.Equal(expectedNextStep, model.NextStep);
+        Assert.Equal(expectedRadarRecommendations.Count, model.RadarRecommendations.Count);
+        for (int i = 0; i < expectedRadarRecommendations.Count; i++)
+        {
+            Assert.Equal(expectedRadarRecommendations[i], model.RadarRecommendations[i]);
+        }
         Assert.Equal(expectedScorerWeights.Count, model.ScorerWeights.Count);
         for (int i = 0; i < expectedScorerWeights.Count; i++)
         {
@@ -1004,6 +1218,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -1189,6 +1455,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -1367,6 +1685,58 @@ public class ComposePrepareResultTest : TestBase
         List<string> expectedFollowUpQuestions = ["string", "string", "string", "string"];
         string expectedIntentUrl = "https://example.com";
         string expectedNextStep = "nextStep";
+        List<RadarRecommendation> expectedRadarRecommendations =
+        [
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+            new()
+            {
+                Endpoint = "endpoint",
+                Guidance = "guidance",
+                Source = Source.Reddit,
+                UseFor = "useFor",
+            },
+        ];
         List<ScorerWeight> expectedScorerWeights =
         [
             new()
@@ -1508,6 +1878,11 @@ public class ComposePrepareResultTest : TestBase
         }
         Assert.Equal(expectedIntentUrl, deserialized.IntentUrl);
         Assert.Equal(expectedNextStep, deserialized.NextStep);
+        Assert.Equal(expectedRadarRecommendations.Count, deserialized.RadarRecommendations.Count);
+        for (int i = 0; i < expectedRadarRecommendations.Count; i++)
+        {
+            Assert.Equal(expectedRadarRecommendations[i], deserialized.RadarRecommendations[i]);
+        }
         Assert.Equal(expectedScorerWeights.Count, deserialized.ScorerWeights.Count);
         for (int i = 0; i < expectedScorerWeights.Count; i++)
         {
@@ -1586,6 +1961,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -1765,6 +2192,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -1946,6 +2425,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -2122,6 +2653,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -2308,6 +2891,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -2489,6 +3124,58 @@ public class ComposePrepareResultTest : TestBase
             FollowUpQuestions = ["string", "string", "string", "string"],
             IntentUrl = "https://example.com",
             NextStep = "nextStep",
+            RadarRecommendations =
+            [
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+                new()
+                {
+                    Endpoint = "endpoint",
+                    Guidance = "guidance",
+                    Source = Source.Reddit,
+                    UseFor = "useFor",
+                },
+            ],
             ScorerWeights =
             [
                 new()
@@ -2748,6 +3435,178 @@ public class EngagementMultiplierTest : TestBase
         EngagementMultiplier copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class RadarRecommendationTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new RadarRecommendation
+        {
+            Endpoint = "endpoint",
+            Guidance = "guidance",
+            Source = Source.Reddit,
+            UseFor = "useFor",
+        };
+
+        string expectedEndpoint = "endpoint";
+        string expectedGuidance = "guidance";
+        ApiEnum<string, Source> expectedSource = Source.Reddit;
+        string expectedUseFor = "useFor";
+
+        Assert.Equal(expectedEndpoint, model.Endpoint);
+        Assert.Equal(expectedGuidance, model.Guidance);
+        Assert.Equal(expectedSource, model.Source);
+        Assert.Equal(expectedUseFor, model.UseFor);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new RadarRecommendation
+        {
+            Endpoint = "endpoint",
+            Guidance = "guidance",
+            Source = Source.Reddit,
+            UseFor = "useFor",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<RadarRecommendation>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new RadarRecommendation
+        {
+            Endpoint = "endpoint",
+            Guidance = "guidance",
+            Source = Source.Reddit,
+            UseFor = "useFor",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<RadarRecommendation>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedEndpoint = "endpoint";
+        string expectedGuidance = "guidance";
+        ApiEnum<string, Source> expectedSource = Source.Reddit;
+        string expectedUseFor = "useFor";
+
+        Assert.Equal(expectedEndpoint, deserialized.Endpoint);
+        Assert.Equal(expectedGuidance, deserialized.Guidance);
+        Assert.Equal(expectedSource, deserialized.Source);
+        Assert.Equal(expectedUseFor, deserialized.UseFor);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new RadarRecommendation
+        {
+            Endpoint = "endpoint",
+            Guidance = "guidance",
+            Source = Source.Reddit,
+            UseFor = "useFor",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new RadarRecommendation
+        {
+            Endpoint = "endpoint",
+            Guidance = "guidance",
+            Source = Source.Reddit,
+            UseFor = "useFor",
+        };
+
+        RadarRecommendation copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SourceTest : TestBase
+{
+    [Theory]
+    [InlineData(Source.Reddit)]
+    [InlineData(Source.GitHub)]
+    [InlineData(Source.Trustmrr)]
+    [InlineData(Source.HackerNews)]
+    [InlineData(Source.GoogleTrends)]
+    [InlineData(Source.Wikipedia)]
+    [InlineData(Source.Polymarket)]
+    public void Validation_Works(Source rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Source> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Source.Reddit)]
+    [InlineData(Source.GitHub)]
+    [InlineData(Source.Trustmrr)]
+    [InlineData(Source.HackerNews)]
+    [InlineData(Source.GoogleTrends)]
+    [InlineData(Source.Wikipedia)]
+    [InlineData(Source.Polymarket)]
+    public void SerializationRoundtrip_Works(Source rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Source> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Source>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }
 

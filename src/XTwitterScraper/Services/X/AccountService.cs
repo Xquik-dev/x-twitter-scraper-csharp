@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
@@ -35,7 +36,7 @@ public sealed class AccountService : IAccountService
     }
 
     /// <inheritdoc/>
-    public async Task<AccountCreateResponse> Create(
+    public async Task<JsonElement> Create(
         AccountCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -158,7 +159,7 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<AccountCreateResponse>> Create(
+    public async Task<HttpResponse<JsonElement>> Create(
         AccountCreateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -173,14 +174,7 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
             response,
             async (token) =>
             {
-                var account = await response
-                    .Deserialize<AccountCreateResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    account.Validate();
-                }
-                return account;
+                return await response.Deserialize<JsonElement>(token).ConfigureAwait(false);
             }
         );
     }

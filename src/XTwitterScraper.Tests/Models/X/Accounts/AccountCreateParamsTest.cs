@@ -12,50 +12,19 @@ public class AccountCreateParamsTest : TestBase
         {
             Email = "account@example.invalid",
             Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
             TotpSecret = "<TOTP_SECRET>",
+            Username = "your_x_username",
         };
 
         string expectedEmail = "account@example.invalid";
         string expectedPassword = "<ACCOUNT_PASSWORD>";
-        string expectedUsername = "your_x_username";
         string expectedTotpSecret = "<TOTP_SECRET>";
+        string expectedUsername = "your_x_username";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
-        Assert.Equal(expectedUsername, parameters.Username);
         Assert.Equal(expectedTotpSecret, parameters.TotpSecret);
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
-    {
-        var parameters = new AccountCreateParams
-        {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
-        };
-
-        Assert.Null(parameters.TotpSecret);
-        Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
-    }
-
-    [Fact]
-    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
-    {
-        var parameters = new AccountCreateParams
-        {
-            Email = "account@example.invalid",
-            Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
-
-            // Null should be interpreted as omitted for these properties
-            TotpSecret = null,
-        };
-
-        Assert.Null(parameters.TotpSecret);
-        Assert.False(parameters.RawBodyData.ContainsKey("totp_secret"));
+        Assert.Equal(expectedUsername, parameters.Username);
     }
 
     [Fact]
@@ -65,6 +34,7 @@ public class AccountCreateParamsTest : TestBase
         {
             Email = "account@example.invalid",
             Password = "<ACCOUNT_PASSWORD>",
+            TotpSecret = "<TOTP_SECRET>",
             Username = "your_x_username",
         };
 
@@ -80,8 +50,8 @@ public class AccountCreateParamsTest : TestBase
         {
             Email = "account@example.invalid",
             Password = "<ACCOUNT_PASSWORD>",
-            Username = "your_x_username",
             TotpSecret = "<TOTP_SECRET>",
+            Username = "your_x_username",
         };
 
         AccountCreateParams copied = new(parameters);

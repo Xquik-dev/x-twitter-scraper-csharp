@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
@@ -18,9 +17,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -37,9 +45,18 @@ public class RadarItemTest : TestBase
         ApiEnum<string, RadarItemCategory> expectedCategory = RadarItemCategory.Tech;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z");
         string expectedLanguage = "en";
-        Dictionary<string, JsonElement> expectedMetadata = new()
+        Metadata expectedMetadata = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
         };
         DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         string expectedRegion = "global";
@@ -55,13 +72,7 @@ public class RadarItemTest : TestBase
         Assert.Equal(expectedCategory, model.Category);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedLanguage, model.Language);
-        Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(model.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.True(JsonElement.DeepEquals(value, model.Metadata[item.Key]));
-        }
+        Assert.Equal(expectedMetadata, model.Metadata);
         Assert.Equal(expectedPublishedAt, model.PublishedAt);
         Assert.Equal(expectedRegion, model.Region);
         Assert.Equal(expectedScore, model.Score);
@@ -82,9 +93,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -112,9 +132,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -138,9 +167,18 @@ public class RadarItemTest : TestBase
         ApiEnum<string, RadarItemCategory> expectedCategory = RadarItemCategory.Tech;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z");
         string expectedLanguage = "en";
-        Dictionary<string, JsonElement> expectedMetadata = new()
+        Metadata expectedMetadata = new()
         {
-            { "foo", JsonSerializer.SerializeToElement("bar") },
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
         };
         DateTimeOffset expectedPublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         string expectedRegion = "global";
@@ -156,13 +194,7 @@ public class RadarItemTest : TestBase
         Assert.Equal(expectedCategory, deserialized.Category);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedLanguage, deserialized.Language);
-        Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
-        foreach (var item in expectedMetadata)
-        {
-            Assert.True(deserialized.Metadata.TryGetValue(item.Key, out var value));
-
-            Assert.True(JsonElement.DeepEquals(value, deserialized.Metadata[item.Key]));
-        }
+        Assert.Equal(expectedMetadata, deserialized.Metadata);
         Assert.Equal(expectedPublishedAt, deserialized.PublishedAt);
         Assert.Equal(expectedRegion, deserialized.Region);
         Assert.Equal(expectedScore, deserialized.Score);
@@ -183,9 +215,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -210,9 +251,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -239,9 +289,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -263,9 +322,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -297,9 +365,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -326,9 +403,18 @@ public class RadarItemTest : TestBase
             Category = RadarItemCategory.Tech,
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
             Language = "en",
-            Metadata = new Dictionary<string, JsonElement>()
+            Metadata = new()
             {
-                { "foo", JsonSerializer.SerializeToElement("bar") },
+                Author = "author",
+                ContentUrl = "https://example.com",
+                EstimatedDownvotes = 0,
+                EstimatedUpvotes = 0,
+                NumberComments = 0,
+                Score = 0,
+                Selftext = "selftext",
+                SourceFormat = SourceFormat.Html,
+                Subreddit = "subreddit",
+                UpvoteRatio = 0,
             },
             PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Region = "global",
@@ -409,6 +495,317 @@ public class RadarItemCategoryTest : TestBase
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<ApiEnum<string, RadarItemCategory>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class MetadataTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Metadata
+        {
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
+        };
+
+        string expectedAuthor = "author";
+        string expectedContentUrl = "https://example.com";
+        long expectedEstimatedDownvotes = 0;
+        long expectedEstimatedUpvotes = 0;
+        long expectedNumberComments = 0;
+        long expectedScore = 0;
+        string expectedSelftext = "selftext";
+        ApiEnum<string, SourceFormat> expectedSourceFormat = SourceFormat.Html;
+        string expectedSubreddit = "subreddit";
+        double expectedUpvoteRatio = 0;
+
+        Assert.Equal(expectedAuthor, model.Author);
+        Assert.Equal(expectedContentUrl, model.ContentUrl);
+        Assert.Equal(expectedEstimatedDownvotes, model.EstimatedDownvotes);
+        Assert.Equal(expectedEstimatedUpvotes, model.EstimatedUpvotes);
+        Assert.Equal(expectedNumberComments, model.NumberComments);
+        Assert.Equal(expectedScore, model.Score);
+        Assert.Equal(expectedSelftext, model.Selftext);
+        Assert.Equal(expectedSourceFormat, model.SourceFormat);
+        Assert.Equal(expectedSubreddit, model.Subreddit);
+        Assert.Equal(expectedUpvoteRatio, model.UpvoteRatio);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Metadata
+        {
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Metadata>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Metadata
+        {
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Metadata>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedAuthor = "author";
+        string expectedContentUrl = "https://example.com";
+        long expectedEstimatedDownvotes = 0;
+        long expectedEstimatedUpvotes = 0;
+        long expectedNumberComments = 0;
+        long expectedScore = 0;
+        string expectedSelftext = "selftext";
+        ApiEnum<string, SourceFormat> expectedSourceFormat = SourceFormat.Html;
+        string expectedSubreddit = "subreddit";
+        double expectedUpvoteRatio = 0;
+
+        Assert.Equal(expectedAuthor, deserialized.Author);
+        Assert.Equal(expectedContentUrl, deserialized.ContentUrl);
+        Assert.Equal(expectedEstimatedDownvotes, deserialized.EstimatedDownvotes);
+        Assert.Equal(expectedEstimatedUpvotes, deserialized.EstimatedUpvotes);
+        Assert.Equal(expectedNumberComments, deserialized.NumberComments);
+        Assert.Equal(expectedScore, deserialized.Score);
+        Assert.Equal(expectedSelftext, deserialized.Selftext);
+        Assert.Equal(expectedSourceFormat, deserialized.SourceFormat);
+        Assert.Equal(expectedSubreddit, deserialized.Subreddit);
+        Assert.Equal(expectedUpvoteRatio, deserialized.UpvoteRatio);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Metadata
+        {
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Metadata { };
+
+        Assert.Null(model.Author);
+        Assert.False(model.RawData.ContainsKey("author"));
+        Assert.Null(model.ContentUrl);
+        Assert.False(model.RawData.ContainsKey("contentUrl"));
+        Assert.Null(model.EstimatedDownvotes);
+        Assert.False(model.RawData.ContainsKey("estimatedDownvotes"));
+        Assert.Null(model.EstimatedUpvotes);
+        Assert.False(model.RawData.ContainsKey("estimatedUpvotes"));
+        Assert.Null(model.NumberComments);
+        Assert.False(model.RawData.ContainsKey("numberComments"));
+        Assert.Null(model.Score);
+        Assert.False(model.RawData.ContainsKey("score"));
+        Assert.Null(model.Selftext);
+        Assert.False(model.RawData.ContainsKey("selftext"));
+        Assert.Null(model.SourceFormat);
+        Assert.False(model.RawData.ContainsKey("sourceFormat"));
+        Assert.Null(model.Subreddit);
+        Assert.False(model.RawData.ContainsKey("subreddit"));
+        Assert.Null(model.UpvoteRatio);
+        Assert.False(model.RawData.ContainsKey("upvoteRatio"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Metadata { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new Metadata
+        {
+            // Null should be interpreted as omitted for these properties
+            Author = null,
+            ContentUrl = null,
+            EstimatedDownvotes = null,
+            EstimatedUpvotes = null,
+            NumberComments = null,
+            Score = null,
+            Selftext = null,
+            SourceFormat = null,
+            Subreddit = null,
+            UpvoteRatio = null,
+        };
+
+        Assert.Null(model.Author);
+        Assert.False(model.RawData.ContainsKey("author"));
+        Assert.Null(model.ContentUrl);
+        Assert.False(model.RawData.ContainsKey("contentUrl"));
+        Assert.Null(model.EstimatedDownvotes);
+        Assert.False(model.RawData.ContainsKey("estimatedDownvotes"));
+        Assert.Null(model.EstimatedUpvotes);
+        Assert.False(model.RawData.ContainsKey("estimatedUpvotes"));
+        Assert.Null(model.NumberComments);
+        Assert.False(model.RawData.ContainsKey("numberComments"));
+        Assert.Null(model.Score);
+        Assert.False(model.RawData.ContainsKey("score"));
+        Assert.Null(model.Selftext);
+        Assert.False(model.RawData.ContainsKey("selftext"));
+        Assert.Null(model.SourceFormat);
+        Assert.False(model.RawData.ContainsKey("sourceFormat"));
+        Assert.Null(model.Subreddit);
+        Assert.False(model.RawData.ContainsKey("subreddit"));
+        Assert.Null(model.UpvoteRatio);
+        Assert.False(model.RawData.ContainsKey("upvoteRatio"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Metadata
+        {
+            // Null should be interpreted as omitted for these properties
+            Author = null,
+            ContentUrl = null,
+            EstimatedDownvotes = null,
+            EstimatedUpvotes = null,
+            NumberComments = null,
+            Score = null,
+            Selftext = null,
+            SourceFormat = null,
+            Subreddit = null,
+            UpvoteRatio = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Metadata
+        {
+            Author = "author",
+            ContentUrl = "https://example.com",
+            EstimatedDownvotes = 0,
+            EstimatedUpvotes = 0,
+            NumberComments = 0,
+            Score = 0,
+            Selftext = "selftext",
+            SourceFormat = SourceFormat.Html,
+            Subreddit = "subreddit",
+            UpvoteRatio = 0,
+        };
+
+        Metadata copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class SourceFormatTest : TestBase
+{
+    [Theory]
+    [InlineData(SourceFormat.Html)]
+    [InlineData(SourceFormat.Json)]
+    [InlineData(SourceFormat.Rss)]
+    public void Validation_Works(SourceFormat rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SourceFormat> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, SourceFormat>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(SourceFormat.Html)]
+    [InlineData(SourceFormat.Json)]
+    [InlineData(SourceFormat.Rss)]
+    public void SerializationRoundtrip_Works(SourceFormat rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, SourceFormat> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SourceFormat>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, SourceFormat>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, SourceFormat>>(
             json,
             ModelBase.SerializerOptions
         );
