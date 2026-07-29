@@ -11,6 +11,44 @@ namespace XTwitterScraper.Tests.Models;
 public class EmbeddedTweetTest : TestBase
 {
     [Fact]
+    public void NestedTweets_RoundtripAndValidate()
+    {
+        var model = CreateMinimalTweet("root") with
+        {
+            QuotedTweet = CreateMinimalTweet("quoted"),
+            RetweetedTweet = CreateMinimalTweet("retweeted"),
+        };
+
+        model.Validate();
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<EmbeddedTweet>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Contains("\"quoted_tweet\"", json);
+        Assert.Contains("\"retweeted_tweet\"", json);
+        Assert.NotNull(deserialized);
+        Assert.Equal("quoted", deserialized.QuotedTweet?.ID);
+        Assert.Equal("retweeted", deserialized.RetweetedTweet?.ID);
+        deserialized.Validate();
+    }
+
+    private static EmbeddedTweet CreateMinimalTweet(string id) =>
+        new()
+        {
+            ID = id,
+            BookmarkCount = 0,
+            LikeCount = 0,
+            QuoteCount = 0,
+            ReplyCount = 0,
+            RetweetCount = 0,
+            Text = id,
+            ViewCount = 0,
+        };
+
+    [Fact]
     public void FieldRoundtrip_Works()
     {
         var model = new EmbeddedTweet

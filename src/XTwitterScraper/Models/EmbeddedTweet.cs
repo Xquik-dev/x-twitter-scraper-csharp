@@ -682,6 +682,29 @@ public sealed record class EmbeddedTweet : JsonModel
         }
     }
 
+    /// <summary>
+    /// Quoted or retweeted tweet context. Every object includes id, text, and engagement
+    /// metrics. A zero metric can mean X did not report the count. Author, media,
+    /// and conversation fields appear when available.
+    /// </summary>
+    public EmbeddedTweet? QuotedTweet
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<EmbeddedTweet>("quoted_tweet");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("quoted_tweet", value);
+        }
+    }
+
     public bool? Retweeted
     {
         get
@@ -697,6 +720,29 @@ public sealed record class EmbeddedTweet : JsonModel
             }
 
             this._rawData.Set("retweeted", value);
+        }
+    }
+
+    /// <summary>
+    /// Quoted or retweeted tweet context. Every object includes id, text, and engagement
+    /// metrics. A zero metric can mean X did not report the count. Author, media,
+    /// and conversation fields appear when available.
+    /// </summary>
+    public EmbeddedTweet? RetweetedTweet
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<EmbeddedTweet>("retweeted_tweet");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retweeted_tweet", value);
         }
     }
 
@@ -816,7 +862,9 @@ public sealed record class EmbeddedTweet : JsonModel
         _ = this.PossiblySensitiveEditable;
         this.PreviousCounts?.Validate();
         _ = this.QuickPromoteEligibility;
+        this.QuotedTweet?.Validate();
         _ = this.Retweeted;
+        this.RetweetedTweet?.Validate();
         _ = this.Source;
         _ = this.Type;
         _ = this.Url;
