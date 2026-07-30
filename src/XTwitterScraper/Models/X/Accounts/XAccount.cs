@@ -40,11 +40,11 @@ public sealed record class XAccount : JsonModel
     }
 
     /// <summary>
-    /// Derived connection health. `healthy` = session active. `needsReauth` = user
+    /// Derived connection health. `healthy` = ready to use. `needsReauth` = user
     /// must submit fresh credentials. `locked` = X locked the account; unlock on
-    /// x.com first. `suspended` = X banned the account. `recovering` = past cooldown,
-    /// will auto-retry on next use. `temporaryIssue` = temporary connection problem;
-    /// retry shortly.
+    /// x.com first. `suspended` = X banned the account. `recovering` = cooldown ended;
+    /// the account can reconnect on its next use. `temporaryIssue` = temporary connection
+    /// problem; wait before the next use.
     /// </summary>
     public required ApiEnum<string, Health> Health
     {
@@ -163,10 +163,11 @@ class XAccountFromRaw : IFromRawJson<XAccount>
 }
 
 /// <summary>
-/// Derived connection health. `healthy` = session active. `needsReauth` = user must
+/// Derived connection health. `healthy` = ready to use. `needsReauth` = user must
 /// submit fresh credentials. `locked` = X locked the account; unlock on x.com first.
-/// `suspended` = X banned the account. `recovering` = past cooldown, will auto-retry
-/// on next use. `temporaryIssue` = temporary connection problem; retry shortly.
+/// `suspended` = X banned the account. `recovering` = cooldown ended; the account can
+/// reconnect on its next use. `temporaryIssue` = temporary connection problem; wait
+/// before the next use.
 /// </summary>
 [JsonConverter(typeof(HealthConverter))]
 public enum Health

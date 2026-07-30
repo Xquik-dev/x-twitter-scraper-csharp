@@ -311,7 +311,7 @@ sealed class ComposeCreateResponseConverter : JsonConverter<ComposeCreateRespons
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ComposeRefineResult>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ComposeScoreResult>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -326,7 +326,7 @@ sealed class ComposeCreateResponseConverter : JsonConverter<ComposeCreateRespons
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ComposeScoreResult>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ComposeRefineResult>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();

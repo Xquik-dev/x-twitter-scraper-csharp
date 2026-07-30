@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.6.0 (2026-07-29)
+
+Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.5...v0.6.0)
+
+### Features
+
+* **api:** api update ([3bae29a](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3bae29a81a3e52f8b943cb9b0e15b168fdd7f609))
+* **api:** api update ([52fc432](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/52fc432ac86866625f6ce062c8429df748841472))
+
+
+### Bug Fixes
+
+* **client:** tolerate JSON null in required untyped fields and prefer more specific union variants ([a2832e9](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a2832e90f2bc35a792afb1159c54186e6e1e65c2))
+* make draft release lookup reliable ([#25](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/25)) ([559ec94](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/559ec945b4d5d1692425ea1df0f3f5ed9a0aa39c))
+* publish assets before immutable release ([#23](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/23)) ([b88673f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/b88673fcc9c55166bd9ac690ddea783d4c0e34a5))
+
+
+### Chores
+
+* add FUNDING.yml pointing to xquik.com ([5f1718a](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/5f1718af025353251ea14372bb2f1785e00722a3))
+* add per-file license evidence ([816cf24](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/816cf24a302e25e9b7164170d519c4ddd87bd541))
+* enforce OpenSSF Gold technical controls ([030b107](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/030b10779d2fa7e5c36ed401c71780753aeb9ad0))
+* improve C# package metadata ([84fb3c6](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/84fb3c6500f1ca7561aa38384508f0892c903a5e))
+* **internal:** version bump ([7c5b952](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/7c5b952ff8488ec051a38c99e58dc602e9593262))
+* normalize C# line endings ([#14](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/14)) ([3f11392](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3f11392f250f60c130b739ae592dafac92c31765))
+* point NuGet metadata to C# docs ([124ceee](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/124ceee00ca0dfbd9ed9ab7be9d2f0ad18cb9682))
+* prepare v0.4.5 ([36330b9](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/36330b96c778bdb16d38aafa8c0af0eacd57253d))
+
+
+### Documentation
+
+* add Contributor Covenant 2.1 Code of Conduct ([#2192](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/2192)) ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
+* add DeepWiki badge ([6b93e3f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/6b93e3f013de6fb5c11d36d7fbbf0a32d01829e2))
+* clarify repository discovery ([e4a8544](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/e4a8544e19585b17a2f7a024e2cab21fd0641103))
+* map common X data tasks ([#17](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/17)) ([71b727c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/71b727cdfa43bbadda0269120c396ea0272050f2))
+
 ## 0.5.5 (2026-07-24)
 
 Full Changelog: [v0.5.4...v0.5.5](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.4...v0.5.5)

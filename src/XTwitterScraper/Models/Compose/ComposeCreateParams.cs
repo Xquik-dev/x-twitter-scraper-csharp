@@ -424,7 +424,7 @@ sealed class BodyConverter : JsonConverter<Body>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ComposePrepareRequest>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ComposeRefineRequest>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -439,7 +439,7 @@ sealed class BodyConverter : JsonConverter<Body>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ComposeRefineRequest>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ComposePrepareRequest>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();

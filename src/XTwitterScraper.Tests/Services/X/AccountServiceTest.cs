@@ -16,6 +16,7 @@ public class AccountServiceTest : TestBase
             {
                 Email = "account@example.invalid",
                 Password = "<ACCOUNT_PASSWORD>",
+                TotpSecret = "<TOTP_SECRET>",
                 Username = "your_x_username",
             },
             TestContext.Current.CancellationToken
