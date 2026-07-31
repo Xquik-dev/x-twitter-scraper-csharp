@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,10 +11,9 @@ using System = System;
 namespace XTwitterScraper.Models.X.Tweets;
 
 /// <summary>
-/// Returns visible replies. For an unfiltered first page, Xquik compares a terminal
-/// page with the post's reported reply count. If the page is visibly incomplete,
-/// the endpoint returns 424 `replies_incomplete` instead of presenting partial coverage
-/// as complete. Use tweet search with a `conversation_id:{id}` query as the broader fallback.
+/// Returns direct replies. Complete mode merges 5 authenticated views, 3 rankings,
+/// every forward cursor module, labeled hidden-content branches, Top time partitions,
+/// and search. It separates nested replies and returns 424 below 90% coverage.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -240,6 +235,27 @@ public record class TweetGetRepliesParams : ParamsBase
     }
 
     /// <summary>
+    /// Maximum complete-mode rows.
+    /// </summary>
+    public long? Limit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
+    }
+
+    /// <summary>
     /// Filter by media type.
     /// </summary>
     public ApiEnum<string, TweetGetRepliesParamsMediaType>? MediaType
@@ -368,11 +384,30 @@ public record class TweetGetRepliesParams : ParamsBase
     }
 
     /// <summary>
-    /// Maximum items requested from this page (1-100, default 20). The response can
-    /// contain fewer items because the source returned fewer, filters removed items,
-    /// or remaining credits cover fewer results. Keep requesting next_cursor while
-    /// has_next_page is true, even when a page is empty. The deprecated limit and
-    /// count aliases remain accepted.
+    /// Merge bounded strategies. Do not add cursors or filters.
+    /// </summary>
+    public ApiEnum<string, Mode>? Mode
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, Mode>>("mode");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("mode", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum page items (1-100, default 20). Source, filters, or credits can reduce
+    /// results. Continue while has_next_page is true. Deprecated limit and count
+    /// aliases remain accepted.
     /// </summary>
     public long? PageSize
     {
@@ -802,6 +837,46 @@ sealed class TweetGetRepliesParamsMediaTypeConverter : JsonConverter<TweetGetRep
                 TweetGetRepliesParamsMediaType.Media => "media",
                 TweetGetRepliesParamsMediaType.Links => "links",
                 TweetGetRepliesParamsMediaType.None => "none",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Merge bounded strategies. Do not add cursors or filters.
+/// </summary>
+[JsonConverter(typeof(ModeConverter))]
+public enum Mode
+{
+    Complete,
+}
+
+sealed class ModeConverter : JsonConverter<Mode>
+{
+    public override Mode Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "complete" => Mode.Complete,
+            _ => (Mode)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Mode value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Mode.Complete => "complete",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -121,115 +118,115 @@ public class ComposeCreateResponseTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -440,115 +437,115 @@ public class ComposeCreateResponseTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -780,115 +777,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -1003,115 +1000,115 @@ public class ComposePrepareResultTest : TestBase
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
         ];
         string expectedSource = "source";
@@ -1279,115 +1276,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -1516,115 +1513,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -1746,115 +1743,115 @@ public class ComposePrepareResultTest : TestBase
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
             new()
             {
                 Context = "context",
                 Signal = "signal",
-                Weight = 0,
+                Weight = null,
             },
         ];
         string expectedSource = "source";
@@ -2022,115 +2019,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -2253,115 +2250,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -2486,115 +2483,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -2714,115 +2711,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -2952,115 +2949,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -3185,115 +3182,115 @@ public class ComposePrepareResultTest : TestBase
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
                 new()
                 {
                     Context = "context",
                     Signal = "signal",
-                    Weight = 0,
+                    Weight = null,
                 },
             ],
             Source = "source",
@@ -3622,16 +3619,15 @@ public class ScorerWeightTest : TestBase
         {
             Context = "context",
             Signal = "signal",
-            Weight = 0,
+            Weight = null,
         };
 
         string expectedContext = "context";
         string expectedSignal = "signal";
-        double expectedWeight = 0;
 
         Assert.Equal(expectedContext, model.Context);
         Assert.Equal(expectedSignal, model.Signal);
-        Assert.Equal(expectedWeight, model.Weight);
+        Assert.Null(model.Weight);
     }
 
     [Fact]
@@ -3641,7 +3637,7 @@ public class ScorerWeightTest : TestBase
         {
             Context = "context",
             Signal = "signal",
-            Weight = 0,
+            Weight = null,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -3660,7 +3656,7 @@ public class ScorerWeightTest : TestBase
         {
             Context = "context",
             Signal = "signal",
-            Weight = 0,
+            Weight = null,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -3672,11 +3668,10 @@ public class ScorerWeightTest : TestBase
 
         string expectedContext = "context";
         string expectedSignal = "signal";
-        double expectedWeight = 0;
 
         Assert.Equal(expectedContext, deserialized.Context);
         Assert.Equal(expectedSignal, deserialized.Signal);
-        Assert.Equal(expectedWeight, deserialized.Weight);
+        Assert.Null(deserialized.Weight);
     }
 
     [Fact]
@@ -3686,7 +3681,7 @@ public class ScorerWeightTest : TestBase
         {
             Context = "context",
             Signal = "signal",
-            Weight = 0,
+            Weight = null,
         };
 
         model.Validate();
@@ -3699,7 +3694,7 @@ public class ScorerWeightTest : TestBase
         {
             Context = "context",
             Signal = "signal",
-            Weight = 0,
+            Weight = null,
         };
 
         ScorerWeight copied = new(model);

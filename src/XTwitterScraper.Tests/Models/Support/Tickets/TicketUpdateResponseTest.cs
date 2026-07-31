@@ -1,9 +1,6 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Support.Tickets;
 
 namespace XTwitterScraper.Tests.Models.Support.Tickets;
@@ -16,11 +13,12 @@ public class TicketUpdateResponseTest : TestBase
         var model = new TicketUpdateResponse
         {
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "resolved",
+            Status = TicketUpdateResponseStatus.Resolved,
         };
 
         string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
-        string expectedStatus = "resolved";
+        ApiEnum<string, TicketUpdateResponseStatus> expectedStatus =
+            TicketUpdateResponseStatus.Resolved;
 
         Assert.Equal(expectedPublicID, model.PublicID);
         Assert.Equal(expectedStatus, model.Status);
@@ -32,7 +30,7 @@ public class TicketUpdateResponseTest : TestBase
         var model = new TicketUpdateResponse
         {
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "resolved",
+            Status = TicketUpdateResponseStatus.Resolved,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -50,7 +48,7 @@ public class TicketUpdateResponseTest : TestBase
         var model = new TicketUpdateResponse
         {
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "resolved",
+            Status = TicketUpdateResponseStatus.Resolved,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -61,7 +59,8 @@ public class TicketUpdateResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
-        string expectedStatus = "resolved";
+        ApiEnum<string, TicketUpdateResponseStatus> expectedStatus =
+            TicketUpdateResponseStatus.Resolved;
 
         Assert.Equal(expectedPublicID, deserialized.PublicID);
         Assert.Equal(expectedStatus, deserialized.Status);
@@ -73,55 +72,7 @@ public class TicketUpdateResponseTest : TestBase
         var model = new TicketUpdateResponse
         {
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "resolved",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new TicketUpdateResponse { };
-
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new TicketUpdateResponse { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new TicketUpdateResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            PublicID = null,
-            Status = null,
-        };
-
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new TicketUpdateResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            PublicID = null,
-            Status = null,
+            Status = TicketUpdateResponseStatus.Resolved,
         };
 
         model.Validate();
@@ -133,11 +84,71 @@ public class TicketUpdateResponseTest : TestBase
         var model = new TicketUpdateResponse
         {
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "resolved",
+            Status = TicketUpdateResponseStatus.Resolved,
         };
 
         TicketUpdateResponse copied = new(model);
 
         Assert.Equal(model, copied);
+    }
+}
+
+public class TicketUpdateResponseStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(TicketUpdateResponseStatus.Open)]
+    [InlineData(TicketUpdateResponseStatus.Resolved)]
+    [InlineData(TicketUpdateResponseStatus.Closed)]
+    public void Validation_Works(TicketUpdateResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TicketUpdateResponseStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TicketUpdateResponseStatus>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TicketUpdateResponseStatus.Open)]
+    [InlineData(TicketUpdateResponseStatus.Resolved)]
+    [InlineData(TicketUpdateResponseStatus.Closed)]
+    public void SerializationRoundtrip_Works(TicketUpdateResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TicketUpdateResponseStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TicketUpdateResponseStatus>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TicketUpdateResponseStatus>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, TicketUpdateResponseStatus>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
     }
 }

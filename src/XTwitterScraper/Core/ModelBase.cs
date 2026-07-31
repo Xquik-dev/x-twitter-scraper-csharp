@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Text.Json;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
@@ -56,6 +52,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Code>(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, EventType>(),
+            new ApiEnumConverter<string, StopReason>(),
             new ApiEnumConverter<string, TweetMediaType>(),
             new ApiEnumConverter<string, Plan>(),
             new ApiEnumConverter<string, Locale>(),
@@ -117,6 +114,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Tweets::Replies>(),
             new ApiEnumConverter<string, Tweets::Retweets>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsMediaType>(),
+            new ApiEnumConverter<string, Tweets::Mode>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsQuotes>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsReplies>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsRetweets>(),
@@ -252,6 +250,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Tickets::ContentType>(),
             new ApiEnumConverter<string, Tickets::Kind>(),
             new ApiEnumConverter<string, Tickets::MessageAttachmentStatus>(),
+            new ApiEnumConverter<string, Tickets::Sender>(),
+            new ApiEnumConverter<string, Tickets::TicketRetrieveResponseStatus>(),
+            new ApiEnumConverter<string, Tickets::TicketUpdateResponseStatus>(),
+            new ApiEnumConverter<string, Tickets::TicketStatus>(),
             new ApiEnumConverter<string, Tickets::TicketReplyResponseAttachmentStatus>(),
             new ApiEnumConverter<string, Tickets::Status>(),
             new ApiEnumConverter<string, Credits::Status>(),

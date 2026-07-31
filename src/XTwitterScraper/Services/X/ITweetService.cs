@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -115,11 +111,10 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Returns visible replies. For an unfiltered first page, Xquik compares a terminal
-    /// page with the post's reported reply count. If the page is visibly incomplete,
-    /// the endpoint returns 424 `replies_incomplete` instead of presenting partial
-    /// coverage as complete. Use tweet search with a `conversation_id:{id}` query as
-    /// the broader fallback.
+    /// Returns direct replies. Complete mode merges 5 authenticated views, 3 rankings,
+    /// every forward cursor module, labeled hidden-content branches, Top time
+    /// partitions, and search. It separates nested replies and returns 424 below 90%
+    /// coverage.
     /// </summary>
     Task<PaginatedTweets> GetReplies(
         TweetGetRepliesParams parameters,

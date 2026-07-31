@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -46,8 +43,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -56,7 +51,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -78,7 +72,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -96,23 +89,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -138,7 +122,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -146,20 +129,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -274,7 +248,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -283,7 +256,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -317,8 +289,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -327,7 +297,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -349,7 +318,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -367,23 +335,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -409,7 +368,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -420,17 +378,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -545,7 +498,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -554,14 +506,11 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
                 ViewState = "viewState",
             },
-            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -595,8 +544,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -605,7 +552,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -627,7 +573,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -645,23 +590,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -687,7 +623,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -698,17 +633,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -823,7 +753,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -832,8 +761,6 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
@@ -876,8 +803,6 @@ public class SearchTweetTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -886,7 +811,6 @@ public class SearchTweetTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -908,7 +832,6 @@ public class SearchTweetTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -926,23 +849,14 @@ public class SearchTweetTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
-        bool expectedBookmarked = true;
         SearchTweetCard expectedCard = new()
         {
             ID = "id",
@@ -966,12 +880,7 @@ public class SearchTweetTest : TestBase
         ContentDisclosure expectedContentDisclosure = new()
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
         string expectedConversationID = "1234567890";
         string expectedCreatedAt = "2025-01-15T12:00:00Z";
@@ -979,17 +888,12 @@ public class SearchTweetTest : TestBase
         SearchTweetEdit expectedEdit = new()
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
         Dictionary<string, JsonElement> expectedEntities = new()
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        bool expectedFavorited = true;
-        bool expectedGrokAnalysisButton = true;
-        bool expectedGrokImageEditable = true;
         string expectedInReplyToID = "1234567890";
         string expectedInReplyToUserID = "9876543210";
         string expectedInReplyToUsername = "example_user";
@@ -1101,7 +1005,6 @@ public class SearchTweetTest : TestBase
             Url = "url",
         };
         bool expectedPossiblySensitive = true;
-        bool expectedPossiblySensitiveEditable = true;
         SearchTweetPreviousCounts expectedPreviousCounts = new()
         {
             BookmarkCount = 0,
@@ -1110,7 +1013,6 @@ public class SearchTweetTest : TestBase
             ReplyCount = 0,
             RetweetCount = 0,
         };
-        string expectedQuickPromoteEligibility = "quickPromoteEligibility";
         EmbeddedTweet expectedQuotedTweet = new()
         {
             ID = "id",
@@ -1144,8 +1046,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -1154,7 +1054,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -1176,7 +1075,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -1194,23 +1092,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -1236,7 +1125,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -1244,20 +1132,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "conversationId",
             CreatedAt = "createdAt",
             DisplayTextRange = [0],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "inReplyToId",
             InReplyToUserID = "inReplyToUserId",
             InReplyToUsername = "inReplyToUsername",
@@ -1372,7 +1251,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -1381,14 +1259,11 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
-            Retweeted = true,
             Source = "source",
             Type = "type",
             Url = "url",
             ViewState = "viewState",
         };
-        bool expectedRetweeted = true;
         EmbeddedTweet expectedRetweetedTweet = new()
         {
             ID = "id",
@@ -1422,8 +1297,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -1432,7 +1305,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -1454,7 +1326,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -1472,23 +1343,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -1514,7 +1376,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -1522,20 +1383,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "conversationId",
             CreatedAt = "createdAt",
             DisplayTextRange = [0],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "inReplyToId",
             InReplyToUserID = "inReplyToUserId",
             InReplyToUsername = "inReplyToUsername",
@@ -1650,7 +1502,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -1659,8 +1510,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
-            Retweeted = true,
             Source = "source",
             Type = "type",
             Url = "url",
@@ -1681,7 +1530,6 @@ public class SearchTweetTest : TestBase
         Assert.Equal(expectedViewCount, model.ViewCount);
         Assert.Equal(expectedArticle, model.Article);
         Assert.Equal(expectedAuthor, model.Author);
-        Assert.Equal(expectedBookmarked, model.Bookmarked);
         Assert.Equal(expectedCard, model.Card);
         Assert.Equal(expectedCommunityNote, model.CommunityNote);
         Assert.Equal(expectedContentDisclosure, model.ContentDisclosure);
@@ -1702,9 +1550,6 @@ public class SearchTweetTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, model.Entities[item.Key]));
         }
-        Assert.Equal(expectedFavorited, model.Favorited);
-        Assert.Equal(expectedGrokAnalysisButton, model.GrokAnalysisButton);
-        Assert.Equal(expectedGrokImageEditable, model.GrokImageEditable);
         Assert.Equal(expectedInReplyToID, model.InReplyToID);
         Assert.Equal(expectedInReplyToUserID, model.InReplyToUserID);
         Assert.Equal(expectedInReplyToUsername, model.InReplyToUsername);
@@ -1723,11 +1568,8 @@ public class SearchTweetTest : TestBase
         Assert.Equal(expectedNoteTweet, model.NoteTweet);
         Assert.Equal(expectedPlace, model.Place);
         Assert.Equal(expectedPossiblySensitive, model.PossiblySensitive);
-        Assert.Equal(expectedPossiblySensitiveEditable, model.PossiblySensitiveEditable);
         Assert.Equal(expectedPreviousCounts, model.PreviousCounts);
-        Assert.Equal(expectedQuickPromoteEligibility, model.QuickPromoteEligibility);
         Assert.Equal(expectedQuotedTweet, model.QuotedTweet);
-        Assert.Equal(expectedRetweeted, model.Retweeted);
         Assert.Equal(expectedRetweetedTweet, model.RetweetedTweet);
         Assert.Equal(expectedSource, model.Source);
         Assert.Equal(expectedType, model.Type);
@@ -1771,8 +1613,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -1781,7 +1621,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -1803,7 +1642,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -1821,23 +1659,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -1863,7 +1692,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -1871,20 +1699,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -1999,7 +1818,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -2008,7 +1826,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -2042,8 +1859,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -2052,7 +1867,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -2074,7 +1888,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -2092,23 +1905,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -2134,7 +1938,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -2145,17 +1948,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -2270,7 +2068,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -2279,14 +2076,11 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
                 ViewState = "viewState",
             },
-            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -2320,8 +2114,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -2330,7 +2122,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -2352,7 +2143,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -2370,23 +2160,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -2412,7 +2193,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -2423,17 +2203,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -2548,7 +2323,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -2557,8 +2331,6 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
@@ -2615,8 +2387,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -2625,7 +2395,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -2647,7 +2416,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -2665,23 +2433,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -2707,7 +2466,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -2715,20 +2473,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -2843,7 +2592,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -2852,7 +2600,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -2886,8 +2633,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -2896,7 +2641,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -2918,7 +2662,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -2936,23 +2679,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -2978,7 +2712,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -2989,17 +2722,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -3114,7 +2842,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -3123,14 +2850,11 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
                 ViewState = "viewState",
             },
-            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -3164,8 +2888,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -3174,7 +2896,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -3196,7 +2917,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -3214,23 +2934,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -3256,7 +2967,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -3267,17 +2977,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -3392,7 +3097,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -3401,8 +3105,6 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
@@ -3452,8 +3154,6 @@ public class SearchTweetTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -3462,7 +3162,6 @@ public class SearchTweetTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -3484,7 +3183,6 @@ public class SearchTweetTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -3502,23 +3200,14 @@ public class SearchTweetTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
-        bool expectedBookmarked = true;
         SearchTweetCard expectedCard = new()
         {
             ID = "id",
@@ -3542,12 +3231,7 @@ public class SearchTweetTest : TestBase
         ContentDisclosure expectedContentDisclosure = new()
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
         string expectedConversationID = "1234567890";
         string expectedCreatedAt = "2025-01-15T12:00:00Z";
@@ -3555,17 +3239,12 @@ public class SearchTweetTest : TestBase
         SearchTweetEdit expectedEdit = new()
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
         Dictionary<string, JsonElement> expectedEntities = new()
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        bool expectedFavorited = true;
-        bool expectedGrokAnalysisButton = true;
-        bool expectedGrokImageEditable = true;
         string expectedInReplyToID = "1234567890";
         string expectedInReplyToUserID = "9876543210";
         string expectedInReplyToUsername = "example_user";
@@ -3677,7 +3356,6 @@ public class SearchTweetTest : TestBase
             Url = "url",
         };
         bool expectedPossiblySensitive = true;
-        bool expectedPossiblySensitiveEditable = true;
         SearchTweetPreviousCounts expectedPreviousCounts = new()
         {
             BookmarkCount = 0,
@@ -3686,7 +3364,6 @@ public class SearchTweetTest : TestBase
             ReplyCount = 0,
             RetweetCount = 0,
         };
-        string expectedQuickPromoteEligibility = "quickPromoteEligibility";
         EmbeddedTweet expectedQuotedTweet = new()
         {
             ID = "id",
@@ -3720,8 +3397,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -3730,7 +3405,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -3752,7 +3426,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -3770,23 +3443,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -3812,7 +3476,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -3820,20 +3483,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "conversationId",
             CreatedAt = "createdAt",
             DisplayTextRange = [0],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "inReplyToId",
             InReplyToUserID = "inReplyToUserId",
             InReplyToUsername = "inReplyToUsername",
@@ -3948,7 +3602,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -3957,14 +3610,11 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
-            Retweeted = true,
             Source = "source",
             Type = "type",
             Url = "url",
             ViewState = "viewState",
         };
-        bool expectedRetweeted = true;
         EmbeddedTweet expectedRetweetedTweet = new()
         {
             ID = "id",
@@ -3998,8 +3648,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -4008,7 +3656,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -4030,7 +3677,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -4048,23 +3694,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -4090,7 +3727,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -4098,20 +3734,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "conversationId",
             CreatedAt = "createdAt",
             DisplayTextRange = [0],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "inReplyToId",
             InReplyToUserID = "inReplyToUserId",
             InReplyToUsername = "inReplyToUsername",
@@ -4226,7 +3853,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -4235,8 +3861,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
-            Retweeted = true,
             Source = "source",
             Type = "type",
             Url = "url",
@@ -4257,7 +3881,6 @@ public class SearchTweetTest : TestBase
         Assert.Equal(expectedViewCount, deserialized.ViewCount);
         Assert.Equal(expectedArticle, deserialized.Article);
         Assert.Equal(expectedAuthor, deserialized.Author);
-        Assert.Equal(expectedBookmarked, deserialized.Bookmarked);
         Assert.Equal(expectedCard, deserialized.Card);
         Assert.Equal(expectedCommunityNote, deserialized.CommunityNote);
         Assert.Equal(expectedContentDisclosure, deserialized.ContentDisclosure);
@@ -4278,9 +3901,6 @@ public class SearchTweetTest : TestBase
 
             Assert.True(JsonElement.DeepEquals(value, deserialized.Entities[item.Key]));
         }
-        Assert.Equal(expectedFavorited, deserialized.Favorited);
-        Assert.Equal(expectedGrokAnalysisButton, deserialized.GrokAnalysisButton);
-        Assert.Equal(expectedGrokImageEditable, deserialized.GrokImageEditable);
         Assert.Equal(expectedInReplyToID, deserialized.InReplyToID);
         Assert.Equal(expectedInReplyToUserID, deserialized.InReplyToUserID);
         Assert.Equal(expectedInReplyToUsername, deserialized.InReplyToUsername);
@@ -4299,11 +3919,8 @@ public class SearchTweetTest : TestBase
         Assert.Equal(expectedNoteTweet, deserialized.NoteTweet);
         Assert.Equal(expectedPlace, deserialized.Place);
         Assert.Equal(expectedPossiblySensitive, deserialized.PossiblySensitive);
-        Assert.Equal(expectedPossiblySensitiveEditable, deserialized.PossiblySensitiveEditable);
         Assert.Equal(expectedPreviousCounts, deserialized.PreviousCounts);
-        Assert.Equal(expectedQuickPromoteEligibility, deserialized.QuickPromoteEligibility);
         Assert.Equal(expectedQuotedTweet, deserialized.QuotedTweet);
-        Assert.Equal(expectedRetweeted, deserialized.Retweeted);
         Assert.Equal(expectedRetweetedTweet, deserialized.RetweetedTweet);
         Assert.Equal(expectedSource, deserialized.Source);
         Assert.Equal(expectedType, deserialized.Type);
@@ -4347,8 +3964,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -4357,7 +3972,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -4379,7 +3993,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -4397,23 +4010,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -4439,7 +4043,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -4447,20 +4050,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -4575,7 +4169,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -4584,7 +4177,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -4618,8 +4210,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -4628,7 +4218,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -4650,7 +4239,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -4668,23 +4256,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -4710,7 +4289,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -4721,17 +4299,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -4846,7 +4419,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -4855,14 +4427,11 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
                 ViewState = "viewState",
             },
-            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -4896,8 +4465,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -4906,7 +4473,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -4928,7 +4494,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -4946,23 +4511,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -4988,7 +4544,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -4999,17 +4554,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -5124,7 +4674,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -5133,8 +4682,6 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
@@ -5168,8 +4715,6 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("article"));
         Assert.Null(model.Author);
         Assert.False(model.RawData.ContainsKey("author"));
-        Assert.Null(model.Bookmarked);
-        Assert.False(model.RawData.ContainsKey("bookmarked"));
         Assert.Null(model.Card);
         Assert.False(model.RawData.ContainsKey("card"));
         Assert.Null(model.CommunityNote);
@@ -5186,12 +4731,6 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("edit"));
         Assert.Null(model.Entities);
         Assert.False(model.RawData.ContainsKey("entities"));
-        Assert.Null(model.Favorited);
-        Assert.False(model.RawData.ContainsKey("favorited"));
-        Assert.Null(model.GrokAnalysisButton);
-        Assert.False(model.RawData.ContainsKey("grokAnalysisButton"));
-        Assert.Null(model.GrokImageEditable);
-        Assert.False(model.RawData.ContainsKey("grokImageEditable"));
         Assert.Null(model.InReplyToID);
         Assert.False(model.RawData.ContainsKey("inReplyToId"));
         Assert.Null(model.InReplyToUserID);
@@ -5218,16 +4757,10 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("place"));
         Assert.Null(model.PossiblySensitive);
         Assert.False(model.RawData.ContainsKey("possiblySensitive"));
-        Assert.Null(model.PossiblySensitiveEditable);
-        Assert.False(model.RawData.ContainsKey("possiblySensitiveEditable"));
         Assert.Null(model.PreviousCounts);
         Assert.False(model.RawData.ContainsKey("previousCounts"));
-        Assert.Null(model.QuickPromoteEligibility);
-        Assert.False(model.RawData.ContainsKey("quickPromoteEligibility"));
         Assert.Null(model.QuotedTweet);
         Assert.False(model.RawData.ContainsKey("quoted_tweet"));
-        Assert.Null(model.Retweeted);
-        Assert.False(model.RawData.ContainsKey("retweeted"));
         Assert.Null(model.RetweetedTweet);
         Assert.False(model.RawData.ContainsKey("retweeted_tweet"));
         Assert.Null(model.Source);
@@ -5275,7 +4808,6 @@ public class SearchTweetTest : TestBase
             // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
-            Bookmarked = null,
             Card = null,
             CommunityNote = null,
             ContentDisclosure = null,
@@ -5284,9 +4816,6 @@ public class SearchTweetTest : TestBase
             DisplayTextRange = null,
             Edit = null,
             Entities = null,
-            Favorited = null,
-            GrokAnalysisButton = null,
-            GrokImageEditable = null,
             InReplyToID = null,
             InReplyToUserID = null,
             InReplyToUsername = null,
@@ -5300,11 +4829,8 @@ public class SearchTweetTest : TestBase
             NoteTweet = null,
             Place = null,
             PossiblySensitive = null,
-            PossiblySensitiveEditable = null,
             PreviousCounts = null,
-            QuickPromoteEligibility = null,
             QuotedTweet = null,
-            Retweeted = null,
             RetweetedTweet = null,
             Source = null,
             Type = null,
@@ -5316,8 +4842,6 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("article"));
         Assert.Null(model.Author);
         Assert.False(model.RawData.ContainsKey("author"));
-        Assert.Null(model.Bookmarked);
-        Assert.False(model.RawData.ContainsKey("bookmarked"));
         Assert.Null(model.Card);
         Assert.False(model.RawData.ContainsKey("card"));
         Assert.Null(model.CommunityNote);
@@ -5334,12 +4858,6 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("edit"));
         Assert.Null(model.Entities);
         Assert.False(model.RawData.ContainsKey("entities"));
-        Assert.Null(model.Favorited);
-        Assert.False(model.RawData.ContainsKey("favorited"));
-        Assert.Null(model.GrokAnalysisButton);
-        Assert.False(model.RawData.ContainsKey("grokAnalysisButton"));
-        Assert.Null(model.GrokImageEditable);
-        Assert.False(model.RawData.ContainsKey("grokImageEditable"));
         Assert.Null(model.InReplyToID);
         Assert.False(model.RawData.ContainsKey("inReplyToId"));
         Assert.Null(model.InReplyToUserID);
@@ -5366,16 +4884,10 @@ public class SearchTweetTest : TestBase
         Assert.False(model.RawData.ContainsKey("place"));
         Assert.Null(model.PossiblySensitive);
         Assert.False(model.RawData.ContainsKey("possiblySensitive"));
-        Assert.Null(model.PossiblySensitiveEditable);
-        Assert.False(model.RawData.ContainsKey("possiblySensitiveEditable"));
         Assert.Null(model.PreviousCounts);
         Assert.False(model.RawData.ContainsKey("previousCounts"));
-        Assert.Null(model.QuickPromoteEligibility);
-        Assert.False(model.RawData.ContainsKey("quickPromoteEligibility"));
         Assert.Null(model.QuotedTweet);
         Assert.False(model.RawData.ContainsKey("quoted_tweet"));
-        Assert.Null(model.Retweeted);
-        Assert.False(model.RawData.ContainsKey("retweeted"));
         Assert.Null(model.RetweetedTweet);
         Assert.False(model.RawData.ContainsKey("retweeted_tweet"));
         Assert.Null(model.Source);
@@ -5405,7 +4917,6 @@ public class SearchTweetTest : TestBase
             // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
-            Bookmarked = null,
             Card = null,
             CommunityNote = null,
             ContentDisclosure = null,
@@ -5414,9 +4925,6 @@ public class SearchTweetTest : TestBase
             DisplayTextRange = null,
             Edit = null,
             Entities = null,
-            Favorited = null,
-            GrokAnalysisButton = null,
-            GrokImageEditable = null,
             InReplyToID = null,
             InReplyToUserID = null,
             InReplyToUsername = null,
@@ -5430,11 +4938,8 @@ public class SearchTweetTest : TestBase
             NoteTweet = null,
             Place = null,
             PossiblySensitive = null,
-            PossiblySensitiveEditable = null,
             PreviousCounts = null,
-            QuickPromoteEligibility = null,
             QuotedTweet = null,
-            Retweeted = null,
             RetweetedTweet = null,
             Source = null,
             Type = null,
@@ -5481,8 +4986,6 @@ public class SearchTweetTest : TestBase
                 },
                 AutomatedBy = "example_user",
                 BusinessAccountAffiliatesCount = 0,
-                CanDm = false,
-                CanMediaTag = true,
                 CommunityRole = "Member",
                 CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                 CreatedAt = "2009-06-02T20:12:29Z",
@@ -5491,7 +4994,6 @@ public class SearchTweetTest : TestBase
                 FavouritesCount = 18000,
                 Followers = 150000000,
                 Following = 500,
-                FollowRequestSent = true,
                 HasCustomTimelines = true,
                 HasGraduatedAccess = true,
                 HasHiddenSubscriptionsOnProfile = true,
@@ -5513,7 +5015,6 @@ public class SearchTweetTest : TestBase
                 IsVerified = true,
                 Location = "Austin, TX",
                 MediaCount = 1200,
-                NotificationsEnabled = true,
                 ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                 PinnedTweetIds = ["1234567890"],
                 PossiblySensitive = false,
@@ -5531,23 +5032,14 @@ public class SearchTweetTest : TestBase
                 ProfileTranslatorType = "profileTranslatorType",
                 Protected = false,
                 StatusesCount = 35000,
-                SuperFollowedBy = true,
                 SuperFollowEligible = true,
-                SuperFollowing = true,
                 Unavailable = false,
                 UnavailableReason = "suspended",
                 Url = "https://xquik.com",
                 Verified = true,
                 VerifiedType = "Business",
-                ViewerBlockedBy = true,
-                ViewerBlocking = true,
-                ViewerFollowedBy = false,
-                ViewerFollowing = true,
-                ViewerLiveFollowing = true,
-                ViewerMuting = true,
                 WithheldInCountries = ["DE"],
             },
-            Bookmarked = true,
             Card = new()
             {
                 ID = "id",
@@ -5573,7 +5065,6 @@ public class SearchTweetTest : TestBase
                 Advertising = new() { IsPaidPromotion = true },
                 AIGenerated = new()
                 {
-                    CanEdit = true,
                     DetectionSource = "UserDeclared",
                     HasAIGeneratedMedia = true,
                 },
@@ -5581,20 +5072,11 @@ public class SearchTweetTest : TestBase
             ConversationID = "1234567890",
             CreatedAt = "2025-01-15T12:00:00Z",
             DisplayTextRange = [0, 31],
-            Edit = new()
-            {
-                EditableUntilMsecs = "editableUntilMsecs",
-                EditsRemaining = "editsRemaining",
-                EditTweetIds = ["string"],
-                IsEditEligible = true,
-            },
+            Edit = new() { EditableUntilMsecs = "editableUntilMsecs", EditTweetIds = ["string"] },
             Entities = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
-            Favorited = true,
-            GrokAnalysisButton = true,
-            GrokImageEditable = true,
             InReplyToID = "1234567890",
             InReplyToUserID = "9876543210",
             InReplyToUsername = "example_user",
@@ -5709,7 +5191,6 @@ public class SearchTweetTest : TestBase
                 Url = "url",
             },
             PossiblySensitive = true,
-            PossiblySensitiveEditable = true,
             PreviousCounts = new()
             {
                 BookmarkCount = 0,
@@ -5718,7 +5199,6 @@ public class SearchTweetTest : TestBase
                 ReplyCount = 0,
                 RetweetCount = 0,
             },
-            QuickPromoteEligibility = "quickPromoteEligibility",
             QuotedTweet = new()
             {
                 ID = "id",
@@ -5752,8 +5232,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -5762,7 +5240,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -5784,7 +5261,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -5802,23 +5278,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -5844,7 +5311,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -5855,17 +5321,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -5980,7 +5441,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -5989,14 +5449,11 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
                 ViewState = "viewState",
             },
-            Retweeted = true,
             RetweetedTweet = new()
             {
                 ID = "id",
@@ -6030,8 +5487,6 @@ public class SearchTweetTest : TestBase
                     },
                     AutomatedBy = "example_user",
                     BusinessAccountAffiliatesCount = 0,
-                    CanDm = false,
-                    CanMediaTag = true,
                     CommunityRole = "Member",
                     CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
                     CreatedAt = "2009-06-02T20:12:29Z",
@@ -6040,7 +5495,6 @@ public class SearchTweetTest : TestBase
                     FavouritesCount = 18000,
                     Followers = 150000000,
                     Following = 500,
-                    FollowRequestSent = true,
                     HasCustomTimelines = true,
                     HasGraduatedAccess = true,
                     HasHiddenSubscriptionsOnProfile = true,
@@ -6062,7 +5516,6 @@ public class SearchTweetTest : TestBase
                     IsVerified = true,
                     Location = "Austin, TX",
                     MediaCount = 1200,
-                    NotificationsEnabled = true,
                     ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
                     PinnedTweetIds = ["1234567890"],
                     PossiblySensitive = false,
@@ -6080,23 +5533,14 @@ public class SearchTweetTest : TestBase
                     ProfileTranslatorType = "profileTranslatorType",
                     Protected = false,
                     StatusesCount = 35000,
-                    SuperFollowedBy = true,
                     SuperFollowEligible = true,
-                    SuperFollowing = true,
                     Unavailable = false,
                     UnavailableReason = "suspended",
                     Url = "https://xquik.com",
                     Verified = true,
                     VerifiedType = "Business",
-                    ViewerBlockedBy = true,
-                    ViewerBlocking = true,
-                    ViewerFollowedBy = false,
-                    ViewerFollowing = true,
-                    ViewerLiveFollowing = true,
-                    ViewerMuting = true,
                     WithheldInCountries = ["DE"],
                 },
-                Bookmarked = true,
                 Card = new()
                 {
                     ID = "id",
@@ -6122,7 +5566,6 @@ public class SearchTweetTest : TestBase
                     Advertising = new() { IsPaidPromotion = true },
                     AIGenerated = new()
                     {
-                        CanEdit = true,
                         DetectionSource = "UserDeclared",
                         HasAIGeneratedMedia = true,
                     },
@@ -6133,17 +5576,12 @@ public class SearchTweetTest : TestBase
                 Edit = new()
                 {
                     EditableUntilMsecs = "editableUntilMsecs",
-                    EditsRemaining = "editsRemaining",
                     EditTweetIds = ["string"],
-                    IsEditEligible = true,
                 },
                 Entities = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
                 },
-                Favorited = true,
-                GrokAnalysisButton = true,
-                GrokImageEditable = true,
                 InReplyToID = "inReplyToId",
                 InReplyToUserID = "inReplyToUserId",
                 InReplyToUsername = "inReplyToUsername",
@@ -6258,7 +5696,6 @@ public class SearchTweetTest : TestBase
                     Url = "url",
                 },
                 PossiblySensitive = true,
-                PossiblySensitiveEditable = true,
                 PreviousCounts = new()
                 {
                     BookmarkCount = 0,
@@ -6267,8 +5704,6 @@ public class SearchTweetTest : TestBase
                     ReplyCount = 0,
                     RetweetCount = 0,
                 },
-                QuickPromoteEligibility = "quickPromoteEligibility",
-                Retweeted = true,
                 Source = "source",
                 Type = "type",
                 Url = "url",
@@ -6866,25 +6301,19 @@ public class SearchTweetEditTest : TestBase
         var model = new SearchTweetEdit
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
 
         string expectedEditableUntilMsecs = "editableUntilMsecs";
-        string expectedEditsRemaining = "editsRemaining";
         List<string> expectedEditTweetIds = ["string"];
-        bool expectedIsEditEligible = true;
 
         Assert.Equal(expectedEditableUntilMsecs, model.EditableUntilMsecs);
-        Assert.Equal(expectedEditsRemaining, model.EditsRemaining);
         Assert.NotNull(model.EditTweetIds);
         Assert.Equal(expectedEditTweetIds.Count, model.EditTweetIds.Count);
         for (int i = 0; i < expectedEditTweetIds.Count; i++)
         {
             Assert.Equal(expectedEditTweetIds[i], model.EditTweetIds[i]);
         }
-        Assert.Equal(expectedIsEditEligible, model.IsEditEligible);
     }
 
     [Fact]
@@ -6893,9 +6322,7 @@ public class SearchTweetEditTest : TestBase
         var model = new SearchTweetEdit
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -6913,9 +6340,7 @@ public class SearchTweetEditTest : TestBase
         var model = new SearchTweetEdit
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -6926,19 +6351,15 @@ public class SearchTweetEditTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedEditableUntilMsecs = "editableUntilMsecs";
-        string expectedEditsRemaining = "editsRemaining";
         List<string> expectedEditTweetIds = ["string"];
-        bool expectedIsEditEligible = true;
 
         Assert.Equal(expectedEditableUntilMsecs, deserialized.EditableUntilMsecs);
-        Assert.Equal(expectedEditsRemaining, deserialized.EditsRemaining);
         Assert.NotNull(deserialized.EditTweetIds);
         Assert.Equal(expectedEditTweetIds.Count, deserialized.EditTweetIds.Count);
         for (int i = 0; i < expectedEditTweetIds.Count; i++)
         {
             Assert.Equal(expectedEditTweetIds[i], deserialized.EditTweetIds[i]);
         }
-        Assert.Equal(expectedIsEditEligible, deserialized.IsEditEligible);
     }
 
     [Fact]
@@ -6947,9 +6368,7 @@ public class SearchTweetEditTest : TestBase
         var model = new SearchTweetEdit
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
 
         model.Validate();
@@ -6962,12 +6381,8 @@ public class SearchTweetEditTest : TestBase
 
         Assert.Null(model.EditableUntilMsecs);
         Assert.False(model.RawData.ContainsKey("editableUntilMsecs"));
-        Assert.Null(model.EditsRemaining);
-        Assert.False(model.RawData.ContainsKey("editsRemaining"));
         Assert.Null(model.EditTweetIds);
         Assert.False(model.RawData.ContainsKey("editTweetIds"));
-        Assert.Null(model.IsEditEligible);
-        Assert.False(model.RawData.ContainsKey("isEditEligible"));
     }
 
     [Fact]
@@ -6985,19 +6400,13 @@ public class SearchTweetEditTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             EditableUntilMsecs = null,
-            EditsRemaining = null,
             EditTweetIds = null,
-            IsEditEligible = null,
         };
 
         Assert.Null(model.EditableUntilMsecs);
         Assert.False(model.RawData.ContainsKey("editableUntilMsecs"));
-        Assert.Null(model.EditsRemaining);
-        Assert.False(model.RawData.ContainsKey("editsRemaining"));
         Assert.Null(model.EditTweetIds);
         Assert.False(model.RawData.ContainsKey("editTweetIds"));
-        Assert.Null(model.IsEditEligible);
-        Assert.False(model.RawData.ContainsKey("isEditEligible"));
     }
 
     [Fact]
@@ -7007,9 +6416,7 @@ public class SearchTweetEditTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             EditableUntilMsecs = null,
-            EditsRemaining = null,
             EditTweetIds = null,
-            IsEditEligible = null,
         };
 
         model.Validate();
@@ -7021,9 +6428,7 @@ public class SearchTweetEditTest : TestBase
         var model = new SearchTweetEdit
         {
             EditableUntilMsecs = "editableUntilMsecs",
-            EditsRemaining = "editsRemaining",
             EditTweetIds = ["string"],
-            IsEditEligible = true,
         };
 
         SearchTweetEdit copied = new(model);

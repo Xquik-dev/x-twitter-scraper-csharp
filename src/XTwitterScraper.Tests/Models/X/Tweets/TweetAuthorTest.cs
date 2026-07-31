@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -30,8 +27,6 @@ public class TweetAuthorTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -40,7 +35,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -62,7 +56,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -80,20 +73,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -111,8 +96,6 @@ public class TweetAuthorTest : TestBase
         };
         string expectedAutomatedBy = "example_user";
         long expectedBusinessAccountAffiliatesCount = 0;
-        bool expectedCanDm = false;
-        bool expectedCanMediaTag = true;
         string expectedCommunityRole = "Member";
         string expectedCoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg";
         string expectedCreatedAt = "2009-06-02T20:12:29Z";
@@ -121,7 +104,6 @@ public class TweetAuthorTest : TestBase
         long expectedFavouritesCount = 18000;
         long expectedFollowers = 150000000;
         long expectedFollowing = 500;
-        bool expectedFollowRequestSent = true;
         bool expectedHasCustomTimelines = true;
         bool expectedHasGraduatedAccess = true;
         bool expectedHasHiddenSubscriptionsOnProfile = true;
@@ -143,7 +125,6 @@ public class TweetAuthorTest : TestBase
         bool expectedIsVerified = true;
         string expectedLocation = "Austin, TX";
         long expectedMediaCount = 1200;
-        bool expectedNotificationsEnabled = true;
         string expectedParodyCommentaryFanLabel = "parodyCommentaryFanLabel";
         List<string> expectedPinnedTweetIds = ["1234567890"];
         bool expectedPossiblySensitive = false;
@@ -161,20 +142,12 @@ public class TweetAuthorTest : TestBase
         string expectedProfileTranslatorType = "profileTranslatorType";
         bool expectedProtected = false;
         long expectedStatusesCount = 35000;
-        bool expectedSuperFollowedBy = true;
         bool expectedSuperFollowEligible = true;
-        bool expectedSuperFollowing = true;
         bool expectedUnavailable = false;
         string expectedUnavailableReason = "suspended";
         string expectedUrl = "https://xquik.com";
         bool expectedVerified = true;
         string expectedVerifiedType = "Business";
-        bool expectedViewerBlockedBy = true;
-        bool expectedViewerBlocking = true;
-        bool expectedViewerFollowedBy = false;
-        bool expectedViewerFollowing = true;
-        bool expectedViewerLiveFollowing = true;
-        bool expectedViewerMuting = true;
         List<string> expectedWithheldInCountries = ["DE"];
 
         Assert.Equal(expectedID, model.ID);
@@ -183,8 +156,6 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedAffiliatesHighlightedLabel, model.AffiliatesHighlightedLabel);
         Assert.Equal(expectedAutomatedBy, model.AutomatedBy);
         Assert.Equal(expectedBusinessAccountAffiliatesCount, model.BusinessAccountAffiliatesCount);
-        Assert.Equal(expectedCanDm, model.CanDm);
-        Assert.Equal(expectedCanMediaTag, model.CanMediaTag);
         Assert.Equal(expectedCommunityRole, model.CommunityRole);
         Assert.Equal(expectedCoverPicture, model.CoverPicture);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -193,7 +164,6 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedFavouritesCount, model.FavouritesCount);
         Assert.Equal(expectedFollowers, model.Followers);
         Assert.Equal(expectedFollowing, model.Following);
-        Assert.Equal(expectedFollowRequestSent, model.FollowRequestSent);
         Assert.Equal(expectedHasCustomTimelines, model.HasCustomTimelines);
         Assert.Equal(expectedHasGraduatedAccess, model.HasGraduatedAccess);
         Assert.Equal(
@@ -209,7 +179,6 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedIsVerified, model.IsVerified);
         Assert.Equal(expectedLocation, model.Location);
         Assert.Equal(expectedMediaCount, model.MediaCount);
-        Assert.Equal(expectedNotificationsEnabled, model.NotificationsEnabled);
         Assert.Equal(expectedParodyCommentaryFanLabel, model.ParodyCommentaryFanLabel);
         Assert.NotNull(model.PinnedTweetIds);
         Assert.Equal(expectedPinnedTweetIds.Count, model.PinnedTweetIds.Count);
@@ -235,20 +204,12 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedProfileTranslatorType, model.ProfileTranslatorType);
         Assert.Equal(expectedProtected, model.Protected);
         Assert.Equal(expectedStatusesCount, model.StatusesCount);
-        Assert.Equal(expectedSuperFollowedBy, model.SuperFollowedBy);
         Assert.Equal(expectedSuperFollowEligible, model.SuperFollowEligible);
-        Assert.Equal(expectedSuperFollowing, model.SuperFollowing);
         Assert.Equal(expectedUnavailable, model.Unavailable);
         Assert.Equal(expectedUnavailableReason, model.UnavailableReason);
         Assert.Equal(expectedUrl, model.Url);
         Assert.Equal(expectedVerified, model.Verified);
         Assert.Equal(expectedVerifiedType, model.VerifiedType);
-        Assert.Equal(expectedViewerBlockedBy, model.ViewerBlockedBy);
-        Assert.Equal(expectedViewerBlocking, model.ViewerBlocking);
-        Assert.Equal(expectedViewerFollowedBy, model.ViewerFollowedBy);
-        Assert.Equal(expectedViewerFollowing, model.ViewerFollowing);
-        Assert.Equal(expectedViewerLiveFollowing, model.ViewerLiveFollowing);
-        Assert.Equal(expectedViewerMuting, model.ViewerMuting);
         Assert.NotNull(model.WithheldInCountries);
         Assert.Equal(expectedWithheldInCountries.Count, model.WithheldInCountries.Count);
         for (int i = 0; i < expectedWithheldInCountries.Count; i++)
@@ -276,8 +237,6 @@ public class TweetAuthorTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -286,7 +245,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -308,7 +266,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -326,20 +283,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -371,8 +320,6 @@ public class TweetAuthorTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -381,7 +328,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -403,7 +349,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -421,20 +366,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -459,8 +396,6 @@ public class TweetAuthorTest : TestBase
         };
         string expectedAutomatedBy = "example_user";
         long expectedBusinessAccountAffiliatesCount = 0;
-        bool expectedCanDm = false;
-        bool expectedCanMediaTag = true;
         string expectedCommunityRole = "Member";
         string expectedCoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg";
         string expectedCreatedAt = "2009-06-02T20:12:29Z";
@@ -469,7 +404,6 @@ public class TweetAuthorTest : TestBase
         long expectedFavouritesCount = 18000;
         long expectedFollowers = 150000000;
         long expectedFollowing = 500;
-        bool expectedFollowRequestSent = true;
         bool expectedHasCustomTimelines = true;
         bool expectedHasGraduatedAccess = true;
         bool expectedHasHiddenSubscriptionsOnProfile = true;
@@ -491,7 +425,6 @@ public class TweetAuthorTest : TestBase
         bool expectedIsVerified = true;
         string expectedLocation = "Austin, TX";
         long expectedMediaCount = 1200;
-        bool expectedNotificationsEnabled = true;
         string expectedParodyCommentaryFanLabel = "parodyCommentaryFanLabel";
         List<string> expectedPinnedTweetIds = ["1234567890"];
         bool expectedPossiblySensitive = false;
@@ -509,20 +442,12 @@ public class TweetAuthorTest : TestBase
         string expectedProfileTranslatorType = "profileTranslatorType";
         bool expectedProtected = false;
         long expectedStatusesCount = 35000;
-        bool expectedSuperFollowedBy = true;
         bool expectedSuperFollowEligible = true;
-        bool expectedSuperFollowing = true;
         bool expectedUnavailable = false;
         string expectedUnavailableReason = "suspended";
         string expectedUrl = "https://xquik.com";
         bool expectedVerified = true;
         string expectedVerifiedType = "Business";
-        bool expectedViewerBlockedBy = true;
-        bool expectedViewerBlocking = true;
-        bool expectedViewerFollowedBy = false;
-        bool expectedViewerFollowing = true;
-        bool expectedViewerLiveFollowing = true;
-        bool expectedViewerMuting = true;
         List<string> expectedWithheldInCountries = ["DE"];
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -534,8 +459,6 @@ public class TweetAuthorTest : TestBase
             expectedBusinessAccountAffiliatesCount,
             deserialized.BusinessAccountAffiliatesCount
         );
-        Assert.Equal(expectedCanDm, deserialized.CanDm);
-        Assert.Equal(expectedCanMediaTag, deserialized.CanMediaTag);
         Assert.Equal(expectedCommunityRole, deserialized.CommunityRole);
         Assert.Equal(expectedCoverPicture, deserialized.CoverPicture);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -544,7 +467,6 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedFavouritesCount, deserialized.FavouritesCount);
         Assert.Equal(expectedFollowers, deserialized.Followers);
         Assert.Equal(expectedFollowing, deserialized.Following);
-        Assert.Equal(expectedFollowRequestSent, deserialized.FollowRequestSent);
         Assert.Equal(expectedHasCustomTimelines, deserialized.HasCustomTimelines);
         Assert.Equal(expectedHasGraduatedAccess, deserialized.HasGraduatedAccess);
         Assert.Equal(
@@ -560,7 +482,6 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedIsVerified, deserialized.IsVerified);
         Assert.Equal(expectedLocation, deserialized.Location);
         Assert.Equal(expectedMediaCount, deserialized.MediaCount);
-        Assert.Equal(expectedNotificationsEnabled, deserialized.NotificationsEnabled);
         Assert.Equal(expectedParodyCommentaryFanLabel, deserialized.ParodyCommentaryFanLabel);
         Assert.NotNull(deserialized.PinnedTweetIds);
         Assert.Equal(expectedPinnedTweetIds.Count, deserialized.PinnedTweetIds.Count);
@@ -586,20 +507,12 @@ public class TweetAuthorTest : TestBase
         Assert.Equal(expectedProfileTranslatorType, deserialized.ProfileTranslatorType);
         Assert.Equal(expectedProtected, deserialized.Protected);
         Assert.Equal(expectedStatusesCount, deserialized.StatusesCount);
-        Assert.Equal(expectedSuperFollowedBy, deserialized.SuperFollowedBy);
         Assert.Equal(expectedSuperFollowEligible, deserialized.SuperFollowEligible);
-        Assert.Equal(expectedSuperFollowing, deserialized.SuperFollowing);
         Assert.Equal(expectedUnavailable, deserialized.Unavailable);
         Assert.Equal(expectedUnavailableReason, deserialized.UnavailableReason);
         Assert.Equal(expectedUrl, deserialized.Url);
         Assert.Equal(expectedVerified, deserialized.Verified);
         Assert.Equal(expectedVerifiedType, deserialized.VerifiedType);
-        Assert.Equal(expectedViewerBlockedBy, deserialized.ViewerBlockedBy);
-        Assert.Equal(expectedViewerBlocking, deserialized.ViewerBlocking);
-        Assert.Equal(expectedViewerFollowedBy, deserialized.ViewerFollowedBy);
-        Assert.Equal(expectedViewerFollowing, deserialized.ViewerFollowing);
-        Assert.Equal(expectedViewerLiveFollowing, deserialized.ViewerLiveFollowing);
-        Assert.Equal(expectedViewerMuting, deserialized.ViewerMuting);
         Assert.NotNull(deserialized.WithheldInCountries);
         Assert.Equal(expectedWithheldInCountries.Count, deserialized.WithheldInCountries.Count);
         for (int i = 0; i < expectedWithheldInCountries.Count; i++)
@@ -627,8 +540,6 @@ public class TweetAuthorTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -637,7 +548,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -659,7 +569,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -677,20 +586,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 
@@ -713,10 +614,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("automatedBy"));
         Assert.Null(model.BusinessAccountAffiliatesCount);
         Assert.False(model.RawData.ContainsKey("businessAccountAffiliatesCount"));
-        Assert.Null(model.CanDm);
-        Assert.False(model.RawData.ContainsKey("canDm"));
-        Assert.Null(model.CanMediaTag);
-        Assert.False(model.RawData.ContainsKey("canMediaTag"));
         Assert.Null(model.CommunityRole);
         Assert.False(model.RawData.ContainsKey("communityRole"));
         Assert.Null(model.CoverPicture);
@@ -733,8 +630,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("followers"));
         Assert.Null(model.Following);
         Assert.False(model.RawData.ContainsKey("following"));
-        Assert.Null(model.FollowRequestSent);
-        Assert.False(model.RawData.ContainsKey("followRequestSent"));
         Assert.Null(model.HasCustomTimelines);
         Assert.False(model.RawData.ContainsKey("hasCustomTimelines"));
         Assert.Null(model.HasGraduatedAccess);
@@ -759,8 +654,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("location"));
         Assert.Null(model.MediaCount);
         Assert.False(model.RawData.ContainsKey("mediaCount"));
-        Assert.Null(model.NotificationsEnabled);
-        Assert.False(model.RawData.ContainsKey("notificationsEnabled"));
         Assert.Null(model.ParodyCommentaryFanLabel);
         Assert.False(model.RawData.ContainsKey("parodyCommentaryFanLabel"));
         Assert.Null(model.PinnedTweetIds);
@@ -787,12 +680,8 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("protected"));
         Assert.Null(model.StatusesCount);
         Assert.False(model.RawData.ContainsKey("statusesCount"));
-        Assert.Null(model.SuperFollowedBy);
-        Assert.False(model.RawData.ContainsKey("superFollowedBy"));
         Assert.Null(model.SuperFollowEligible);
         Assert.False(model.RawData.ContainsKey("superFollowEligible"));
-        Assert.Null(model.SuperFollowing);
-        Assert.False(model.RawData.ContainsKey("superFollowing"));
         Assert.Null(model.Unavailable);
         Assert.False(model.RawData.ContainsKey("unavailable"));
         Assert.Null(model.UnavailableReason);
@@ -803,18 +692,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("verified"));
         Assert.Null(model.VerifiedType);
         Assert.False(model.RawData.ContainsKey("verifiedType"));
-        Assert.Null(model.ViewerBlockedBy);
-        Assert.False(model.RawData.ContainsKey("viewerBlockedBy"));
-        Assert.Null(model.ViewerBlocking);
-        Assert.False(model.RawData.ContainsKey("viewerBlocking"));
-        Assert.Null(model.ViewerFollowedBy);
-        Assert.False(model.RawData.ContainsKey("viewerFollowedBy"));
-        Assert.Null(model.ViewerFollowing);
-        Assert.False(model.RawData.ContainsKey("viewerFollowing"));
-        Assert.Null(model.ViewerLiveFollowing);
-        Assert.False(model.RawData.ContainsKey("viewerLiveFollowing"));
-        Assert.Null(model.ViewerMuting);
-        Assert.False(model.RawData.ContainsKey("viewerMuting"));
         Assert.Null(model.WithheldInCountries);
         Assert.False(model.RawData.ContainsKey("withheldInCountries"));
     }
@@ -845,8 +722,6 @@ public class TweetAuthorTest : TestBase
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,
-            CanDm = null,
-            CanMediaTag = null,
             CommunityRole = null,
             CoverPicture = null,
             CreatedAt = null,
@@ -855,7 +730,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = null,
             Followers = null,
             Following = null,
-            FollowRequestSent = null,
             HasCustomTimelines = null,
             HasGraduatedAccess = null,
             HasHiddenSubscriptionsOnProfile = null,
@@ -868,7 +742,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = null,
             Location = null,
             MediaCount = null,
-            NotificationsEnabled = null,
             ParodyCommentaryFanLabel = null,
             PinnedTweetIds = null,
             PossiblySensitive = null,
@@ -882,20 +755,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = null,
             Protected = null,
             StatusesCount = null,
-            SuperFollowedBy = null,
             SuperFollowEligible = null,
-            SuperFollowing = null,
             Unavailable = null,
             UnavailableReason = null,
             Url = null,
             Verified = null,
             VerifiedType = null,
-            ViewerBlockedBy = null,
-            ViewerBlocking = null,
-            ViewerFollowedBy = null,
-            ViewerFollowing = null,
-            ViewerLiveFollowing = null,
-            ViewerMuting = null,
             WithheldInCountries = null,
         };
 
@@ -905,10 +770,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("automatedBy"));
         Assert.Null(model.BusinessAccountAffiliatesCount);
         Assert.False(model.RawData.ContainsKey("businessAccountAffiliatesCount"));
-        Assert.Null(model.CanDm);
-        Assert.False(model.RawData.ContainsKey("canDm"));
-        Assert.Null(model.CanMediaTag);
-        Assert.False(model.RawData.ContainsKey("canMediaTag"));
         Assert.Null(model.CommunityRole);
         Assert.False(model.RawData.ContainsKey("communityRole"));
         Assert.Null(model.CoverPicture);
@@ -925,8 +786,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("followers"));
         Assert.Null(model.Following);
         Assert.False(model.RawData.ContainsKey("following"));
-        Assert.Null(model.FollowRequestSent);
-        Assert.False(model.RawData.ContainsKey("followRequestSent"));
         Assert.Null(model.HasCustomTimelines);
         Assert.False(model.RawData.ContainsKey("hasCustomTimelines"));
         Assert.Null(model.HasGraduatedAccess);
@@ -951,8 +810,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("location"));
         Assert.Null(model.MediaCount);
         Assert.False(model.RawData.ContainsKey("mediaCount"));
-        Assert.Null(model.NotificationsEnabled);
-        Assert.False(model.RawData.ContainsKey("notificationsEnabled"));
         Assert.Null(model.ParodyCommentaryFanLabel);
         Assert.False(model.RawData.ContainsKey("parodyCommentaryFanLabel"));
         Assert.Null(model.PinnedTweetIds);
@@ -979,12 +836,8 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("protected"));
         Assert.Null(model.StatusesCount);
         Assert.False(model.RawData.ContainsKey("statusesCount"));
-        Assert.Null(model.SuperFollowedBy);
-        Assert.False(model.RawData.ContainsKey("superFollowedBy"));
         Assert.Null(model.SuperFollowEligible);
         Assert.False(model.RawData.ContainsKey("superFollowEligible"));
-        Assert.Null(model.SuperFollowing);
-        Assert.False(model.RawData.ContainsKey("superFollowing"));
         Assert.Null(model.Unavailable);
         Assert.False(model.RawData.ContainsKey("unavailable"));
         Assert.Null(model.UnavailableReason);
@@ -995,18 +848,6 @@ public class TweetAuthorTest : TestBase
         Assert.False(model.RawData.ContainsKey("verified"));
         Assert.Null(model.VerifiedType);
         Assert.False(model.RawData.ContainsKey("verifiedType"));
-        Assert.Null(model.ViewerBlockedBy);
-        Assert.False(model.RawData.ContainsKey("viewerBlockedBy"));
-        Assert.Null(model.ViewerBlocking);
-        Assert.False(model.RawData.ContainsKey("viewerBlocking"));
-        Assert.Null(model.ViewerFollowedBy);
-        Assert.False(model.RawData.ContainsKey("viewerFollowedBy"));
-        Assert.Null(model.ViewerFollowing);
-        Assert.False(model.RawData.ContainsKey("viewerFollowing"));
-        Assert.Null(model.ViewerLiveFollowing);
-        Assert.False(model.RawData.ContainsKey("viewerLiveFollowing"));
-        Assert.Null(model.ViewerMuting);
-        Assert.False(model.RawData.ContainsKey("viewerMuting"));
         Assert.Null(model.WithheldInCountries);
         Assert.False(model.RawData.ContainsKey("withheldInCountries"));
     }
@@ -1024,8 +865,6 @@ public class TweetAuthorTest : TestBase
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,
-            CanDm = null,
-            CanMediaTag = null,
             CommunityRole = null,
             CoverPicture = null,
             CreatedAt = null,
@@ -1034,7 +873,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = null,
             Followers = null,
             Following = null,
-            FollowRequestSent = null,
             HasCustomTimelines = null,
             HasGraduatedAccess = null,
             HasHiddenSubscriptionsOnProfile = null,
@@ -1047,7 +885,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = null,
             Location = null,
             MediaCount = null,
-            NotificationsEnabled = null,
             ParodyCommentaryFanLabel = null,
             PinnedTweetIds = null,
             PossiblySensitive = null,
@@ -1061,20 +898,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = null,
             Protected = null,
             StatusesCount = null,
-            SuperFollowedBy = null,
             SuperFollowEligible = null,
-            SuperFollowing = null,
             Unavailable = null,
             UnavailableReason = null,
             Url = null,
             Verified = null,
             VerifiedType = null,
-            ViewerBlockedBy = null,
-            ViewerBlocking = null,
-            ViewerFollowedBy = null,
-            ViewerFollowing = null,
-            ViewerLiveFollowing = null,
-            ViewerMuting = null,
             WithheldInCountries = null,
         };
 
@@ -1100,8 +929,6 @@ public class TweetAuthorTest : TestBase
             },
             AutomatedBy = "example_user",
             BusinessAccountAffiliatesCount = 0,
-            CanDm = false,
-            CanMediaTag = true,
             CommunityRole = "Member",
             CoverPicture = "https://pbs.twimg.com/profile_banners/example.jpg",
             CreatedAt = "2009-06-02T20:12:29Z",
@@ -1110,7 +937,6 @@ public class TweetAuthorTest : TestBase
             FavouritesCount = 18000,
             Followers = 150000000,
             Following = 500,
-            FollowRequestSent = true,
             HasCustomTimelines = true,
             HasGraduatedAccess = true,
             HasHiddenSubscriptionsOnProfile = true,
@@ -1132,7 +958,6 @@ public class TweetAuthorTest : TestBase
             IsVerified = true,
             Location = "Austin, TX",
             MediaCount = 1200,
-            NotificationsEnabled = true,
             ParodyCommentaryFanLabel = "parodyCommentaryFanLabel",
             PinnedTweetIds = ["1234567890"],
             PossiblySensitive = false,
@@ -1150,20 +975,12 @@ public class TweetAuthorTest : TestBase
             ProfileTranslatorType = "profileTranslatorType",
             Protected = false,
             StatusesCount = 35000,
-            SuperFollowedBy = true,
             SuperFollowEligible = true,
-            SuperFollowing = true,
             Unavailable = false,
             UnavailableReason = "suspended",
             Url = "https://xquik.com",
             Verified = true,
             VerifiedType = "Business",
-            ViewerBlockedBy = true,
-            ViewerBlocking = true,
-            ViewerFollowedBy = false,
-            ViewerFollowing = true,
-            ViewerLiveFollowing = true,
-            ViewerMuting = true,
             WithheldInCountries = ["DE"],
         };
 

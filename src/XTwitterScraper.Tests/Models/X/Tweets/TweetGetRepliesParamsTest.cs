@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -28,12 +24,14 @@ public class TweetGetRepliesParamsTest : TestBase
             Hashtags = "hashtags",
             InReplyToTweetID = "inReplyToTweetId",
             Language = "language",
+            Limit = 1,
             MediaType = TweetGetRepliesParamsMediaType.Images,
             Mentioning = "mentioning",
             MinFaves = 0,
             MinQuotes = 0,
             MinReplies = 0,
             MinRetweets = 0,
+            Mode = Mode.Complete,
             PageSize = 1,
             Quotes = TweetGetRepliesParamsQuotes.Include,
             QuotesOfTweetID = "quotesOfTweetId",
@@ -60,6 +58,7 @@ public class TweetGetRepliesParamsTest : TestBase
         string expectedHashtags = "hashtags";
         string expectedInReplyToTweetID = "inReplyToTweetId";
         string expectedLanguage = "language";
+        long expectedLimit = 1;
         ApiEnum<string, TweetGetRepliesParamsMediaType> expectedMediaType =
             TweetGetRepliesParamsMediaType.Images;
         string expectedMentioning = "mentioning";
@@ -67,6 +66,7 @@ public class TweetGetRepliesParamsTest : TestBase
         long expectedMinQuotes = 0;
         long expectedMinReplies = 0;
         long expectedMinRetweets = 0;
+        ApiEnum<string, Mode> expectedMode = Mode.Complete;
         long expectedPageSize = 1;
         ApiEnum<string, TweetGetRepliesParamsQuotes> expectedQuotes =
             TweetGetRepliesParamsQuotes.Include;
@@ -95,12 +95,14 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.Equal(expectedHashtags, parameters.Hashtags);
         Assert.Equal(expectedInReplyToTweetID, parameters.InReplyToTweetID);
         Assert.Equal(expectedLanguage, parameters.Language);
+        Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedMediaType, parameters.MediaType);
         Assert.Equal(expectedMentioning, parameters.Mentioning);
         Assert.Equal(expectedMinFaves, parameters.MinFaves);
         Assert.Equal(expectedMinQuotes, parameters.MinQuotes);
         Assert.Equal(expectedMinReplies, parameters.MinReplies);
         Assert.Equal(expectedMinRetweets, parameters.MinRetweets);
+        Assert.Equal(expectedMode, parameters.Mode);
         Assert.Equal(expectedPageSize, parameters.PageSize);
         Assert.Equal(expectedQuotes, parameters.Quotes);
         Assert.Equal(expectedQuotesOfTweetID, parameters.QuotesOfTweetID);
@@ -141,6 +143,8 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("inReplyToTweetId"));
         Assert.Null(parameters.Language);
         Assert.False(parameters.RawQueryData.ContainsKey("language"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.MediaType);
         Assert.False(parameters.RawQueryData.ContainsKey("mediaType"));
         Assert.Null(parameters.Mentioning);
@@ -153,6 +157,8 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("minReplies"));
         Assert.Null(parameters.MinRetweets);
         Assert.False(parameters.RawQueryData.ContainsKey("minRetweets"));
+        Assert.Null(parameters.Mode);
+        Assert.False(parameters.RawQueryData.ContainsKey("mode"));
         Assert.Null(parameters.PageSize);
         Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
         Assert.Null(parameters.Quotes);
@@ -199,12 +205,14 @@ public class TweetGetRepliesParamsTest : TestBase
             Hashtags = null,
             InReplyToTweetID = null,
             Language = null,
+            Limit = null,
             MediaType = null,
             Mentioning = null,
             MinFaves = null,
             MinQuotes = null,
             MinReplies = null,
             MinRetweets = null,
+            Mode = null,
             PageSize = null,
             Quotes = null,
             QuotesOfTweetID = null,
@@ -240,6 +248,8 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("inReplyToTweetId"));
         Assert.Null(parameters.Language);
         Assert.False(parameters.RawQueryData.ContainsKey("language"));
+        Assert.Null(parameters.Limit);
+        Assert.False(parameters.RawQueryData.ContainsKey("limit"));
         Assert.Null(parameters.MediaType);
         Assert.False(parameters.RawQueryData.ContainsKey("mediaType"));
         Assert.Null(parameters.Mentioning);
@@ -252,6 +262,8 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.False(parameters.RawQueryData.ContainsKey("minReplies"));
         Assert.Null(parameters.MinRetweets);
         Assert.False(parameters.RawQueryData.ContainsKey("minRetweets"));
+        Assert.Null(parameters.Mode);
+        Assert.False(parameters.RawQueryData.ContainsKey("mode"));
         Assert.Null(parameters.PageSize);
         Assert.False(parameters.RawQueryData.ContainsKey("pageSize"));
         Assert.Null(parameters.Quotes);
@@ -296,12 +308,14 @@ public class TweetGetRepliesParamsTest : TestBase
             Hashtags = "hashtags",
             InReplyToTweetID = "inReplyToTweetId",
             Language = "language",
+            Limit = 1,
             MediaType = TweetGetRepliesParamsMediaType.Images,
             Mentioning = "mentioning",
             MinFaves = 0,
             MinQuotes = 0,
             MinReplies = 0,
             MinRetweets = 0,
+            Mode = Mode.Complete,
             PageSize = 1,
             Quotes = TweetGetRepliesParamsQuotes.Include,
             QuotesOfTweetID = "quotesOfTweetId",
@@ -322,7 +336,7 @@ public class TweetGetRepliesParamsTest : TestBase
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/x/tweets/id/replies?anyWords=anyWords&cashtags=cashtags&conversationId=conversationId&cursor=cursor&exactPhrase=exactPhrase&excludeWords=excludeWords&fromUser=fromUser&hashtags=hashtags&inReplyToTweetId=inReplyToTweetId&language=language&mediaType=images&mentioning=mentioning&minFaves=0&minQuotes=0&minReplies=0&minRetweets=0&pageSize=1&quotes=include&quotesOfTweetId=quotesOfTweetId&replies=include&retweets=include&retweetsOfTweetId=retweetsOfTweetId&sinceDate=2019-12-27&sinceTime=sinceTime&toUser=toUser&untilDate=2019-12-27&untilTime=untilTime&url=url&verifiedOnly=true"
+                    "https://xquik.com/api/v1/x/tweets/id/replies?anyWords=anyWords&cashtags=cashtags&conversationId=conversationId&cursor=cursor&exactPhrase=exactPhrase&excludeWords=excludeWords&fromUser=fromUser&hashtags=hashtags&inReplyToTweetId=inReplyToTweetId&language=language&limit=1&mediaType=images&mentioning=mentioning&minFaves=0&minQuotes=0&minReplies=0&minRetweets=0&mode=complete&pageSize=1&quotes=include&quotesOfTweetId=quotesOfTweetId&replies=include&retweets=include&retweetsOfTweetId=retweetsOfTweetId&sinceDate=2019-12-27&sinceTime=sinceTime&toUser=toUser&untilDate=2019-12-27&untilTime=untilTime&url=url&verifiedOnly=true"
                 ),
                 url
             )
@@ -345,12 +359,14 @@ public class TweetGetRepliesParamsTest : TestBase
             Hashtags = "hashtags",
             InReplyToTweetID = "inReplyToTweetId",
             Language = "language",
+            Limit = 1,
             MediaType = TweetGetRepliesParamsMediaType.Images,
             Mentioning = "mentioning",
             MinFaves = 0,
             MinQuotes = 0,
             MinReplies = 0,
             MinRetweets = 0,
+            Mode = Mode.Complete,
             PageSize = 1,
             Quotes = TweetGetRepliesParamsQuotes.Include,
             QuotesOfTweetID = "quotesOfTweetId",
@@ -431,6 +447,62 @@ public class TweetGetRepliesParamsMediaTypeTest : TestBase
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<string, TweetGetRepliesParamsMediaType>
         >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class ModeTest : TestBase
+{
+    [Theory]
+    [InlineData(Mode.Complete)]
+    public void Validation_Works(Mode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Mode> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Mode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Mode.Complete)]
+    public void SerializationRoundtrip_Works(Mode rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Mode> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Mode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Mode>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Mode>>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(value, deserialized);
     }

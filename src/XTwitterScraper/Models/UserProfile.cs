@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -104,42 +100,6 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("businessAccountAffiliatesCount", value);
-        }
-    }
-
-    public bool? CanDm
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("canDm");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("canDm", value);
-        }
-    }
-
-    public bool? CanMediaTag
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("canMediaTag");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("canMediaTag", value);
         }
     }
 
@@ -287,24 +247,6 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("following", value);
-        }
-    }
-
-    public bool? FollowRequestSent
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("followRequestSent");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("followRequestSent", value);
         }
     }
 
@@ -533,24 +475,6 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("mediaCount", value);
-        }
-    }
-
-    public bool? NotificationsEnabled
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("notificationsEnabled");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("notificationsEnabled", value);
         }
     }
 
@@ -805,24 +729,6 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
-    public bool? SuperFollowedBy
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("superFollowedBy");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("superFollowedBy", value);
-        }
-    }
-
     public bool? SuperFollowEligible
     {
         get
@@ -838,24 +744,6 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("superFollowEligible", value);
-        }
-    }
-
-    public bool? SuperFollowing
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("superFollowing");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("superFollowing", value);
         }
     }
 
@@ -949,120 +837,6 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
-    public bool? ViewerBlockedBy
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerBlockedBy");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerBlockedBy", value);
-        }
-    }
-
-    public bool? ViewerBlocking
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerBlocking");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerBlocking", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether this profile follows the authenticated viewer
-    /// </summary>
-    public bool? ViewerFollowedBy
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerFollowedBy");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerFollowedBy", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether the authenticated viewer follows this profile
-    /// </summary>
-    public bool? ViewerFollowing
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerFollowing");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerFollowing", value);
-        }
-    }
-
-    public bool? ViewerLiveFollowing
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerLiveFollowing");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerLiveFollowing", value);
-        }
-    }
-
-    public bool? ViewerMuting
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerMuting");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerMuting", value);
-        }
-    }
-
     public IReadOnlyList<string>? WithheldInCountries
     {
         get
@@ -1093,8 +867,6 @@ public sealed record class UserProfile : JsonModel
         this.AffiliatesHighlightedLabel?.Validate();
         _ = this.AutomatedBy;
         _ = this.BusinessAccountAffiliatesCount;
-        _ = this.CanDm;
-        _ = this.CanMediaTag;
         _ = this.CommunityRole;
         _ = this.CoverPicture;
         _ = this.CreatedAt;
@@ -1103,7 +875,6 @@ public sealed record class UserProfile : JsonModel
         _ = this.FavouritesCount;
         _ = this.Followers;
         _ = this.Following;
-        _ = this.FollowRequestSent;
         _ = this.HasCustomTimelines;
         _ = this.HasGraduatedAccess;
         _ = this.HasHiddenSubscriptionsOnProfile;
@@ -1116,7 +887,6 @@ public sealed record class UserProfile : JsonModel
         _ = this.IsVerified;
         _ = this.Location;
         _ = this.MediaCount;
-        _ = this.NotificationsEnabled;
         _ = this.ParodyCommentaryFanLabel;
         _ = this.PinnedTweetIds;
         _ = this.PossiblySensitive;
@@ -1130,20 +900,12 @@ public sealed record class UserProfile : JsonModel
         _ = this.ProfileTranslatorType;
         _ = this.Protected;
         _ = this.StatusesCount;
-        _ = this.SuperFollowedBy;
         _ = this.SuperFollowEligible;
-        _ = this.SuperFollowing;
         _ = this.Unavailable;
         _ = this.UnavailableReason;
         _ = this.Url;
         _ = this.Verified;
         _ = this.VerifiedType;
-        _ = this.ViewerBlockedBy;
-        _ = this.ViewerBlocking;
-        _ = this.ViewerFollowedBy;
-        _ = this.ViewerFollowing;
-        _ = this.ViewerLiveFollowing;
-        _ = this.ViewerMuting;
         _ = this.WithheldInCountries;
     }
 

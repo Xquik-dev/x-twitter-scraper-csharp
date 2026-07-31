@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -138,24 +134,6 @@ public sealed record class SearchTweet : JsonModel
             }
 
             this._rawData.Set("author", value);
-        }
-    }
-
-    public bool? Bookmarked
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("bookmarked");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("bookmarked", value);
         }
     }
 
@@ -330,63 +308,6 @@ public sealed record class SearchTweet : JsonModel
                 "entities",
                 value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
             );
-        }
-    }
-
-    public bool? Favorited
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("favorited");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("favorited", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether X offers its analysis action for this post.
-    /// </summary>
-    public bool? GrokAnalysisButton
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("grokAnalysisButton");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("grokAnalysisButton", value);
-        }
-    }
-
-    public bool? GrokImageEditable
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("grokImageEditable");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("grokImageEditable", value);
         }
     }
 
@@ -660,24 +581,6 @@ public sealed record class SearchTweet : JsonModel
         }
     }
 
-    public bool? PossiblySensitiveEditable
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("possiblySensitiveEditable");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("possiblySensitiveEditable", value);
-        }
-    }
-
     /// <summary>
     /// Engagement counts retained from a prior tweet edit.
     /// </summary>
@@ -696,24 +599,6 @@ public sealed record class SearchTweet : JsonModel
             }
 
             this._rawData.Set("previousCounts", value);
-        }
-    }
-
-    public string? QuickPromoteEligibility
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("quickPromoteEligibility");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("quickPromoteEligibility", value);
         }
     }
 
@@ -737,24 +622,6 @@ public sealed record class SearchTweet : JsonModel
             }
 
             this._rawData.Set("quoted_tweet", value);
-        }
-    }
-
-    public bool? Retweeted
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("retweeted");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("retweeted", value);
         }
     }
 
@@ -872,7 +739,6 @@ public sealed record class SearchTweet : JsonModel
         _ = this.ViewCount;
         this.Article?.Validate();
         this.Author?.Validate();
-        _ = this.Bookmarked;
         this.Card?.Validate();
         this.CommunityNote?.Validate();
         this.ContentDisclosure?.Validate();
@@ -881,9 +747,6 @@ public sealed record class SearchTweet : JsonModel
         _ = this.DisplayTextRange;
         this.Edit?.Validate();
         _ = this.Entities;
-        _ = this.Favorited;
-        _ = this.GrokAnalysisButton;
-        _ = this.GrokImageEditable;
         _ = this.InReplyToID;
         _ = this.InReplyToUserID;
         _ = this.InReplyToUsername;
@@ -900,11 +763,8 @@ public sealed record class SearchTweet : JsonModel
         this.NoteTweet?.Validate();
         this.Place?.Validate();
         _ = this.PossiblySensitive;
-        _ = this.PossiblySensitiveEditable;
         this.PreviousCounts?.Validate();
-        _ = this.QuickPromoteEligibility;
         this.QuotedTweet?.Validate();
-        _ = this.Retweeted;
         this.RetweetedTweet?.Validate();
         _ = this.Source;
         _ = this.Type;
@@ -1406,24 +1266,6 @@ public sealed record class SearchTweetEdit : JsonModel
         }
     }
 
-    public string? EditsRemaining
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("editsRemaining");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("editsRemaining", value);
-        }
-    }
-
     public IReadOnlyList<string>? EditTweetIds
     {
         get
@@ -1445,31 +1287,11 @@ public sealed record class SearchTweetEdit : JsonModel
         }
     }
 
-    public bool? IsEditEligible
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("isEditEligible");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("isEditEligible", value);
-        }
-    }
-
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.EditableUntilMsecs;
-        _ = this.EditsRemaining;
         _ = this.EditTweetIds;
-        _ = this.IsEditEligible;
     }
 
     public SearchTweetEdit() { }

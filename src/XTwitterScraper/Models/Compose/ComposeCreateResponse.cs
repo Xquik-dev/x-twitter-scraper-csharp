@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -996,12 +992,12 @@ public sealed record class ScorerWeight : JsonModel
     /// <summary>
     /// X does not publish the production weight.
     /// </summary>
-    public required double? Weight
+    public required Null? Weight
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<double>("weight");
+            return this._rawData.GetNullableClass<Null>("weight");
         }
         init { this._rawData.Set("weight", value); }
     }

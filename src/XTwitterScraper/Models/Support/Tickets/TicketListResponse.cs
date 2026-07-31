@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -10,29 +5,26 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Support.Tickets;
 
 [JsonConverter(typeof(JsonModelConverter<TicketListResponse, TicketListResponseFromRaw>))]
 public sealed record class TicketListResponse : JsonModel
 {
-    public IReadOnlyList<Ticket>? Tickets
+    public required IReadOnlyList<Ticket> Tickets
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<Ticket>>("tickets");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Ticket>>("tickets");
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<Ticket>?>(
+            this._rawData.Set<ImmutableArray<Ticket>>(
                 "tickets",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -40,7 +32,7 @@ public sealed record class TicketListResponse : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.Tickets ?? [])
+        foreach (var item in this.Tickets)
         {
             item.Validate();
         }
@@ -74,6 +66,13 @@ public sealed record class TicketListResponse : JsonModel
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public TicketListResponse(IReadOnlyList<Ticket> tickets)
+        : this()
+    {
+        this.Tickets = tickets;
+    }
 }
 
 class TicketListResponseFromRaw : IFromRawJson<TicketListResponse>
@@ -86,112 +85,64 @@ class TicketListResponseFromRaw : IFromRawJson<TicketListResponse>
 [JsonConverter(typeof(JsonModelConverter<Ticket, TicketFromRaw>))]
 public sealed record class Ticket : JsonModel
 {
-    public DateTimeOffset? CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("createdAt", value);
-        }
+        init { this._rawData.Set("createdAt", value); }
     }
 
-    public long? MessageCount
+    public required long MessageCount
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("messageCount");
+            return this._rawData.GetNotNullStruct<long>("messageCount");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("messageCount", value);
-        }
+        init { this._rawData.Set("messageCount", value); }
     }
 
-    public string? PublicID
+    public required string PublicID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("publicId");
+            return this._rawData.GetNotNullClass<string>("publicId");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("publicId", value);
-        }
+        init { this._rawData.Set("publicId", value); }
     }
 
-    public string? Status
+    public required ApiEnum<string, TicketStatus> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, TicketStatus>>("status");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("status", value);
-        }
+        init { this._rawData.Set("status", value); }
     }
 
-    public string? Subject
+    public required string Subject
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("subject");
+            return this._rawData.GetNotNullClass<string>("subject");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("subject", value);
-        }
+        init { this._rawData.Set("subject", value); }
     }
 
-    public DateTimeOffset? UpdatedAt
+    public required System::DateTimeOffset UpdatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<DateTimeOffset>("updatedAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("updatedAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("updatedAt", value);
-        }
+        init { this._rawData.Set("updatedAt", value); }
     }
 
     /// <inheritdoc/>
@@ -200,7 +151,7 @@ public sealed record class Ticket : JsonModel
         _ = this.CreatedAt;
         _ = this.MessageCount;
         _ = this.PublicID;
-        _ = this.Status;
+        this.Status.Validate();
         _ = this.Subject;
         _ = this.UpdatedAt;
     }
@@ -238,4 +189,54 @@ class TicketFromRaw : IFromRawJson<Ticket>
     /// <inheritdoc/>
     public Ticket FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Ticket.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(TicketStatusConverter))]
+public enum TicketStatus
+{
+    Open,
+    InProgress,
+    Resolved,
+    Closed,
+}
+
+sealed class TicketStatusConverter : JsonConverter<TicketStatus>
+{
+    public override TicketStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "open" => TicketStatus.Open,
+            "in_progress" => TicketStatus.InProgress,
+            "resolved" => TicketStatus.Resolved,
+            "closed" => TicketStatus.Closed,
+            _ => (TicketStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TicketStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TicketStatus.Open => "open",
+                TicketStatus.InProgress => "in_progress",
+                TicketStatus.Resolved => "resolved",
+                TicketStatus.Closed => "closed",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -167,27 +163,6 @@ class AdvertisingFromRaw : IFromRawJson<Advertising>
 public sealed record class AIGenerated : JsonModel
 {
     /// <summary>
-    /// Whether the disclosure can be edited on X.
-    /// </summary>
-    public bool? CanEdit
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("canEdit");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("canEdit", value);
-        }
-    }
-
-    /// <summary>
     /// Source of the AI-generated media disclosure.
     /// </summary>
     public string? DetectionSource
@@ -232,7 +207,6 @@ public sealed record class AIGenerated : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.CanEdit;
         _ = this.DetectionSource;
         _ = this.HasAIGeneratedMedia;
     }
