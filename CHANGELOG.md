@@ -8,6 +8,7 @@ Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper
 
 * **api:** api update ([3bae29a](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3bae29a81a3e52f8b943cb9b0e15b168fdd7f609))
 * **api:** api update ([52fc432](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/52fc432ac86866625f6ce062c8429df748841472))
+* **api:** add complete reply extraction and isolate reply diagnostics from generic pagination ([#29](https://github.com/Xquik-dev/x-twitter-scraper-csharp/pull/29)) ([acaada7](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/acaada7cca1a4faeb281c7a5385c5921fa549a7c))
 
 
 ### Bug Fixes
