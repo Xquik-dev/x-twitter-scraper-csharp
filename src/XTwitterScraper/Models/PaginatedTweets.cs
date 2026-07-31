@@ -14,7 +14,7 @@ namespace XTwitterScraper.Models;
 /// An empty page can still have has_next_page true after filtering.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<PaginatedTweets, PaginatedTweetsFromRaw>))]
-public sealed record class PaginatedTweets : JsonModel
+public record class PaginatedTweets : JsonModel
 {
     public required bool HasNextPage
     {

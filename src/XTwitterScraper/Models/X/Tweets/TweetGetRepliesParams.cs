@@ -13,7 +13,7 @@ namespace XTwitterScraper.Models.X.Tweets;
 /// <summary>
 /// Returns direct replies. Complete mode merges available timeline views, supported
 /// rankings, every forward cursor module, labeled hidden-content branches, time partitions,
-/// and search. It separates nested replies and returns 424 below 90% coverage.
+/// and search. It separates nested replies and returns 424 below 80% coverage.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

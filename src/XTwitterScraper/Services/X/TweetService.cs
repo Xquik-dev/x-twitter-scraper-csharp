@@ -173,7 +173,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public async Task<PaginatedTweets> GetReplies(
+    public async Task<TweetGetRepliesResponse> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -185,7 +185,7 @@ public sealed class TweetService : ITweetService
     }
 
     /// <inheritdoc/>
-    public Task<PaginatedTweets> GetReplies(
+    public Task<TweetGetRepliesResponse> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -523,7 +523,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<PaginatedTweets>> GetReplies(
+    public async Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -544,7 +544,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
             async (token) =>
             {
                 var paginatedTweets = await response
-                    .Deserialize<PaginatedTweets>(token)
+                    .Deserialize<TweetGetRepliesResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -556,7 +556,7 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<PaginatedTweets>> GetReplies(
+    public Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default

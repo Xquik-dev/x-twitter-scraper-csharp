@@ -113,16 +113,16 @@ public interface ITweetService
     /// <summary>
     /// Returns direct replies. Complete mode merges available timeline views, supported
     /// rankings, every forward cursor module, labeled hidden-content branches, time
-    /// partitions, and search. It separates nested replies and returns 424 below 90%
+    /// partitions, and search. It separates nested replies and returns 424 below 80%
     /// coverage.
     /// </summary>
-    Task<PaginatedTweets> GetReplies(
+    Task<TweetGetRepliesResponse> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<PaginatedTweets> GetReplies(
+    Task<TweetGetRepliesResponse> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -270,13 +270,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/replies</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetReplies(TweetGetRepliesParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> GetReplies(
+    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedTweets>> GetReplies(
+    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
