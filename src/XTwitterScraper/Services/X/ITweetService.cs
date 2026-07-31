@@ -111,8 +111,8 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Returns direct replies. Complete mode merges 5 authenticated views, 3 rankings,
-    /// every forward cursor module, labeled hidden-content branches, Top time
+    /// Returns direct replies. Complete mode merges available timeline views, supported
+    /// rankings, every forward cursor module, labeled hidden-content branches, time
     /// partitions, and search. It separates nested replies and returns 424 below 90%
     /// coverage.
     /// </summary>
