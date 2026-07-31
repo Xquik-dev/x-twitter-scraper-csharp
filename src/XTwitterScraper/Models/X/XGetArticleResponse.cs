@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -675,24 +671,6 @@ public sealed record class Author : JsonModel
         init { this._rawData.Set("username", value); }
     }
 
-    public bool? CanDm
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("canDm");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("canDm", value);
-        }
-    }
-
     public string? CreatedAt
     {
         get
@@ -969,7 +947,6 @@ public sealed record class Author : JsonModel
         _ = this.ID;
         _ = this.Name;
         _ = this.Username;
-        _ = this.CanDm;
         _ = this.CreatedAt;
         _ = this.Description;
         _ = this.FavouritesCount;

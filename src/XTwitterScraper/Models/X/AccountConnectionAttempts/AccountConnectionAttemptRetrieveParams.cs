@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 Xquik contributors
+//
+// SPDX-License-Identifier: Apache-2.0
+
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
@@ -6,75 +10,33 @@ using System.Net.Http;
 using System.Text.Json;
 using XTwitterScraper.Core;
 
-namespace XTwitterScraper.Models.X.Communities.Tweets;
+namespace XTwitterScraper.Models.X.AccountConnectionAttempts;
 
 /// <summary>
-/// List tweets posted in a community
+/// Get X account connection status
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>
 /// </summary>
-public record class TweetListByCommunityParams : ParamsBase
+public record class AccountConnectionAttemptRetrieveParams : ParamsBase
 {
     public string? ID { get; init; }
 
-    /// <summary>
-    /// Pagination cursor for community tweets
-    /// </summary>
-    public string? Cursor
-    {
-        get
-        {
-            this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<string>("cursor");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawQueryData.Set("cursor", value);
-        }
-    }
-
-    /// <summary>
-    /// Maximum page items (1-100, default 20). Source, filters, or credits can reduce
-    /// results. Continue while has_next_page is true. Deprecated limit and count
-    /// aliases remain accepted.
-    /// </summary>
-    public long? PageSize
-    {
-        get
-        {
-            this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<long>("pageSize");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawQueryData.Set("pageSize", value);
-        }
-    }
-
-    public TweetListByCommunityParams() { }
+    public AccountConnectionAttemptRetrieveParams() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TweetListByCommunityParams(TweetListByCommunityParams tweetListByCommunityParams)
-        : base(tweetListByCommunityParams)
+    public AccountConnectionAttemptRetrieveParams(
+        AccountConnectionAttemptRetrieveParams accountConnectionAttemptRetrieveParams
+    )
+        : base(accountConnectionAttemptRetrieveParams)
     {
-        this.ID = tweetListByCommunityParams.ID;
+        this.ID = accountConnectionAttemptRetrieveParams.ID;
     }
 #pragma warning restore CS8618
 
-    public TweetListByCommunityParams(
+    public AccountConnectionAttemptRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
@@ -85,7 +47,7 @@ public record class TweetListByCommunityParams : ParamsBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TweetListByCommunityParams(
+    AccountConnectionAttemptRetrieveParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
         string id
@@ -98,7 +60,7 @@ public record class TweetListByCommunityParams : ParamsBase
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
-    public static TweetListByCommunityParams FromRawUnchecked(
+    public static AccountConnectionAttemptRetrieveParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
         string id
@@ -128,7 +90,7 @@ public record class TweetListByCommunityParams : ParamsBase
             ModelBase.ToStringSerializerOptions
         );
 
-    public virtual bool Equals(TweetListByCommunityParams? other)
+    public virtual bool Equals(AccountConnectionAttemptRetrieveParams? other)
     {
         if (other == null)
         {
@@ -143,7 +105,7 @@ public record class TweetListByCommunityParams : ParamsBase
     {
         return new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/')
-                + string.Format("/x/communities/{0}/tweets", this.ID)
+                + string.Format("/x/account-connection-attempts/{0}", this.ID)
         )
         {
             Query = this.QueryString(options, SecurityOptions.All()),

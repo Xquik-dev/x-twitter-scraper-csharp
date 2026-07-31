@@ -33,10 +33,10 @@ public interface IComposeService
     IComposeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Run one step of Xquik's three-step writing workflow. Compose returns questions
-    /// and editorial rules. Refine returns goal-specific guidance. Score applies
-    /// deterministic text checks. It does not predict reach or expose X ranking
-    /// weights.
+    /// Run one step of Xquik's three-step writing workflow. Compose returns questions,
+    /// editorial rules, and source-specific Radar recommendations. Refine returns
+    /// goal-specific guidance. Score applies deterministic text checks. It does not
+    /// predict reach or expose X ranking weights.
     /// </summary>
     Task<ComposeCreateResponse> Create(
         ComposeCreateParams parameters,

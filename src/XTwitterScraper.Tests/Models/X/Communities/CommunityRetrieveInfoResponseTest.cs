@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -30,14 +26,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 },
                 Description = "description",
                 InvitesPolicy = "invites_policy",
-                IsMember = true,
                 IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
-                Role = "role",
                 Rules =
                 [
                     new()
@@ -64,14 +58,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -105,14 +97,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 },
                 Description = "description",
                 InvitesPolicy = "invites_policy",
-                IsMember = true,
                 IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
-                Role = "role",
                 Rules =
                 [
                     new()
@@ -153,14 +143,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 },
                 Description = "description",
                 InvitesPolicy = "invites_policy",
-                IsMember = true,
                 IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
-                Role = "role",
                 Rules =
                 [
                     new()
@@ -194,14 +182,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -235,14 +221,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 },
                 Description = "description",
                 InvitesPolicy = "invites_policy",
-                IsMember = true,
                 IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
-                Role = "role",
                 Rules =
                 [
                     new()
@@ -277,14 +261,12 @@ public class CommunityRetrieveInfoResponseTest : TestBase
                 },
                 Description = "description",
                 InvitesPolicy = "invites_policy",
-                IsMember = true,
                 IsNsfw = true,
                 JoinPolicy = "join_policy",
                 MemberCount = 0,
                 ModeratorCount = 0,
                 Name = "Tesla Fans",
                 PrimaryTopic = new() { ID = "id", Name = "name" },
-                Role = "role",
                 Rules =
                 [
                     new()
@@ -322,14 +304,12 @@ public class CommunityTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -353,14 +333,12 @@ public class CommunityTest : TestBase
         };
         string expectedDescription = "description";
         string expectedInvitesPolicy = "invites_policy";
-        bool expectedIsMember = true;
         bool expectedIsNsfw = true;
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
         string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
-        string expectedRole = "role";
         List<Rule> expectedRules =
         [
             new()
@@ -377,14 +355,12 @@ public class CommunityTest : TestBase
         Assert.Equal(expectedCreator, model.Creator);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedInvitesPolicy, model.InvitesPolicy);
-        Assert.Equal(expectedIsMember, model.IsMember);
         Assert.Equal(expectedIsNsfw, model.IsNsfw);
         Assert.Equal(expectedJoinPolicy, model.JoinPolicy);
         Assert.Equal(expectedMemberCount, model.MemberCount);
         Assert.Equal(expectedModeratorCount, model.ModeratorCount);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedPrimaryTopic, model.PrimaryTopic);
-        Assert.Equal(expectedRole, model.Role);
         Assert.NotNull(model.Rules);
         Assert.Equal(expectedRules.Count, model.Rules.Count);
         for (int i = 0; i < expectedRules.Count; i++)
@@ -410,14 +386,12 @@ public class CommunityTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -452,14 +426,12 @@ public class CommunityTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -490,14 +462,12 @@ public class CommunityTest : TestBase
         };
         string expectedDescription = "description";
         string expectedInvitesPolicy = "invites_policy";
-        bool expectedIsMember = true;
         bool expectedIsNsfw = true;
         string expectedJoinPolicy = "join_policy";
         long expectedMemberCount = 0;
         long expectedModeratorCount = 0;
         string expectedName = "Tesla Fans";
         PrimaryTopic expectedPrimaryTopic = new() { ID = "id", Name = "name" };
-        string expectedRole = "role";
         List<Rule> expectedRules =
         [
             new()
@@ -514,14 +484,12 @@ public class CommunityTest : TestBase
         Assert.Equal(expectedCreator, deserialized.Creator);
         Assert.Equal(expectedDescription, deserialized.Description);
         Assert.Equal(expectedInvitesPolicy, deserialized.InvitesPolicy);
-        Assert.Equal(expectedIsMember, deserialized.IsMember);
         Assert.Equal(expectedIsNsfw, deserialized.IsNsfw);
         Assert.Equal(expectedJoinPolicy, deserialized.JoinPolicy);
         Assert.Equal(expectedMemberCount, deserialized.MemberCount);
         Assert.Equal(expectedModeratorCount, deserialized.ModeratorCount);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedPrimaryTopic, deserialized.PrimaryTopic);
-        Assert.Equal(expectedRole, deserialized.Role);
         Assert.NotNull(deserialized.Rules);
         Assert.Equal(expectedRules.Count, deserialized.Rules.Count);
         for (int i = 0; i < expectedRules.Count; i++)
@@ -547,14 +515,12 @@ public class CommunityTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()
@@ -584,8 +550,6 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.InvitesPolicy);
         Assert.False(model.RawData.ContainsKey("invites_policy"));
-        Assert.Null(model.IsMember);
-        Assert.False(model.RawData.ContainsKey("is_member"));
         Assert.Null(model.IsNsfw);
         Assert.False(model.RawData.ContainsKey("is_nsfw"));
         Assert.Null(model.JoinPolicy);
@@ -598,8 +562,6 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.PrimaryTopic);
         Assert.False(model.RawData.ContainsKey("primary_topic"));
-        Assert.Null(model.Role);
-        Assert.False(model.RawData.ContainsKey("role"));
         Assert.Null(model.Rules);
         Assert.False(model.RawData.ContainsKey("rules"));
     }
@@ -625,14 +587,12 @@ public class CommunityTest : TestBase
             Creator = null,
             Description = null,
             InvitesPolicy = null,
-            IsMember = null,
             IsNsfw = null,
             JoinPolicy = null,
             MemberCount = null,
             ModeratorCount = null,
             Name = null,
             PrimaryTopic = null,
-            Role = null,
             Rules = null,
         };
 
@@ -646,8 +606,6 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("description"));
         Assert.Null(model.InvitesPolicy);
         Assert.False(model.RawData.ContainsKey("invites_policy"));
-        Assert.Null(model.IsMember);
-        Assert.False(model.RawData.ContainsKey("is_member"));
         Assert.Null(model.IsNsfw);
         Assert.False(model.RawData.ContainsKey("is_nsfw"));
         Assert.Null(model.JoinPolicy);
@@ -660,8 +618,6 @@ public class CommunityTest : TestBase
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.PrimaryTopic);
         Assert.False(model.RawData.ContainsKey("primary_topic"));
-        Assert.Null(model.Role);
-        Assert.False(model.RawData.ContainsKey("role"));
         Assert.Null(model.Rules);
         Assert.False(model.RawData.ContainsKey("rules"));
     }
@@ -679,14 +635,12 @@ public class CommunityTest : TestBase
             Creator = null,
             Description = null,
             InvitesPolicy = null,
-            IsMember = null,
             IsNsfw = null,
             JoinPolicy = null,
             MemberCount = null,
             ModeratorCount = null,
             Name = null,
             PrimaryTopic = null,
-            Role = null,
             Rules = null,
         };
 
@@ -710,14 +664,12 @@ public class CommunityTest : TestBase
             },
             Description = "description",
             InvitesPolicy = "invites_policy",
-            IsMember = true,
             IsNsfw = true,
             JoinPolicy = "join_policy",
             MemberCount = 0,
             ModeratorCount = 0,
             Name = "Tesla Fans",
             PrimaryTopic = new() { ID = "id", Name = "name" },
-            Role = "role",
             Rules =
             [
                 new()

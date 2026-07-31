@@ -1,60 +1,44 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
+using System = System;
 
 namespace XTwitterScraper.Models.Support.Tickets;
 
 [JsonConverter(typeof(JsonModelConverter<TicketUpdateResponse, TicketUpdateResponseFromRaw>))]
 public sealed record class TicketUpdateResponse : JsonModel
 {
-    public string? PublicID
+    public required string PublicID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("publicId");
+            return this._rawData.GetNotNullClass<string>("publicId");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("publicId", value);
-        }
+        init { this._rawData.Set("publicId", value); }
     }
 
-    public string? Status
+    public required ApiEnum<string, TicketUpdateResponseStatus> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, TicketUpdateResponseStatus>>(
+                "status"
+            );
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("status", value);
-        }
+        init { this._rawData.Set("status", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.PublicID;
-        _ = this.Status;
+        this.Status.Validate();
     }
 
     public TicketUpdateResponse() { }
@@ -93,4 +77,51 @@ class TicketUpdateResponseFromRaw : IFromRawJson<TicketUpdateResponse>
     public TicketUpdateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TicketUpdateResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(TicketUpdateResponseStatusConverter))]
+public enum TicketUpdateResponseStatus
+{
+    Open,
+    Resolved,
+    Closed,
+}
+
+sealed class TicketUpdateResponseStatusConverter : JsonConverter<TicketUpdateResponseStatus>
+{
+    public override TicketUpdateResponseStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "open" => TicketUpdateResponseStatus.Open,
+            "resolved" => TicketUpdateResponseStatus.Resolved,
+            "closed" => TicketUpdateResponseStatus.Closed,
+            _ => (TicketUpdateResponseStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TicketUpdateResponseStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TicketUpdateResponseStatus.Open => "open",
+                TicketUpdateResponseStatus.Resolved => "resolved",
+                TicketUpdateResponseStatus.Closed => "closed",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

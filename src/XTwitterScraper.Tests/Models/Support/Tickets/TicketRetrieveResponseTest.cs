@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -38,11 +34,11 @@ public class TicketRetrieveResponseTest : TestBase
                     ],
                     Body = "I am unable to connect my X account.",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    Sender = "user",
+                    Sender = Sender.User,
                 },
             ],
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "open",
+            Status = TicketRetrieveResponseStatus.Open,
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
@@ -67,16 +63,16 @@ public class TicketRetrieveResponseTest : TestBase
                 ],
                 Body = "I am unable to connect my X account.",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                Sender = "user",
+                Sender = Sender.User,
             },
         ];
         string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
-        string expectedStatus = "open";
+        ApiEnum<string, TicketRetrieveResponseStatus> expectedStatus =
+            TicketRetrieveResponseStatus.Open;
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
-        Assert.NotNull(model.Messages);
         Assert.Equal(expectedMessages.Count, model.Messages.Count);
         for (int i = 0; i < expectedMessages.Count; i++)
         {
@@ -113,11 +109,11 @@ public class TicketRetrieveResponseTest : TestBase
                     ],
                     Body = "I am unable to connect my X account.",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    Sender = "user",
+                    Sender = Sender.User,
                 },
             ],
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "open",
+            Status = TicketRetrieveResponseStatus.Open,
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
@@ -156,11 +152,11 @@ public class TicketRetrieveResponseTest : TestBase
                     ],
                     Body = "I am unable to connect my X account.",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    Sender = "user",
+                    Sender = Sender.User,
                 },
             ],
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "open",
+            Status = TicketRetrieveResponseStatus.Open,
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
@@ -192,16 +188,16 @@ public class TicketRetrieveResponseTest : TestBase
                 ],
                 Body = "I am unable to connect my X account.",
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                Sender = "user",
+                Sender = Sender.User,
             },
         ];
         string expectedPublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6";
-        string expectedStatus = "open";
+        ApiEnum<string, TicketRetrieveResponseStatus> expectedStatus =
+            TicketRetrieveResponseStatus.Open;
         string expectedSubject = "Cannot connect X account";
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
-        Assert.NotNull(deserialized.Messages);
         Assert.Equal(expectedMessages.Count, deserialized.Messages.Count);
         for (int i = 0; i < expectedMessages.Count; i++)
         {
@@ -238,85 +234,13 @@ public class TicketRetrieveResponseTest : TestBase
                     ],
                     Body = "I am unable to connect my X account.",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    Sender = "user",
+                    Sender = Sender.User,
                 },
             ],
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "open",
+            Status = TicketRetrieveResponseStatus.Open,
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new TicketRetrieveResponse { };
-
-        Assert.Null(model.CreatedAt);
-        Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Messages);
-        Assert.False(model.RawData.ContainsKey("messages"));
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-        Assert.Null(model.Subject);
-        Assert.False(model.RawData.ContainsKey("subject"));
-        Assert.Null(model.UpdatedAt);
-        Assert.False(model.RawData.ContainsKey("updatedAt"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new TicketRetrieveResponse { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new TicketRetrieveResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            CreatedAt = null,
-            Messages = null,
-            PublicID = null,
-            Status = null,
-            Subject = null,
-            UpdatedAt = null,
-        };
-
-        Assert.Null(model.CreatedAt);
-        Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Messages);
-        Assert.False(model.RawData.ContainsKey("messages"));
-        Assert.Null(model.PublicID);
-        Assert.False(model.RawData.ContainsKey("publicId"));
-        Assert.Null(model.Status);
-        Assert.False(model.RawData.ContainsKey("status"));
-        Assert.Null(model.Subject);
-        Assert.False(model.RawData.ContainsKey("subject"));
-        Assert.Null(model.UpdatedAt);
-        Assert.False(model.RawData.ContainsKey("updatedAt"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new TicketRetrieveResponse
-        {
-            // Null should be interpreted as omitted for these properties
-            CreatedAt = null,
-            Messages = null,
-            PublicID = null,
-            Status = null,
-            Subject = null,
-            UpdatedAt = null,
         };
 
         model.Validate();
@@ -347,11 +271,11 @@ public class TicketRetrieveResponseTest : TestBase
                     ],
                     Body = "I am unable to connect my X account.",
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-                    Sender = "user",
+                    Sender = Sender.User,
                 },
             ],
             PublicID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
-            Status = "open",
+            Status = TicketRetrieveResponseStatus.Open,
             Subject = "Cannot connect X account",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
         };
@@ -384,7 +308,7 @@ public class MessageTest : TestBase
             ],
             Body = "I am unable to connect my X account.",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Sender = "user",
+            Sender = Sender.User,
         };
 
         List<MessageAttachment> expectedAttachments =
@@ -402,9 +326,8 @@ public class MessageTest : TestBase
         ];
         string expectedBody = "I am unable to connect my X account.";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        string expectedSender = "user";
+        ApiEnum<string, Sender> expectedSender = Sender.User;
 
-        Assert.NotNull(model.Attachments);
         Assert.Equal(expectedAttachments.Count, model.Attachments.Count);
         for (int i = 0; i < expectedAttachments.Count; i++)
         {
@@ -435,7 +358,7 @@ public class MessageTest : TestBase
             ],
             Body = "I am unable to connect my X account.",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Sender = "user",
+            Sender = Sender.User,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -464,7 +387,7 @@ public class MessageTest : TestBase
             ],
             Body = "I am unable to connect my X account.",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Sender = "user",
+            Sender = Sender.User,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -489,9 +412,8 @@ public class MessageTest : TestBase
         ];
         string expectedBody = "I am unable to connect my X account.";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        string expectedSender = "user";
+        ApiEnum<string, Sender> expectedSender = Sender.User;
 
-        Assert.NotNull(deserialized.Attachments);
         Assert.Equal(expectedAttachments.Count, deserialized.Attachments.Count);
         for (int i = 0; i < expectedAttachments.Count; i++)
         {
@@ -522,67 +444,7 @@ public class MessageTest : TestBase
             ],
             Body = "I am unable to connect my X account.",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Sender = "user",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Message { };
-
-        Assert.Null(model.Attachments);
-        Assert.False(model.RawData.ContainsKey("attachments"));
-        Assert.Null(model.Body);
-        Assert.False(model.RawData.ContainsKey("body"));
-        Assert.Null(model.CreatedAt);
-        Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Sender);
-        Assert.False(model.RawData.ContainsKey("sender"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Message { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Message
-        {
-            // Null should be interpreted as omitted for these properties
-            Attachments = null,
-            Body = null,
-            CreatedAt = null,
-            Sender = null,
-        };
-
-        Assert.Null(model.Attachments);
-        Assert.False(model.RawData.ContainsKey("attachments"));
-        Assert.Null(model.Body);
-        Assert.False(model.RawData.ContainsKey("body"));
-        Assert.Null(model.CreatedAt);
-        Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Sender);
-        Assert.False(model.RawData.ContainsKey("sender"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Message
-        {
-            // Null should be interpreted as omitted for these properties
-            Attachments = null,
-            Body = null,
-            CreatedAt = null,
-            Sender = null,
+            Sender = Sender.User,
         };
 
         model.Validate();
@@ -608,7 +470,7 @@ public class MessageTest : TestBase
             ],
             Body = "I am unable to connect my X account.",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Sender = "user",
+            Sender = Sender.User,
         };
 
         Message copied = new(model);
@@ -929,6 +791,126 @@ public class MessageAttachmentStatusTest : TestBase
             json,
             ModelBase.SerializerOptions
         );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class SenderTest : TestBase
+{
+    [Theory]
+    [InlineData(Sender.User)]
+    [InlineData(Sender.Support)]
+    [InlineData(Sender.System)]
+    public void Validation_Works(Sender rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Sender> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Sender>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Sender.User)]
+    [InlineData(Sender.Support)]
+    [InlineData(Sender.System)]
+    public void SerializationRoundtrip_Works(Sender rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Sender> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Sender>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Sender>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Sender>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class TicketRetrieveResponseStatusTest : TestBase
+{
+    [Theory]
+    [InlineData(TicketRetrieveResponseStatus.Open)]
+    [InlineData(TicketRetrieveResponseStatus.InProgress)]
+    [InlineData(TicketRetrieveResponseStatus.Resolved)]
+    [InlineData(TicketRetrieveResponseStatus.Closed)]
+    public void Validation_Works(TicketRetrieveResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TicketRetrieveResponseStatus> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TicketRetrieveResponseStatus>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(TicketRetrieveResponseStatus.Open)]
+    [InlineData(TicketRetrieveResponseStatus.InProgress)]
+    [InlineData(TicketRetrieveResponseStatus.Resolved)]
+    [InlineData(TicketRetrieveResponseStatus.Closed)]
+    public void SerializationRoundtrip_Works(TicketRetrieveResponseStatus rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, TicketRetrieveResponseStatus> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TicketRetrieveResponseStatus>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TicketRetrieveResponseStatus>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, TicketRetrieveResponseStatus>
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }

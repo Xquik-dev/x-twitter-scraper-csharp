@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -115,19 +111,18 @@ public interface ITweetService
     );
 
     /// <summary>
-    /// Returns visible replies. For an unfiltered first page, Xquik compares a terminal
-    /// page with the post's reported reply count. If the page is visibly incomplete,
-    /// the endpoint returns 424 `replies_incomplete` instead of presenting partial
-    /// coverage as complete. Use tweet search with a `conversation_id:{id}` query as
-    /// the broader fallback.
+    /// Returns direct replies. Complete mode merges available timeline views, supported
+    /// rankings, every forward cursor module, labeled hidden-content branches, time
+    /// partitions, and search. It separates nested replies and returns 424 below 80%
+    /// coverage.
     /// </summary>
-    Task<PaginatedTweets> GetReplies(
+    Task<TweetGetRepliesResponse> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<PaginatedTweets> GetReplies(
+    Task<TweetGetRepliesResponse> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -275,13 +270,13 @@ public interface ITweetServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /x/tweets/{id}/replies</c>, but is otherwise the
     /// same as <see cref="ITweetService.GetReplies(TweetGetRepliesParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<PaginatedTweets>> GetReplies(
+    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         TweetGetRepliesParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="GetReplies(TweetGetRepliesParams, CancellationToken)"/>
-    Task<HttpResponse<PaginatedTweets>> GetReplies(
+    Task<HttpResponse<TweetGetRepliesResponse>> GetReplies(
         string id,
         TweetGetRepliesParams? parameters = null,
         CancellationToken cancellationToken = default

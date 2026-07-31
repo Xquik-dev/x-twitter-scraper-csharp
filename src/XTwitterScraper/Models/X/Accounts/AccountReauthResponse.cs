@@ -51,12 +51,12 @@ public sealed record class AccountReauthResponse : JsonModel
         init { this._rawData.Set("health", value); }
     }
 
-    public required string Status
+    public JsonElement Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("status");
+            return this._rawData.GetNotNullStruct<JsonElement>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -87,12 +87,18 @@ public sealed record class AccountReauthResponse : JsonModel
         _ = this.ID;
         _ = this.CreatedAt;
         this.Health.Validate();
-        _ = this.Status;
+        if (!JsonElement.DeepEquals(this.Status, JsonSerializer.SerializeToElement("active")))
+        {
+            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+        }
         _ = this.XUserID;
         _ = this.XUsername;
     }
 
-    public AccountReauthResponse() { }
+    public AccountReauthResponse()
+    {
+        this.Status = JsonSerializer.SerializeToElement("active");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -103,6 +109,8 @@ public sealed record class AccountReauthResponse : JsonModel
     public AccountReauthResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Status = JsonSerializer.SerializeToElement("active");
     }
 
 #pragma warning disable CS8618

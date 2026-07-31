@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -448,6 +444,27 @@ public sealed record class ComposePrepareResult : JsonModel
     }
 
     /// <summary>
+    /// Sources and guidance for researching a fresh post angle.
+    /// </summary>
+    public required IReadOnlyList<RadarRecommendation> RadarRecommendations
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<RadarRecommendation>>(
+                "radarRecommendations"
+            );
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<RadarRecommendation>>(
+                "radarRecommendations",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Published signal names with unpublished weights as null.
     /// </summary>
     public required IReadOnlyList<ScorerWeight> ScorerWeights
@@ -582,6 +599,10 @@ public sealed record class ComposePrepareResult : JsonModel
         _ = this.FollowUpQuestions;
         _ = this.IntentUrl;
         _ = this.NextStep;
+        foreach (var item in this.RadarRecommendations)
+        {
+            item.Validate();
+        }
         foreach (var item in this.ScorerWeights)
         {
             item.Validate();
@@ -784,6 +805,159 @@ class EngagementMultiplierFromRaw : IFromRawJson<EngagementMultiplier>
     public EngagementMultiplier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => EngagementMultiplier.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<RadarRecommendation, RadarRecommendationFromRaw>))]
+public sealed record class RadarRecommendation : JsonModel
+{
+    /// <summary>
+    /// Radar endpoint for this source.
+    /// </summary>
+    public required string Endpoint
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("endpoint");
+        }
+        init { this._rawData.Set("endpoint", value); }
+    }
+
+    /// <summary>
+    /// Source-specific drafting guidance.
+    /// </summary>
+    public required string Guidance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("guidance");
+        }
+        init { this._rawData.Set("guidance", value); }
+    }
+
+    public required ApiEnum<string, Source> Source
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, Source>>("source");
+        }
+        init { this._rawData.Set("source", value); }
+    }
+
+    /// <summary>
+    /// Current-topic research this source supports.
+    /// </summary>
+    public required string UseFor
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("useFor");
+        }
+        init { this._rawData.Set("useFor", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Endpoint;
+        _ = this.Guidance;
+        this.Source.Validate();
+        _ = this.UseFor;
+    }
+
+    public RadarRecommendation() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public RadarRecommendation(RadarRecommendation radarRecommendation)
+        : base(radarRecommendation) { }
+#pragma warning restore CS8618
+
+    public RadarRecommendation(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    RadarRecommendation(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="RadarRecommendationFromRaw.FromRawUnchecked"/>
+    public static RadarRecommendation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class RadarRecommendationFromRaw : IFromRawJson<RadarRecommendation>
+{
+    /// <inheritdoc/>
+    public RadarRecommendation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        RadarRecommendation.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(SourceConverter))]
+public enum Source
+{
+    Reddit,
+    GitHub,
+    Trustmrr,
+    HackerNews,
+    GoogleTrends,
+    Wikipedia,
+    Polymarket,
+}
+
+sealed class SourceConverter : JsonConverter<Source>
+{
+    public override Source Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "reddit" => Source.Reddit,
+            "github" => Source.GitHub,
+            "trustmrr" => Source.Trustmrr,
+            "hacker_news" => Source.HackerNews,
+            "google_trends" => Source.GoogleTrends,
+            "wikipedia" => Source.Wikipedia,
+            "polymarket" => Source.Polymarket,
+            _ => (Source)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Source value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Source.Reddit => "reddit",
+                Source.GitHub => "github",
+                Source.Trustmrr => "trustmrr",
+                Source.HackerNews => "hacker_news",
+                Source.GoogleTrends => "google_trends",
+                Source.Wikipedia => "wikipedia",
+                Source.Polymarket => "polymarket",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }
 
 [JsonConverter(typeof(JsonModelConverter<ScorerWeight, ScorerWeightFromRaw>))]

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -48,6 +44,29 @@ public sealed record class UserProfile : JsonModel
         init { this._rawData.Set("username", value); }
     }
 
+    /// <summary>
+    /// Organization affiliation label shown on an X profile.
+    /// </summary>
+    public AffiliatesHighlightedLabel? AffiliatesHighlightedLabel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AffiliatesHighlightedLabel>(
+                "affiliatesHighlightedLabel"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("affiliatesHighlightedLabel", value);
+        }
+    }
+
     public string? AutomatedBy
     {
         get
@@ -66,12 +85,12 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
-    public bool? CanDm
+    public long? BusinessAccountAffiliatesCount
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("canDm");
+            return this._rawData.GetNullableStruct<long>("businessAccountAffiliatesCount");
         }
         init
         {
@@ -80,7 +99,7 @@ public sealed record class UserProfile : JsonModel
                 return;
             }
 
-            this._rawData.Set("canDm", value);
+            this._rawData.Set("businessAccountAffiliatesCount", value);
         }
     }
 
@@ -138,6 +157,24 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("createdAt", value);
+        }
+    }
+
+    public long? CreatorSubscriptionsCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("creatorSubscriptionsCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("creatorSubscriptionsCount", value);
         }
     }
 
@@ -231,6 +268,84 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
+    public bool? HasGraduatedAccess
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasGraduatedAccess");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasGraduatedAccess", value);
+        }
+    }
+
+    public bool? HasHiddenSubscriptionsOnProfile
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasHiddenSubscriptionsOnProfile");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasHiddenSubscriptionsOnProfile", value);
+        }
+    }
+
+    /// <summary>
+    /// Profile highlight availability and count metadata.
+    /// </summary>
+    public HighlightsInfo? HighlightsInfo
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<HighlightsInfo>("highlightsInfo");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("highlightsInfo", value);
+        }
+    }
+
+    /// <summary>
+    /// Identity verification metadata displayed by X.
+    /// </summary>
+    public IdentityVerification? IdentityVerification
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<IdentityVerification>("identityVerification");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("identityVerification", value);
+        }
+    }
+
     public bool? IsAutomated
     {
         get
@@ -267,6 +382,24 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("isBlueVerified", value);
+        }
+    }
+
+    public bool? IsProfileTranslatable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isProfileTranslatable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isProfileTranslatable", value);
         }
     }
 
@@ -342,6 +475,24 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("mediaCount", value);
+        }
+    }
+
+    public string? ParodyCommentaryFanLabel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("parodyCommentaryFanLabel");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("parodyCommentaryFanLabel", value);
         }
     }
 
@@ -431,6 +582,60 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
+    public string? ProfileDescriptionLanguage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileDescriptionLanguage");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileDescriptionLanguage", value);
+        }
+    }
+
+    public string? ProfileImageShape
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileImageShape");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileImageShape", value);
+        }
+    }
+
+    public string? ProfileInterstitialType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileInterstitialType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileInterstitialType", value);
+        }
+    }
+
     public string? ProfilePicture
     {
         get
@@ -446,6 +651,42 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("profilePicture", value);
+        }
+    }
+
+    public bool? ProfileSortEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("profileSortEnabled");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileSortEnabled", value);
+        }
+    }
+
+    public string? ProfileTranslatorType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profileTranslatorType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profileTranslatorType", value);
         }
     }
 
@@ -485,6 +726,24 @@ public sealed record class UserProfile : JsonModel
             }
 
             this._rawData.Set("statusesCount", value);
+        }
+    }
+
+    public bool? SuperFollowEligible
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("superFollowEligible");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("superFollowEligible", value);
         }
     }
 
@@ -578,48 +837,6 @@ public sealed record class UserProfile : JsonModel
         }
     }
 
-    /// <summary>
-    /// Whether this profile follows the authenticated viewer
-    /// </summary>
-    public bool? ViewerFollowedBy
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerFollowedBy");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerFollowedBy", value);
-        }
-    }
-
-    /// <summary>
-    /// Whether the authenticated viewer follows this profile
-    /// </summary>
-    public bool? ViewerFollowing
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("viewerFollowing");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("viewerFollowing", value);
-        }
-    }
-
     public IReadOnlyList<string>? WithheldInCountries
     {
         get
@@ -647,36 +864,48 @@ public sealed record class UserProfile : JsonModel
         _ = this.ID;
         _ = this.Name;
         _ = this.Username;
+        this.AffiliatesHighlightedLabel?.Validate();
         _ = this.AutomatedBy;
-        _ = this.CanDm;
+        _ = this.BusinessAccountAffiliatesCount;
         _ = this.CommunityRole;
         _ = this.CoverPicture;
         _ = this.CreatedAt;
+        _ = this.CreatorSubscriptionsCount;
         _ = this.Description;
         _ = this.FavouritesCount;
         _ = this.Followers;
         _ = this.Following;
         _ = this.HasCustomTimelines;
+        _ = this.HasGraduatedAccess;
+        _ = this.HasHiddenSubscriptionsOnProfile;
+        this.HighlightsInfo?.Validate();
+        this.IdentityVerification?.Validate();
         _ = this.IsAutomated;
         _ = this.IsBlueVerified;
+        _ = this.IsProfileTranslatable;
         _ = this.IsTranslator;
         _ = this.IsVerified;
         _ = this.Location;
         _ = this.MediaCount;
+        _ = this.ParodyCommentaryFanLabel;
         _ = this.PinnedTweetIds;
         _ = this.PossiblySensitive;
         _ = this.ProfileBio;
         _ = this.ProfileBannerUrl;
+        _ = this.ProfileDescriptionLanguage;
+        _ = this.ProfileImageShape;
+        _ = this.ProfileInterstitialType;
         _ = this.ProfilePicture;
+        _ = this.ProfileSortEnabled;
+        _ = this.ProfileTranslatorType;
         _ = this.Protected;
         _ = this.StatusesCount;
+        _ = this.SuperFollowEligible;
         _ = this.Unavailable;
         _ = this.UnavailableReason;
         _ = this.Url;
         _ = this.Verified;
         _ = this.VerifiedType;
-        _ = this.ViewerFollowedBy;
-        _ = this.ViewerFollowing;
         _ = this.WithheldInCountries;
     }
 
@@ -713,4 +942,359 @@ class UserProfileFromRaw : IFromRawJson<UserProfile>
     /// <inheritdoc/>
     public UserProfile FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         UserProfile.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Organization affiliation label shown on an X profile.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<AffiliatesHighlightedLabel, AffiliatesHighlightedLabelFromRaw>)
+)]
+public sealed record class AffiliatesHighlightedLabel : JsonModel
+{
+    public string? BadgeUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("badgeUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("badgeUrl", value);
+        }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("description", value);
+        }
+    }
+
+    public string? Url
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
+    public string? UrlType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("urlType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("urlType", value);
+        }
+    }
+
+    public string? UserLabelDisplayType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("userLabelDisplayType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("userLabelDisplayType", value);
+        }
+    }
+
+    public string? UserLabelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("userLabelType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("userLabelType", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.BadgeUrl;
+        _ = this.Description;
+        _ = this.Url;
+        _ = this.UrlType;
+        _ = this.UserLabelDisplayType;
+        _ = this.UserLabelType;
+    }
+
+    public AffiliatesHighlightedLabel() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AffiliatesHighlightedLabel(AffiliatesHighlightedLabel affiliatesHighlightedLabel)
+        : base(affiliatesHighlightedLabel) { }
+#pragma warning restore CS8618
+
+    public AffiliatesHighlightedLabel(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AffiliatesHighlightedLabel(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AffiliatesHighlightedLabelFromRaw.FromRawUnchecked"/>
+    public static AffiliatesHighlightedLabel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AffiliatesHighlightedLabelFromRaw : IFromRawJson<AffiliatesHighlightedLabel>
+{
+    /// <inheritdoc/>
+    public AffiliatesHighlightedLabel FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AffiliatesHighlightedLabel.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Profile highlight availability and count metadata.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<HighlightsInfo, HighlightsInfoFromRaw>))]
+public sealed record class HighlightsInfo : JsonModel
+{
+    public bool? CanHighlightTweets
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("canHighlightTweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("canHighlightTweets", value);
+        }
+    }
+
+    public string? HighlightedTweets
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("highlightedTweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("highlightedTweets", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.CanHighlightTweets;
+        _ = this.HighlightedTweets;
+    }
+
+    public HighlightsInfo() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public HighlightsInfo(HighlightsInfo highlightsInfo)
+        : base(highlightsInfo) { }
+#pragma warning restore CS8618
+
+    public HighlightsInfo(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    HighlightsInfo(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="HighlightsInfoFromRaw.FromRawUnchecked"/>
+    public static HighlightsInfo FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class HighlightsInfoFromRaw : IFromRawJson<HighlightsInfo>
+{
+    /// <inheritdoc/>
+    public HighlightsInfo FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        HighlightsInfo.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Identity verification metadata displayed by X.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<IdentityVerification, IdentityVerificationFromRaw>))]
+public sealed record class IdentityVerification : JsonModel
+{
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("description", value);
+        }
+    }
+
+    public bool? IsIdentityVerified
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isIdentityVerified");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isIdentityVerified", value);
+        }
+    }
+
+    public string? VerifiedSinceMsec
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("verifiedSinceMsec");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("verifiedSinceMsec", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Description;
+        _ = this.IsIdentityVerified;
+        _ = this.VerifiedSinceMsec;
+    }
+
+    public IdentityVerification() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public IdentityVerification(IdentityVerification identityVerification)
+        : base(identityVerification) { }
+#pragma warning restore CS8618
+
+    public IdentityVerification(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    IdentityVerification(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="IdentityVerificationFromRaw.FromRawUnchecked"/>
+    public static IdentityVerification FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class IdentityVerificationFromRaw : IFromRawJson<IdentityVerification>
+{
+    /// <inheritdoc/>
+    public IdentityVerification FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => IdentityVerification.FromRawUnchecked(rawData);
 }

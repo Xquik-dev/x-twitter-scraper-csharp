@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models;
@@ -16,18 +12,12 @@ public class ContentDisclosureTest : TestBase
         var model = new ContentDisclosure
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
 
         Advertising expectedAdvertising = new() { IsPaidPromotion = true };
         AIGenerated expectedAIGenerated = new()
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
@@ -42,12 +32,7 @@ public class ContentDisclosureTest : TestBase
         var model = new ContentDisclosure
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -65,12 +50,7 @@ public class ContentDisclosureTest : TestBase
         var model = new ContentDisclosure
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -83,7 +63,6 @@ public class ContentDisclosureTest : TestBase
         Advertising expectedAdvertising = new() { IsPaidPromotion = true };
         AIGenerated expectedAIGenerated = new()
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
@@ -98,12 +77,7 @@ public class ContentDisclosureTest : TestBase
         var model = new ContentDisclosure
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
 
         model.Validate();
@@ -163,12 +137,7 @@ public class ContentDisclosureTest : TestBase
         var model = new ContentDisclosure
         {
             Advertising = new() { IsPaidPromotion = true },
-            AIGenerated = new()
-            {
-                CanEdit = true,
-                DetectionSource = "UserDeclared",
-                HasAIGeneratedMedia = true,
-            },
+            AIGenerated = new() { DetectionSource = "UserDeclared", HasAIGeneratedMedia = true },
         };
 
         ContentDisclosure copied = new(model);
@@ -288,16 +257,13 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
 
-        bool expectedCanEdit = true;
         string expectedDetectionSource = "UserDeclared";
         bool expectedHasAIGeneratedMedia = true;
 
-        Assert.Equal(expectedCanEdit, model.CanEdit);
         Assert.Equal(expectedDetectionSource, model.DetectionSource);
         Assert.Equal(expectedHasAIGeneratedMedia, model.HasAIGeneratedMedia);
     }
@@ -307,7 +273,6 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
@@ -326,7 +291,6 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
@@ -338,11 +302,9 @@ public class AIGeneratedTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        bool expectedCanEdit = true;
         string expectedDetectionSource = "UserDeclared";
         bool expectedHasAIGeneratedMedia = true;
 
-        Assert.Equal(expectedCanEdit, deserialized.CanEdit);
         Assert.Equal(expectedDetectionSource, deserialized.DetectionSource);
         Assert.Equal(expectedHasAIGeneratedMedia, deserialized.HasAIGeneratedMedia);
     }
@@ -352,7 +314,6 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };
@@ -365,8 +326,6 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated { };
 
-        Assert.Null(model.CanEdit);
-        Assert.False(model.RawData.ContainsKey("canEdit"));
         Assert.Null(model.DetectionSource);
         Assert.False(model.RawData.ContainsKey("detectionSource"));
         Assert.Null(model.HasAIGeneratedMedia);
@@ -387,13 +346,10 @@ public class AIGeneratedTest : TestBase
         var model = new AIGenerated
         {
             // Null should be interpreted as omitted for these properties
-            CanEdit = null,
             DetectionSource = null,
             HasAIGeneratedMedia = null,
         };
 
-        Assert.Null(model.CanEdit);
-        Assert.False(model.RawData.ContainsKey("canEdit"));
         Assert.Null(model.DetectionSource);
         Assert.False(model.RawData.ContainsKey("detectionSource"));
         Assert.Null(model.HasAIGeneratedMedia);
@@ -406,7 +362,6 @@ public class AIGeneratedTest : TestBase
         var model = new AIGenerated
         {
             // Null should be interpreted as omitted for these properties
-            CanEdit = null,
             DetectionSource = null,
             HasAIGeneratedMedia = null,
         };
@@ -419,7 +374,6 @@ public class AIGeneratedTest : TestBase
     {
         var model = new AIGenerated
         {
-            CanEdit = true,
             DetectionSource = "UserDeclared",
             HasAIGeneratedMedia = true,
         };

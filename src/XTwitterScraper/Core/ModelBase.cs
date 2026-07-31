@@ -1,14 +1,9 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Text.Json;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.Account;
 using XTwitterScraper.Models.Compose;
 using XTwitterScraper.Models.Events;
-using XTwitterScraper.Models.Radar;
 using XTwitterScraper.Models.Subscribe;
 using XTwitterScraper.Models.Webhooks;
 using XTwitterScraper.Models.X.Accounts;
@@ -26,6 +21,7 @@ using Join = XTwitterScraper.Models.X.Communities.Join;
 using Like = XTwitterScraper.Models.X.Tweets.Like;
 using Media = XTwitterScraper.Models.X.Media;
 using Profile = XTwitterScraper.Models.X.Profile;
+using Radar = XTwitterScraper.Models.Radar;
 using Retweet = XTwitterScraper.Models.X.Tweets.Retweet;
 using Tickets = XTwitterScraper.Models.Support.Tickets;
 using Tweets = XTwitterScraper.Models.X.Tweets;
@@ -56,19 +52,22 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Code>(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, EventType>(),
+            new ApiEnumConverter<string, StopReason>(),
             new ApiEnumConverter<string, TweetMediaType>(),
             new ApiEnumConverter<string, Plan>(),
             new ApiEnumConverter<string, Locale>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, Tier>(),
+            new ApiEnumConverter<string, Source>(),
             new ApiEnumConverter<string, Goal>(),
             new ApiEnumConverter<string, ComposeRefineRequestGoal>(),
             new ApiEnumConverter<string, MediaType>(),
             new ApiEnumConverter<string, Drafts::Goal>(),
-            new ApiEnumConverter<string, RadarItemCategory>(),
-            new ApiEnumConverter<string, RadarItemSource>(),
-            new ApiEnumConverter<string, Category>(),
-            new ApiEnumConverter<string, Source>(),
+            new ApiEnumConverter<string, Radar::RadarItemCategory>(),
+            new ApiEnumConverter<string, Radar::SourceFormat>(),
+            new ApiEnumConverter<string, Radar::RadarItemSource>(),
+            new ApiEnumConverter<string, Radar::Category>(),
+            new ApiEnumConverter<string, Radar::Source>(),
             new ApiEnumConverter<string, MonitorType>(),
             new ApiEnumConverter<string, EventDetailMonitorType>(),
             new ApiEnumConverter<string, Extractions::ExtractionJobStatus>(),
@@ -115,6 +114,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Tweets::Replies>(),
             new ApiEnumConverter<string, Tweets::Retweets>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsMediaType>(),
+            new ApiEnumConverter<string, Tweets::Mode>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsQuotes>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsReplies>(),
             new ApiEnumConverter<string, Tweets::TweetGetRepliesParamsRetweets>(),
@@ -243,13 +243,17 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, QueryType>(),
             new ApiEnumConverter<string, Health>(),
             new ApiEnumConverter<string, XAccountDetailHealth>(),
-            new ApiEnumConverter<string, AccountCreateResponseHealth>(),
+            new ApiEnumConverter<string, SanitizedXAccountHealth>(),
             new ApiEnumConverter<string, AccountReauthResponseHealth>(),
             new ApiEnumConverter<string, AccountConnectionChallenges::Health>(),
             new ApiEnumConverter<string, Tickets::AttachmentStatus>(),
             new ApiEnumConverter<string, Tickets::ContentType>(),
             new ApiEnumConverter<string, Tickets::Kind>(),
             new ApiEnumConverter<string, Tickets::MessageAttachmentStatus>(),
+            new ApiEnumConverter<string, Tickets::Sender>(),
+            new ApiEnumConverter<string, Tickets::TicketRetrieveResponseStatus>(),
+            new ApiEnumConverter<string, Tickets::TicketUpdateResponseStatus>(),
+            new ApiEnumConverter<string, Tickets::TicketStatus>(),
             new ApiEnumConverter<string, Tickets::TicketReplyResponseAttachmentStatus>(),
             new ApiEnumConverter<string, Tickets::Status>(),
             new ApiEnumConverter<string, Credits::Status>(),

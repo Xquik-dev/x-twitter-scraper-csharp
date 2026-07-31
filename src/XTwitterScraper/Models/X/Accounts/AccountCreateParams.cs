@@ -55,19 +55,6 @@ public record class AccountCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// X username
-    /// </summary>
-    public required string Username
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<string>("username");
-        }
-        init { this._rawBodyData.Set("username", value); }
-    }
-
-    /// <summary>
     /// Authenticator App TOTP secret required for durable login
     /// </summary>
     public required string TotpSecret
@@ -78,6 +65,19 @@ public record class AccountCreateParams : ParamsBase
             return this._rawBodyData.GetNotNullClass<string>("totp_secret");
         }
         init { this._rawBodyData.Set("totp_secret", value); }
+    }
+
+    /// <summary>
+    /// X username
+    /// </summary>
+    public required string Username
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNotNullClass<string>("username");
+        }
+        init { this._rawBodyData.Set("username", value); }
     }
 
     public AccountCreateParams() { }
