@@ -52,59 +52,12 @@ public record class PaginatedTweets : JsonModel
         }
     }
 
-    public Diagnostic? Diagnostic
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Diagnostic>("diagnostic");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("diagnostic", value);
-        }
-    }
-
-    /// <summary>
-    /// Nested replies. Excluded from direct coverage.
-    /// </summary>
-    public IReadOnlyList<SearchTweet>? NestedReplies
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<SearchTweet>>("nested_replies");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<SearchTweet>?>(
-                "nested_replies",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.HasNextPage;
         _ = this.NextCursor;
         foreach (var item in this.Tweets)
-        {
-            item.Validate();
-        }
-        this.Diagnostic?.Validate();
-        foreach (var item in this.NestedReplies ?? [])
         {
             item.Validate();
         }

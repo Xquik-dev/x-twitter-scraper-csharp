@@ -3,15 +3,16 @@ using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
+using XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Tests.Models;
 
-public class PaginatedTweetsTest : TestBase
+public class TweetGetRepliesResponseTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -3203,7 +3204,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -4792,7 +4793,7 @@ public class PaginatedTweetsTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PaginatedTweets>(
+        var deserialized = JsonSerializer.Deserialize<TweetGetRepliesResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -4803,7 +4804,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -6392,7 +6393,7 @@ public class PaginatedTweetsTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<PaginatedTweets>(
+        var deserialized = JsonSerializer.Deserialize<TweetGetRepliesResponse>(
             element,
             ModelBase.SerializerOptions
         );
@@ -8002,7 +8003,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -9596,7 +9597,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -10379,7 +10380,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -11159,7 +11160,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -11946,7 +11947,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -12730,7 +12731,7 @@ public class PaginatedTweetsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new PaginatedTweets
+        var model = new TweetGetRepliesResponse
         {
             HasNextPage = true,
             NextCursor = "DAACCgACGRElMJcAAA",
@@ -14318,7 +14319,7 @@ public class PaginatedTweetsTest : TestBase
             ],
         };
 
-        PaginatedTweets copied = new(model);
+        TweetGetRepliesResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }
