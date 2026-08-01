@@ -1,5 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
 // SPDX-License-Identifier: Apache-2.0
 
 using System;
@@ -20,7 +19,6 @@ public class AccountReauthResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Health = AccountReauthResponseHealth.Healthy,
-            Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };
@@ -29,14 +27,14 @@ public class AccountReauthResponseTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, AccountReauthResponseHealth> expectedHealth =
             AccountReauthResponseHealth.Healthy;
-        string expectedStatus = "active";
+        JsonElement expectedStatus = JsonSerializer.SerializeToElement("active");
         string expectedXUserID = "9876543210";
         string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedHealth, model.Health);
-        Assert.Equal(expectedStatus, model.Status);
+        Assert.True(JsonElement.DeepEquals(expectedStatus, model.Status));
         Assert.Equal(expectedXUserID, model.XUserID);
         Assert.Equal(expectedXUsername, model.XUsername);
     }
@@ -49,7 +47,6 @@ public class AccountReauthResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Health = AccountReauthResponseHealth.Healthy,
-            Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };
@@ -71,7 +68,6 @@ public class AccountReauthResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Health = AccountReauthResponseHealth.Healthy,
-            Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };
@@ -87,14 +83,14 @@ public class AccountReauthResponseTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, AccountReauthResponseHealth> expectedHealth =
             AccountReauthResponseHealth.Healthy;
-        string expectedStatus = "active";
+        JsonElement expectedStatus = JsonSerializer.SerializeToElement("active");
         string expectedXUserID = "9876543210";
         string expectedXUsername = "elonmusk";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedHealth, deserialized.Health);
-        Assert.Equal(expectedStatus, deserialized.Status);
+        Assert.True(JsonElement.DeepEquals(expectedStatus, deserialized.Status));
         Assert.Equal(expectedXUserID, deserialized.XUserID);
         Assert.Equal(expectedXUsername, deserialized.XUsername);
     }
@@ -107,7 +103,6 @@ public class AccountReauthResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Health = AccountReauthResponseHealth.Healthy,
-            Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };
@@ -123,7 +118,6 @@ public class AccountReauthResponseTest : TestBase
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Health = AccountReauthResponseHealth.Healthy,
-            Status = "active",
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };

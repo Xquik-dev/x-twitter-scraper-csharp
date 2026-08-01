@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -17,127 +13,84 @@ namespace XTwitterScraper.Models.Support.Tickets;
 [JsonConverter(typeof(JsonModelConverter<TicketRetrieveResponse, TicketRetrieveResponseFromRaw>))]
 public sealed record class TicketRetrieveResponse : JsonModel
 {
-    public System::DateTimeOffset? CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<System::DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("createdAt", value);
-        }
+        init { this._rawData.Set("createdAt", value); }
     }
 
-    public IReadOnlyList<Message>? Messages
+    public required IReadOnlyList<Message> Messages
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<Message>>("messages");
+            return this._rawData.GetNotNullStruct<ImmutableArray<Message>>("messages");
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<Message>?>(
+            this._rawData.Set<ImmutableArray<Message>>(
                 "messages",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
 
-    public string? PublicID
+    public required string PublicID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("publicId");
+            return this._rawData.GetNotNullClass<string>("publicId");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("publicId", value);
-        }
+        init { this._rawData.Set("publicId", value); }
     }
 
-    public string? Status
+    public required ApiEnum<string, TicketRetrieveResponseStatus> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, TicketRetrieveResponseStatus>>(
+                "status"
+            );
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("status", value);
-        }
+        init { this._rawData.Set("status", value); }
     }
 
-    public string? Subject
+    public required string Subject
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("subject");
+            return this._rawData.GetNotNullClass<string>("subject");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("subject", value);
-        }
+        init { this._rawData.Set("subject", value); }
     }
 
-    public System::DateTimeOffset? UpdatedAt
+    public required System::DateTimeOffset UpdatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<System::DateTimeOffset>("updatedAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("updatedAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("updatedAt", value);
-        }
+        init { this._rawData.Set("updatedAt", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.CreatedAt;
-        foreach (var item in this.Messages ?? [])
+        foreach (var item in this.Messages)
         {
             item.Validate();
         }
         _ = this.PublicID;
-        _ = this.Status;
+        this.Status.Validate();
         _ = this.Subject;
         _ = this.UpdatedAt;
     }
@@ -183,93 +136,62 @@ class TicketRetrieveResponseFromRaw : IFromRawJson<TicketRetrieveResponse>
 [JsonConverter(typeof(JsonModelConverter<Message, MessageFromRaw>))]
 public sealed record class Message : JsonModel
 {
-    public IReadOnlyList<MessageAttachment>? Attachments
+    public required IReadOnlyList<MessageAttachment> Attachments
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<MessageAttachment>>(
-                "attachments"
-            );
+            return this._rawData.GetNotNullStruct<ImmutableArray<MessageAttachment>>("attachments");
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<MessageAttachment>?>(
+            this._rawData.Set<ImmutableArray<MessageAttachment>>(
                 "attachments",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
+                ImmutableArray.ToImmutableArray(value)
             );
         }
     }
 
-    public string? Body
+    public required string Body
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("body");
+            return this._rawData.GetNotNullClass<string>("body");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("body", value);
-        }
+        init { this._rawData.Set("body", value); }
     }
 
-    public System::DateTimeOffset? CreatedAt
+    public required System::DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<System::DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("createdAt", value);
-        }
+        init { this._rawData.Set("createdAt", value); }
     }
 
-    public string? Sender
+    public required ApiEnum<string, Sender> Sender
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("sender");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Sender>>("sender");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("sender", value);
-        }
+        init { this._rawData.Set("sender", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.Attachments ?? [])
+        foreach (var item in this.Attachments)
         {
             item.Validate();
         }
         _ = this.Body;
         _ = this.CreatedAt;
-        _ = this.Sender;
+        this.Sender.Validate();
     }
 
     public Message() { }
@@ -589,6 +511,99 @@ sealed class MessageAttachmentStatusConverter : JsonConverter<MessageAttachmentS
                 MessageAttachmentStatus.Pending => "pending",
                 MessageAttachmentStatus.Ready => "ready",
                 MessageAttachmentStatus.Failed => "failed",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(SenderConverter))]
+public enum Sender
+{
+    User,
+    Support,
+    System,
+}
+
+sealed class SenderConverter : JsonConverter<Sender>
+{
+    public override Sender Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "user" => Sender.User,
+            "support" => Sender.Support,
+            "system" => Sender.System,
+            _ => (Sender)(-1),
+        };
+    }
+
+    public override void Write(Utf8JsonWriter writer, Sender value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                Sender.User => "user",
+                Sender.Support => "support",
+                Sender.System => "system",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(TicketRetrieveResponseStatusConverter))]
+public enum TicketRetrieveResponseStatus
+{
+    Open,
+    InProgress,
+    Resolved,
+    Closed,
+}
+
+sealed class TicketRetrieveResponseStatusConverter : JsonConverter<TicketRetrieveResponseStatus>
+{
+    public override TicketRetrieveResponseStatus Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "open" => TicketRetrieveResponseStatus.Open,
+            "in_progress" => TicketRetrieveResponseStatus.InProgress,
+            "resolved" => TicketRetrieveResponseStatus.Resolved,
+            "closed" => TicketRetrieveResponseStatus.Closed,
+            _ => (TicketRetrieveResponseStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TicketRetrieveResponseStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TicketRetrieveResponseStatus.Open => "open",
+                TicketRetrieveResponseStatus.InProgress => "in_progress",
+                TicketRetrieveResponseStatus.Resolved => "resolved",
+                TicketRetrieveResponseStatus.Closed => "closed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

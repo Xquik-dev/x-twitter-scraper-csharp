@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -205,27 +201,6 @@ public sealed record class Community : JsonModel
     }
 
     /// <summary>
-    /// Whether the authenticated viewer is a member
-    /// </summary>
-    public bool? IsMember
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("is_member");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("is_member", value);
-        }
-    }
-
-    /// <summary>
     /// Whether the community is marked sensitive
     /// </summary>
     public bool? IsNsfw
@@ -352,27 +327,6 @@ public sealed record class Community : JsonModel
     }
 
     /// <summary>
-    /// Authenticated viewer's community role
-    /// </summary>
-    public string? Role
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("role");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("role", value);
-        }
-    }
-
-    /// <summary>
     /// Community rules
     /// </summary>
     public IReadOnlyList<Rule>? Rules
@@ -405,14 +359,12 @@ public sealed record class Community : JsonModel
         this.Creator?.Validate();
         _ = this.Description;
         _ = this.InvitesPolicy;
-        _ = this.IsMember;
         _ = this.IsNsfw;
         _ = this.JoinPolicy;
         _ = this.MemberCount;
         _ = this.ModeratorCount;
         _ = this.Name;
         this.PrimaryTopic?.Validate();
-        _ = this.Role;
         foreach (var item in this.Rules ?? [])
         {
             item.Validate();

@@ -130,6 +130,19 @@ public sealed record class Trend : JsonModel
         }
     }
 
+    /// <summary>
+    /// Promotion identifier from X. Null for organic trends.
+    /// </summary>
+    public string? PromotedContent
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("promotedContent");
+        }
+        init { this._rawData.Set("promotedContent", value); }
+    }
+
     public string? Query
     {
         get
@@ -166,13 +179,50 @@ public sealed record class Trend : JsonModel
         }
     }
 
+    /// <summary>
+    /// Approximate public post volume when X supplies it.
+    /// </summary>
+    public long? TweetVolume
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("tweetVolume");
+        }
+        init { this._rawData.Set("tweetVolume", value); }
+    }
+
+    /// <summary>
+    /// X search URL for the trend.
+    /// </summary>
+    public string? Url
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Name;
         _ = this.Description;
+        _ = this.PromotedContent;
         _ = this.Query;
         _ = this.Rank;
+        _ = this.TweetVolume;
+        _ = this.Url;
     }
 
     public Trend() { }

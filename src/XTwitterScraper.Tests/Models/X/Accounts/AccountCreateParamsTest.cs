@@ -13,21 +13,21 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "test-password",
-            Username = "test-user",
-            TotpSecret = "test-totp-secret",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            TotpSecret = "<TOTP_SECRET>",
+            Username = "your_x_username",
         };
 
-        string expectedEmail = "user@example.com";
-        string expectedPassword = "test-password";
-        string expectedUsername = "test-user";
-        string expectedTotpSecret = "test-totp-secret";
+        string expectedEmail = "account@example.invalid";
+        string expectedPassword = "<ACCOUNT_PASSWORD>";
+        string expectedTotpSecret = "<TOTP_SECRET>";
+        string expectedUsername = "your_x_username";
 
         Assert.Equal(expectedEmail, parameters.Email);
         Assert.Equal(expectedPassword, parameters.Password);
-        Assert.Equal(expectedUsername, parameters.Username);
         Assert.Equal(expectedTotpSecret, parameters.TotpSecret);
+        Assert.Equal(expectedUsername, parameters.Username);
     }
 
     [Fact]
@@ -35,15 +35,13 @@ public class AccountCreateParamsTest : TestBase
     {
         AccountCreateParams parameters = new()
         {
-            Email = "user@example.com",
-            Password = "test-password",
-            Username = "test-user",
-            TotpSecret = "test-totp-secret",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            TotpSecret = "<TOTP_SECRET>",
+            Username = "your_x_username",
         };
 
-        var url = parameters.Url(
-            new() { ApiKey = "test-api-key", BearerToken = "test-bearer-token" }
-        );
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
 
         Assert.True(TestBase.UrisEqual(new Uri("https://xquik.com/api/v1/x/accounts"), url));
     }
@@ -53,10 +51,10 @@ public class AccountCreateParamsTest : TestBase
     {
         var parameters = new AccountCreateParams
         {
-            Email = "user@example.com",
-            Password = "test-password",
-            Username = "test-user",
-            TotpSecret = "test-totp-secret",
+            Email = "account@example.invalid",
+            Password = "<ACCOUNT_PASSWORD>",
+            TotpSecret = "<TOTP_SECRET>",
+            Username = "your_x_username",
         };
 
         AccountCreateParams copied = new(parameters);

@@ -16,9 +16,10 @@ using System = System;
 namespace XTwitterScraper.Models.Compose;
 
 /// <summary>
-/// Run one step of Xquik's three-step writing workflow. Compose returns questions
-/// and editorial rules. Refine returns goal-specific guidance. Score applies deterministic
-/// text checks. It does not predict reach or expose X ranking weights.
+/// Run one step of Xquik's three-step writing workflow. Compose returns questions,
+/// editorial rules, and source-specific Radar recommendations. Refine returns goal-specific
+/// guidance. Score applies deterministic text checks. It does not predict reach or
+/// expose X ranking weights.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

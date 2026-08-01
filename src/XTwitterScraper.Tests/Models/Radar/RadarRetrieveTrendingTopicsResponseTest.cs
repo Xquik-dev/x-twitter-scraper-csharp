@@ -1,5 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
+// SPDX-FileCopyrightText: 2026 Xquik-dev contributors
 // SPDX-License-Identifier: Apache-2.0
 
 using System;
@@ -26,9 +25,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -53,9 +61,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 Category = RadarItemCategory.Tech,
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                 Language = "en",
-                Metadata = new Dictionary<string, JsonElement>()
+                Metadata = new()
                 {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                    Author = "author",
+                    ContentUrl = "https://example.com",
+                    EstimatedDownvotes = 0,
+                    EstimatedUpvotes = 0,
+                    NumberComments = 0,
+                    Score = 0,
+                    Selftext = "selftext",
+                    SourceFormat = SourceFormat.Html,
+                    Subreddit = "subreddit",
+                    UpvoteRatio = 0,
                 },
                 PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Region = "global",
@@ -93,9 +110,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -134,9 +160,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -168,9 +203,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 Category = RadarItemCategory.Tech,
                 CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                 Language = "en",
-                Metadata = new Dictionary<string, JsonElement>()
+                Metadata = new()
                 {
-                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                    Author = "author",
+                    ContentUrl = "https://example.com",
+                    EstimatedDownvotes = 0,
+                    EstimatedUpvotes = 0,
+                    NumberComments = 0,
+                    Score = 0,
+                    Selftext = "selftext",
+                    SourceFormat = SourceFormat.Html,
+                    Subreddit = "subreddit",
+                    UpvoteRatio = 0,
                 },
                 PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                 Region = "global",
@@ -208,9 +252,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -243,9 +296,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -278,9 +340,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -312,9 +383,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -350,9 +430,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",
@@ -387,9 +476,18 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                     Category = RadarItemCategory.Tech,
                     CreatedAt = DateTimeOffset.Parse("2025-01-15T12:01:00Z"),
                     Language = "en",
-                    Metadata = new Dictionary<string, JsonElement>()
+                    Metadata = new()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        Author = "author",
+                        ContentUrl = "https://example.com",
+                        EstimatedDownvotes = 0,
+                        EstimatedUpvotes = 0,
+                        NumberComments = 0,
+                        Score = 0,
+                        Selftext = "selftext",
+                        SourceFormat = SourceFormat.Html,
+                        Subreddit = "subreddit",
+                        UpvoteRatio = 0,
                     },
                     PublishedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
                     Region = "global",

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Xquik contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-
 using System.Collections.Generic;
 using System.Text.Json;
 using XTwitterScraper.Core;
@@ -54,7 +50,6 @@ public class XGetArticleResponseTest : TestBase
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
-                CanDm = true,
                 CreatedAt = "createdAt",
                 Description = "description",
                 FavouritesCount = 0,
@@ -111,7 +106,6 @@ public class XGetArticleResponseTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -176,7 +170,6 @@ public class XGetArticleResponseTest : TestBase
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
-                CanDm = true,
                 CreatedAt = "createdAt",
                 Description = "description",
                 FavouritesCount = 0,
@@ -247,7 +240,6 @@ public class XGetArticleResponseTest : TestBase
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
-                CanDm = true,
                 CreatedAt = "createdAt",
                 Description = "description",
                 FavouritesCount = 0,
@@ -311,7 +303,6 @@ public class XGetArticleResponseTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -376,7 +367,6 @@ public class XGetArticleResponseTest : TestBase
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
-                CanDm = true,
                 CreatedAt = "createdAt",
                 Description = "description",
                 FavouritesCount = 0,
@@ -621,7 +611,6 @@ public class XGetArticleResponseTest : TestBase
                 ID = "9876543210",
                 Name = "Elon Musk",
                 Username = "elonmusk",
-                CanDm = true,
                 CreatedAt = "createdAt",
                 Description = "description",
                 FavouritesCount = 0,
@@ -1478,7 +1467,6 @@ public class AuthorTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -1499,7 +1487,6 @@ public class AuthorTest : TestBase
         string expectedID = "9876543210";
         string expectedName = "Elon Musk";
         string expectedUsername = "elonmusk";
-        bool expectedCanDm = true;
         string expectedCreatedAt = "createdAt";
         string expectedDescription = "description";
         long expectedFavouritesCount = 0;
@@ -1519,7 +1506,6 @@ public class AuthorTest : TestBase
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedUsername, model.Username);
-        Assert.Equal(expectedCanDm, model.CanDm);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedDescription, model.Description);
         Assert.Equal(expectedFavouritesCount, model.FavouritesCount);
@@ -1545,7 +1531,6 @@ public class AuthorTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -1577,7 +1562,6 @@ public class AuthorTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -1602,7 +1586,6 @@ public class AuthorTest : TestBase
         string expectedID = "9876543210";
         string expectedName = "Elon Musk";
         string expectedUsername = "elonmusk";
-        bool expectedCanDm = true;
         string expectedCreatedAt = "createdAt";
         string expectedDescription = "description";
         long expectedFavouritesCount = 0;
@@ -1622,7 +1605,6 @@ public class AuthorTest : TestBase
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedUsername, deserialized.Username);
-        Assert.Equal(expectedCanDm, deserialized.CanDm);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedDescription, deserialized.Description);
         Assert.Equal(expectedFavouritesCount, deserialized.FavouritesCount);
@@ -1648,7 +1630,6 @@ public class AuthorTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,
@@ -1679,8 +1660,6 @@ public class AuthorTest : TestBase
             Username = "elonmusk",
         };
 
-        Assert.Null(model.CanDm);
-        Assert.False(model.RawData.ContainsKey("canDm"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
         Assert.Null(model.Description);
@@ -1736,7 +1715,6 @@ public class AuthorTest : TestBase
             Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
-            CanDm = null,
             CreatedAt = null,
             Description = null,
             FavouritesCount = null,
@@ -1754,8 +1732,6 @@ public class AuthorTest : TestBase
             Url = null,
         };
 
-        Assert.Null(model.CanDm);
-        Assert.False(model.RawData.ContainsKey("canDm"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
         Assert.Null(model.Description);
@@ -1798,7 +1774,6 @@ public class AuthorTest : TestBase
             Username = "elonmusk",
 
             // Null should be interpreted as omitted for these properties
-            CanDm = null,
             CreatedAt = null,
             Description = null,
             FavouritesCount = null,
@@ -1827,7 +1802,6 @@ public class AuthorTest : TestBase
             ID = "9876543210",
             Name = "Elon Musk",
             Username = "elonmusk",
-            CanDm = true,
             CreatedAt = "createdAt",
             Description = "description",
             FavouritesCount = 0,

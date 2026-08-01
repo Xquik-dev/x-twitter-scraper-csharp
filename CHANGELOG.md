@@ -8,11 +8,13 @@ Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper
 
 * **api:** api update ([3bae29a](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/3bae29a81a3e52f8b943cb9b0e15b168fdd7f609))
 * **api:** api update ([52fc432](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/52fc432ac86866625f6ce062c8429df748841472))
+* **api:** add complete reply extraction and isolate reply diagnostics from generic pagination ([#29](https://github.com/Xquik-dev/x-twitter-scraper-csharp/pull/29)) ([acaada7](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/acaada7cca1a4faeb281c7a5385c5921fa549a7c))
 
 
 ### Bug Fixes
 
 * **client:** tolerate JSON null in required untyped fields and prefer more specific union variants ([a2832e9](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a2832e90f2bc35a792afb1159c54186e6e1e65c2))
+* make draft release validation least-privilege
 * make draft release lookup reliable ([#25](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/25)) ([559ec94](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/559ec945b4d5d1692425ea1df0f3f5ed9a0aa39c))
 * publish assets before immutable release ([#23](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/23)) ([b88673f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/b88673fcc9c55166bd9ac690ddea783d4c0e34a5))
 
