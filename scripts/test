@@ -11,13 +11,12 @@ cd -- "$(dirname -- "$0")/.."
 echo "==> Running tests"
 case "$(uname -s)" in
   MINGW* | MSYS* | CYGWIN*)
-    dotnet test --no-restore --logger "console;verbosity=minimal"
+    dotnet test --no-restore
     ;;
   *)
     DOTNET_ROLL_FORWARD=Major dotnet test \
       src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
       --framework net8.0 \
-      --no-restore \
-      --logger "console;verbosity=minimal"
+      --no-restore
     ;;
 esac
