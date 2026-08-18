@@ -8,7 +8,7 @@ Follow the shared [Xquik contribution policy][contribution-policy].
 
 ## Set Up
 
-Install .NET SDK 10.0.301, the .NET 8 runtime, Node.js, and `unzip`.
+Install .NET SDK 10.0.400, the .NET 8 runtime, Node.js, and `unzip`.
 
 Windows also runs the .NET Framework 4.7.2 test target.
 

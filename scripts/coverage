@@ -16,12 +16,14 @@ DOTNET_ROLL_FORWARD=Major dotnet test \
   src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
   --framework net8.0 \
   --no-restore \
-  --collect:"XPlat Code Coverage" \
   --results-directory "$coverage_workspace" \
-  --logger "trx;LogFileName=tests.trx" \
-  --logger "console;verbosity=minimal"
+  --coverlet \
+  --coverlet-include '[XTwitterScraper]*' \
+  --coverlet-output-format cobertura \
+  --report-xunit-trx \
+  --report-xunit-trx-filename tests.trx
 
-coverage_file="$(find "$coverage_workspace" -name coverage.cobertura.xml -print -quit)"
+coverage_file="$(find "$coverage_workspace" -name 'coverage.cobertura*.xml' -print -quit)"
 test_results_file="$(find "$coverage_workspace" -name tests.trx -print -quit)"
 
 if [[ -z "$coverage_file" || -z "$test_results_file" ]]; then
