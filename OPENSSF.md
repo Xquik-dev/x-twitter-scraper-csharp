@@ -8,11 +8,7 @@ Assessment date: 2026-07-23.
 
 ## Eligibility
 
-This public C# SDK is active and released.
-
-It is eligible for the OpenSSF Best Practices badge.
-
-No OpenSSF-defined ineligibility applies.
+This active, released C# SDK meets the OpenSSF eligibility rules.
 
 ## Verified Technical Controls
 
@@ -47,10 +43,12 @@ The default transport blocks redirects that could forward credentials.
 
 Multipart request bodies are not retried after consumption.
 
-## Outstanding Silver Blocker
+## Verified Release Provenance
 
-The release workflow creates SLSA provenance and attaches its Sigstore bundle.
-Verify one post-merge release before marking `signed_releases` Met.
+Release `v0.6.0` points to commit `58e10167129dc3debf6e095c5d0d05f9cf979b67`.
+Its GitHub-hosted publish workflow attested `XTwitterScraper.0.6.0.nupkg`.
+The asset, SLSA subject, and local SHA-256 match `deb75bf09de2122f409f79ce3487a19c74a2f616c20b64ceab058a133269001d`.
+The documented verification command succeeds for the exact tag and workflow.
 
 ## Outstanding Gold Blockers
 
@@ -77,11 +75,13 @@ Run these evidence commands before releases:
 ./scripts/test
 ./scripts/coverage
 ./scripts/audit
-reuse lint
+uvx --from reuse==5.1.1 reuse lint
 ./scripts/check-reproducible
 gh attestation verify PACKAGE \
   --repo Xquik-dev/x-twitter-scraper-csharp \
-  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml
+  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml \
+  --source-ref refs/tags/vVERSION \
+  --deny-self-hosted-runners
 ```
 
 Reassess the register before every major release.

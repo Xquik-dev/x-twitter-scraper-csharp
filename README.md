@@ -5,38 +5,30 @@
 
 Use the Xquik C# SDK for Twitter search, timelines, profiles, and followers.
 Download media, manage webhooks, and run X automation from .NET.
-The typed NuGet package wraps the Xquik REST API.
 
-## Twitter API Alternative
+## C# Client or REST
 
-The package calls the documented Xquik REST API.
+The typed NuGet package calls the documented Xquik REST API.
 It does not call or emulate the official X API.
-
-## Choose the C# SDK
-
-Choose this client for .NET services using asynchronous typed requests.
+Use the SDK for asynchronous, typed requests from .NET services.
 Reuse the configurable `HttpClient` for shared transport settings.
-Use REST when a NuGet dependency does not fit.
-
-## Documentation
+Call REST directly when a NuGet dependency does not fit.
 
 Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
 ## Common X Data Tasks
 
-Use the linked SDK guide for typed method names.
-
 | Task | REST Route | Workflow Note |
 | --- | --- | --- |
-| How do I search tweets? | `GET /x/tweets/search` | Use keyword or advanced operator queries. |
-| How do I extract a profile timeline? | `GET /x/users/{id}/tweets` | Paginate bounded X timeline results. |
-| How do I scrape X followers? | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
-| How do I scrape X following accounts? | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
-| How do I read my home timeline? | `GET /x/timeline` | Approve this private read. |
-| How do I read lists or communities? | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
-| How do I export large X datasets? | `POST /extractions` | Poll status, then download results. |
-| How do I monitor an account? | `POST /monitors` | Deliver events through HMAC webhooks. |
-| How do I post or reply? | `POST /x/tweets` | Confirm the account and payload. |
+| Search tweets | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
+| Extract profile tweets | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
+| Export followers | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
+| Export following accounts | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
+| Read a home timeline | `GET /x/timeline` | Approve this private read. |
+| Read lists or communities | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
+| Export large datasets | `POST /extractions` | Poll status, then download results. |
+| Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
+| Post or reply | `POST /x/tweets` | Confirm the account and payload. |
 
 The [API reference](https://docs.xquik.com/api-reference/overview) maps routes to typed services and models.
 
@@ -45,14 +37,12 @@ The [API reference](https://docs.xquik.com/api-reference/overview) maps routes t
 Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
 
 ```bash
-dotnet add package XTwitterScraper
+dotnet add package XTwitterScraper --version 0.6.1
 ```
 
 ## Verify a Release
 
-Verify project provenance before using a GitHub release package.
-
-Select a release containing `.nupkg` assets:
+Verify a GitHub release package before using it:
 
 ```bash
 release_tag=vVERSION
@@ -122,7 +112,7 @@ XTwitterScraperClient client = new()
 };
 ```
 
-You may combine both approaches.
+Environment variables and explicit properties can be combined.
 
 | Property      | Environment variable             | Required | Default value                |
 | ------------- | -------------------------------- | -------- | ---------------------------- |
@@ -161,7 +151,7 @@ The SDK returns a typed C# model.
 
 ## Binary Responses
 
-Binary methods return `HttpResponse` for content such as non-JSON data:
+Binary endpoints return `HttpResponse` instead of parsing the body:
 
 ```csharp
 using System;
@@ -185,7 +175,7 @@ using System.IO;
 
 using var response = await client.Extractions.ExportResults(parameters);
 using var contentStream = await response.ReadAsStream();
-using var fileStream = File.Open(path, FileMode.OpenOrCreate);
+using var fileStream = File.Open(path, FileMode.Create);
 await contentStream.CopyToAsync(fileStream); // Accepts any Stream.
 ```
 
@@ -214,9 +204,7 @@ Console.WriteLine(deserialized);
 
 ## Error Handling
 
-The SDK throws these unchecked exceptions:
-
-- `XTwitterScraperApiException`: Base class for API errors.
+API errors inherit from `XTwitterScraperApiException`:
 
 | Status | Exception                                      |
 | ------ | ---------------------------------------------- |
@@ -230,12 +218,9 @@ The SDK throws these unchecked exceptions:
 | others | `XTwitterScraperUnexpectedStatusCodeException` |
 
 All 4xx errors inherit from `XTwitterScraper4xxException`.
-
-- `XTwitterScraperIOException`: I/O networking errors.
-
-- `XTwitterScraperInvalidDataException`: Parsed data violates its documented contract.
-
-- `XTwitterScraperException`: Base class for all exceptions.
+Networking errors use `XTwitterScraperIOException`.
+Invalid response data uses `XTwitterScraperInvalidDataException`.
+Every SDK exception inherits from `XTwitterScraperException`.
 
 ## Network Options
 
@@ -247,7 +232,7 @@ The SDK retries these errors twice with exponential backoff:
 - 408 Request Timeout
 - 409 Conflict
 - 429 Rate Limit
-- 5xx Internal
+- 5xx server errors
 
 The API may override retry behavior.
 
@@ -320,9 +305,9 @@ var httpClient = new HttpClient
 XTwitterScraperClient client = new() { HttpClient = httpClient };
 ```
 
-## Undocumented API Functionality
+## Additional API Fields
 
-The SDK also accepts API fields missing from its current types.
+The SDK accepts API fields missing from its generated types.
 
 ### Parameters
 
@@ -430,10 +415,8 @@ See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
 
 ## Semantic Versioning
 
-The package follows [SemVer](https://semver.org/spec/v2.0.0.html), with 2 minor-version exceptions:
-
-1. Changes to undocumented library internals.
-2. Changes that should not affect most users.
+The package follows [SemVer](https://semver.org/spec/v2.0.0.html).
+Before v1.0, minor releases may change undocumented internals or behavior unlikely to affect most users.
 
 Review release notes before upgrading between minor versions.
 

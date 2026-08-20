@@ -1,7 +1,5 @@
 # Contributing
 
-Thank you for improving the Xquik C# SDK.
-
 Read [GOVERNANCE.md](GOVERNANCE.md) before proposing major changes.
 
 Follow the shared [Xquik contribution policy][contribution-policy].
@@ -41,7 +39,7 @@ Run every gate before requesting review:
 ./scripts/test
 ./scripts/coverage
 ./scripts/audit
-reuse lint
+uvx --from reuse==5.1.1 reuse lint
 ./scripts/check-reproducible
 ```
 

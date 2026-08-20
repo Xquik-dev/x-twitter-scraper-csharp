@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.1 (2026-08-21)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.0...v0.6.1)
+
+### Documentation
+
+* tighten SDK guidance and examples
+
+### Bug Fixes
+
+* replace file exports instead of leaving stale trailing data
+
 ## 0.6.0 (2026-07-29)
 
 Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.5...v0.6.0)
