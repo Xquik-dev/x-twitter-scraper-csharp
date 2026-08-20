@@ -63,7 +63,9 @@ for (const [lowerId, dependency] of [...packages].sort(([left], [right]) =>
 }
 
 if (failures.length > 0) {
-  throw new Error(`Disallowed dependency licenses:\n${failures.join("\n")}`);
+  throw new Error(
+    `Dependency licenses failed policy. Use approved licenses:\n${failures.join("\n")}`,
+  );
 }
 
 console.log(`Dependency license policy passed for ${packages.size} packages.`);

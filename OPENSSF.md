@@ -23,7 +23,7 @@ No OpenSSF-defined ineligibility applies.
 | Governance | Public roles, decisions, releases, and continuity policy |
 | Security reporting | Private reporting, response targets, boundaries, and threat model |
 | Runtime compatibility | .NET 8 and .NET Framework 4.7.2 tests |
-| Functional tests | 6,605 tests with no skips |
+| Functional tests | 7,103 tests with no skips |
 | Line coverage | `./scripts/coverage` enforces 90% |
 | Branch coverage | `./scripts/coverage` enforces 80% |
 | Static analysis | Compiler analyzers, formatting checks, and CodeQL |
@@ -33,11 +33,11 @@ No OpenSSF-defined ineligibility applies.
 | CI | Pull requests and pushes run pinned, least-privilege workflows |
 | Two-factor authentication | The Xquik-dev organization requires 2FA |
 
-The current suite covers 45,606 of 48,372 executable lines.
+The current suite covers 49,965 of 52,555 executable lines.
 
-That result is 94.28% line coverage.
+That result is 95.07% line coverage.
 
-It covers 10,711 of 12,007 branches, or 89.20%.
+It covers 11,262 of 12,475 branches, or 90.27%.
 
 Coverage includes generated models, services, and the runtime core.
 
@@ -49,13 +49,8 @@ Multipart request bodies are not retried after consumption.
 
 ## Outstanding Silver Blocker
 
-The release workflow now creates SLSA provenance for exact package bytes.
-
-It also attaches those packages and their Sigstore bundle to GitHub Releases.
-
-Run one post-merge release and verify its public artifact.
-
-Keep `signed_releases` Unmet until that verification succeeds.
+The release workflow creates SLSA provenance and attaches its Sigstore bundle.
+Verify one post-merge release before marking `signed_releases` Met.
 
 ## Outstanding Gold Blockers
 
@@ -71,7 +66,7 @@ Do not claim Gold while any mandatory criterion remains unmet.
 | Independent review | History does not prove 50% qualifying review coverage | Require and record independent reviews |
 | Human security review | No completed review exists within 5 years | Commission and publish a scoped review |
 
-This remediation pull request needs a different human reviewer.
+Gold eligibility still requires review by a different human.
 
 ## Maintenance
 

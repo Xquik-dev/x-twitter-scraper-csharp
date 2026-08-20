@@ -35,7 +35,7 @@ jobs:
           set -euo pipefail
 
           if [ -z "$CONTEXT7_API_KEY" ]; then
-            echo "::warning ::CONTEXT7_API_KEY secret is not configured. Configure it to enable automatic Context7 refreshes."
+            echo "::warning ::CONTEXT7_API_KEY is missing. Add it to enable Context7 refreshes."
             exit 0
           fi
 
@@ -58,24 +58,24 @@ jobs:
                 echo "::warning ::Context7 refresh is not due yet."
                 cat "$body_file"
               else
-                echo "::error ::Context7 refresh returned HTTP $status."
+                echo "::error ::Context7 refresh failed with HTTP $status. Review the response below."
                 cat "$body_file"
                 exit 1
               fi
               ;;
             404)
-              echo "::warning ::Context7 library /xquik-dev/x-twitter-scraper-csharp is not available yet. Add processing may still be pending."
+              echo "::warning ::Context7 library /xquik-dev/x-twitter-scraper-csharp is unavailable. Wait for initial indexing."
               cat "$body_file"
               ;;
             401|403)
-              echo "::error ::Context7 authentication failed."
+              echo "::error ::Context7 authentication failed. Check CONTEXT7_API_KEY."
               exit 1
               ;;
             429)
               echo "::warning ::Context7 refresh is rate limited. Retry on the next docs change."
               ;;
             *)
-              echo "::error ::Context7 refresh returned HTTP $status."
+              echo "::error ::Context7 refresh failed with HTTP $status. Review the response below."
               cat "$body_file"
               exit 1
               ;;
