@@ -27,12 +27,12 @@ coverage_file="$(find "$coverage_workspace" -name 'coverage.cobertura*.xml' -pri
 test_results_file="$(find "$coverage_workspace" -name tests.trx -print -quit)"
 
 if [[ -z "$coverage_file" || -z "$test_results_file" ]]; then
-  echo "Coverage or test results are missing." >&2
+  echo "Coverage artifacts are missing. Check the test run." >&2
   exit 1
 fi
 
 if grep -Fq 'outcome="NotExecuted"' "$test_results_file"; then
-  echo "Skipped tests are not allowed." >&2
+  echo "Tests were skipped. Run every test." >&2
   exit 1
 fi
 
@@ -45,11 +45,11 @@ branches_covered="$(sed -n 's/.*branches-covered="\([^"]*\)".*/\1/p' <<<"$covera
 branches_valid="$(sed -n 's/.*branches-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
 
 awk -v rate="$line_rate" 'BEGIN { exit(rate + 0 >= 0.90 ? 0 : 1) }' || {
-  echo "Line coverage ${line_rate} is below 0.90." >&2
+  echo "Line coverage is ${line_rate}. Increase it to 0.90." >&2
   exit 1
 }
 awk -v rate="$branch_rate" 'BEGIN { exit(rate + 0 >= 0.80 ? 0 : 1) }' || {
-  echo "Branch coverage ${branch_rate} is below 0.80." >&2
+  echo "Branch coverage is ${branch_rate}. Increase it to 0.80." >&2
   exit 1
 }
 

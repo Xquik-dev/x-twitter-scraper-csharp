@@ -1,21 +1,16 @@
-# X (Twitter) Scraper C# SDK: Tweet Search, Timelines, Followers & Posting
+# Xquik C# SDK: Twitter Search, Followers & X Automation
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
 [![CI](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml/badge.svg)](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml)
 
-Use Xquik's typed NuGet SDK as an X API alternative.
+Use the Xquik C# SDK for Twitter search, timelines, profiles, and followers.
+Download media, manage webhooks, and run X automation from .NET.
+The typed NuGet package wraps the Xquik REST API.
 
-Search tweets, read timelines, export followers, and deliver webhooks.
+## Twitter API Alternative
 
-Confirmed methods also support posting and other account actions.
-
-## Is This A Twitter API Alternative?
-
-This package calls Xquik's documented REST API.
-
+The package calls the documented Xquik REST API.
 It does not call or emulate the official X API.
-
-Use it for supported X data and automation workflows from .NET.
 
 ## Choose the C# SDK
 
@@ -31,7 +26,7 @@ Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https
 
 Use the linked SDK guide for typed method names.
 
-| Customer Question | REST Route | Workflow Note |
+| Task | REST Route | Workflow Note |
 | --- | --- | --- |
 | How do I search tweets? | `GET /x/tweets/search` | Use keyword or advanced operator queries. |
 | How do I extract a profile timeline? | `GET /x/users/{id}/tweets` | Paginate bounded X timeline results. |
@@ -43,9 +38,7 @@ Use the linked SDK guide for typed method names.
 | How do I monitor an account? | `POST /monitors` | Deliver events through HMAC webhooks. |
 | How do I post or reply? | `POST /x/tweets` | Confirm the account and payload. |
 
-The [API reference](https://docs.xquik.com/api-reference/overview) lists every route.
-
-The SDK exposes matching typed services and request models.
+The [API reference](https://docs.xquik.com/api-reference/overview) maps routes to typed services and models.
 
 ## Installation
 
@@ -88,8 +81,6 @@ This library requires .NET Standard 2.0 or later.
 
 ## Usage
 
-See the [`examples`](examples) directory for complete and runnable examples.
-
 ```csharp
 using System;
 using XTwitterScraper;
@@ -108,18 +99,18 @@ var paginatedTweets = await client.X.Tweets.Search(parameters);
 Console.WriteLine(paginatedTweets);
 ```
 
-## Client configuration
+## Client Configuration
 
 Configure the client using environment variables:
 
 ```csharp
 using XTwitterScraper;
 
-// Configured using the X_TWITTER_SCRAPER_API_KEY, X_TWITTER_SCRAPER_BEARER_TOKEN and X_TWITTER_SCRAPER_BASE_URL environment variables
+// Reads API key, bearer token, and base URL environment variables.
 XTwitterScraperClient client = new();
 ```
 
-Or manually:
+Set credentials directly when environment variables do not fit:
 
 ```csharp
 using XTwitterScraper;
@@ -131,9 +122,7 @@ XTwitterScraperClient client = new()
 };
 ```
 
-Or using a combination of the two approaches.
-
-See this table for the available options:
+You may combine both approaches.
 
 | Property      | Environment variable             | Required | Default value                |
 | ------------- | -------------------------------- | -------- | ---------------------------- |
@@ -141,9 +130,9 @@ See this table for the available options:
 | `BearerToken` | `X_TWITTER_SCRAPER_BEARER_TOKEN` | false    | -                            |
 | `BaseUrl`     | `X_TWITTER_SCRAPER_BASE_URL`     | true     | `"https://xquik.com/api/v1"` |
 
-### Modifying configuration
+### Modify Configuration
 
-To temporarily use a modified client configuration, while reusing the same connection and thread pools, call `WithOptions` on any client or service:
+Call `WithOptions` to reuse connections with temporary settings:
 
 ```csharp
 using System;
@@ -161,21 +150,18 @@ var account = await client
 Console.WriteLine(account);
 ```
 
-Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
+The [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) builds the modified options.
+`WithOptions` leaves the original client or service unchanged.
 
-The `WithOptions` method does not affect the original client or service.
+## Requests & Responses
 
-## Requests and responses
+Pass a `Params` instance to its client method.
+The SDK returns a typed C# model.
+`client.X.Tweets.Search` accepts `TweetSearchParams` and returns `Task<PaginatedTweets>`.
 
-Build a `Params` instance and pass it to its client method. The SDK returns a typed C# model.
+## Binary Responses
 
-For example, `client.X.Tweets.Search` should be called with an instance of `TweetSearchParams`, and it will return an instance of `Task<PaginatedTweets>`.
-
-## Binary responses
-
-The SDK defines methods that return binary responses, which are used for API responses that shouldn't necessarily be parsed, like non-JSON data.
-
-These methods return `HttpResponse`:
+Binary methods return `HttpResponse` for content such as non-JSON data:
 
 ```csharp
 using System;
@@ -192,7 +178,7 @@ var response = await client.Extractions.ExportResults(parameters);
 Console.WriteLine(response);
 ```
 
-To save the response content to a file, or any [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream?view=net-9.0), use the [`CopyToAsync`](<https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync?view=net-9.0#system-io-stream-copytoasync(system-io-stream)>) method:
+Use [`CopyToAsync`](<https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync?view=net-9.0#system-io-stream-copytoasync(system-io-stream)>) to save content to any [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream?view=net-9.0):
 
 ```csharp
 using System.IO;
@@ -200,14 +186,13 @@ using System.IO;
 using var response = await client.Extractions.ExportResults(parameters);
 using var contentStream = await response.ReadAsStream();
 using var fileStream = File.Open(path, FileMode.OpenOrCreate);
-await contentStream.CopyToAsync(fileStream); // Or any other Stream
+await contentStream.CopyToAsync(fileStream); // Accepts any Stream.
 ```
 
-## Raw responses
+## Raw Responses
 
-The SDK defines methods that deserialize responses into instances of C# classes. However, these methods don't provide access to the response headers, status code, or the raw response body.
-
-To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
+Typed methods hide headers, status codes, and raw bodies.
+Prefix any HTTP call with `WithRawResponse` to access them:
 
 ```csharp
 var response = await client.WithRawResponse.Account.Retrieve();
@@ -215,9 +200,8 @@ var statusCode = response.StatusCode;
 var headers = response.Headers;
 ```
 
-The raw `HttpResponseMessage` can also be accessed through the `RawMessage` property.
-
-For non-streaming responses, you can deserialize the response into an instance of a C# class if needed:
+Access the raw `HttpResponseMessage` through `RawMessage`.
+Deserialize non-streaming responses when you need a typed model:
 
 ```csharp
 using System;
@@ -228,11 +212,11 @@ AccountRetrieveResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
-## Error handling
+## Error Handling
 
-The SDK throws custom unchecked exception types:
+The SDK throws these unchecked exceptions:
 
-- `XTwitterScraperApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
+- `XTwitterScraperApiException`: Base class for API errors.
 
 | Status | Exception                                      |
 | ------ | ---------------------------------------------- |
@@ -245,31 +229,29 @@ The SDK throws custom unchecked exception types:
 | 5xx    | `XTwitterScraper5xxException`                  |
 | others | `XTwitterScraperUnexpectedStatusCodeException` |
 
-Additionally, all 4xx errors inherit from `XTwitterScraper4xxException`.
+All 4xx errors inherit from `XTwitterScraper4xxException`.
 
 - `XTwitterScraperIOException`: I/O networking errors.
 
-- `XTwitterScraperInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+- `XTwitterScraperInvalidDataException`: Parsed data violates its documented contract.
 
 - `XTwitterScraperException`: Base class for all exceptions.
 
-## Network options
+## Network Options
 
 ### Retries
 
-The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
+The SDK retries these errors twice with exponential backoff:
 
-Only the following error types are retried:
-
-- Connection errors (for example, due to a network connectivity problem)
+- Connection errors
 - 408 Request Timeout
 - 409 Conflict
 - 429 Rate Limit
 - 5xx Internal
 
-The API may also explicitly instruct the SDK to retry or not retry a request.
+The API may override retry behavior.
 
-To set a custom number of retries, configure the client using the `MaxRetries` method:
+Set `MaxRetries` on the client:
 
 ```csharp
 using XTwitterScraper;
@@ -277,7 +259,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { MaxRetries = 3 };
 ```
 
-Or configure a single method call using [`WithOptions`](#modifying-configuration):
+Override retries for one call with [`WithOptions`](#modify-configuration):
 
 ```csharp
 using System;
@@ -295,7 +277,7 @@ Console.WriteLine(account);
 
 Requests time out after 1 minute by default.
 
-To set a custom timeout, configure the client using the `Timeout` option:
+Set `Timeout` on the client:
 
 ```csharp
 using System;
@@ -304,7 +286,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
 
-Or configure a single method call using [`WithOptions`](#modifying-configuration):
+Override the timeout for one call with [`WithOptions`](#modify-configuration):
 
 ```csharp
 using System;
@@ -320,7 +302,7 @@ Console.WriteLine(account);
 
 ### Proxies
 
-To route requests through a proxy, configure your client with a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0):
+Route requests through a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0):
 
 ```csharp
 using System.Net;
@@ -338,13 +320,14 @@ var httpClient = new HttpClient
 XTwitterScraperClient client = new() { HttpClient = httpClient };
 ```
 
-## Undocumented API functionality
+## Undocumented API Functionality
 
-The SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.
+The SDK also accepts API fields missing from its current types.
 
 ### Parameters
 
-To set undocumented parameters, a constructor exists that accepts dictionaries for additional header, query, and body values. If the method type doesn't support request bodies (e.g. `GET` requests), the constructor will only accept a header and query dictionary.
+Pass dictionaries for extra header, query, and body values.
+Methods without request bodies accept only header and query dictionaries.
 
 ```csharp
 using System.Collections.Generic;
@@ -364,15 +347,13 @@ TweetSearchParams parameters = new
     }
 )
 {
-    // Documented properties can still be added here.
-    // In case of conflict, these parameters take precedence over the custom parameters.
+    // Documented values override matching custom parameters.
     Limit = 200
 };
 ```
 
-The raw parameters can also be accessed through the `RawHeaderData`, `RawQueryData`, and `RawBodyData` (if available) properties.
-
-This can also be used to set a documented parameter to an undocumented or not yet supported _value_, as long as the parameter is optional. If the parameter is required, omitting its `init` property will result in a compile-time error. To work around this, the `FromRawUnchecked` method can be used:
+Access raw values through `RawHeaderData`, `RawQueryData`, and `RawBodyData`.
+Use `FromRawUnchecked` for unsupported values in required parameters:
 
 ```csharp
 using System.Collections.Generic;
@@ -393,36 +374,33 @@ var parameters = TweetSearchParams.FromRawUnchecked
 );
 ```
 
-### Response properties
+### Response Properties
 
-To access undocumented response properties, the `RawData` property can be used:
+Read undocumented response properties through `RawData`:
 
 ```csharp
 using System.Text.Json;
 
-var response = client.X.Tweets.Search(parameters)
+var response = await client.X.Tweets.Search(parameters);
 if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 {
-    // Do something with `value`
+    // Process value.
 }
 ```
 
-`RawData` is a `IReadonlyDictionary<string, JsonElement>`. It holds the full data received from the API server.
+`RawData` contains the complete response as `IReadOnlyDictionary<string, JsonElement>`.
 
-### Response validation
+### Response Validation
 
-In rare cases, the API may return a response that doesn't match the expected type. For example, the SDK may expect a property to contain a `string`, but the API could return something else.
-
-By default, the SDK will not throw an exception in this case. It will throw `XTwitterScraperInvalidDataException` only if you directly access the property.
-
-If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
+Unexpected response values throw only when you access their properties.
+Call `Validate` to check the complete response immediately:
 
 ```csharp
-var paginatedTweets = client.X.Tweets.Search(parameters);
+var paginatedTweets = await client.X.Tweets.Search(parameters);
 paginatedTweets.Validate();
 ```
 
-Or configure the client using the `ResponseValidation` option:
+Set `ResponseValidation` to validate every response:
 
 ```csharp
 using XTwitterScraper;
@@ -430,7 +408,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { ResponseValidation = true };
 ```
 
-Or configure a single method call using [`WithOptions`](#modifying-configuration):
+Validate one call with [`WithOptions`](#modify-configuration):
 
 ```csharp
 using System;
@@ -452,12 +430,12 @@ See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
 
 ## Semantic Versioning
 
-This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+The package follows [SemVer](https://semver.org/spec/v2.0.0.html), with 2 minor-version exceptions:
 
-1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
-2. Changes that we do not expect to impact the vast majority of users in practice.
+1. Changes to undocumented library internals.
+2. Changes that should not affect most users.
 
-We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+Review release notes before upgrading between minor versions.
 
 Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs, or suggestions.
 

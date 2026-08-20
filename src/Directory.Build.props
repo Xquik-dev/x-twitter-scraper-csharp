@@ -2,19 +2,19 @@
   <PropertyGroup>
     <Authors>Xquik</Authors>
     <Company>Xquik</Company>
-    <PackageTags>x;twitter;scraper;tweet;timeline;followers;api;sdk;csharp;dotnet;automation</PackageTags>
+    <PackageTags>x;twitter;scraper;tweet;timeline;followers;twitter-search;twitter-api;x-api;social-media-api;csharp;dotnet;twitter-automation</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Xquik</Copyright>
     <PackageProjectUrl>https://xquik.com</PackageProjectUrl>
     <RepositoryUrl>https://www.github.com/Xquik-dev/x-twitter-scraper-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
-    <!-- Documentation-->
+    <!-- Documentation -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Disable missing XML documentation warnings. -->
     <NoWarn>$(NoWarn),1573,1591</NoWarn>
 
-    <!-- Source link -->
+    <!-- Source Link -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>

@@ -38,6 +38,6 @@ while IFS= read -r package; do
 done < <(find "$package_workspace/raw" -maxdepth 1 -type f -name '*.nupkg' -print | sort)
 
 if [[ "$package_count" -ne 2 ]]; then
-  echo "Expected package and symbols package, found $package_count." >&2
+  echo "Package build produced $package_count files. Expected 2." >&2
   exit 1
 fi

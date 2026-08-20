@@ -23,7 +23,7 @@ const coreProperties = fs
   .filter((name) => name.endsWith(".psmdcp"));
 
 if (coreProperties.length !== 1) {
-  throw new Error(`Expected 1 core properties file, found ${coreProperties.length}.`);
+  throw new Error(`Found ${coreProperties.length} core properties files. Expected 1.`);
 }
 
 const stableName = "core-properties.psmdcp";
@@ -40,7 +40,7 @@ const normalizedRelationships = relationships.replace(
 );
 
 if (normalizedRelationships === relationships) {
-  throw new Error("Core properties relationship was not normalized.");
+  throw new Error("Core properties normalization failed. Check the relationship format.");
 }
 
 fs.writeFileSync(relationshipsPath, normalizedRelationships);
