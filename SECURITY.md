@@ -1,12 +1,12 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+## Supported versions
 
 Security fixes target the latest published release.
 
 Upgrade before reporting behavior from an older release.
 
-## Report A Vulnerability
+## Report a vulnerability
 
 Use [GitHub private vulnerability reporting][private-report].
 
@@ -22,7 +22,7 @@ Maintainers acknowledge reports within 3 business days and update them within 7.
 
 Maintainers coordinate disclosure after confirming and fixing the issue.
 
-## Security Boundaries
+## Security boundaries
 
 This SDK builds requests and parses documented API responses.
 
@@ -38,7 +38,7 @@ The hosted Xquik service has a separate operational boundary.
 
 This repository excludes private infrastructure and service implementation details.
 
-## Threat Model
+## Threat model
 
 Relevant threats include:
 
@@ -52,7 +52,7 @@ Controls include loopback-only tests, strict parsing, CodeQL, and analyzers.
 
 CI also verifies dependencies, licenses, coverage, and reproducible packages.
 
-## Response Process
+## Response process
 
 Maintainers triage reports privately.
 

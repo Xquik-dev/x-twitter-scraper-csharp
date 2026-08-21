@@ -1,4 +1,4 @@
-# Xquik C# SDK: Twitter Search, Followers & X Automation
+# Xquik C# SDK: Twitter search, followers & X automation
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
 [![CI](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml/badge.svg)](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml)
@@ -6,7 +6,7 @@
 Use the Xquik C# SDK for Twitter search, timelines, profiles, and followers.
 Download media, manage webhooks, and run X automation from .NET.
 
-## C# Client or REST
+## C# client or REST
 
 The typed NuGet package calls the documented Xquik REST API.
 It does not call or emulate the official X API.
@@ -16,9 +16,9 @@ Call REST directly when a NuGet dependency does not fit.
 
 Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
-## Common X Data Tasks
+## Common X data tasks
 
-| Task | REST Route | Workflow Note |
+| Task | REST route | Workflow note |
 | --- | --- | --- |
 | Search tweets | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
 | Extract profile tweets | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
@@ -30,17 +30,17 @@ Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https
 | Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
 | Post or reply | `POST /x/tweets` | Confirm the account and payload. |
 
-The [API reference](https://docs.xquik.com/api-reference/overview) maps routes to typed services and models.
-
 ## Installation
+
+Requires .NET Standard 2.0 or later.
 
 Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
 
 ```bash
-dotnet add package XTwitterScraper --version 0.6.1
+dotnet add package XTwitterScraper --version 0.6.2
 ```
 
-## Verify a Release
+## Verify a release
 
 Verify a GitHub release package before using it:
 
@@ -65,10 +65,6 @@ GitHub verifies the artifact digest, signer identity, and transparency proof.
 
 [NuGet.org applies repository signatures][nuget-signatures] to registry packages.
 
-## Requirements
-
-This library requires .NET Standard 2.0 or later.
-
 ## Usage
 
 ```csharp
@@ -89,7 +85,7 @@ var paginatedTweets = await client.X.Tweets.Search(parameters);
 Console.WriteLine(paginatedTweets);
 ```
 
-## Client Configuration
+## Client configuration
 
 Configure the client using environment variables:
 
@@ -120,7 +116,7 @@ Environment variables and explicit properties can be combined.
 | `BearerToken` | `X_TWITTER_SCRAPER_BEARER_TOKEN` | false    | -                            |
 | `BaseUrl`     | `X_TWITTER_SCRAPER_BASE_URL`     | true     | `"https://xquik.com/api/v1"` |
 
-### Modify Configuration
+### Modify configuration
 
 Call `WithOptions` to reuse connections with temporary settings:
 
@@ -143,13 +139,11 @@ Console.WriteLine(account);
 The [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) builds the modified options.
 `WithOptions` leaves the original client or service unchanged.
 
-## Requests & Responses
+## Requests & responses
 
-Pass a `Params` instance to its client method.
-The SDK returns a typed C# model.
 `client.X.Tweets.Search` accepts `TweetSearchParams` and returns `Task<PaginatedTweets>`.
 
-## Binary Responses
+## Binary responses
 
 Binary endpoints return `HttpResponse` instead of parsing the body:
 
@@ -179,7 +173,7 @@ using var fileStream = File.Open(path, FileMode.Create);
 await contentStream.CopyToAsync(fileStream); // Accepts any Stream.
 ```
 
-## Raw Responses
+## Raw responses
 
 Typed methods hide headers, status codes, and raw bodies.
 Prefix any HTTP call with `WithRawResponse` to access them:
@@ -202,7 +196,7 @@ AccountRetrieveResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
-## Error Handling
+## Error handling
 
 API errors inherit from `XTwitterScraperApiException`:
 
@@ -222,9 +216,7 @@ Networking errors use `XTwitterScraperIOException`.
 Invalid response data uses `XTwitterScraperInvalidDataException`.
 Every SDK exception inherits from `XTwitterScraperException`.
 
-## Network Options
-
-### Retries
+## Retries
 
 The SDK retries these errors twice with exponential backoff:
 
@@ -258,7 +250,7 @@ var account = await client
 Console.WriteLine(account);
 ```
 
-### Timeouts
+## Timeouts
 
 Requests time out after 1 minute by default.
 
@@ -285,7 +277,7 @@ var account = await client
 Console.WriteLine(account);
 ```
 
-### Proxies
+## Proxies
 
 Route requests through a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0):
 
@@ -305,11 +297,11 @@ var httpClient = new HttpClient
 XTwitterScraperClient client = new() { HttpClient = httpClient };
 ```
 
-## Additional API Fields
+## Custom API fields
 
 The SDK accepts API fields missing from its generated types.
 
-### Parameters
+### Request fields
 
 Pass dictionaries for extra header, query, and body values.
 Methods without request bodies accept only header and query dictionaries.
@@ -359,7 +351,7 @@ var parameters = TweetSearchParams.FromRawUnchecked
 );
 ```
 
-### Response Properties
+### Response properties
 
 Read undocumented response properties through `RawData`:
 
@@ -375,7 +367,7 @@ if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 
 `RawData` contains the complete response as `IReadOnlyDictionary<string, JsonElement>`.
 
-### Response Validation
+### Response validation
 
 Unexpected response values throw only when you access their properties.
 Call `Validate` to check the complete response immediately:
@@ -407,13 +399,13 @@ var paginatedTweets = await client
 Console.WriteLine(paginatedTweets);
 ```
 
-## Project Policies
+## Project policies
 
 Read [Contributing](CONTRIBUTING.md), [Governance](GOVERNANCE.md), and [Security](SECURITY.md).
 
 See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
 
-## Semantic Versioning
+## Semantic versioning
 
 The package follows [SemVer](https://semver.org/spec/v2.0.0.html).
 Before v1.0, minor releases may change undocumented internals or behavior unlikely to affect most users.
