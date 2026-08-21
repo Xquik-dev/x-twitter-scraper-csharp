@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.2 (2026-08-21)
+
+Full Changelog: [v0.6.1...v0.6.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.1...v0.6.2)
+
+### Documentation
+
+* Remove repeated setup instructions and repair release links.
+
 ## 0.6.1 (2026-08-21)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.0...v0.6.1)
@@ -14,7 +22,7 @@ Full Changelog: [v0.6.0...v0.6.1](https://github.com/Xquik-dev/x-twitter-scraper
 
 ## 0.6.0 (2026-07-29)
 
-Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.5...v0.6.0)
+Full Changelog: [v0.5.4...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.4...v0.6.0)
 
 ### Features
 
@@ -45,14 +53,12 @@ Full Changelog: [v0.5.5...v0.6.0](https://github.com/Xquik-dev/x-twitter-scraper
 
 ### Documentation
 
-* add Contributor Covenant 2.1 Code of Conduct ([#2192](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/2192)) ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
+* add Contributor Covenant 2.1 Code of Conduct ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
 * add DeepWiki badge ([6b93e3f](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/6b93e3f013de6fb5c11d36d7fbbf0a32d01829e2))
 * clarify repository discovery ([e4a8544](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/e4a8544e19585b17a2f7a024e2cab21fd0641103))
 * map common X data tasks ([#17](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/17)) ([71b727c](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/71b727cdfa43bbadda0269120c396ea0272050f2))
 
 ## 0.5.5 (2026-07-24)
-
-Full Changelog: [v0.5.4...v0.5.5](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.5.4...v0.5.5)
 
 ### Bug Fixes
 
@@ -146,7 +152,7 @@ Full Changelog: [v0.4.1...v0.4.2](https://github.com/Xquik-dev/x-twitter-scraper
 
 ### Documentation
 
-* add Contributor Covenant 2.1 Code of Conduct ([#2192](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues/2192)) ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
+* add Contributor Covenant 2.1 Code of Conduct ([a62e004](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/a62e00409b02a14bc3c518aa609d6ece6f1c15ec))
 
 ## 0.4.1 (2026-04-22)
 
@@ -219,8 +225,6 @@ Full Changelog: [v0.1.0...v0.2.0](https://github.com/Xquik-dev/x-twitter-scraper
 * update SDK settings ([1074d24](https://github.com/Xquik-dev/x-twitter-scraper-csharp/commit/1074d240f036895599c2838dd2c6880cf23f2820))
 
 ## 0.1.0 (2026-03-30)
-
-Full Changelog: [v0.0.1...v0.1.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.0.1...v0.1.0)
 
 ### Features
 

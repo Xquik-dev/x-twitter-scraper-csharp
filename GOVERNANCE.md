@@ -36,7 +36,7 @@ Security-sensitive changes require an explicit security review.
 
 Reviewers follow the shared [review policy][review-policy].
 
-## Generated Code
+## Generated code
 
 Most SDK types come from the public OpenAPI contract.
 
@@ -54,7 +54,7 @@ Release tags must reference the reviewed default-branch commit.
 
 Published NuGet packages must remain reproducible.
 
-## Maintainer Changes
+## Maintainer changes
 
 Sustained contributors may request maintainer consideration.
 

@@ -4,7 +4,7 @@ Read [GOVERNANCE.md](GOVERNANCE.md) before proposing major changes.
 
 Follow the shared [Xquik contribution policy][contribution-policy].
 
-## Set Up
+## Set up
 
 Install .NET SDK 10.0.400, the .NET 8 runtime, Node.js, and `unzip`.
 
@@ -18,7 +18,7 @@ Restore pinned tools and locked dependencies:
 
 Never commit credentials or runtime environment files.
 
-## Generated Code
+## Generated code
 
 Most SDK files come from the public OpenAPI contract.
 
@@ -28,7 +28,7 @@ Avoid generated-file changes when a generator fix exists.
 
 Place stable examples outside generated directories.
 
-## Verify Changes
+## Verify changes
 
 Run focused tests while editing.
 
@@ -43,9 +43,7 @@ uvx --from reuse==5.1.1 reuse lint
 ./scripts/check-reproducible
 ```
 
-Line coverage must remain at least 90%.
-
-Branch coverage must remain at least 80%.
+Coverage must remain at least 90% for lines and 80% for branches.
 
 Skipped tests are forbidden.
 
@@ -55,7 +53,7 @@ Service tests accept literal loopback IPv4 only.
 
 This guard prevents tests from mutating remote services.
 
-## Use The Repository From Source
+## Use the repository from source
 
 Add a directory reference from another project:
 
@@ -63,7 +61,7 @@ Add a directory reference from another project:
 dotnet add reference /path/to/sdk/src/XTwitterScraper
 ```
 
-## Submit Changes
+## Submit changes
 
 Keep pull requests focused.
 
@@ -85,7 +83,7 @@ Reviewers follow the shared [review policy][review-policy].
 
 Address every review comment before merging.
 
-## Report Security Issues
+## Report security issues
 
 Never disclose suspected vulnerabilities in public issues.
 

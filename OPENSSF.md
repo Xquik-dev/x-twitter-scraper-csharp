@@ -1,4 +1,4 @@
-# OpenSSF Best Practices Evidence
+# OpenSSF Best Practices evidence
 
 This register tracks the Gold assessment for this repository.
 
@@ -10,7 +10,7 @@ Assessment date: 2026-07-23.
 
 This active, released C# SDK meets the OpenSSF eligibility rules.
 
-## Verified Technical Controls
+## Verified technical controls
 
 | Area | Evidence |
 | --- | --- |
@@ -43,20 +43,20 @@ The default transport blocks redirects that could forward credentials.
 
 Multipart request bodies are not retried after consumption.
 
-## Verified Release Provenance
+## Verified release provenance
 
-Release `v0.6.0` points to commit `58e10167129dc3debf6e095c5d0d05f9cf979b67`.
-Its GitHub-hosted publish workflow attested `XTwitterScraper.0.6.0.nupkg`.
-The asset, SLSA subject, and local SHA-256 match `deb75bf09de2122f409f79ce3487a19c74a2f616c20b64ceab058a133269001d`.
+Release `v0.6.1` points to commit `96c7c4bced1bc217cf8e89a4786338725866028a`.
+Its GitHub-hosted publish workflow attested `XTwitterScraper.0.6.1.nupkg`.
+The asset, SLSA subject, and local SHA-256 match `207c6c76eb240e9c64def34cd51d5973998327e76892aa391fbf44b32b4f39d0`.
 The documented verification command succeeds for the exact tag and workflow.
 
-## Outstanding Gold Blockers
+## Outstanding Gold blockers
 
 Human and organizational evidence remains incomplete.
 
 Do not claim Gold while any mandatory criterion remains unmet.
 
-| Gold Requirement | Current Evidence | Required Action |
+| Gold requirement | Current evidence | Required action |
 | --- | --- | --- |
 | Access continuity | Public evidence does not prove 2 release-capable maintainers | Grant and verify another maintainer's access |
 | Bus factor | Git history shows one significant contributor | Add another significant contributor |
