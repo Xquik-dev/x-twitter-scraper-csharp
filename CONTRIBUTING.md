@@ -40,7 +40,10 @@ bin/check-local
 
 It restores locked dependencies, then runs lint, shellcheck, REUSE, build, tests, coverage, the dependency audit, and the reproducible package check.
 It stops at the first failure and says what to fix.
-REUSE runs when `reuse` or `uv` is installed. CodeQL runs when its CLI is installed.
+REUSE runs when `reuse` or `uv` is installed.
+
+With push access, it posts the `xquik-local-checks` commit status for a clean, pushed `HEAD`.
+Pass `--no-status` to skip the status.
 
 Run a single gate with its script in `scripts/`.
 

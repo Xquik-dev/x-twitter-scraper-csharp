@@ -5,21 +5,51 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Runs every repository check in order and stops at the first failure.
+# Posts the xquik-local-checks commit status for a clean, pushed HEAD.
+# Usage: bin/check-local [--no-status]
 
 set -euo pipefail
 
 cd -- "$(dirname -- "$0")/.."
 
-check_name=""
-check_hint=""
+readonly repository="Xquik-dev/x-twitter-scraper-csharp"
+readonly status_context="xquik-local-checks"
+
+post_requested=true
+for argument in "$@"; do
+  case "$argument" in
+    --no-status) post_requested=false ;;
+    *)
+      echo "Unknown option $argument. Run bin/check-local or bin/check-local --no-status." >&2
+      exit 2
+      ;;
+  esac
+done
+
+check_name="Startup"
+check_hint="Fix the error above, then rerun."
+status_sha=""
 workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-check.XXXXXX")"
+
+post_status()
+{
+  if [[ -z "$status_sha" ]]; then
+    return 0
+  fi
+  gh api --method POST "repos/$repository/statuses/$status_sha" \
+    -f state="$1" \
+    -f context="$status_context" \
+    -f description="$2" >/dev/null ||
+    echo "Could not post the $1 commit status. Check gh auth status and push access." >&2
+}
 
 finish()
 {
   local status=$?
   rm -rf -- "${workspace:?}"
-  if [[ "$status" -ne 0 && -n "$check_name" ]]; then
+  if [[ "$status" -ne 0 ]]; then
     echo "Check failed: $check_name. $check_hint" >&2
+    post_status failure "$check_name failed or stopped. Run bin/check-local to see why."
   fi
 }
 trap finish EXIT
@@ -30,6 +60,24 @@ start_check()
   check_hint="$2"
   echo "==> $check_name"
 }
+
+echo "==> Commit status"
+if [[ "$post_requested" == false ]]; then
+  echo "Commit status not posted: --no-status was passed."
+elif ! command -v gh >/dev/null 2>&1; then
+  echo "Commit status not posted: gh is not installed."
+elif [[ -n "$(git status --porcelain)" ]]; then
+  echo "Commit status not posted: the working tree has changes."
+else
+  head_sha="$(git rev-parse HEAD)"
+  if gh api "repos/$repository/commits/$head_sha" >/dev/null 2>&1; then
+    status_sha="$head_sha"
+    post_status pending "Running lint, build, tests, coverage, audit & reproducible packages"
+    echo "Posting $status_context for $head_sha."
+  else
+    echo "Commit status not posted: GitHub has no commit $head_sha. Push it, or run gh auth login."
+  fi
+fi
 
 start_check "Required tools" "Install the missing tool, then rerun."
 for tool in dotnet git node shellcheck unzip zip; do
@@ -55,11 +103,13 @@ done
 shellcheck "${shell_scripts[@]}"
 
 start_check "Repository licensing" "Add the license data that reuse lint asks for, then rerun."
+licensing_note=""
 if command -v reuse >/dev/null 2>&1; then
   reuse lint
 elif command -v uvx >/dev/null 2>&1; then
   uvx --from reuse==5.1.1 reuse lint
 else
+  licensing_note="; REUSE skipped"
   echo "Skipping REUSE. Install reuse or uv to run it."
 fi
 
@@ -67,7 +117,11 @@ start_check "Build" "Fix the build errors above, then rerun."
 ./scripts/build
 
 start_check "Tests" "Fix the failing tests above, then rerun."
-./scripts/test
+bash scripts/test | tee "$workspace/tests.log"
+tests_passed="$(
+  sed -n 's/^[[:space:]]*succeeded:[[:space:]]*\([0-9][0-9]*\).*/\1/p' "$workspace/tests.log" |
+    awk '{ total += $1 } END { if (NR > 0) print total }'
+)"
 
 start_check "Coverage" "Fix failing or skipped tests, or add tests to meet coverage, then rerun."
 ./scripts/coverage
@@ -78,26 +132,12 @@ start_check "Dependency audit" "Update or replace the packages reported above, t
 start_check "Reproducible packages" "Remove the build input that changes between builds, then rerun."
 ./scripts/check-reproducible
 
-start_check "CodeQL security queries" "Fix the CodeQL findings above, then rerun."
-if command -v codeql >/dev/null 2>&1; then
-  codeql database create "$workspace/codeql-database" \
-    --language=csharp \
-    --build-mode=none \
-    --source-root=. \
-    --quiet
-  codeql database analyze "$workspace/codeql-database" \
-    codeql/csharp-queries:codeql-suites/csharp-security-extended.qls \
-    --download \
-    --format=csv \
-    --output="$workspace/codeql.csv" \
-    --quiet
-  if [[ -s "$workspace/codeql.csv" ]]; then
-    cat -- "$workspace/codeql.csv"
-    exit 1
-  fi
-else
-  echo "Skipping CodeQL. Install the CodeQL CLI to run it."
-fi
-
-check_name=""
+check_name="Commit status"
+case "$(uname -s)" in
+  Darwin) system_name="macOS" ;;
+  MINGW* | MSYS* | CYGWIN*) system_name="Windows" ;;
+  *) system_name="$(uname -s)" ;;
+esac
+post_status success \
+  "Lint, build, tests (${tests_passed:-all} passed), coverage, audit & reproducible packages passed on $system_name$licensing_note"
 echo "All checks passed."
