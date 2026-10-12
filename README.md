@@ -1,7 +1,6 @@
 # Xquik C# SDK: Twitter search, followers & X automation
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
-[![CI](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml/badge.svg)](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml)
 
 Use the Xquik C# SDK for Twitter search, timelines, profiles, and followers.
 Download media, manage webhooks, and run X automation from .NET.
@@ -42,28 +41,17 @@ dotnet add package XTwitterScraper --version 0.6.2
 
 ## Verify a release
 
-Verify a GitHub release package before using it:
+Maintainers publish each release from a local machine with `bin/release-local`.
+The script runs every repository check before it uploads the package.
+
+[NuGet.org adds a repository signature][nuget-signatures] to every package.
+Check that signature on a package downloaded from NuGet.org:
 
 ```bash
-release_tag=vVERSION
-package_version="${release_tag#v}"
-
-gh release download "$release_tag" \
-  --repo Xquik-dev/x-twitter-scraper-csharp \
-  --pattern "XTwitterScraper.$package_version.nupkg"
-
-gh attestation verify "XTwitterScraper.$package_version.nupkg" \
-  --repo Xquik-dev/x-twitter-scraper-csharp \
-  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml \
-  --source-ref "refs/tags/$release_tag" \
-  --deny-self-hosted-runners
+dotnet nuget verify --all xtwitterscraper.VERSION.nupkg
 ```
 
-Require the Xquik-dev repository and expected release workflow.
-
-GitHub verifies the artifact digest, signer identity, and transparency proof.
-
-[NuGet.org applies repository signatures][nuget-signatures] to registry packages.
+Releases up to v0.6.2 also carry GitHub build attestations.
 
 ## Usage
 

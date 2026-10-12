@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Xquik contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Publishes the package manifest version to NuGet.org and GitHub from this machine.
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+readonly repository="Xquik-dev/x-twitter-scraper-csharp"
+readonly package_id="XTwitterScraper"
+readonly project_file="src/XTwitterScraper/XTwitterScraper.csproj"
+readonly keychain_service="xquik-nuget-api-key"
+readonly nuget_source="https://api.nuget.org/v3/index.json"
+readonly version_pattern='^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'
+
+workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-release.XXXXXX")"
+trap 'rm -rf -- "${workspace:?}"' EXIT
+
+step()
+{
+  echo "==> $1"
+}
+
+refuse()
+{
+  echo "Release stopped: $1" >&2
+  exit 1
+}
+
+lowercase()
+{
+  printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+nuget_has_version()
+{
+  local index
+  index="$(
+    curl --fail --silent --show-error --location \
+      --proto '=https' --tlsv1.2 --max-time 30 \
+      "https://api.nuget.org/v3-flatcontainer/$(lowercase "$package_id")/index.json"
+  )" || refuse "NuGet.org did not answer. Check the network, then rerun."
+  jq -e --arg version "$(lowercase "$version")" \
+    '.versions | index($version) != null' <<<"$index" >/dev/null
+}
+
+step "Checking required tools"
+for tool in curl dotnet gh git jq security; do
+  command -v "$tool" >/dev/null 2>&1 || refuse "$tool is not installed. Install it, then rerun."
+done
+
+step "Checking that the working tree is clean"
+tree_changes="$(git status --porcelain)"
+[[ -z "$tree_changes" ]] ||
+  refuse "the working tree has changes. Commit or remove them, then rerun."
+
+step "Checking that main is checked out"
+[[ "$(git symbolic-ref --quiet --short HEAD || true)" == "main" ]] ||
+  refuse "the current branch is not main. Switch to main, then rerun."
+
+step "Checking that main matches origin/main"
+git fetch --quiet origin main
+[[ "$(git rev-parse HEAD)" == "$(git rev-parse origin/main)" ]] ||
+  refuse "main differs from origin/main. Pull or push main, then rerun."
+
+step "Reading the version from $project_file"
+version="$(sed -n 's:.*<VersionPrefix>\(.*\)</VersionPrefix>.*:\1:p' "$project_file")"
+[[ "$version" =~ $version_pattern ]] ||
+  refuse "$project_file has no valid VersionPrefix. Fix it, then rerun."
+manifest_version="$(jq -er '."."' .release-please-manifest.json)" ||
+  refuse ".release-please-manifest.json has no version. Fix it, then rerun."
+[[ "$manifest_version" == "$version" ]] ||
+  refuse "the manifest says $manifest_version but $project_file says $version. Align them, then rerun."
+tag="v$version"
+
+step "Checking that tag $tag does not exist yet"
+remote_tag="$(git ls-remote --tags origin "refs/tags/$tag")"
+[[ -z "$remote_tag" ]] || refuse "tag $tag already exists on origin. Bump the version, then rerun."
+if git rev-parse --quiet --verify "refs/tags/$tag" >/dev/null; then
+  refuse "tag $tag exists only in this clone. Delete it with git tag -d $tag, then rerun."
+fi
+
+step "Reading the release notes for $version from CHANGELOG.md"
+notes_file="$workspace/notes.md"
+awk -v version="$version" '
+  /^## / { if (found) exit; found = ($2 == version); next }
+  found
+' CHANGELOG.md >"$notes_file"
+grep -q '[^[:space:]]' "$notes_file" ||
+  refuse "CHANGELOG.md has no section for $version. Add one, then rerun."
+
+step "Checking GitHub CLI access"
+gh auth status >/dev/null 2>&1 ||
+  refuse "the GitHub CLI is not signed in. Run gh auth login, then rerun."
+
+step "Checking NuGet.org for $package_id $version"
+if nuget_has_version; then
+  already_published=true
+else
+  already_published=false
+  step "Checking the Keychain for the NuGet API key"
+  security find-generic-password -s "$keychain_service" >/dev/null 2>&1 ||
+    refuse "Keychain item $keychain_service is missing. The owner must add the NuGet API key: security add-generic-password -s $keychain_service -a \"\$USER\" -w"
+fi
+
+step "Running bin/check-local"
+bin/check-local
+
+step "Auditing dependencies for known vulnerabilities"
+./scripts/audit
+
+step "Building $package_id $version"
+package_dir="$workspace/packages"
+package_file="$package_dir/$package_id.$version.nupkg"
+./scripts/build-package "$package_dir" "$version"
+[[ -f "$package_file" && -f "$package_dir/$package_id.$version.symbols.nupkg" ]] ||
+  refuse "the build did not produce the $version packages. Check the build output, then rerun."
+
+if [[ "$already_published" == true ]]; then
+  step "Skipping the NuGet upload because NuGet.org already has $package_id $version"
+else
+  step "Uploading $package_id $version to NuGet.org"
+  api_key="$(security find-generic-password -s "$keychain_service" -w)" ||
+    refuse "the Keychain did not return $keychain_service. Unlock the Keychain, then rerun."
+  dotnet nuget push "$package_file" \
+    --api-key "$api_key" \
+    --skip-duplicate \
+    --source "$nuget_source"
+  unset api_key
+fi
+
+step "Creating and pushing tag $tag"
+git tag -a "$tag" -m "$package_id $version"
+git push origin "refs/tags/$tag"
+
+if [[ "$version" == *-* ]]; then
+  release_flags=(--prerelease --latest=false)
+else
+  release_flags=(--latest)
+fi
+
+step "Looking for a draft GitHub release for $tag"
+draft_release="$(
+  gh release list --repo "$repository" --limit 100 --json tagName,isDraft \
+    --jq ".[] | select(.isDraft and .tagName == \"$tag\") | .tagName"
+)"
+if [[ -n "$draft_release" ]]; then
+  step "Publishing the existing draft GitHub release $tag"
+  gh release upload "$tag" "$package_file" --repo "$repository" --clobber
+  gh release edit "$tag" \
+    --repo "$repository" \
+    --title "$tag" \
+    --notes-file "$notes_file" \
+    --draft=false \
+    --verify-tag \
+    "${release_flags[@]}"
+else
+  step "Creating GitHub release $tag"
+  gh release create "$tag" "$package_file" \
+    --repo "$repository" \
+    --title "$tag" \
+    --notes-file "$notes_file" \
+    --verify-tag \
+    "${release_flags[@]}"
+fi
+
+echo "Released $package_id $version."

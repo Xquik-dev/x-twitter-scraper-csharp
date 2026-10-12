@@ -46,11 +46,13 @@ Relevant threats include:
 - Redirects or custom base URLs sending credentials to untrusted hosts.
 - Malformed responses causing unsafe parsing or resource exhaustion.
 - Retrying consumed streams and producing incomplete uploads.
-- Dependency, generator, workflow, and release supply-chain compromise.
+- Dependency, generator, and release supply-chain compromise.
 
-Controls include loopback-only tests, strict parsing, CodeQL, and analyzers.
+Controls include loopback-only tests, strict parsing, and analyzers.
 
-CI also verifies dependencies, licenses, coverage, and reproducible packages.
+`bin/check-local` also verifies dependencies, licenses, coverage, and reproducible packages.
+
+`bin/release-local` runs those checks before every release.
 
 ## Response process
 

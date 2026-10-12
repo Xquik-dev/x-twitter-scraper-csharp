@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Xquik contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Runs every repository check in order and stops at the first failure.
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+check_name=""
+check_hint=""
+workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-check.XXXXXX")"
+
+finish()
+{
+  local status=$?
+  rm -rf -- "${workspace:?}"
+  if [[ "$status" -ne 0 && -n "$check_name" ]]; then
+    echo "Check failed: $check_name. $check_hint" >&2
+  fi
+}
+trap finish EXIT
+
+start_check()
+{
+  check_name="$1"
+  check_hint="$2"
+  echo "==> $check_name"
+}
+
+start_check "Required tools" "Install the missing tool, then rerun."
+for tool in dotnet git node shellcheck unzip zip; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    check_hint="Install $tool, then rerun."
+    exit 1
+  fi
+done
+
+start_check "Locked dependency restore" "Fix the restore error above, then rerun."
+./scripts/bootstrap
+
+start_check "C# formatting and analyzers" "Run ./scripts/format, fix the analyzer findings, then rerun."
+./scripts/lint
+
+start_check "Shell scripts" "Fix the shellcheck findings above, then rerun."
+shell_scripts=()
+for script in bin/* scripts/*; do
+  if [[ "$(head -n 1 "$script")" == "#!/usr/bin/env bash" ]]; then
+    shell_scripts+=("$script")
+  fi
+done
+shellcheck "${shell_scripts[@]}"
+
+start_check "Repository licensing" "Add the license data that reuse lint asks for, then rerun."
+if command -v reuse >/dev/null 2>&1; then
+  reuse lint
+elif command -v uvx >/dev/null 2>&1; then
+  uvx --from reuse==5.1.1 reuse lint
+else
+  echo "Skipping REUSE. Install reuse or uv to run it."
+fi
+
+start_check "Build" "Fix the build errors above, then rerun."
+./scripts/build
+
+start_check "Tests" "Fix the failing tests above, then rerun."
+./scripts/test
+
+start_check "Coverage" "Fix failing or skipped tests, or add tests to meet coverage, then rerun."
+./scripts/coverage
+
+start_check "Dependency audit" "Update or replace the packages reported above, then rerun."
+./scripts/audit
+
+start_check "Reproducible packages" "Remove the build input that changes between builds, then rerun."
+./scripts/check-reproducible
+
+start_check "CodeQL security queries" "Fix the CodeQL findings above, then rerun."
+if command -v codeql >/dev/null 2>&1; then
+  codeql database create "$workspace/codeql-database" \
+    --language=csharp \
+    --build-mode=none \
+    --source-root=. \
+    --quiet
+  codeql database analyze "$workspace/codeql-database" \
+    codeql/csharp-queries:codeql-suites/csharp-security-extended.qls \
+    --download \
+    --format=csv \
+    --output="$workspace/codeql.csv" \
+    --quiet
+  if [[ -s "$workspace/codeql.csv" ]]; then
+    cat -- "$workspace/codeql.csv"
+    exit 1
+  fi
+else
+  echo "Skipping CodeQL. Install the CodeQL CLI to run it."
+fi
+
+check_name=""
+echo "All checks passed."
