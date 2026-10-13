@@ -11,6 +11,11 @@
 * The NuGet description and tags lead with X API & Twitter API, and the package has the Xquik icon.
 * Doc comments use the current price. An active monitor costs 30 credits per hour.
 
+### Dependencies
+
+* System.Text.Json moves from 10.0.11 to 10.0.13.
+* On .NET Standard 2.0, System.Collections.Immutable moves from 10.0.11 to 10.0.13.
+
 ## 0.6.2 (2026-08-21)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.1...v0.6.2)
