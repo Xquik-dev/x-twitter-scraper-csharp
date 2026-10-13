@@ -13,8 +13,8 @@
 
 ### Dependencies
 
-* System.Text.Json moves from 10.0.11 to 10.0.13.
-* On .NET Standard 2.0, System.Collections.Immutable moves from 10.0.11 to 10.0.13.
+* System.Text.Json moves from 10.0.11 to 10.0.12.
+* On .NET Standard 2.0, System.Collections.Immutable moves from 10.0.11 to 10.0.12.
 
 ## 0.6.2 (2026-08-21)
 
