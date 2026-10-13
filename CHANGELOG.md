@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.3 (2026-10-13)
+
+[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
+
+### Documentation
+
+* The README title is now "X API & Twitter API C# SDK by Xquik".
+* The README says near the top what Xquik is, how it bills and that it is not affiliated with X Corp.
+* The NuGet description and tags lead with X API & Twitter API, and the package has the Xquik icon.
+* Doc comments use the current price. An active monitor costs 30 credits per hour.
+
 ## 0.6.2 (2026-08-21)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.1...v0.6.2)

@@ -3,15 +3,17 @@
     <!-- Metadata -->
     <AssemblyTitle>Xquik C# SDK</AssemblyTitle>
     <AssemblyName>XTwitterScraper</AssemblyName>
-    <VersionPrefix>0.6.2</VersionPrefix>
+    <VersionPrefix>0.6.3</VersionPrefix>
     <Description>X API &amp; Twitter API SDK for C# &amp; .NET. Scrape Twitter search, profiles &amp; followers as a Twitter scraper &amp; tweet scraper. Not affiliated with X Corp.</Description>
     <OutputType>Library</OutputType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="XTwitterScraper.Tests"/>
     <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\"/>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
     <PackageReference Include="System.Text.Json" Version="10.0.11"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400" PrivateAssets="All"/>
   </ItemGroup>
