@@ -21,13 +21,14 @@ printf '%s\\n' "$url" >>"$FAKE_LOGS/curl"
 printf '{"versions":[%s]}' "$FAKE_NUGET_VERSIONS"
 `,
   dotnet: `#!/bin/sh
-# Stands in for "dotnet nuget push". It records the call, with the package path cut to its file name.
+# Stands in for "dotnet nuget push". It records the call, with the package path cut to its file name,
+# and the API key it finds in the NUGET_API_KEY environment variable, as the real command reads it.
 line=""
 for argument in "$@"; do
   case "$argument" in */*.nupkg) argument="\${argument##*/}" ;; esac
   line="$line $argument"
 done
-printf '%s\\n' "\${line# }" >>"$FAKE_LOGS/dotnet"
+printf '%s\\n' "\${line# } with NUGET_API_KEY=\${NUGET_API_KEY:-unset}" >>"$FAKE_LOGS/dotnet"
 `,
   gh: `#!/bin/sh
 # Stands in for the GitHub CLI. It is signed in and has no draft release. It records each other
@@ -112,8 +113,9 @@ XTwitterScraper.nuspec
 lib/net8.0/XTwitterScraper.dll
 Dry run finished. Nothing was published, tagged or released.
 `;
+// The key travels in the environment. A key in the arguments would show in the process list.
 const push =
-  "nuget push XTwitterScraper.9.9.9.nupkg --api-key not-a-real-api-key --skip-duplicate --source https://api.nuget.org/v3/index.json";
+  "nuget push XTwitterScraper.9.9.9.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json with NUGET_API_KEY=not-a-real-api-key";
 const release =
   "release create v9.9.9 XTwitterScraper.9.9.9.nupkg --repo Xquik-dev/x-twitter-scraper-csharp --title v9.9.9 --notes-file NOTES --verify-tag --latest";
 

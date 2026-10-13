@@ -178,8 +178,9 @@ else
   step "Uploading $package_id $version to NuGet.org"
   api_key="$(security find-generic-password -s "$NUGET_KEYCHAIN_SERVICE" -w 2>/dev/null)" ||
     refuse "The Keychain did not return the item that NUGET_KEYCHAIN_SERVICE names. Unlock the Keychain, then rerun."
-  dotnet nuget push "$package_file" \
-    --api-key "$api_key" \
+  # The key goes through NUGET_API_KEY, which dotnet nuget push reads. An --api-key argument would
+  # show in the process list.
+  NUGET_API_KEY="$api_key" dotnet nuget push "$package_file" \
     --skip-duplicate \
     --source "$nuget_source"
   unset api_key
