@@ -24,7 +24,11 @@ for (const project of report.projects ?? []) {
   for (const framework of project.frameworks ?? []) {
     for (const group of ["topLevelPackages", "transitivePackages"]) {
       for (const dependency of framework[group] ?? []) {
-        packages.set(dependency.id.toLowerCase(), dependency);
+        // Projects can resolve different versions of 1 package, and each version has its own license.
+        packages.set(
+          `${dependency.id.toLowerCase()}@${dependency.resolvedVersion}`,
+          dependency,
+        );
       }
     }
   }
@@ -34,9 +38,10 @@ const packageRoot =
   process.env.NUGET_PACKAGES ?? path.join(os.homedir(), ".nuget", "packages");
 const failures = [];
 
-for (const [lowerId, dependency] of [...packages].sort(([left], [right]) =>
+for (const [, dependency] of [...packages].sort(([left], [right]) =>
   left.localeCompare(right),
 )) {
+  const lowerId = dependency.id.toLowerCase();
   const version = dependency.resolvedVersion;
   const nuspecPath = path.join(
     packageRoot,
