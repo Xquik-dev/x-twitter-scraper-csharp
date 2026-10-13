@@ -4,7 +4,7 @@
     <AssemblyTitle>Xquik C# SDK</AssemblyTitle>
     <AssemblyName>XTwitterScraper</AssemblyName>
     <VersionPrefix>0.6.2</VersionPrefix>
-    <Description>Xquik .NET SDK for Twitter search, profiles, followers, media, webhooks, and X automation. Not affiliated with X Corp.</Description>
+    <Description>X API &amp; Twitter API SDK for C# &amp; .NET. Scrape Twitter search, profiles &amp; followers as a Twitter scraper &amp; tweet scraper. Not affiliated with X Corp.</Description>
     <OutputType>Library</OutputType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
