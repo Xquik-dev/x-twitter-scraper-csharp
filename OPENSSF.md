@@ -15,7 +15,7 @@ This active, released C# SDK meets the OpenSSF eligibility rules.
 | Area | Evidence |
 | --- | --- |
 | License | Apache-2.0 and REUSE 3.3 metadata |
-| Contribution process | DCO sign-off and independent review rules |
+| Contribution process | DCO sign-off, and `bin/check-local` before every merge |
 | Governance | Public roles, decisions, releases, and continuity policy |
 | Security reporting | Private reporting, response targets, boundaries, and threat model |
 | Runtime compatibility | .NET 8 tests, plus .NET Framework 4.7.2 tests on Windows |

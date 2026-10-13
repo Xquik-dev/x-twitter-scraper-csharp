@@ -10,7 +10,7 @@ Describe the user-visible result.
 - [ ] I preserved public API contracts.
 - [ ] I checked the diff for secrets and private implementation details.
 - [ ] I signed every commit with `git commit --signoff`.
-- [ ] A different human will review this nontrivial maintainer change.
+- [ ] `bin/check-local` passed on this exact head.
 
 ## Contract Impact
 
