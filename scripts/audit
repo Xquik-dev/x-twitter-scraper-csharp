@@ -18,12 +18,9 @@ DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
   --format json \
   --output-version 1 >"$audit_workspace/vulnerabilities.json"
 
-if grep -Eq '"(vulnerabilities|advisoryurl|severity)"[[:space:]]*:' \
-  "$audit_workspace/vulnerabilities.json"; then
-  cat "$audit_workspace/vulnerabilities.json"
-  echo "Vulnerable NuGet packages detected." >&2
-  exit 1
-fi
+node scripts/verify-vulnerabilities.mjs \
+  "$audit_workspace/vulnerabilities.json" \
+  audit-exceptions.json
 
 echo "==> Checking dependency license policy"
 DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
@@ -32,4 +29,4 @@ DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
   --output-version 1 >"$audit_workspace/packages.json"
 node scripts/verify-package-licenses.mjs "$audit_workspace/packages.json"
 
-echo "No vulnerable packages detected."
+echo "Dependency audit passed."

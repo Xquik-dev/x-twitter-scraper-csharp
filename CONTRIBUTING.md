@@ -6,7 +6,7 @@ Follow the shared [Xquik contribution policy][contribution-policy].
 
 ## Set up
 
-Install .NET SDK 10.0.400, the .NET 8 runtime, Node.js, `shellcheck`, `unzip`, and `zip`.
+Install .NET SDK 10.0.400, the .NET 8 runtime, Node.js, the CodeQL CLI, `shellcheck`, `unzip`, and `zip`.
 
 Windows also runs the .NET Framework 4.7.2 test target.
 
@@ -38,9 +38,13 @@ Run every gate before requesting review:
 bin/check-local
 ```
 
-It restores locked dependencies, then runs lint, shellcheck, REUSE, build, tests, coverage, the dependency audit, and the reproducible package check.
+It restores locked dependencies, then runs lint, shellcheck, REUSE, build, tests, coverage, the dependency audit, the reproducible package check, and CodeQL security-extended queries.
 It stops at the first failure and says what to fix.
-REUSE runs when `reuse` or `uv` is installed.
+REUSE runs when `reuse` or `uv` is installed. CodeQL is required, and any finding fails the run.
+
+The dependency audit fails on any vulnerable package in the shipped library.
+It also fails on a test-only finding unless `audit-exceptions.json` lists it and no fix exists.
+Each entry names the advisory, the package path, the reason, and a recheck date at most 30 days out.
 
 With push access, it posts the `xquik-local-checks` commit status for a clean, pushed `HEAD`.
 Pass `--no-status` to skip the status.

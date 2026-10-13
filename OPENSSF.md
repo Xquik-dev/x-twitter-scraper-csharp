@@ -22,8 +22,8 @@ This active, released C# SDK meets the OpenSSF eligibility rules.
 | Functional tests | 7,103 tests with no skips |
 | Line coverage | `./scripts/coverage` enforces 90% |
 | Branch coverage | `./scripts/coverage` enforces 80% |
-| Static analysis | Compiler analyzers and formatting checks |
-| Dependency review | Locked restores, vulnerability audit, and license policy |
+| Static analysis | Compiler analyzers, formatting checks, and CodeQL security-extended queries |
+| Dependency review | Locked restores, vulnerability audit with reviewed exceptions, and license policy |
 | Licensing gate | `reuse lint` checks every repository file |
 | Reproducibility | 2 normalized NuGet builds must have identical bytes |
 | Local checks | `bin/check-local` runs every gate before review and release |

@@ -48,7 +48,7 @@ Relevant threats include:
 - Retrying consumed streams and producing incomplete uploads.
 - Dependency, generator, and release supply-chain compromise.
 
-Controls include loopback-only tests, strict parsing, and analyzers.
+Controls include loopback-only tests, strict parsing, CodeQL, and analyzers.
 
 `bin/check-local` also verifies dependencies, licenses, coverage, and reproducible packages.
 
