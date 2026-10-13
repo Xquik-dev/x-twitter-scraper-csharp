@@ -5,9 +5,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Runs the CodeQL C# security-extended queries on a copy of the source files.
-# CodeQL restores packages into the folder it scans. A scan of the working tree
-# leaves that restore output pointing at a folder this script deletes, and the
-# next build without a restore fails.
+# CodeQL traces a build of the copy, so the restore and build output of the
+# working tree stays as it is. The traced build resolves every reference, so
+# CodeQL reads every file without a compiler error. Any result fails the run,
+# and so does any file that CodeQL could not read.
 
 set -euo pipefail
 
@@ -15,31 +16,72 @@ cd -- "$(dirname -- "$0")/.."
 
 codeql_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-codeql.XXXXXX")"
 trap 'rm -rf -- "$codeql_workspace"' EXIT
+# CodeQL reports physical paths, so the workspace path is physical too.
+codeql_workspace="$(cd -- "$codeql_workspace" && pwd -P)"
 
 echo "==> Copying the source files for CodeQL"
 mkdir -p -- "$codeql_workspace/source"
 tar -cf - -T <(git ls-files --cached --others --exclude-standard) |
   tar -xf - -C "$codeql_workspace/source"
 
+echo "==> Restoring the locked packages of the copy"
+(cd -- "$codeql_workspace/source" && dotnet restore --locked-mode)
+
 echo "==> Running the CodeQL security-extended queries"
-codeql database create "$codeql_workspace/database" \
+DOTNET_ROLL_FORWARD=Major codeql database create "$codeql_workspace/database" \
   --language=csharp \
-  --build-mode=none \
+  --build-mode=manual \
+  --command="dotnet build XTwitterScraper.sln --no-restore -p:UseSharedCompilation=false" \
   --source-root="$codeql_workspace/source" \
   --threads=0 \
   --quiet
 codeql database analyze "$codeql_workspace/database" \
   codeql/csharp-queries:codeql-suites/csharp-security-extended.qls \
   --download \
-  --format=csv \
-  --output="$codeql_workspace/results.csv" \
+  --format=sarif-latest \
+  --output="$codeql_workspace/results.sarif" \
   --threads=0 \
   --quiet
 
-if [[ -s "$codeql_workspace/results.csv" ]]; then
-  cat -- "$codeql_workspace/results.csv"
-  echo "CodeQL found the results above. Fix each one." >&2
-  exit 1
-fi
+# CodeQL goes on after it fails to read a file and scans only the code it
+# could read. These diagnostic queries of the suite name each compiler and
+# extractor error. The report lists every diagnostic query that ran, so a
+# suite without them cannot pass.
+node - "$codeql_workspace/results.sarif" "$codeql_workspace/source/" <<'EOF'
+const fs = require("node:fs");
 
-echo "CodeQL found no results."
+const diagnostics = ["cs/diagnostics/extraction-errors", "cs/compilation-error", "cs/extraction-error"];
+const [report, copy] = process.argv.slice(2);
+const runs = JSON.parse(fs.readFileSync(report, "utf8")).runs;
+const fail = (message) => {
+  console.error(message);
+  process.exit(1);
+};
+
+const ran = runs.flatMap((run) => run.tool?.["driver"]?.notifications ?? []).map((query) => query.id);
+const missing = diagnostics.filter((id) => !ran.includes(id));
+if (missing.length > 0) {
+  fail(`The CodeQL scan lacks ${missing.join(" and ")}, so it cannot show that it read every file. Make the suite in scripts/codeql run each missing diagnostic query.`);
+}
+const unread = runs
+  .flatMap((run) => run.invocations ?? [])
+  .flatMap((invocation) => invocation.toolExecutionNotifications ?? [])
+  .filter((notification) => diagnostics.includes(notification.descriptor?.id))
+  .map((notification) => {
+    const where = notification.locations?.[0]?.physicalLocation;
+    const place = where ? `${where.artifactLocation?.uri} at line ${where.region?.startLine}. ` : "";
+    return `${place}${(notification.message?.text ?? "").split("\n")[0].replaceAll(copy, "")}`;
+  });
+if (unread.length > 0) {
+  for (const line of new Set(unread)) console.error(line);
+  fail("CodeQL could not read the C# code above, so the scan is incomplete. Fix that code so it compiles, then rerun.");
+}
+
+const results = runs.flatMap((run) => run.results ?? []);
+for (const result of results) {
+  const where = result.locations?.[0]?.physicalLocation;
+  console.log(`${result.ruleId} at ${where?.artifactLocation?.uri}:${where?.region?.startLine}. ${result.message?.text}`);
+}
+if (results.length > 0) fail("CodeQL found the results above. Fix each one.");
+console.log("CodeQL found no results.");
+EOF
