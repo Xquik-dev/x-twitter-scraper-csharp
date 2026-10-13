@@ -45,7 +45,7 @@ Requires .NET Standard 2.0 or later.
 Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
 
 ```bash
-dotnet add package XTwitterScraper --version 0.6.2
+dotnet add package XTwitterScraper --version 0.6.3
 ```
 
 ## Verify a release
