@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Xquik contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Runs the tests of the scripts in bin/ and scripts/. Each test runs a script
+# in a throwaway folder with fake commands, so no test reaches NuGet.org,
+# GitHub or the Keychain.
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+echo "==> Running script tests"
+node --test 'scripts/tests/*.test.mjs'

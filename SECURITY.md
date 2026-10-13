@@ -40,7 +40,7 @@ This repository excludes private infrastructure and service implementation detai
 
 ## Threat model
 
-Relevant threats include:
+These threats are relevant.
 
 - Credential leakage through logs, URLs, middleware, or debug output.
 - Redirects or custom base URLs sending credentials to untrusted hosts.

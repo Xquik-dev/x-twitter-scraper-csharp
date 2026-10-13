@@ -9,7 +9,7 @@ import path from "node:path";
 
 const reportPath = process.argv[2];
 if (!reportPath) {
-  throw new Error("Usage: verify-package-licenses.mjs <package-report.json>");
+  throw new Error("Run verify-package-licenses.mjs <package-report.json>.");
 }
 
 const allowedExpressions = new Set(["Apache-2.0", "BSD-3-Clause", "MIT"]);
@@ -58,13 +58,13 @@ for (const [lowerId, dependency] of [...packages].sort(([left], [right]) =>
   }
 
   failures.push(
-    `${dependency.id}@${version}: ${expression ?? legacyUrl ?? "missing license"}`,
+    `${dependency.id}@${version} has ${expression ?? legacyUrl ?? "no license"}`,
   );
 }
 
 if (failures.length > 0) {
   throw new Error(
-    `Dependency licenses failed policy. Use approved licenses:\n${failures.join("\n")}`,
+    `Dependency licenses failed policy. Use approved licenses.\n${failures.join("\n")}`,
   );
 }
 

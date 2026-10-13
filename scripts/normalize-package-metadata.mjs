@@ -8,7 +8,7 @@ import path from "node:path";
 
 const contentRoot = process.argv[2];
 if (!contentRoot) {
-  throw new Error("Usage: normalize-package-metadata.mjs <content-directory>");
+  throw new Error("Run normalize-package-metadata.mjs <content-directory>.");
 }
 
 const corePropertiesDirectory = path.join(

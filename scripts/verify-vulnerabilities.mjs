@@ -5,15 +5,18 @@
 
 // Fails on every vulnerable package in the shipped library, and on every
 // test-only finding unless audit-exceptions.json lists it and no fix exists.
+// Severity never excuses a finding. A listed finding blocks again on its
+// recheck date, and as soon as a fixed version exists.
 
 import fs from "node:fs";
 import path from "node:path";
 
 const [reportPath, exceptionsPath] = process.argv.slice(2);
 if (!reportPath || !exceptionsPath) {
-  throw new Error(
-    "Usage: verify-vulnerabilities.mjs <vulnerability-report.json> <audit-exceptions.json>",
+  console.error(
+    "Run verify-vulnerabilities.mjs <vulnerability-report.json> <audit-exceptions.json>.",
   );
+  process.exit(2);
 }
 
 const shippedProjects = new Set(["XTwitterScraper"]);
@@ -49,16 +52,18 @@ function readExceptions() {
     const label = `${exceptionsPath} entry ${index + 1}`;
     const recheckTime = parseDay(entry?.recheck);
     if (!/^GHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}$/.test(entry?.advisory ?? "")) {
-      failures.push(`${label}: set advisory to a GHSA ID.`);
+      failures.push(`${label} needs an "advisory" like GHSA-xxxx-xxxx-xxxx.`);
     } else if (typeof entry.package !== "string" || !entry.package.includes(" > ")) {
-      failures.push(`${label}: set package to "<project> > <package id>".`);
+      failures.push(`${label} needs a "package" like "<project> > <package id>".`);
     } else if (!allowedReasons.has(entry.reason)) {
-      failures.push(`${label}: set reason to "${[...allowedReasons].join('" or "')}".`);
+      failures.push(`${label} needs a "reason" of "${[...allowedReasons].join('" or "')}".`);
     } else if (
       Number.isNaN(recheckTime) ||
       recheckTime > today + maxRecheckDays * dayInMilliseconds
     ) {
-      failures.push(`${label}: set recheck to a YYYY-MM-DD date at most ${maxRecheckDays} days out.`);
+      failures.push(
+        `${label} needs a "recheck" date as YYYY-MM-DD, at most ${maxRecheckDays} days out.`,
+      );
     } else {
       exceptions.set(`${entry.package}|${entry.advisory}`, { ...entry, recheckTime });
     }
@@ -70,7 +75,7 @@ function readFindings() {
   const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
   for (const problem of report.problems ?? []) {
     if (problem.level === "error") {
-      failures.push(`dotnet list package reported an error: ${problem.text}`);
+      failures.push(`dotnet list package reported an error. ${problem.text}`);
     }
   }
 
@@ -127,30 +132,44 @@ let accepted = 0;
 for (const [key, finding] of findings) {
   const exception = exceptions.get(key);
   if (shippedProjects.has(finding.projectName)) {
-    failures.push(`${finding.summary}: the shipped package uses it. Update it.`);
+    failures.push(`${finding.summary} is in the shipped package. Update it.`);
   } else if (!exception) {
-    failures.push(`${finding.summary}: update it, or list it in ${exceptionsPath} if no fix exists.`);
+    failures.push(
+      `${finding.summary} is not listed. Update it, or list it in ${exceptionsPath} if no fix exists.`,
+    );
   } else if (today >= exception.recheckTime) {
-    failures.push(`${finding.summary}: its exception expired on ${exception.recheck}. Recheck it.`);
+    failures.push(`${finding.summary} has an exception that expired on ${exception.recheck}. Recheck it.`);
   } else {
     const state = await fixState(finding);
     if (state === "fixed") {
-      failures.push(`${finding.summary}: a fixed version exists. Update it.`);
+      failures.push(`${finding.summary} has a fixed version. Update it, then remove its exception.`);
     } else if (state === "unknown") {
-      failures.push(`${finding.summary}: the GitHub advisory lookup failed. Retry.`);
+      failures.push(`${finding.summary} could not be checked, because the GitHub advisory lookup failed. Retry.`);
     } else {
       accepted += 1;
-      console.log(`Accepted ${finding.summary}: ${exception.reason} until ${exception.recheck}.`);
+      console.log(
+        `Accepted the reviewed exception for ${finding.summary}. It is ${exception.reason}. Recheck by ${exception.recheck}.`,
+      );
     }
+  }
+}
+
+for (const [key, exception] of exceptions) {
+  if (!findings.has(key)) {
+    console.log(
+      `${exceptionsPath} lists ${exception.advisory} for ${exception.package}, which no longer applies. Remove it.`,
+    );
   }
 }
 
 if (failures.length > 0) {
   for (const failure of failures) {
-    console.error(failure);
+    console.error(`Blocked. ${failure}`);
   }
-  console.error("Dependency audit failed. Fix the findings above.");
+  console.error(`Vulnerability audit failed with ${failures.length} blocking finding(s).`);
   process.exit(1);
 }
 
-console.log(`No blocking vulnerabilities. ${accepted} accepted by ${exceptionsPath}.`);
+console.log(
+  `Vulnerability audit passed with ${accepted} reviewed exception${accepted === 1 ? "" : "s"}.`,
+);

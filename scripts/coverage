@@ -53,8 +53,8 @@ awk -v rate="$branch_rate" 'BEGIN { exit(rate + 0 >= 0.80 ? 0 : 1) }' || {
   exit 1
 }
 
-echo "Line coverage: $lines_covered/$lines_valid ($line_rate)"
-echo "Branch coverage: $branches_covered/$branches_valid ($branch_rate)"
+echo "Line coverage is $lines_covered/$lines_valid ($line_rate)."
+echo "Branch coverage is $branches_covered/$branches_valid ($branch_rate)."
 
 if [[ -n "${XQUIK_COVERAGE_OUTPUT:-}" ]]; then
   mkdir -p -- "$(dirname -- "$XQUIK_COVERAGE_OUTPUT")"

@@ -4,7 +4,7 @@ This register tracks the Gold assessment for this repository.
 
 The official entry is [bestpractices.dev project 13733][badge].
 
-Assessment date: 2026-07-23.
+The assessment date is 2026-07-23.
 
 ## Eligibility
 
@@ -24,9 +24,10 @@ This active, released C# SDK meets the OpenSSF eligibility rules.
 | Branch coverage | `./scripts/coverage` enforces 80% |
 | Static analysis | Compiler analyzers, formatting checks, and CodeQL security-extended queries |
 | Dependency review | Locked restores, vulnerability audit with reviewed exceptions, and license policy |
-| Licensing gate | `reuse lint` checks every repository file |
+| Licensing gate | REUSE 6.2.0 runs `reuse lint` on every repository file through `uvx` |
 | Reproducibility | 2 normalized NuGet builds must have identical bytes |
 | Local checks | `bin/check-local` runs every gate before review and release |
+| Script tests | 31 tests run the check, audit, CodeQL, and release scripts with fake commands |
 | Two-factor authentication | The Xquik-dev organization requires 2FA |
 
 The current suite covers 49,965 of 52,555 executable lines.
@@ -69,7 +70,7 @@ Gold eligibility still requires review by a different human.
 
 ## Maintenance
 
-Run every evidence check before releases:
+Run every evidence check before releases.
 
 ```sh
 bin/check-local
