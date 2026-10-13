@@ -7,7 +7,7 @@
 set -euo pipefail
 
 if [[ "$#" -ne 2 ]]; then
-  echo "Usage: ./scripts/normalize-package <input.nupkg> <output.nupkg>" >&2
+  echo "Run ./scripts/normalize-package <input.nupkg> <output.nupkg>." >&2
   exit 2
 fi
 

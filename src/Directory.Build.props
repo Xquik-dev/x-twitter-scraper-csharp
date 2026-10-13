@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Authors>Xquik</Authors>
     <Company>Xquik</Company>
-    <PackageTags>x;twitter;scraper;tweet;timeline;followers;twitter-search;twitter-api;x-api;social-media-api;csharp;dotnet;twitter-automation</PackageTags>
+    <PackageTags>x-api;twitter-api;twitter-scraper;tweet-scraper;scrape-twitter;twitter-api-alternative;twitter-data-api;twitter-sdk;twitter-api-csharp;twitter-api-dotnet;csharp-sdk;dotnet-sdk;x-twitter-scraper;xquik;twitter-search;follower-export;webhooks;x-automation;twitter;csharp;dotnet</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Xquik</Copyright>
     <PackageProjectUrl>https://xquik.com</PackageProjectUrl>

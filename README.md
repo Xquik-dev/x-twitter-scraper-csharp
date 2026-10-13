@@ -1,10 +1,18 @@
-# Xquik C# SDK: Twitter search, followers & X automation
+# X API & Twitter API C# SDK by Xquik
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
-[![CI](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml/badge.svg)](https://github.com/Xquik-dev/x-twitter-scraper-csharp/actions/workflows/ci.yml)
 
-Use the Xquik C# SDK for Twitter search, timelines, profiles, and followers.
-Download media, manage webhooks, and run X automation from .NET.
+Use this X API & Twitter API SDK to work with X from C# & .NET.
+It works as a Twitter scraper & tweet scraper for search, profiles & followers.
+Scrape Twitter timelines, lists, communities & trends into typed C# models.
+Manage media, webhooks, monitors & X automation with async, typed methods.
+It provides a Twitter API alternative through documented Xquik REST routes.
+
+Xquik is the world's fastest and cheapest X Twitter scraper service with the most complete X data.
+Xquik charges only for delivered, unique, filter-matching results and never pads rows.
+
+> Xquik is an independent third-party service. Not affiliated with X Corp.
+> "Twitter" and "X" are trademarks of X Corp.
 
 ## C# client or REST
 
@@ -16,17 +24,17 @@ Call REST directly when a NuGet dependency does not fit.
 
 Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
 
-## Common X data tasks
+## Common Twitter & X tasks
 
 | Task | REST route | Workflow note |
 | --- | --- | --- |
-| Search tweets | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
-| Extract profile tweets | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
-| Export followers | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
-| Export following accounts | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
+| Search tweets without the X API | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
+| Read an X profile timeline | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
+| Scrape Twitter followers | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
+| Scrape following accounts | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
 | Read a home timeline | `GET /x/timeline` | Approve this private read. |
 | Read lists or communities | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
-| Export large datasets | `POST /extractions` | Poll status, then download results. |
+| Export large X datasets | `POST /extractions` | Poll status, then download results. |
 | Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
 | Post or reply | `POST /x/tweets` | Confirm the account and payload. |
 
@@ -34,7 +42,7 @@ Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https
 
 Requires .NET Standard 2.0 or later.
 
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper):
+Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
 
 ```bash
 dotnet add package XTwitterScraper --version 0.6.2
@@ -42,28 +50,18 @@ dotnet add package XTwitterScraper --version 0.6.2
 
 ## Verify a release
 
-Verify a GitHub release package before using it:
+Maintainers publish each release from a local machine with `bin/release-local`.
+The script runs every repository check before it uploads the package.
+`bin/release-local --dry-run` runs the same checks and prints the package listing without publishing.
+
+[NuGet.org adds a repository signature][nuget-signatures] to every package.
+Check that signature on a package downloaded from NuGet.org.
 
 ```bash
-release_tag=vVERSION
-package_version="${release_tag#v}"
-
-gh release download "$release_tag" \
-  --repo Xquik-dev/x-twitter-scraper-csharp \
-  --pattern "XTwitterScraper.$package_version.nupkg"
-
-gh attestation verify "XTwitterScraper.$package_version.nupkg" \
-  --repo Xquik-dev/x-twitter-scraper-csharp \
-  --signer-workflow Xquik-dev/x-twitter-scraper-csharp/.github/workflows/publish-nuget.yml \
-  --source-ref "refs/tags/$release_tag" \
-  --deny-self-hosted-runners
+dotnet nuget verify --all xtwitterscraper.VERSION.nupkg
 ```
 
-Require the Xquik-dev repository and expected release workflow.
-
-GitHub verifies the artifact digest, signer identity, and transparency proof.
-
-[NuGet.org applies repository signatures][nuget-signatures] to registry packages.
+Releases up to v0.6.2 also carry GitHub build attestations.
 
 ## Usage
 
@@ -87,7 +85,7 @@ Console.WriteLine(paginatedTweets);
 
 ## Client configuration
 
-Configure the client using environment variables:
+Configure the client using environment variables.
 
 ```csharp
 using XTwitterScraper;
@@ -96,7 +94,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new();
 ```
 
-Set credentials directly when environment variables do not fit:
+Set credentials directly when environment variables do not fit.
 
 ```csharp
 using XTwitterScraper;
@@ -118,7 +116,7 @@ Environment variables and explicit properties can be combined.
 
 ### Modify configuration
 
-Call `WithOptions` to reuse connections with temporary settings:
+Call `WithOptions` to reuse connections with temporary settings.
 
 ```csharp
 using System;
@@ -145,7 +143,7 @@ The [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language
 
 ## Binary responses
 
-Binary endpoints return `HttpResponse` instead of parsing the body:
+Binary endpoints return `HttpResponse` instead of parsing the body.
 
 ```csharp
 using System;
@@ -162,7 +160,7 @@ var response = await client.Extractions.ExportResults(parameters);
 Console.WriteLine(response);
 ```
 
-Use [`CopyToAsync`](<https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync?view=net-9.0#system-io-stream-copytoasync(system-io-stream)>) to save content to any [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream?view=net-9.0):
+Use [`CopyToAsync`](<https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.copytoasync?view=net-9.0#system-io-stream-copytoasync(system-io-stream)>) to save content to any [`Stream`](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream?view=net-9.0).
 
 ```csharp
 using System.IO;
@@ -176,7 +174,7 @@ await contentStream.CopyToAsync(fileStream); // Accepts any Stream.
 ## Raw responses
 
 Typed methods hide headers, status codes, and raw bodies.
-Prefix any HTTP call with `WithRawResponse` to access them:
+Prefix any HTTP call with `WithRawResponse` to access them.
 
 ```csharp
 var response = await client.WithRawResponse.Account.Retrieve();
@@ -185,7 +183,7 @@ var headers = response.Headers;
 ```
 
 Access the raw `HttpResponseMessage` through `RawMessage`.
-Deserialize non-streaming responses when you need a typed model:
+Deserialize non-streaming responses when you need a typed model.
 
 ```csharp
 using System;
@@ -198,7 +196,7 @@ Console.WriteLine(deserialized);
 
 ## Error handling
 
-API errors inherit from `XTwitterScraperApiException`:
+API errors inherit from `XTwitterScraperApiException`.
 
 | Status | Exception                                      |
 | ------ | ---------------------------------------------- |
@@ -218,7 +216,7 @@ Every SDK exception inherits from `XTwitterScraperException`.
 
 ## Retries
 
-The SDK retries these errors twice with exponential backoff:
+The SDK retries these errors twice with exponential backoff.
 
 - Connection errors
 - 408 Request Timeout
@@ -228,7 +226,7 @@ The SDK retries these errors twice with exponential backoff:
 
 The API may override retry behavior.
 
-Set `MaxRetries` on the client:
+Set `MaxRetries` on the client.
 
 ```csharp
 using XTwitterScraper;
@@ -236,7 +234,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { MaxRetries = 3 };
 ```
 
-Override retries for one call with [`WithOptions`](#modify-configuration):
+Override retries for one call with [`WithOptions`](#modify-configuration).
 
 ```csharp
 using System;
@@ -254,7 +252,7 @@ Console.WriteLine(account);
 
 Requests time out after 1 minute by default.
 
-Set `Timeout` on the client:
+Set `Timeout` on the client.
 
 ```csharp
 using System;
@@ -263,7 +261,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
 
-Override the timeout for one call with [`WithOptions`](#modify-configuration):
+Override the timeout for one call with [`WithOptions`](#modify-configuration).
 
 ```csharp
 using System;
@@ -279,7 +277,7 @@ Console.WriteLine(account);
 
 ## Proxies
 
-Route requests through a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0):
+Route requests through a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0).
 
 ```csharp
 using System.Net;
@@ -330,7 +328,7 @@ TweetSearchParams parameters = new
 ```
 
 Access raw values through `RawHeaderData`, `RawQueryData`, and `RawBodyData`.
-Use `FromRawUnchecked` for unsupported values in required parameters:
+Use `FromRawUnchecked` for unsupported values in required parameters.
 
 ```csharp
 using System.Collections.Generic;
@@ -353,7 +351,7 @@ var parameters = TweetSearchParams.FromRawUnchecked
 
 ### Response properties
 
-Read undocumented response properties through `RawData`:
+Read undocumented response properties through `RawData`.
 
 ```csharp
 using System.Text.Json;
@@ -370,14 +368,14 @@ if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 ### Response validation
 
 Unexpected response values throw only when you access their properties.
-Call `Validate` to check the complete response immediately:
+Call `Validate` to check the complete response immediately.
 
 ```csharp
 var paginatedTweets = await client.X.Tweets.Search(parameters);
 paginatedTweets.Validate();
 ```
 
-Set `ResponseValidation` to validate every response:
+Set `ResponseValidation` to validate every response.
 
 ```csharp
 using XTwitterScraper;
@@ -385,7 +383,7 @@ using XTwitterScraper;
 XTwitterScraperClient client = new() { ResponseValidation = true };
 ```
 
-Validate one call with [`WithOptions`](#modify-configuration):
+Validate one call with [`WithOptions`](#modify-configuration).
 
 ```csharp
 using System;

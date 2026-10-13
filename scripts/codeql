@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Xquik contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Runs the CodeQL C# security-extended queries on a copy of the source files.
+# CodeQL restores packages into the folder it scans. A scan of the working tree
+# leaves that restore output pointing at a folder this script deletes, and the
+# next build without a restore fails.
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+codeql_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-codeql.XXXXXX")"
+trap 'rm -rf -- "$codeql_workspace"' EXIT
+
+echo "==> Copying the source files for CodeQL"
+mkdir -p -- "$codeql_workspace/source"
+tar -cf - -T <(git ls-files --cached --others --exclude-standard) |
+  tar -xf - -C "$codeql_workspace/source"
+
+echo "==> Running the CodeQL security-extended queries"
+codeql database create "$codeql_workspace/database" \
+  --language=csharp \
+  --build-mode=none \
+  --source-root="$codeql_workspace/source" \
+  --threads=0 \
+  --quiet
+codeql database analyze "$codeql_workspace/database" \
+  codeql/csharp-queries:codeql-suites/csharp-security-extended.qls \
+  --download \
+  --format=csv \
+  --output="$codeql_workspace/results.csv" \
+  --threads=0 \
+  --quiet
+
+if [[ -s "$codeql_workspace/results.csv" ]]; then
+  cat -- "$codeql_workspace/results.csv"
+  echo "CodeQL found the results above. Fix each one." >&2
+  exit 1
+fi
+
+echo "CodeQL found no results."

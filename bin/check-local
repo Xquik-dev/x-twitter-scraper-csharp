@@ -1,0 +1,180 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Xquik contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Runs every repository check in order and stops at the first failure.
+# CodeQL and REUSE are required. REUSE runs at a pinned version through uv.
+# Posts the xquik-local-checks commit status for a clean, pushed HEAD with the
+# gh login of whoever runs it. On the release machine, that is the owner's
+# login. The success text lists only the checks that ran and passed.
+# Pass --no-status to skip the status.
+
+set -euo pipefail
+
+cd -- "$(dirname -- "$0")/.."
+
+readonly repository="Xquik-dev/x-twitter-scraper-csharp"
+readonly status_context="xquik-local-checks"
+readonly status_limit=139
+readonly reuse_version="6.2.0"
+
+post_requested=true
+for argument in "$@"; do
+  case "$argument" in
+    --no-status) post_requested=false ;;
+    *)
+      echo "Unknown option $argument. Run bin/check-local or bin/check-local --no-status." >&2
+      exit 2
+      ;;
+  esac
+done
+
+check_name="Startup"
+check_label=""
+check_hint="Fix the error above, then rerun."
+passed_checks=()
+status_sha=""
+workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-check.XXXXXX")"
+
+post_status()
+{
+  if [[ -z "$status_sha" ]]; then
+    return 0
+  fi
+  local description="$2"
+  gh api --method POST "repos/$repository/statuses/$status_sha" \
+    -f state="$1" \
+    -f context="$status_context" \
+    -f description="${description:0:$status_limit}" >/dev/null ||
+    echo "Could not post the $1 commit status. Check gh auth status and push access." >&2
+}
+
+finish()
+{
+  local status=$?
+  rm -rf -- "${workspace:?}"
+  if [[ "$status" -ne 0 ]]; then
+    echo "Check failed at $check_name. $check_hint" >&2
+    post_status failure "Failed at $check_name."
+  fi
+}
+trap finish EXIT
+
+start_check()
+{
+  check_name="$1"
+  check_label="$2"
+  check_hint="$3"
+  echo "==> $check_name"
+}
+
+pass_check()
+{
+  passed_checks+=("$check_label")
+}
+
+echo "==> Commit status"
+if [[ "$post_requested" == false ]]; then
+  echo "Commit status not posted because --no-status was passed."
+elif ! command -v gh >/dev/null 2>&1; then
+  echo "Commit status not posted because gh is not installed."
+elif [[ -n "$(git status --porcelain)" ]]; then
+  echo "Commit status not posted because the working tree has changes."
+else
+  head_sha="$(git rev-parse HEAD)"
+  if gh api "repos/$repository/commits/$head_sha" >/dev/null 2>&1; then
+    status_sha="$head_sha"
+    post_status pending "Local checks are running."
+    echo "Posting $status_context for $head_sha."
+  else
+    echo "Commit status not posted because GitHub has no commit $head_sha. Push it, or run gh auth login."
+  fi
+fi
+
+start_check "Required tools" "" "Install the missing tool, then rerun."
+for tool in codeql dotnet git node shellcheck unzip uvx zip; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    case "$tool" in
+      codeql) check_hint="Install the CodeQL CLI with brew install --cask codeql, then rerun." ;;
+      uvx) check_hint="Install uv with brew install uv, then rerun." ;;
+      *) check_hint="Install $tool, then rerun." ;;
+    esac
+    exit 1
+  fi
+done
+
+start_check "Locked dependency restore" "restore" "Fix the restore error above, then rerun."
+./scripts/bootstrap
+pass_check
+
+start_check "C# formatting and analyzers" "lint" "Run ./scripts/format, fix the analyzer findings, then rerun."
+./scripts/lint
+pass_check
+
+start_check "Shell scripts" "shellcheck" "Fix the shellcheck findings above, then rerun."
+shell_scripts=()
+for script in bin/* scripts/*; do
+  if [[ -f "$script" && "$(head -n 1 "$script")" == "#!/usr/bin/env bash" ]]; then
+    shell_scripts+=("$script")
+  fi
+done
+shellcheck "${shell_scripts[@]}"
+pass_check
+
+start_check "Script tests" "script tests" "Fix the failing script tests above, then rerun."
+./scripts/test-scripts
+pass_check
+
+start_check "Repository licensing" "REUSE" "Add the missing license notice or REUSE.toml entry, then rerun."
+uvx --from "reuse==$reuse_version" reuse lint
+pass_check
+
+start_check "Build" "build" "Fix the build errors above, then rerun."
+./scripts/build
+pass_check
+
+start_check "Tests" "tests" "Fix the failing tests above, then rerun."
+bash scripts/test | tee "$workspace/tests.log"
+tests_passed="$(
+  sed -n 's/^[[:space:]]*succeeded:[[:space:]]*\([0-9][0-9]*\).*/\1/p' "$workspace/tests.log" |
+    awk '{ total += $1 } END { if (NR > 0) print total }'
+)"
+case "$(uname -s)" in
+  MINGW* | MSYS* | CYGWIN*) check_label="${tests_passed:+$tests_passed }tests on Windows" ;;
+  *) check_label="${tests_passed:+$tests_passed }.NET 8 tests" ;;
+esac
+pass_check
+
+start_check "Coverage" "coverage" "Fix failing or skipped tests, or add tests to meet coverage, then rerun."
+./scripts/coverage
+pass_check
+
+start_check "Dependency audit" "audit" "Update the packages reported above, or list an unfixable test-only finding in audit-exceptions.json."
+./scripts/audit
+pass_check
+
+start_check "Reproducible packages" "reproducible packages" "Remove the build input that changes between builds, then rerun."
+./scripts/check-reproducible
+pass_check
+
+start_check "CodeQL security-extended queries" "CodeQL" "Fix the CodeQL error or results above, then rerun."
+./scripts/codeql
+pass_check
+
+check_name="Commit status"
+summary=""
+last_index=$((${#passed_checks[@]} - 1))
+for index in "${!passed_checks[@]}"; do
+  if [[ "$index" -eq 0 ]]; then
+    summary="${passed_checks[$index]}"
+  elif [[ "$index" -eq "$last_index" ]]; then
+    summary="$summary and ${passed_checks[$index]}"
+  else
+    summary="$summary, ${passed_checks[$index]}"
+  fi
+done
+summary="Passed $summary."
+post_status success "$summary"
+echo "$summary"

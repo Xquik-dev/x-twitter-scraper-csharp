@@ -9,7 +9,7 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 
 if [[ "$#" -lt 1 || "$#" -gt 2 ]]; then
-  echo "Usage: ./scripts/build-package <output-directory> [package-version]" >&2
+  echo "Run ./scripts/build-package <output-directory> [package-version]." >&2
   exit 2
 fi
 
