@@ -27,7 +27,7 @@ This active, released C# SDK meets the OpenSSF eligibility rules.
 | Licensing gate | REUSE 6.2.0 runs `reuse lint` on every repository file through `uvx` |
 | Reproducibility | 2 normalized NuGet builds must have identical bytes |
 | Local checks | `bin/check-local` runs every gate before review and release |
-| Script tests | 33 tests run the check, audit, license policy, CodeQL, and release scripts with fake commands and packages |
+| Script tests | 36 tests run the check, audit, license policy, CodeQL, and release scripts with fake commands and packages |
 | Two-factor authentication | The Xquik-dev organization requires 2FA |
 
 The current suite covers 49,965 of 52,555 executable lines.

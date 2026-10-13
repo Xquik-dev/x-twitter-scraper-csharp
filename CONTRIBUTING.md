@@ -42,7 +42,8 @@ It restores locked dependencies, then runs lint, shellcheck, the script tests, R
 It stops at the first failure and says what to fix.
 REUSE 6.2.0 runs through `uvx` on every run.
 CodeQL and REUSE are required, and any finding fails the run.
-CodeQL scans a copy of the source files, so the restore output in your working tree stays usable.
+A file that CodeQL can read only in part, such as one with a syntax error, fails it too.
+CodeQL restores and builds a copy of the source files, so the restore output in your working tree stays usable.
 
 The dependency audit fails on any vulnerable package in the shipped library.
 It also fails on a test-only finding unless `audit-exceptions.json` lists it and no fix exists.
