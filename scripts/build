@@ -9,4 +9,4 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 
 echo "==> Running dotnet build"
-DOTNET_ROLL_FORWARD=Major dotnet build --no-restore
+dotnet build --no-restore

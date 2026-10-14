@@ -12,7 +12,7 @@ audit_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-audit.XXXXXX")"
 trap 'rm -rf -- "$audit_workspace"' EXIT
 
 echo "==> Auditing locked dependencies"
-DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
+dotnet list XTwitterScraper.sln package \
   --vulnerable \
   --include-transitive \
   --format json \
@@ -26,7 +26,7 @@ if grep -Eq '"(vulnerabilities|advisoryurl|severity)"[[:space:]]*:' \
 fi
 
 echo "==> Checking dependency license policy"
-DOTNET_ROLL_FORWARD=Major dotnet list XTwitterScraper.sln package \
+dotnet list XTwitterScraper.sln package \
   --include-transitive \
   --format json \
   --output-version 1 >"$audit_workspace/packages.json"

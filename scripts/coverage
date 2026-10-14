@@ -6,57 +6,43 @@
 
 set -euo pipefail
 
+if [[ "$#" -lt 1 || "$#" -gt 2 || ! -f "$1" ]]; then
+  echo "Usage: ./scripts/coverage <parent-coverage.json> [output-directory]" >&2
+  exit 2
+fi
+
+baseline="$(cd -- "$(dirname -- "$1")" && pwd)/$(basename -- "$1")"
 cd -- "$(dirname -- "$0")/.."
+output_directory="${2:-.artifacts/coverage}"
+mkdir -p -- "$output_directory"
+output_directory="$(cd -- "$output_directory" && pwd)"
+coverage_workspace="$(mktemp -d "$output_directory/run.XXXXXX")"
 
-coverage_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-coverage.XXXXXX")"
-trap 'rm -rf -- "$coverage_workspace"' EXIT
+echo "==> Validating the parent coverage report"
+(
+  cd tools/coverage
+  go run . summary "$baseline"
+)
 
-echo "==> Measuring full SDK coverage"
-DOTNET_ROLL_FORWARD=Major dotnet test \
-  src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
-  --framework net8.0 \
-  --no-restore \
-  --results-directory "$coverage_workspace" \
-  --coverlet \
-  --coverlet-include '[XTwitterScraper]*' \
-  --coverlet-output-format cobertura \
-  --report-xunit-trx \
-  --report-xunit-trx-filename tests.trx
+echo "==> Building the .NET 8 test executable"
+dotnet build src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
+  --framework net8.0 --no-restore
 
-coverage_file="$(find "$coverage_workspace" -name 'coverage.cobertura*.xml' -print -quit)"
-test_results_file="$(find "$coverage_workspace" -name tests.trx -print -quit)"
+echo "==> Measuring every SDK type, including generated code & properties"
+dotnet tool run coverlet \
+  src/XTwitterScraper.Tests/bin/Debug/net8.0/XTwitterScraper.Tests.dll \
+  --target dotnet \
+  --targetargs "test --project src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj --framework net8.0 --no-build --no-restore --fail-skips on --results-directory \"$coverage_workspace\" --report-xunit-trx --report-xunit-trx-filename tests.trx" \
+  --include '[XTwitterScraper]*' \
+  --exclude-assemblies-without-sources None \
+  --format json --format cobertura --format opencover \
+  --output "$coverage_workspace/" \
+  --diag "$coverage_workspace/instrumentation.log"
 
-if [[ -z "$coverage_file" || -z "$test_results_file" ]]; then
-  echo "Coverage artifacts are missing. Check the test run." >&2
-  exit 1
-fi
-
-if grep -Fq 'outcome="NotExecuted"' "$test_results_file"; then
-  echo "Tests were skipped. Run every test." >&2
-  exit 1
-fi
-
-coverage_header="$(sed -n '2p' "$coverage_file")"
-line_rate="$(sed -n 's/.*line-rate="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-branch_rate="$(sed -n 's/.*branch-rate="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-lines_covered="$(sed -n 's/.*lines-covered="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-lines_valid="$(sed -n 's/.*lines-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-branches_covered="$(sed -n 's/.*branches-covered="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-branches_valid="$(sed -n 's/.*branches-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
-
-awk -v rate="$line_rate" 'BEGIN { exit(rate + 0 >= 0.90 ? 0 : 1) }' || {
-  echo "Line coverage is ${line_rate}. Increase it to 0.90." >&2
-  exit 1
-}
-awk -v rate="$branch_rate" 'BEGIN { exit(rate + 0 >= 0.80 ? 0 : 1) }' || {
-  echo "Branch coverage is ${branch_rate}. Increase it to 0.80." >&2
-  exit 1
-}
-
-echo "Line coverage: $lines_covered/$lines_valid ($line_rate)"
-echo "Branch coverage: $branches_covered/$branches_valid ($branch_rate)"
-
-if [[ -n "${XQUIK_COVERAGE_OUTPUT:-}" ]]; then
-  mkdir -p -- "$(dirname -- "$XQUIK_COVERAGE_OUTPUT")"
-  cp -- "$coverage_file" "$XQUIK_COVERAGE_OUTPUT"
-fi
+echo "==> Comparing native line, branch & method counts"
+(
+  cd tools/coverage
+  go run . summary "$coverage_workspace/coverage.json" > "$coverage_workspace/summary.json"
+  go run . compare "$baseline" "$coverage_workspace/coverage.json" > "$coverage_workspace/comparison.json"
+)
+echo "Coverage evidence: $coverage_workspace"

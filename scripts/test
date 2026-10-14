@@ -14,7 +14,7 @@ case "$(uname -s)" in
     dotnet test --no-restore
     ;;
   *)
-    DOTNET_ROLL_FORWARD=Major dotnet test \
+    dotnet test \
       src/XTwitterScraper.Tests/XTwitterScraper.Tests.csproj \
       --framework net8.0 \
       --no-restore

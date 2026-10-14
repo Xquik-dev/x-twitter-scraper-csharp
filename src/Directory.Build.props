@@ -12,7 +12,7 @@
     <!-- Documentation -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Disable missing XML documentation warnings. -->
-    <NoWarn>$(NoWarn),1573,1591</NoWarn>
+    <NoWarn>$(NoWarn),1591</NoWarn>
 
     <!-- Source Link -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -30,7 +30,5 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>disable</ImplicitUsings>
-    <!-- Disable deprecation warnings since we may reference our own deprecated symbols. -->
-    <NoWarn>$(NoWarn),0618</NoWarn>
   </PropertyGroup>
 </Project>

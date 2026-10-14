@@ -6,7 +6,7 @@ Follow the shared [Xquik contribution policy][contribution-policy].
 
 ## Set up
 
-Install .NET SDK 10.0.400, the .NET 8 runtime, Node.js, and `unzip`.
+Install .NET SDK 10.0.401, .NET runtime 8.0.31, Go 1.27.1, Node.js & `unzip`.
 
 Windows also runs the .NET Framework 4.7.2 test target.
 
@@ -37,13 +37,23 @@ Run every gate before requesting review:
 ```sh
 ./scripts/lint
 ./scripts/test
-./scripts/coverage
+./scripts/coverage /path/to/parent-coverage.json
 ./scripts/audit
-uvx --from reuse==5.1.1 reuse lint
+uvx --from reuse==6.2.0 reuse lint
 ./scripts/check-reproducible
 ```
 
-Coverage must remain at least 90% for lines and 80% for branches.
+Measure the parent with the same SDK, runtime & Coverlet version first.
+
+Compare raw JSON from the complete SDK, including generated code & properties.
+
+Each metric must preserve its ratio or add no uncovered items.
+
+Coverlet reports line, branch & method coverage. It does not count statements.
+
+The coverage command retains raw reports, test results & diagnostics under `.artifacts/coverage`.
+
+Check the coverage command with `cd tools/coverage && go test ./...`.
 
 Skipped tests are forbidden.
 
@@ -77,6 +87,12 @@ Follow [SECURITY.md](SECURITY.md) for private reporting.
 Publish an immutable `v*` release after its commit reaches `main`.
 
 Verify the tag, changelog, audit, licensing, and reproducible package.
+
+Run both test targets on Windows before publishing.
+
+Use `dotnet nuget push` from a runner with the registry credential.
+
+Provide `NUGET_API_KEY` through the publisher's environment. Never write it to disk.
 
 [contribution-policy]: https://github.com/Xquik-dev/.github/blob/main/CONTRIBUTING.md
 [review-policy]: https://github.com/Xquik-dev/.github/blob/main/REVIEWING.md

@@ -29,7 +29,7 @@ if [[ -n "$package_version" ]]; then
   pack_arguments+=("-p:PackageVersion=$package_version")
 fi
 
-DOTNET_ROLL_FORWARD=Major dotnet pack "${pack_arguments[@]}"
+dotnet pack "${pack_arguments[@]}"
 
 package_count=0
 while IFS= read -r package; do

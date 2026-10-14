@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference
       Include="coverlet.MTP"
-      Version="10.0.1"
+      Version="10.1.0"
       Condition="'$(TargetFramework)' == 'net8.0'"
     />
     <PackageReference
@@ -23,10 +23,10 @@
       PrivateAssets="All"
       Condition="'$(TargetFramework)' == 'net472'"
     />
-    <PackageReference Include="FsCheck.Xunit.v3" Version="3.3.4" />
-    <PackageReference Include="Moq" Version="4.20.72" />
-    <PackageReference Include="xunit.v3.mtp-v2" Version="3.2.2" />
-    <PackageReference Include="xunit.analyzers" Version="2.0.0" />
+    <PackageReference Include="FsCheck.Xunit.v3" Version="3.4.0" />
+    <PackageReference Include="Moq" Version="4.21.0" />
+    <PackageReference Include="xunit.v3.mtp-v2" Version="4.0.1" />
+    <PackageReference Include="xunit.analyzers" Version="2.1.0" />
     <ProjectReference Include="..\XTwitterScraper\XTwitterScraper.csproj" />
     <Using Include="Xunit" />
   </ItemGroup>
