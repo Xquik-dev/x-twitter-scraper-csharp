@@ -82,7 +82,6 @@ public sealed record class TweetGetRepliesResponse : PaginatedTweets
 
 sealed class TweetGetRepliesResponseFromRaw : IFromRawJson<TweetGetRepliesResponse>
 {
-    /// <inheritdoc/>
     public TweetGetRepliesResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TweetGetRepliesResponse.FromRawUnchecked(rawData);

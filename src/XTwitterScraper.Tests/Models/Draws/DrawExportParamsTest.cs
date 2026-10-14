@@ -52,7 +52,6 @@ public class DrawExportParamsTest : TestBase
             ID = "f4bd00a2-7b4e-4e59-8e1b-72e2c9f12345",
             Format = Draws::Format.Csv,
 
-            // Null should be interpreted as omitted for these properties
             Type = null,
         };
 
@@ -110,7 +109,6 @@ public class FormatTest : TestBase
     [InlineData(Draws::Format.Xlsx)]
     public void Validation_Works(Draws::Format rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Draws::Format> value = rawValue;
         value.Validate();
     }
@@ -137,7 +135,6 @@ public class FormatTest : TestBase
     [InlineData(Draws::Format.Xlsx)]
     public void SerializationRoundtrip_Works(Draws::Format rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Draws::Format> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -173,7 +170,6 @@ public class TypeTest : TestBase
     [InlineData(Draws::Type.Entries)]
     public void Validation_Works(Draws::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Draws::Type> value = rawValue;
         value.Validate();
     }
@@ -195,7 +191,6 @@ public class TypeTest : TestBase
     [InlineData(Draws::Type.Entries)]
     public void SerializationRoundtrip_Works(Draws::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Draws::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

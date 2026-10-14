@@ -35,12 +35,7 @@ public class DrawListParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new DrawListParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Cursor = null,
-            Limit = null,
-        };
+        var parameters = new DrawListParams { Cursor = null, Limit = null };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));

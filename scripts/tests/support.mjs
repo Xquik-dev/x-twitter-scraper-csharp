@@ -1,11 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Helpers for the tests that run this repository's scripts as a maintainer
-// would. Each script runs in a throwaway folder. Its PATH holds fake commands
-// in place of the tools that reach other systems, so no test can reach
-// NuGet.org, GitHub or the Keychain.
-
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -13,8 +8,6 @@ import path from "node:path";
 
 export const root = path.resolve(import.meta.dirname, "..", "..");
 
-// Tools that only read and write local files. Each gets a wrapper in the
-// throwaway bin folder, wherever this machine installed it.
 const localTools = ["bash", "git", "jq", "node", "tar", "unzip", "zip"];
 
 function which(tool) {
@@ -33,9 +26,6 @@ function writeFile(file, content, mode = 0o644) {
   fs.chmodSync(file, mode);
 }
 
-// Builds a throwaway folder with an empty repository folder, a bin folder for
-// fake commands and a logs folder that the fakes write to. The test removes
-// it when it ends.
 export function createSandbox(t) {
   const base = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "xquik-csharp-script-test."));
   t.after(() => fs.rmSync(base, { recursive: true, force: true }));
@@ -89,23 +79,18 @@ export function createSandbox(t) {
     repo,
     run,
     git,
-    // Writes a file into the throwaway repository.
     write: (file, content, mode) => writeFile(path.join(repo, file), content, mode),
-    // Copies a file of this repository into the throwaway repository, with its mode.
     copy: (file) =>
       writeFile(
         path.join(repo, file),
         fs.readFileSync(path.join(root, file)),
         fs.statSync(path.join(root, file)).mode,
       ),
-    // Puts a fake command on PATH.
     fake: (name, source) => writeFile(path.join(bin, name), source, 0o755),
-    // Returns the lines a fake wrote to its log, or no lines when it never ran.
     log: (name) => {
       const file = path.join(logs, name);
       return fs.existsSync(file) ? fs.readFileSync(file, "utf8").split("\n").slice(0, -1) : [];
     },
-    // Commits every file of the throwaway repository on main.
     commit: () => {
       git("init", "--quiet", "--initial-branch=main");
       git("add", "--all");

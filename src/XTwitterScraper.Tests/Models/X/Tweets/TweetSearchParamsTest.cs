@@ -222,7 +222,6 @@ public class TweetSearchParamsTest : TestBase
         {
             Q = "q",
 
-            // Null should be interpreted as omitted for these properties
             AdvancedQuery = null,
             AnyWords = null,
             BoundingBox = null,
@@ -452,7 +451,6 @@ public class TweetSearchParamsMediaTypeTest : TestBase
     [InlineData(TweetSearchParamsMediaType.None)]
     public void Validation_Works(TweetSearchParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsMediaType> value = rawValue;
         value.Validate();
     }
@@ -478,7 +476,6 @@ public class TweetSearchParamsMediaTypeTest : TestBase
     [InlineData(TweetSearchParamsMediaType.None)]
     public void SerializationRoundtrip_Works(TweetSearchParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -514,7 +511,6 @@ public class QueryTypeTest : TestBase
     [InlineData(QueryType.Top)]
     public void Validation_Works(QueryType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, QueryType> value = rawValue;
         value.Validate();
     }
@@ -536,7 +532,6 @@ public class QueryTypeTest : TestBase
     [InlineData(QueryType.Top)]
     public void SerializationRoundtrip_Works(QueryType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, QueryType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -573,7 +568,6 @@ public class TweetSearchParamsQuotesTest : TestBase
     [InlineData(TweetSearchParamsQuotes.Only)]
     public void Validation_Works(TweetSearchParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsQuotes> value = rawValue;
         value.Validate();
     }
@@ -596,7 +590,6 @@ public class TweetSearchParamsQuotesTest : TestBase
     [InlineData(TweetSearchParamsQuotes.Only)]
     public void SerializationRoundtrip_Works(TweetSearchParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsQuotes> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -633,7 +626,6 @@ public class TweetSearchParamsRepliesTest : TestBase
     [InlineData(TweetSearchParamsReplies.Only)]
     public void Validation_Works(TweetSearchParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsReplies> value = rawValue;
         value.Validate();
     }
@@ -656,7 +648,6 @@ public class TweetSearchParamsRepliesTest : TestBase
     [InlineData(TweetSearchParamsReplies.Only)]
     public void SerializationRoundtrip_Works(TweetSearchParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsReplies> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -693,7 +684,6 @@ public class TweetSearchParamsRetweetsTest : TestBase
     [InlineData(TweetSearchParamsRetweets.Only)]
     public void Validation_Works(TweetSearchParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsRetweets> value = rawValue;
         value.Validate();
     }
@@ -716,7 +706,6 @@ public class TweetSearchParamsRetweetsTest : TestBase
     [InlineData(TweetSearchParamsRetweets.Only)]
     public void SerializationRoundtrip_Works(TweetSearchParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetSearchParamsRetweets> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

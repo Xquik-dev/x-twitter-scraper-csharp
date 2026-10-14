@@ -12,21 +12,12 @@ namespace XTwitterScraper.Core;
 /// <summary>
 /// A serializable and deserializable enum wrapper type that handles the possibility of values outside the
 /// range of known enum members.
-///
-/// <para>In most cases you don't have to worry about this type and can rely on its implicit operators to
-/// wrap and unwrap enum values.</para>
 /// </summary>
 public record class ApiEnum<TRaw, TEnum>
     where TEnum : struct, Enum
 {
     /// <summary>
     /// Returns this instance's raw value.
-    ///
-    /// <para>This is usually only useful if this instance was deserialized from data that doesn't match the
-    /// expected type (<typeparamref name="TRaw"/>), and you want to know that value. For example, if the
-    /// SDK is on an older version than the API, then the API may respond with new data types that the SDK is
-    /// unaware of.
-    /// </para>
     /// </summary>
     public JsonElement Json;
 
@@ -37,10 +28,6 @@ public record class ApiEnum<TRaw, TEnum>
 
     /// <summary>
     /// Returns this instance's raw <typeparamref name="TRaw"/> value.
-    ///
-    /// <para>This is usually only useful if this instance was deserialized from data that doesn't match
-    /// any known enum member, and you want to know that value. For example, if the SDK is on an older
-    /// version than the API, then the API may respond with new members that the SDK is unaware of.</para>
     ///
     /// <exception cref="XTwitterScraperInvalidDataException">
     /// Thrown when this instance's raw value isn't of type <typeparamref name="TRaw"/>. Use

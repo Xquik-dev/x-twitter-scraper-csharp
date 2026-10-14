@@ -718,7 +718,6 @@ public class TweetAuthorTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,
@@ -861,7 +860,6 @@ public class TweetAuthorTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,

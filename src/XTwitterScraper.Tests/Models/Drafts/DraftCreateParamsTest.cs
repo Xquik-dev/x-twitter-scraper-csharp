@@ -49,7 +49,6 @@ public class DraftCreateParamsTest : TestBase
         {
             Text = "AI is the future of productivity",
 
-            // Null should be interpreted as omitted for these properties
             Goal = null,
             Topic = null,
         };
@@ -95,7 +94,6 @@ public class GoalTest : TestBase
     [InlineData(Goal.Conversation)]
     public void Validation_Works(Goal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Goal> value = rawValue;
         value.Validate();
     }
@@ -119,7 +117,6 @@ public class GoalTest : TestBase
     [InlineData(Goal.Conversation)]
     public void SerializationRoundtrip_Works(Goal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Goal> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

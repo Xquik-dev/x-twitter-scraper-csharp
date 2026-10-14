@@ -345,7 +345,6 @@ public class RadarItemTest : TestBase
             SourceID = "trustmrr_acme",
             Title = "AI Revolution in 2025",
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
             ImageUrl = null,
             Url = null,
@@ -388,7 +387,6 @@ public class RadarItemTest : TestBase
             SourceID = "trustmrr_acme",
             Title = "AI Revolution in 2025",
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
             ImageUrl = null,
             Url = null,
@@ -449,7 +447,6 @@ public class RadarItemCategoryTest : TestBase
     [InlineData(RadarItemCategory.Entertainment)]
     public void Validation_Works(RadarItemCategory rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RadarItemCategory> value = rawValue;
         value.Validate();
     }
@@ -477,7 +474,6 @@ public class RadarItemCategoryTest : TestBase
     [InlineData(RadarItemCategory.Entertainment)]
     public void SerializationRoundtrip_Works(RadarItemCategory rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RadarItemCategory> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -678,7 +674,6 @@ public class MetadataTest : TestBase
     {
         var model = new Metadata
         {
-            // Null should be interpreted as omitted for these properties
             Author = null,
             ContentUrl = null,
             EstimatedDownvotes = null,
@@ -718,7 +713,6 @@ public class MetadataTest : TestBase
     {
         var model = new Metadata
         {
-            // Null should be interpreted as omitted for these properties
             Author = null,
             ContentUrl = null,
             EstimatedDownvotes = null,
@@ -765,7 +759,6 @@ public class SourceFormatTest : TestBase
     [InlineData(SourceFormat.Rss)]
     public void Validation_Works(SourceFormat rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, SourceFormat> value = rawValue;
         value.Validate();
     }
@@ -788,7 +781,6 @@ public class SourceFormatTest : TestBase
     [InlineData(SourceFormat.Rss)]
     public void SerializationRoundtrip_Works(SourceFormat rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, SourceFormat> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -829,7 +821,6 @@ public class RadarItemSourceTest : TestBase
     [InlineData(RadarItemSource.Wikipedia)]
     public void Validation_Works(RadarItemSource rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RadarItemSource> value = rawValue;
         value.Validate();
     }
@@ -856,7 +847,6 @@ public class RadarItemSourceTest : TestBase
     [InlineData(RadarItemSource.Wikipedia)]
     public void SerializationRoundtrip_Works(RadarItemSource rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RadarItemSource> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

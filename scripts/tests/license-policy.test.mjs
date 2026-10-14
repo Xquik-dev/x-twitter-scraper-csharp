@@ -1,10 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Runs scripts/verify-package-licenses.mjs in a throwaway folder. The report
-// has the shape of "dotnet list package --format json", and a throwaway
-// package folder holds the nuspec of each package the report names.
-
 import assert from "node:assert/strict";
 import path from "node:path";
 import { test } from "node:test";
@@ -14,7 +10,6 @@ import { createSandbox } from "./support.mjs";
 const mit = '<license type="expression">MIT</license>';
 const otherTerms = "<licenseUrl>https://example.com/terms</licenseUrl>";
 
-// A report where the library resolves one version of a package and the tests resolve another.
 function report(libraryVersion, testsVersion) {
   return {
     version: 1,

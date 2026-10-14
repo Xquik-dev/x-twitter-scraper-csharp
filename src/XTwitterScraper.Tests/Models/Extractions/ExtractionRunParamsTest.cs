@@ -237,7 +237,6 @@ public class ExtractionRunParamsTest : TestBase
         {
             ToolType = ExtractionRunParamsToolType.FollowerExplorer,
 
-            // Null should be interpreted as omitted for these properties
             AdvancedQuery = null,
             AnyWords = null,
             BoundingBox = null,
@@ -449,7 +448,6 @@ public class ExtractionRunParamsToolTypeTest : TestBase
     [InlineData(ExtractionRunParamsToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ExtractionRunParamsToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsToolType> value = rawValue;
         value.Validate();
     }
@@ -492,7 +490,6 @@ public class ExtractionRunParamsToolTypeTest : TestBase
     [InlineData(ExtractionRunParamsToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ExtractionRunParamsToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsToolType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -532,7 +529,6 @@ public class ExtractionRunParamsMediaTypeTest : TestBase
     [InlineData(ExtractionRunParamsMediaType.None)]
     public void Validation_Works(ExtractionRunParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsMediaType> value = rawValue;
         value.Validate();
     }
@@ -558,7 +554,6 @@ public class ExtractionRunParamsMediaTypeTest : TestBase
     [InlineData(ExtractionRunParamsMediaType.None)]
     public void SerializationRoundtrip_Works(ExtractionRunParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -593,7 +588,6 @@ public class ExtractionRunParamsQuotesTest : TestBase
     [InlineData(ExtractionRunParamsQuotes.Only)]
     public void Validation_Works(ExtractionRunParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsQuotes> value = rawValue;
         value.Validate();
     }
@@ -616,7 +610,6 @@ public class ExtractionRunParamsQuotesTest : TestBase
     [InlineData(ExtractionRunParamsQuotes.Only)]
     public void SerializationRoundtrip_Works(ExtractionRunParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsQuotes> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -653,7 +646,6 @@ public class ExtractionRunParamsRepliesTest : TestBase
     [InlineData(ExtractionRunParamsReplies.Only)]
     public void Validation_Works(ExtractionRunParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsReplies> value = rawValue;
         value.Validate();
     }
@@ -676,7 +668,6 @@ public class ExtractionRunParamsRepliesTest : TestBase
     [InlineData(ExtractionRunParamsReplies.Only)]
     public void SerializationRoundtrip_Works(ExtractionRunParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsReplies> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -713,7 +704,6 @@ public class ExtractionRunParamsRetweetsTest : TestBase
     [InlineData(ExtractionRunParamsRetweets.Only)]
     public void Validation_Works(ExtractionRunParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsRetweets> value = rawValue;
         value.Validate();
     }
@@ -736,7 +726,6 @@ public class ExtractionRunParamsRetweetsTest : TestBase
     [InlineData(ExtractionRunParamsRetweets.Only)]
     public void SerializationRoundtrip_Works(ExtractionRunParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunParamsRetweets> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

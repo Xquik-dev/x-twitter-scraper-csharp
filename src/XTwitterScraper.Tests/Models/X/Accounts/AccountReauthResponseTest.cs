@@ -139,7 +139,6 @@ public class AccountReauthResponseHealthTest : TestBase
     [InlineData(AccountReauthResponseHealth.TemporaryIssue)]
     public void Validation_Works(AccountReauthResponseHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, AccountReauthResponseHealth> value = rawValue;
         value.Validate();
     }
@@ -165,7 +164,6 @@ public class AccountReauthResponseHealthTest : TestBase
     [InlineData(AccountReauthResponseHealth.TemporaryIssue)]
     public void SerializationRoundtrip_Works(AccountReauthResponseHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, AccountReauthResponseHealth> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

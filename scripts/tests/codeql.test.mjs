@@ -1,8 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Runs scripts/codeql in a throwaway repository with a fake CodeQL CLI.
-
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -11,9 +9,10 @@ import { test } from "node:test";
 import { createSandbox } from "./support.mjs";
 
 const fakeCodeql = `#!/bin/sh
-# Stands in for the CodeQL CLI. Like the real traced build, "database create" writes build output
-# into the folder it scans, and it records how it was asked to build. "database analyze" writes the
-# SARIF report the test names, with COPY standing for the scanned folder.
+if [ "$1" = "pack" ]; then
+  echo "$*" >>"$FAKE_LOGS/pack"
+  exit 0
+fi
 for argument in "$@"; do
   case "$argument" in
     --source-root=*) source_root="\${argument#--source-root=}" ;;
@@ -32,14 +31,12 @@ else
 fi
 `;
 
-// Stands in for the .NET CLI. It records the folder and the arguments of each call.
 const fakeDotnet = `#!/bin/sh
 echo "$(pwd -P) $*" >>"$FAKE_LOGS/dotnet"
 `;
 
 const diagnostics = ["cs/diagnostics/extraction-errors", "cs/compilation-error", "cs/extraction-error"];
 
-// A compiler error as CodeQL 2.27 reports it in its SARIF report.
 function compilerError(file, line, text) {
   return {
     locations: [{ physicalLocation: { artifactLocation: { uri: file }, region: { startLine: line } } }],
@@ -49,8 +46,6 @@ function compilerError(file, line, text) {
   };
 }
 
-// A SARIF report in the shape CodeQL 2.27 writes. "ran" names the diagnostic queries that ran,
-// "notifications" holds what they reported, and "results" the results.
 function report({ ran = diagnostics, notifications = [], results = [] } = {}) {
   return JSON.stringify({
     runs: [
@@ -91,6 +86,7 @@ test("CodeQL scans a copy of the source files and leaves the restore output of t
     "--command=dotnet build XTwitterScraper.sln --no-restore -p:UseSharedCompilation=false",
     "DOTNET_ROLL_FORWARD=Major",
   ]);
+  assert.deepEqual(result.sandbox.log("pack"), ["pack install codeql/no-code-comments"]);
   assert.deepEqual(result.sandbox.log("scanned"), [
     "./.gitignore",
     "./scripts/codeql",

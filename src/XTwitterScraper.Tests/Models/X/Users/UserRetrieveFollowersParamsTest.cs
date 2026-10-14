@@ -56,7 +56,6 @@ public class UserRetrieveFollowersParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             After = null,
             Cursor = null,
             Limit = null,

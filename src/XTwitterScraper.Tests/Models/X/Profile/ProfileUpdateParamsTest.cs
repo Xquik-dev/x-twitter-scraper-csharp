@@ -65,7 +65,6 @@ public class ProfileUpdateParamsTest : TestBase
             Account = "@elonmusk",
             IdempotencyKey = "Idempotency-Key",
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
             Location = null,
             Name = null,

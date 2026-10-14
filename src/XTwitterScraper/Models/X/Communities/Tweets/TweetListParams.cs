@@ -14,8 +14,7 @@ namespace XTwitterScraper.Models.X.Communities.Tweets;
 /// Requires a Community ID and keyword query.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// breaking changes in non-major versions.</para>
 /// </summary>
 public record class TweetListParams : ParamsBase
 {

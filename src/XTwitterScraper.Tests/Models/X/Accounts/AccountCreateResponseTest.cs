@@ -234,7 +234,6 @@ public class SanitizedXAccountHealthTest : TestBase
     [InlineData(SanitizedXAccountHealth.TemporaryIssue)]
     public void Validation_Works(SanitizedXAccountHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, SanitizedXAccountHealth> value = rawValue;
         value.Validate();
     }
@@ -260,7 +259,6 @@ public class SanitizedXAccountHealthTest : TestBase
     [InlineData(SanitizedXAccountHealth.TemporaryIssue)]
     public void SerializationRoundtrip_Works(SanitizedXAccountHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, SanitizedXAccountHealth> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

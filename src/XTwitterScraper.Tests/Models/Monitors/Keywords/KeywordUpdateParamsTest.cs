@@ -54,7 +54,6 @@ public class KeywordUpdateParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             EventTypes = null,
             IsActive = null,
         };

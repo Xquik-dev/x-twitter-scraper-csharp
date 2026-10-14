@@ -422,7 +422,6 @@ public class FailedTest : TestBase
             Error = "service_unavailable",
             Retryable = true,
 
-            // Null should be interpreted as omitted for these properties
             Reason = null,
         };
 
@@ -439,7 +438,6 @@ public class FailedTest : TestBase
             Error = "service_unavailable",
             Retryable = true,
 
-            // Null should be interpreted as omitted for these properties
             Reason = null,
         };
 

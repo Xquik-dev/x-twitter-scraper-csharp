@@ -833,7 +833,6 @@ public class CommunityDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -954,7 +953,6 @@ public class CommunityDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1157,7 +1155,6 @@ public class CommunityDeleteResponseActionTest : TestBase
     [InlineData(CommunityDeleteResponseAction.LeaveCommunity)]
     public void Validation_Works(CommunityDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1195,7 +1192,6 @@ public class CommunityDeleteResponseActionTest : TestBase
     [InlineData(CommunityDeleteResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1338,7 +1334,6 @@ public class CommunityDeleteResponseBillingStatusTest : TestBase
     [InlineData(CommunityDeleteResponseBillingStatus.Refunded)]
     public void Validation_Works(CommunityDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1362,7 +1357,6 @@ public class CommunityDeleteResponseBillingStatusTest : TestBase
     [InlineData(CommunityDeleteResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1511,7 +1505,6 @@ public class CommunityDeleteResponseNextActionTest : TestBase
         {
             Type = CommunityDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1532,7 +1525,6 @@ public class CommunityDeleteResponseNextActionTest : TestBase
         {
             Type = CommunityDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1567,7 +1559,6 @@ public class CommunityDeleteResponseNextActionTypeTest : TestBase
     [InlineData(CommunityDeleteResponseNextActionType.FixRequest)]
     public void Validation_Works(CommunityDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1590,7 +1581,6 @@ public class CommunityDeleteResponseNextActionTypeTest : TestBase
     [InlineData(CommunityDeleteResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1844,7 +1834,6 @@ public class CommunityDeleteResponseResultTest : TestBase
     {
         var model = new CommunityDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1863,7 +1852,6 @@ public class CommunityDeleteResponseResultTest : TestBase
     {
         var model = new CommunityDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1898,7 +1886,6 @@ public class CommunityDeleteResponseResultTypeTest : TestBase
     [InlineData(CommunityDeleteResponseResultType.StateChange)]
     public void Validation_Works(CommunityDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1923,7 +1910,6 @@ public class CommunityDeleteResponseResultTypeTest : TestBase
     [InlineData(CommunityDeleteResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1961,7 +1947,6 @@ public class CommunityDeleteResponseStatusTest : TestBase
     [InlineData(CommunityDeleteResponseStatus.Expired)]
     public void Validation_Works(CommunityDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1987,7 +1972,6 @@ public class CommunityDeleteResponseStatusTest : TestBase
     [InlineData(CommunityDeleteResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2110,7 +2094,6 @@ public class CommunityDeleteResponseTargetTypeTest : TestBase
     [InlineData(CommunityDeleteResponseTargetType.Community)]
     public void Validation_Works(CommunityDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2133,7 +2116,6 @@ public class CommunityDeleteResponseTargetTypeTest : TestBase
     [InlineData(CommunityDeleteResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(CommunityDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CommunityDeleteResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

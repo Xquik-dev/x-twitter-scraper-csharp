@@ -4,15 +4,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Publishes the version in the project file to NuGet.org, then tags and
-# releases it on GitHub. Run it from a clean main that matches origin/main.
-# Pass --dry-run to run every check, build the packages and print what a
-# release would publish, without publishing, tagging or releasing.
-#
-# The NuGet API key comes from the macOS Keychain item whose service name the
-# NUGET_KEYCHAIN_SERVICE environment variable holds. Set it on the release
-# machine. A dry run does not need it.
-
 set -euo pipefail
 
 cd -- "$(dirname -- "$0")/.."
@@ -180,6 +171,7 @@ else
     refuse "The Keychain did not return the item that NUGET_KEYCHAIN_SERVICE names. Unlock the Keychain, then rerun."
   # The key goes through NUGET_API_KEY, which dotnet nuget push reads. An --api-key argument would
   # show in the process list.
+  # https://learn.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-environment-variables
   NUGET_API_KEY="$api_key" dotnet nuget push "$package_file" \
     --skip-duplicate \
     --source "$nuget_source"

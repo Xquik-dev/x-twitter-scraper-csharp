@@ -239,7 +239,6 @@ public class EventDetailTest : TestBase
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
 
-            // Null should be interpreted as omitted for these properties
             KeywordMonitorID = null,
             Query = null,
             Username = null,
@@ -271,7 +270,6 @@ public class EventDetailTest : TestBase
             OccurredAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
             Type = EventType.TweetNew,
 
-            // Null should be interpreted as omitted for these properties
             KeywordMonitorID = null,
             Query = null,
             Username = null,
@@ -314,7 +312,6 @@ public class EventDetailMonitorTypeTest : TestBase
     [InlineData(EventDetailMonitorType.Keyword)]
     public void Validation_Works(EventDetailMonitorType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, EventDetailMonitorType> value = rawValue;
         value.Validate();
     }
@@ -336,7 +333,6 @@ public class EventDetailMonitorTypeTest : TestBase
     [InlineData(EventDetailMonitorType.Keyword)]
     public void SerializationRoundtrip_Works(EventDetailMonitorType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, EventDetailMonitorType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

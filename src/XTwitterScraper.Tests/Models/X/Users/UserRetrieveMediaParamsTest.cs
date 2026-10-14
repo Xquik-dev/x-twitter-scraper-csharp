@@ -178,7 +178,6 @@ public class UserRetrieveMediaParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             AnyWords = null,
             Cashtags = null,
             ConversationID = null,
@@ -363,7 +362,6 @@ public class UserRetrieveMediaParamsMediaTypeTest : TestBase
     [InlineData(UserRetrieveMediaParamsMediaType.None)]
     public void Validation_Works(UserRetrieveMediaParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsMediaType> value = rawValue;
         value.Validate();
     }
@@ -389,7 +387,6 @@ public class UserRetrieveMediaParamsMediaTypeTest : TestBase
     [InlineData(UserRetrieveMediaParamsMediaType.None)]
     public void SerializationRoundtrip_Works(UserRetrieveMediaParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -424,7 +421,6 @@ public class UserRetrieveMediaParamsQuotesTest : TestBase
     [InlineData(UserRetrieveMediaParamsQuotes.Only)]
     public void Validation_Works(UserRetrieveMediaParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsQuotes> value = rawValue;
         value.Validate();
     }
@@ -447,7 +443,6 @@ public class UserRetrieveMediaParamsQuotesTest : TestBase
     [InlineData(UserRetrieveMediaParamsQuotes.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveMediaParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsQuotes> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -482,7 +477,6 @@ public class UserRetrieveMediaParamsRepliesTest : TestBase
     [InlineData(UserRetrieveMediaParamsReplies.Only)]
     public void Validation_Works(UserRetrieveMediaParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsReplies> value = rawValue;
         value.Validate();
     }
@@ -505,7 +499,6 @@ public class UserRetrieveMediaParamsRepliesTest : TestBase
     [InlineData(UserRetrieveMediaParamsReplies.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveMediaParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsReplies> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -540,7 +533,6 @@ public class UserRetrieveMediaParamsRetweetsTest : TestBase
     [InlineData(UserRetrieveMediaParamsRetweets.Only)]
     public void Validation_Works(UserRetrieveMediaParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsRetweets> value = rawValue;
         value.Validate();
     }
@@ -563,7 +555,6 @@ public class UserRetrieveMediaParamsRetweetsTest : TestBase
     [InlineData(UserRetrieveMediaParamsRetweets.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveMediaParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveMediaParamsRetweets> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

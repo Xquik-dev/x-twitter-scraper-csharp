@@ -46,7 +46,6 @@ public class TweetGetRetweetersParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             PageSize = null,
         };

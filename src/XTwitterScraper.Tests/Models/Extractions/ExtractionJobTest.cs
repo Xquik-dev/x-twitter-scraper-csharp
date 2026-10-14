@@ -157,7 +157,6 @@ public class ExtractionJobTest : TestBase
             ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
 
-            // Null should be interpreted as omitted for these properties
             CompletedAt = null,
         };
 
@@ -176,7 +175,6 @@ public class ExtractionJobTest : TestBase
             ToolType = ExtractionJobToolType.FollowerExplorer,
             TotalResults = 0,
 
-            // Null should be interpreted as omitted for these properties
             CompletedAt = null,
         };
 
@@ -210,7 +208,6 @@ public class ExtractionJobStatusTest : TestBase
     [InlineData(ExtractionJobStatus.Failed)]
     public void Validation_Works(ExtractionJobStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionJobStatus> value = rawValue;
         value.Validate();
     }
@@ -233,7 +230,6 @@ public class ExtractionJobStatusTest : TestBase
     [InlineData(ExtractionJobStatus.Failed)]
     public void SerializationRoundtrip_Works(ExtractionJobStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionJobStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -290,7 +286,6 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ExtractionJobToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionJobToolType> value = rawValue;
         value.Validate();
     }
@@ -333,7 +328,6 @@ public class ExtractionJobToolTypeTest : TestBase
     [InlineData(ExtractionJobToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ExtractionJobToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionJobToolType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

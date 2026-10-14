@@ -290,7 +290,6 @@ public class NotificationTest : TestBase
         {
             ID = "1234567890",
 
-            // Null should be interpreted as omitted for these properties
             Message = null,
             Timestamp = null,
             Type = null,
@@ -311,7 +310,6 @@ public class NotificationTest : TestBase
         {
             ID = "1234567890",
 
-            // Null should be interpreted as omitted for these properties
             Message = null,
             Timestamp = null,
             Type = null,

@@ -154,7 +154,6 @@ public class ExtractionEstimateCostResponseTest : TestBase
             EstimatedResults = 500,
             Source = Source.ReplyCount,
 
-            // Null should be interpreted as omitted for these properties
             ResolvedXUserID = null,
         };
 
@@ -173,7 +172,6 @@ public class ExtractionEstimateCostResponseTest : TestBase
             EstimatedResults = 500,
             Source = Source.ReplyCount,
 
-            // Null should be interpreted as omitted for these properties
             ResolvedXUserID = null,
         };
 
@@ -213,7 +211,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Unknown)]
     public void Validation_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
         value.Validate();
     }
@@ -242,7 +239,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Unknown)]
     public void SerializationRoundtrip_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

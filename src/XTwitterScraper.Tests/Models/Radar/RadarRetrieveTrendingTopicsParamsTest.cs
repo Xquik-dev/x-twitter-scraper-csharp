@@ -64,7 +64,6 @@ public class RadarRetrieveTrendingTopicsParamsTest : TestBase
     {
         var parameters = new RadarRetrieveTrendingTopicsParams
         {
-            // Null should be interpreted as omitted for these properties
             After = null,
             Category = null,
             Hours = null,
@@ -144,7 +143,6 @@ public class CategoryTest : TestBase
     [InlineData(Category.Entertainment)]
     public void Validation_Works(Category rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Category> value = rawValue;
         value.Validate();
     }
@@ -172,7 +170,6 @@ public class CategoryTest : TestBase
     [InlineData(Category.Entertainment)]
     public void SerializationRoundtrip_Works(Category rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Category> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -213,7 +210,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Wikipedia)]
     public void Validation_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
         value.Validate();
     }
@@ -240,7 +236,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Wikipedia)]
     public void SerializationRoundtrip_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

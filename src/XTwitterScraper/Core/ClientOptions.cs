@@ -111,9 +111,6 @@ public record struct ClientOptions()
         set { _apiKey = new(() => value); }
     }
 
-    /// <summary>
-    /// OAuth 2.1 access token
-    /// </summary>
     Lazy<string?> _bearerToken = new(() =>
         Environment.GetEnvironmentVariable("X_TWITTER_SCRAPER_BEARER_TOKEN")
     );

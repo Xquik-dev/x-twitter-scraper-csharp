@@ -62,7 +62,6 @@ public class CommunityRetrieveSearchParamsTest : TestBase
             CommunityID = "321669910225",
             Q = "q",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             PageSize = null,
             QueryType = null,
@@ -125,7 +124,6 @@ public class QueryTypeTest : TestBase
     [InlineData(QueryType.Top)]
     public void Validation_Works(QueryType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, QueryType> value = rawValue;
         value.Validate();
     }
@@ -147,7 +145,6 @@ public class QueryTypeTest : TestBase
     [InlineData(QueryType.Top)]
     public void SerializationRoundtrip_Works(QueryType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, QueryType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

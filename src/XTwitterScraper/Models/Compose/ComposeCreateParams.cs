@@ -22,8 +22,7 @@ namespace XTwitterScraper.Models.Compose;
 /// expose X ranking weights.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// breaking changes in non-major versions.</para>
 /// </summary>
 public record class ComposeCreateParams : ParamsBase
 {
@@ -367,8 +366,6 @@ public record class Body : ModelBase
     /// Validates that the instance was constructed with a known variant and that this variant is valid
     /// (based on its own <c>Validate</c> method).
     ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
     /// <exception cref="XTwitterScraperInvalidDataException">
     /// Thrown when the instance does not pass validation.
     /// </exception>
@@ -433,10 +430,7 @@ sealed class BodyConverter : JsonConverter<Body>
             }
         }
         catch (System::Exception e)
-            when (e is JsonException || e is XTwitterScraperInvalidDataException)
-        {
-            // ignore
-        }
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
 
         try
         {
@@ -448,10 +442,7 @@ sealed class BodyConverter : JsonConverter<Body>
             }
         }
         catch (System::Exception e)
-            when (e is JsonException || e is XTwitterScraperInvalidDataException)
-        {
-            // ignore
-        }
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
 
         try
         {
@@ -463,10 +454,7 @@ sealed class BodyConverter : JsonConverter<Body>
             }
         }
         catch (System::Exception e)
-            when (e is JsonException || e is XTwitterScraperInvalidDataException)
-        {
-            // ignore
-        }
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
 
         return new(element);
     }

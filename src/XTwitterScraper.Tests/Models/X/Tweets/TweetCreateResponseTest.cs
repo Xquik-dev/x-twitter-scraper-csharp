@@ -839,7 +839,6 @@ public class TweetCreateResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -960,7 +959,6 @@ public class TweetCreateResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1163,7 +1161,6 @@ public class ActionTest : TestBase
     [InlineData(Tweets::Action.LeaveCommunity)]
     public void Validation_Works(Tweets::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Action> value = rawValue;
         value.Validate();
     }
@@ -1201,7 +1198,6 @@ public class ActionTest : TestBase
     [InlineData(Tweets::Action.LeaveCommunity)]
     public void SerializationRoundtrip_Works(Tweets::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Action> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1344,7 +1340,6 @@ public class StatusTest : TestBase
     [InlineData(Tweets::Status.Refunded)]
     public void Validation_Works(Tweets::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Status> value = rawValue;
         value.Validate();
     }
@@ -1369,7 +1364,6 @@ public class StatusTest : TestBase
     [InlineData(Tweets::Status.Refunded)]
     public void SerializationRoundtrip_Works(Tweets::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1513,7 +1507,6 @@ public class NextActionTest : TestBase
         {
             Type = Tweets::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1534,7 +1527,6 @@ public class NextActionTest : TestBase
         {
             Type = Tweets::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1569,7 +1561,6 @@ public class TypeTest : TestBase
     [InlineData(Tweets::Type.FixRequest)]
     public void Validation_Works(Tweets::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Type> value = rawValue;
         value.Validate();
     }
@@ -1593,7 +1584,6 @@ public class TypeTest : TestBase
     [InlineData(Tweets::Type.FixRequest)]
     public void SerializationRoundtrip_Works(Tweets::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1848,7 +1838,6 @@ public class ResultTest : TestBase
     {
         var model = new Tweets::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1867,7 +1856,6 @@ public class ResultTest : TestBase
     {
         var model = new Tweets::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1902,7 +1890,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Tweets::ResultType.StateChange)]
     public void Validation_Works(Tweets::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::ResultType> value = rawValue;
         value.Validate();
     }
@@ -1927,7 +1914,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Tweets::ResultType.StateChange)]
     public void SerializationRoundtrip_Works(Tweets::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::ResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1967,7 +1953,6 @@ public class TweetCreateResponseStatusTest : TestBase
     [InlineData(Tweets::TweetCreateResponseStatus.Expired)]
     public void Validation_Works(Tweets::TweetCreateResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::TweetCreateResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1993,7 +1978,6 @@ public class TweetCreateResponseStatusTest : TestBase
     [InlineData(Tweets::TweetCreateResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(Tweets::TweetCreateResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::TweetCreateResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2094,7 +2078,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Tweets::TargetType.Community)]
     public void Validation_Works(Tweets::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::TargetType> value = rawValue;
         value.Validate();
     }
@@ -2117,7 +2100,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Tweets::TargetType.Community)]
     public void SerializationRoundtrip_Works(Tweets::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tweets::TargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

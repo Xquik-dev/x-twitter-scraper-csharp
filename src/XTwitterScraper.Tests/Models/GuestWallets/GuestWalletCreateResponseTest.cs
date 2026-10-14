@@ -286,7 +286,6 @@ public class HeaderTest : TestBase
     [InlineData(Header.Authorization)]
     public void Validation_Works(Header rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Header> value = rawValue;
         value.Validate();
     }
@@ -307,7 +306,6 @@ public class HeaderTest : TestBase
     [InlineData(Header.Authorization)]
     public void SerializationRoundtrip_Works(Header rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Header> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -342,7 +340,6 @@ public class SchemeTest : TestBase
     [InlineData(Scheme.Bearer)]
     public void Validation_Works(Scheme rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Scheme> value = rawValue;
         value.Validate();
     }
@@ -363,7 +360,6 @@ public class SchemeTest : TestBase
     [InlineData(Scheme.Bearer)]
     public void SerializationRoundtrip_Works(Scheme rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Scheme> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -404,7 +400,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Disputed)]
     public void Validation_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
         value.Validate();
     }
@@ -431,7 +426,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Disputed)]
     public void SerializationRoundtrip_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

@@ -869,7 +869,6 @@ public class ProfileUpdateAvatarResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -994,7 +993,6 @@ public class ProfileUpdateAvatarResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1201,7 +1199,6 @@ public class ProfileUpdateAvatarResponseActionTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseAction.LeaveCommunity)]
     public void Validation_Works(ProfileUpdateAvatarResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1239,7 +1236,6 @@ public class ProfileUpdateAvatarResponseActionTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1382,7 +1378,6 @@ public class ProfileUpdateAvatarResponseBillingStatusTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseBillingStatus.Refunded)]
     public void Validation_Works(ProfileUpdateAvatarResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1406,7 +1401,6 @@ public class ProfileUpdateAvatarResponseBillingStatusTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1555,7 +1549,6 @@ public class ProfileUpdateAvatarResponseNextActionTest : TestBase
         {
             Type = ProfileUpdateAvatarResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1576,7 +1569,6 @@ public class ProfileUpdateAvatarResponseNextActionTest : TestBase
         {
             Type = ProfileUpdateAvatarResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1611,7 +1603,6 @@ public class ProfileUpdateAvatarResponseNextActionTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseNextActionType.FixRequest)]
     public void Validation_Works(ProfileUpdateAvatarResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1634,7 +1625,6 @@ public class ProfileUpdateAvatarResponseNextActionTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1888,7 +1878,6 @@ public class ProfileUpdateAvatarResponseResultTest : TestBase
     {
         var model = new ProfileUpdateAvatarResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1907,7 +1896,6 @@ public class ProfileUpdateAvatarResponseResultTest : TestBase
     {
         var model = new ProfileUpdateAvatarResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1942,7 +1930,6 @@ public class ProfileUpdateAvatarResponseResultTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseResultType.StateChange)]
     public void Validation_Works(ProfileUpdateAvatarResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1966,7 +1953,6 @@ public class ProfileUpdateAvatarResponseResultTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2003,7 +1989,6 @@ public class ProfileUpdateAvatarResponseStatusTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseStatus.Expired)]
     public void Validation_Works(ProfileUpdateAvatarResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -2029,7 +2014,6 @@ public class ProfileUpdateAvatarResponseStatusTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2152,7 +2136,6 @@ public class ProfileUpdateAvatarResponseTargetTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseTargetType.Community)]
     public void Validation_Works(ProfileUpdateAvatarResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2174,7 +2157,6 @@ public class ProfileUpdateAvatarResponseTargetTypeTest : TestBase
     [InlineData(ProfileUpdateAvatarResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(ProfileUpdateAvatarResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ProfileUpdateAvatarResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

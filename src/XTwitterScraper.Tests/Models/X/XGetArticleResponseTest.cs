@@ -514,7 +514,6 @@ public class XGetArticleResponseTest : TestBase
                 ViewCount = 5000,
             },
 
-            // Null should be interpreted as omitted for these properties
             Author = null,
         };
 
@@ -561,7 +560,6 @@ public class XGetArticleResponseTest : TestBase
                 ViewCount = 5000,
             },
 
-            // Null should be interpreted as omitted for these properties
             Author = null,
         };
 
@@ -937,7 +935,6 @@ public class ArticleTest : TestBase
     {
         var model = new Article
         {
-            // Null should be interpreted as omitted for these properties
             BodyText = null,
             Contents = null,
             CoverImageUrl = null,
@@ -977,7 +974,6 @@ public class ArticleTest : TestBase
     {
         var model = new Article
         {
-            // Null should be interpreted as omitted for these properties
             BodyText = null,
             Contents = null,
             CoverImageUrl = null,
@@ -1236,7 +1232,6 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            // Null should be interpreted as omitted for these properties
             Height = null,
             InlineStyleRanges = null,
             PreviewUrl = null,
@@ -1267,7 +1262,6 @@ public class ContentTest : TestBase
     {
         var model = new Content
         {
-            // Null should be interpreted as omitted for these properties
             Height = null,
             InlineStyleRanges = null,
             PreviewUrl = null,
@@ -1413,7 +1407,6 @@ public class InlineStyleRangeTest : TestBase
     {
         var model = new InlineStyleRange
         {
-            // Null should be interpreted as omitted for these properties
             Length = null,
             Offset = null,
             Style = null,
@@ -1432,7 +1425,6 @@ public class InlineStyleRangeTest : TestBase
     {
         var model = new InlineStyleRange
         {
-            // Null should be interpreted as omitted for these properties
             Length = null,
             Offset = null,
             Style = null,
@@ -1714,7 +1706,6 @@ public class AuthorTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             Description = null,
             FavouritesCount = null,
@@ -1773,7 +1764,6 @@ public class AuthorTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             Description = null,
             FavouritesCount = null,

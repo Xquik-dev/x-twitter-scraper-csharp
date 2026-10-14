@@ -7,10 +7,6 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Core;
 
-/// <summary>
-/// Helper class for deserializing &lt;c&gt;MultipartJsonElement&lt;/c&gt; objects.
-/// This handles edge-cases around nullability and reference/value types.
-/// </summary>
 sealed class WrappedMultipartJsonSerializer
 {
     public static T GetNotNullClass<T>(MultipartJsonElement element, string name)

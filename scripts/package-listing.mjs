@@ -3,9 +3,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Prints the fields that NuGet.org shows on the package page, read from the
-// .nuspec of a built package. Fails when the package is not the expected one.
-
 import fs from "node:fs";
 
 const [nuspecPath, expectedId, expectedVersion] = process.argv.slice(2);

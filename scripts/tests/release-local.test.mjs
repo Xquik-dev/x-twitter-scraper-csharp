@@ -1,11 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Runs bin/release-local in a throwaway repository whose origin is a local
-// bare repository. Stubs stand in for the checks and the package build. Fake
-// commands stand in for curl, dotnet, the GitHub CLI and the macOS Keychain,
-// so no test can reach NuGet.org, GitHub or a real Keychain item.
-
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -15,14 +10,11 @@ import { createSandbox } from "./support.mjs";
 
 const fakes = {
   curl: `#!/bin/sh
-# Stands in for curl. It answers the NuGet.org version lookup with the versions the test names.
 for argument in "$@"; do url="$argument"; done
 printf '%s\\n' "$url" >>"$FAKE_LOGS/curl"
 printf '{"versions":[%s]}' "$FAKE_NUGET_VERSIONS"
 `,
   dotnet: `#!/bin/sh
-# Stands in for "dotnet nuget push". It records the call, with the package path cut to its file name,
-# and the API key it finds in the NUGET_API_KEY environment variable, as the real command reads it.
 line=""
 for argument in "$@"; do
   case "$argument" in */*.nupkg) argument="\${argument##*/}" ;; esac
@@ -31,8 +23,6 @@ done
 printf '%s\\n' "\${line# } with NUGET_API_KEY=\${NUGET_API_KEY:-unset}" >>"$FAKE_LOGS/dotnet"
 `,
   gh: `#!/bin/sh
-# Stands in for the GitHub CLI. It is signed in and has no draft release. It records each other
-# release call, with the package path cut to its file name, and keeps a copy of the notes.
 [ "$1" = "release" ] || exit 0
 [ "$2" = "list" ] && exit 0
 line=""
@@ -49,7 +39,6 @@ done
 printf '%s\\n' "\${line# }" >>"$FAKE_LOGS/gh"
 `,
   security: `#!/bin/sh
-# Stands in for the macOS Keychain. It holds 1 item, under the service "example-service".
 printf '%s\\n' "$*" >>"$FAKE_LOGS/security"
 case "$*" in
   "find-generic-password -s example-service") exit 0 ;;
@@ -60,10 +49,9 @@ esac
 };
 
 const stubs = {
-  "bin/check-local": '#!/bin/sh\n# Stands in for bin/check-local.\necho ran >>"$FAKE_LOGS/check-local"\n',
-  "scripts/audit": '#!/bin/sh\n# Stands in for scripts/audit.\necho ran >>"$FAKE_LOGS/audit"\n',
+  "bin/check-local": '#!/bin/sh\necho ran >>"$FAKE_LOGS/check-local"\n',
+  "scripts/audit": '#!/bin/sh\necho ran >>"$FAKE_LOGS/audit"\n',
   "scripts/build-package": `#!/bin/sh
-# Stands in for the package build. It zips the fixture package content into both packages.
 mkdir -p "$1"
 output="$(cd "$1" && pwd)"
 (cd "$FAKE_PACKAGE_CONTENT" && zip -q -r -D "$output/XTwitterScraper.$2.nupkg" .) || exit 1
@@ -113,7 +101,6 @@ XTwitterScraper.nuspec
 lib/net8.0/XTwitterScraper.dll
 Dry run finished. Nothing was published, tagged or released.
 `;
-// The key travels in the environment. A key in the arguments would show in the process list.
 const push =
   "nuget push XTwitterScraper.9.9.9.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json with NUGET_API_KEY=not-a-real-api-key";
 const release =

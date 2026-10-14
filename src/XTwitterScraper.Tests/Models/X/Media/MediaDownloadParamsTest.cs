@@ -57,7 +57,6 @@ public class MediaDownloadParamsTest : TestBase
     {
         var parameters = new MediaDownloadParams
         {
-            // Null should be interpreted as omitted for these properties
             TweetID = null,
             TweetIds = null,
             TweetInput = null,

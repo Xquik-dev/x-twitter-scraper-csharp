@@ -55,7 +55,6 @@ public class CommunityCreateParamsTest : TestBase
             Name = "Example Name",
             IdempotencyKey = "Idempotency-Key",
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
         };
 

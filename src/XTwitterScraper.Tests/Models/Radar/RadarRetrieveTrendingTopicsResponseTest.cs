@@ -408,7 +408,6 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 },
             ],
 
-            // Null should be interpreted as omitted for these properties
             NextCursor = null,
         };
 
@@ -455,7 +454,6 @@ public class RadarRetrieveTrendingTopicsResponseTest : TestBase
                 },
             ],
 
-            // Null should be interpreted as omitted for these properties
             NextCursor = null,
         };
 

@@ -38,12 +38,7 @@ public class XGetNotificationsParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new X::XGetNotificationsParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Cursor = null,
-            Type = null,
-        };
+        var parameters = new X::XGetNotificationsParams { Cursor = null, Type = null };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));
@@ -85,7 +80,6 @@ public class TypeTest : TestBase
     [InlineData(X::Type.Mentions)]
     public void Validation_Works(X::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, X::Type> value = rawValue;
         value.Validate();
     }
@@ -108,7 +102,6 @@ public class TypeTest : TestBase
     [InlineData(X::Type.Mentions)]
     public void SerializationRoundtrip_Works(X::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, X::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

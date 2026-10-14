@@ -105,12 +105,7 @@ public class ContentDisclosureTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new ContentDisclosure
-        {
-            // Null should be interpreted as omitted for these properties
-            Advertising = null,
-            AIGenerated = null,
-        };
+        var model = new ContentDisclosure { Advertising = null, AIGenerated = null };
 
         Assert.Null(model.Advertising);
         Assert.False(model.RawData.ContainsKey("advertising"));
@@ -121,12 +116,7 @@ public class ContentDisclosureTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ContentDisclosure
-        {
-            // Null should be interpreted as omitted for these properties
-            Advertising = null,
-            AIGenerated = null,
-        };
+        var model = new ContentDisclosure { Advertising = null, AIGenerated = null };
 
         model.Validate();
     }
@@ -217,11 +207,7 @@ public class AdvertisingTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Advertising
-        {
-            // Null should be interpreted as omitted for these properties
-            IsPaidPromotion = null,
-        };
+        var model = new Advertising { IsPaidPromotion = null };
 
         Assert.Null(model.IsPaidPromotion);
         Assert.False(model.RawData.ContainsKey("isPaidPromotion"));
@@ -230,11 +216,7 @@ public class AdvertisingTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Advertising
-        {
-            // Null should be interpreted as omitted for these properties
-            IsPaidPromotion = null,
-        };
+        var model = new Advertising { IsPaidPromotion = null };
 
         model.Validate();
     }
@@ -343,12 +325,7 @@ public class AIGeneratedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new AIGenerated
-        {
-            // Null should be interpreted as omitted for these properties
-            DetectionSource = null,
-            HasAIGeneratedMedia = null,
-        };
+        var model = new AIGenerated { DetectionSource = null, HasAIGeneratedMedia = null };
 
         Assert.Null(model.DetectionSource);
         Assert.False(model.RawData.ContainsKey("detectionSource"));
@@ -359,12 +336,7 @@ public class AIGeneratedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new AIGenerated
-        {
-            // Null should be interpreted as omitted for these properties
-            DetectionSource = null,
-            HasAIGeneratedMedia = null,
-        };
+        var model = new AIGenerated { DetectionSource = null, HasAIGeneratedMedia = null };
 
         model.Validate();
     }

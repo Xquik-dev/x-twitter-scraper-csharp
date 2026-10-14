@@ -581,7 +581,6 @@ public class CommunityTest : TestBase
         {
             ID = "1500000000000000000",
 
-            // Null should be interpreted as omitted for these properties
             BannerUrl = null,
             CreatedAt = null,
             Creator = null,
@@ -629,7 +628,6 @@ public class CommunityTest : TestBase
         {
             ID = "1500000000000000000",
 
-            // Null should be interpreted as omitted for these properties
             BannerUrl = null,
             CreatedAt = null,
             Creator = null,
@@ -807,7 +805,6 @@ public class CreatorTest : TestBase
             Username = "username",
             Verified = true,
 
-            // Null should be interpreted as omitted for these properties
             Name = null,
         };
 
@@ -824,7 +821,6 @@ public class CreatorTest : TestBase
             Username = "username",
             Verified = true,
 
-            // Null should be interpreted as omitted for these properties
             Name = null,
         };
 
@@ -925,12 +921,7 @@ public class PrimaryTopicTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new PrimaryTopic
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
+        var model = new PrimaryTopic { ID = null, Name = null };
 
         Assert.Null(model.ID);
         Assert.False(model.RawData.ContainsKey("id"));
@@ -941,12 +932,7 @@ public class PrimaryTopicTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new PrimaryTopic
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
+        var model = new PrimaryTopic { ID = null, Name = null };
 
         model.Validate();
     }
@@ -1061,7 +1047,6 @@ public class RuleTest : TestBase
     {
         var model = new Rule
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Description = null,
             Name = null,
@@ -1080,7 +1065,6 @@ public class RuleTest : TestBase
     {
         var model = new Rule
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Description = null,
             Name = null,

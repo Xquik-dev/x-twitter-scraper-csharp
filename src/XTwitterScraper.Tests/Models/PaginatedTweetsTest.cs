@@ -11933,7 +11933,6 @@ public class TweetGetRepliesResponseTest : TestBase
                 },
             ],
 
-            // Null should be interpreted as omitted for these properties
             Diagnostic = null,
             NestedReplies = null,
         };
@@ -12720,7 +12719,6 @@ public class TweetGetRepliesResponseTest : TestBase
                 },
             ],
 
-            // Null should be interpreted as omitted for these properties
             Diagnostic = null,
             NestedReplies = null,
         };
@@ -15065,7 +15063,6 @@ public class StopReasonTest : TestBase
     [InlineData(StopReason.RepeatedCursor)]
     public void Validation_Works(StopReason rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, StopReason> value = rawValue;
         value.Validate();
     }
@@ -15092,7 +15089,6 @@ public class StopReasonTest : TestBase
     [InlineData(StopReason.RepeatedCursor)]
     public void SerializationRoundtrip_Works(StopReason rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, StopReason> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

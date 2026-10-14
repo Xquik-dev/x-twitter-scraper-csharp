@@ -335,7 +335,6 @@ public class LatestPurchaseStatusTest : TestBase
     [InlineData(LatestPurchaseStatus.Disputed)]
     public void Validation_Works(LatestPurchaseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LatestPurchaseStatus> value = rawValue;
         value.Validate();
     }
@@ -362,7 +361,6 @@ public class LatestPurchaseStatusTest : TestBase
     [InlineData(LatestPurchaseStatus.Disputed)]
     public void SerializationRoundtrip_Works(LatestPurchaseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LatestPurchaseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -397,7 +395,6 @@ public class PollAfterSecondsTest : TestBase
     [InlineData(PollAfterSeconds.V2)]
     public void Validation_Works(PollAfterSeconds rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<long, PollAfterSeconds> value = rawValue;
         value.Validate();
     }
@@ -418,7 +415,6 @@ public class PollAfterSecondsTest : TestBase
     [InlineData(PollAfterSeconds.V2)]
     public void SerializationRoundtrip_Works(PollAfterSeconds rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<long, PollAfterSeconds> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -458,7 +454,6 @@ public class GuestWalletRetrieveStatusResponseStatusTest : TestBase
     [InlineData(GuestWalletRetrieveStatusResponseStatus.Closed)]
     public void Validation_Works(GuestWalletRetrieveStatusResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletRetrieveStatusResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -483,7 +478,6 @@ public class GuestWalletRetrieveStatusResponseStatusTest : TestBase
     [InlineData(GuestWalletRetrieveStatusResponseStatus.Closed)]
     public void SerializationRoundtrip_Works(GuestWalletRetrieveStatusResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletRetrieveStatusResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

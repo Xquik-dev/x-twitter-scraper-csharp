@@ -829,7 +829,6 @@ public class LikeDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -950,7 +949,6 @@ public class LikeDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1153,7 +1151,6 @@ public class LikeDeleteResponseActionTest : TestBase
     [InlineData(LikeDeleteResponseAction.LeaveCommunity)]
     public void Validation_Works(LikeDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1191,7 +1188,6 @@ public class LikeDeleteResponseActionTest : TestBase
     [InlineData(LikeDeleteResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1336,7 +1332,6 @@ public class LikeDeleteResponseBillingStatusTest : TestBase
     [InlineData(LikeDeleteResponseBillingStatus.Refunded)]
     public void Validation_Works(LikeDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1361,7 +1356,6 @@ public class LikeDeleteResponseBillingStatusTest : TestBase
     [InlineData(LikeDeleteResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1511,7 +1505,6 @@ public class LikeDeleteResponseNextActionTest : TestBase
         {
             Type = LikeDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1532,7 +1525,6 @@ public class LikeDeleteResponseNextActionTest : TestBase
         {
             Type = LikeDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1567,7 +1559,6 @@ public class LikeDeleteResponseNextActionTypeTest : TestBase
     [InlineData(LikeDeleteResponseNextActionType.FixRequest)]
     public void Validation_Works(LikeDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1591,7 +1582,6 @@ public class LikeDeleteResponseNextActionTypeTest : TestBase
     [InlineData(LikeDeleteResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1846,7 +1836,6 @@ public class LikeDeleteResponseResultTest : TestBase
     {
         var model = new LikeDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1865,7 +1854,6 @@ public class LikeDeleteResponseResultTest : TestBase
     {
         var model = new LikeDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1900,7 +1888,6 @@ public class LikeDeleteResponseResultTypeTest : TestBase
     [InlineData(LikeDeleteResponseResultType.StateChange)]
     public void Validation_Works(LikeDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1925,7 +1912,6 @@ public class LikeDeleteResponseResultTypeTest : TestBase
     [InlineData(LikeDeleteResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1963,7 +1949,6 @@ public class LikeDeleteResponseStatusTest : TestBase
     [InlineData(LikeDeleteResponseStatus.Expired)]
     public void Validation_Works(LikeDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1989,7 +1974,6 @@ public class LikeDeleteResponseStatusTest : TestBase
     [InlineData(LikeDeleteResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2114,7 +2098,6 @@ public class LikeDeleteResponseTargetTypeTest : TestBase
     [InlineData(LikeDeleteResponseTargetType.Community)]
     public void Validation_Works(LikeDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2137,7 +2120,6 @@ public class LikeDeleteResponseTargetTypeTest : TestBase
     [InlineData(LikeDeleteResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(LikeDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LikeDeleteResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

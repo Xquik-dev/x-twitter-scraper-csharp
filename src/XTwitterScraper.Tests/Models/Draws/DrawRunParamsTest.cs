@@ -110,7 +110,6 @@ public class DrawRunParamsTest : TestBase
         {
             TweetUrl = "https://x.com/elonmusk/status/1234567890",
 
-            // Null should be interpreted as omitted for these properties
             BackupCount = null,
             FilterAccountAgeDays = null,
             FilterLanguage = null,

@@ -239,7 +239,6 @@ public class AttachmentStatusTest : TestBase
     [InlineData(AttachmentStatus.Failed)]
     public void Validation_Works(AttachmentStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, AttachmentStatus> value = rawValue;
         value.Validate();
     }
@@ -262,7 +261,6 @@ public class AttachmentStatusTest : TestBase
     [InlineData(AttachmentStatus.Failed)]
     public void SerializationRoundtrip_Works(AttachmentStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, AttachmentStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

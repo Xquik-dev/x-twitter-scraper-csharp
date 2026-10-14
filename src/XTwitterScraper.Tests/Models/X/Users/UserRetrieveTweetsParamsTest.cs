@@ -188,7 +188,6 @@ public class UserRetrieveTweetsParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             AnyWords = null,
             Cashtags = null,
             ConversationID = null,
@@ -383,7 +382,6 @@ public class UserRetrieveTweetsParamsMediaTypeTest : TestBase
     [InlineData(UserRetrieveTweetsParamsMediaType.None)]
     public void Validation_Works(UserRetrieveTweetsParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsMediaType> value = rawValue;
         value.Validate();
     }
@@ -409,7 +407,6 @@ public class UserRetrieveTweetsParamsMediaTypeTest : TestBase
     [InlineData(UserRetrieveTweetsParamsMediaType.None)]
     public void SerializationRoundtrip_Works(UserRetrieveTweetsParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -444,7 +441,6 @@ public class UserRetrieveTweetsParamsQuotesTest : TestBase
     [InlineData(UserRetrieveTweetsParamsQuotes.Only)]
     public void Validation_Works(UserRetrieveTweetsParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsQuotes> value = rawValue;
         value.Validate();
     }
@@ -467,7 +463,6 @@ public class UserRetrieveTweetsParamsQuotesTest : TestBase
     [InlineData(UserRetrieveTweetsParamsQuotes.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveTweetsParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsQuotes> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -502,7 +497,6 @@ public class UserRetrieveTweetsParamsRepliesTest : TestBase
     [InlineData(UserRetrieveTweetsParamsReplies.Only)]
     public void Validation_Works(UserRetrieveTweetsParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsReplies> value = rawValue;
         value.Validate();
     }
@@ -525,7 +519,6 @@ public class UserRetrieveTweetsParamsRepliesTest : TestBase
     [InlineData(UserRetrieveTweetsParamsReplies.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveTweetsParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsReplies> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -560,7 +553,6 @@ public class UserRetrieveTweetsParamsRetweetsTest : TestBase
     [InlineData(UserRetrieveTweetsParamsRetweets.Only)]
     public void Validation_Works(UserRetrieveTweetsParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsRetweets> value = rawValue;
         value.Validate();
     }
@@ -583,7 +575,6 @@ public class UserRetrieveTweetsParamsRetweetsTest : TestBase
     [InlineData(UserRetrieveTweetsParamsRetweets.Only)]
     public void SerializationRoundtrip_Works(UserRetrieveTweetsParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, UserRetrieveTweetsParamsRetweets> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

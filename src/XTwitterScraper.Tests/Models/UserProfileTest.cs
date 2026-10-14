@@ -717,7 +717,6 @@ public class UserProfileTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,
@@ -860,7 +859,6 @@ public class UserProfileTest : TestBase
             Name = "Elon Musk",
             Username = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             AffiliatesHighlightedLabel = null,
             AutomatedBy = null,
             BusinessAccountAffiliatesCount = null,
@@ -1124,7 +1122,6 @@ public class AffiliatesHighlightedLabelTest : TestBase
     {
         var model = new AffiliatesHighlightedLabel
         {
-            // Null should be interpreted as omitted for these properties
             BadgeUrl = null,
             Description = null,
             Url = null,
@@ -1152,7 +1149,6 @@ public class AffiliatesHighlightedLabelTest : TestBase
     {
         var model = new AffiliatesHighlightedLabel
         {
-            // Null should be interpreted as omitted for these properties
             BadgeUrl = null,
             Description = null,
             Url = null,
@@ -1276,12 +1272,7 @@ public class HighlightsInfoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new HighlightsInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            CanHighlightTweets = null,
-            HighlightedTweets = null,
-        };
+        var model = new HighlightsInfo { CanHighlightTweets = null, HighlightedTweets = null };
 
         Assert.Null(model.CanHighlightTweets);
         Assert.False(model.RawData.ContainsKey("canHighlightTweets"));
@@ -1292,12 +1283,7 @@ public class HighlightsInfoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new HighlightsInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            CanHighlightTweets = null,
-            HighlightedTweets = null,
-        };
+        var model = new HighlightsInfo { CanHighlightTweets = null, HighlightedTweets = null };
 
         model.Validate();
     }
@@ -1422,7 +1408,6 @@ public class IdentityVerificationTest : TestBase
     {
         var model = new IdentityVerification
         {
-            // Null should be interpreted as omitted for these properties
             Description = null,
             IsIdentityVerified = null,
             VerifiedSinceMsec = null,
@@ -1441,7 +1426,6 @@ public class IdentityVerificationTest : TestBase
     {
         var model = new IdentityVerification
         {
-            // Null should be interpreted as omitted for these properties
             Description = null,
             IsIdentityVerified = null,
             VerifiedSinceMsec = null,

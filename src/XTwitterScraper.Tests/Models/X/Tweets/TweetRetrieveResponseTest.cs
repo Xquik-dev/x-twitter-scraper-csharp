@@ -7389,7 +7389,6 @@ public class TweetRetrieveResponseTest : TestBase
                 ViewState = "viewState",
             },
 
-            // Null should be interpreted as omitted for these properties
             Author = null,
         };
 
@@ -8168,7 +8167,6 @@ public class TweetRetrieveResponseTest : TestBase
                 ViewState = "viewState",
             },
 
-            // Null should be interpreted as omitted for these properties
             Author = null,
         };
 

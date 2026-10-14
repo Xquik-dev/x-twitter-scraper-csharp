@@ -37,7 +37,6 @@ public class CommunityRetrieveModeratorsParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
         };
 

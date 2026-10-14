@@ -35,12 +35,7 @@ public class DraftListParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new DraftListParams
-        {
-            // Null should be interpreted as omitted for these properties
-            AfterCursor = null,
-            Limit = null,
-        };
+        var parameters = new DraftListParams { AfterCursor = null, Limit = null };
 
         Assert.Null(parameters.AfterCursor);
         Assert.False(parameters.RawQueryData.ContainsKey("afterCursor"));

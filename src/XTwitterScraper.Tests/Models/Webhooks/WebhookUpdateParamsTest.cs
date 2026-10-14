@@ -59,7 +59,6 @@ public class WebhookUpdateParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             EventTypes = null,
             IsActive = null,
             UrlValue = null,

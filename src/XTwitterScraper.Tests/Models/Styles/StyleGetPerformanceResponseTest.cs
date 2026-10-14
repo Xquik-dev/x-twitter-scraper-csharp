@@ -348,7 +348,6 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
             ID = "1234567890",
             Text = "Excited to share our latest research findings.",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             LikeCount = null,
             ReplyCount = null,
@@ -376,7 +375,6 @@ public class StyleGetPerformanceResponseTweetTest : TestBase
             ID = "1234567890",
             Text = "Excited to share our latest research findings.",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             LikeCount = null,
             ReplyCount = null,

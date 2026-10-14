@@ -129,7 +129,6 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ExtractionRunResponseToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunResponseToolType> value = rawValue;
         value.Validate();
     }
@@ -172,7 +171,6 @@ public class ExtractionRunResponseToolTypeTest : TestBase
     [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ExtractionRunResponseToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ExtractionRunResponseToolType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

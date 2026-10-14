@@ -499,12 +499,9 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
             && apiBackoff < TimeSpan.FromMinutes(1)
         )
         {
-            // If the API asks us to wait a certain amount of time (and it's a reasonable amount), then just
-            // do what it says.
             return (TimeSpan)apiBackoff;
         }
 
-        // Apply exponential backoff, but not more than the max.
         var backoffSeconds = Math.Min(0.5 * Math.Pow(2.0, retries - 1), 8.0);
         var jitter = 1.0 - 0.25 * Random.NextDouble();
         return TimeSpan.FromSeconds(backoffSeconds * jitter);
@@ -588,23 +585,12 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
             && bool.TryParse(Enumerable.FirstOrDefault(headerValues), out var shouldRetry)
         )
         {
-            // If the server explicitly says whether to retry, then we obey.
             return shouldRetry;
         }
 
         return (int)response.StatusCode switch
         {
-            // Retry on request timeouts
-            408
-            or
-            // Retry on lock timeouts
-            409
-            or
-            // Retry on rate limits
-            429
-            or
-            // Retry internal errors
-            >= 500 => true,
+            408 or 409 or 429 or >= 500 => true,
             _ => false,
         };
     }

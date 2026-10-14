@@ -833,7 +833,6 @@ public class RetweetDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -954,7 +953,6 @@ public class RetweetDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1157,7 +1155,6 @@ public class RetweetDeleteResponseActionTest : TestBase
     [InlineData(RetweetDeleteResponseAction.LeaveCommunity)]
     public void Validation_Works(RetweetDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1195,7 +1192,6 @@ public class RetweetDeleteResponseActionTest : TestBase
     [InlineData(RetweetDeleteResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1340,7 +1336,6 @@ public class RetweetDeleteResponseBillingStatusTest : TestBase
     [InlineData(RetweetDeleteResponseBillingStatus.Refunded)]
     public void Validation_Works(RetweetDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1365,7 +1360,6 @@ public class RetweetDeleteResponseBillingStatusTest : TestBase
     [InlineData(RetweetDeleteResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1515,7 +1509,6 @@ public class RetweetDeleteResponseNextActionTest : TestBase
         {
             Type = RetweetDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1536,7 +1529,6 @@ public class RetweetDeleteResponseNextActionTest : TestBase
         {
             Type = RetweetDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1571,7 +1563,6 @@ public class RetweetDeleteResponseNextActionTypeTest : TestBase
     [InlineData(RetweetDeleteResponseNextActionType.FixRequest)]
     public void Validation_Works(RetweetDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1594,7 +1585,6 @@ public class RetweetDeleteResponseNextActionTypeTest : TestBase
     [InlineData(RetweetDeleteResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1848,7 +1838,6 @@ public class RetweetDeleteResponseResultTest : TestBase
     {
         var model = new RetweetDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1867,7 +1856,6 @@ public class RetweetDeleteResponseResultTest : TestBase
     {
         var model = new RetweetDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1902,7 +1890,6 @@ public class RetweetDeleteResponseResultTypeTest : TestBase
     [InlineData(RetweetDeleteResponseResultType.StateChange)]
     public void Validation_Works(RetweetDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1927,7 +1914,6 @@ public class RetweetDeleteResponseResultTypeTest : TestBase
     [InlineData(RetweetDeleteResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1965,7 +1951,6 @@ public class RetweetDeleteResponseStatusTest : TestBase
     [InlineData(RetweetDeleteResponseStatus.Expired)]
     public void Validation_Works(RetweetDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1991,7 +1976,6 @@ public class RetweetDeleteResponseStatusTest : TestBase
     [InlineData(RetweetDeleteResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2116,7 +2100,6 @@ public class RetweetDeleteResponseTargetTypeTest : TestBase
     [InlineData(RetweetDeleteResponseTargetType.Community)]
     public void Validation_Works(RetweetDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2139,7 +2122,6 @@ public class RetweetDeleteResponseTargetTypeTest : TestBase
     [InlineData(RetweetDeleteResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(RetweetDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, RetweetDeleteResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

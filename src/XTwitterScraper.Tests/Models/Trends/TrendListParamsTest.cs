@@ -35,12 +35,7 @@ public class TrendListParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new TrendListParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Count = null,
-            Woeid = null,
-        };
+        var parameters = new TrendListParams { Count = null, Woeid = null };
 
         Assert.Null(parameters.Count);
         Assert.False(parameters.RawQueryData.ContainsKey("count"));

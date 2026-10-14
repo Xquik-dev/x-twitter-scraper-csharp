@@ -50,7 +50,6 @@ public class TicketReplyParamsTest : TestBase
             ID = "tkt_a1b2c3d4e5f6a1b2c3d4e5f6",
             Body = "Thank you for the update.",
 
-            // Null should be interpreted as omitted for these properties
             IdempotencyKey = null,
         };
 

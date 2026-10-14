@@ -50,7 +50,6 @@ public class TicketCreateParamsTest : TestBase
             Body = "I am unable to connect my X account. Please help.",
             Subject = "Cannot connect X account",
 
-            // Null should be interpreted as omitted for these properties
             IdempotencyKey = null,
         };
 

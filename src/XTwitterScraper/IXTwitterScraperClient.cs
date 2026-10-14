@@ -15,13 +15,10 @@ namespace XTwitterScraper;
 /// A client for interacting with the X Twitter Scraper REST API.
 ///
 /// <para>This client performs best when you create a single instance and reuse it
-/// for all interactions with the REST API. This is because each client holds its
-/// own connection pool and thread pools. Reusing connections and threads reduces
-/// latency and saves memory.</para>
+/// for all interactions with the REST API.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// breaking changes in non-major versions.</para>
 /// </summary>
 public interface IXTwitterScraperClient : IDisposable
 {

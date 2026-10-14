@@ -823,7 +823,6 @@ public class LikeCreateResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -944,7 +943,6 @@ public class LikeCreateResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1147,7 +1145,6 @@ public class ActionTest : TestBase
     [InlineData(Like::Action.LeaveCommunity)]
     public void Validation_Works(Like::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Action> value = rawValue;
         value.Validate();
     }
@@ -1185,7 +1182,6 @@ public class ActionTest : TestBase
     [InlineData(Like::Action.LeaveCommunity)]
     public void SerializationRoundtrip_Works(Like::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Action> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1328,7 +1324,6 @@ public class StatusTest : TestBase
     [InlineData(Like::Status.Refunded)]
     public void Validation_Works(Like::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Status> value = rawValue;
         value.Validate();
     }
@@ -1353,7 +1348,6 @@ public class StatusTest : TestBase
     [InlineData(Like::Status.Refunded)]
     public void SerializationRoundtrip_Works(Like::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1497,7 +1491,6 @@ public class NextActionTest : TestBase
         {
             Type = Like::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1518,7 +1511,6 @@ public class NextActionTest : TestBase
         {
             Type = Like::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1553,7 +1545,6 @@ public class TypeTest : TestBase
     [InlineData(Like::Type.FixRequest)]
     public void Validation_Works(Like::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Type> value = rawValue;
         value.Validate();
     }
@@ -1577,7 +1568,6 @@ public class TypeTest : TestBase
     [InlineData(Like::Type.FixRequest)]
     public void SerializationRoundtrip_Works(Like::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1832,7 +1822,6 @@ public class ResultTest : TestBase
     {
         var model = new Like::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1851,7 +1840,6 @@ public class ResultTest : TestBase
     {
         var model = new Like::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1886,7 +1874,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Like::ResultType.StateChange)]
     public void Validation_Works(Like::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::ResultType> value = rawValue;
         value.Validate();
     }
@@ -1911,7 +1898,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Like::ResultType.StateChange)]
     public void SerializationRoundtrip_Works(Like::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::ResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1951,7 +1937,6 @@ public class LikeCreateResponseStatusTest : TestBase
     [InlineData(Like::LikeCreateResponseStatus.Expired)]
     public void Validation_Works(Like::LikeCreateResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::LikeCreateResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1977,7 +1962,6 @@ public class LikeCreateResponseStatusTest : TestBase
     [InlineData(Like::LikeCreateResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(Like::LikeCreateResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::LikeCreateResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2078,7 +2062,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Like::TargetType.Community)]
     public void Validation_Works(Like::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::TargetType> value = rawValue;
         value.Validate();
     }
@@ -2101,7 +2084,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Like::TargetType.Community)]
     public void SerializationRoundtrip_Works(Like::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Like::TargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
