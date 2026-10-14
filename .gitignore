@@ -8,3 +8,4 @@ obj/
 
 # do not edit! excludes generated files used internally
 .artifacts/
+.claude/worktrees/
