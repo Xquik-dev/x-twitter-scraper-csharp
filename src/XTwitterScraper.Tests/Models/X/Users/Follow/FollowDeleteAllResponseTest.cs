@@ -833,7 +833,6 @@ public class FollowDeleteAllResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -954,7 +953,6 @@ public class FollowDeleteAllResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1157,7 +1155,6 @@ public class FollowDeleteAllResponseActionTest : TestBase
     [InlineData(FollowDeleteAllResponseAction.LeaveCommunity)]
     public void Validation_Works(FollowDeleteAllResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1195,7 +1192,6 @@ public class FollowDeleteAllResponseActionTest : TestBase
     [InlineData(FollowDeleteAllResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1338,7 +1334,6 @@ public class FollowDeleteAllResponseBillingStatusTest : TestBase
     [InlineData(FollowDeleteAllResponseBillingStatus.Refunded)]
     public void Validation_Works(FollowDeleteAllResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1362,7 +1357,6 @@ public class FollowDeleteAllResponseBillingStatusTest : TestBase
     [InlineData(FollowDeleteAllResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1511,7 +1505,6 @@ public class FollowDeleteAllResponseNextActionTest : TestBase
         {
             Type = FollowDeleteAllResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1532,7 +1525,6 @@ public class FollowDeleteAllResponseNextActionTest : TestBase
         {
             Type = FollowDeleteAllResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1567,7 +1559,6 @@ public class FollowDeleteAllResponseNextActionTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseNextActionType.FixRequest)]
     public void Validation_Works(FollowDeleteAllResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1590,7 +1581,6 @@ public class FollowDeleteAllResponseNextActionTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1844,7 +1834,6 @@ public class FollowDeleteAllResponseResultTest : TestBase
     {
         var model = new FollowDeleteAllResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1863,7 +1852,6 @@ public class FollowDeleteAllResponseResultTest : TestBase
     {
         var model = new FollowDeleteAllResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1898,7 +1886,6 @@ public class FollowDeleteAllResponseResultTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseResultType.StateChange)]
     public void Validation_Works(FollowDeleteAllResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1923,7 +1910,6 @@ public class FollowDeleteAllResponseResultTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1961,7 +1947,6 @@ public class FollowDeleteAllResponseStatusTest : TestBase
     [InlineData(FollowDeleteAllResponseStatus.Expired)]
     public void Validation_Works(FollowDeleteAllResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1987,7 +1972,6 @@ public class FollowDeleteAllResponseStatusTest : TestBase
     [InlineData(FollowDeleteAllResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2110,7 +2094,6 @@ public class FollowDeleteAllResponseTargetTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseTargetType.Community)]
     public void Validation_Works(FollowDeleteAllResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2133,7 +2116,6 @@ public class FollowDeleteAllResponseTargetTypeTest : TestBase
     [InlineData(FollowDeleteAllResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(FollowDeleteAllResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, FollowDeleteAllResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

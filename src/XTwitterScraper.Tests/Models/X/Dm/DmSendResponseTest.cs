@@ -821,7 +821,6 @@ public class DmSendResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -942,7 +941,6 @@ public class DmSendResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1145,7 +1143,6 @@ public class ActionTest : TestBase
     [InlineData(Dm::Action.LeaveCommunity)]
     public void Validation_Works(Dm::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Action> value = rawValue;
         value.Validate();
     }
@@ -1183,7 +1180,6 @@ public class ActionTest : TestBase
     [InlineData(Dm::Action.LeaveCommunity)]
     public void SerializationRoundtrip_Works(Dm::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Action> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1326,7 +1322,6 @@ public class StatusTest : TestBase
     [InlineData(Dm::Status.Refunded)]
     public void Validation_Works(Dm::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Status> value = rawValue;
         value.Validate();
     }
@@ -1351,7 +1346,6 @@ public class StatusTest : TestBase
     [InlineData(Dm::Status.Refunded)]
     public void SerializationRoundtrip_Works(Dm::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1495,7 +1489,6 @@ public class NextActionTest : TestBase
         {
             Type = Dm::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1516,7 +1509,6 @@ public class NextActionTest : TestBase
         {
             Type = Dm::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1551,7 +1543,6 @@ public class TypeTest : TestBase
     [InlineData(Dm::Type.FixRequest)]
     public void Validation_Works(Dm::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Type> value = rawValue;
         value.Validate();
     }
@@ -1575,7 +1566,6 @@ public class TypeTest : TestBase
     [InlineData(Dm::Type.FixRequest)]
     public void SerializationRoundtrip_Works(Dm::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1830,7 +1820,6 @@ public class ResultTest : TestBase
     {
         var model = new Dm::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1849,7 +1838,6 @@ public class ResultTest : TestBase
     {
         var model = new Dm::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1884,7 +1872,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Dm::ResultType.StateChange)]
     public void Validation_Works(Dm::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::ResultType> value = rawValue;
         value.Validate();
     }
@@ -1909,7 +1896,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Dm::ResultType.StateChange)]
     public void SerializationRoundtrip_Works(Dm::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::ResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1949,7 +1935,6 @@ public class DmSendResponseStatusTest : TestBase
     [InlineData(Dm::DmSendResponseStatus.Expired)]
     public void Validation_Works(Dm::DmSendResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::DmSendResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1975,7 +1960,6 @@ public class DmSendResponseStatusTest : TestBase
     [InlineData(Dm::DmSendResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(Dm::DmSendResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::DmSendResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2078,7 +2062,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Dm::TargetType.Community)]
     public void Validation_Works(Dm::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::TargetType> value = rawValue;
         value.Validate();
     }
@@ -2101,7 +2084,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Dm::TargetType.Community)]
     public void SerializationRoundtrip_Works(Dm::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Dm::TargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

@@ -112,7 +112,6 @@ public class WebhookTestResponseTest : TestBase
             StatusCode = 200,
             Success = true,
 
-            // Null should be interpreted as omitted for these properties
             Error = null,
         };
 
@@ -128,7 +127,6 @@ public class WebhookTestResponseTest : TestBase
             StatusCode = 200,
             Success = true,
 
-            // Null should be interpreted as omitted for these properties
             Error = null,
         };
 

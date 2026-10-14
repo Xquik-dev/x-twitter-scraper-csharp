@@ -34,11 +34,7 @@ public class SubscribeCreateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new SubscribeCreateParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Tier = null,
-        };
+        var parameters = new SubscribeCreateParams { Tier = null };
 
         Assert.Null(parameters.Tier);
         Assert.False(parameters.RawBodyData.ContainsKey("tier"));
@@ -73,7 +69,6 @@ public class TierTest : TestBase
     [InlineData(Tier.Business)]
     public void Validation_Works(Tier rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tier> value = rawValue;
         value.Validate();
     }
@@ -96,7 +91,6 @@ public class TierTest : TestBase
     [InlineData(Tier.Business)]
     public void SerializationRoundtrip_Works(Tier rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Tier> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

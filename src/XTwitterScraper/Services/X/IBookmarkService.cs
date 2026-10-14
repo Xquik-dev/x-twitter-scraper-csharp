@@ -15,8 +15,7 @@ namespace XTwitterScraper.Services.X;
 /// Look up, search, and analyze individual tweets
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// breaking changes in non-major versions.</para>
 /// </summary>
 public interface IBookmarkService
 {

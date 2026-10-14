@@ -242,7 +242,6 @@ public class DrawDetailTest : TestBase
             TweetUrl = "https://example.com",
             ValidEntries = 0,
 
-            // Null should be interpreted as omitted for these properties
             DrawnAt = null,
         };
 
@@ -269,7 +268,6 @@ public class DrawDetailTest : TestBase
             TweetUrl = "https://example.com",
             ValidEntries = 0,
 
-            // Null should be interpreted as omitted for these properties
             DrawnAt = null,
         };
 

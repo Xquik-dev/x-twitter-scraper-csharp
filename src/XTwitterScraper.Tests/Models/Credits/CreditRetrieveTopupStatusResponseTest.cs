@@ -121,7 +121,6 @@ public class CreditRetrieveTopupStatusResponseTest : TestBase
             Status = Status.Paid,
             AmountDollars = 25,
 
-            // Null should be interpreted as omitted for these properties
             Credits = null,
         };
 
@@ -137,7 +136,6 @@ public class CreditRetrieveTopupStatusResponseTest : TestBase
             Status = Status.Paid,
             AmountDollars = 25,
 
-            // Null should be interpreted as omitted for these properties
             Credits = null,
         };
 
@@ -223,7 +221,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Expired)]
     public void Validation_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
         value.Validate();
     }
@@ -247,7 +244,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Expired)]
     public void SerializationRoundtrip_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

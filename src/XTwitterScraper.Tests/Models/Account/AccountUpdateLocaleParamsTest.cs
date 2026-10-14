@@ -51,7 +51,6 @@ public class LocaleTest : TestBase
     [InlineData(Locale.Es)]
     public void Validation_Works(Locale rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Locale> value = rawValue;
         value.Validate();
     }
@@ -74,7 +73,6 @@ public class LocaleTest : TestBase
     [InlineData(Locale.Es)]
     public void SerializationRoundtrip_Works(Locale rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Locale> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

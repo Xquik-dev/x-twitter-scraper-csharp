@@ -4,13 +4,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Runs every repository check in order and stops at the first failure.
-# CodeQL and REUSE are required. REUSE runs at a pinned version through uv.
-# Posts the xquik-local-checks commit status for a clean, pushed HEAD with the
-# gh login of whoever runs it. On the release machine, that is the owner's
-# login. The success text lists only the checks that ran and passed.
-# Pass --no-status to skip the status.
-
 set -euo pipefail
 
 cd -- "$(dirname -- "$0")/.."

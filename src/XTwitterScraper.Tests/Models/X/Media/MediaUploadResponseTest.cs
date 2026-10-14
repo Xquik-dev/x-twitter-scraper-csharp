@@ -831,7 +831,6 @@ public class MediaUploadResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -952,7 +951,6 @@ public class MediaUploadResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1155,7 +1153,6 @@ public class ActionTest : TestBase
     [InlineData(Media::Action.LeaveCommunity)]
     public void Validation_Works(Media::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Action> value = rawValue;
         value.Validate();
     }
@@ -1193,7 +1190,6 @@ public class ActionTest : TestBase
     [InlineData(Media::Action.LeaveCommunity)]
     public void SerializationRoundtrip_Works(Media::Action rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Action> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1336,7 +1332,6 @@ public class StatusTest : TestBase
     [InlineData(Media::Status.Refunded)]
     public void Validation_Works(Media::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Status> value = rawValue;
         value.Validate();
     }
@@ -1361,7 +1356,6 @@ public class StatusTest : TestBase
     [InlineData(Media::Status.Refunded)]
     public void SerializationRoundtrip_Works(Media::Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1505,7 +1499,6 @@ public class NextActionTest : TestBase
         {
             Type = Media::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1526,7 +1519,6 @@ public class NextActionTest : TestBase
         {
             Type = Media::Type.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1561,7 +1553,6 @@ public class TypeTest : TestBase
     [InlineData(Media::Type.FixRequest)]
     public void Validation_Works(Media::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Type> value = rawValue;
         value.Validate();
     }
@@ -1585,7 +1576,6 @@ public class TypeTest : TestBase
     [InlineData(Media::Type.FixRequest)]
     public void SerializationRoundtrip_Works(Media::Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1840,7 +1830,6 @@ public class ResultTest : TestBase
     {
         var model = new Media::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1859,7 +1848,6 @@ public class ResultTest : TestBase
     {
         var model = new Media::Result
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1894,7 +1882,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Media::ResultType.StateChange)]
     public void Validation_Works(Media::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::ResultType> value = rawValue;
         value.Validate();
     }
@@ -1919,7 +1906,6 @@ public class ResultTypeTest : TestBase
     [InlineData(Media::ResultType.StateChange)]
     public void SerializationRoundtrip_Works(Media::ResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::ResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1959,7 +1945,6 @@ public class MediaUploadResponseStatusTest : TestBase
     [InlineData(Media::MediaUploadResponseStatus.Expired)]
     public void Validation_Works(Media::MediaUploadResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::MediaUploadResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1985,7 +1970,6 @@ public class MediaUploadResponseStatusTest : TestBase
     [InlineData(Media::MediaUploadResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(Media::MediaUploadResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::MediaUploadResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2086,7 +2070,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Media::TargetType.Community)]
     public void Validation_Works(Media::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::TargetType> value = rawValue;
         value.Validate();
     }
@@ -2109,7 +2092,6 @@ public class TargetTypeTest : TestBase
     [InlineData(Media::TargetType.Community)]
     public void SerializationRoundtrip_Works(Media::TargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Media::TargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

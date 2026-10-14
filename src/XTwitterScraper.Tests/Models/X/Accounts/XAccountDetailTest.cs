@@ -176,7 +176,6 @@ public class XAccountDetailTest : TestBase
             XUserID = "9876543210",
             XUsername = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             CookiesObtainedAt = null,
             UpdatedAt = null,
         };
@@ -199,7 +198,6 @@ public class XAccountDetailTest : TestBase
             XUserID = "9876543210",
             XUsername = "elonmusk",
 
-            // Null should be interpreted as omitted for these properties
             CookiesObtainedAt = null,
             UpdatedAt = null,
         };
@@ -239,7 +237,6 @@ public class XAccountDetailHealthTest : TestBase
     [InlineData(XAccountDetailHealth.TemporaryIssue)]
     public void Validation_Works(XAccountDetailHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, XAccountDetailHealth> value = rawValue;
         value.Validate();
     }
@@ -265,7 +262,6 @@ public class XAccountDetailHealthTest : TestBase
     [InlineData(XAccountDetailHealth.TemporaryIssue)]
     public void SerializationRoundtrip_Works(XAccountDetailHealth rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, XAccountDetailHealth> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

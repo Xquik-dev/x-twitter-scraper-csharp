@@ -50,7 +50,6 @@ public class DmRetrieveHistoryParamsTest : TestBase
             UserID = "userId",
             Account = "account",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             MaxID = null,
         };

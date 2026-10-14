@@ -1,9 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Runs scripts/audit in a throwaway folder. A fake dotnet prints the
-// vulnerability report, and a fake advisory API says whether a fix exists.
-
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -12,7 +9,6 @@ import { test } from "node:test";
 import { createSandbox } from "./support.mjs";
 
 const fakeDotnet = `#!/bin/sh
-# Stands in for "dotnet list package". It records each call and prints the report the test names.
 printf '%s\\n' "$*" >>"$FAKE_LOGS/dotnet"
 case " $* " in
   *" --vulnerable "*) cat "$FAKE_VULNERABILITY_REPORT" ;;
@@ -29,7 +25,6 @@ function day(offset) {
   return new Date(Date.now() + offset * 86_400_000).toISOString().slice(0, 10);
 }
 
-// A report in the shape of "dotnet list package --vulnerable --format json".
 function report(project, severity) {
   return {
     version: 1,

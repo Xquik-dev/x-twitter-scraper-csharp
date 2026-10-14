@@ -3,11 +3,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Fails on every vulnerable package in the shipped library, and on every
-// test-only finding unless audit-exceptions.json lists it and no fix exists.
-// Severity never excuses a finding. A listed finding blocks again on its
-// recheck date, and as soon as a fixed version exists.
-
 import fs from "node:fs";
 import path from "node:path";
 

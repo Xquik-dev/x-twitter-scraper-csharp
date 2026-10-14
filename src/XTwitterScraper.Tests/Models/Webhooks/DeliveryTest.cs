@@ -171,7 +171,6 @@ public class DeliveryTest : TestBase
             Status = "status",
             StreamEventID = "streamEventId",
 
-            // Null should be interpreted as omitted for these properties
             DeliveredAt = null,
             LastError = null,
             LastStatusCode = null,
@@ -196,7 +195,6 @@ public class DeliveryTest : TestBase
             Status = "status",
             StreamEventID = "streamEventId",
 
-            // Null should be interpreted as omitted for these properties
             DeliveredAt = null,
             LastError = null,
             LastStatusCode = null,

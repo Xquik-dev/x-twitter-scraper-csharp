@@ -833,7 +833,6 @@ public class JoinDeleteAllResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -954,7 +953,6 @@ public class JoinDeleteAllResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1157,7 +1155,6 @@ public class JoinDeleteAllResponseActionTest : TestBase
     [InlineData(JoinDeleteAllResponseAction.LeaveCommunity)]
     public void Validation_Works(JoinDeleteAllResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1195,7 +1192,6 @@ public class JoinDeleteAllResponseActionTest : TestBase
     [InlineData(JoinDeleteAllResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1340,7 +1336,6 @@ public class JoinDeleteAllResponseBillingStatusTest : TestBase
     [InlineData(JoinDeleteAllResponseBillingStatus.Refunded)]
     public void Validation_Works(JoinDeleteAllResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1365,7 +1360,6 @@ public class JoinDeleteAllResponseBillingStatusTest : TestBase
     [InlineData(JoinDeleteAllResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1515,7 +1509,6 @@ public class JoinDeleteAllResponseNextActionTest : TestBase
         {
             Type = JoinDeleteAllResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1536,7 +1529,6 @@ public class JoinDeleteAllResponseNextActionTest : TestBase
         {
             Type = JoinDeleteAllResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1571,7 +1563,6 @@ public class JoinDeleteAllResponseNextActionTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseNextActionType.FixRequest)]
     public void Validation_Works(JoinDeleteAllResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1594,7 +1585,6 @@ public class JoinDeleteAllResponseNextActionTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1848,7 +1838,6 @@ public class JoinDeleteAllResponseResultTest : TestBase
     {
         var model = new JoinDeleteAllResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1867,7 +1856,6 @@ public class JoinDeleteAllResponseResultTest : TestBase
     {
         var model = new JoinDeleteAllResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1902,7 +1890,6 @@ public class JoinDeleteAllResponseResultTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseResultType.StateChange)]
     public void Validation_Works(JoinDeleteAllResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1927,7 +1914,6 @@ public class JoinDeleteAllResponseResultTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1965,7 +1951,6 @@ public class JoinDeleteAllResponseStatusTest : TestBase
     [InlineData(JoinDeleteAllResponseStatus.Expired)]
     public void Validation_Works(JoinDeleteAllResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1991,7 +1976,6 @@ public class JoinDeleteAllResponseStatusTest : TestBase
     [InlineData(JoinDeleteAllResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2116,7 +2100,6 @@ public class JoinDeleteAllResponseTargetTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseTargetType.Community)]
     public void Validation_Works(JoinDeleteAllResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2139,7 +2122,6 @@ public class JoinDeleteAllResponseTargetTypeTest : TestBase
     [InlineData(JoinDeleteAllResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(JoinDeleteAllResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, JoinDeleteAllResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

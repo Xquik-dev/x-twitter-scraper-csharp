@@ -620,7 +620,6 @@ public class TweetMediaTest : TestBase
             Type = TweetMediaType.Photo,
             Url = "url",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             AllowDownload = null,
             AltText = null,
@@ -685,7 +684,6 @@ public class TweetMediaTest : TestBase
             Type = TweetMediaType.Photo,
             Url = "url",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             AllowDownload = null,
             AltText = null,
@@ -791,7 +789,6 @@ public class TweetMediaTypeTest : TestBase
     [InlineData(TweetMediaType.AnimatedGif)]
     public void Validation_Works(TweetMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetMediaType> value = rawValue;
         value.Validate();
     }
@@ -814,7 +811,6 @@ public class TweetMediaTypeTest : TestBase
     [InlineData(TweetMediaType.AnimatedGif)]
     public void SerializationRoundtrip_Works(TweetMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1244,7 +1240,6 @@ public class VideoVariantTest : TestBase
             ContentType = "contentType",
             Url = "url",
 
-            // Null should be interpreted as omitted for these properties
             Bitrate = null,
         };
 
@@ -1260,7 +1255,6 @@ public class VideoVariantTest : TestBase
             ContentType = "contentType",
             Url = "url",
 
-            // Null should be interpreted as omitted for these properties
             Bitrate = null,
         };
 

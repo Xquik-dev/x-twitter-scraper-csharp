@@ -50,7 +50,6 @@ public class AccountReauthParamsTest : TestBase
             ID = "id",
             Password = "<ACCOUNT_PASSWORD>",
 
-            // Null should be interpreted as omitted for these properties
             Email = null,
             TotpSecret = null,
         };

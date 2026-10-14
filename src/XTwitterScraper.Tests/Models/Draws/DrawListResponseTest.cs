@@ -238,7 +238,6 @@ public class DrawListResponseTest : TestBase
             ],
             HasMore = false,
 
-            // Null should be interpreted as omitted for these properties
             NextCursor = null,
         };
 
@@ -266,7 +265,6 @@ public class DrawListResponseTest : TestBase
             ],
             HasMore = false,
 
-            // Null should be interpreted as omitted for these properties
             NextCursor = null,
         };
 

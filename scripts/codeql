@@ -4,19 +4,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Runs the CodeQL C# security-extended queries on a copy of the source files.
-# CodeQL traces a build of the copy, so the restore and build output of the
-# working tree stays as it is. The traced build resolves every reference, so
-# CodeQL reads every file without a compiler error. Any result fails the run,
-# and so does any file that CodeQL could not read.
-
 set -euo pipefail
 
 cd -- "$(dirname -- "$0")/.."
 
 codeql_workspace="$(mktemp -d "${TMPDIR:-/tmp}/xquik-csharp-codeql.XXXXXX")"
 trap 'rm -rf -- "$codeql_workspace"' EXIT
-# CodeQL reports physical paths, so the workspace path is physical too.
 codeql_workspace="$(cd -- "$codeql_workspace" && pwd -P)"
 
 echo "==> Copying the source files for CodeQL"
@@ -27,7 +20,7 @@ tar -cf - -T <(git ls-files --cached --others --exclude-standard) |
 echo "==> Restoring the locked packages of the copy"
 (cd -- "$codeql_workspace/source" && dotnet restore --locked-mode)
 
-echo "==> Running the CodeQL security-extended queries"
+echo "==> Running the CodeQL security-extended and comment queries"
 DOTNET_ROLL_FORWARD=Major codeql database create "$codeql_workspace/database" \
   --language=csharp \
   --build-mode=manual \
@@ -35,18 +28,16 @@ DOTNET_ROLL_FORWARD=Major codeql database create "$codeql_workspace/database" \
   --source-root="$codeql_workspace/source" \
   --threads=0 \
   --quiet
+codeql pack install codeql/no-code-comments
 codeql database analyze "$codeql_workspace/database" \
   codeql/csharp-queries:codeql-suites/csharp-security-extended.qls \
+  codeql/no-code-comments \
   --download \
   --format=sarif-latest \
   --output="$codeql_workspace/results.sarif" \
   --threads=0 \
   --quiet
 
-# CodeQL goes on after it fails to read a file and scans only the code it
-# could read. These diagnostic queries of the suite name each compiler and
-# extractor error. The report lists every diagnostic query that ran, so a
-# suite without them cannot pass.
 node - "$codeql_workspace/results.sarif" "$codeql_workspace/source/" <<'EOF'
 const fs = require("node:fs");
 

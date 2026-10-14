@@ -37,7 +37,6 @@ public class UserRetrieveSearchParamsTest : TestBase
         {
             Q = "q",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
         };
 

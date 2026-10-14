@@ -35,12 +35,7 @@ public class XGetTrendsParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new XGetTrendsParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Count = null,
-            Woeid = null,
-        };
+        var parameters = new XGetTrendsParams { Count = null, Woeid = null };
 
         Assert.Null(parameters.Count);
         Assert.False(parameters.RawQueryData.ContainsKey("count"));

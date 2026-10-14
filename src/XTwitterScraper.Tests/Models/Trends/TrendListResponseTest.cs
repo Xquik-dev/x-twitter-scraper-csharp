@@ -342,7 +342,6 @@ public class TrendTest : TestBase
             PromotedContent = "promotedContent",
             TweetVolume = 250000,
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
             Query = null,
             Rank = null,
@@ -368,7 +367,6 @@ public class TrendTest : TestBase
             PromotedContent = "promotedContent",
             TweetVolume = 250000,
 
-            // Null should be interpreted as omitted for these properties
             Description = null,
             Query = null,
             Rank = null,

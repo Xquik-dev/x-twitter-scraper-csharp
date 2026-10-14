@@ -21,16 +21,8 @@ namespace XTwitterScraper.Core;
 /// </summary>
 public readonly struct MultipartJsonElement
 {
-    /// <summary>
-    /// A <see cref="JsonElement"/> with <see cref="BinaryContents">placeholders</see>
-    /// for <see cref="BinaryContent"/>.
-    /// </summary>
     internal JsonElement Json { get; init; } = default;
 
-    /// <summary>
-    /// A dictionary from placeholder string in <see cref="Json">the JSON</see> to
-    /// <see cref="BinaryContent"/>.
-    /// </summary>
     internal IReadOnlyDictionary<Guid, BinaryContent> BinaryContents { get; init; } =
         FrozenDictionary.ToFrozenDictionary(new Dictionary<Guid, BinaryContent>());
 
@@ -158,13 +150,6 @@ public readonly struct MultipartJsonElement
 /// </summary>
 public static class MultipartJsonSerializer
 {
-    /// <summary>
-    /// The current dictionary from placeholder string to <see cref="BinaryContent"/> to use for
-    /// serialization/deserialization.
-    ///
-    /// <para>This isn't a local variable because we want to share <see cref="JsonSerializerOptions"/>
-    /// for performance. It's also a thread local to avoid data races between threads.</para>
-    /// </summary>
     static readonly ThreadLocal<Dictionary<Guid, BinaryContent>?> CurrentBinaryContents = new(() =>
         null
     );
@@ -386,13 +371,6 @@ public static class MultipartJsonSerializer
     }
 }
 
-/// <summary>
-/// A JSON converter that serializes/deserializes mixed JSON and binary content.
-///
-/// <para>It uses placeholder IDs (see <see cref="BinaryContentConverter"/>), which are written/read
-/// to/from a thread-local dictionary, so it's expected that this converter is only invoked via
-/// <see cref="MultipartJsonSerializer"/>, which ensures the dictionary is set up correctly.</para>
-/// </summary>
 sealed class MultipartJsonElementConverter : JsonConverter<MultipartJsonElement>
 {
     public override MultipartJsonElement Read(
@@ -420,13 +398,6 @@ sealed class MultipartJsonElementConverter : JsonConverter<MultipartJsonElement>
     }
 }
 
-/// <summary>
-/// A JSON converter that serializes/deserializes binary content to/from placeholder IDs.
-///
-/// <para>The placeholder IDs are written/read to/from a thread-local dictionary, so it's expected that
-/// this converter is only invoked via <see cref="MultipartJsonSerializer"/>, which ensures the
-/// dictionary is set up correctly.</para>
-/// </summary>
 sealed class BinaryContentConverter : JsonConverter<BinaryContent>
 {
     public override BinaryContent Read(

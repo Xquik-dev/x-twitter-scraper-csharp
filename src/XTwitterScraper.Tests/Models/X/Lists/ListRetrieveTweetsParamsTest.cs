@@ -61,7 +61,6 @@ public class ListRetrieveTweetsParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             IncludeReplies = null,
             PageSize = null,

@@ -39,12 +39,7 @@ public class XGetHomeTimelineParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new XGetHomeTimelineParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Cursor = null,
-            SeenTweetIds = null,
-        };
+        var parameters = new XGetHomeTimelineParams { Cursor = null, SeenTweetIds = null };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));

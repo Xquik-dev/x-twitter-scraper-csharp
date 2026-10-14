@@ -1,10 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Xquik contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// Runs bin/check-local in a throwaway repository. A stub stands in for each
-// script in scripts/, and fake commands stand in for the GitHub CLI, uv and
-// the other tools, so the test checks only what bin/check-local itself does.
-
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
@@ -22,14 +18,12 @@ const checkScripts = [
   "codeql",
 ];
 
-// Stands in for a script in scripts/. It fails when the test names it.
 function stub(name) {
   const output = name === "test" ? 'echo "  succeeded: 12"\n' : "";
   return `#!/usr/bin/env bash\n${output}[[ "\${FAKE_FAILING_SCRIPT:-}" != "${name}" ]]\n`;
 }
 
 const recordingFake = (name) => `#!/bin/sh
-# Stands in for ${name}. It records each call and succeeds.
 printf '%s\\n' "$*" >>"$FAKE_LOGS/${name}"
 `;
 

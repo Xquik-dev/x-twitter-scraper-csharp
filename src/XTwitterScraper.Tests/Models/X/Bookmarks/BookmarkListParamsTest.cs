@@ -39,12 +39,7 @@ public class BookmarkListParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        var parameters = new BookmarkListParams
-        {
-            // Null should be interpreted as omitted for these properties
-            Cursor = null,
-            FolderID = null,
-        };
+        var parameters = new BookmarkListParams { Cursor = null, FolderID = null };
 
         Assert.Null(parameters.Cursor);
         Assert.False(parameters.RawQueryData.ContainsKey("cursor"));

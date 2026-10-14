@@ -2825,7 +2825,6 @@ public class ComposePrepareResultTest : TestBase
             Source = "source",
             TopPenalties = ["string", "string", "string", "string"],
 
-            // Null should be interpreted as omitted for these properties
             SavedStyles = null,
             StyleNote = null,
             StyleTweets = null,
@@ -3063,7 +3062,6 @@ public class ComposePrepareResultTest : TestBase
             Source = "source",
             TopPenalties = ["string", "string", "string", "string"],
 
-            // Null should be interpreted as omitted for these properties
             SavedStyles = null,
             StyleNote = null,
             StyleTweets = null,
@@ -3554,7 +3552,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Polymarket)]
     public void Validation_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
         value.Validate();
     }
@@ -3581,7 +3578,6 @@ public class SourceTest : TestBase
     [InlineData(Source.Polymarket)]
     public void SerializationRoundtrip_Works(Source rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Source> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -4651,7 +4647,6 @@ public class ComposeScoreResultTest : TestBase
             PassedCount = 0,
             TopSuggestion = "topSuggestion",
 
-            // Null should be interpreted as omitted for these properties
             IntentUrl = null,
         };
 
@@ -4726,7 +4721,6 @@ public class ComposeScoreResultTest : TestBase
             PassedCount = 0,
             TopSuggestion = "topSuggestion",
 
-            // Null should be interpreted as omitted for these properties
             IntentUrl = null,
         };
 
@@ -4909,7 +4903,6 @@ public class ChecklistTest : TestBase
             Factor = "factor",
             Passed = true,
 
-            // Null should be interpreted as omitted for these properties
             Suggestion = null,
         };
 
@@ -4925,7 +4918,6 @@ public class ChecklistTest : TestBase
             Factor = "factor",
             Passed = true,
 
-            // Null should be interpreted as omitted for these properties
             Suggestion = null,
         };
 

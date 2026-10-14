@@ -194,7 +194,6 @@ public class TweetGetRepliesParamsTest : TestBase
         {
             ID = "id",
 
-            // Null should be interpreted as omitted for these properties
             AnyWords = null,
             Cashtags = null,
             ConversationID = null,
@@ -399,7 +398,6 @@ public class TweetGetRepliesParamsMediaTypeTest : TestBase
     [InlineData(TweetGetRepliesParamsMediaType.None)]
     public void Validation_Works(TweetGetRepliesParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsMediaType> value = rawValue;
         value.Validate();
     }
@@ -425,7 +423,6 @@ public class TweetGetRepliesParamsMediaTypeTest : TestBase
     [InlineData(TweetGetRepliesParamsMediaType.None)]
     public void SerializationRoundtrip_Works(TweetGetRepliesParamsMediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsMediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -458,7 +455,6 @@ public class ModeTest : TestBase
     [InlineData(Mode.Complete)]
     public void Validation_Works(Mode rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Mode> value = rawValue;
         value.Validate();
     }
@@ -479,7 +475,6 @@ public class ModeTest : TestBase
     [InlineData(Mode.Complete)]
     public void SerializationRoundtrip_Works(Mode rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Mode> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -516,7 +511,6 @@ public class TweetGetRepliesParamsQuotesTest : TestBase
     [InlineData(TweetGetRepliesParamsQuotes.Only)]
     public void Validation_Works(TweetGetRepliesParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsQuotes> value = rawValue;
         value.Validate();
     }
@@ -539,7 +533,6 @@ public class TweetGetRepliesParamsQuotesTest : TestBase
     [InlineData(TweetGetRepliesParamsQuotes.Only)]
     public void SerializationRoundtrip_Works(TweetGetRepliesParamsQuotes rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsQuotes> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -576,7 +569,6 @@ public class TweetGetRepliesParamsRepliesTest : TestBase
     [InlineData(TweetGetRepliesParamsReplies.Only)]
     public void Validation_Works(TweetGetRepliesParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsReplies> value = rawValue;
         value.Validate();
     }
@@ -599,7 +591,6 @@ public class TweetGetRepliesParamsRepliesTest : TestBase
     [InlineData(TweetGetRepliesParamsReplies.Only)]
     public void SerializationRoundtrip_Works(TweetGetRepliesParamsReplies rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsReplies> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -634,7 +625,6 @@ public class TweetGetRepliesParamsRetweetsTest : TestBase
     [InlineData(TweetGetRepliesParamsRetweets.Only)]
     public void Validation_Works(TweetGetRepliesParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsRetweets> value = rawValue;
         value.Validate();
     }
@@ -657,7 +647,6 @@ public class TweetGetRepliesParamsRetweetsTest : TestBase
     [InlineData(TweetGetRepliesParamsRetweets.Only)]
     public void SerializationRoundtrip_Works(TweetGetRepliesParamsRetweets rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetGetRepliesParamsRetweets> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

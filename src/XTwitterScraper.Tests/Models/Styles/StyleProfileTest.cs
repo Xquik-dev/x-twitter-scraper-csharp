@@ -316,7 +316,6 @@ public class StyleProfileTweetTest : TestBase
             ID = "1234567890",
             Text = "Just launched our new feature!",
 
-            // Null should be interpreted as omitted for these properties
             AuthorUsername = null,
             CreatedAt = null,
         };
@@ -335,7 +334,6 @@ public class StyleProfileTweetTest : TestBase
             ID = "1234567890",
             Text = "Just launched our new feature!",
 
-            // Null should be interpreted as omitted for these properties
             AuthorUsername = null,
             CreatedAt = null,
         };

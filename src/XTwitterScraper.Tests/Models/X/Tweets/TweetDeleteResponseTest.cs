@@ -831,7 +831,6 @@ public class TweetDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -952,7 +951,6 @@ public class TweetDeleteResponseTest : TestBase
             Terminal = true,
             WriteActionID = "12345",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             CommunityName = null,
             CompletedAt = null,
@@ -1155,7 +1153,6 @@ public class TweetDeleteResponseActionTest : TestBase
     [InlineData(TweetDeleteResponseAction.LeaveCommunity)]
     public void Validation_Works(TweetDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseAction> value = rawValue;
         value.Validate();
     }
@@ -1193,7 +1190,6 @@ public class TweetDeleteResponseActionTest : TestBase
     [InlineData(TweetDeleteResponseAction.LeaveCommunity)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseAction rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseAction> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1338,7 +1334,6 @@ public class TweetDeleteResponseBillingStatusTest : TestBase
     [InlineData(TweetDeleteResponseBillingStatus.Refunded)]
     public void Validation_Works(TweetDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseBillingStatus> value = rawValue;
         value.Validate();
     }
@@ -1363,7 +1358,6 @@ public class TweetDeleteResponseBillingStatusTest : TestBase
     [InlineData(TweetDeleteResponseBillingStatus.Refunded)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseBillingStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseBillingStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1513,7 +1507,6 @@ public class TweetDeleteResponseNextActionTest : TestBase
         {
             Type = TweetDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1534,7 +1527,6 @@ public class TweetDeleteResponseNextActionTest : TestBase
         {
             Type = TweetDeleteResponseNextActionType.Poll,
 
-            // Null should be interpreted as omitted for these properties
             AfterMs = null,
             RequiresNewIdempotencyKey = null,
             Url = null,
@@ -1569,7 +1561,6 @@ public class TweetDeleteResponseNextActionTypeTest : TestBase
     [InlineData(TweetDeleteResponseNextActionType.FixRequest)]
     public void Validation_Works(TweetDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseNextActionType> value = rawValue;
         value.Validate();
     }
@@ -1593,7 +1584,6 @@ public class TweetDeleteResponseNextActionTypeTest : TestBase
     [InlineData(TweetDeleteResponseNextActionType.FixRequest)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseNextActionType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseNextActionType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1848,7 +1838,6 @@ public class TweetDeleteResponseResultTest : TestBase
     {
         var model = new TweetDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1867,7 +1856,6 @@ public class TweetDeleteResponseResultTest : TestBase
     {
         var model = new TweetDeleteResponseResult
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             State = null,
             Type = null,
@@ -1902,7 +1890,6 @@ public class TweetDeleteResponseResultTypeTest : TestBase
     [InlineData(TweetDeleteResponseResultType.StateChange)]
     public void Validation_Works(TweetDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseResultType> value = rawValue;
         value.Validate();
     }
@@ -1927,7 +1914,6 @@ public class TweetDeleteResponseResultTypeTest : TestBase
     [InlineData(TweetDeleteResponseResultType.StateChange)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseResultType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseResultType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1965,7 +1951,6 @@ public class TweetDeleteResponseStatusTest : TestBase
     [InlineData(TweetDeleteResponseStatus.Expired)]
     public void Validation_Works(TweetDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -1991,7 +1976,6 @@ public class TweetDeleteResponseStatusTest : TestBase
     [InlineData(TweetDeleteResponseStatus.Expired)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -2116,7 +2100,6 @@ public class TweetDeleteResponseTargetTypeTest : TestBase
     [InlineData(TweetDeleteResponseTargetType.Community)]
     public void Validation_Works(TweetDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseTargetType> value = rawValue;
         value.Validate();
     }
@@ -2139,7 +2122,6 @@ public class TweetDeleteResponseTargetTypeTest : TestBase
     [InlineData(TweetDeleteResponseTargetType.Community)]
     public void SerializationRoundtrip_Works(TweetDeleteResponseTargetType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TweetDeleteResponseTargetType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

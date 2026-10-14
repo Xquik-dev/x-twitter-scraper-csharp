@@ -12,15 +12,6 @@ using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Core;
 
-/// <summary>
-/// A dictionary that holds mixed JSON and binary content.
-///
-/// <para>It can be mutated and then frozen once no more mutations are expected.
-/// This is useful for allowing the dictionary to be modified by a class's
-/// <c>init</c> properties, but then preventing it from being modified afterwards.</para>
-///
-/// <para>It also caches data deserialization for performance.</para>
-/// </summary>
 sealed class MultipartJsonDictionary
 {
     IReadOnlyDictionary<string, MultipartJsonElement> _rawData;
@@ -63,12 +54,6 @@ sealed class MultipartJsonDictionary
         _deserializedData = new(dictionary._deserializedData);
     }
 
-    /// <summary>
-    /// Freezes this dictionary and returns a readonly view of it.
-    ///
-    /// <para>Future calls to mutating methods on this class will throw
-    /// <see cref="InvalidOperationException"/></para>.
-    /// </summary>
     public IReadOnlyDictionary<string, MultipartJsonElement> Freeze()
     {
         if (_rawData is FrozenDictionary<string, MultipartJsonElement> dictionary)
@@ -156,13 +141,6 @@ sealed class MultipartJsonDictionary
         return deserialized;
     }
 
-    /// <summary>
-    /// Gets the raw JSON element for a key that must be present, without rejecting JSON null.
-    ///
-    /// <para>Used for values of unknown type, which can be any JSON value including null. A JSON
-    /// null is returned as a <see cref="JsonElement"/> whose <c>ValueKind</c> is
-    /// <c>Null</c>.</para>
-    /// </summary>
     public JsonElement GetNotAbsentElement(string key)
     {
         if (!_rawData.TryGetValue(key, out MultipartJsonElement element))

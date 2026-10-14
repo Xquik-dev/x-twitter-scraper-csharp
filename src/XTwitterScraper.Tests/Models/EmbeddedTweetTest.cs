@@ -7865,7 +7865,6 @@ public class EmbeddedTweetTest : TestBase
             Text = "text",
             ViewCount = 0,
 
-            // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
             Card = null,
@@ -7974,7 +7973,6 @@ public class EmbeddedTweetTest : TestBase
             Text = "text",
             ViewCount = 0,
 
-            // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
             Card = null,
@@ -9403,7 +9401,6 @@ public class ArticleTest : TestBase
     {
         var model = new Article
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             CoverMediaUrl = null,
             PreviewText = null,
@@ -9425,7 +9422,6 @@ public class ArticleTest : TestBase
     {
         var model = new Article
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             CoverMediaUrl = null,
             PreviewText = null,
@@ -9593,7 +9589,6 @@ public class CardTest : TestBase
     {
         var model = new Card
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BindingValues = null,
             Name = null,
@@ -9615,7 +9610,6 @@ public class CardTest : TestBase
     {
         var model = new Card
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BindingValues = null,
             Name = null,
@@ -9790,7 +9784,6 @@ public class CommunityNoteTest : TestBase
     {
         var model = new CommunityNote
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             DestinationUrl = null,
             Footer = null,
@@ -9821,7 +9814,6 @@ public class CommunityNoteTest : TestBase
     {
         var model = new CommunityNote
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             DestinationUrl = null,
             Footer = null,
@@ -9951,12 +9943,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Edit
-        {
-            // Null should be interpreted as omitted for these properties
-            EditableUntilMsecs = null,
-            EditTweetIds = null,
-        };
+        var model = new Edit { EditableUntilMsecs = null, EditTweetIds = null };
 
         Assert.Null(model.EditableUntilMsecs);
         Assert.False(model.RawData.ContainsKey("editableUntilMsecs"));
@@ -9967,12 +9954,7 @@ public class EditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Edit
-        {
-            // Null should be interpreted as omitted for these properties
-            EditableUntilMsecs = null,
-            EditTweetIds = null,
-        };
+        var model = new Edit { EditableUntilMsecs = null, EditTweetIds = null };
 
         model.Validate();
     }
@@ -10204,7 +10186,6 @@ public class NoteTweetTest : TestBase
         {
             Text = "text",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Entities = null,
             IsExpandable = null,
@@ -10228,7 +10209,6 @@ public class NoteTweetTest : TestBase
         {
             Text = "text",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Entities = null,
             IsExpandable = null,
@@ -10551,7 +10531,6 @@ public class PlaceTest : TestBase
     {
         var model = new Place
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BoundingBox = null,
             Country = null,
@@ -10585,7 +10564,6 @@ public class PlaceTest : TestBase
     {
         var model = new Place
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BoundingBox = null,
             Country = null,
@@ -10748,7 +10726,6 @@ public class PreviousCountsTest : TestBase
     {
         var model = new PreviousCounts
         {
-            // Null should be interpreted as omitted for these properties
             BookmarkCount = null,
             LikeCount = null,
             QuoteCount = null,
@@ -10773,7 +10750,6 @@ public class PreviousCountsTest : TestBase
     {
         var model = new PreviousCounts
         {
-            // Null should be interpreted as omitted for these properties
             BookmarkCount = null,
             LikeCount = null,
             QuoteCount = null,

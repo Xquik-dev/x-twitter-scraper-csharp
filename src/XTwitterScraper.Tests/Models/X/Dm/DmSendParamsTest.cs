@@ -66,7 +66,6 @@ public class DmSendParamsTest : TestBase
             Text = "Example text content",
             IdempotencyKey = "Idempotency-Key",
 
-            // Null should be interpreted as omitted for these properties
             MediaIds = null,
         };
 

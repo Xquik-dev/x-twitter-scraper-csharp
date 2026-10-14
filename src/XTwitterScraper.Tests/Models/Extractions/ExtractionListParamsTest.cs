@@ -54,7 +54,6 @@ public class ExtractionListParamsTest : TestBase
     {
         var parameters = new ExtractionListParams
         {
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             Limit = null,
             Status = null,
@@ -119,7 +118,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Failed)]
     public void Validation_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
         value.Validate();
     }
@@ -142,7 +140,6 @@ public class StatusTest : TestBase
     [InlineData(Status.Failed)]
     public void SerializationRoundtrip_Works(Status rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Status> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -199,7 +196,6 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.VerifiedFollowerExplorer)]
     public void Validation_Works(ToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ToolType> value = rawValue;
         value.Validate();
     }
@@ -242,7 +238,6 @@ public class ToolTypeTest : TestBase
     [InlineData(ToolType.VerifiedFollowerExplorer)]
     public void SerializationRoundtrip_Works(ToolType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ToolType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

@@ -53,7 +53,6 @@ public class EventListParamsTest : TestBase
     {
         var parameters = new EventListParams
         {
-            // Null should be interpreted as omitted for these properties
             Cursor = null,
             EventType = null,
             Limit = null,

@@ -329,7 +329,6 @@ public class MessageTest : TestBase
             ReceiverID = "1234567890",
             SenderID = "9876543210",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             MediaUrl = null,
             Text = null,
@@ -352,7 +351,6 @@ public class MessageTest : TestBase
             ReceiverID = "1234567890",
             SenderID = "9876543210",
 
-            // Null should be interpreted as omitted for these properties
             CreatedAt = null,
             MediaUrl = null,
             Text = null,

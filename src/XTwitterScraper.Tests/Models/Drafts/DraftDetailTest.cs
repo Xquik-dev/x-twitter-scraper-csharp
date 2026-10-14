@@ -153,7 +153,6 @@ public class DraftDetailTest : TestBase
             Text = "Draft tweet about AI trends",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
 
-            // Null should be interpreted as omitted for these properties
             Goal = null,
             Topic = null,
         };
@@ -174,7 +173,6 @@ public class DraftDetailTest : TestBase
             Text = "Draft tweet about AI trends",
             UpdatedAt = DateTimeOffset.Parse("2025-01-16T09:30:00Z"),
 
-            // Null should be interpreted as omitted for these properties
             Goal = null,
             Topic = null,
         };

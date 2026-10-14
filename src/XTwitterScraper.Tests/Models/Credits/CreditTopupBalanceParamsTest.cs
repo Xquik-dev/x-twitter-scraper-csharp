@@ -37,7 +37,6 @@ public class CreditTopupBalanceParamsTest : TestBase
         {
             Dollars = 10,
 
-            // Null should be interpreted as omitted for these properties
             Locale = null,
         };
 

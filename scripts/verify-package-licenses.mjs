@@ -24,7 +24,6 @@ for (const project of report.projects ?? []) {
   for (const framework of project.frameworks ?? []) {
     for (const group of ["topLevelPackages", "transitivePackages"]) {
       for (const dependency of framework[group] ?? []) {
-        // Projects can resolve different versions of 1 package, and each version has its own license.
         packages.set(
           `${dependency.id.toLowerCase()}@${dependency.resolvedVersion}`,
           dependency,

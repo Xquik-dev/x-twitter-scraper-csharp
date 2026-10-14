@@ -76,7 +76,6 @@ public class TweetCreateParamsTest : TestBase
             Account = "@elonmusk",
             IdempotencyKey = "Idempotency-Key",
 
-            // Null should be interpreted as omitted for these properties
             CommunityID = null,
             IsNoteTweet = null,
             Media = null,

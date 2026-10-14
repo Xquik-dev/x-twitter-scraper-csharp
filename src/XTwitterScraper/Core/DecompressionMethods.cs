@@ -16,7 +16,6 @@ static class DecompressionMethods
     {
         try
         {
-            // Minimal valid GZip payload (empty body).
             var gzipPayload = new byte[]
             {
                 0x1f,

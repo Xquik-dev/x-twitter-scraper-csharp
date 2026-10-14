@@ -4805,7 +4805,6 @@ public class SearchTweetTest : TestBase
             Text = "Just launched our new feature!",
             ViewCount = 1500,
 
-            // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
             Card = null,
@@ -4914,7 +4913,6 @@ public class SearchTweetTest : TestBase
             Text = "Just launched our new feature!",
             ViewCount = 1500,
 
-            // Null should be interpreted as omitted for these properties
             Article = null,
             Author = null,
             Card = null,
@@ -5836,7 +5834,6 @@ public class SearchTweetArticleTest : TestBase
     {
         var model = new SearchTweetArticle
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             CoverMediaUrl = null,
             PreviewText = null,
@@ -5858,7 +5855,6 @@ public class SearchTweetArticleTest : TestBase
     {
         var model = new SearchTweetArticle
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             CoverMediaUrl = null,
             PreviewText = null,
@@ -6032,7 +6028,6 @@ public class SearchTweetCardTest : TestBase
     {
         var model = new SearchTweetCard
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BindingValues = null,
             Name = null,
@@ -6054,7 +6049,6 @@ public class SearchTweetCardTest : TestBase
     {
         var model = new SearchTweetCard
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BindingValues = null,
             Name = null,
@@ -6229,7 +6223,6 @@ public class SearchTweetCommunityNoteTest : TestBase
     {
         var model = new SearchTweetCommunityNote
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             DestinationUrl = null,
             Footer = null,
@@ -6260,7 +6253,6 @@ public class SearchTweetCommunityNoteTest : TestBase
     {
         var model = new SearchTweetCommunityNote
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             DestinationUrl = null,
             Footer = null,
@@ -6396,12 +6388,7 @@ public class SearchTweetEditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new SearchTweetEdit
-        {
-            // Null should be interpreted as omitted for these properties
-            EditableUntilMsecs = null,
-            EditTweetIds = null,
-        };
+        var model = new SearchTweetEdit { EditableUntilMsecs = null, EditTweetIds = null };
 
         Assert.Null(model.EditableUntilMsecs);
         Assert.False(model.RawData.ContainsKey("editableUntilMsecs"));
@@ -6412,12 +6399,7 @@ public class SearchTweetEditTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new SearchTweetEdit
-        {
-            // Null should be interpreted as omitted for these properties
-            EditableUntilMsecs = null,
-            EditTweetIds = null,
-        };
+        var model = new SearchTweetEdit { EditableUntilMsecs = null, EditTweetIds = null };
 
         model.Validate();
     }
@@ -6652,7 +6634,6 @@ public class SearchTweetNoteTweetTest : TestBase
         {
             Text = "text",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Entities = null,
             IsExpandable = null,
@@ -6676,7 +6657,6 @@ public class SearchTweetNoteTweetTest : TestBase
         {
             Text = "text",
 
-            // Null should be interpreted as omitted for these properties
             ID = null,
             Entities = null,
             IsExpandable = null,
@@ -7005,7 +6985,6 @@ public class SearchTweetPlaceTest : TestBase
     {
         var model = new SearchTweetPlace
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BoundingBox = null,
             Country = null,
@@ -7039,7 +7018,6 @@ public class SearchTweetPlaceTest : TestBase
     {
         var model = new SearchTweetPlace
         {
-            // Null should be interpreted as omitted for these properties
             ID = null,
             BoundingBox = null,
             Country = null,
@@ -7202,7 +7180,6 @@ public class SearchTweetPreviousCountsTest : TestBase
     {
         var model = new SearchTweetPreviousCounts
         {
-            // Null should be interpreted as omitted for these properties
             BookmarkCount = null,
             LikeCount = null,
             QuoteCount = null,
@@ -7227,7 +7204,6 @@ public class SearchTweetPreviousCountsTest : TestBase
     {
         var model = new SearchTweetPreviousCounts
         {
-            // Null should be interpreted as omitted for these properties
             BookmarkCount = null,
             LikeCount = null,
             QuoteCount = null,

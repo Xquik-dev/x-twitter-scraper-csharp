@@ -622,7 +622,6 @@ public class ContentTypeTest : TestBase
     [InlineData(ContentType.VideoWebm)]
     public void Validation_Works(ContentType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ContentType> value = rawValue;
         value.Validate();
     }
@@ -649,7 +648,6 @@ public class ContentTypeTest : TestBase
     [InlineData(ContentType.VideoWebm)]
     public void SerializationRoundtrip_Works(ContentType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ContentType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -685,7 +683,6 @@ public class KindTest : TestBase
     [InlineData(Kind.Video)]
     public void Validation_Works(Kind rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Kind> value = rawValue;
         value.Validate();
     }
@@ -707,7 +704,6 @@ public class KindTest : TestBase
     [InlineData(Kind.Video)]
     public void SerializationRoundtrip_Works(Kind rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Kind> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -744,7 +740,6 @@ public class MessageAttachmentStatusTest : TestBase
     [InlineData(MessageAttachmentStatus.Failed)]
     public void Validation_Works(MessageAttachmentStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, MessageAttachmentStatus> value = rawValue;
         value.Validate();
     }
@@ -767,7 +762,6 @@ public class MessageAttachmentStatusTest : TestBase
     [InlineData(MessageAttachmentStatus.Failed)]
     public void SerializationRoundtrip_Works(MessageAttachmentStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, MessageAttachmentStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -804,7 +798,6 @@ public class SenderTest : TestBase
     [InlineData(Sender.System)]
     public void Validation_Works(Sender rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Sender> value = rawValue;
         value.Validate();
     }
@@ -827,7 +820,6 @@ public class SenderTest : TestBase
     [InlineData(Sender.System)]
     public void SerializationRoundtrip_Works(Sender rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Sender> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -865,7 +857,6 @@ public class TicketRetrieveResponseStatusTest : TestBase
     [InlineData(TicketRetrieveResponseStatus.Closed)]
     public void Validation_Works(TicketRetrieveResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TicketRetrieveResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -889,7 +880,6 @@ public class TicketRetrieveResponseStatusTest : TestBase
     [InlineData(TicketRetrieveResponseStatus.Closed)]
     public void SerializationRoundtrip_Works(TicketRetrieveResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TicketRetrieveResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

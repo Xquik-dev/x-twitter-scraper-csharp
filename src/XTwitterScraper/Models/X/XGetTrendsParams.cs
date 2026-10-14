@@ -16,8 +16,7 @@ namespace XTwitterScraper.Models.X;
 /// Get trending hashtags and topics from X by region
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
-/// breaking changes in non-major versions. We may add new methods in the future that
-/// cause existing derived classes to break.</para>
+/// breaking changes in non-major versions.</para>
 /// </summary>
 public record class XGetTrendsParams : ParamsBase
 {

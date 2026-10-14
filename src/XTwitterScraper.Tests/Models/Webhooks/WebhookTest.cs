@@ -173,7 +173,6 @@ public class DeliveryStatusTest : TestBase
     [InlineData(DeliveryStatus.NeedsAttention)]
     public void Validation_Works(DeliveryStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, DeliveryStatus> value = rawValue;
         value.Validate();
     }
@@ -196,7 +195,6 @@ public class DeliveryStatusTest : TestBase
     [InlineData(DeliveryStatus.NeedsAttention)]
     public void SerializationRoundtrip_Works(DeliveryStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, DeliveryStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

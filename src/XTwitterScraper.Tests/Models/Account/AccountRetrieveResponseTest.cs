@@ -282,7 +282,6 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsUsed = 3,
             Plan = Plan.Active,
 
-            // Null should be interpreted as omitted for these properties
             CreditInfo = null,
             XUsername = null,
         };
@@ -312,7 +311,6 @@ public class AccountRetrieveResponseTest : TestBase
             MonitorsUsed = 3,
             Plan = Plan.Active,
 
-            // Null should be interpreted as omitted for these properties
             CreditInfo = null,
             XUsername = null,
         };
@@ -494,7 +492,6 @@ public class PlanTest : TestBase
     [InlineData(Plan.Inactive)]
     public void Validation_Works(Plan rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Plan> value = rawValue;
         value.Validate();
     }
@@ -516,7 +513,6 @@ public class PlanTest : TestBase
     [InlineData(Plan.Inactive)]
     public void SerializationRoundtrip_Works(Plan rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Plan> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

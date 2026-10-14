@@ -128,7 +128,6 @@ public class ErrorTest : TestBase
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
 
-            // Null should be interpreted as omitted for these properties
             Message = null,
             Reason = null,
             RetryAfter = null,
@@ -152,7 +151,6 @@ public class ErrorTest : TestBase
         {
             ErrorValue = LegacyErrorCode.InvalidInput,
 
-            // Null should be interpreted as omitted for these properties
             Message = null,
             Reason = null,
             RetryAfter = null,
@@ -337,7 +335,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XWriteFailed)]
     public void Validation_Works(LegacyErrorCode rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LegacyErrorCode> value = rawValue;
         value.Validate();
     }
@@ -456,7 +453,6 @@ public class LegacyErrorCodeTest : TestBase
     [InlineData(LegacyErrorCode.XWriteFailed)]
     public void SerializationRoundtrip_Works(LegacyErrorCode rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, LegacyErrorCode> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -684,7 +680,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XWriteFailed)]
     public void Validation_Works(Code rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Code> value = rawValue;
         value.Validate();
     }
@@ -803,7 +798,6 @@ public class CodeTest : TestBase
     [InlineData(Code.XWriteFailed)]
     public void SerializationRoundtrip_Works(Code rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Code> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -844,7 +838,6 @@ public class TypeTest : TestBase
     [InlineData(Type.RateLimitError)]
     public void Validation_Works(Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Type> value = rawValue;
         value.Validate();
     }
@@ -871,7 +864,6 @@ public class TypeTest : TestBase
     [InlineData(Type.RateLimitError)]
     public void SerializationRoundtrip_Works(Type rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Type> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

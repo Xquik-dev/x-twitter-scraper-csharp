@@ -62,7 +62,6 @@ public class FormatTest : TestBase
     [InlineData(Format.Xlsx)]
     public void Validation_Works(Format rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Format> value = rawValue;
         value.Validate();
     }
@@ -89,7 +88,6 @@ public class FormatTest : TestBase
     [InlineData(Format.Xlsx)]
     public void SerializationRoundtrip_Works(Format rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Format> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

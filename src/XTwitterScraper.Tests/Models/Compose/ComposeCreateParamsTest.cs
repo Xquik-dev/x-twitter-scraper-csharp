@@ -271,7 +271,6 @@ public class ComposePrepareRequestTest : TestBase
         {
             Topic = "PostgreSQL query planning",
 
-            // Null should be interpreted as omitted for these properties
             Goal = null,
             StyleUsername = null,
         };
@@ -289,7 +288,6 @@ public class ComposePrepareRequestTest : TestBase
         {
             Topic = "PostgreSQL query planning",
 
-            // Null should be interpreted as omitted for these properties
             Goal = null,
             StyleUsername = null,
         };
@@ -322,7 +320,6 @@ public class GoalTest : TestBase
     [InlineData(Goal.Conversation)]
     public void Validation_Works(Goal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Goal> value = rawValue;
         value.Validate();
     }
@@ -346,7 +343,6 @@ public class GoalTest : TestBase
     [InlineData(Goal.Conversation)]
     public void SerializationRoundtrip_Works(Goal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, Goal> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -524,7 +520,6 @@ public class ComposeRefineRequestTest : TestBase
             Tone = "professional",
             Topic = "x",
 
-            // Null should be interpreted as omitted for these properties
             AdditionalContext = null,
             CallToAction = null,
             MediaType = null,
@@ -547,7 +542,6 @@ public class ComposeRefineRequestTest : TestBase
             Tone = "professional",
             Topic = "x",
 
-            // Null should be interpreted as omitted for these properties
             AdditionalContext = null,
             CallToAction = null,
             MediaType = null,
@@ -584,7 +578,6 @@ public class ComposeRefineRequestGoalTest : TestBase
     [InlineData(ComposeRefineRequestGoal.Conversation)]
     public void Validation_Works(ComposeRefineRequestGoal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ComposeRefineRequestGoal> value = rawValue;
         value.Validate();
     }
@@ -608,7 +601,6 @@ public class ComposeRefineRequestGoalTest : TestBase
     [InlineData(ComposeRefineRequestGoal.Conversation)]
     public void SerializationRoundtrip_Works(ComposeRefineRequestGoal rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, ComposeRefineRequestGoal> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -645,7 +637,6 @@ public class MediaTypeTest : TestBase
     [InlineData(MediaType.None)]
     public void Validation_Works(MediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, MediaType> value = rawValue;
         value.Validate();
     }
@@ -668,7 +659,6 @@ public class MediaTypeTest : TestBase
     [InlineData(MediaType.None)]
     public void SerializationRoundtrip_Works(MediaType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, MediaType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -806,7 +796,6 @@ public class ComposeScoreRequestTest : TestBase
         {
             Draft = "x",
 
-            // Null should be interpreted as omitted for these properties
             HasLink = null,
             HasMedia = null,
         };
@@ -824,7 +813,6 @@ public class ComposeScoreRequestTest : TestBase
         {
             Draft = "x",
 
-            // Null should be interpreted as omitted for these properties
             HasLink = null,
             HasMedia = null,
         };

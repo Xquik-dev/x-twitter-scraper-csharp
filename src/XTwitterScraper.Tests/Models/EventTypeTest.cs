@@ -35,7 +35,6 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.ProfileUnavailableChanged)]
     public void Validation_Works(EventType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, EventType> value = rawValue;
         value.Validate();
     }
@@ -76,7 +75,6 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.ProfileUnavailableChanged)]
     public void SerializationRoundtrip_Works(EventType rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, EventType> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

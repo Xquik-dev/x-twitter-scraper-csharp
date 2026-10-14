@@ -294,7 +294,6 @@ public class TicketStatusTest : TestBase
     [InlineData(TicketStatus.Closed)]
     public void Validation_Works(TicketStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TicketStatus> value = rawValue;
         value.Validate();
     }
@@ -318,7 +317,6 @@ public class TicketStatusTest : TestBase
     [InlineData(TicketStatus.Closed)]
     public void SerializationRoundtrip_Works(TicketStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, TicketStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

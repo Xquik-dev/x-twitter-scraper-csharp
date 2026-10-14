@@ -38,10 +38,7 @@ namespace XTwitterScraper.Core;
 /// </summary>
 public abstract record class ModelBase
 {
-    protected ModelBase(ModelBase modelBase)
-    {
-        // Nothing to copy. Just so that subclasses can define copy constructors.
-    }
+    protected ModelBase(ModelBase modelBase) { }
 
     internal static readonly JsonSerializerOptions SerializerOptions = new()
     {
@@ -285,8 +282,6 @@ public abstract record class ModelBase
 
     /// <summary>
     /// Validates that all required fields are set and that each field's value is of the expected type.
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
     ///
     /// <exception cref="XTwitterScraperInvalidDataException">
     /// Thrown when the instance does not pass validation.

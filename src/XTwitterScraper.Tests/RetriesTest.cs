@@ -25,10 +25,7 @@ public class RetriesTest : TestBase
         internal override void AddHeadersToRequest(
             HttpRequestMessage _request,
             ClientOptions _options
-        )
-        {
-            // do nothing
-        }
+        ) { }
 
         public override Uri Url(ClientOptions _options)
         {
@@ -57,10 +54,7 @@ public class RetriesTest : TestBase
         internal override void AddHeadersToRequest(
             HttpRequestMessage _request,
             ClientOptions _options
-        )
-        {
-            // do nothing
-        }
+        ) { }
 
         internal override HttpContent? BodyContent()
         {
@@ -137,7 +131,6 @@ public class RetriesTest : TestBase
             StatusCode = HttpStatusCode.ServiceUnavailable,
             Content = new StringContent("foo"),
         };
-        // decimals are technically out of spec, but we want to ensure we can parse them regardless
         ResponseWithRetryDelay.Headers.TryAddWithoutValidation("Retry-After", "1.234");
 
         var handlerMock = new Mock<HttpMessageHandler>();

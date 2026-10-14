@@ -46,13 +46,10 @@ public abstract record class JsonModel : ModelBase
 }
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
-///
 /// <para>NOTE: This interface is in the style of a factory instance instead of using
 /// abstract static methods because .NET Standard 2.0 doesn't support abstract static methods.</para>
 /// </summary>
+/// <seealso href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.runtimefeature.virtualstaticsininterfaces"/>
 interface IFromRawJson<T>
 {
     /// <summary>
@@ -60,10 +57,6 @@ interface IFromRawJson<T>
     ///
     /// <para>Required field and type mismatches are not checked. In these cases accessing
     /// the relevant properties of the constructed instance may throw.</para>
-    ///
-    /// <para>This method is useful for constructing an instance from already serialized
-    /// data or for sending arbitrary data to the API (e.g. for undocumented or not
-    /// yet supported properties or values).</para>
     /// </summary>
     T FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData);
 }

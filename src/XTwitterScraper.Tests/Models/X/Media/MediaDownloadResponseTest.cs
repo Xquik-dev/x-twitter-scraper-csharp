@@ -133,7 +133,6 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            // Null should be interpreted as omitted for these properties
             CacheHit = null,
             GalleryUrl = null,
             TotalMedia = null,
@@ -158,7 +157,6 @@ public class MediaDownloadResponseTest : TestBase
     {
         var model = new MediaDownloadResponse
         {
-            // Null should be interpreted as omitted for these properties
             CacheHit = null,
             GalleryUrl = null,
             TotalMedia = null,

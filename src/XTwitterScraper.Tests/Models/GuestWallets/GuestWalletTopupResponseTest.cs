@@ -266,7 +266,6 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
 
-            // Null should be interpreted as omitted for these properties
             ApiKey = null,
             Authorization = null,
             CredentialNotice = null,
@@ -293,7 +292,6 @@ public class GuestWalletTopupResponseTest : TestBase
             Status = GuestWalletTopupResponseStatus.Pending,
             WalletID = "gw_example",
 
-            // Null should be interpreted as omitted for these properties
             ApiKey = null,
             Authorization = null,
             CredentialNotice = null,
@@ -342,7 +340,6 @@ public class GuestWalletTopupResponseStatusTest : TestBase
     [InlineData(GuestWalletTopupResponseStatus.Disputed)]
     public void Validation_Works(GuestWalletTopupResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseStatus> value = rawValue;
         value.Validate();
     }
@@ -369,7 +366,6 @@ public class GuestWalletTopupResponseStatusTest : TestBase
     [InlineData(GuestWalletTopupResponseStatus.Disputed)]
     public void SerializationRoundtrip_Works(GuestWalletTopupResponseStatus rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseStatus> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -492,7 +488,6 @@ public class GuestWalletTopupResponseAuthorizationHeaderTest : TestBase
     [InlineData(GuestWalletTopupResponseAuthorizationHeader.Authorization)]
     public void Validation_Works(GuestWalletTopupResponseAuthorizationHeader rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> value = rawValue;
         value.Validate();
     }
@@ -512,7 +507,6 @@ public class GuestWalletTopupResponseAuthorizationHeaderTest : TestBase
     [InlineData(GuestWalletTopupResponseAuthorizationHeader.Authorization)]
     public void SerializationRoundtrip_Works(GuestWalletTopupResponseAuthorizationHeader rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseAuthorizationHeader> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -544,7 +538,6 @@ public class GuestWalletTopupResponseAuthorizationSchemeTest : TestBase
     [InlineData(GuestWalletTopupResponseAuthorizationScheme.Bearer)]
     public void Validation_Works(GuestWalletTopupResponseAuthorizationScheme rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> value = rawValue;
         value.Validate();
     }
@@ -564,7 +557,6 @@ public class GuestWalletTopupResponseAuthorizationSchemeTest : TestBase
     [InlineData(GuestWalletTopupResponseAuthorizationScheme.Bearer)]
     public void SerializationRoundtrip_Works(GuestWalletTopupResponseAuthorizationScheme rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, GuestWalletTopupResponseAuthorizationScheme> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -598,7 +590,6 @@ public class CredentialNoticeTest : TestBase
     )]
     public void Validation_Works(CredentialNotice rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CredentialNotice> value = rawValue;
         value.Validate();
     }
@@ -621,7 +612,6 @@ public class CredentialNoticeTest : TestBase
     )]
     public void SerializationRoundtrip_Works(CredentialNotice rawValue)
     {
-        // force implicit conversion because Theory can't do that for us
         ApiEnum<string, CredentialNotice> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
