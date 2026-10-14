@@ -22,7 +22,7 @@ Use the SDK for asynchronous, typed requests from .NET services.
 Reuse the configurable `HttpClient` for shared transport settings.
 Call REST directly when a NuGet dependency does not fit.
 
-Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https://docs.xquik.com/api-reference/overview).
+Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or the [API guide](https://docs.xquik.com/api-reference/overview).
 
 ## Common Twitter & X tasks
 
@@ -40,7 +40,7 @@ Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or [API guide](https
 
 ## Installation
 
-Requires .NET Standard 2.0 or later.
+The SDK requires .NET Standard 2.0 or later.
 
 Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
 
@@ -106,7 +106,7 @@ XTwitterScraperClient client = new()
 };
 ```
 
-Environment variables and explicit properties can be combined.
+You can combine environment variables and explicit properties.
 
 | Property      | Environment variable             | Required | Default value                |
 | ------------- | -------------------------------- | -------- | ---------------------------- |
@@ -367,7 +367,7 @@ if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 
 ### Response validation
 
-Unexpected response values throw only when you access their properties.
+The SDK throws on unexpected response values only when you access their properties.
 Call `Validate` to check the complete response immediately.
 
 ```csharp
