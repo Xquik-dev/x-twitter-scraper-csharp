@@ -3,7 +3,7 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
 [![Convex Component](https://www.convex.dev/components/badge/convex-xquik)](https://www.convex.dev/components/convex-xquik)
 
-Use this X API & Twitter API SDK to work with X from C# & .NET.
+Use the Xquik X API & Twitter API SDK to work with X from C# & .NET.
 It works as a Twitter scraper & tweet scraper for search, profiles & followers.
 Scrape Twitter timelines, lists, communities & trends into typed C# models.
 Manage media, webhooks, monitors & X automation with async, typed methods.
@@ -14,6 +14,36 @@ Xquik charges only for delivered, unique, filter-matching results and never pads
 
 > Xquik is an independent third-party service. Not affiliated with X Corp.
 > "Twitter" and "X" are trademarks of X Corp.
+
+## Install the Twitter API C# & .NET SDK
+
+The SDK requires .NET Standard 2.0 or later.
+
+Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
+
+```bash
+dotnet add package XTwitterScraper --version 0.6.3
+```
+
+## Scrape tweets with the C# Twitter API
+
+```csharp
+using System;
+using XTwitterScraper;
+using XTwitterScraper.Models.X.Tweets;
+
+XTwitterScraperClient client = new();
+
+TweetSearchParams parameters = new()
+{
+    Q = "from:elonmusk",
+    Limit = 10,
+};
+
+var paginatedTweets = await client.X.Tweets.Search(parameters);
+
+Console.WriteLine(paginatedTweets);
+```
 
 <!-- trust:start -->
 
@@ -71,16 +101,6 @@ Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or the [API guide](h
 | Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
 | Post or reply | `POST /x/tweets` | Confirm the account and payload. |
 
-## Installation
-
-The SDK requires .NET Standard 2.0 or later.
-
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
-
-```bash
-dotnet add package XTwitterScraper --version 0.6.3
-```
-
 ## Verify a release
 
 Maintainers publish each release from a local machine with `bin/release-local`.
@@ -95,26 +115,6 @@ dotnet nuget verify --all xtwitterscraper.VERSION.nupkg
 ```
 
 Releases up to v0.6.2 also carry GitHub build attestations.
-
-## Usage
-
-```csharp
-using System;
-using XTwitterScraper;
-using XTwitterScraper.Models.X.Tweets;
-
-XTwitterScraperClient client = new();
-
-TweetSearchParams parameters = new()
-{
-    Q = "from:elonmusk",
-    Limit = 10,
-};
-
-var paginatedTweets = await client.X.Tweets.Search(parameters);
-
-Console.WriteLine(paginatedTweets);
-```
 
 ## Client configuration
 
@@ -436,12 +436,27 @@ Read [Contributing](CONTRIBUTING.md), [Governance](GOVERNANCE.md), and [Security
 
 See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
 
+## Questions
+
+### Do I need an X developer account?
+
+No. Public reads need only an Xquik API key. Private reads & X account actions
+need a connected X account.
+
+### Is this the official X API?
+
+No. Xquik is an independent third-party service with its own REST API. This SDK
+calls that API, not the official X API.
+
 ## More Xquik tools
 
 - [X (Twitter) scraper API & Twitter MCP server](https://github.com/Xquik-dev/x-twitter-scraper) with REST, MCP & Skill setup.
 - Twitter API SDKs for [TypeScript](https://github.com/Xquik-dev/x-twitter-scraper-typescript), [Python](https://github.com/Xquik-dev/x-twitter-scraper-python), [Go](https://github.com/Xquik-dev/x-twitter-scraper-go), [Ruby](https://github.com/Xquik-dev/x-twitter-scraper-ruby), [Java](https://github.com/Xquik-dev/x-twitter-scraper-java), [Kotlin](https://github.com/Xquik-dev/x-twitter-scraper-kotlin) & [PHP](https://github.com/Xquik-dev/x-twitter-scraper-php).
 - [Twitter CLI & X CLI](https://github.com/Xquik-dev/x-twitter-scraper-cli) for terminal workflows.
 - [Twitter advanced search operators](https://github.com/Xquik-dev/x-twitter-advanced-search) with tested examples.
+- Twitter agent plugins for [OpenClaw](https://github.com/Xquik-dev/tweetclaw) & [Hermes Agent](https://github.com/Xquik-dev/hermes-tweet), and the [Twitter API documentation source](https://github.com/Xquik-dev/xquik-docs).
+- Twitter integrations for [n8n](https://github.com/Xquik-dev/n8n-nodes-xquik), [Prefect](https://github.com/Xquik-dev/prefect-xquik), [Haystack](https://github.com/Xquik-dev/xquik-haystack), [Paperclip](https://github.com/Xquik-dev/paperclip-plugin-xquik), [Terraform](https://github.com/Xquik-dev/terraform-provider-x-twitter-scraper), [Convex](https://github.com/Xquik-dev/xquik-convex), [Supabase](https://github.com/Xquik-dev/xquik-supabase) & [Strapi](https://github.com/Xquik-dev/strapi-plugin-xquik).
+- Twitter MCP for [AI agents](https://github.com/Xquik-dev/xquik-mcp), [VS Code](https://github.com/Xquik-dev/xquik-vscode) & [Raycast](https://github.com/Xquik-dev/xquik-raycast).
 - [Xquik X API & Twitter scraper](https://xquik.com) and the [Twitter API documentation](https://docs.xquik.com/api-reference/overview).
 
 ## Semantic versioning
