@@ -982,6 +982,7 @@ public enum ExtractionRunParamsToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserAffiliates,
     UserLikes,
     UserMedia,
     VerifiedFollowerExplorer,
@@ -1018,6 +1019,7 @@ sealed class ExtractionRunParamsToolTypeConverter : JsonConverter<ExtractionRunP
             "space_explorer" => ExtractionRunParamsToolType.SpaceExplorer,
             "thread_extractor" => ExtractionRunParamsToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionRunParamsToolType.TweetSearchExtractor,
+            "user_affiliates" => ExtractionRunParamsToolType.UserAffiliates,
             "user_likes" => ExtractionRunParamsToolType.UserLikes,
             "user_media" => ExtractionRunParamsToolType.UserMedia,
             "verified_follower_explorer" => ExtractionRunParamsToolType.VerifiedFollowerExplorer,
@@ -1056,6 +1058,7 @@ sealed class ExtractionRunParamsToolTypeConverter : JsonConverter<ExtractionRunP
                 ExtractionRunParamsToolType.SpaceExplorer => "space_explorer",
                 ExtractionRunParamsToolType.ThreadExtractor => "thread_extractor",
                 ExtractionRunParamsToolType.TweetSearchExtractor => "tweet_search_extractor",
+                ExtractionRunParamsToolType.UserAffiliates => "user_affiliates",
                 ExtractionRunParamsToolType.UserLikes => "user_likes",
                 ExtractionRunParamsToolType.UserMedia => "user_media",
                 ExtractionRunParamsToolType.VerifiedFollowerExplorer =>
