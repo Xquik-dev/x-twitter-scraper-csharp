@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: If you use Xquik C# & .NET SDK for the Twitter API & X data, cite it using this metadata.
+title: Xquik C# & .NET SDK for the Twitter API & X data
+type: software
+abstract: >-
+  Twitter API C# & .NET SDK & Twitter scraper for Xquik. Scrape tweets, read
+  profiles, export followers & manage webhooks from C# with typed requests &
+  responses.
+authors:
+  - name: Xquik
+    website: https://xquik.com
+url: https://github.com/Xquik-dev/x-twitter-scraper-csharp
+repository-code: https://github.com/Xquik-dev/x-twitter-scraper-csharp
+license: Apache-2.0
+keywords:
+  - Xquik
+  - "Twitter API C#"
+  - Twitter API .NET
+  - "Twitter C#"
+  - scrape tweets
+  - X API
+  - ".NET SDK"
+  - webhooks

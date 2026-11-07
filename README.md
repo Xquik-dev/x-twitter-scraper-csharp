@@ -1,102 +1,36 @@
 # X API & Twitter API C# SDK by Xquik
 
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
-[![Convex Component](https://www.convex.dev/components/badge/convex-xquik)](https://www.convex.dev/components/convex-xquik)
-
-Use this X API & Twitter API SDK to work with X from C# & .NET.
-It works as a Twitter scraper & tweet scraper for search, profiles & followers.
-Scrape Twitter timelines, lists, communities & trends into typed C# models.
-Manage media, webhooks, monitors & X automation with async, typed methods.
-It provides a Twitter API alternative through documented Xquik REST routes.
+Use this Twitter API C# SDK by Xquik to search tweets from .NET apps.
+Async methods return typed models. Public reads need no X developer account.
 
 Xquik is the world's fastest and cheapest X Twitter scraper service with the most complete X data.
+Most other Apify Actors charge before filtering or deduplication.
 Xquik charges only for delivered, unique, filter-matching results and never pads rows.
+Xquik is independent and not affiliated with X Corp.
 
-> Xquik is an independent third-party service. Not affiliated with X Corp.
-> "Twitter" and "X" are trademarks of X Corp.
+<!-- trust:win:start -->
+The Xquik REST API read 45 tweets per second at $0.15 per 1,000 on 2026-10-15. The fastest of 4 rival Actors read 12.5 per second. The cheapest cost $0.173 per 1,000. [Compare each run](https://xquik.com/benchmarks#benchmark-x-tweet-scraper).
+<!-- trust:win:end -->
 
-<!-- trust:start -->
-
-## Trust & usage
-
-[![Twitter API package downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fdownloads.json)](https://xquik.com/trust#downloads)
-[![Twitter scraper users on Apify](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fapify-users.json)](https://apify.com/xquik)
-[![Twitter scraper runs on Apify](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fapify-runs.json)](https://apify.com/xquik)
-[![Tweet scraper rating on Apify](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fapify-rating.json)](https://apify.com/xquik/x-tweet-scraper/reviews)
-[![Xquik Twitter API accounts](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Faccounts.json)](https://xquik.com/trust#accounts)
-[![Twitter Skill installs](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fskill-installs.json)](https://xquik.com/trust#skill-installs)
-[![Xquik verified revenue on TrustMRR](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Frevenue.json)](https://trustmrr.com/startup/xquik)
-[![Twitter API p99 server read time](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Frest-p99.json)](https://xquik.com/trust#speed)
-[![Xquik GitHub stars](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fgithub-stars.json)](https://github.com/Xquik-dev)
-[![XTwitterScraper downloads on NuGet](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fnuget-xtwitterscraper.json)](https://www.nuget.org/packages/XTwitterScraper)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
-
-- 53,000+ downloads of Xquik's Twitter API packages on npm, PyPI, RubyGems, NuGet, Packagist & Terraform ([source](https://xquik.com/trust#downloads)) <!-- trust:downloads 53547 -->
-- 9,500+ users of Xquik's Twitter scraper Actors on Apify ([source](https://apify.com/xquik)) <!-- trust:apify-users 9595 -->
-- 6,700,000+ runs of Xquik's Twitter scraper Actors on Apify ([source](https://apify.com/xquik)) <!-- trust:apify-runs 6765249 -->
-- 4.66 of 5 for the X Tweet Scraper from 16 Apify reviews ([source](https://apify.com/xquik/x-tweet-scraper/reviews)) <!-- trust:apify-rating 4.66 16 -->
-- 4,000+ accounts on xquik.com ([source](https://xquik.com/trust#accounts)) <!-- trust:accounts 4073 -->
-- 1,600+ installs of Xquik's Twitter Skills on skills.sh ([source](https://xquik.com/trust#skill-installs)) <!-- trust:skill-installs 1617 -->
-- $39,000+ in revenue verified by TrustMRR ([source](https://trustmrr.com/startup/xquik)) <!-- trust:revenue 39784 -->
-- 13.2 s p99 REST API server read time over 7 days, failed reads included ([source](https://xquik.com/trust#speed)) <!-- trust:rest-p99 13194 -->
-- 380+ GitHub stars across Xquik's repos ([source](https://github.com/Xquik-dev)) <!-- trust:github-stars 383 -->
-- 1,900+ downloads of XTwitterScraper on NuGet ([source](https://www.nuget.org/packages/XTwitterScraper)) <!-- trust:nuget-xtwitterscraper 1978 -->
-- This repo meets the OpenSSF Best Practices passing criteria ([source](https://www.bestpractices.dev/projects/13733)) <!-- trust:openssf-x-twitter-scraper-csharp 1 -->
-
-Checked on 2026-10-25. See each number with its date & source on [xquik.com/trust](https://xquik.com/trust) or as [JSON](https://xquik.com/trust.json).
-
-<!-- trust:end -->
-
-## C# client or REST
-
-The typed NuGet package calls the documented Xquik REST API.
-It does not call or emulate the official X API.
-Use the SDK for asynchronous, typed requests from .NET services.
-Reuse the configurable `HttpClient` for shared transport settings.
-Call REST directly when a NuGet dependency does not fit.
-
-Read the [C# SDK guide](https://docs.xquik.com/sdks/csharp) or the [API guide](https://docs.xquik.com/api-reference/overview).
-
-## Common Twitter & X tasks
-
-| Task | REST route | Workflow note |
-| --- | --- | --- |
-| Search tweets without the X API | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
-| Read an X profile timeline | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
-| Scrape Twitter followers | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
-| Scrape following accounts | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
-| Read a home timeline | `GET /x/timeline` | Approve this private read. |
-| Read lists or communities | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
-| Export large X datasets | `POST /extractions` | Poll status, then download results. |
-| Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
-| Post or reply | `POST /x/tweets` | Confirm the account and payload. |
-
-## Installation
+## Install the Twitter API C# & .NET SDK
 
 The SDK requires .NET Standard 2.0 or later.
 
-Install the package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
+Install the latest package from [NuGet](https://www.nuget.org/packages/XTwitterScraper).
 
 ```bash
-dotnet add package XTwitterScraper --version 0.6.3
+dotnet add package XTwitterScraper
 ```
 
-## Verify a release
+## Scrape tweets with the C# Twitter API
 
-Maintainers publish each release from a local machine with `bin/release-local`.
-The script runs every repository check before it uploads the package.
-`bin/release-local --dry-run` runs the same checks and prints the package listing without publishing.
-
-[NuGet.org adds a repository signature][nuget-signatures] to every package.
-Check that signature on a package downloaded from NuGet.org.
+Create an API key in the [Xquik dashboard](https://dashboard.xquik.com) and export it.
 
 ```bash
-dotnet nuget verify --all xtwitterscraper.VERSION.nupkg
+export X_TWITTER_SCRAPER_API_KEY="your-api-key"
 ```
 
-Releases up to v0.6.2 also carry GitHub build attestations.
-
-## Usage
+This program prints 10 recent posts from 1 account.
 
 ```csharp
 using System;
@@ -116,17 +50,50 @@ var paginatedTweets = await client.X.Tweets.Search(parameters);
 Console.WriteLine(paginatedTweets);
 ```
 
-## Client configuration
+Next, read the [C# SDK guide](https://docs.xquik.com/sdks/csharp-x-api-sdk) or the [REST API reference](https://docs.xquik.com/api-reference/overview).
 
-Configure the client using environment variables.
+<!-- trust:start -->
 
-```csharp
-using XTwitterScraper;
+## Benchmarks & usage
 
-// Reads API key, bearer token, and base URL environment variables.
-XTwitterScraperClient client = new();
+[![XTwitterScraper downloads on NuGet](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Fnuget-xtwitterscraper.json)](https://www.nuget.org/packages/XTwitterScraper)
+[![Twitter API p99 server read time](https://img.shields.io/endpoint?url=https%3A%2F%2Fxquik.com%2Fbadges%2Frest-p99.json)](https://xquik.com/benchmarks#speed)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13733/badge)](https://www.bestpractices.dev/projects/13733)
+
+- 2,000+ downloads of XTwitterScraper on NuGet ([source](https://www.nuget.org/packages/XTwitterScraper)) <!-- trust:nuget-xtwitterscraper 2046 -->
+- 6.4 s p99 REST API server read time over 7 days, failed reads included ([source](https://xquik.com/benchmarks#speed)) <!-- trust:rest-p99 6317 -->
+- This repo meets the OpenSSF Best Practices passing criteria ([source](https://www.bestpractices.dev/projects/13733)) <!-- trust:openssf-x-twitter-scraper-csharp 1 -->
+
+Checked on 2026-11-06. See each number with its date & source on [xquik.com/benchmarks](https://xquik.com/benchmarks) or as [JSON](https://xquik.com/trust.json).
+
+<!-- trust:end -->
+
+## Common Twitter & X tasks
+
+| Task | REST route | Workflow note |
+| --- | --- | --- |
+| Search tweets without the X API | `GET /x/tweets/search` | Use keywords or advanced Twitter search operators. |
+| Read an X profile timeline | `GET /x/users/{id}/tweets` | Paginate bounded timeline results. |
+| Scrape Twitter followers | `GET /x/users/{id}/followers` | Use an extraction for complete datasets. |
+| Scrape following accounts | `GET /x/users/{id}/following` | Use an extraction for complete datasets. |
+| Read a home timeline | `GET /x/timeline` | Approve this private read. |
+| Read lists or communities | `/x/lists/*`, `/x/communities/*` | Use the typed nested services. |
+| Export large X datasets | `POST /extractions` | Poll status, then download results. |
+| Monitor an account | `POST /monitors` | Deliver events through HMAC webhooks. |
+| Post or reply | `POST /x/tweets` | Confirm the account and payload. |
+
+## Verify a release
+
+[NuGet.org adds a repository signature](https://learn.microsoft.com/en-us/nuget/api/repository-signatures-resource) to every package.
+Check that signature on a package downloaded from NuGet.org.
+
+```bash
+dotnet nuget verify --all xtwitterscraper.VERSION.nupkg
 ```
 
+## Client configuration
+
+`new()` reads the environment variables in the table below.
 Set credentials directly when environment variables do not fit.
 
 ```csharp
@@ -356,7 +323,7 @@ TweetSearchParams parameters = new
 )
 {
     // Documented values override matching custom parameters.
-    Limit = 200
+    Limit = 10
 };
 ```
 
@@ -430,29 +397,41 @@ var paginatedTweets = await client
 Console.WriteLine(paginatedTweets);
 ```
 
-## Project policies
+## Questions
 
-Read [Contributing](CONTRIBUTING.md), [Governance](GOVERNANCE.md), and [Security](SECURITY.md).
+### Do I need an X developer account?
 
-See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
+No. Public reads need only an Xquik API key. Private reads & X account actions
+need a connected X account.
+
+### Is this the official X API?
+
+No. Xquik runs its own REST API. This SDK calls that API, not the official X API.
 
 ## More Xquik tools
 
 - [X (Twitter) scraper API & Twitter MCP server](https://github.com/Xquik-dev/x-twitter-scraper) with REST, MCP & Skill setup.
-- Twitter API SDKs for [TypeScript](https://github.com/Xquik-dev/x-twitter-scraper-typescript), [Python](https://github.com/Xquik-dev/x-twitter-scraper-python), [Go](https://github.com/Xquik-dev/x-twitter-scraper-go), [Ruby](https://github.com/Xquik-dev/x-twitter-scraper-ruby), [Java](https://github.com/Xquik-dev/x-twitter-scraper-java), [Kotlin](https://github.com/Xquik-dev/x-twitter-scraper-kotlin) & [PHP](https://github.com/Xquik-dev/x-twitter-scraper-php).
+- Twitter API SDKs for [TypeScript](https://github.com/Xquik-dev/x-twitter-scraper-typescript), [Python](https://github.com/Xquik-dev/x-twitter-scraper-python), [Go](https://github.com/Xquik-dev/x-twitter-scraper-go) & [Java](https://github.com/Xquik-dev/x-twitter-scraper-java).
+- Twitter API SDKs for [Ruby](https://github.com/Xquik-dev/x-twitter-scraper-ruby), [Kotlin](https://github.com/Xquik-dev/x-twitter-scraper-kotlin) & [PHP](https://github.com/Xquik-dev/x-twitter-scraper-php).
 - [Twitter CLI & X CLI](https://github.com/Xquik-dev/x-twitter-scraper-cli) for terminal workflows.
 - [Twitter advanced search operators](https://github.com/Xquik-dev/x-twitter-advanced-search) with tested examples.
-- [Xquik X API & Twitter scraper](https://xquik.com) and the [Twitter API documentation](https://docs.xquik.com/api-reference/overview).
+- Twitter agent plugins for [OpenClaw](https://github.com/Xquik-dev/tweetclaw) & [Hermes Agent](https://github.com/Xquik-dev/hermes-tweet).
+- Twitter integrations for [n8n](https://github.com/Xquik-dev/n8n-nodes-xquik), [Prefect](https://github.com/Xquik-dev/prefect-xquik), [Haystack](https://github.com/Xquik-dev/xquik-haystack) & [Paperclip](https://github.com/Xquik-dev/paperclip-plugin-xquik).
+- Twitter integrations for [Terraform](https://github.com/Xquik-dev/terraform-provider-x-twitter-scraper), [Convex](https://github.com/Xquik-dev/xquik-convex), [Supabase](https://github.com/Xquik-dev/xquik-supabase) & [Strapi](https://github.com/Xquik-dev/strapi-plugin-xquik).
+- Twitter MCP for [AI agents](https://github.com/Xquik-dev/xquik-mcp), [VS Code](https://github.com/Xquik-dev/xquik-vscode) & [Raycast](https://github.com/Xquik-dev/xquik-raycast).
+- [Xquik X API & Twitter scraper](https://xquik.com).
+- [Twitter API documentation](https://docs.xquik.com/api-reference/overview) and its [source](https://github.com/Xquik-dev/xquik-docs).
 
 ## Semantic versioning
 
 The package follows [SemVer](https://semver.org/spec/v2.0.0.html).
-Before v1.0, minor releases may change undocumented internals or behavior unlikely to affect most users.
+Before v1.0, minor releases may change undocumented behavior.
+Review the release notes before you upgrade between minor versions.
 
-Review release notes before upgrading between minor versions.
+## Project policies
 
-Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs, or suggestions.
-
-[nuget-signatures]: https://learn.microsoft.com/en-us/nuget/api/repository-signatures-resource
+Read [Contributing](CONTRIBUTING.md), [Governance](GOVERNANCE.md) & [Security](SECURITY.md).
+See [OpenSSF evidence](OPENSSF.md) for verified controls and remaining blockers.
+Open an [issue](https://github.com/Xquik-dev/x-twitter-scraper-csharp/issues) for questions, bugs or suggestions.
 
 Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
