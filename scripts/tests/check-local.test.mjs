@@ -7,6 +7,7 @@ import { test } from "node:test";
 import { createSandbox } from "./support.mjs";
 
 const checkScripts = [
+  "api-fields",
   "bootstrap",
   "lint",
   "test-scripts",
@@ -28,7 +29,7 @@ printf '%s\\n' "$*" >>"$FAKE_LOGS/${name}"
 `;
 
 const passedLine =
-  "Passed restore, lint, shellcheck, script tests, REUSE, build, 12 .NET 8 tests, coverage, audit, reproducible packages and CodeQL.";
+  "Passed API fields, restore, lint, shellcheck, script tests, REUSE, build, 12 .NET 8 tests, coverage, audit, packages and CodeQL.";
 const statuses = "api --method POST repos/Xquik-dev/x-twitter-scraper-csharp/statuses";
 
 function checkLocal(t, { args = [], env = {}, withoutTools = [], dirty = false } = {}) {
@@ -60,6 +61,32 @@ test("a passing run lists the checks that ran and runs REUSE 6.2.0 through uvx",
   assert.deepEqual(result.sandbox.log("uvx"), ["--from reuse==6.2.0 reuse lint"]);
   assert.deepEqual(result.sandbox.log("reuse"), []);
   assert.deepEqual(result.sandbox.log("gh"), []);
+});
+
+test("the API fields check runs right after the required tools and before the restore", (t) => {
+  const { stdout, status } = checkLocal(t, { args: ["--no-status"] });
+
+  assert.equal(status, 0);
+  const headings = stdout.split("\n").filter((line) => line.startsWith("==> "));
+  assert.deepEqual(headings.slice(0, 4), [
+    "==> Commit status",
+    "==> Required tools",
+    "==> API fields",
+    "==> Locked dependency restore",
+  ]);
+});
+
+test("an API fields difference stops the run before any .NET step and names the next step", (t) => {
+  const result = checkLocal(t, { args: ["--no-status"], env: { FAKE_FAILING_SCRIPT: "api-fields" } });
+
+  assert.equal(result.status, 1);
+  assert.equal(
+    result.stderr,
+    "Check failed at API fields. Follow the lines above. CONTRIBUTING.md explains each fix under API fields.\n",
+  );
+  assert.equal(result.stdout.includes("==> API fields\n"), true);
+  assert.equal(result.stdout.includes("==> Locked dependency restore"), false);
+  assert.deepEqual(result.sandbox.log("dotnet"), []);
 });
 
 test("a clean pushed HEAD gets a pending status, then a success status with the same list", (t) => {
