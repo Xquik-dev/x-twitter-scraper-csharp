@@ -84,6 +84,27 @@ public record class AccountReauthParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// An ID you generate to read this reconnect's status, even if the response never reaches you. Leave it out to get one in a pending response.
+    /// </summary>
+    public string? ConnectionAttemptID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("connection_attempt_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("connection_attempt_id", value);
+        }
+    }
+
     public AccountReauthParams() { }
 
 #pragma warning disable CS8618

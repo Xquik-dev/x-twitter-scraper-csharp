@@ -35,7 +35,7 @@ public record class UserRetrieveBatchParams : ParamsBase
     }
 
     /// <summary>
-    /// Comma-separated X usernames, with or without @, or profile links such as x.com/nasa (1-100 values), in place of ids. A name in another case is the same account. A longer URL fails at the edge before Xquik reads it.
+    /// Comma-separated X usernames, with or without @, or profile links such as x.com/nasa, in place of ids. A name in another case is the same account. A longer URL fails at the edge before Xquik reads it.
     /// </summary>
     public string? Usernames
     {

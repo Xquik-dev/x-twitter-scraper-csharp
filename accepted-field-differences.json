@@ -52,6 +52,7 @@
       "POST /api/v1/webhooks response enum eventTypes[]",
       "POST /api/v1/webhooks/{id}/resume response enum webhook.eventTypes[]",
       "POST /api/v1/x/account-connection-challenges/{id}/submit response enum status",
+      "POST /api/v1/x/accounts/{id}/reauth response enum status",
       "POST /api/v1/x/communities response enum action",
       "POST /api/v1/x/communities/{id}/join response enum action",
       "POST /api/v1/x/dm/{userId} response enum action",
@@ -136,6 +137,10 @@
       "POST /api/v1/x/account-connection-challenges/{id}/submit response required health",
       "POST /api/v1/x/account-connection-challenges/{id}/submit response required xUserId",
       "POST /api/v1/x/account-connection-challenges/{id}/submit response required xUsername",
+      "POST /api/v1/x/accounts/{id}/reauth response required createdAt",
+      "POST /api/v1/x/accounts/{id}/reauth response required health",
+      "POST /api/v1/x/accounts/{id}/reauth response required xUserId",
+      "POST /api/v1/x/accounts/{id}/reauth response required xUsername",
       "POST /api/v1/x/media request required url",
       "PUT /api/v1/styles/{id} request required label"
     ]
@@ -494,6 +499,12 @@
       "GET /api/v1/x/places/search response nullable places[].containedWithin[].fullName",
       "GET /api/v1/x/places/search response nullable places[].containedWithin[].placeType",
       "GET /api/v1/x/places/search response nullable places[].containedWithin[].url"
+    ]
+  },
+  {
+    "reason": "The SDK returns these through a type the field check cannot read as typed, such as a raw response or a union. The raw data still returns them.",
+    "differences": [
+      "GET /api/v1/x/account-connection-attempts/{id} response missing accountId"
     ]
   }
 ]

@@ -81,6 +81,98 @@ public sealed record class AccountReauthResponse : JsonModel
         init { this._rawData.Set("xUsername", value); }
     }
 
+    public ApiEnum<string, AccountReauthResponseObject>? Object
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, AccountReauthResponseObject>>(
+                "object"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("object", value);
+        }
+    }
+
+    public long? PollAfterMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("pollAfterMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("pollAfterMs", value);
+        }
+    }
+
+    public System::DateTimeOffset? ExpiresAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiresAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("expiresAt", value);
+        }
+    }
+
+    public string? Message
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("message", value);
+        }
+    }
+
+    public string? Username
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("username");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("username", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -93,6 +185,11 @@ public sealed record class AccountReauthResponse : JsonModel
         }
         _ = this.XUserID;
         _ = this.XUsername;
+        this.Object?.Validate();
+        _ = this.PollAfterMs;
+        _ = this.ExpiresAt;
+        _ = this.Message;
+        _ = this.Username;
     }
 
     public AccountReauthResponse()
@@ -185,6 +282,53 @@ sealed class AccountReauthResponseHealthConverter : JsonConverter<AccountReauthR
                 AccountReauthResponseHealth.Recovering => "recovering",
                 AccountReauthResponseHealth.Suspended => "suspended",
                 AccountReauthResponseHealth.TemporaryIssue => "temporaryIssue",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(AccountReauthResponseObjectConverter))]
+public enum AccountReauthResponseObject
+{
+    XAccountConnectionAttempt,
+    XAccountConnectionChallenge,
+}
+
+sealed class AccountReauthResponseObjectConverter : JsonConverter<AccountReauthResponseObject>
+{
+    public override AccountReauthResponseObject Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "x_account_connection_attempt" => AccountReauthResponseObject.XAccountConnectionAttempt,
+            "x_account_connection_challenge" =>
+                AccountReauthResponseObject.XAccountConnectionChallenge,
+            _ => (AccountReauthResponseObject)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AccountReauthResponseObject value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AccountReauthResponseObject.XAccountConnectionAttempt =>
+                    "x_account_connection_attempt",
+                AccountReauthResponseObject.XAccountConnectionChallenge =>
+                    "x_account_connection_challenge",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

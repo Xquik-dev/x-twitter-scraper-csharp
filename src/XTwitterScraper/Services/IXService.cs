@@ -111,6 +111,8 @@ public interface IXService
 
     X::ICommunityNoteService CommunityNotes { get; }
 
+    X::IAccountConnectionLinkService AccountConnectionLinks { get; }
+
     /// <summary>
     /// Returns the Twitter trends archive of a place, as the lists X showed there over a range of time. Use it for trending on Twitter yesterday, last week or any day since 2026-10-13 02:20 UTC. Xquik stores 1 list per place every 5 minutes and keeps it for 25 months. Pick the place by woeid, country or location name, the range with from &amp; to, and the step with every. from &amp; to take a time or a span back from now, such as 7d, so a schedule can read the last day on every run. Each step returns the first list stored in it, with its own time. Each returned list costs 1 credit, so 24 lists cost 24 credits. A step with no stored list returns none. Empty trend history steps are free. 1 request returns 24 lists, or up to 100 with limit.
     ///
@@ -264,6 +266,8 @@ public interface IXServiceWithRawResponse
     X::IBroadcastServiceWithRawResponse Broadcasts { get; }
 
     X::ICommunityNoteServiceWithRawResponse CommunityNotes { get; }
+
+    X::IAccountConnectionLinkServiceWithRawResponse AccountConnectionLinks { get; }
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /x/trends/history</c>, but is otherwise the

@@ -39,6 +39,7 @@ public sealed class XService : IXService
     {
         _client = client;
 
+        _accountConnectionLinks = new(() => new X::AccountConnectionLinkService(client));
         _communityNotes = new(() => new X::CommunityNoteService(client));
         _broadcasts = new(() => new X::BroadcastService(client));
         _analysis = new(() => new X::AnalysisService(client));
@@ -235,6 +236,12 @@ public sealed class XService : IXService
         get { return _communityNotes.Value; }
     }
 
+    readonly Lazy<X::IAccountConnectionLinkService> _accountConnectionLinks;
+    public X::IAccountConnectionLinkService AccountConnectionLinks
+    {
+        get { return _accountConnectionLinks.Value; }
+    }
+
     /// <inheritdoc/>
     public async Task<ModelsX::XGetTrendsHistoryResponse> GetTrendsHistory(
         ModelsX::XGetTrendsHistoryParams? parameters = null,
@@ -335,6 +342,9 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     {
         _client = client;
 
+        _accountConnectionLinks = new(() =>
+            new X::AccountConnectionLinkServiceWithRawResponse(client)
+        );
         _communityNotes = new(() => new X::CommunityNoteServiceWithRawResponse(client));
         _broadcasts = new(() => new X::BroadcastServiceWithRawResponse(client));
         _analysis = new(() => new X::AnalysisServiceWithRawResponse(client));
@@ -607,6 +617,12 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     public X::ICommunityNoteServiceWithRawResponse CommunityNotes
     {
         get { return _communityNotes.Value; }
+    }
+
+    readonly Lazy<X::IAccountConnectionLinkServiceWithRawResponse> _accountConnectionLinks;
+    public X::IAccountConnectionLinkServiceWithRawResponse AccountConnectionLinks
+    {
+        get { return _accountConnectionLinks.Value; }
     }
 
     /// <inheritdoc/>

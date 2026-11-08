@@ -13,7 +13,7 @@ using XTwitterScraper.Core;
 namespace XTwitterScraper.Models.X.Users;
 
 /// <summary>
-/// Returns the newest posts of up to 20 users, named by user ID, username or profile link, in the order named. Send ids or usernames, not both. Each post costs 1 credit. A user in unavailable_ids or unprocessed_ids costs nothing.
+/// Returns the newest posts of users named by user ID, username or profile link, in the order named. Send ids or usernames, not both. Each post costs 1 credit. A user in unavailable_ids or unprocessed_ids costs nothing.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions.</para>
@@ -21,7 +21,7 @@ namespace XTwitterScraper.Models.X.Users;
 public record class UserRetrieveBatchTweetsParams : ParamsBase
 {
     /// <summary>
-    /// Comma-separated numeric user IDs (1-20 values). Xquik reads any other entry as a username, with or without @, so IDs and usernames can mix. Xquik ignores duplicates and keeps the first-seen order, IDs before usernames. A longer URL fails at the edge before Xquik reads it.
+    /// Comma-separated numeric IDs of the users to read posts from. Xquik reads any other entry as a username, with or without @, so IDs and usernames can mix. Xquik ignores duplicates and keeps the first-seen order, IDs before usernames. A longer URL fails at the edge before Xquik reads it.
     /// </summary>
     public string? IDs
     {
@@ -42,7 +42,7 @@ public record class UserRetrieveBatchTweetsParams : ParamsBase
     }
 
     /// <summary>
-    /// Comma-separated X usernames, with or without @, or profile links such as x.com/nasa (1-20 values), in place of ids. A name in another case is the same account. A number is a user ID. A longer URL fails at the edge before Xquik reads it.
+    /// Comma-separated X usernames, with or without @, or profile links such as x.com/nasa, in place of ids. A name in another case is the same account. A number is a user ID. A longer URL fails at the edge before Xquik reads it.
     /// </summary>
     public string? Usernames
     {
@@ -63,7 +63,7 @@ public record class UserRetrieveBatchTweetsParams : ParamsBase
     }
 
     /// <summary>
-    /// Posts per user (1-20, default 20). A low credit balance can return fewer. Its aliases are limit, count, max_results, maxItems, max_items &amp; per_page.
+    /// Posts per user (1-300, default 20). A low credit balance can return fewer. Its aliases are limit, count, max_results, maxItems, max_items &amp; per_page.
     /// </summary>
     public long? PageSize
     {
