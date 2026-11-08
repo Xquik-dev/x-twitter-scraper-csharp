@@ -131,6 +131,7 @@ public enum ExtractionRunResponseToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserAffiliates,
     UserLikes,
     UserMedia,
     VerifiedFollowerExplorer,
@@ -167,6 +168,7 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
             "space_explorer" => ExtractionRunResponseToolType.SpaceExplorer,
             "thread_extractor" => ExtractionRunResponseToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionRunResponseToolType.TweetSearchExtractor,
+            "user_affiliates" => ExtractionRunResponseToolType.UserAffiliates,
             "user_likes" => ExtractionRunResponseToolType.UserLikes,
             "user_media" => ExtractionRunResponseToolType.UserMedia,
             "verified_follower_explorer" => ExtractionRunResponseToolType.VerifiedFollowerExplorer,
@@ -205,6 +207,7 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
                 ExtractionRunResponseToolType.SpaceExplorer => "space_explorer",
                 ExtractionRunResponseToolType.ThreadExtractor => "thread_extractor",
                 ExtractionRunResponseToolType.TweetSearchExtractor => "tweet_search_extractor",
+                ExtractionRunResponseToolType.UserAffiliates => "user_affiliates",
                 ExtractionRunResponseToolType.UserLikes => "user_likes",
                 ExtractionRunResponseToolType.UserMedia => "user_media",
                 ExtractionRunResponseToolType.VerifiedFollowerExplorer =>

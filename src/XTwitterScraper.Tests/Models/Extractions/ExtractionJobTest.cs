@@ -42,6 +42,35 @@ public class ExtractionJobTest : TestBase
     }
 
     [Fact]
+    public void FieldRoundtrip_WorksWithUserAffiliates()
+    {
+        var model = new ExtractionJob
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Status = ExtractionJobStatus.Running,
+            ToolType = ExtractionJobToolType.UserAffiliates,
+            TotalResults = 0,
+            CompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        string expectedID = "id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        ApiEnum<string, ExtractionJobStatus> expectedStatus = ExtractionJobStatus.Running;
+        ApiEnum<string, ExtractionJobToolType> expectedToolType =
+            ExtractionJobToolType.UserAffiliates;
+        long expectedTotalResults = 0;
+        DateTimeOffset expectedCompletedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedStatus, model.Status);
+        Assert.Equal(expectedToolType, model.ToolType);
+        Assert.Equal(expectedTotalResults, model.TotalResults);
+        Assert.Equal(expectedCompletedAt, model.CompletedAt);
+    }
+
+    [Fact]
     public void SerializationRoundtrip_Works()
     {
         var model = new ExtractionJob

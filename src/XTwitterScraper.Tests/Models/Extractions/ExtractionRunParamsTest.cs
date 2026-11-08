@@ -145,6 +145,138 @@ public class ExtractionRunParamsTest : TestBase
     }
 
     [Fact]
+    public void FieldRoundtrip_WorksWithUserAffiliates()
+    {
+        var parameters = new ExtractionRunParams
+        {
+            ToolType = ExtractionRunParamsToolType.UserAffiliates,
+            AdvancedQuery = "min_faves:100",
+            AnyWords = "ChatGPT AI model",
+            BoundingBox = "-74.1 40.6 -73.9 40.8",
+            Cashtags = "$TSLA $NVDA",
+            ConversationID = "1234567890",
+            ExactPhrase = "artificial intelligence",
+            ExcludeWords = "spam",
+            FromUser = "nasa",
+            Hashtags = "#AI startups",
+            InReplyToTweetID = "1234567890",
+            Language = "en",
+            ListID = "1234567890",
+            MediaType = ExtractionRunParamsMediaType.Images,
+            Mentioning = "example_user",
+            MinFaves = 10,
+            MinQuotes = 2,
+            MinReplies = 3,
+            MinRetweets = 5,
+            Place = "96683cc9126741d1",
+            PlaceCountry = "US",
+            PointRadius = "-73.99 40.73 25mi",
+            Quotes = ExtractionRunParamsQuotes.Include,
+            QuotesOfTweetID = "1234567890",
+            Replies = ExtractionRunParamsReplies.Include,
+            ResultsLimit = 1000,
+            Retweets = ExtractionRunParamsRetweets.Exclude,
+            RetweetsOfTweetID = "1234567890",
+            SearchQuery = "AI trends 2025",
+            SinceDate = "2025-01-01",
+            TargetCommunityID = "1500000000000000000",
+            TargetListID = "1234567890",
+            TargetSpaceID = "1vOGwMdBqpwGB",
+            TargetTweetID = "1234567890",
+            TargetUsername = "elonmusk",
+            ToUser = "openai",
+            UntilDate = "2025-12-31",
+            UrlValue = "example.com",
+            VerifiedOnly = false,
+        };
+
+        ApiEnum<string, ExtractionRunParamsToolType> expectedToolType =
+            ExtractionRunParamsToolType.UserAffiliates;
+        string expectedAdvancedQuery = "min_faves:100";
+        string expectedAnyWords = "ChatGPT AI model";
+        string expectedBoundingBox = "-74.1 40.6 -73.9 40.8";
+        string expectedCashtags = "$TSLA $NVDA";
+        string expectedConversationID = "1234567890";
+        string expectedExactPhrase = "artificial intelligence";
+        string expectedExcludeWords = "spam";
+        string expectedFromUser = "nasa";
+        string expectedHashtags = "#AI startups";
+        string expectedInReplyToTweetID = "1234567890";
+        string expectedLanguage = "en";
+        string expectedListID = "1234567890";
+        ApiEnum<string, ExtractionRunParamsMediaType> expectedMediaType =
+            ExtractionRunParamsMediaType.Images;
+        string expectedMentioning = "example_user";
+        long expectedMinFaves = 10;
+        long expectedMinQuotes = 2;
+        long expectedMinReplies = 3;
+        long expectedMinRetweets = 5;
+        string expectedPlace = "96683cc9126741d1";
+        string expectedPlaceCountry = "US";
+        string expectedPointRadius = "-73.99 40.73 25mi";
+        ApiEnum<string, ExtractionRunParamsQuotes> expectedQuotes =
+            ExtractionRunParamsQuotes.Include;
+        string expectedQuotesOfTweetID = "1234567890";
+        ApiEnum<string, ExtractionRunParamsReplies> expectedReplies =
+            ExtractionRunParamsReplies.Include;
+        long expectedResultsLimit = 1000;
+        ApiEnum<string, ExtractionRunParamsRetweets> expectedRetweets =
+            ExtractionRunParamsRetweets.Exclude;
+        string expectedRetweetsOfTweetID = "1234567890";
+        string expectedSearchQuery = "AI trends 2025";
+        string expectedSinceDate = "2025-01-01";
+        string expectedTargetCommunityID = "1500000000000000000";
+        string expectedTargetListID = "1234567890";
+        string expectedTargetSpaceID = "1vOGwMdBqpwGB";
+        string expectedTargetTweetID = "1234567890";
+        string expectedTargetUsername = "elonmusk";
+        string expectedToUser = "openai";
+        string expectedUntilDate = "2025-12-31";
+        string expectedUrlValue = "example.com";
+        bool expectedVerifiedOnly = false;
+
+        Assert.Equal(expectedToolType, parameters.ToolType);
+        Assert.Equal(expectedAdvancedQuery, parameters.AdvancedQuery);
+        Assert.Equal(expectedAnyWords, parameters.AnyWords);
+        Assert.Equal(expectedBoundingBox, parameters.BoundingBox);
+        Assert.Equal(expectedCashtags, parameters.Cashtags);
+        Assert.Equal(expectedConversationID, parameters.ConversationID);
+        Assert.Equal(expectedExactPhrase, parameters.ExactPhrase);
+        Assert.Equal(expectedExcludeWords, parameters.ExcludeWords);
+        Assert.Equal(expectedFromUser, parameters.FromUser);
+        Assert.Equal(expectedHashtags, parameters.Hashtags);
+        Assert.Equal(expectedInReplyToTweetID, parameters.InReplyToTweetID);
+        Assert.Equal(expectedLanguage, parameters.Language);
+        Assert.Equal(expectedListID, parameters.ListID);
+        Assert.Equal(expectedMediaType, parameters.MediaType);
+        Assert.Equal(expectedMentioning, parameters.Mentioning);
+        Assert.Equal(expectedMinFaves, parameters.MinFaves);
+        Assert.Equal(expectedMinQuotes, parameters.MinQuotes);
+        Assert.Equal(expectedMinReplies, parameters.MinReplies);
+        Assert.Equal(expectedMinRetweets, parameters.MinRetweets);
+        Assert.Equal(expectedPlace, parameters.Place);
+        Assert.Equal(expectedPlaceCountry, parameters.PlaceCountry);
+        Assert.Equal(expectedPointRadius, parameters.PointRadius);
+        Assert.Equal(expectedQuotes, parameters.Quotes);
+        Assert.Equal(expectedQuotesOfTweetID, parameters.QuotesOfTweetID);
+        Assert.Equal(expectedReplies, parameters.Replies);
+        Assert.Equal(expectedResultsLimit, parameters.ResultsLimit);
+        Assert.Equal(expectedRetweets, parameters.Retweets);
+        Assert.Equal(expectedRetweetsOfTweetID, parameters.RetweetsOfTweetID);
+        Assert.Equal(expectedSearchQuery, parameters.SearchQuery);
+        Assert.Equal(expectedSinceDate, parameters.SinceDate);
+        Assert.Equal(expectedTargetCommunityID, parameters.TargetCommunityID);
+        Assert.Equal(expectedTargetListID, parameters.TargetListID);
+        Assert.Equal(expectedTargetSpaceID, parameters.TargetSpaceID);
+        Assert.Equal(expectedTargetTweetID, parameters.TargetTweetID);
+        Assert.Equal(expectedTargetUsername, parameters.TargetUsername);
+        Assert.Equal(expectedToUser, parameters.ToUser);
+        Assert.Equal(expectedUntilDate, parameters.UntilDate);
+        Assert.Equal(expectedUrlValue, parameters.UrlValue);
+        Assert.Equal(expectedVerifiedOnly, parameters.VerifiedOnly);
+    }
+
+    [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
         var parameters = new ExtractionRunParams

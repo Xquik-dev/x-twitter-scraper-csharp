@@ -977,6 +977,7 @@ public enum ExtractionEstimateCostParamsToolType
     SpaceExplorer,
     ThreadExtractor,
     TweetSearchExtractor,
+    UserAffiliates,
     UserLikes,
     UserMedia,
     VerifiedFollowerExplorer,
@@ -1015,6 +1016,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
             "space_explorer" => ExtractionEstimateCostParamsToolType.SpaceExplorer,
             "thread_extractor" => ExtractionEstimateCostParamsToolType.ThreadExtractor,
             "tweet_search_extractor" => ExtractionEstimateCostParamsToolType.TweetSearchExtractor,
+            "user_affiliates" => ExtractionEstimateCostParamsToolType.UserAffiliates,
             "user_likes" => ExtractionEstimateCostParamsToolType.UserLikes,
             "user_media" => ExtractionEstimateCostParamsToolType.UserMedia,
             "verified_follower_explorer" =>
@@ -1057,6 +1059,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
                 ExtractionEstimateCostParamsToolType.ThreadExtractor => "thread_extractor",
                 ExtractionEstimateCostParamsToolType.TweetSearchExtractor =>
                     "tweet_search_extractor",
+                ExtractionEstimateCostParamsToolType.UserAffiliates => "user_affiliates",
                 ExtractionEstimateCostParamsToolType.UserLikes => "user_likes",
                 ExtractionEstimateCostParamsToolType.UserMedia => "user_media",
                 ExtractionEstimateCostParamsToolType.VerifiedFollowerExplorer =>
