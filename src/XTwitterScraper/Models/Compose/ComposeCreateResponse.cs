@@ -738,7 +738,7 @@ public sealed record class EngagementMultiplier : JsonModel
         if (
             !JsonElement.DeepEquals(
                 this.Multiplier,
-                JsonSerializer.SerializeToElement("Production weight not published by X")
+                JsonSerializer.SerializeToElement("Source default. Production value can vary.")
             )
         )
         {
@@ -748,7 +748,9 @@ public sealed record class EngagementMultiplier : JsonModel
 
     public EngagementMultiplier()
     {
-        this.Multiplier = JsonSerializer.SerializeToElement("Production weight not published by X");
+        this.Multiplier = JsonSerializer.SerializeToElement(
+            "Source default. Production value can vary."
+        );
     }
 
 #pragma warning disable CS8618
@@ -761,7 +763,9 @@ public sealed record class EngagementMultiplier : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.Multiplier = JsonSerializer.SerializeToElement("Production weight not published by X");
+        this.Multiplier = JsonSerializer.SerializeToElement(
+            "Source default. Production value can vary."
+        );
     }
 
 #pragma warning disable CS8618
@@ -1380,7 +1384,7 @@ public sealed record class ComposeScoreResult : JsonModel
         _ = this.Passed;
         _ = this.PassedCount;
         _ = this.TopSuggestion;
-        if (!JsonElement.DeepEquals(this.TotalChecks, JsonSerializer.SerializeToElement(9)))
+        if (!JsonElement.DeepEquals(this.TotalChecks, JsonSerializer.SerializeToElement(1)))
         {
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
         }
@@ -1389,7 +1393,7 @@ public sealed record class ComposeScoreResult : JsonModel
 
     public ComposeScoreResult()
     {
-        this.TotalChecks = JsonSerializer.SerializeToElement(9);
+        this.TotalChecks = JsonSerializer.SerializeToElement(1);
     }
 
 #pragma warning disable CS8618
@@ -1402,7 +1406,7 @@ public sealed record class ComposeScoreResult : JsonModel
     {
         this._rawData = new(rawData);
 
-        this.TotalChecks = JsonSerializer.SerializeToElement(9);
+        this.TotalChecks = JsonSerializer.SerializeToElement(1);
     }
 
 #pragma warning disable CS8618

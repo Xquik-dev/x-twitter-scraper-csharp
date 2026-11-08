@@ -33,6 +33,15 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.ProfileProtectedChanged)]
     [InlineData(EventType.ProfilePinnedTweetChanged)]
     [InlineData(EventType.ProfileUnavailableChanged)]
+    [InlineData(EventType.TweetDeleted)]
+    [InlineData(EventType.BroadcastStarted)]
+    [InlineData(EventType.SpaceStarted)]
+    [InlineData(EventType.FollowingAdded)]
+    [InlineData(EventType.FollowingRemoved)]
+    [InlineData(EventType.FollowerAdded)]
+    [InlineData(EventType.FollowerRemoved)]
+    [InlineData(EventType.ProfileFollowersChanged)]
+    [InlineData(EventType.ProfileFollowingChanged)]
     public void Validation_Works(EventType rawValue)
     {
         ApiEnum<string, EventType> value = rawValue;
@@ -73,6 +82,15 @@ public class EventTypeTest : TestBase
     [InlineData(EventType.ProfileProtectedChanged)]
     [InlineData(EventType.ProfilePinnedTweetChanged)]
     [InlineData(EventType.ProfileUnavailableChanged)]
+    [InlineData(EventType.TweetDeleted)]
+    [InlineData(EventType.BroadcastStarted)]
+    [InlineData(EventType.SpaceStarted)]
+    [InlineData(EventType.FollowingAdded)]
+    [InlineData(EventType.FollowingRemoved)]
+    [InlineData(EventType.FollowerAdded)]
+    [InlineData(EventType.FollowerRemoved)]
+    [InlineData(EventType.ProfileFollowersChanged)]
+    [InlineData(EventType.ProfileFollowingChanged)]
     public void SerializationRoundtrip_Works(EventType rawValue)
     {
         ApiEnum<string, EventType> value = rawValue;

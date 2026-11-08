@@ -453,6 +453,7 @@ public class ModeTest : TestBase
 {
     [Theory]
     [InlineData(Mode.Complete)]
+    [InlineData(Mode.Standard)]
     public void Validation_Works(Mode rawValue)
     {
         ApiEnum<string, Mode> value = rawValue;
@@ -473,6 +474,7 @@ public class ModeTest : TestBase
 
     [Theory]
     [InlineData(Mode.Complete)]
+    [InlineData(Mode.Standard)]
     public void SerializationRoundtrip_Works(Mode rawValue)
     {
         ApiEnum<string, Mode> value = rawValue;

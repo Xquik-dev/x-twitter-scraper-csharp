@@ -852,6 +852,7 @@ sealed class TweetGetRepliesParamsMediaTypeConverter : JsonConverter<TweetGetRep
 public enum Mode
 {
     Complete,
+    Standard,
 }
 
 sealed class ModeConverter : JsonConverter<Mode>
@@ -865,6 +866,7 @@ sealed class ModeConverter : JsonConverter<Mode>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "complete" => Mode.Complete,
+            "standard" => Mode.Standard,
             _ => (Mode)(-1),
         };
     }
@@ -876,6 +878,7 @@ sealed class ModeConverter : JsonConverter<Mode>
             value switch
             {
                 Mode.Complete => "complete",
+                Mode.Standard => "standard",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

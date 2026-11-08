@@ -155,6 +155,9 @@ public enum Locale
     En,
     Tr,
     Es,
+    Ja,
+    Ko,
+    Zh,
 }
 
 sealed class LocaleConverter : JsonConverter<Locale>
@@ -170,6 +173,9 @@ sealed class LocaleConverter : JsonConverter<Locale>
             "en" => Locale.En,
             "tr" => Locale.Tr,
             "es" => Locale.Es,
+            "ja" => Locale.Ja,
+            "ko" => Locale.Ko,
+            "zh" => Locale.Zh,
             _ => (Locale)(-1),
         };
     }
@@ -183,6 +189,9 @@ sealed class LocaleConverter : JsonConverter<Locale>
                 Locale.En => "en",
                 Locale.Tr => "tr",
                 Locale.Es => "es",
+                Locale.Ja => "ja",
+                Locale.Ko => "ko",
+                Locale.Zh => "zh",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

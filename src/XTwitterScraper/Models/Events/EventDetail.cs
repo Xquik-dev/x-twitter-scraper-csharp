@@ -238,6 +238,7 @@ public enum EventDetailMonitorType
 {
     Account,
     Keyword,
+    Post,
 }
 
 sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorType>
@@ -252,6 +253,7 @@ sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorT
         {
             "account" => EventDetailMonitorType.Account,
             "keyword" => EventDetailMonitorType.Keyword,
+            "post" => EventDetailMonitorType.Post,
             _ => (EventDetailMonitorType)(-1),
         };
     }
@@ -268,6 +270,7 @@ sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorT
             {
                 EventDetailMonitorType.Account => "account",
                 EventDetailMonitorType.Keyword => "keyword",
+                EventDetailMonitorType.Post => "post",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

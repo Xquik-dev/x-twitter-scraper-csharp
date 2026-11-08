@@ -287,6 +287,7 @@ public class MonitorTypeTest : TestBase
     [Theory]
     [InlineData(MonitorType.Account)]
     [InlineData(MonitorType.Keyword)]
+    [InlineData(MonitorType.Post)]
     public void Validation_Works(MonitorType rawValue)
     {
         ApiEnum<string, MonitorType> value = rawValue;
@@ -308,6 +309,7 @@ public class MonitorTypeTest : TestBase
     [Theory]
     [InlineData(MonitorType.Account)]
     [InlineData(MonitorType.Keyword)]
+    [InlineData(MonitorType.Post)]
     public void SerializationRoundtrip_Works(MonitorType rawValue)
     {
         ApiEnum<string, MonitorType> value = rawValue;

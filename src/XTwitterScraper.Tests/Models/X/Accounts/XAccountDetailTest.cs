@@ -224,6 +224,22 @@ public class XAccountDetailTest : TestBase
 
         Assert.Equal(model, copied);
     }
+
+    [Fact]
+    public void ConnectedAt_ReadsAndWrites()
+    {
+        var connectedAt = DateTimeOffset.Parse("2025-03-10T08:30:00Z");
+        var model = JsonSerializer.Deserialize<XAccountDetail>(
+            """{"connectedAt":"2025-03-10T08:30:00Z"}""",
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(model);
+        Assert.Equal(connectedAt, model.ConnectedAt);
+        var later = connectedAt.AddDays(1);
+        Assert.Equal(later, (model with { ConnectedAt = later }).ConnectedAt);
+        Assert.Equal(connectedAt, (model with { ConnectedAt = null }).ConnectedAt);
+    }
 }
 
 public class XAccountDetailHealthTest : TestBase

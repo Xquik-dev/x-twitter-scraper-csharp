@@ -310,6 +310,7 @@ public class EventDetailMonitorTypeTest : TestBase
     [Theory]
     [InlineData(EventDetailMonitorType.Account)]
     [InlineData(EventDetailMonitorType.Keyword)]
+    [InlineData(EventDetailMonitorType.Post)]
     public void Validation_Works(EventDetailMonitorType rawValue)
     {
         ApiEnum<string, EventDetailMonitorType> value = rawValue;
@@ -331,6 +332,7 @@ public class EventDetailMonitorTypeTest : TestBase
     [Theory]
     [InlineData(EventDetailMonitorType.Account)]
     [InlineData(EventDetailMonitorType.Keyword)]
+    [InlineData(EventDetailMonitorType.Post)]
     public void SerializationRoundtrip_Works(EventDetailMonitorType rawValue)
     {
         ApiEnum<string, EventDetailMonitorType> value = rawValue;

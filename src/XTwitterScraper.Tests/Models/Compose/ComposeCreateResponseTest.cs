@@ -3375,7 +3375,7 @@ public class EngagementMultiplierTest : TestBase
 
         string expectedAction = "action";
         JsonElement expectedMultiplier = JsonSerializer.SerializeToElement(
-            "Production weight not published by X"
+            "Source default. Production value can vary."
         );
 
         Assert.Equal(expectedAction, model.Action);
@@ -3410,7 +3410,7 @@ public class EngagementMultiplierTest : TestBase
 
         string expectedAction = "action";
         JsonElement expectedMultiplier = JsonSerializer.SerializeToElement(
-            "Production weight not published by X"
+            "Source default. Production value can vary."
         );
 
         Assert.Equal(expectedAction, deserialized.Action);
@@ -4118,7 +4118,7 @@ public class ComposeScoreResultTest : TestBase
         bool expectedPassed = true;
         long expectedPassedCount = 0;
         string expectedTopSuggestion = "topSuggestion";
-        JsonElement expectedTotalChecks = JsonSerializer.SerializeToElement(9);
+        JsonElement expectedTotalChecks = JsonSerializer.SerializeToElement(1);
         string expectedIntentUrl = "https://example.com";
 
         Assert.Equal(expectedChecklist.Count, model.Checklist.Count);
@@ -4349,7 +4349,7 @@ public class ComposeScoreResultTest : TestBase
         bool expectedPassed = true;
         long expectedPassedCount = 0;
         string expectedTopSuggestion = "topSuggestion";
-        JsonElement expectedTotalChecks = JsonSerializer.SerializeToElement(9);
+        JsonElement expectedTotalChecks = JsonSerializer.SerializeToElement(1);
         string expectedIntentUrl = "https://example.com";
 
         Assert.Equal(expectedChecklist.Count, deserialized.Checklist.Count);

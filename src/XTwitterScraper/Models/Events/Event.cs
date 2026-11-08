@@ -214,6 +214,7 @@ public enum MonitorType
 {
     Account,
     Keyword,
+    Post,
 }
 
 sealed class MonitorTypeConverter : JsonConverter<MonitorType>
@@ -228,6 +229,7 @@ sealed class MonitorTypeConverter : JsonConverter<MonitorType>
         {
             "account" => MonitorType.Account,
             "keyword" => MonitorType.Keyword,
+            "post" => MonitorType.Post,
             _ => (MonitorType)(-1),
         };
     }
@@ -244,6 +246,7 @@ sealed class MonitorTypeConverter : JsonConverter<MonitorType>
             {
                 MonitorType.Account => "account",
                 MonitorType.Keyword => "keyword",
+                MonitorType.Post => "post",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

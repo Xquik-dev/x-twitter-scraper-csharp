@@ -7,6 +7,15 @@
 * Extraction tool types gain `UserAffiliates`.
 * `TweetSearchParams`, `UserRetrieveTweetsParams`, `UserRetrieveRepliesParams` and `UserRetrieveMediaParams` take `Topic` and `ImageShows`. `ExtractionRunParams` and `ExtractionEstimateCostParams` take both, and `MediaDownloadParams` takes `ImageShows`.
 * A filtered `PaginatedTweets` carries `TopicFilter` or `ImageFilter`, and each kept post carries `TopicScore` or `ImageScore`. `ExtractionJob` carries both summaries, and `MediaDownloadResponse` carries `ImageFilter`.
+* `EventType` gains `TweetDeleted`, `BroadcastStarted`, `SpaceStarted`, `FollowingAdded`, `FollowingRemoved`, `FollowerAdded`, `FollowerRemoved`, `ProfileFollowersChanged` and `ProfileFollowingChanged`.
+* `MonitorType` and `EventDetailMonitorType` gain `Post`.
+* `Locale` gains `Ja`, `Ko` and `Zh`.
+* The replies `Mode` gains `Standard`.
+* `XAccount` and `XAccountDetail` gain `ConnectedAt`. It replaces an older timestamp property, which stays and is now marked obsolete.
+
+### Bug Fixes
+
+* Response validation accepts the compose score result. `TotalChecks` is 1 and each engagement `Multiplier` is `Source default. Production value can vary.`, as the API returns them.
 
 ## 0.6.3 (2026-10-13)
 
