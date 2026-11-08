@@ -236,6 +236,32 @@ public record class ExtractionEstimateCostParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only the posts whose photos show this. Use charts, screenshots, product_photos,
+    /// memes or people, or describe it in your own words. Each post with a safe photo is
+    /// checked, &amp; each stored post costs 2 credits instead of its read price. Posts without
+    /// a safe photo aren't checked, billed or stored, &amp; a post the filter drops costs
+    /// nothing. resultsLimit caps the posts read. Works with tools that return posts. Send
+    /// topic or imageShows, not both.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Estimate only replies to this tweet ID (tweet_search_extractor)
     /// </summary>
     public string? InReplyToTweetID
@@ -752,6 +778,31 @@ public record class ExtractionEstimateCostParams : ParamsBase
             }
 
             this._rawBodyData.Set("targetUsername", value);
+        }
+    }
+
+    /// <summary>
+    /// Keep only the posts about this topic, such as "the Rust programming language". Each post
+    /// the job reads is checked, only matching posts are stored, &amp; each stored post costs 2
+    /// credits instead of its read price. A post the filter drops costs nothing. resultsLimit
+    /// caps the posts read &amp; checked. Works with tools that return posts. Send topic or
+    /// imageShows, not both.
+    /// </summary>
+    public string? Topic
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("topic");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("topic", value);
         }
     }
 

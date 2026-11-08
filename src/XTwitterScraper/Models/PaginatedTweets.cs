@@ -52,6 +52,49 @@ public record class PaginatedTweets : JsonModel
         }
     }
 
+    /// <summary>
+    /// What the image filter asked &amp; how many posts it kept. Present when you send
+    /// imageShows.
+    /// </summary>
+    public ImageFilterSummary? ImageFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ImageFilterSummary>("imageFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("imageFilter", value);
+        }
+    }
+
+    /// <summary>
+    /// What the topic filter asked &amp; how many posts it kept. Present when you send topic.
+    /// </summary>
+    public TopicFilterSummary? TopicFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TopicFilterSummary>("topicFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("topicFilter", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -61,6 +104,8 @@ public record class PaginatedTweets : JsonModel
         {
             item.Validate();
         }
+        this.ImageFilter?.Validate();
+        this.TopicFilter?.Validate();
     }
 
     public PaginatedTweets() { }

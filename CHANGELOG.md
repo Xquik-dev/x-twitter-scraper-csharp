@@ -5,6 +5,8 @@
 ### Features
 
 * Extraction tool types gain `UserAffiliates`.
+* `TweetSearchParams`, `UserRetrieveTweetsParams`, `UserRetrieveRepliesParams` and `UserRetrieveMediaParams` take `Topic` and `ImageShows`. `ExtractionRunParams` and `ExtractionEstimateCostParams` take both, and `MediaDownloadParams` takes `ImageShows`.
+* A filtered `PaginatedTweets` carries `TopicFilter` or `ImageFilter`, and each kept post carries `TopicScore` or `ImageScore`. `ExtractionJob` carries both summaries, and `MediaDownloadResponse` carries `ImageFilter`.
 
 ## 0.6.3 (2026-10-13)
 

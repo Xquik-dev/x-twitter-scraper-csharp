@@ -50,6 +50,28 @@ public sealed record class MediaDownloadResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// What the image filter asked &amp; how many posts it kept. Present when you send
+    /// imageShows.
+    /// </summary>
+    public ImageFilterSummary? ImageFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ImageFilterSummary>("imageFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("imageFilter", value);
+        }
+    }
+
     public long? TotalMedia
     {
         get
@@ -109,6 +131,7 @@ public sealed record class MediaDownloadResponse : JsonModel
     {
         _ = this.CacheHit;
         _ = this.GalleryUrl;
+        this.ImageFilter?.Validate();
         _ = this.TotalMedia;
         _ = this.TotalTweets;
         _ = this.TweetID;

@@ -286,6 +286,27 @@ public sealed record class SearchTweet : JsonModel
     }
 
     /// <summary>
+    /// How likely a photo shows what you asked for. Present on pages the image filter kept.
+    /// </summary>
+    public double? ImageScore
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("imageScore");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("imageScore", value);
+        }
+    }
+
+    /// <summary>
     /// Parsed search-result entities including URLs, mentions, hashtags, and media markers
     /// </summary>
     public IReadOnlyDictionary<string, JsonElement>? Entities
@@ -669,6 +690,27 @@ public sealed record class SearchTweet : JsonModel
         }
     }
 
+    /// <summary>
+    /// How likely the post is about the topic. Present on pages the topic filter kept.
+    /// </summary>
+    public double? TopicScore
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("topicScore");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("topicScore", value);
+        }
+    }
+
     public string? Type
     {
         get
@@ -746,6 +788,7 @@ public sealed record class SearchTweet : JsonModel
         _ = this.CreatedAt;
         _ = this.DisplayTextRange;
         this.Edit?.Validate();
+        _ = this.ImageScore;
         _ = this.Entities;
         _ = this.InReplyToID;
         _ = this.InReplyToUserID;
@@ -767,6 +810,7 @@ public sealed record class SearchTweet : JsonModel
         this.QuotedTweet?.Validate();
         this.RetweetedTweet?.Validate();
         _ = this.Source;
+        _ = this.TopicScore;
         _ = this.Type;
         _ = this.Url;
         _ = this.ViewState;

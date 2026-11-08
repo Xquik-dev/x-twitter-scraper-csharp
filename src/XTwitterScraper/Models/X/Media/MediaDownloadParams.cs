@@ -29,6 +29,31 @@ public record class MediaDownloadParams : ParamsBase
     }
 
     /// <summary>
+    /// Save only posts whose photos show this. Send charts, screenshots, product_photos, memes
+    /// or people, or describe it in words, such as a rocket. AI-powered analysis checks posts
+    /// with photos X doesn't mark sensitive &amp; keeps scores of 0.5 or more. Each post saved
+    /// costs 2 credits, the AI analysis price, on top of its save price, &amp; a post the
+    /// filter drops costs nothing. imageFilter states the cutoff &amp; counts.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Numeric tweet ID alias for tweetInput
     /// </summary>
     public string? TweetID

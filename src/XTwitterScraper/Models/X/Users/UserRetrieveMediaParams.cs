@@ -190,6 +190,32 @@ public record class UserRetrieveMediaParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts whose photos show this. Send charts, screenshots, product_photos, memes
+    /// or people, or describe it in words, such as a rocket. AI-powered analysis checks posts
+    /// with photos X doesn't mark sensitive &amp; keeps scores of 0.5 or more. Other posts stay
+    /// out at no charge. Each kept post costs 2 credits, the AI analysis price, instead of the
+    /// read price, &amp; a post the filter drops costs nothing. imageFilter states the cutoff
+    /// &amp; counts.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Only replies to this tweet ID.
     /// </summary>
     public string? InReplyToTweetID
@@ -511,6 +537,31 @@ public record class UserRetrieveMediaParams : ParamsBase
             }
 
             this._rawQueryData.Set("sinceDate", value);
+        }
+    }
+
+    /// <summary>
+    /// Keep only posts about this topic. AI-powered analysis asks "Is this post about
+    /// &lt;topic&gt;?" of each post &amp; keeps scores of 0.5 or more. It reads post text &amp;
+    /// safe photos. Each kept post costs 2 credits, the AI analysis price, instead of the read
+    /// price, &amp; a post the filter drops costs nothing. limit counts checked posts, &amp;
+    /// only kept posts come back. topicFilter states the cutoff &amp; counts.
+    /// </summary>
+    public string? Topic
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("topic");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("topic", value);
         }
     }
 

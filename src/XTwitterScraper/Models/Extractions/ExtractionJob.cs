@@ -92,6 +92,49 @@ public sealed record class ExtractionJob : JsonModel
         }
     }
 
+    /// <summary>
+    /// What the image filter asked &amp; how many posts it kept. Present when you send
+    /// imageShows.
+    /// </summary>
+    public ImageFilterSummary? ImageFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ImageFilterSummary>("imageFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("imageFilter", value);
+        }
+    }
+
+    /// <summary>
+    /// What the topic filter asked &amp; how many posts it kept. Present when you send topic.
+    /// </summary>
+    public TopicFilterSummary? TopicFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TopicFilterSummary>("topicFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("topicFilter", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -101,6 +144,8 @@ public sealed record class ExtractionJob : JsonModel
         this.ToolType.Validate();
         _ = this.TotalResults;
         _ = this.CompletedAt;
+        this.ImageFilter?.Validate();
+        this.TopicFilter?.Validate();
     }
 
     public ExtractionJob() { }
