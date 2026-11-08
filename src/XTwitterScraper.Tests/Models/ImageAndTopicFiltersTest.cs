@@ -46,7 +46,7 @@ public class ImageAndTopicFiltersTest : TestBase
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://xquik.com/api/v1/x/tweets/search?q=rust&imageShows=charts&topic=the%20Rust%20programming%20language"
+                    "https://xquik.com/api/v1/x/tweets/search?q=rust&imageShows=charts&topic=the+Rust+programming+language"
                 ),
                 UrlOf(parameters)
             )
