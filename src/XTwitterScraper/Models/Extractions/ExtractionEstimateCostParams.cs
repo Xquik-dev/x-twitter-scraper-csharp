@@ -1059,8 +1059,7 @@ sealed class ExtractionEstimateCostParamsToolTypeConverter
                 ExtractionEstimateCostParamsToolType.ThreadExtractor => "thread_extractor",
                 ExtractionEstimateCostParamsToolType.TweetSearchExtractor =>
                     "tweet_search_extractor",
-                ExtractionEstimateCostParamsToolType.UserAffiliates =>
-                    "user_affiliates",
+                ExtractionEstimateCostParamsToolType.UserAffiliates => "user_affiliates",
                 ExtractionEstimateCostParamsToolType.UserLikes => "user_likes",
                 ExtractionEstimateCostParamsToolType.UserMedia => "user_media",
                 ExtractionEstimateCostParamsToolType.VerifiedFollowerExplorer =>
