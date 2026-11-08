@@ -20,6 +20,27 @@ namespace XTwitterScraper.Models.X.Bookmarks;
 /// </summary>
 public record class BookmarkRetrieveFoldersParams : ParamsBase
 {
+    /// <summary>
+    /// Pagination cursor for collection results. Also read as next_cursor, next_token, pagination_token or continuation_token.
+    /// </summary>
+    public string? Cursor
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("cursor", value);
+        }
+    }
+
     public BookmarkRetrieveFoldersParams() { }
 
 #pragma warning disable CS8618

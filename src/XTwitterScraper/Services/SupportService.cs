@@ -5,6 +5,7 @@
 using System;
 using XTwitterScraper.Core;
 using XTwitterScraper.Services.Support;
+using Support = XTwitterScraper.Services.Support;
 
 namespace XTwitterScraper.Services;
 
@@ -31,6 +32,7 @@ public sealed class SupportService : ISupportService
     {
         _client = client;
 
+        _attachments = new(() => new Support::AttachmentService(client));
         _withRawResponse = new(() => new SupportServiceWithRawResponse(client.WithRawResponse));
         _tickets = new(() => new TicketService(client));
     }
@@ -39,6 +41,12 @@ public sealed class SupportService : ISupportService
     public ITicketService Tickets
     {
         get { return _tickets.Value; }
+    }
+
+    readonly Lazy<Support::IAttachmentService> _attachments;
+    public Support::IAttachmentService Attachments
+    {
+        get { return _attachments.Value; }
     }
 }
 
@@ -57,6 +65,7 @@ public sealed class SupportServiceWithRawResponse : ISupportServiceWithRawRespon
     {
         _client = client;
 
+        _attachments = new(() => new Support::AttachmentServiceWithRawResponse(client));
         _tickets = new(() => new TicketServiceWithRawResponse(client));
     }
 
@@ -64,5 +73,11 @@ public sealed class SupportServiceWithRawResponse : ISupportServiceWithRawRespon
     public ITicketServiceWithRawResponse Tickets
     {
         get { return _tickets.Value; }
+    }
+
+    readonly Lazy<Support::IAttachmentServiceWithRawResponse> _attachments;
+    public Support::IAttachmentServiceWithRawResponse Attachments
+    {
+        get { return _attachments.Value; }
     }
 }

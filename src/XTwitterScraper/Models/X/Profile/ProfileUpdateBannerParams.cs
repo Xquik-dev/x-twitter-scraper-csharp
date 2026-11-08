@@ -62,6 +62,27 @@ public record class ProfileUpdateBannerParams : ParamsBase
         init { this._rawHeaderData.Set("Idempotency-Key", value); }
     }
 
+    /// <summary>
+    /// Banner image (max 95 MiB)
+    /// </summary>
+    public string? File
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("file");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("file", value);
+        }
+    }
+
     public ProfileUpdateBannerParams() { }
 
 #pragma warning disable CS8618

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Services.Monitors;
 using Monitors = XTwitterScraper.Models.Monitors;
+using ServicesMonitors = XTwitterScraper.Services.Monitors;
 
 namespace XTwitterScraper.Services;
 
@@ -97,6 +98,23 @@ public interface IMonitorService
         Monitors::MonitorDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
     );
+
+    ServicesMonitors::IPostService Posts { get; }
+
+    /// <summary>
+    /// Creates the monitor if it does not exist, or updates it if it does. Send the same call twice &amp; you still have 1 monitor. A new monitor answers 201 &amp; an update answers 200. Both carry `created`, so you know which one ran. Creating needs the credits of the first hour, then costs 30 credits an hour. A stopped monitor turns back on &amp; counts as created. Updating is free &amp; replaces the event types. It changes the name only when you send one.
+    /// </summary>
+    Task<Monitors::MonitorUpsertByUsernameResponse> UpsertByUsername(
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="UpsertByUsername(Monitors::MonitorUpsertByUsernameParams, CancellationToken)"/>
+    Task<Monitors::MonitorUpsertByUsernameResponse> UpsertByUsername(
+        string username,
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -177,6 +195,24 @@ public interface IMonitorServiceWithRawResponse
     Task<HttpResponse<Monitors::MonitorDeactivateResponse>> Deactivate(
         string id,
         Monitors::MonitorDeactivateParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    ServicesMonitors::IPostServiceWithRawResponse Posts { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>put /monitors/username/{username}</c>, but is otherwise the
+    /// same as <see cref="IMonitorService.UpsertByUsername(Monitors::MonitorUpsertByUsernameParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Monitors::MonitorUpsertByUsernameResponse>> UpsertByUsername(
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="UpsertByUsername(Monitors::MonitorUpsertByUsernameParams, CancellationToken)"/>
+    Task<HttpResponse<Monitors::MonitorUpsertByUsernameResponse>> UpsertByUsername(
+        string username,
+        Monitors::MonitorUpsertByUsernameParams parameters,
         CancellationToken cancellationToken = default
     );
 }

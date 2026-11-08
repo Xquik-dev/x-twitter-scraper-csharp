@@ -107,6 +107,48 @@ public record class EventListParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Keyword monitor ID. The keyword_monitor_id alias also works.
+    /// </summary>
+    public string? KeywordMonitorID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("keywordMonitorId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("keywordMonitorId", value);
+        }
+    }
+
+    /// <summary>
+    /// Post monitor ID. The post_monitor_id alias also works.
+    /// </summary>
+    public string? PostMonitorID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("postMonitorId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("postMonitorId", value);
+        }
+    }
+
     public EventListParams() { }
 
 #pragma warning disable CS8618

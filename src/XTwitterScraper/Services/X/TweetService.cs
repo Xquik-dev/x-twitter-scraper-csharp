@@ -11,6 +11,8 @@ using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Tweets;
 using XTwitterScraper.Services.X.Tweets;
+using Models = XTwitterScraper.Models;
+using Tweets = XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Services.X;
 
@@ -252,6 +254,238 @@ public sealed class TweetService : ITweetService
     {
         using var response = await this
             .WithRawResponse.Search(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::PaginatedTweets2> ListTop(
+        Tweets::TweetListTopParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.ListTop(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::XWriteAction> Bookmark(
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Bookmark(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Models::XWriteAction> Bookmark(
+        string id,
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Bookmark(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::XWriteAction> Unbookmark(
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Unbookmark(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Models::XWriteAction> Unbookmark(
+        string id,
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Unbookmark(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetCheckRepostResponse> CheckRepost(
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.CheckRepost(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Tweets::TweetCheckRepostResponse> CheckRepost(
+        string id,
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.CheckRepost(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::PaginatedUserIDs> GetRetweeterIds(
+        Tweets::TweetGetRetweeterIdsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetRetweeterIds(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Models::PaginatedUserIDs> GetRetweeterIds(
+        string id,
+        Tweets::TweetGetRetweeterIdsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetRetweeterIds(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::PaginatedTweets2> GetHiddenReplies(
+        Tweets::TweetGetHiddenRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetHiddenReplies(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Models::PaginatedTweets2> GetHiddenReplies(
+        string id,
+        Tweets::TweetGetHiddenRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetHiddenReplies(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetTranslateResponse> Translate(
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Translate(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Tweets::TweetTranslateResponse> Translate(
+        string id,
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Translate(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetGetInsightsResponse> GetInsights(
+        Tweets::TweetGetInsightsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetInsights(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Tweets::TweetGetInsightsResponse> GetInsights(
+        string id,
+        Tweets::TweetGetInsightsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetInsights(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetEmbedResponse> Embed(
+        Tweets::TweetEmbedParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Embed(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Tweets::TweetEmbedResponse> Embed(
+        string id,
+        Tweets::TweetEmbedParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Embed(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetGetSubtitlesResponse> GetSubtitles(
+        Tweets::TweetGetSubtitlesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetSubtitles(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Tweets::TweetGetSubtitlesResponse> GetSubtitles(
+        string id,
+        Tweets::TweetGetSubtitlesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetSubtitles(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Tweets::TweetResolveLinksResponse> ResolveLinks(
+        Tweets::TweetResolveLinksParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.ResolveLinks(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
@@ -681,6 +915,461 @@ public sealed class TweetServiceWithRawResponse : ITweetServiceWithRawResponse
                     paginatedTweets.Validate();
                 }
                 return paginatedTweets;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::PaginatedTweets2>> ListTop(
+        Tweets::TweetListTopParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<Tweets::TweetListTopParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::PaginatedTweets2>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::XWriteAction>> Bookmark(
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetBookmarkParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::XWriteAction>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Models::XWriteAction>> Bookmark(
+        string id,
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Bookmark(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::XWriteAction>> Unbookmark(
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetUnbookmarkParams> request = new()
+        {
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::XWriteAction>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Models::XWriteAction>> Unbookmark(
+        string id,
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Unbookmark(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetCheckRepostResponse>> CheckRepost(
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetCheckRepostParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetCheckRepostResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Tweets::TweetCheckRepostResponse>> CheckRepost(
+        string id,
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.CheckRepost(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::PaginatedUserIDs>> GetRetweeterIds(
+        Tweets::TweetGetRetweeterIdsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetGetRetweeterIdsParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::PaginatedUserIDs>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Models::PaginatedUserIDs>> GetRetweeterIds(
+        string id,
+        Tweets::TweetGetRetweeterIdsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetRetweeterIds(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::PaginatedTweets2>> GetHiddenReplies(
+        Tweets::TweetGetHiddenRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetGetHiddenRepliesParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::PaginatedTweets2>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Models::PaginatedTweets2>> GetHiddenReplies(
+        string id,
+        Tweets::TweetGetHiddenRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetHiddenReplies(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetTranslateResponse>> Translate(
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetTranslateParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetTranslateResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Tweets::TweetTranslateResponse>> Translate(
+        string id,
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.Translate(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetGetInsightsResponse>> GetInsights(
+        Tweets::TweetGetInsightsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetGetInsightsParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetGetInsightsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Tweets::TweetGetInsightsResponse>> GetInsights(
+        string id,
+        Tweets::TweetGetInsightsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetInsights(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetEmbedResponse>> Embed(
+        Tweets::TweetEmbedParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetEmbedParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetEmbedResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Tweets::TweetEmbedResponse>> Embed(
+        string id,
+        Tweets::TweetEmbedParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Embed(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetGetSubtitlesResponse>> GetSubtitles(
+        Tweets::TweetGetSubtitlesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Tweets::TweetGetSubtitlesParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetGetSubtitlesResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Tweets::TweetGetSubtitlesResponse>> GetSubtitles(
+        string id,
+        Tweets::TweetGetSubtitlesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetSubtitles(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Tweets::TweetResolveLinksResponse>> ResolveLinks(
+        Tweets::TweetResolveLinksParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        HttpRequest<Tweets::TweetResolveLinksParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Tweets::TweetResolveLinksResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
             }
         );
     }

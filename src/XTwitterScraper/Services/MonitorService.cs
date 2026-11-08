@@ -10,6 +10,7 @@ using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Services.Monitors;
 using Monitors = XTwitterScraper.Models.Monitors;
+using ServicesMonitors = XTwitterScraper.Services.Monitors;
 
 namespace XTwitterScraper.Services;
 
@@ -36,6 +37,7 @@ public sealed class MonitorService : IMonitorService
     {
         _client = client;
 
+        _posts = new(() => new ServicesMonitors::PostService(client));
         _withRawResponse = new(() => new MonitorServiceWithRawResponse(client.WithRawResponse));
         _keywords = new(() => new KeywordService(client));
     }
@@ -141,6 +143,34 @@ public sealed class MonitorService : IMonitorService
 
         return this.Deactivate(parameters with { ID = id }, cancellationToken);
     }
+
+    readonly Lazy<ServicesMonitors::IPostService> _posts;
+    public ServicesMonitors::IPostService Posts
+    {
+        get { return _posts.Value; }
+    }
+
+    /// <inheritdoc/>
+    public async Task<Monitors::MonitorUpsertByUsernameResponse> UpsertByUsername(
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.UpsertByUsername(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Monitors::MonitorUpsertByUsernameResponse> UpsertByUsername(
+        string username,
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.UpsertByUsername(parameters with { Username = username }, cancellationToken);
+    }
 }
 
 /// <inheritdoc/>
@@ -158,6 +188,7 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
     {
         _client = client;
 
+        _posts = new(() => new ServicesMonitors::PostServiceWithRawResponse(client));
         _keywords = new(() => new KeywordServiceWithRawResponse(client));
     }
 
@@ -358,5 +389,54 @@ public sealed class MonitorServiceWithRawResponse : IMonitorServiceWithRawRespon
         parameters ??= new();
 
         return this.Deactivate(parameters with { ID = id }, cancellationToken);
+    }
+
+    readonly Lazy<ServicesMonitors::IPostServiceWithRawResponse> _posts;
+    public ServicesMonitors::IPostServiceWithRawResponse Posts
+    {
+        get { return _posts.Value; }
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Monitors::MonitorUpsertByUsernameResponse>> UpsertByUsername(
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.Username == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.Username' cannot be null");
+        }
+
+        HttpRequest<Monitors::MonitorUpsertByUsernameParams> request = new()
+        {
+            Method = HttpMethod.Put,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Monitors::MonitorUpsertByUsernameResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Monitors::MonitorUpsertByUsernameResponse>> UpsertByUsername(
+        string username,
+        Monitors::MonitorUpsertByUsernameParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.UpsertByUsername(parameters with { Username = username }, cancellationToken);
     }
 }

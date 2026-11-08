@@ -180,6 +180,48 @@ public sealed record class EventDetail : JsonModel
         }
     }
 
+    /// <summary>
+    /// Permanent X user ID of the monitored account on account events. It stays the same after a username change.
+    /// </summary>
+    public string? XUserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("xUserId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("xUserId", value);
+        }
+    }
+
+    /// <summary>
+    /// Your monitor label when Xquik created this event, present when set. A rename leaves the event's label unchanged.
+    /// </summary>
+    public string? MonitorName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("monitorName");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("monitorName", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -193,6 +235,8 @@ public sealed record class EventDetail : JsonModel
         _ = this.Query;
         _ = this.Username;
         _ = this.XEventID;
+        _ = this.XUserID;
+        _ = this.MonitorName;
     }
 
     public EventDetail() { }

@@ -20,6 +20,48 @@ namespace XTwitterScraper.Models.X.Accounts;
 /// </summary>
 public record class AccountListParams : ParamsBase
 {
+    /// <summary>
+    /// Maximum items per page, from 1 to 10,000. Default 50. A low credit balance can return fewer paid results. When it covers none, the answer is 402 insufficient_credits.
+    /// </summary>
+    public long? Limit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
+    }
+
+    /// <summary>
+    /// Previous nextCursor. The after alias also works. Offset pagination is not supported.
+    /// </summary>
+    public string? Cursor
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("cursor", value);
+        }
+    }
+
     public AccountListParams() { }
 
 #pragma warning disable CS8618

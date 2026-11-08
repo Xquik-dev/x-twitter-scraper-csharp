@@ -80,6 +80,30 @@ public sealed record class WebhookCreateResponse : JsonModel
         init { this._rawData.Set("url", value); }
     }
 
+    /// <summary>
+    /// Fields the request sent that this route does not read, in the order sent. They changed nothing. The answer leaves this out when the route read every field.
+    /// </summary>
+    public IReadOnlyList<string>? IgnoredFields
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("ignoredFields");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "ignoredFields",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -91,6 +115,7 @@ public sealed record class WebhookCreateResponse : JsonModel
         }
         _ = this.Secret;
         _ = this.Url;
+        _ = this.IgnoredFields;
     }
 
     public WebhookCreateResponse() { }

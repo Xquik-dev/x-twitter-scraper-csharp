@@ -452,6 +452,346 @@ public sealed record class TweetMedia : JsonModel
         }
     }
 
+    /// <summary>
+    /// Adult-content warning.
+    /// </summary>
+    public bool? AdultContent
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("adultContent");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("adultContent", value);
+        }
+    }
+
+    /// <summary>
+    /// Why X made the media unavailable, such as `Dmcaed` after a copyright report. Omitted on available media.
+    /// </summary>
+    public string? AvailabilityReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("availabilityReason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("availabilityReason", value);
+        }
+    }
+
+    /// <summary>
+    /// Media description.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("description", value);
+        }
+    }
+
+    /// <summary>
+    /// True when the author edited this media in X's own editor before posting. Absent when X sends no editor info.
+    /// </summary>
+    public bool? EditedWithNativeEditor
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("editedWithNativeEditor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("editedWithNativeEditor", value);
+        }
+    }
+
+    /// <summary>
+    /// Embeddable status.
+    /// </summary>
+    public bool? Embeddable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("embeddable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("embeddable", value);
+        }
+    }
+
+    /// <summary>
+    /// Prompt a Grok image came from. Absent on other media &amp; when X sends no prompt.
+    /// </summary>
+    public TweetMediaGrokImageAnnotation? GrokImageAnnotation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TweetMediaGrokImageAnnotation>(
+                "grokImageAnnotation"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("grokImageAnnotation", value);
+        }
+    }
+
+    /// <summary>
+    /// Grok post ID associated with the media.
+    /// </summary>
+    public string? GrokPostID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("grokPostId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("grokPostId", value);
+        }
+    }
+
+    /// <summary>
+    /// Graphic-violence warning.
+    /// </summary>
+    public bool? GraphicViolence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("graphicViolence");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("graphicViolence", value);
+        }
+    }
+
+    public bool? OtherSensitiveContent
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("otherSensitiveContent");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("otherSensitiveContent", value);
+        }
+    }
+
+    /// <summary>
+    /// Source tweet ID for copied media.
+    /// </summary>
+    public string? SourceStatusID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("sourceStatusId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sourceStatusId", value);
+        }
+    }
+
+    /// <summary>
+    /// The account that first posted the media. Some reads carry only its name, picture &amp; badges.
+    /// </summary>
+    public global::XTwitterScraper.Models.UserProfile? SourceUser
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.UserProfile>(
+                "sourceUser"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sourceUser", value);
+        }
+    }
+
+    /// <summary>
+    /// Source profile ID for copied media.
+    /// </summary>
+    public string? SourceUserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("sourceUserId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sourceUserId", value);
+        }
+    }
+
+    /// <summary>
+    /// Public profiles tagged in the media.
+    /// </summary>
+    public IReadOnlyList<TweetMediaTags>? Tags
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<TweetMediaTags>>("tags");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<TweetMediaTags>?>(
+                "tags",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Media title.
+    /// </summary>
+    public string? Title
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("title");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("title", value);
+        }
+    }
+
+    /// <summary>
+    /// Public media action URL.
+    /// </summary>
+    public string? WatchNowUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("watchNowUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("watchNowUrl", value);
+        }
+    }
+
+    /// <summary>
+    /// Public destination URL.
+    /// </summary>
+    public string? VisitSiteUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("visitSiteUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("visitSiteUrl", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -496,6 +836,25 @@ public sealed record class TweetMedia : JsonModel
             item.Validate();
         }
         _ = this.Width;
+        _ = this.AdultContent;
+        _ = this.AvailabilityReason;
+        _ = this.Description;
+        _ = this.EditedWithNativeEditor;
+        _ = this.Embeddable;
+        this.GrokImageAnnotation?.Validate();
+        _ = this.GrokPostID;
+        _ = this.GraphicViolence;
+        _ = this.OtherSensitiveContent;
+        _ = this.SourceStatusID;
+        this.SourceUser?.Validate();
+        _ = this.SourceUserID;
+        foreach (var item in this.Tags ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.Title;
+        _ = this.WatchNowUrl;
+        _ = this.VisitSiteUrl;
     }
 
     public TweetMedia() { }
@@ -919,4 +1278,217 @@ class VideoVariantFromRaw : IFromRawJson<VideoVariant>
     /// <inheritdoc/>
     public VideoVariant FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         VideoVariant.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<TweetMediaGrokImageAnnotation, TweetMediaGrokImageAnnotationFromRaw>)
+)]
+public sealed record class TweetMediaGrokImageAnnotation : JsonModel
+{
+    /// <summary>
+    /// Prompt the image came from.
+    /// </summary>
+    public string? Prompt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("prompt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prompt", value);
+        }
+    }
+
+    /// <summary>
+    /// Grok's longer rewrite of the prompt.
+    /// </summary>
+    public string? UpsampledPrompt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("upsampledPrompt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("upsampledPrompt", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Prompt;
+        _ = this.UpsampledPrompt;
+    }
+
+    public TweetMediaGrokImageAnnotation() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetMediaGrokImageAnnotation(
+        TweetMediaGrokImageAnnotation tweetMediaGrokImageAnnotation
+    )
+        : base(tweetMediaGrokImageAnnotation) { }
+#pragma warning restore CS8618
+
+    public TweetMediaGrokImageAnnotation(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetMediaGrokImageAnnotation(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetMediaGrokImageAnnotationFromRaw.FromRawUnchecked"/>
+    public static TweetMediaGrokImageAnnotation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetMediaGrokImageAnnotationFromRaw : IFromRawJson<TweetMediaGrokImageAnnotation>
+{
+    /// <inheritdoc/>
+    public TweetMediaGrokImageAnnotation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetMediaGrokImageAnnotation.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<TweetMediaTags, TweetMediaTagsFromRaw>))]
+public sealed record class TweetMediaTags : JsonModel
+{
+    public string? Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("name", value);
+        }
+    }
+
+    public string? ScreenName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("screen_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("screen_name", value);
+        }
+    }
+
+    public string? Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("type");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("type", value);
+        }
+    }
+
+    public string? UserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("user_id");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("user_id", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Name;
+        _ = this.ScreenName;
+        _ = this.Type;
+        _ = this.UserID;
+    }
+
+    public TweetMediaTags() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetMediaTags(TweetMediaTags tweetMediaTags)
+        : base(tweetMediaTags) { }
+#pragma warning restore CS8618
+
+    public TweetMediaTags(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetMediaTags(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetMediaTagsFromRaw.FromRawUnchecked"/>
+    public static TweetMediaTags FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetMediaTagsFromRaw : IFromRawJson<TweetMediaTags>
+{
+    /// <inheritdoc/>
+    public TweetMediaTags FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TweetMediaTags.FromRawUnchecked(rawData);
 }

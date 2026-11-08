@@ -10,6 +10,8 @@ using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X;
+using Models = XTwitterScraper.Models;
+using ModelsX = XTwitterScraper.Models.X;
 using X = XTwitterScraper.Services.X;
 
 namespace XTwitterScraper.Services;
@@ -37,6 +39,12 @@ public sealed class XService : IXService
     {
         _client = client;
 
+        _communityNotes = new(() => new X::CommunityNoteService(client));
+        _broadcasts = new(() => new X::BroadcastService(client));
+        _analysis = new(() => new X::AnalysisService(client));
+        _sports = new(() => new X::SportService(client));
+        _spaces = new(() => new X::SpaceService(client));
+        _jobs = new(() => new X::JobService(client));
         _withRawResponse = new(() => new XServiceWithRawResponse(client.WithRawResponse));
         _writeActions = new(() => new X::WriteActionService(client));
         _tweets = new(() => new X::TweetService(client));
@@ -190,6 +198,126 @@ public sealed class XService : IXService
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
+
+    readonly Lazy<X::IJobService> _jobs;
+    public X::IJobService Jobs
+    {
+        get { return _jobs.Value; }
+    }
+
+    readonly Lazy<X::ISpaceService> _spaces;
+    public X::ISpaceService Spaces
+    {
+        get { return _spaces.Value; }
+    }
+
+    readonly Lazy<X::ISportService> _sports;
+    public X::ISportService Sports
+    {
+        get { return _sports.Value; }
+    }
+
+    readonly Lazy<X::IAnalysisService> _analysis;
+    public X::IAnalysisService Analysis
+    {
+        get { return _analysis.Value; }
+    }
+
+    readonly Lazy<X::IBroadcastService> _broadcasts;
+    public X::IBroadcastService Broadcasts
+    {
+        get { return _broadcasts.Value; }
+    }
+
+    readonly Lazy<X::ICommunityNoteService> _communityNotes;
+    public X::ICommunityNoteService CommunityNotes
+    {
+        get { return _communityNotes.Value; }
+    }
+
+    /// <inheritdoc/>
+    public async Task<ModelsX::XGetTrendsHistoryResponse> GetTrendsHistory(
+        ModelsX::XGetTrendsHistoryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetTrendsHistory(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<ModelsX::XGetTrendLocationsResponse> GetTrendLocations(
+        ModelsX::XGetTrendLocationsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetTrendLocations(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<ModelsX::XGetNewsStoryVersionsResponse> GetNewsStoryVersions(
+        ModelsX::XGetNewsStoryVersionsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetNewsStoryVersions(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<ModelsX::XGetNewsStoryVersionsResponse> GetNewsStoryVersions(
+        string id,
+        ModelsX::XGetNewsStoryVersionsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetNewsStoryVersions(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<ModelsX::XGetHashflagsResponse> GetHashflags(
+        ModelsX::XGetHashflagsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.GetHashflags(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<ModelsX::XSearchPlacesResponse> SearchPlaces(
+        ModelsX::XSearchPlacesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.SearchPlaces(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::SearchSuggestions> AutocompleteSearch(
+        ModelsX::XAutocompleteSearchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.AutocompleteSearch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
 }
 
 /// <inheritdoc/>
@@ -207,6 +335,12 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
     {
         _client = client;
 
+        _communityNotes = new(() => new X::CommunityNoteServiceWithRawResponse(client));
+        _broadcasts = new(() => new X::BroadcastServiceWithRawResponse(client));
+        _analysis = new(() => new X::AnalysisServiceWithRawResponse(client));
+        _sports = new(() => new X::SportServiceWithRawResponse(client));
+        _spaces = new(() => new X::SpaceServiceWithRawResponse(client));
+        _jobs = new(() => new X::JobServiceWithRawResponse(client));
         _writeActions = new(() => new X::WriteActionServiceWithRawResponse(client));
         _tweets = new(() => new X::TweetServiceWithRawResponse(client));
         _users = new(() => new X::UserServiceWithRawResponse(client));
@@ -435,6 +569,233 @@ public sealed class XServiceWithRawResponse : IXServiceWithRawResponse
                     deserializedResponse.Validate();
                 }
                 return deserializedResponse;
+            }
+        );
+    }
+
+    readonly Lazy<X::IJobServiceWithRawResponse> _jobs;
+    public X::IJobServiceWithRawResponse Jobs
+    {
+        get { return _jobs.Value; }
+    }
+
+    readonly Lazy<X::ISpaceServiceWithRawResponse> _spaces;
+    public X::ISpaceServiceWithRawResponse Spaces
+    {
+        get { return _spaces.Value; }
+    }
+
+    readonly Lazy<X::ISportServiceWithRawResponse> _sports;
+    public X::ISportServiceWithRawResponse Sports
+    {
+        get { return _sports.Value; }
+    }
+
+    readonly Lazy<X::IAnalysisServiceWithRawResponse> _analysis;
+    public X::IAnalysisServiceWithRawResponse Analysis
+    {
+        get { return _analysis.Value; }
+    }
+
+    readonly Lazy<X::IBroadcastServiceWithRawResponse> _broadcasts;
+    public X::IBroadcastServiceWithRawResponse Broadcasts
+    {
+        get { return _broadcasts.Value; }
+    }
+
+    readonly Lazy<X::ICommunityNoteServiceWithRawResponse> _communityNotes;
+    public X::ICommunityNoteServiceWithRawResponse CommunityNotes
+    {
+        get { return _communityNotes.Value; }
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<ModelsX::XGetTrendsHistoryResponse>> GetTrendsHistory(
+        ModelsX::XGetTrendsHistoryParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<ModelsX::XGetTrendsHistoryParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<ModelsX::XGetTrendsHistoryResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<ModelsX::XGetTrendLocationsResponse>> GetTrendLocations(
+        ModelsX::XGetTrendLocationsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<ModelsX::XGetTrendLocationsParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<ModelsX::XGetTrendLocationsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<ModelsX::XGetNewsStoryVersionsResponse>> GetNewsStoryVersions(
+        ModelsX::XGetNewsStoryVersionsParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<ModelsX::XGetNewsStoryVersionsParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<ModelsX::XGetNewsStoryVersionsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<ModelsX::XGetNewsStoryVersionsResponse>> GetNewsStoryVersions(
+        string id,
+        ModelsX::XGetNewsStoryVersionsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.GetNewsStoryVersions(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<ModelsX::XGetHashflagsResponse>> GetHashflags(
+        ModelsX::XGetHashflagsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<ModelsX::XGetHashflagsParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<ModelsX::XGetHashflagsResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<ModelsX::XSearchPlacesResponse>> SearchPlaces(
+        ModelsX::XSearchPlacesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        HttpRequest<ModelsX::XSearchPlacesParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<ModelsX::XSearchPlacesResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::SearchSuggestions>> AutocompleteSearch(
+        ModelsX::XAutocompleteSearchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        HttpRequest<ModelsX::XAutocompleteSearchParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::SearchSuggestions>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
             }
         );
     }

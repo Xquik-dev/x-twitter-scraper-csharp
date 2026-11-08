@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Extractions;
+using Extractions = XTwitterScraper.Models.Extractions;
 
 namespace XTwitterScraper.Services;
 
@@ -115,6 +116,30 @@ public sealed class ExtractionService : IExtractionService
             .WithRawResponse.Run(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Extractions::ExtractionCancelResponse> Cancel(
+        Extractions::ExtractionCancelParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Cancel(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Extractions::ExtractionCancelResponse> Cancel(
+        string id,
+        Extractions::ExtractionCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Cancel(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -294,5 +319,50 @@ public sealed class ExtractionServiceWithRawResponse : IExtractionServiceWithRaw
                 return deserializedResponse;
             }
         );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Extractions::ExtractionCancelResponse>> Cancel(
+        Extractions::ExtractionCancelParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Extractions::ExtractionCancelParams> request = new()
+        {
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Extractions::ExtractionCancelResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Extractions::ExtractionCancelResponse>> Cancel(
+        string id,
+        Extractions::ExtractionCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Cancel(parameters with { ID = id }, cancellationToken);
     }
 }

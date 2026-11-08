@@ -4,6 +4,9 @@
 
 ### Features
 
+* The 83 operations the SDK lacked gain methods. New services are `Activity`, `Monitors.Posts`, `Support.Attachments`, `X.Analysis`, `X.Broadcasts`, `X.CommunityNotes`, `X.Communities.Media`, `X.Jobs`, `X.Spaces` and `X.Sports`.
+* Existing models and params gain 1285 optional typed properties for fields the API already sends or reads.
+* `POST /x/accounts/bulk-retry` can name accounts through `AccountIDs`. Leaving it unset still retries every account.
 * Extraction tool types gain `UserAffiliates`.
 * `TweetSearchParams`, `UserRetrieveTweetsParams`, `UserRetrieveRepliesParams` and `UserRetrieveMediaParams` take `Topic` and `ImageShows`. `ExtractionRunParams` and `ExtractionEstimateCostParams` take both, and `MediaDownloadParams` takes `ImageShows`.
 * A filtered `PaginatedTweets` carries `TopicFilter` or `ImageFilter`, and each kept post carries `TopicScore` or `ImageScore`. `ExtractionJob` carries both summaries, and `MediaDownloadResponse` carries `ImageFilter`.

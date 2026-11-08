@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.X;
 
@@ -282,6 +283,215 @@ public sealed record class Article : JsonModel
         }
     }
 
+    /// <summary>
+    /// X's ID for the Article, which differs from its post's ID
+    /// </summary>
+    public string? ArticleID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("articleId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("articleId", value);
+        }
+    }
+
+    /// <summary>
+    /// X's summary of the Article, when X has one
+    /// </summary>
+    public string? SummaryText
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("summaryText");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("summaryText", value);
+        }
+    }
+
+    /// <summary>
+    /// Public metadata whose fields X defines.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? CoverMedia
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "coverMedia"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "coverMedia",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Public metadata whose fields X defines.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metadata"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Public metadata whose fields X defines.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? LifecycleState
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "lifecycleState"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "lifecycleState",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Article blocks as Markdown, with headings, lists, bold, italic, links, images &amp; embedded posts as their x.com URLs. Holds no HTML.
+    /// </summary>
+    public string? BodyMarkdown
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("bodyMarkdown");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("bodyMarkdown", value);
+        }
+    }
+
+    /// <summary>
+    /// Reposts of the Article's post. 0 or more.
+    /// </summary>
+    public long? RetweetCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("retweetCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("retweetCount", value);
+        }
+    }
+
+    /// <summary>
+    /// Accounts that bookmarked the Article's post. 0 or more.
+    /// </summary>
+    public long? BookmarkCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("bookmarkCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("bookmarkCount", value);
+        }
+    }
+
+    /// <summary>
+    /// The counts X did not send for this post. Each one reads 0, so treat it as unknown rather than none. Names follow the response's key style, so `xquik-api-contract: 2026-04-29` lists bookmark_count. Posts from before X counted views, &amp; new posts X has not counted views for yet, list viewCount. Left out when X sent every count. Counts X didn't send are listed in `unknownCounts`, never shown as 0.
+    /// </summary>
+    public IReadOnlyList<ApiEnum<string, ArticleUnknownCounts>>? UnknownCounts
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, ArticleUnknownCounts>>
+            >("unknownCounts");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<ApiEnum<string, ArticleUnknownCounts>>?>(
+                "unknownCounts",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -298,6 +508,18 @@ public sealed record class Article : JsonModel
         _ = this.ReplyCount;
         _ = this.Title;
         _ = this.ViewCount;
+        _ = this.ArticleID;
+        _ = this.SummaryText;
+        _ = this.CoverMedia;
+        _ = this.Metadata;
+        _ = this.LifecycleState;
+        _ = this.BodyMarkdown;
+        _ = this.RetweetCount;
+        _ = this.BookmarkCount;
+        foreach (var item in this.UnknownCounts ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public Article() { }
@@ -483,6 +705,159 @@ public sealed record class Content : JsonModel
         }
     }
 
+    /// <summary>
+    /// ID of the post a tweet block embeds
+    /// </summary>
+    public string? TweetID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("tweetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("tweetId", value);
+        }
+    }
+
+    /// <summary>
+    /// Links in the block's text, with the text range each covers
+    /// </summary>
+    public IReadOnlyList<ContentLinks>? Links
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<ContentLinks>>("links");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<ContentLinks>?>(
+                "links",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// What a media block holds
+    /// </summary>
+    public ApiEnum<string, ContentMediaType>? MediaType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, ContentMediaType>>("mediaType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("mediaType", value);
+        }
+    }
+
+    /// <summary>
+    /// Caption the author wrote under a media block
+    /// </summary>
+    public string? Caption
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("caption");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("caption", value);
+        }
+    }
+
+    /// <summary>
+    /// Alt text of the image or preview image
+    /// </summary>
+    public string? AltText
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("altText");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("altText", value);
+        }
+    }
+
+    /// <summary>
+    /// Length of a video, in milliseconds
+    /// </summary>
+    public long? DurationMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("durationMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("durationMs", value);
+        }
+    }
+
+    /// <summary>
+    /// Files of a video or GIF block, in X's order
+    /// </summary>
+    public IReadOnlyList<ContentVariants>? Variants
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<ContentVariants>>("variants");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<ContentVariants>?>(
+                "variants",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -496,6 +871,19 @@ public sealed record class Content : JsonModel
         _ = this.Type;
         _ = this.Url;
         _ = this.Width;
+        _ = this.TweetID;
+        foreach (var item in this.Links ?? [])
+        {
+            item.Validate();
+        }
+        this.MediaType?.Validate();
+        _ = this.Caption;
+        _ = this.AltText;
+        _ = this.DurationMs;
+        foreach (var item in this.Variants ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public Content() { }
@@ -941,6 +1329,27 @@ public sealed record class Author : JsonModel
         }
     }
 
+    /// <summary>
+    /// The same profile picture at full size.
+    /// </summary>
+    public string? ProfilePictureOriginal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profilePictureOriginal");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profilePictureOriginal", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -962,6 +1371,7 @@ public sealed record class Author : JsonModel
         _ = this.Protected;
         _ = this.StatusesCount;
         _ = this.Url;
+        _ = this.ProfilePictureOriginal;
     }
 
     public Author() { }
@@ -997,4 +1407,294 @@ class AuthorFromRaw : IFromRawJson<Author>
     /// <inheritdoc/>
     public Author FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Author.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ArticleUnknownCountsConverter))]
+public enum ArticleUnknownCounts
+{
+    RetweetCount,
+    ReplyCount,
+    LikeCount,
+    QuoteCount,
+    ViewCount,
+    BookmarkCount,
+}
+
+sealed class ArticleUnknownCountsConverter : JsonConverter<ArticleUnknownCounts>
+{
+    public override ArticleUnknownCounts Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "retweetCount" => ArticleUnknownCounts.RetweetCount,
+            "replyCount" => ArticleUnknownCounts.ReplyCount,
+            "likeCount" => ArticleUnknownCounts.LikeCount,
+            "quoteCount" => ArticleUnknownCounts.QuoteCount,
+            "viewCount" => ArticleUnknownCounts.ViewCount,
+            "bookmarkCount" => ArticleUnknownCounts.BookmarkCount,
+            _ => (ArticleUnknownCounts)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ArticleUnknownCounts value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ArticleUnknownCounts.RetweetCount => "retweetCount",
+                ArticleUnknownCounts.ReplyCount => "replyCount",
+                ArticleUnknownCounts.LikeCount => "likeCount",
+                ArticleUnknownCounts.QuoteCount => "quoteCount",
+                ArticleUnknownCounts.ViewCount => "viewCount",
+                ArticleUnknownCounts.BookmarkCount => "bookmarkCount",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<ContentLinks, ContentLinksFromRaw>))]
+public sealed record class ContentLinks : JsonModel
+{
+    public long? Offset
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("offset");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("offset", value);
+        }
+    }
+
+    public long? Length
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("length");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("length", value);
+        }
+    }
+
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Offset;
+        _ = this.Length;
+        _ = this.UrlValue;
+    }
+
+    public ContentLinks() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ContentLinks(ContentLinks contentLinks)
+        : base(contentLinks) { }
+#pragma warning restore CS8618
+
+    public ContentLinks(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ContentLinks(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ContentLinksFromRaw.FromRawUnchecked"/>
+    public static ContentLinks FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ContentLinksFromRaw : IFromRawJson<ContentLinks>
+{
+    /// <inheritdoc/>
+    public ContentLinks FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ContentLinks.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(ContentMediaTypeConverter))]
+public enum ContentMediaType
+{
+    Image,
+    Video,
+    Gif,
+}
+
+sealed class ContentMediaTypeConverter : JsonConverter<ContentMediaType>
+{
+    public override ContentMediaType Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "image" => ContentMediaType.Image,
+            "video" => ContentMediaType.Video,
+            "gif" => ContentMediaType.Gif,
+            _ => (ContentMediaType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ContentMediaType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ContentMediaType.Image => "image",
+                ContentMediaType.Video => "video",
+                ContentMediaType.Gif => "gif",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<ContentVariants, ContentVariantsFromRaw>))]
+public sealed record class ContentVariants : JsonModel
+{
+    public long? Bitrate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("bitrate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("bitrate", value);
+        }
+    }
+
+    public required string ContentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("contentType");
+        }
+        init { this._rawData.Set("contentType", value); }
+    }
+
+    public required string UrlValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("url");
+        }
+        init { this._rawData.Set("url", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Bitrate;
+        _ = this.ContentType;
+        _ = this.UrlValue;
+    }
+
+    public ContentVariants() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ContentVariants(ContentVariants contentVariants)
+        : base(contentVariants) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ContentVariants(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    ContentVariants(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="ContentVariantsFromRaw.FromRawUnchecked"/>
+    public static ContentVariants FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class ContentVariantsFromRaw : IFromRawJson<ContentVariants>
+{
+    /// <inheritdoc/>
+    public ContentVariants FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ContentVariants.FromRawUnchecked(rawData);
 }

@@ -51,6 +51,200 @@ public sealed record class ExtractionRunResponse : JsonModel
         init { this._rawData.Set("toolType", value); }
     }
 
+    /// <summary>
+    /// Whether the balance covers the full estimate.
+    /// </summary>
+    public bool? Allowed
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("allowed");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("allowed", value);
+        }
+    }
+
+    public string? CreditsAvailable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("creditsAvailable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("creditsAvailable", value);
+        }
+    }
+
+    public string? CreditsRequired
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("creditsRequired");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("creditsRequired", value);
+        }
+    }
+
+    /// <summary>
+    /// The row count the credit estimate uses. It does not say how many rows exist.
+    /// </summary>
+    public long? EstimatedResults
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("estimatedResults");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("estimatedResults", value);
+        }
+    }
+
+    /// <summary>
+    /// Resolved X user ID from count-based profile estimates.
+    /// </summary>
+    public string? ResolvedXUserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("resolvedXUserId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("resolvedXUserId", value);
+        }
+    }
+
+    public ApiEnum<string, ExtractionRunResponseSource>? Source
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, ExtractionRunResponseSource>>(
+                "source"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("source", value);
+        }
+    }
+
+    /// <summary>
+    /// Dashboard page of the job. A signed-in user follows its progress there and downloads every row as CSV, XLSX, JSON, Markdown, PDF or text, so give this link to a person who wants the whole list as a file.
+    /// </summary>
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
+    public long? PollAfterMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("pollAfterMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("pollAfterMs", value);
+        }
+    }
+
+    public string? StatusUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("statusUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("statusUrl", value);
+        }
+    }
+
+    public string? WaitUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("waitUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("waitUrl", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -60,6 +254,16 @@ public sealed record class ExtractionRunResponse : JsonModel
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
         }
         this.ToolType.Validate();
+        _ = this.Allowed;
+        _ = this.CreditsAvailable;
+        _ = this.CreditsRequired;
+        _ = this.EstimatedResults;
+        _ = this.ResolvedXUserID;
+        this.Source?.Validate();
+        _ = this.UrlValue;
+        _ = this.PollAfterMs;
+        _ = this.StatusUrl;
+        _ = this.WaitUrl;
     }
 
     public ExtractionRunResponse()
@@ -212,6 +416,74 @@ sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRu
                 ExtractionRunResponseToolType.UserMedia => "user_media",
                 ExtractionRunResponseToolType.VerifiedFollowerExplorer =>
                     "verified_follower_explorer",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ExtractionRunResponseSourceConverter))]
+public enum ExtractionRunResponseSource
+{
+    Followers,
+    Following,
+    Collection,
+    LikeCount,
+    PaginationCap,
+    QuoteCount,
+    ReplyCount,
+    ResultsLimit,
+    RetweetCount,
+    Unknown,
+}
+
+sealed class ExtractionRunResponseSourceConverter : JsonConverter<ExtractionRunResponseSource>
+{
+    public override ExtractionRunResponseSource Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "followers" => ExtractionRunResponseSource.Followers,
+            "following" => ExtractionRunResponseSource.Following,
+            "collection" => ExtractionRunResponseSource.Collection,
+            "likeCount" => ExtractionRunResponseSource.LikeCount,
+            "paginationCap" => ExtractionRunResponseSource.PaginationCap,
+            "quoteCount" => ExtractionRunResponseSource.QuoteCount,
+            "replyCount" => ExtractionRunResponseSource.ReplyCount,
+            "resultsLimit" => ExtractionRunResponseSource.ResultsLimit,
+            "retweetCount" => ExtractionRunResponseSource.RetweetCount,
+            "unknown" => ExtractionRunResponseSource.Unknown,
+            _ => (ExtractionRunResponseSource)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExtractionRunResponseSource value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExtractionRunResponseSource.Followers => "followers",
+                ExtractionRunResponseSource.Following => "following",
+                ExtractionRunResponseSource.Collection => "collection",
+                ExtractionRunResponseSource.LikeCount => "likeCount",
+                ExtractionRunResponseSource.PaginationCap => "paginationCap",
+                ExtractionRunResponseSource.QuoteCount => "quoteCount",
+                ExtractionRunResponseSource.ReplyCount => "replyCount",
+                ExtractionRunResponseSource.ResultsLimit => "resultsLimit",
+                ExtractionRunResponseSource.RetweetCount => "retweetCount",
+                ExtractionRunResponseSource.Unknown => "unknown",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -85,6 +85,42 @@ public sealed record class ExtractionRetrieveResponse : JsonModel
         }
     }
 
+    public long? PollAfterMs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("pollAfterMs");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("pollAfterMs", value);
+        }
+    }
+
+    public string? WaitUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("waitUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("waitUrl", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -92,6 +128,8 @@ public sealed record class ExtractionRetrieveResponse : JsonModel
         _ = this.Job;
         _ = this.Results;
         _ = this.NextCursor;
+        _ = this.PollAfterMs;
+        _ = this.WaitUrl;
     }
 
     public ExtractionRetrieveResponse() { }

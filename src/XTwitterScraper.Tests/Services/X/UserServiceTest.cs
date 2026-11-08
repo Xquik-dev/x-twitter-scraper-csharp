@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -147,5 +148,213 @@ public class UserServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(paginatedUsers);
+    }
+
+    [Fact]
+    public async Task RetrieveBatchTweets_Works()
+    {
+        var result = await this.client.X.Users.RetrieveBatchTweets(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Block_Works()
+    {
+        var result = await this.client.X.Users.Block(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Unblock_Works()
+    {
+        var result = await this.client.X.Users.Unblock(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Mute_Works()
+    {
+        var result = await this.client.X.Users.Mute(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Unmute_Works()
+    {
+        var result = await this.client.X.Users.Unmute(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveAffiliates_Works()
+    {
+        var result = await this.client.X.Users.RetrieveAffiliates(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveSubscriptions_Works()
+    {
+        var result = await this.client.X.Users.RetrieveSubscriptions(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveLists_Works()
+    {
+        var result = await this.client.X.Users.RetrieveLists(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveListMemberships_Works()
+    {
+        var result = await this.client.X.Users.RetrieveListMemberships(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveArticles_Works()
+    {
+        var result = await this.client.X.Users.RetrieveArticles(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveHighlights_Works()
+    {
+        var result = await this.client.X.Users.RetrieveHighlights(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveSimilar_Works()
+    {
+        var result = await this.client.X.Users.RetrieveSimilar(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task TranslateBio_Works()
+    {
+        var result = await this.client.X.Users.TranslateBio(
+            "id",
+            new() { Language = "Language" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveFollowerAudit_Works()
+    {
+        var result = await this.client.X.Users.RetrieveFollowerAudit(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveInsights_Works()
+    {
+        var result = await this.client.X.Users.RetrieveInsights(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveLive_Works()
+    {
+        var result = await this.client.X.Users.RetrieveLive(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveShadowban_Works()
+    {
+        var result = await this.client.X.Users.RetrieveShadowban(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveFollowerIds_Works()
+    {
+        var result = await this.client.X.Users.RetrieveFollowerIds(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task RetrieveFollowingIds_Works()
+    {
+        var result = await this.client.X.Users.RetrieveFollowingIds(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Events;
+using Events = XTwitterScraper.Models.Events;
 
 namespace XTwitterScraper.Services;
 
@@ -72,6 +73,15 @@ public sealed class EventService : IEventService
             .WithRawResponse.List(parameters, cancellationToken)
             .ConfigureAwait(false);
         return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse> Stream(
+        Events::EventStreamParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return this.WithRawResponse.Stream(parameters, cancellationToken);
     }
 }
 
@@ -164,5 +174,21 @@ public sealed class EventServiceWithRawResponse : IEventServiceWithRawResponse
                 return events;
             }
         );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse> Stream(
+        Events::EventStreamParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<Events::EventStreamParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        return this._client.Execute(request, cancellationToken);
     }
 }

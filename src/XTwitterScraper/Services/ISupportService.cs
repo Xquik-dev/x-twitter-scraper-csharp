@@ -5,6 +5,7 @@
 using System;
 using XTwitterScraper.Core;
 using XTwitterScraper.Services.Support;
+using Support = XTwitterScraper.Services.Support;
 
 namespace XTwitterScraper.Services;
 
@@ -28,6 +29,8 @@ public interface ISupportService
     ISupportService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     ITicketService Tickets { get; }
+
+    Support::IAttachmentService Attachments { get; }
 }
 
 /// <summary>
@@ -44,4 +47,6 @@ public interface ISupportServiceWithRawResponse
     ISupportServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     ITicketServiceWithRawResponse Tickets { get; }
+
+    Support::IAttachmentServiceWithRawResponse Attachments { get; }
 }

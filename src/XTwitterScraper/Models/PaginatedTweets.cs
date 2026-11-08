@@ -95,6 +95,137 @@ public record class PaginatedTweets : JsonModel
         }
     }
 
+    /// <summary>
+    /// Whole number from 0.
+    /// </summary>
+    public long? FilteredCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("filtered_count");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("filtered_count", value);
+        }
+    }
+
+    /// <summary>
+    /// The UTC time this filtered search has reached.
+    /// </summary>
+    public System::DateTimeOffset? ReadBackTo
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("readBackTo");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("readBackTo", value);
+        }
+    }
+
+    /// <summary>
+    /// Present on a last page whose sources all read past its start time.
+    /// </summary>
+    public bool? WindowComplete
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("windowComplete");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("windowComplete", value);
+        }
+    }
+
+    /// <summary>
+    /// The query that ran, when it differs from your q.
+    /// </summary>
+    public string? SearchedQuery
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("searchedQuery");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("searchedQuery", value);
+        }
+    }
+
+    /// <summary>
+    /// What X shows beside a search's posts, the same for everyone. Present on a search for a cashtag X has a card for, such as $BTC. Cashtag searches add X's ticker card in `searchContext`.
+    /// </summary>
+    public PaginatedTweetsSearchContext? SearchContext
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PaginatedTweetsSearchContext>("searchContext");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("searchContext", value);
+        }
+    }
+
+    /// <summary>
+    /// Each `ids` entry that names no post, with why. Absent when every entry names a post.
+    /// </summary>
+    public IReadOnlyList<PaginatedTweetsSkipped>? Skipped
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<PaginatedTweetsSkipped>>(
+                "skipped"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<PaginatedTweetsSkipped>?>(
+                "skipped",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -106,6 +237,15 @@ public record class PaginatedTweets : JsonModel
         }
         this.ImageFilter?.Validate();
         this.TopicFilter?.Validate();
+        _ = this.FilteredCount;
+        _ = this.ReadBackTo;
+        _ = this.WindowComplete;
+        _ = this.SearchedQuery;
+        this.SearchContext?.Validate();
+        foreach (var item in this.Skipped ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public PaginatedTweets() { }
@@ -342,6 +482,69 @@ public sealed record class Diagnostic : JsonModel
         init { this._rawData.Set("unrelatedCount", value); }
     }
 
+    /// <summary>
+    /// All child counts are known &amp; match collected replies.
+    /// </summary>
+    public bool? ReplyTreeComplete
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("replyTreeComplete");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("replyTreeComplete", value);
+        }
+    }
+
+    /// <summary>
+    /// Replies are accounted for through the requested scope &amp; depth. Source errors remain separate.
+    /// </summary>
+    public bool? ReplyScopeComplete
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("replyScopeComplete");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("replyScopeComplete", value);
+        }
+    }
+
+    /// <summary>
+    /// True when no more replies can be found. A retry returns the same rows.
+    /// </summary>
+    public bool? SourcesEnded
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("sourcesEnded");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sourcesEnded", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -366,6 +569,9 @@ public sealed record class Diagnostic : JsonModel
         _ = this.TargetDirectReplies;
         _ = this.UniqueDirectReplies;
         _ = this.UnrelatedCount;
+        _ = this.ReplyTreeComplete;
+        _ = this.ReplyScopeComplete;
+        _ = this.SourcesEnded;
     }
 
     public Diagnostic() { }
@@ -642,6 +848,30 @@ public sealed record class StrategiesAttempted : JsonModel
         init { this._rawData.Set("stopReason", value); }
     }
 
+    /// <summary>
+    /// The page, from 1, where each new direct reply appeared.
+    /// </summary>
+    public IReadOnlyList<long>? NewDirectReplyPages
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<long>>("newDirectReplyPages");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<long>?>(
+                "newDirectReplyPages",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -650,6 +880,7 @@ public sealed record class StrategiesAttempted : JsonModel
         _ = this.NewNestedReplies;
         _ = this.PagesAttempted;
         this.StopReason.Validate();
+        _ = this.NewDirectReplyPages;
     }
 
     public StrategiesAttempted() { }
@@ -746,4 +977,261 @@ sealed class StopReasonConverter : JsonConverter<StopReason>
             options
         );
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PaginatedTweetsSearchContextSmartTag,
+        PaginatedTweetsSearchContextSmartTagFromRaw
+    >)
+)]
+public sealed record class PaginatedTweetsSearchContextSmartTag : JsonModel
+{
+    /// <summary>
+    /// The ticker X matched.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// Whether X lists the ticker as active.
+    /// </summary>
+    public bool? Active
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("active");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("active", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether X charts the ticker with open, high, low &amp; close prices.
+    /// </summary>
+    public bool? SupportsOhlc
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("supportsOhlc");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("supportsOhlc", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.Active;
+        _ = this.SupportsOhlc;
+    }
+
+    public PaginatedTweetsSearchContextSmartTag() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSearchContextSmartTag(
+        PaginatedTweetsSearchContextSmartTag paginatedTweetsSearchContextSmartTag
+    )
+        : base(paginatedTweetsSearchContextSmartTag) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSearchContextSmartTag(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaginatedTweetsSearchContextSmartTag(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PaginatedTweetsSearchContextSmartTagFromRaw.FromRawUnchecked"/>
+    public static PaginatedTweetsSearchContextSmartTag FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PaginatedTweetsSearchContextSmartTagFromRaw
+    : IFromRawJson<PaginatedTweetsSearchContextSmartTag>
+{
+    /// <inheritdoc/>
+    public PaginatedTweetsSearchContextSmartTag FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PaginatedTweetsSearchContextSmartTag.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<PaginatedTweetsSearchContext, PaginatedTweetsSearchContextFromRaw>)
+)]
+public sealed record class PaginatedTweetsSearchContext : JsonModel
+{
+    /// <summary>
+    /// X's card for the cashtag the search names.
+    /// </summary>
+    public required PaginatedTweetsSearchContextSmartTag SmartTag
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PaginatedTweetsSearchContextSmartTag>("smartTag");
+        }
+        init { this._rawData.Set("smartTag", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.SmartTag.Validate();
+    }
+
+    public PaginatedTweetsSearchContext() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSearchContext(PaginatedTweetsSearchContext paginatedTweetsSearchContext)
+        : base(paginatedTweetsSearchContext) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSearchContext(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaginatedTweetsSearchContext(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PaginatedTweetsSearchContextFromRaw.FromRawUnchecked"/>
+    public static PaginatedTweetsSearchContext FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PaginatedTweetsSearchContextFromRaw : IFromRawJson<PaginatedTweetsSearchContext>
+{
+    /// <inheritdoc/>
+    public PaginatedTweetsSearchContext FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PaginatedTweetsSearchContext.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<PaginatedTweetsSkipped, PaginatedTweetsSkippedFromRaw>))]
+public sealed record class PaginatedTweetsSkipped : JsonModel
+{
+    /// <summary>
+    /// The entry as sent.
+    /// </summary>
+    public required string Entry
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("entry");
+        }
+        init { this._rawData.Set("entry", value); }
+    }
+
+    /// <summary>
+    /// Why the entry names no post.
+    /// </summary>
+    public required string Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("reason");
+        }
+        init { this._rawData.Set("reason", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Entry;
+        _ = this.Reason;
+    }
+
+    public PaginatedTweetsSkipped() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSkipped(PaginatedTweetsSkipped paginatedTweetsSkipped)
+        : base(paginatedTweetsSkipped) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaginatedTweetsSkipped(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PaginatedTweetsSkipped(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PaginatedTweetsSkippedFromRaw.FromRawUnchecked"/>
+    public static PaginatedTweetsSkipped FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PaginatedTweetsSkippedFromRaw : IFromRawJson<PaginatedTweetsSkipped>
+{
+    /// <inheritdoc/>
+    public PaginatedTweetsSkipped FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PaginatedTweetsSkipped.FromRawUnchecked(rawData);
 }

@@ -57,6 +57,73 @@ public sealed record class PaginatedUsers : JsonModel
         }
     }
 
+    /// <summary>
+    /// Whole number from 0.
+    /// </summary>
+    public long? FilteredCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("filtered_count");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("filtered_count", value);
+        }
+    }
+
+    /// <summary>
+    /// Present on the last page of a filtered automatic read that sent no maxScan, once the list scanned 100,000 profiles across its pages. That page is the list's last.
+    /// </summary>
+    public global::XTwitterScraper.Models.UserListScanLimit? ScanLimit
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.UserListScanLimit>(
+                "scanLimit"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("scanLimit", value);
+        }
+    }
+
+    /// <summary>
+    /// How completely the list came back, with its counts.
+    /// </summary>
+    public global::XTwitterScraper.Models.UserListCoverageDiagnostic? Diagnostic
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.UserListCoverageDiagnostic>(
+                "diagnostic"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("diagnostic", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -66,6 +133,9 @@ public sealed record class PaginatedUsers : JsonModel
         {
             item.Validate();
         }
+        _ = this.FilteredCount;
+        this.ScanLimit?.Validate();
+        this.Diagnostic?.Validate();
     }
 
     public PaginatedUsers() { }

@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -51,6 +52,71 @@ public sealed record class XGetTrendsResponse : JsonModel
         init { this._rawData.Set("woeid", value); }
     }
 
+    /// <summary>
+    /// The place country or location named. Absent when woeid picked the place or the request named none.
+    /// </summary>
+    public global::XTwitterScraper.Models.TrendLocation? Location
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.TrendLocation>(
+                "location"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("location", value);
+        }
+    }
+
+    /// <summary>
+    /// When Xquik read this list from X. It comes from the stored list and is never estimated.
+    /// </summary>
+    public DateTimeOffset? CapturedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("capturedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("capturedAt", value);
+        }
+    }
+
+    /// <summary>
+    /// The time the at parameter asked for, as Xquik read it. A span such as 24h shows here as the time it counted back to. Present only with at.
+    /// </summary>
+    public DateTimeOffset? RequestedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("requestedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("requestedAt", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -60,6 +126,9 @@ public sealed record class XGetTrendsResponse : JsonModel
             item.Validate();
         }
         _ = this.Woeid;
+        this.Location?.Validate();
+        _ = this.CapturedAt;
+        _ = this.RequestedAt;
     }
 
     public XGetTrendsResponse() { }

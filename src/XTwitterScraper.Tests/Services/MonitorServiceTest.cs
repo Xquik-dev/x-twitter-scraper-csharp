@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Models;
 
@@ -64,5 +65,16 @@ public class MonitorServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(response);
+    }
+
+    [Fact]
+    public async Task UpsertByUsername_Works()
+    {
+        var result = await this.client.Monitors.UpsertByUsername(
+            "username",
+            new() { EventTypes = [global::XTwitterScraper.Models.EventType.TweetNew] },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

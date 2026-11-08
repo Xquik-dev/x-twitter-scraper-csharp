@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models.Webhooks;
+using Webhooks = XTwitterScraper.Models.Webhooks;
 
 namespace XTwitterScraper.Services;
 
@@ -121,6 +122,14 @@ public interface IWebhookService
         WebhookTestParams? parameters = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns a t.me link to @XquikBot that connects a Telegram chat to the account's monitor events. Opening it &amp; pressing Start connects the chat, which then gets each alert as a message. Alerts that wait together come as 1 digest. A busy chat gets 5 quick messages, then 1 every 30 s. Only 1 message a minute rings. The link works once, within 15 minutes. The chat appears in the webhook list with the URL `telegram:&lt;chat ID&gt;`, with deliveries, retries &amp; resume as any webhook. In the chat, /stop pauses its alerts. It costs no credits.
+    /// </summary>
+    Task<Webhooks::WebhookCreateTelegramLinkResponse> CreateTelegramLink(
+        Webhooks::WebhookCreateTelegramLinkParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -231,6 +240,15 @@ public interface IWebhookServiceWithRawResponse
     Task<HttpResponse<WebhookTestResponse>> Test(
         string id,
         WebhookTestParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /webhooks/telegram</c>, but is otherwise the
+    /// same as <see cref="IWebhookService.CreateTelegramLink(Webhooks::WebhookCreateTelegramLinkParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Webhooks::WebhookCreateTelegramLinkResponse>> CreateTelegramLink(
+        Webhooks::WebhookCreateTelegramLinkParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

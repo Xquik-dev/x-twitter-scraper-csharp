@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -910,6 +911,664 @@ public sealed record class TweetAuthor : JsonModel
             WithheldInCountries = tweetAuthor.WithheldInCountries,
         };
 
+    /// <summary>
+    /// The same profile picture at full size, as the account uploaded it. Download this one for the image.
+    /// </summary>
+    public string? ProfilePictureOriginal
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("profilePictureOriginal");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("profilePictureOriginal", value);
+        }
+    }
+
+    /// <summary>
+    /// Null when X shows no label.
+    /// </summary>
+    public global::XTwitterScraper.Models.AccountBasedIn? AccountBasedIn
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.AccountBasedIn>(
+                "accountBasedIn"
+            );
+        }
+        init { this._rawData.Set("accountBasedIn", value); }
+    }
+
+    /// <summary>
+    /// True when X withheld accountBasedIn from this read. Retry later.
+    /// </summary>
+    public bool? AccountBasedInUnavailable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("accountBasedInUnavailable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("accountBasedInUnavailable", value);
+        }
+    }
+
+    /// <summary>
+    /// False when X notes accountBasedIn may be inaccurate.
+    /// </summary>
+    public bool? AccountBasedInAccurate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("accountBasedInAccurate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("accountBasedInAccurate", value);
+        }
+    }
+
+    /// <summary>
+    /// How the account first connected to X.
+    /// </summary>
+    public string? ConnectedVia
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("connectedVia");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("connectedVia", value);
+        }
+    }
+
+    /// <summary>
+    /// False when X notes that country may be inaccurate.
+    /// </summary>
+    public bool? ConnectedViaAccurate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("connectedViaAccurate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("connectedViaAccurate", value);
+        }
+    }
+
+    /// <summary>
+    /// Handle of the organization X shows the account is affiliated with, from its About page.
+    /// </summary>
+    public string? AffiliateUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("affiliateUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("affiliateUsername", value);
+        }
+    }
+
+    /// <summary>
+    /// First email the account publishes on its profile, lowercased. Omitted when it publishes none.
+    /// </summary>
+    public string? Email
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("email");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("email", value);
+        }
+    }
+
+    /// <summary>
+    /// Emails, phone numbers &amp; links the account publishes on its own profile. Omitted when it publishes none.
+    /// </summary>
+    public global::XTwitterScraper.Models.ProfileContactInfo? ContactInfo
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.ProfileContactInfo>(
+                "contactInfo"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("contactInfo", value);
+        }
+    }
+
+    /// <summary>
+    /// How often the account changed its username.
+    /// </summary>
+    public TweetAuthorUsernameChanges? UsernameChanges
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TweetAuthorUsernameChanges>("usernameChanges");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("usernameChanges", value);
+        }
+    }
+
+    /// <summary>
+    /// The parts of the birthday the account made public.
+    /// </summary>
+    public TweetAuthorBirthdate? Birthdate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TweetAuthorBirthdate>("birthdate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("birthdate", value);
+        }
+    }
+
+    /// <summary>
+    /// UTC repost time with includeRetweetTimestamp. Null when Xquik found no repost time. Otherwise omitted.
+    /// </summary>
+    public DateTimeOffset? RetweetedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("retweetedAt");
+        }
+        init { this._rawData.Set("retweetedAt", value); }
+    }
+
+    /// <summary>
+    /// Whether X withholds a post or user
+    /// </summary>
+    public string? WithheldScope
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("withheldScope");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("withheldScope", value);
+        }
+    }
+
+    /// <summary>
+    /// Professional metadata with category display settings
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? Professional
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "professional"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "professional",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Public profile bio translation returned by X
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? GrokTranslatedBio
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "grokTranslatedBio"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "grokTranslatedBio",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Handle x.com sends this profile's visitors to, such as the new handle of a renamed account whose old handle now holds a placeholder. Missing when x.com shows the profile itself.
+    /// </summary>
+    public string? RedirectsToUsername
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("redirectsToUsername");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("redirectsToUsername", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether X marks the subscription profile as active.
+    /// </summary>
+    public bool? SuperFollowsUserProfileActive
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("superFollowsUserProfileActive");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("superFollowsUserProfileActive", value);
+        }
+    }
+
+    /// <summary>
+    /// Public payment and creator-support handles shown on X.
+    /// </summary>
+    public global::XTwitterScraper.Models.UserTipJar? TipJar
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.UserTipJar>(
+                "tipJar"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("tipJar", value);
+        }
+    }
+
+    /// <summary>
+    /// Public lists that include the profile.
+    /// </summary>
+    public long? ListedCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("listedCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("listedCount", value);
+        }
+    }
+
+    /// <summary>
+    /// Followers X counts as fast followers.
+    /// </summary>
+    public long? FastFollowersCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("fastFollowersCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("fastFollowersCount", value);
+        }
+    }
+
+    /// <summary>
+    /// Followers minus fast followers.
+    /// </summary>
+    public long? NormalFollowersCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("normalFollowersCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("normalFollowersCount", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the profile keeps X's default theme.
+    /// </summary>
+    public bool? DefaultProfile
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("defaultProfile");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("defaultProfile", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the profile keeps X's default avatar.
+    /// </summary>
+    public bool? DefaultProfileImage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("defaultProfileImage");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("defaultProfileImage", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the profile filled X's extended fields, such as a birth date. True or false.
+    /// </summary>
+    public bool? HasExtendedProfile
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasExtendedProfile");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasExtendedProfile", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the account turned on X's translation of its posts. True or false.
+    /// </summary>
+    public bool? IsTranslationEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("isTranslationEnabled");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("isTranslationEnabled", value);
+        }
+    }
+
+    /// <summary>
+    /// Whether the profile may add a location to posts.
+    /// </summary>
+    public bool? GeoEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("geoEnabled");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("geoEnabled", value);
+        }
+    }
+
+    /// <summary>
+    /// The account's X Ads type. `none` for an account without ads, or `promotable_user` for one that may run them.
+    /// </summary>
+    public string? AdvertiserAccountType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("advertiserAccountType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("advertiserAccountType", value);
+        }
+    }
+
+    /// <summary>
+    /// X Ads services the account uses, such as `analytics`, `media_studio` or `smb`. Empty for an account without ads.
+    /// </summary>
+    public IReadOnlyList<string>? AdvertiserAccountServiceLevels
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>(
+                "advertiserAccountServiceLevels"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "advertiserAccountServiceLevels",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Whether X treats the profile as a business profile. `none` or `enabled`.
+    /// </summary>
+    public string? BusinessProfileState
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("businessProfileState");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("businessProfileState", value);
+        }
+    }
+
+    /// <summary>
+    /// Accounts subscribed to the profile's paid Subscriptions. 0 when it has none.
+    /// </summary>
+    public long? SubscribersCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("subscribersCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("subscribersCount", value);
+        }
+    }
+
+    /// <summary>
+    /// X's text on why the profile is verified, with its links.
+    /// </summary>
+    public TweetAuthorVerificationReason? VerificationReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TweetAuthorVerificationReason>(
+                "verificationReason"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("verificationReason", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -959,6 +1618,37 @@ public sealed record class TweetAuthor : JsonModel
         _ = this.Verified;
         _ = this.VerifiedType;
         _ = this.WithheldInCountries;
+        _ = this.ProfilePictureOriginal;
+        this.AccountBasedIn?.Validate();
+        _ = this.AccountBasedInUnavailable;
+        _ = this.AccountBasedInAccurate;
+        _ = this.ConnectedVia;
+        _ = this.ConnectedViaAccurate;
+        _ = this.AffiliateUsername;
+        _ = this.Email;
+        this.ContactInfo?.Validate();
+        this.UsernameChanges?.Validate();
+        this.Birthdate?.Validate();
+        _ = this.RetweetedAt;
+        _ = this.WithheldScope;
+        _ = this.Professional;
+        _ = this.GrokTranslatedBio;
+        _ = this.RedirectsToUsername;
+        _ = this.SuperFollowsUserProfileActive;
+        this.TipJar?.Validate();
+        _ = this.ListedCount;
+        _ = this.FastFollowersCount;
+        _ = this.NormalFollowersCount;
+        _ = this.DefaultProfile;
+        _ = this.DefaultProfileImage;
+        _ = this.HasExtendedProfile;
+        _ = this.IsTranslationEnabled;
+        _ = this.GeoEnabled;
+        _ = this.AdvertiserAccountType;
+        _ = this.AdvertiserAccountServiceLevels;
+        _ = this.BusinessProfileState;
+        _ = this.SubscribersCount;
+        this.VerificationReason?.Validate();
     }
 
     public TweetAuthor() { }
@@ -1062,4 +1752,429 @@ class TweetAuthorRequirementsFromRaw : IFromRawJson<TweetAuthorRequirements>
     public TweetAuthorRequirements FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => TweetAuthorRequirements.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<TweetAuthorUsernameChanges, TweetAuthorUsernameChangesFromRaw>)
+)]
+public sealed record class TweetAuthorUsernameChanges : JsonModel
+{
+    /// <summary>
+    /// Whole number from 0.
+    /// </summary>
+    public required long Count
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<long>("count");
+        }
+        init { this._rawData.Set("count", value); }
+    }
+
+    /// <summary>
+    /// Time of the latest change, omitted when there is none.
+    /// </summary>
+    public DateTimeOffset? LastChangedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("lastChangedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("lastChangedAt", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Count;
+        _ = this.LastChangedAt;
+    }
+
+    public TweetAuthorUsernameChanges() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorUsernameChanges(TweetAuthorUsernameChanges tweetAuthorUsernameChanges)
+        : base(tweetAuthorUsernameChanges) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorUsernameChanges(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetAuthorUsernameChanges(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetAuthorUsernameChangesFromRaw.FromRawUnchecked"/>
+    public static TweetAuthorUsernameChanges FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetAuthorUsernameChangesFromRaw : IFromRawJson<TweetAuthorUsernameChanges>
+{
+    /// <inheritdoc/>
+    public TweetAuthorUsernameChanges FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetAuthorUsernameChanges.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(JsonModelConverter<TweetAuthorBirthdate, TweetAuthorBirthdateFromRaw>))]
+public sealed record class TweetAuthorBirthdate : JsonModel
+{
+    public long? Day
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("day");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("day", value);
+        }
+    }
+
+    public long? Month
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("month");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("month", value);
+        }
+    }
+
+    public long? Year
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("year");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("year", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Day;
+        _ = this.Month;
+        _ = this.Year;
+    }
+
+    public TweetAuthorBirthdate() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorBirthdate(TweetAuthorBirthdate tweetAuthorBirthdate)
+        : base(tweetAuthorBirthdate) { }
+#pragma warning restore CS8618
+
+    public TweetAuthorBirthdate(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetAuthorBirthdate(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetAuthorBirthdateFromRaw.FromRawUnchecked"/>
+    public static TweetAuthorBirthdate FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetAuthorBirthdateFromRaw : IFromRawJson<TweetAuthorBirthdate>
+{
+    /// <inheritdoc/>
+    public TweetAuthorBirthdate FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetAuthorBirthdate.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        TweetAuthorVerificationReasonEntities,
+        TweetAuthorVerificationReasonEntitiesFromRaw
+    >)
+)]
+public sealed record class TweetAuthorVerificationReasonEntities : JsonModel
+{
+    /// <summary>
+    /// Whole number from 0.
+    /// </summary>
+    public long? FromIndex
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("fromIndex");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("fromIndex", value);
+        }
+    }
+
+    /// <summary>
+    /// Whole number from 0.
+    /// </summary>
+    public long? ToIndex
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("toIndex");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("toIndex", value);
+        }
+    }
+
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
+    public string? UrlType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("urlType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("urlType", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FromIndex;
+        _ = this.ToIndex;
+        _ = this.UrlValue;
+        _ = this.UrlType;
+    }
+
+    public TweetAuthorVerificationReasonEntities() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorVerificationReasonEntities(
+        TweetAuthorVerificationReasonEntities tweetAuthorVerificationReasonEntities
+    )
+        : base(tweetAuthorVerificationReasonEntities) { }
+#pragma warning restore CS8618
+
+    public TweetAuthorVerificationReasonEntities(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetAuthorVerificationReasonEntities(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetAuthorVerificationReasonEntitiesFromRaw.FromRawUnchecked"/>
+    public static TweetAuthorVerificationReasonEntities FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetAuthorVerificationReasonEntitiesFromRaw
+    : IFromRawJson<TweetAuthorVerificationReasonEntities>
+{
+    /// <inheritdoc/>
+    public TweetAuthorVerificationReasonEntities FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetAuthorVerificationReasonEntities.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<TweetAuthorVerificationReason, TweetAuthorVerificationReasonFromRaw>)
+)]
+public sealed record class TweetAuthorVerificationReason : JsonModel
+{
+    public string? Text
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("text");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("text", value);
+        }
+    }
+
+    /// <summary>
+    /// Links inside the text, by character range.
+    /// </summary>
+    public IReadOnlyList<TweetAuthorVerificationReasonEntities>? Entities
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<TweetAuthorVerificationReasonEntities>
+            >("entities");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<TweetAuthorVerificationReasonEntities>?>(
+                "entities",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Text;
+        foreach (var item in this.Entities ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public TweetAuthorVerificationReason() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public TweetAuthorVerificationReason(
+        TweetAuthorVerificationReason tweetAuthorVerificationReason
+    )
+        : base(tweetAuthorVerificationReason) { }
+#pragma warning restore CS8618
+
+    public TweetAuthorVerificationReason(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    TweetAuthorVerificationReason(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="TweetAuthorVerificationReasonFromRaw.FromRawUnchecked"/>
+    public static TweetAuthorVerificationReason FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class TweetAuthorVerificationReasonFromRaw : IFromRawJson<TweetAuthorVerificationReason>
+{
+    /// <inheritdoc/>
+    public TweetAuthorVerificationReason FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => TweetAuthorVerificationReason.FromRawUnchecked(rawData);
 }

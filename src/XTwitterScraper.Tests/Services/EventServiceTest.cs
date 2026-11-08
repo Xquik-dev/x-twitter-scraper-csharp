@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services;
@@ -24,5 +25,15 @@ public class EventServiceTest : TestBase
     {
         var events = await this.client.Events.List(new(), TestContext.Current.CancellationToken);
         Assert.NotNull(events);
+    }
+
+    [Fact]
+    public async Task Stream_Works()
+    {
+        using var response = await this.client.Events.Stream(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(response);
     }
 }

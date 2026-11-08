@@ -10,6 +10,8 @@ using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Lists;
+using Lists = XTwitterScraper.Models.X.Lists;
+using Models = XTwitterScraper.Models;
 
 namespace XTwitterScraper.Services.X;
 
@@ -109,6 +111,42 @@ public sealed class ListService : IListService
         parameters ??= new();
 
         return this.RetrieveTweets(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Models::PaginatedLists> RetrieveSearch(
+        Lists::ListRetrieveSearchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.RetrieveSearch(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Lists::ListRetrieveResponse> Retrieve(
+        Lists::ListRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Retrieve(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Lists::ListRetrieveResponse> Retrieve(
+        string id,
+        Lists::ListRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 }
 
@@ -261,5 +299,78 @@ public sealed class ListServiceWithRawResponse : IListServiceWithRawResponse
         parameters ??= new();
 
         return this.RetrieveTweets(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Models::PaginatedLists>> RetrieveSearch(
+        Lists::ListRetrieveSearchParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        HttpRequest<Lists::ListRetrieveSearchParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Models::PaginatedLists>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Lists::ListRetrieveResponse>> Retrieve(
+        Lists::ListRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new XTwitterScraperInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<Lists::ListRetrieveParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Lists::ListRetrieveResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Lists::ListRetrieveResponse>> Retrieve(
+        string id,
+        Lists::ListRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Retrieve(parameters with { ID = id }, cancellationToken);
     }
 }

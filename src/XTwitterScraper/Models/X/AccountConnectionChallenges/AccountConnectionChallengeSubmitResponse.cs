@@ -84,6 +84,80 @@ public sealed record class AccountConnectionChallengeSubmitResponse : JsonModel
         init { this._rawData.Set("xUsername", value); }
     }
 
+    public ApiEnum<string, AccountConnectionChallengeSubmitResponseObject>? Object
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, AccountConnectionChallengeSubmitResponseObject>
+            >("object");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("object", value);
+        }
+    }
+
+    public System::DateTimeOffset? ExpiresAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiresAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("expiresAt", value);
+        }
+    }
+
+    public string? Message
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("message");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("message", value);
+        }
+    }
+
+    public string? Username
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("username");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("username", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -96,6 +170,10 @@ public sealed record class AccountConnectionChallengeSubmitResponse : JsonModel
         }
         _ = this.XUserID;
         _ = this.XUsername;
+        this.Object?.Validate();
+        _ = this.ExpiresAt;
+        _ = this.Message;
+        _ = this.Username;
     }
 
     public AccountConnectionChallengeSubmitResponse()
@@ -189,6 +267,50 @@ sealed class HealthConverter : JsonConverter<Health>
                 Health.Recovering => "recovering",
                 Health.Suspended => "suspended",
                 Health.TemporaryIssue => "temporaryIssue",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(AccountConnectionChallengeSubmitResponseObjectConverter))]
+public enum AccountConnectionChallengeSubmitResponseObject
+{
+    XAccountConnectionChallenge,
+}
+
+sealed class AccountConnectionChallengeSubmitResponseObjectConverter
+    : JsonConverter<AccountConnectionChallengeSubmitResponseObject>
+{
+    public override AccountConnectionChallengeSubmitResponseObject Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "x_account_connection_challenge" =>
+                AccountConnectionChallengeSubmitResponseObject.XAccountConnectionChallenge,
+            _ => (AccountConnectionChallengeSubmitResponseObject)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AccountConnectionChallengeSubmitResponseObject value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AccountConnectionChallengeSubmitResponseObject.XAccountConnectionChallenge =>
+                    "x_account_connection_challenge",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

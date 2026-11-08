@@ -135,6 +135,113 @@ public sealed record class ExtractionJob : JsonModel
         }
     }
 
+    /// <summary>
+    /// Dashboard page where a signed-in user follows this job &amp; downloads its rows as CSV, XLSX, JSON, Markdown, PDF or text.
+    /// </summary>
+    public string? UrlValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("url");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("url", value);
+        }
+    }
+
+    /// <summary>
+    /// Requested result limit.
+    /// </summary>
+    public long? ResultsLimit
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("resultsLimit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("resultsLimit", value);
+        }
+    }
+
+    /// <summary>
+    /// Result limit after affordability checks.
+    /// </summary>
+    public long? EffectiveResultsLimit
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("effectiveResultsLimit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("effectiveResultsLimit", value);
+        }
+    }
+
+    /// <summary>
+    /// Why a terminal job stopped. `requested_limit_reached` means the job returned the number of results you asked for. `source_exhausted` means the read reached its end before your limit. A search can reach its end with only part of its matches. Wide date windows return fewer posts than narrow ones over the same dates. For a fuller collection, run the same search in shorter windows. `pagination_safety_limit` means a paging safety rule ended the read early. The job keeps every result it found. `deadline_reached` means the job ran out of time. `partial_failure` means some reads failed, and the job keeps the results from the rest. `budget_limited` means your credits covered fewer results than the job found. `canceled` and `failed` match the job status.
+    /// </summary>
+    public ApiEnum<string, ExtractionJobCompletionReason>? CompletionReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, ExtractionJobCompletionReason>>(
+                "completionReason"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("completionReason", value);
+        }
+    }
+
+    /// <summary>
+    /// Safe error code for a failed job.
+    /// </summary>
+    public string? ErrorMessage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("errorMessage");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("errorMessage", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -146,6 +253,11 @@ public sealed record class ExtractionJob : JsonModel
         _ = this.CompletedAt;
         this.ImageFilter?.Validate();
         this.TopicFilter?.Validate();
+        _ = this.UrlValue;
+        _ = this.ResultsLimit;
+        _ = this.EffectiveResultsLimit;
+        this.CompletionReason?.Validate();
+        _ = this.ErrorMessage;
     }
 
     public ExtractionJob() { }
@@ -334,6 +446,68 @@ sealed class ExtractionJobToolTypeConverter : JsonConverter<ExtractionJobToolTyp
                 ExtractionJobToolType.UserLikes => "user_likes",
                 ExtractionJobToolType.UserMedia => "user_media",
                 ExtractionJobToolType.VerifiedFollowerExplorer => "verified_follower_explorer",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(ExtractionJobCompletionReasonConverter))]
+public enum ExtractionJobCompletionReason
+{
+    BudgetLimited,
+    Canceled,
+    DeadlineReached,
+    Failed,
+    PaginationSafetyLimit,
+    PartialFailure,
+    RequestedLimitReached,
+    SourceExhausted,
+}
+
+sealed class ExtractionJobCompletionReasonConverter : JsonConverter<ExtractionJobCompletionReason>
+{
+    public override ExtractionJobCompletionReason Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "budget_limited" => ExtractionJobCompletionReason.BudgetLimited,
+            "canceled" => ExtractionJobCompletionReason.Canceled,
+            "deadline_reached" => ExtractionJobCompletionReason.DeadlineReached,
+            "failed" => ExtractionJobCompletionReason.Failed,
+            "pagination_safety_limit" => ExtractionJobCompletionReason.PaginationSafetyLimit,
+            "partial_failure" => ExtractionJobCompletionReason.PartialFailure,
+            "requested_limit_reached" => ExtractionJobCompletionReason.RequestedLimitReached,
+            "source_exhausted" => ExtractionJobCompletionReason.SourceExhausted,
+            _ => (ExtractionJobCompletionReason)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        ExtractionJobCompletionReason value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                ExtractionJobCompletionReason.BudgetLimited => "budget_limited",
+                ExtractionJobCompletionReason.Canceled => "canceled",
+                ExtractionJobCompletionReason.DeadlineReached => "deadline_reached",
+                ExtractionJobCompletionReason.Failed => "failed",
+                ExtractionJobCompletionReason.PaginationSafetyLimit => "pagination_safety_limit",
+                ExtractionJobCompletionReason.PartialFailure => "partial_failure",
+                ExtractionJobCompletionReason.RequestedLimitReached => "requested_limit_reached",
+                ExtractionJobCompletionReason.SourceExhausted => "source_exhausted",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models.Events;
+using Events = XTwitterScraper.Models.Events;
 
 namespace XTwitterScraper.Services;
 
@@ -53,6 +54,14 @@ public interface IEventService
         EventListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Streams the account's monitor events as server-sent events, each named by its event type and numbered by its event ID. A reconnect that sends Last-Event-ID first gets every event after that one from the last 30 days, then each new event. Set lookBack to also get events saved late. A connection lasts up to 30 minutes and sends a comment every 15 seconds while idle. Keep up to 200 streams open per account. Events and streams cost no credits. Add include=post_metrics to also get post.metrics frames. The first poll sends 1 for each post monitor with a check or a pause. After that, a frame comes when a monitor's saved numbers or status change. These frames carry no ID, so Last-Event-ID never moves.
+    /// </summary>
+    Task<HttpResponse> Stream(
+        Events::EventStreamParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -90,6 +99,15 @@ public interface IEventServiceWithRawResponse
     /// </summary>
     Task<HttpResponse<EventListResponse>> List(
         EventListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /events/stream</c>, but is otherwise the
+    /// same as <see cref="IEventService.Stream(Events::EventStreamParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse> Stream(
+        Events::EventStreamParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

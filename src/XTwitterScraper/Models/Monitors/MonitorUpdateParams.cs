@@ -74,6 +74,19 @@ public record class MonitorUpdateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// New label for the account monitor. Send null to remove the label.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
+        init { this._rawBodyData.Set("name", value); }
+    }
+
     public MonitorUpdateParams() { }
 
 #pragma warning disable CS8618

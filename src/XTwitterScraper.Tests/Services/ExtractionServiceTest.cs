@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Models.Extractions;
 
@@ -58,5 +59,16 @@ public class ExtractionServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(response);
+    }
+
+    [Fact]
+    public async Task Cancel_Works()
+    {
+        var result = await this.client.Extractions.Cancel(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

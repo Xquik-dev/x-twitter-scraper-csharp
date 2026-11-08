@@ -46,12 +46,36 @@ public sealed record class SubscribeCreateResponse : JsonModel
         init { this._rawData.Set("url", value); }
     }
 
+    /// <summary>
+    /// Currency the checkout charges. Only a checkout_created answer has it.
+    /// </summary>
+    public ApiEnum<string, global::XTwitterScraper.Models.Currency>? ChargedCurrency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, global::XTwitterScraper.Models.Currency>
+            >("chargedCurrency");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("chargedCurrency", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Message;
         this.Status.Validate();
         _ = this.Url;
+        this.ChargedCurrency?.Validate();
     }
 
     public SubscribeCreateResponse() { }

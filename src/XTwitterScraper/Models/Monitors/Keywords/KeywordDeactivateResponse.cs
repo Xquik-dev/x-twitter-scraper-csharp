@@ -27,6 +27,47 @@ public sealed record class KeywordDeactivateResponse : JsonModel
         init { this._rawData.Set("success", value); }
     }
 
+    public ApiEnum<string, KeywordDeactivateResponseDeletionStatus>? DeletionStatus
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, KeywordDeactivateResponseDeletionStatus>
+            >("deletionStatus");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("deletionStatus", value);
+        }
+    }
+
+    /// <summary>
+    /// Poll this monitor URL until it returns 404.
+    /// </summary>
+    public string? StatusUrl
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("statusUrl");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("statusUrl", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -34,6 +75,8 @@ public sealed record class KeywordDeactivateResponse : JsonModel
         {
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
         }
+        this.DeletionStatus?.Validate();
+        _ = this.StatusUrl;
     }
 
     public KeywordDeactivateResponse()
@@ -77,4 +120,46 @@ class KeywordDeactivateResponseFromRaw : IFromRawJson<KeywordDeactivateResponse>
     public KeywordDeactivateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => KeywordDeactivateResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(KeywordDeactivateResponseDeletionStatusConverter))]
+public enum KeywordDeactivateResponseDeletionStatus
+{
+    Deleting,
+}
+
+sealed class KeywordDeactivateResponseDeletionStatusConverter
+    : JsonConverter<KeywordDeactivateResponseDeletionStatus>
+{
+    public override KeywordDeactivateResponseDeletionStatus Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "deleting" => KeywordDeactivateResponseDeletionStatus.Deleting,
+            _ => (KeywordDeactivateResponseDeletionStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        KeywordDeactivateResponseDeletionStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                KeywordDeactivateResponseDeletionStatus.Deleting => "deleting",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

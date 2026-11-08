@@ -5,6 +5,8 @@ using XTwitterScraper.Core;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Tweets;
 using XTwitterScraper.Services.X.Tweets;
+using Models = XTwitterScraper.Models;
+using Tweets = XTwitterScraper.Models.X.Tweets;
 
 namespace XTwitterScraper.Services.X;
 
@@ -164,6 +166,163 @@ public interface ITweetService
         TweetSearchParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns the tweets X ranks highest by 1 metric over the last day, week or month. Covers all of X unless you pick a country or a language. Pages hold up to 20 tweets, and the list ends at 100. Each tweet costs 1 credit.
+    ///
+    /// Top tweet lists come back reliably.
+    /// </summary>
+    Task<Models::PaginatedTweets2> ListTop(
+        Tweets::TweetListTopParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Bookmarks a post through a connected X account. Only that account sees its bookmarks, and GET /x/bookmarks lists them.
+    /// </summary>
+    Task<Models::XWriteAction> Bookmark(
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Bookmark(Tweets::TweetBookmarkParams, CancellationToken)"/>
+    Task<Models::XWriteAction> Bookmark(
+        string id,
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Removes a bookmark through a connected X account.
+    /// </summary>
+    Task<Models::XWriteAction> Unbookmark(
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Unbookmark(Tweets::TweetUnbookmarkParams, CancellationToken)"/>
+    Task<Models::XWriteAction> Unbookmark(
+        string id,
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns whether 1 account reposted the post. It finds recent reposts. An older repost can return false, with complete false. Each check costs 1 credit.
+    /// </summary>
+    Task<Tweets::TweetCheckRepostResponse> CheckRepost(
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CheckRepost(Tweets::TweetCheckRepostParams, CancellationToken)"/>
+    Task<Tweets::TweetCheckRepostResponse> CheckRepost(
+        string id,
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the user IDs of a post's reposters, in the order &amp; pages of /x/tweets/{id}/retweeters. Use it when you need IDs only. Each ID costs 1 credit. A post nobody reposted returns an empty list for free.
+    /// </summary>
+    Task<Models::PaginatedUserIDs> GetRetweeterIds(
+        Tweets::TweetGetRetweeterIdsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetRetweeterIds(Tweets::TweetGetRetweeterIdsParams, CancellationToken)"/>
+    Task<Models::PaginatedUserIDs> GetRetweeterIds(
+        string id,
+        Tweets::TweetGetRetweeterIdsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the replies the post's author hid, oldest first, with the replies to them. A post without hidden replies returns an empty list.
+    /// </summary>
+    Task<Models::PaginatedTweets2> GetHiddenReplies(
+        Tweets::TweetGetHiddenRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetHiddenReplies(Tweets::TweetGetHiddenRepliesParams, CancellationToken)"/>
+    Task<Models::PaginatedTweets2> GetHiddenReplies(
+        string id,
+        Tweets::TweetGetHiddenRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns X's own translation of 1 public tweet into the language you pick, with the links, mentions, and tags X places in the translated text.
+    ///
+    /// Posts &amp; bios can be translated into your language.
+    /// </summary>
+    Task<Tweets::TweetTranslateResponse> Translate(
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Translate(Tweets::TweetTranslateParams, CancellationToken)"/>
+    Task<Tweets::TweetTranslateResponse> Translate(
+        string id,
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns engagement insights for 1 tweet. They are engagements per hour since it went up, per view and per follower of its author, and how far it spread. Each report costs 1 credit, whatever it reads.
+    /// </summary>
+    Task<Tweets::TweetGetInsightsResponse> GetInsights(
+        Tweets::TweetGetInsightsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetInsights(Tweets::TweetGetInsightsParams, CancellationToken)"/>
+    Task<Tweets::TweetGetInsightsResponse> GetInsights(
+        string id,
+        Tweets::TweetGetInsightsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the HTML that X gives websites to embed 1 public tweet, with the tweet's link and author.
+    /// </summary>
+    Task<Tweets::TweetEmbedResponse> Embed(
+        Tweets::TweetEmbedParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Embed(Tweets::TweetEmbedParams, CancellationToken)"/>
+    Task<Tweets::TweetEmbedResponse> Embed(
+        string id,
+        Tweets::TweetEmbedParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the caption tracks of 1 public tweet's videos. Each track has its language, name, timed cues, and full text. A tweet without video, or a video without captions, returns no track and costs nothing.
+    ///
+    /// Video subtitles come with timed cues.
+    /// </summary>
+    Task<Tweets::TweetGetSubtitlesResponse> GetSubtitles(
+        Tweets::TweetGetSubtitlesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetSubtitles(Tweets::TweetGetSubtitlesParams, CancellationToken)"/>
+    Task<Tweets::TweetGetSubtitlesResponse> GetSubtitles(
+        string id,
+        Tweets::TweetGetSubtitlesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns where each t.co link leads, as X's own redirect says. Xquik reads the redirect and never visits the target site. A link t.co does not have comes back without `resolvedUrl` and costs nothing. A link X does not answer for in time comes back in `unprocessedUrls`, free. Each resolved link costs 1 credit.
+    /// </summary>
+    Task<Tweets::TweetResolveLinksResponse> ResolveLinks(
+        Tweets::TweetResolveLinksParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -319,6 +478,168 @@ public interface ITweetServiceWithRawResponse
     /// </summary>
     Task<HttpResponse<PaginatedTweets>> Search(
         TweetSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/top</c>, but is otherwise the
+    /// same as <see cref="ITweetService.ListTop(Tweets::TweetListTopParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::PaginatedTweets2>> ListTop(
+        Tweets::TweetListTopParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>post /x/tweets/{id}/bookmark</c>, but is otherwise the
+    /// same as <see cref="ITweetService.Bookmark(Tweets::TweetBookmarkParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::XWriteAction>> Bookmark(
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Bookmark(Tweets::TweetBookmarkParams, CancellationToken)"/>
+    Task<HttpResponse<Models::XWriteAction>> Bookmark(
+        string id,
+        Tweets::TweetBookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>delete /x/tweets/{id}/bookmark</c>, but is otherwise the
+    /// same as <see cref="ITweetService.Unbookmark(Tweets::TweetUnbookmarkParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::XWriteAction>> Unbookmark(
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Unbookmark(Tweets::TweetUnbookmarkParams, CancellationToken)"/>
+    Task<HttpResponse<Models::XWriteAction>> Unbookmark(
+        string id,
+        Tweets::TweetUnbookmarkParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/retweeters/check</c>, but is otherwise the
+    /// same as <see cref="ITweetService.CheckRepost(Tweets::TweetCheckRepostParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetCheckRepostResponse>> CheckRepost(
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="CheckRepost(Tweets::TweetCheckRepostParams, CancellationToken)"/>
+    Task<HttpResponse<Tweets::TweetCheckRepostResponse>> CheckRepost(
+        string id,
+        Tweets::TweetCheckRepostParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/retweeter-ids</c>, but is otherwise the
+    /// same as <see cref="ITweetService.GetRetweeterIds(Tweets::TweetGetRetweeterIdsParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::PaginatedUserIDs>> GetRetweeterIds(
+        Tweets::TweetGetRetweeterIdsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetRetweeterIds(Tweets::TweetGetRetweeterIdsParams, CancellationToken)"/>
+    Task<HttpResponse<Models::PaginatedUserIDs>> GetRetweeterIds(
+        string id,
+        Tweets::TweetGetRetweeterIdsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/hidden-replies</c>, but is otherwise the
+    /// same as <see cref="ITweetService.GetHiddenReplies(Tweets::TweetGetHiddenRepliesParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::PaginatedTweets2>> GetHiddenReplies(
+        Tweets::TweetGetHiddenRepliesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetHiddenReplies(Tweets::TweetGetHiddenRepliesParams, CancellationToken)"/>
+    Task<HttpResponse<Models::PaginatedTweets2>> GetHiddenReplies(
+        string id,
+        Tweets::TweetGetHiddenRepliesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/translation</c>, but is otherwise the
+    /// same as <see cref="ITweetService.Translate(Tweets::TweetTranslateParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetTranslateResponse>> Translate(
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Translate(Tweets::TweetTranslateParams, CancellationToken)"/>
+    Task<HttpResponse<Tweets::TweetTranslateResponse>> Translate(
+        string id,
+        Tweets::TweetTranslateParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/insights</c>, but is otherwise the
+    /// same as <see cref="ITweetService.GetInsights(Tweets::TweetGetInsightsParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetGetInsightsResponse>> GetInsights(
+        Tweets::TweetGetInsightsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetInsights(Tweets::TweetGetInsightsParams, CancellationToken)"/>
+    Task<HttpResponse<Tweets::TweetGetInsightsResponse>> GetInsights(
+        string id,
+        Tweets::TweetGetInsightsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/embed</c>, but is otherwise the
+    /// same as <see cref="ITweetService.Embed(Tweets::TweetEmbedParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetEmbedResponse>> Embed(
+        Tweets::TweetEmbedParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Embed(Tweets::TweetEmbedParams, CancellationToken)"/>
+    Task<HttpResponse<Tweets::TweetEmbedResponse>> Embed(
+        string id,
+        Tweets::TweetEmbedParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/tweets/{id}/subtitles</c>, but is otherwise the
+    /// same as <see cref="ITweetService.GetSubtitles(Tweets::TweetGetSubtitlesParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetGetSubtitlesResponse>> GetSubtitles(
+        Tweets::TweetGetSubtitlesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="GetSubtitles(Tweets::TweetGetSubtitlesParams, CancellationToken)"/>
+    Task<HttpResponse<Tweets::TweetGetSubtitlesResponse>> GetSubtitles(
+        string id,
+        Tweets::TweetGetSubtitlesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/links/resolve</c>, but is otherwise the
+    /// same as <see cref="ITweetService.ResolveLinks(Tweets::TweetResolveLinksParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Tweets::TweetResolveLinksResponse>> ResolveLinks(
+        Tweets::TweetResolveLinksParams parameters,
         CancellationToken cancellationToken = default
     );
 }

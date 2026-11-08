@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -80,5 +81,67 @@ public class CommunityServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(paginatedTweets);
+    }
+
+    [Fact]
+    public async Task RetrieveAnalytics_Works()
+    {
+        var result = await this.client.X.Communities.RetrieveAnalytics(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task SearchMembers_Works()
+    {
+        var result = await this.client.X.Communities.SearchMembers(
+            "id",
+            new() { Q = "Q" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Find_Works()
+    {
+        var result = await this.client.X.Communities.Find(
+            new() { Q = "Q" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task ListPopular_Works()
+    {
+        var result = await this.client.X.Communities.ListPopular(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task ListTopics_Works()
+    {
+        var result = await this.client.X.Communities.ListTopics(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task ListSuggested_Works()
+    {
+        var result = await this.client.X.Communities.ListSuggested(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

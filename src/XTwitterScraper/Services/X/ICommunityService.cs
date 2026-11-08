@@ -9,6 +9,8 @@ using XTwitterScraper.Core;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Communities;
 using Communities = XTwitterScraper.Services.X.Communities;
+using Models = XTwitterScraper.Models;
+using ModelsCommunities = XTwitterScraper.Models.X.Communities;
 
 namespace XTwitterScraper.Services.X;
 
@@ -110,6 +112,70 @@ public interface ICommunityService
         CommunityRetrieveSearchParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    Communities::IMediaService Media { get; }
+
+    /// <summary>
+    /// Returns community activity for X's latest period. Includes likes, new members, posts, replies &amp; unique posters. Each metric has a count and a changePercent. Each request costs 1 credit.
+    /// </summary>
+    Task<Models::CommunityAnalytics> RetrieveAnalytics(
+        ModelsCommunities::CommunityRetrieveAnalyticsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RetrieveAnalytics(ModelsCommunities::CommunityRetrieveAnalyticsParams, CancellationToken)"/>
+    Task<Models::CommunityAnalytics> RetrieveAnalytics(
+        string id,
+        ModelsCommunities::CommunityRetrieveAnalyticsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Finds a community's members by name or username, each with its role. An answer holds up to 10 members. Each member costs 1 credit. An answer without members is free.
+    /// </summary>
+    Task<Models::PaginatedUsers> SearchMembers(
+        ModelsCommunities::CommunitySearchMembersParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="SearchMembers(ModelsCommunities::CommunitySearchMembersParams, CancellationToken)"/>
+    Task<Models::PaginatedUsers> SearchMembers(
+        string id,
+        ModelsCommunities::CommunitySearchMembersParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the communities X finds for a keyword, in X's order. Each community costs 1 credit. To search the tweets in Communities, use /x/communities/search.
+    /// </summary>
+    Task<Models::CommunityPage> Find(
+        ModelsCommunities::CommunityFindParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the communities X ranks highest under a topic or subtopic. Name it by topicId or by topic name from /x/communities/topics. Each community costs 1 credit. A missing or unknown topic returns invalid_community_topic &amp; lists the topic names.
+    /// </summary>
+    Task<Models::CommunityPage> ListPopular(
+        ModelsCommunities::CommunityListPopularParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the community topics with their subtopics. Pass an ID as topicId, or a name as topic, to /x/communities/popular. Each top-level topic costs 1 credit, its subtopics included.
+    /// </summary>
+    Task<ModelsCommunities::CommunityListTopicsResponse> ListTopics(
+        ModelsCommunities::CommunityListTopicsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns the communities X suggests, with their full public fields. X picks them per request, so 2 calls can differ. An empty list is free. Each community costs 1 credit.
+    /// </summary>
+    Task<ModelsCommunities::CommunityListSuggestedResponse> ListSuggested(
+        ModelsCommunities::CommunityListSuggestedParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -208,6 +274,76 @@ public interface ICommunityServiceWithRawResponse
     /// </summary>
     Task<HttpResponse<PaginatedTweets>> RetrieveSearch(
         CommunityRetrieveSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    Communities::IMediaServiceWithRawResponse Media { get; }
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/{id}/analytics</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.RetrieveAnalytics(ModelsCommunities::CommunityRetrieveAnalyticsParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::CommunityAnalytics>> RetrieveAnalytics(
+        ModelsCommunities::CommunityRetrieveAnalyticsParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="RetrieveAnalytics(ModelsCommunities::CommunityRetrieveAnalyticsParams, CancellationToken)"/>
+    Task<HttpResponse<Models::CommunityAnalytics>> RetrieveAnalytics(
+        string id,
+        ModelsCommunities::CommunityRetrieveAnalyticsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/{id}/members/search</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.SearchMembers(ModelsCommunities::CommunitySearchMembersParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::PaginatedUsers>> SearchMembers(
+        ModelsCommunities::CommunitySearchMembersParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="SearchMembers(ModelsCommunities::CommunitySearchMembersParams, CancellationToken)"/>
+    Task<HttpResponse<Models::PaginatedUsers>> SearchMembers(
+        string id,
+        ModelsCommunities::CommunitySearchMembersParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/find</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.Find(ModelsCommunities::CommunityFindParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::CommunityPage>> Find(
+        ModelsCommunities::CommunityFindParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/popular</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.ListPopular(ModelsCommunities::CommunityListPopularParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::CommunityPage>> ListPopular(
+        ModelsCommunities::CommunityListPopularParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/topics</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.ListTopics(ModelsCommunities::CommunityListTopicsParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<ModelsCommunities::CommunityListTopicsResponse>> ListTopics(
+        ModelsCommunities::CommunityListTopicsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/communities/suggested</c>, but is otherwise the
+    /// same as <see cref="ICommunityService.ListSuggested(ModelsCommunities::CommunityListSuggestedParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<ModelsCommunities::CommunityListSuggestedResponse>> ListSuggested(
+        ModelsCommunities::CommunityListSuggestedParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }
