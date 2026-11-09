@@ -94,6 +94,36 @@ static class GeneratedModelFixture
         return assigned;
     }
 
+    public static IReadOnlyList<PropertyInfo> NullableProperties(Type type)
+    {
+#if NET
+        NullabilityInfoContext context = new();
+        return
+        [
+            .. type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(property =>
+                    property.SetMethod is { IsPublic: true }
+                    && property.GetIndexParameters().Length == 0
+                    && context.Create(property).WriteState == NullabilityState.Nullable
+                ),
+        ];
+#else
+        return [];
+#endif
+    }
+
+    public static IEnumerable<JsonElement> RawValues(object instance) =>
+        instance
+            .GetType()
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            .Where(property =>
+                property.Name.StartsWith("Raw", StringComparison.Ordinal)
+                && property.PropertyType == typeof(IReadOnlyDictionary<string, JsonElement>)
+            )
+            .SelectMany(property =>
+                ((IReadOnlyDictionary<string, JsonElement>)property.GetValue(instance)!).Values
+            );
+
     static TheoryData<Type> TypesWhere(Func<Type, bool> predicate)
     {
         TheoryData<Type> types = [];

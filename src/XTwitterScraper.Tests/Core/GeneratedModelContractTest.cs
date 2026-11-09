@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Text.Json;
 using XTwitterScraper.Core;
 
 namespace XTwitterScraper.Tests.Core;
@@ -78,6 +79,47 @@ public class GeneratedModelContractTest
         {
             var copy = Assert.IsType<JsonModel>(copyConstructor.Invoke([model]), exactMatch: false);
             Assert.Equal(model, copy);
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(JsonModelTypes))]
+    public void JsonModelNullOptionalsStayUnset(Type modelType)
+    {
+        foreach (var property in GeneratedModelFixture.NullableProperties(modelType))
+        {
+            var model = Activator.CreateInstance(modelType)!;
+            property.SetValue(model, null);
+
+            Assert.Null(property.GetValue(model));
+            Assert.All(
+                GeneratedModelFixture.RawValues(model),
+                value => Assert.Equal(JsonValueKind.Null, value.ValueKind)
+            );
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(ParamsTypes))]
+    public void ParamsNullOptionalsStayOutOfTheRequest(Type paramsType)
+    {
+        ClientOptions options = new() { BaseUrl = "https://example.test" };
+        using var optionsHttpClient = options.HttpClient;
+
+        foreach (var property in GeneratedModelFixture.NullableProperties(paramsType))
+        {
+            var parameters = Assert.IsType<ParamsBase>(
+                Activator.CreateInstance(paramsType),
+                exactMatch: false
+            );
+            property.SetValue(parameters, null);
+
+            Assert.Null(property.GetValue(parameters));
+            Assert.All(
+                GeneratedModelFixture.RawValues(parameters),
+                value => Assert.Equal(JsonValueKind.Null, value.ValueKind)
+            );
+            Assert.True(parameters.Url(options).IsAbsoluteUri);
         }
     }
 
