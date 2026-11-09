@@ -69,18 +69,18 @@ public sealed record class Webhook : JsonModel
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
+    public required IReadOnlyList<WebhookEventType> EventTypes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+            return this._rawData.GetNotNullStruct<ImmutableArray<WebhookEventType>>(
                 "eventTypes"
             );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<ApiEnum<string, EventType>>>(
+            this._rawData.Set<ImmutableArray<WebhookEventType>>(
                 "eventTypes",
                 ImmutableArray.ToImmutableArray(value)
             );

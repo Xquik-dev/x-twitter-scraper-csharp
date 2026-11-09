@@ -21,7 +21,7 @@ public class WebhookCreateParamsTest : TestBase
             UrlValue = "https://example.com/webhook",
         };
 
-        List<ApiEnum<string, EventType>> expectedEventTypes =
+        List<WebhookEventType> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,

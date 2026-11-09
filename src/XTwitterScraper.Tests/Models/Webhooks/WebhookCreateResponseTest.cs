@@ -26,7 +26,7 @@ public class WebhookCreateResponseTest : TestBase
 
         string expectedID = "webhook-test-id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
-        List<ApiEnum<string, EventType>> expectedEventTypes =
+        List<WebhookEventType> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,
@@ -87,7 +87,7 @@ public class WebhookCreateResponseTest : TestBase
 
         string expectedID = "webhook-test-id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
-        List<ApiEnum<string, EventType>> expectedEventTypes =
+        List<WebhookEventType> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,

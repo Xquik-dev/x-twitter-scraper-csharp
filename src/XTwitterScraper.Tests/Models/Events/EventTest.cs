@@ -41,7 +41,7 @@ public class EventTest : TestBase
         string expectedMonitorID = "monitorId";
         ApiEnum<string, MonitorType> expectedMonitorType = MonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        WebhookEventType expectedType = EventType.TweetNew;
         string expectedKeywordMonitorID = "keywordMonitorId";
         string expectedQuery = "query";
         string expectedUsername = "username";
@@ -119,7 +119,7 @@ public class EventTest : TestBase
         string expectedMonitorID = "monitorId";
         ApiEnum<string, MonitorType> expectedMonitorType = MonitorType.Account;
         DateTimeOffset expectedOccurredAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        ApiEnum<string, EventType> expectedType = EventType.TweetNew;
+        WebhookEventType expectedType = EventType.TweetNew;
         string expectedKeywordMonitorID = "keywordMonitorId";
         string expectedQuery = "query";
         string expectedUsername = "username";

@@ -44,12 +44,12 @@ public record class EventListParams : ParamsBase
     /// <summary>
     /// Filter events by type
     /// </summary>
-    public ApiEnum<string, EventType>? EventType
+    public WebhookEventType? EventType
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<ApiEnum<string, EventType>>("eventType");
+            return this._rawQueryData.GetNullableClass<WebhookEventType>("eventType");
         }
         init
         {

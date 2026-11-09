@@ -31,18 +31,18 @@ public record class WebhookCreateParams : ParamsBase
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public required IReadOnlyList<ApiEnum<string, EventType>> EventTypes
+    public required IReadOnlyList<WebhookEventType> EventTypes
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<WebhookEventType>>(
                 "eventTypes"
             );
         }
         init
         {
-            this._rawBodyData.Set<ImmutableArray<ApiEnum<string, EventType>>>(
+            this._rawBodyData.Set<ImmutableArray<WebhookEventType>>(
                 "eventTypes",
                 ImmutableArray.ToImmutableArray(value)
             );

@@ -33,7 +33,7 @@ public class WebhookTest : TestBase
         long expectedConsecutiveFailures = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, DeliveryStatus> expectedDeliveryStatus = DeliveryStatus.Active;
-        List<ApiEnum<string, EventType>> expectedEventTypes =
+        List<WebhookEventType> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,
@@ -103,7 +103,7 @@ public class WebhookTest : TestBase
         long expectedConsecutiveFailures = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, DeliveryStatus> expectedDeliveryStatus = DeliveryStatus.Active;
-        List<ApiEnum<string, EventType>> expectedEventTypes =
+        List<WebhookEventType> expectedEventTypes =
         [
             EventType.TweetNew,
             EventType.TweetReply,

@@ -89,12 +89,12 @@ public sealed record class EventDetail : JsonModel
     /// <summary>
     /// Type of monitor event fired when account activity occurs.
     /// </summary>
-    public required ApiEnum<string, EventType> Type
+    public required WebhookEventType Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, EventType>>("type");
+            return this._rawData.GetNotNullClass<WebhookEventType>("type");
         }
         init { this._rawData.Set("type", value); }
     }
