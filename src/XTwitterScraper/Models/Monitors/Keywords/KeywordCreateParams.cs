@@ -64,6 +64,27 @@ public record class KeywordCreateParams : ParamsBase
         init { this._rawBodyData.Set("query", value); }
     }
 
+    /// <summary>
+    /// Your own label for the keyword monitor. Its events carry it as monitorName.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("name", value);
+        }
+    }
+
     public KeywordCreateParams() { }
 
 #pragma warning disable CS8618

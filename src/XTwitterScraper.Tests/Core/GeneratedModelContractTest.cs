@@ -82,6 +82,49 @@ public class GeneratedModelContractTest
     }
 
     [Theory]
+    [MemberData(nameof(JsonModelTypes))]
+    public void JsonModelNullOptionalsStayUnset(Type modelType)
+    {
+        var built = GeneratedModelFixture.RawEntries(Activator.CreateInstance(modelType)!);
+        foreach (var property in GeneratedModelFixture.NullableProperties(modelType))
+        {
+            var model = Activator.CreateInstance(modelType)!;
+            property.SetValue(model, null);
+
+            Assert.Null(property.GetValue(model));
+            GeneratedModelFixture.AssertOnlyNullsAdded(
+                built,
+                GeneratedModelFixture.RawEntries(model)
+            );
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(ParamsTypes))]
+    public void ParamsNullOptionalsStayOutOfTheRequest(Type paramsType)
+    {
+        ClientOptions options = new() { BaseUrl = "https://example.test" };
+        using var optionsHttpClient = options.HttpClient;
+
+        var built = GeneratedModelFixture.RawEntries(Activator.CreateInstance(paramsType)!);
+        foreach (var property in GeneratedModelFixture.NullableProperties(paramsType))
+        {
+            var parameters = Assert.IsType<ParamsBase>(
+                Activator.CreateInstance(paramsType),
+                exactMatch: false
+            );
+            property.SetValue(parameters, null);
+
+            Assert.Null(property.GetValue(parameters));
+            GeneratedModelFixture.AssertOnlyNullsAdded(
+                built,
+                GeneratedModelFixture.RawEntries(parameters)
+            );
+            Assert.True(parameters.Url(options).IsAbsoluteUri);
+        }
+    }
+
+    [Theory]
     [MemberData(nameof(ParamsTypes))]
     public void ParamsPropertiesRoundTrip(Type paramsType)
     {

@@ -33,12 +33,12 @@ public record class WebhookUpdateParams : ParamsBase
     /// <summary>
     /// Array of event types to subscribe to.
     /// </summary>
-    public IReadOnlyList<ApiEnum<string, EventType>>? EventTypes
+    public IReadOnlyList<WebhookEventType>? EventTypes
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<ImmutableArray<ApiEnum<string, EventType>>>(
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<WebhookEventType>>(
                 "eventTypes"
             );
         }
@@ -49,7 +49,7 @@ public record class WebhookUpdateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set<ImmutableArray<ApiEnum<string, EventType>>?>(
+            this._rawBodyData.Set<ImmutableArray<WebhookEventType>?>(
                 "eventTypes",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );

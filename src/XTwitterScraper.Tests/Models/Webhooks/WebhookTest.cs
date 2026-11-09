@@ -33,11 +33,7 @@ public class WebhookTest : TestBase
         long expectedConsecutiveFailures = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, DeliveryStatus> expectedDeliveryStatus = DeliveryStatus.Active;
-        List<ApiEnum<string, EventType>> expectedEventTypes =
-        [
-            EventType.TweetNew,
-            EventType.TweetReply,
-        ];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew, EventType.TweetReply];
         long expectedFailureHardCap = 200;
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";
@@ -103,11 +99,7 @@ public class WebhookTest : TestBase
         long expectedConsecutiveFailures = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
         ApiEnum<string, DeliveryStatus> expectedDeliveryStatus = DeliveryStatus.Active;
-        List<ApiEnum<string, EventType>> expectedEventTypes =
-        [
-            EventType.TweetNew,
-            EventType.TweetReply,
-        ];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew, EventType.TweetReply];
         long expectedFailureHardCap = 200;
         bool expectedIsActive = true;
         string expectedUrl = "https://example.com/webhooks/xquik";

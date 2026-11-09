@@ -51,6 +51,29 @@ public record class SubscribeCreateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Currency to pay in. Lowercase codes work too. Xquik converts the USD plan price at the latest daily ECB rate. Each renewal charges the same amount before tax. An account that already pays in USD gets a USD checkout. With rates over 3 ECB working days old, the checkout charges USD. `chargedCurrency` shows the currency charged.
+    /// </summary>
+    public ApiEnum<string, global::XTwitterScraper.Models.Currency>? Currency
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<
+                ApiEnum<string, global::XTwitterScraper.Models.Currency>
+            >("currency");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("currency", value);
+        }
+    }
+
     public SubscribeCreateParams() { }
 
 #pragma warning disable CS8618

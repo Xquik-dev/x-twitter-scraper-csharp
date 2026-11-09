@@ -4,7 +4,22 @@
 
 ### Features
 
+* The 86 operations the SDK lacked gain methods. New services are `Activity`, `Monitors.Posts`, `Support.Attachments`, `X.AccountConnectionLinks`, `X.Analysis`, `X.Broadcasts`, `X.CommunityNotes`, `X.Communities.Media`, `X.Jobs`, `X.Spaces` and `X.Sports`.
+* Existing models and params gain 1293 optional typed properties for fields the API already sends or reads.
+* `POST /x/accounts/bulk-retry` can name accounts through `AccountIDs`. Leaving it unset still retries every account.
+* `X.Accounts.Create` and `X.Accounts.Reauth` take `ConnectionAttemptID`, and `AccountReauthResponse` gains the fields of a sign-in that is still pending.
 * Extraction tool types gain `UserAffiliates`.
+* `TweetSearchParams`, `UserRetrieveTweetsParams`, `UserRetrieveRepliesParams` and `UserRetrieveMediaParams` take `Topic` and `ImageShows`. `ExtractionRunParams` and `ExtractionEstimateCostParams` take both, and `MediaDownloadParams` takes `ImageShows`.
+* A filtered `PaginatedTweets` carries `TopicFilter` or `ImageFilter`, and each kept post carries `TopicScore` or `ImageScore`. `ExtractionJob` carries both summaries, and `MediaDownloadResponse` carries `ImageFilter`.
+* `EventType` gains `TweetDeleted`, `BroadcastStarted`, `SpaceStarted`, `FollowingAdded`, `FollowingRemoved`, `FollowerAdded`, `FollowerRemoved`, `ProfileFollowersChanged` and `ProfileFollowingChanged`.
+* `MonitorType` and `EventDetailMonitorType` gain `Post`.
+* `Locale` gains `Ja`, `Ko` and `Zh`.
+* The replies `Mode` gains `Standard`.
+* `XAccount` and `XAccountDetail` gain `ConnectedAt`. It replaces an older timestamp property, which stays and is now marked obsolete.
+
+### Bug Fixes
+
+* Response validation accepts the compose score result. `TotalChecks` is 1 and each engagement `Multiplier` is `Source default. Production value can vary.`, as the API returns them.
 
 ## 0.6.3 (2026-10-13)
 

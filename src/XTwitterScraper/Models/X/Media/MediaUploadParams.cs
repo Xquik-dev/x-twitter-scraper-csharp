@@ -62,6 +62,48 @@ public record class MediaUploadParams : ParamsBase
         init { this._rawHeaderData.Set("Idempotency-Key", value); }
     }
 
+    /// <summary>
+    /// Media file to upload, up to 95 MB. A larger file gets 413 `media_too_large` before any account lookup.
+    /// </summary>
+    public string? File
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("file");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("file", value);
+        }
+    }
+
+    /// <summary>
+    /// Set true only for video/mp4 multipart uploads longer than 140 seconds.
+    /// </summary>
+    public bool? IsLongVideo
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("is_long_video");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("is_long_video", value);
+        }
+    }
+
     public MediaUploadParams() { }
 
 #pragma warning disable CS8618

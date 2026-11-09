@@ -43,11 +43,57 @@ public sealed record class CreditTopupBalanceResponse : JsonModel
         init { this._rawData.Set("url", value); }
     }
 
+    /// <summary>
+    /// Currency the checkout charges.
+    /// </summary>
+    public ApiEnum<string, global::XTwitterScraper.Models.Currency>? ChargedCurrency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, global::XTwitterScraper.Models.Currency>
+            >("chargedCurrency");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("chargedCurrency", value);
+        }
+    }
+
+    /// <summary>
+    /// Amount the checkout charges before tax, in the currency's smallest unit. JPY and KRW have no decimals, so 1580 JPY is ¥1,580.
+    /// </summary>
+    public long? ChargedMinorUnits
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("chargedMinorUnits");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("chargedMinorUnits", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.RedirectUrl;
         _ = this.Url;
+        this.ChargedCurrency?.Validate();
+        _ = this.ChargedMinorUnits;
     }
 
     public CreditTopupBalanceResponse() { }

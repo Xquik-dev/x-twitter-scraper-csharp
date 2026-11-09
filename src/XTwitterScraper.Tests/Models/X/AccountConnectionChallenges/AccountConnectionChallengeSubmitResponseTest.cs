@@ -6,167 +6,53 @@ using System.Text.Json;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.X.AccountConnectionChallenges;
+using XTwitterScraper.Models.X.Accounts;
 
 namespace XTwitterScraper.Tests.Models.X.AccountConnectionChallenges;
 
 public class AccountConnectionChallengeSubmitResponseTest : TestBase
 {
     [Fact]
-    public void FieldRoundtrip_Works()
+    public void SanitizedXAccountValidationWorks()
     {
-        var model = new AccountConnectionChallengeSubmitResponse
+        AccountConnectionChallengeSubmitResponse value = new SanitizedXAccount()
         {
             ID = "42",
             CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Health = Health.Healthy,
+            Health = SanitizedXAccountHealth.Healthy,
             XUserID = "9876543210",
             XUsername = "elonmusk",
         };
-
-        string expectedID = "42";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        ApiEnum<string, Health> expectedHealth = Health.Healthy;
-        JsonElement expectedStatus = JsonSerializer.SerializeToElement("active");
-        string expectedXUserID = "9876543210";
-        string expectedXUsername = "elonmusk";
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedCreatedAt, model.CreatedAt);
-        Assert.Equal(expectedHealth, model.Health);
-        Assert.True(JsonElement.DeepEquals(expectedStatus, model.Status));
-        Assert.Equal(expectedXUserID, model.XUserID);
-        Assert.Equal(expectedXUsername, model.XUsername);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new AccountConnectionChallengeSubmitResponse
-        {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Health = Health.Healthy,
-            XUserID = "9876543210",
-            XUsername = "elonmusk",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AccountConnectionChallengeSubmitResponse>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new AccountConnectionChallengeSubmitResponse
-        {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Health = Health.Healthy,
-            XUserID = "9876543210",
-            XUsername = "elonmusk",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AccountConnectionChallengeSubmitResponse>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "42";
-        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z");
-        ApiEnum<string, Health> expectedHealth = Health.Healthy;
-        JsonElement expectedStatus = JsonSerializer.SerializeToElement("active");
-        string expectedXUserID = "9876543210";
-        string expectedXUsername = "elonmusk";
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
-        Assert.Equal(expectedHealth, deserialized.Health);
-        Assert.True(JsonElement.DeepEquals(expectedStatus, deserialized.Status));
-        Assert.Equal(expectedXUserID, deserialized.XUserID);
-        Assert.Equal(expectedXUsername, deserialized.XUsername);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new AccountConnectionChallengeSubmitResponse
-        {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Health = Health.Healthy,
-            XUserID = "9876543210",
-            XUsername = "elonmusk",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new AccountConnectionChallengeSubmitResponse
-        {
-            ID = "42",
-            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
-            Health = Health.Healthy,
-            XUserID = "9876543210",
-            XUsername = "elonmusk",
-        };
-
-        AccountConnectionChallengeSubmitResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class HealthTest : TestBase
-{
-    [Theory]
-    [InlineData(Health.Healthy)]
-    [InlineData(Health.Locked)]
-    [InlineData(Health.NeedsReauth)]
-    [InlineData(Health.Recovering)]
-    [InlineData(Health.Suspended)]
-    [InlineData(Health.TemporaryIssue)]
-    public void Validation_Works(Health rawValue)
-    {
-        ApiEnum<string, Health> value = rawValue;
         value.Validate();
     }
 
     [Fact]
-    public void InvalidEnumValidationThrows_Works()
+    public void XAccountConnectionChallengeValidationWorks()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+        AccountConnectionChallengeSubmitResponse value = new XAccountConnectionChallenge()
+        {
+            ID = "xch_8vGd8Y9JvH6dV0xA",
+            ExpiresAt = DateTimeOffset.Parse("2026-05-08T12:10:00Z"),
+            Message = "Enter the email verification code to continue.",
+            Username = "elonmusk",
+        };
+        value.Validate();
     }
 
-    [Theory]
-    [InlineData(Health.Healthy)]
-    [InlineData(Health.Locked)]
-    [InlineData(Health.NeedsReauth)]
-    [InlineData(Health.Recovering)]
-    [InlineData(Health.Suspended)]
-    [InlineData(Health.TemporaryIssue)]
-    public void SerializationRoundtrip_Works(Health rawValue)
+    [Fact]
+    public void SanitizedXAccountSerializationRoundtripWorks()
     {
-        ApiEnum<string, Health> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
-            json,
+        AccountConnectionChallengeSubmitResponse value = new SanitizedXAccount()
+        {
+            ID = "42",
+            CreatedAt = DateTimeOffset.Parse("2025-01-15T12:00:00Z"),
+            Health = SanitizedXAccountHealth.Healthy,
+            XUserID = "9876543210",
+            XUsername = "elonmusk",
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AccountConnectionChallengeSubmitResponse>(
+            element,
             ModelBase.SerializerOptions
         );
 
@@ -174,15 +60,18 @@ public class HealthTest : TestBase
     }
 
     [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
+    public void XAccountConnectionChallengeSerializationRoundtripWorks()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Health>>(
-            json,
+        AccountConnectionChallengeSubmitResponse value = new XAccountConnectionChallenge()
+        {
+            ID = "xch_8vGd8Y9JvH6dV0xA",
+            ExpiresAt = DateTimeOffset.Parse("2026-05-08T12:10:00Z"),
+            Message = "Enter the email verification code to continue.",
+            Username = "elonmusk",
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AccountConnectionChallengeSubmitResponse>(
+            element,
             ModelBase.SerializerOptions
         );
 

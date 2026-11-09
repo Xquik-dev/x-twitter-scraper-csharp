@@ -30,4 +30,7 @@
     <ProjectReference Include="..\XTwitterScraper\XTwitterScraper.csproj" />
     <Using Include="Xunit" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Models/WireSamples.json" LogicalName="WireSamples.json" />
+  </ItemGroup>
 </Project>

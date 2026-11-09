@@ -24,7 +24,7 @@ public class WebhookUpdateParamsTest : TestBase
         };
 
         string expectedID = "id";
-        List<ApiEnum<string, EventType>> expectedEventTypes = [EventType.TweetNew];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew];
         bool expectedIsActive = true;
         string expectedUrlValue = "https://example.com/webhook";
 

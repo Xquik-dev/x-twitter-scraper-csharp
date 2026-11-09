@@ -4,6 +4,7 @@
 
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -544,6 +545,53 @@ public sealed record class Metadata : JsonModel
         }
     }
 
+    /// <summary>
+    /// Tone of an English post title, from the VADER word list.
+    /// </summary>
+    public ApiEnum<string, MetadataSentiment>? Sentiment
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, MetadataSentiment>>("sentiment");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sentiment", value);
+        }
+    }
+
+    /// <summary>
+    /// Reddit lists the post ranks in. now is the popular feed, and the rest are top lists of that window.
+    /// </summary>
+    public IReadOnlyList<ApiEnum<string, MetadataWindows>>? Windows
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, MetadataWindows>>
+            >("windows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<ApiEnum<string, MetadataWindows>>?>(
+                "windows",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -557,6 +605,11 @@ public sealed record class Metadata : JsonModel
         this.SourceFormat?.Validate();
         _ = this.Subreddit;
         _ = this.UpvoteRatio;
+        this.Sentiment?.Validate();
+        foreach (var item in this.Windows ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public Metadata() { }
@@ -694,6 +747,109 @@ sealed class RadarItemSourceConverter : JsonConverter<RadarItemSource>
                 RadarItemSource.Reddit => "reddit",
                 RadarItemSource.Trustmrr => "trustmrr",
                 RadarItemSource.Wikipedia => "wikipedia",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MetadataSentimentConverter))]
+public enum MetadataSentiment
+{
+    Positive,
+    Neutral,
+    Negative,
+}
+
+sealed class MetadataSentimentConverter : JsonConverter<MetadataSentiment>
+{
+    public override MetadataSentiment Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "positive" => MetadataSentiment.Positive,
+            "neutral" => MetadataSentiment.Neutral,
+            "negative" => MetadataSentiment.Negative,
+            _ => (MetadataSentiment)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MetadataSentiment value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MetadataSentiment.Positive => "positive",
+                MetadataSentiment.Neutral => "neutral",
+                MetadataSentiment.Negative => "negative",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(MetadataWindowsConverter))]
+public enum MetadataWindows
+{
+    Now,
+    Hour,
+    Day,
+    Week,
+    Month,
+    Year,
+}
+
+sealed class MetadataWindowsConverter : JsonConverter<MetadataWindows>
+{
+    public override MetadataWindows Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "now" => MetadataWindows.Now,
+            "hour" => MetadataWindows.Hour,
+            "day" => MetadataWindows.Day,
+            "week" => MetadataWindows.Week,
+            "month" => MetadataWindows.Month,
+            "year" => MetadataWindows.Year,
+            _ => (MetadataWindows)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        MetadataWindows value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                MetadataWindows.Now => "now",
+                MetadataWindows.Hour => "hour",
+                MetadataWindows.Day => "day",
+                MetadataWindows.Week => "week",
+                MetadataWindows.Month => "month",
+                MetadataWindows.Year => "year",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

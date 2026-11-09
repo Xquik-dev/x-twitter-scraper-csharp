@@ -54,6 +54,48 @@ public sealed record class FollowerCheckResponse : JsonModel
         init { this._rawData.Set("targetUsername", value); }
     }
 
+    /// <summary>
+    /// The source account's user ID, as X gives it.
+    /// </summary>
+    public string? SourceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("sourceId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("sourceId", value);
+        }
+    }
+
+    /// <summary>
+    /// The target account's user ID, as X gives it.
+    /// </summary>
+    public string? TargetID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("targetId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("targetId", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -61,6 +103,8 @@ public sealed record class FollowerCheckResponse : JsonModel
         _ = this.IsFollowing;
         _ = this.SourceUsername;
         _ = this.TargetUsername;
+        _ = this.SourceID;
+        _ = this.TargetID;
     }
 
     public FollowerCheckResponse() { }

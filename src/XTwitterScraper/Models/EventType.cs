@@ -36,6 +36,15 @@ public enum EventType
     ProfileProtectedChanged,
     ProfilePinnedTweetChanged,
     ProfileUnavailableChanged,
+    TweetDeleted,
+    BroadcastStarted,
+    SpaceStarted,
+    FollowingAdded,
+    FollowingRemoved,
+    FollowerAdded,
+    FollowerRemoved,
+    ProfileFollowersChanged,
+    ProfileFollowingChanged,
 }
 
 sealed class EventTypeConverter : JsonConverter<EventType>
@@ -69,6 +78,15 @@ sealed class EventTypeConverter : JsonConverter<EventType>
             "profile.protected.changed" => EventType.ProfileProtectedChanged,
             "profile.pinned_tweet.changed" => EventType.ProfilePinnedTweetChanged,
             "profile.unavailable.changed" => EventType.ProfileUnavailableChanged,
+            "tweet.deleted" => EventType.TweetDeleted,
+            "broadcast.started" => EventType.BroadcastStarted,
+            "space.started" => EventType.SpaceStarted,
+            "following.added" => EventType.FollowingAdded,
+            "following.removed" => EventType.FollowingRemoved,
+            "follower.added" => EventType.FollowerAdded,
+            "follower.removed" => EventType.FollowerRemoved,
+            "profile.followers.changed" => EventType.ProfileFollowersChanged,
+            "profile.following.changed" => EventType.ProfileFollowingChanged,
             _ => (EventType)(-1),
         };
     }
@@ -104,6 +122,15 @@ sealed class EventTypeConverter : JsonConverter<EventType>
                 EventType.ProfileProtectedChanged => "profile.protected.changed",
                 EventType.ProfilePinnedTweetChanged => "profile.pinned_tweet.changed",
                 EventType.ProfileUnavailableChanged => "profile.unavailable.changed",
+                EventType.TweetDeleted => "tweet.deleted",
+                EventType.BroadcastStarted => "broadcast.started",
+                EventType.SpaceStarted => "space.started",
+                EventType.FollowingAdded => "following.added",
+                EventType.FollowingRemoved => "following.removed",
+                EventType.FollowerAdded => "follower.added",
+                EventType.FollowerRemoved => "follower.removed",
+                EventType.ProfileFollowersChanged => "profile.followers.changed",
+                EventType.ProfileFollowingChanged => "profile.following.changed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

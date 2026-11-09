@@ -33,6 +33,42 @@ public sealed record class WebhookListDeliveriesResponse : JsonModel
         }
     }
 
+    public bool? HasMore
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hasMore");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hasMore", value);
+        }
+    }
+
+    public string? NextCursor
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("nextCursor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("nextCursor", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -40,6 +76,8 @@ public sealed record class WebhookListDeliveriesResponse : JsonModel
         {
             item.Validate();
         }
+        _ = this.HasMore;
+        _ = this.NextCursor;
     }
 
     public WebhookListDeliveriesResponse() { }

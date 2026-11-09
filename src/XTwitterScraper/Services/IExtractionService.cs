@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models.Extractions;
+using Extractions = XTwitterScraper.Models.Extractions;
 
 namespace XTwitterScraper.Services;
 
@@ -86,6 +87,21 @@ public interface IExtractionService
         ExtractionRunParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Cancels an active extraction without charging or saving rows.
+    /// </summary>
+    Task<Extractions::ExtractionCancelResponse> Cancel(
+        Extractions::ExtractionCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Cancel(Extractions::ExtractionCancelParams, CancellationToken)"/>
+    Task<Extractions::ExtractionCancelResponse> Cancel(
+        string id,
+        Extractions::ExtractionCancelParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -157,6 +173,22 @@ public interface IExtractionServiceWithRawResponse
     /// </summary>
     Task<HttpResponse<ExtractionRunResponse>> Run(
         ExtractionRunParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>delete /extractions/{id}</c>, but is otherwise the
+    /// same as <see cref="IExtractionService.Cancel(Extractions::ExtractionCancelParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Extractions::ExtractionCancelResponse>> Cancel(
+        Extractions::ExtractionCancelParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Cancel(Extractions::ExtractionCancelParams, CancellationToken)"/>
+    Task<HttpResponse<Extractions::ExtractionCancelResponse>> Cancel(
+        string id,
+        Extractions::ExtractionCancelParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

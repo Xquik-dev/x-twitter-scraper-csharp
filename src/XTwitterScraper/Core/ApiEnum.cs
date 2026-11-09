@@ -118,6 +118,22 @@ public record class ApiEnum<TRaw, TEnum>
         new(JsonSerializer.SerializeToElement(value, ModelBase.SerializerOptions));
 }
 
+sealed class ApiEnumConverterFactory : JsonConverterFactory
+{
+    public override bool CanConvert(Type typeToConvert) =>
+        typeToConvert.IsGenericType
+        && typeToConvert.GetGenericTypeDefinition() == typeof(ApiEnum<,>);
+
+    public override JsonConverter? CreateConverter(
+        Type typeToConvert,
+        JsonSerializerOptions options
+    ) =>
+        (JsonConverter?)
+            Activator.CreateInstance(
+                typeof(ApiEnumConverter<,>).MakeGenericType(typeToConvert.GetGenericArguments())
+            );
+}
+
 sealed class ApiEnumConverter<TRaw, TEnum> : JsonConverter<ApiEnum<TRaw, TEnum>>
     where TEnum : struct, Enum
 {

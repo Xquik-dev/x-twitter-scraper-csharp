@@ -10,6 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 
 namespace XTwitterScraper.Models.Monitors.Keywords;
 
@@ -93,6 +94,71 @@ public sealed record class KeywordUpdateResponse : JsonModel
         init { this._rawData.Set("query", value); }
     }
 
+    /// <summary>
+    /// Customer-set label of the keyword monitor, when set.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("name", value);
+        }
+    }
+
+    /// <summary>
+    /// Why Xquik paused this keyword monitor. The balance could not pay an hour, so add credits &amp; resume. Absent when the monitor is active or you paused it yourself.
+    /// </summary>
+    public ApiEnum<string, KeywordUpdateResponsePausedReason>? PausedReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, KeywordUpdateResponsePausedReason>
+            >("pausedReason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("pausedReason", value);
+        }
+    }
+
+    /// <summary>
+    /// When Xquik paused this keyword monitor.
+    /// </summary>
+    public DateTimeOffset? PausedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<DateTimeOffset>("pausedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("pausedAt", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -105,6 +171,9 @@ public sealed record class KeywordUpdateResponse : JsonModel
         _ = this.IsActive;
         _ = this.NextBillingAt;
         _ = this.Query;
+        _ = this.Name;
+        this.PausedReason?.Validate();
+        _ = this.PausedAt;
     }
 
     public KeywordUpdateResponse() { }
@@ -143,4 +212,46 @@ class KeywordUpdateResponseFromRaw : IFromRawJson<KeywordUpdateResponse>
     public KeywordUpdateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => KeywordUpdateResponse.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(KeywordUpdateResponsePausedReasonConverter))]
+public enum KeywordUpdateResponsePausedReason
+{
+    InsufficientCredits,
+}
+
+sealed class KeywordUpdateResponsePausedReasonConverter
+    : JsonConverter<KeywordUpdateResponsePausedReason>
+{
+    public override KeywordUpdateResponsePausedReason Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "insufficient_credits" => KeywordUpdateResponsePausedReason.InsufficientCredits,
+            _ => (KeywordUpdateResponsePausedReason)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        KeywordUpdateResponsePausedReason value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                KeywordUpdateResponsePausedReason.InsufficientCredits => "insufficient_credits",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
 }

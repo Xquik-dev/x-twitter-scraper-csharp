@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -61,6 +62,30 @@ public record class TicketCreateParams : ParamsBase
             }
 
             this._rawHeaderData.Set("Idempotency-Key", value);
+        }
+    }
+
+    /// <summary>
+    /// 1 to 4 support image or video uploads.
+    /// </summary>
+    public IReadOnlyList<string>? Attachments
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("attachments");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "attachments",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 

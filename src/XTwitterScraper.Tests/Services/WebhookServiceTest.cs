@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Models;
 
@@ -86,5 +87,15 @@ public class WebhookServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(response);
+    }
+
+    [Fact]
+    public async Task CreateTelegramLink_Works()
+    {
+        var result = await this.client.Webhooks.CreateTelegramLink(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

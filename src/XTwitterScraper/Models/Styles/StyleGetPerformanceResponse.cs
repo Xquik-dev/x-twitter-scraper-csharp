@@ -222,6 +222,42 @@ public sealed record class StyleGetPerformanceResponseTweet : JsonModel
         }
     }
 
+    public long? QuoteCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("quoteCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("quoteCount", value);
+        }
+    }
+
+    public long? BookmarkCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("bookmarkCount");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("bookmarkCount", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -232,6 +268,8 @@ public sealed record class StyleGetPerformanceResponseTweet : JsonModel
         _ = this.ReplyCount;
         _ = this.RetweetCount;
         _ = this.ViewCount;
+        _ = this.QuoteCount;
+        _ = this.BookmarkCount;
     }
 
     public StyleGetPerformanceResponseTweet() { }

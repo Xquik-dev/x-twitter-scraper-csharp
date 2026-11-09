@@ -94,6 +94,66 @@ static class GeneratedModelFixture
         return assigned;
     }
 
+    public static IReadOnlyList<PropertyInfo> NullableProperties(Type type)
+    {
+#if NET
+        NullabilityInfoContext context = new();
+        return
+        [
+            .. type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(property =>
+                    property.SetMethod is { IsPublic: true }
+                    && property.GetIndexParameters().Length == 0
+                    && context.Create(property).WriteState == NullabilityState.Nullable
+                ),
+        ];
+#else
+        return [];
+#endif
+    }
+
+    public static Dictionary<string, JsonElement> RawEntries(object instance)
+    {
+        Dictionary<string, JsonElement> entries = new();
+        foreach (
+            var property in instance
+                .GetType()
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(property =>
+                    property.Name.StartsWith("Raw", StringComparison.Ordinal)
+                    && property.PropertyType == typeof(IReadOnlyDictionary<string, JsonElement>)
+                )
+        )
+        {
+            foreach (
+                var entry in (IReadOnlyDictionary<string, JsonElement>)property.GetValue(instance)!
+            )
+            {
+                entries[$"{property.Name}.{entry.Key}"] = entry.Value;
+            }
+        }
+        return entries;
+    }
+
+    public static void AssertOnlyNullsAdded(
+        IReadOnlyDictionary<string, JsonElement> built,
+        IReadOnlyDictionary<string, JsonElement> assigned
+    )
+    {
+        Assert.All(
+            assigned,
+            entry =>
+                Assert.True(
+                    entry.Value.ValueKind == JsonValueKind.Null
+                        || (
+                            built.TryGetValue(entry.Key, out var value)
+                            && JsonElement.DeepEquals(value, entry.Value)
+                        ),
+                    entry.Key
+                )
+        );
+    }
+
     static TheoryData<Type> TypesWhere(Func<Type, bool> predicate)
     {
         TheoryData<Type> types = [];

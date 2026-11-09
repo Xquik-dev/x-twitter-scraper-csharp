@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -94,6 +95,30 @@ public sealed record class DraftDetail : JsonModel
         }
     }
 
+    /// <summary>
+    /// Fields the request sent that this route does not read, in the order sent. They changed nothing. The answer leaves this out when the route read every field.
+    /// </summary>
+    public IReadOnlyList<string>? IgnoredFields
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("ignoredFields");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "ignoredFields",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -103,6 +128,7 @@ public sealed record class DraftDetail : JsonModel
         _ = this.UpdatedAt;
         _ = this.Goal;
         _ = this.Topic;
+        _ = this.IgnoredFields;
     }
 
     public DraftDetail() { }

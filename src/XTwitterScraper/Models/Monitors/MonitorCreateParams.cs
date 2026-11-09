@@ -64,6 +64,27 @@ public record class MonitorCreateParams : ParamsBase
         init { this._rawBodyData.Set("username", value); }
     }
 
+    /// <summary>
+    /// Your label for the monitor. Its events carry it as monitorName. Xquik normalizes whitespace.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("name", value);
+        }
+    }
+
     public MonitorCreateParams() { }
 
 #pragma warning disable CS8618

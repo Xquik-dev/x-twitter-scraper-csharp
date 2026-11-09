@@ -120,6 +120,12 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         get { return _radar.Value; }
     }
 
+    readonly Lazy<IActivityService> _activity;
+    public IActivityService Activity
+    {
+        get { return _activity.Value; }
+    }
+
     readonly Lazy<IMonitorService> _monitors;
     public IMonitorService Monitors
     {
@@ -194,6 +200,7 @@ public sealed class XTwitterScraperClient : IXTwitterScraperClient
         _styles = new(() => new StyleService(this));
         _radar = new(() => new RadarService(this));
         _monitors = new(() => new MonitorService(this));
+        _activity = new(() => new ActivityService(this));
         _events = new(() => new EventService(this));
         _extractions = new(() => new ExtractionService(this));
         _draws = new(() => new DrawService(this));
@@ -321,6 +328,12 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
     public IRadarServiceWithRawResponse Radar
     {
         get { return _radar.Value; }
+    }
+
+    readonly Lazy<IActivityServiceWithRawResponse> _activity;
+    public IActivityServiceWithRawResponse Activity
+    {
+        get { return _activity.Value; }
     }
 
     readonly Lazy<IMonitorServiceWithRawResponse> _monitors;
@@ -613,6 +626,7 @@ public sealed class XTwitterScraperClientWithRawResponse : IXTwitterScraperClien
         _styles = new(() => new StyleServiceWithRawResponse(this));
         _radar = new(() => new RadarServiceWithRawResponse(this));
         _monitors = new(() => new MonitorServiceWithRawResponse(this));
+        _activity = new(() => new ActivityServiceWithRawResponse(this));
         _events = new(() => new EventServiceWithRawResponse(this));
         _extractions = new(() => new ExtractionServiceWithRawResponse(this));
         _draws = new(() => new DrawServiceWithRawResponse(this));

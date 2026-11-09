@@ -89,12 +89,12 @@ public sealed record class EventDetail : JsonModel
     /// <summary>
     /// Type of monitor event fired when account activity occurs.
     /// </summary>
-    public required ApiEnum<string, EventType> Type
+    public required WebhookEventType Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, EventType>>("type");
+            return this._rawData.GetNotNullClass<WebhookEventType>("type");
         }
         init { this._rawData.Set("type", value); }
     }
@@ -180,6 +180,48 @@ public sealed record class EventDetail : JsonModel
         }
     }
 
+    /// <summary>
+    /// Permanent X user ID of the monitored account on account events. It stays the same after a username change.
+    /// </summary>
+    public string? XUserID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("xUserId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("xUserId", value);
+        }
+    }
+
+    /// <summary>
+    /// Your monitor label when Xquik created this event, present when set. A rename leaves the event's label unchanged.
+    /// </summary>
+    public string? MonitorName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("monitorName");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("monitorName", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -193,6 +235,8 @@ public sealed record class EventDetail : JsonModel
         _ = this.Query;
         _ = this.Username;
         _ = this.XEventID;
+        _ = this.XUserID;
+        _ = this.MonitorName;
     }
 
     public EventDetail() { }
@@ -238,6 +282,7 @@ public enum EventDetailMonitorType
 {
     Account,
     Keyword,
+    Post,
 }
 
 sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorType>
@@ -252,6 +297,7 @@ sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorT
         {
             "account" => EventDetailMonitorType.Account,
             "keyword" => EventDetailMonitorType.Keyword,
+            "post" => EventDetailMonitorType.Post,
             _ => (EventDetailMonitorType)(-1),
         };
     }
@@ -268,6 +314,7 @@ sealed class EventDetailMonitorTypeConverter : JsonConverter<EventDetailMonitorT
             {
                 EventDetailMonitorType.Account => "account",
                 EventDetailMonitorType.Keyword => "keyword",
+                EventDetailMonitorType.Post => "post",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

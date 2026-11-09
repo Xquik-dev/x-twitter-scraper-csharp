@@ -23,7 +23,7 @@ public class EventListParamsTest : TestBase
         };
 
         string expectedCursor = "cursor";
-        ApiEnum<string, EventType> expectedEventType = EventType.TweetNew;
+        WebhookEventType expectedEventType = EventType.TweetNew;
         long expectedLimit = 1;
         string expectedMonitorID = "monitorId";
 

@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -113,5 +114,124 @@ public class TweetServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(paginatedTweets);
+    }
+
+    [Fact]
+    public async Task ListTop_Works()
+    {
+        var result = await this.client.X.Tweets.ListTop(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Bookmark_Works()
+    {
+        var result = await this.client.X.Tweets.Bookmark(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Unbookmark_Works()
+    {
+        var result = await this.client.X.Tweets.Unbookmark(
+            "id",
+            new() { Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task CheckRepost_Works()
+    {
+        var result = await this.client.X.Tweets.CheckRepost(
+            "id",
+            new() { User = "User" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task GetRetweeterIds_Works()
+    {
+        var result = await this.client.X.Tweets.GetRetweeterIds(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task GetHiddenReplies_Works()
+    {
+        var result = await this.client.X.Tweets.GetHiddenReplies(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Translate_Works()
+    {
+        var result = await this.client.X.Tweets.Translate(
+            "id",
+            new() { Language = "Language" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task GetInsights_Works()
+    {
+        var result = await this.client.X.Tweets.GetInsights(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task Embed_Works()
+    {
+        var result = await this.client.X.Tweets.Embed(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task GetSubtitles_Works()
+    {
+        var result = await this.client.X.Tweets.GetSubtitles(
+            "id",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
+    }
+
+    [Fact]
+    public async Task ResolveLinks_Works()
+    {
+        var result = await this.client.X.Tweets.ResolveLinks(
+            new() { Urls = "Urls" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

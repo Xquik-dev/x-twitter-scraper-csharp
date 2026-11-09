@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models.Webhooks;
+using Webhooks = XTwitterScraper.Models.Webhooks;
 
 namespace XTwitterScraper.Services;
 
@@ -180,6 +181,18 @@ public sealed class WebhookService : IWebhookService
         parameters ??= new();
 
         return this.Test(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Webhooks::WebhookCreateTelegramLinkResponse> CreateTelegramLink(
+        Webhooks::WebhookCreateTelegramLinkParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.CreateTelegramLink(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
     }
 }
 
@@ -478,5 +491,35 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
         parameters ??= new();
 
         return this.Test(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Webhooks::WebhookCreateTelegramLinkResponse>> CreateTelegramLink(
+        Webhooks::WebhookCreateTelegramLinkParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<Webhooks::WebhookCreateTelegramLinkParams> request = new()
+        {
+            Method = HttpMethod.Post,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<Webhooks::WebhookCreateTelegramLinkResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
     }
 }

@@ -83,12 +83,12 @@ public sealed record class GuestWalletTopupResponse : JsonModel
         init { this._rawData.Set("expires_at", value); }
     }
 
-    public JsonElement Instructions
+    public required string Instructions
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("instructions");
+            return this._rawData.GetNotNullClass<string>("instructions");
         }
         init { this._rawData.Set("instructions", value); }
     }
@@ -231,17 +231,7 @@ public sealed record class GuestWalletTopupResponse : JsonModel
         _ = this.CheckoutUrl;
         _ = this.Credits;
         _ = this.ExpiresAt;
-        if (
-            !JsonElement.DeepEquals(
-                this.Instructions,
-                JsonSerializer.SerializeToElement(
-                    "Give checkout_url to the user. They must complete payment on Stripe. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending."
-                )
-            )
-        )
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
+        _ = this.Instructions;
         if (!JsonElement.DeepEquals(this.PollAfterSeconds, JsonSerializer.SerializeToElement(2)))
         {
             throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
@@ -275,9 +265,6 @@ public sealed record class GuestWalletTopupResponse : JsonModel
     public GuestWalletTopupResponse()
     {
         this.AccountRequired = JsonSerializer.SerializeToElement(false);
-        this.Instructions = JsonSerializer.SerializeToElement(
-            "Give checkout_url to the user. They must complete payment on Stripe. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending."
-        );
         this.PollAfterSeconds = JsonSerializer.SerializeToElement(2);
         this.RequiresUserInteraction = JsonSerializer.SerializeToElement(true);
         this.StatusUrl = JsonSerializer.SerializeToElement(
@@ -296,9 +283,6 @@ public sealed record class GuestWalletTopupResponse : JsonModel
         this._rawData = new(rawData);
 
         this.AccountRequired = JsonSerializer.SerializeToElement(false);
-        this.Instructions = JsonSerializer.SerializeToElement(
-            "Give checkout_url to the user. They must complete payment on Stripe. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending."
-        );
         this.PollAfterSeconds = JsonSerializer.SerializeToElement(2);
         this.RequiresUserInteraction = JsonSerializer.SerializeToElement(true);
         this.StatusUrl = JsonSerializer.SerializeToElement(

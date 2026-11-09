@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models.X.Dm;
+using Dm = XTwitterScraper.Models.X.Dm;
+using Models = XTwitterScraper.Models;
 
 namespace XTwitterScraper.Services.X;
 
@@ -58,6 +60,21 @@ public interface IDmService
         DmSendParams parameters,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Deletes 1 DM from the account's side. The other person keeps it. Success means the DM is gone from the account's conversation. A DM that stays gets 422 `x_dm_not_deleted`, and Xquik charges nothing.
+    /// </summary>
+    Task<Models::XWriteAction> DeleteMessage(
+        Dm::DmDeleteMessageParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="DeleteMessage(Dm::DmDeleteMessageParams, CancellationToken)"/>
+    Task<Models::XWriteAction> DeleteMessage(
+        string messageID,
+        Dm::DmDeleteMessageParams parameters,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -102,6 +119,22 @@ public interface IDmServiceWithRawResponse
     Task<HttpResponse<DmSendResponse>> Send(
         string userID,
         DmSendParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>delete /x/dm/{userId}/messages/{messageId}</c>, but is otherwise the
+    /// same as <see cref="IDmService.DeleteMessage(Dm::DmDeleteMessageParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::XWriteAction>> DeleteMessage(
+        Dm::DmDeleteMessageParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="DeleteMessage(Dm::DmDeleteMessageParams, CancellationToken)"/>
+    Task<HttpResponse<Models::XWriteAction>> DeleteMessage(
+        string messageID,
+        Dm::DmDeleteMessageParams parameters,
         CancellationToken cancellationToken = default
     );
 }

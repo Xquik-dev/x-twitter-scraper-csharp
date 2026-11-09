@@ -20,6 +20,48 @@ namespace XTwitterScraper.Models.Monitors.Keywords;
 /// </summary>
 public record class KeywordListParams : ParamsBase
 {
+    /// <summary>
+    /// Maximum items per page, from 1 to 10,000. Default 200. Pass nextCursor as cursor for the next page.
+    /// </summary>
+    public long? Limit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("limit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("limit", value);
+        }
+    }
+
+    /// <summary>
+    /// Previous nextCursor. The after alias also works. Offset pagination is not supported.
+    /// </summary>
+    public string? Cursor
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cursor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("cursor", value);
+        }
+    }
+
     public KeywordListParams() { }
 
 #pragma warning disable CS8618

@@ -143,6 +143,51 @@ public sealed record class UserRetrieveBatchResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Profiles rejected by the requested filters.
+    /// </summary>
+    public long? FilteredCount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("filtered_count");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("filtered_count", value);
+        }
+    }
+
+    /// <summary>
+    /// Processed IDs that failed to load, in first-seen request order. They cost nothing. Retry them.
+    /// </summary>
+    public IReadOnlyList<string>? FailedIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("failed_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "failed_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -160,6 +205,8 @@ public sealed record class UserRetrieveBatchResponse : JsonModel
         {
             item.Validate();
         }
+        _ = this.FilteredCount;
+        _ = this.FailedIDs;
     }
 
     public UserRetrieveBatchResponse()

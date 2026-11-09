@@ -62,6 +62,50 @@ public record class CreditTopupBalanceParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Currency to pay in. Xquik converts the dollar amount at the latest daily ECB rate. If the newest rates are more than 3 ECB working days old, it charges USD instead, and Checkout shows that before payment. `chargedCurrency` shows the currency charged. Credits always match the dollar amount. Lowercase codes work too.
+    /// </summary>
+    public ApiEnum<string, global::XTwitterScraper.Models.Currency>? Currency
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<
+                ApiEnum<string, global::XTwitterScraper.Models.Currency>
+            >("currency");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("currency", value);
+        }
+    }
+
+    /// <summary>
+    /// Optional Xquik tool page to return to after Checkout, such as /en/x-article-reader.
+    /// </summary>
+    public string? ReturnPath
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("returnPath");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("returnPath", value);
+        }
+    }
+
     public CreditTopupBalanceParams() { }
 
 #pragma warning disable CS8618

@@ -74,6 +74,19 @@ public record class KeywordUpdateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// New label for the keyword monitor. Send null to remove it.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("name");
+        }
+        init { this._rawBodyData.Set("name", value); }
+    }
+
     public KeywordUpdateParams() { }
 
 #pragma warning disable CS8618

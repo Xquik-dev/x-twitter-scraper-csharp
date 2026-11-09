@@ -49,6 +49,9 @@ public class LocaleTest : TestBase
     [InlineData(Locale.En)]
     [InlineData(Locale.Tr)]
     [InlineData(Locale.Es)]
+    [InlineData(Locale.Ja)]
+    [InlineData(Locale.Ko)]
+    [InlineData(Locale.Zh)]
     public void Validation_Works(Locale rawValue)
     {
         ApiEnum<string, Locale> value = rawValue;
@@ -71,6 +74,9 @@ public class LocaleTest : TestBase
     [InlineData(Locale.En)]
     [InlineData(Locale.Tr)]
     [InlineData(Locale.Es)]
+    [InlineData(Locale.Ja)]
+    [InlineData(Locale.Ko)]
+    [InlineData(Locale.Zh)]
     public void SerializationRoundtrip_Works(Locale rawValue)
     {
         ApiEnum<string, Locale> value = rawValue;

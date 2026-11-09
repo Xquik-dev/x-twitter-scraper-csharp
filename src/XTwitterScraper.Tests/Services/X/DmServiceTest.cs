@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XTwitterScraper.Tests.Services.X;
@@ -33,5 +34,16 @@ public class DmServiceTest : TestBase
             TestContext.Current.CancellationToken
         );
         Assert.NotNull(response);
+    }
+
+    [Fact]
+    public async Task DeleteMessage_Works()
+    {
+        var result = await this.client.X.Dm.DeleteMessage(
+            "messageID",
+            new() { UserID = "userID", Account = "Account" },
+            TestContext.Current.CancellationToken
+        );
+        Assert.NotNull(result);
     }
 }

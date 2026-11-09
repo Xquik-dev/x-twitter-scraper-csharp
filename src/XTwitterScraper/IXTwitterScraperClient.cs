@@ -71,6 +71,8 @@ public interface IXTwitterScraperClient : IDisposable
 
     IMonitorService Monitors { get; }
 
+    IActivityService Activity { get; }
+
     IEventService Events { get; }
 
     IExtractionService Extractions { get; }
@@ -137,6 +139,8 @@ public interface IXTwitterScraperClientWithRawResponse : IDisposable
     IRadarServiceWithRawResponse Radar { get; }
 
     IMonitorServiceWithRawResponse Monitors { get; }
+
+    IActivityServiceWithRawResponse Activity { get; }
 
     IEventServiceWithRawResponse Events { get; }
 

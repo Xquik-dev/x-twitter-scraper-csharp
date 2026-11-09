@@ -79,6 +79,25 @@ public sealed record class XAccountDetail : JsonModel
         init { this._rawData.Set("xUsername", value); }
     }
 
+    public System::DateTimeOffset? ConnectedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("connectedAt");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("connectedAt", value);
+        }
+    }
+
+    [System::Obsolete("Use ConnectedAt.")]
     public System::DateTimeOffset? CookiesObtainedAt
     {
         get
@@ -124,6 +143,7 @@ public sealed record class XAccountDetail : JsonModel
         _ = this.Status;
         _ = this.XUserID;
         _ = this.XUsername;
+        _ = this.ConnectedAt;
         _ = this.CookiesObtainedAt;
         _ = this.UpdatedAt;
     }

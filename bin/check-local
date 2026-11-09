@@ -98,6 +98,10 @@ for tool in codeql dotnet git node shellcheck unzip uvx zip; do
   fi
 done
 
+start_check "API fields" "API fields" "Follow the lines above. CONTRIBUTING.md explains each fix under API fields."
+./scripts/api-fields
+pass_check
+
 start_check "Locked dependency restore" "restore" "Fix the restore error above, then rerun."
 ./scripts/bootstrap
 pass_check
@@ -148,7 +152,7 @@ start_check "Dependency audit" "audit" "Update the packages reported above, or l
 ./scripts/audit
 pass_check
 
-start_check "Reproducible packages" "reproducible packages" "Remove the build input that changes between builds, then rerun."
+start_check "Reproducible packages" "packages" "Remove the build input that changes between builds, then rerun."
 ./scripts/check-reproducible
 pass_check
 

@@ -99,6 +99,29 @@ public sealed record class AccountRetrieveResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Subscription state without billing provider identifiers.
+    /// </summary>
+    public AccountRetrieveResponseSubscription? Subscription
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<AccountRetrieveResponseSubscription>(
+                "subscription"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("subscription", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -108,6 +131,7 @@ public sealed record class AccountRetrieveResponse : JsonModel
         this.Plan.Validate();
         this.CreditInfo?.Validate();
         _ = this.XUsername;
+        this.Subscription?.Validate();
     }
 
     [System::Obsolete("Required properties are deprecated: monitorsAllowed")]
@@ -411,6 +435,27 @@ public sealed record class CreditInfo : JsonModel
         init { this._rawData.Set("lifetimeUsed", value); }
     }
 
+    /// <summary>
+    /// True when 3 declined charges in a row on 1 card stopped automatic top-up. The setting stays enabled. A paid top-up, a paid plan renewal, or the next automatic top-up on a new card clears it.
+    /// </summary>
+    public bool? AutoTopupStopped
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("autoTopupStopped");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("autoTopupStopped", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -420,6 +465,7 @@ public sealed record class CreditInfo : JsonModel
         _ = this.Balance;
         _ = this.LifetimePurchased;
         _ = this.LifetimeUsed;
+        _ = this.AutoTopupStopped;
     }
 
     public CreditInfo() { }
@@ -455,4 +501,237 @@ class CreditInfoFromRaw : IFromRawJson<CreditInfo>
     /// <inheritdoc/>
     public CreditInfo FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         CreditInfo.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(AccountRetrieveResponseSubscriptionStatusConverter))]
+public enum AccountRetrieveResponseSubscriptionStatus
+{
+    None,
+    Active,
+    PastDue,
+    Canceling,
+    Incomplete,
+}
+
+sealed class AccountRetrieveResponseSubscriptionStatusConverter
+    : JsonConverter<AccountRetrieveResponseSubscriptionStatus>
+{
+    public override AccountRetrieveResponseSubscriptionStatus Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "none" => AccountRetrieveResponseSubscriptionStatus.None,
+            "active" => AccountRetrieveResponseSubscriptionStatus.Active,
+            "past_due" => AccountRetrieveResponseSubscriptionStatus.PastDue,
+            "canceling" => AccountRetrieveResponseSubscriptionStatus.Canceling,
+            "incomplete" => AccountRetrieveResponseSubscriptionStatus.Incomplete,
+            _ => (AccountRetrieveResponseSubscriptionStatus)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AccountRetrieveResponseSubscriptionStatus value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AccountRetrieveResponseSubscriptionStatus.None => "none",
+                AccountRetrieveResponseSubscriptionStatus.Active => "active",
+                AccountRetrieveResponseSubscriptionStatus.PastDue => "past_due",
+                AccountRetrieveResponseSubscriptionStatus.Canceling => "canceling",
+                AccountRetrieveResponseSubscriptionStatus.Incomplete => "incomplete",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(AccountRetrieveResponseSubscriptionTierConverter))]
+public enum AccountRetrieveResponseSubscriptionTier
+{
+    Starter,
+    Pro,
+    Business,
+}
+
+sealed class AccountRetrieveResponseSubscriptionTierConverter
+    : JsonConverter<AccountRetrieveResponseSubscriptionTier>
+{
+    public override AccountRetrieveResponseSubscriptionTier Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "starter" => AccountRetrieveResponseSubscriptionTier.Starter,
+            "pro" => AccountRetrieveResponseSubscriptionTier.Pro,
+            "business" => AccountRetrieveResponseSubscriptionTier.Business,
+            _ => (AccountRetrieveResponseSubscriptionTier)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AccountRetrieveResponseSubscriptionTier value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AccountRetrieveResponseSubscriptionTier.Starter => "starter",
+                AccountRetrieveResponseSubscriptionTier.Pro => "pro",
+                AccountRetrieveResponseSubscriptionTier.Business => "business",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        AccountRetrieveResponseSubscription,
+        AccountRetrieveResponseSubscriptionFromRaw
+    >)
+)]
+public sealed record class AccountRetrieveResponseSubscription : JsonModel
+{
+    public required ApiEnum<string, AccountRetrieveResponseSubscriptionStatus> Status
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AccountRetrieveResponseSubscriptionStatus>
+            >("status");
+        }
+        init { this._rawData.Set("status", value); }
+    }
+
+    public ApiEnum<string, AccountRetrieveResponseSubscriptionTier>? Tier
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<
+                ApiEnum<string, AccountRetrieveResponseSubscriptionTier>
+            >("tier");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("tier", value);
+        }
+    }
+
+    public System::DateTimeOffset? CurrentPeriodStart
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("currentPeriodStart");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("currentPeriodStart", value);
+        }
+    }
+
+    /// <summary>
+    /// Renewal date, or the end date when canceling.
+    /// </summary>
+    public System::DateTimeOffset? CurrentPeriodEnd
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<System::DateTimeOffset>("currentPeriodEnd");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("currentPeriodEnd", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Status.Validate();
+        this.Tier?.Validate();
+        _ = this.CurrentPeriodStart;
+        _ = this.CurrentPeriodEnd;
+    }
+
+    public AccountRetrieveResponseSubscription() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AccountRetrieveResponseSubscription(
+        AccountRetrieveResponseSubscription accountRetrieveResponseSubscription
+    )
+        : base(accountRetrieveResponseSubscription) { }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AccountRetrieveResponseSubscription(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AccountRetrieveResponseSubscription(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AccountRetrieveResponseSubscriptionFromRaw.FromRawUnchecked"/>
+    public static AccountRetrieveResponseSubscription FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AccountRetrieveResponseSubscriptionFromRaw : IFromRawJson<AccountRetrieveResponseSubscription>
+{
+    /// <inheritdoc/>
+    public AccountRetrieveResponseSubscription FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AccountRetrieveResponseSubscription.FromRawUnchecked(rawData);
 }

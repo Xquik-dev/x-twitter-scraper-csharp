@@ -44,12 +44,12 @@ public record class EventListParams : ParamsBase
     /// <summary>
     /// Filter events by type
     /// </summary>
-    public ApiEnum<string, EventType>? EventType
+    public WebhookEventType? EventType
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableClass<ApiEnum<string, EventType>>("eventType");
+            return this._rawQueryData.GetNullableClass<WebhookEventType>("eventType");
         }
         init
         {
@@ -104,6 +104,48 @@ public record class EventListParams : ParamsBase
             }
 
             this._rawQueryData.Set("monitorId", value);
+        }
+    }
+
+    /// <summary>
+    /// Keyword monitor ID. The keyword_monitor_id alias also works.
+    /// </summary>
+    public string? KeywordMonitorID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("keywordMonitorId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("keywordMonitorId", value);
+        }
+    }
+
+    /// <summary>
+    /// Post monitor ID. The post_monitor_id alias also works.
+    /// </summary>
+    public string? PostMonitorID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("postMonitorId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("postMonitorId", value);
         }
     }
 

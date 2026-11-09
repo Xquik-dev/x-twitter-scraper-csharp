@@ -92,6 +92,27 @@ public sealed record class CreditRetrieveBalanceResponse : JsonModel
         init { this._rawData.Set("lifetime_used", value); }
     }
 
+    /// <summary>
+    /// Whether declined charges stopped automatic top-up while it is enabled. It stops after 3 declines in a row on 1 card. A paid top-up, a paid plan renewal, or the next automatic top-up on a new card clears it.
+    /// </summary>
+    public bool? AutoTopupStopped
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("auto_topup_stopped");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("auto_topup_stopped", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -101,6 +122,7 @@ public sealed record class CreditRetrieveBalanceResponse : JsonModel
         _ = this.Balance;
         _ = this.LifetimePurchased;
         _ = this.LifetimeUsed;
+        _ = this.AutoTopupStopped;
     }
 
     public CreditRetrieveBalanceResponse() { }

@@ -21,6 +21,8 @@ public class GuestWalletCreateResponseTest : TestBase
             ApiKey = "xq_example_returned_once",
             Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
+            Instructions =
+                "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
             PurchaseID = "gp_example",
@@ -42,9 +44,8 @@ public class GuestWalletCreateResponseTest : TestBase
         );
         string expectedCredits = "66666";
         DateTimeOffset expectedExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z");
-        JsonElement expectedInstructions = JsonSerializer.SerializeToElement(
-            "Give checkout_url to the user. They must complete payment on Stripe. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending."
-        );
+        string expectedInstructions =
+            "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.";
         JsonElement expectedPollAfterSeconds = JsonSerializer.SerializeToElement(2);
         string expectedPurchaseID = "gp_example";
         JsonElement expectedRequiresUserInteraction = JsonSerializer.SerializeToElement(true);
@@ -62,7 +63,7 @@ public class GuestWalletCreateResponseTest : TestBase
         Assert.True(JsonElement.DeepEquals(expectedCredentialNotice, model.CredentialNotice));
         Assert.Equal(expectedCredits, model.Credits);
         Assert.Equal(expectedExpiresAt, model.ExpiresAt);
-        Assert.True(JsonElement.DeepEquals(expectedInstructions, model.Instructions));
+        Assert.Equal(expectedInstructions, model.Instructions);
         Assert.True(JsonElement.DeepEquals(expectedPollAfterSeconds, model.PollAfterSeconds));
         Assert.Equal(expectedPurchaseID, model.PurchaseID);
         Assert.True(
@@ -82,6 +83,8 @@ public class GuestWalletCreateResponseTest : TestBase
             ApiKey = "xq_example_returned_once",
             Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
+            Instructions =
+                "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
             PurchaseID = "gp_example",
@@ -107,6 +110,8 @@ public class GuestWalletCreateResponseTest : TestBase
             ApiKey = "xq_example_returned_once",
             Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
+            Instructions =
+                "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
             PurchaseID = "gp_example",
@@ -135,9 +140,8 @@ public class GuestWalletCreateResponseTest : TestBase
         );
         string expectedCredits = "66666";
         DateTimeOffset expectedExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z");
-        JsonElement expectedInstructions = JsonSerializer.SerializeToElement(
-            "Give checkout_url to the user. They must complete payment on Stripe. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending."
-        );
+        string expectedInstructions =
+            "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.";
         JsonElement expectedPollAfterSeconds = JsonSerializer.SerializeToElement(2);
         string expectedPurchaseID = "gp_example";
         JsonElement expectedRequiresUserInteraction = JsonSerializer.SerializeToElement(true);
@@ -157,7 +161,7 @@ public class GuestWalletCreateResponseTest : TestBase
         );
         Assert.Equal(expectedCredits, deserialized.Credits);
         Assert.Equal(expectedExpiresAt, deserialized.ExpiresAt);
-        Assert.True(JsonElement.DeepEquals(expectedInstructions, deserialized.Instructions));
+        Assert.Equal(expectedInstructions, deserialized.Instructions);
         Assert.True(
             JsonElement.DeepEquals(expectedPollAfterSeconds, deserialized.PollAfterSeconds)
         );
@@ -182,6 +186,8 @@ public class GuestWalletCreateResponseTest : TestBase
             ApiKey = "xq_example_returned_once",
             Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
+            Instructions =
+                "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
             PurchaseID = "gp_example",
@@ -201,6 +207,8 @@ public class GuestWalletCreateResponseTest : TestBase
             ApiKey = "xq_example_returned_once",
             Authorization = new() { Header = Header.Authorization, Scheme = Scheme.Bearer },
             CheckoutUrl = "https://buy.stripe.com/example",
+            Instructions =
+                "Give checkout_url to the user. They must complete payment on the hosted checkout page. Never submit payment for them. After payment, poll status_url every poll_after_seconds until latest_purchase.status is no longer pending.",
             Credits = "66666",
             ExpiresAt = DateTimeOffset.Parse("2026-07-13T13:00:00.000Z"),
             PurchaseID = "gp_example",

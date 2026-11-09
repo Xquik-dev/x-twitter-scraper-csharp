@@ -44,12 +44,40 @@ lines_valid="$(sed -n 's/.*lines-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header"
 branches_covered="$(sed -n 's/.*branches-covered="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
 branches_valid="$(sed -n 's/.*branches-valid="\([^"]*\)".*/\1/p' <<<"$coverage_header")"
 
+print_uncovered_files() {
+  echo "The 20 files with the most uncovered lines, as uncovered, valid and path." >&2
+  awk '
+    /<class / && match($0, /filename="[^"]*"/) { file = substr($0, RSTART + 10, RLENGTH - 11) }
+    /<methods>/ { in_methods = 1 }
+    /<\/methods>/ { in_methods = 0 }
+    /<line / && !in_methods { valid[file]++; if ($0 ~ /hits="0"/) missed[file]++ }
+    END { for (file in missed) print missed[file], valid[file], file }
+  ' "$coverage_file" | sort -rn | awk 'NR <= 20' >&2
+}
+
+print_uncovered_branch_files() {
+  echo "The 20 files with the most uncovered branches, as uncovered, valid and path." >&2
+  awk '
+    /<class / && match($0, /filename="[^"]*"/) { file = substr($0, RSTART + 10, RLENGTH - 11) }
+    /<methods>/ { in_methods = 1 }
+    /<\/methods>/ { in_methods = 0 }
+    /<line / && !in_methods && match($0, /condition-coverage="[^"]*\([0-9]+\/[0-9]+\)"/) {
+      split(substr($0, RSTART, RLENGTH), parts, /[(\/)]/)
+      valid[file] += parts[3]
+      missed[file] += parts[3] - parts[2]
+    }
+    END { for (file in missed) if (missed[file] > 0) print missed[file], valid[file], file }
+  ' "$coverage_file" | sort -rn | awk 'NR <= 20' >&2
+}
+
 awk -v rate="$line_rate" 'BEGIN { exit(rate + 0 >= 0.90 ? 0 : 1) }' || {
   echo "Line coverage is ${line_rate}. Increase it to 0.90." >&2
+  print_uncovered_files
   exit 1
 }
 awk -v rate="$branch_rate" 'BEGIN { exit(rate + 0 >= 0.80 ? 0 : 1) }' || {
-  echo "Branch coverage is ${branch_rate}. Increase it to 0.80." >&2
+  echo "Branch coverage is ${branches_covered}/${branches_valid} (${branch_rate}). Increase it to 0.80." >&2
+  print_uncovered_branch_files
   exit 1
 }
 

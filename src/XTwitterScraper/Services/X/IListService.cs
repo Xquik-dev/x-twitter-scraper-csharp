@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using XTwitterScraper.Core;
 using XTwitterScraper.Models;
 using XTwitterScraper.Models.X.Lists;
+using Lists = XTwitterScraper.Models.X.Lists;
+using Models = XTwitterScraper.Models;
 
 namespace XTwitterScraper.Services.X;
 
@@ -76,6 +78,29 @@ public interface IListService
         ListRetrieveTweetsParams? parameters = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns 1 page of public Lists with member counts, banners &amp; owner profiles. X may rank the Lists differently per request. Pass next_cursor as cursor for the next page.
+    /// </summary>
+    Task<Models::PaginatedLists> RetrieveSearch(
+        Lists::ListRetrieveSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns 1 public X List as its page on X shows it. Accepts the List ID or the URL-encoded List URL, such as x.com/i/lists/4143408. A private List answers 404 list_not_found.
+    /// </summary>
+    Task<Lists::ListRetrieveResponse> Retrieve(
+        Lists::ListRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(Lists::ListRetrieveParams, CancellationToken)"/>
+    Task<Lists::ListRetrieveResponse> Retrieve(
+        string id,
+        Lists::ListRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
 }
 
 /// <summary>
@@ -136,6 +161,31 @@ public interface IListServiceWithRawResponse
     Task<HttpResponse<PaginatedTweets>> RetrieveTweets(
         string id,
         ListRetrieveTweetsParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/lists/search</c>, but is otherwise the
+    /// same as <see cref="IListService.RetrieveSearch(Lists::ListRetrieveSearchParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Models::PaginatedLists>> RetrieveSearch(
+        Lists::ListRetrieveSearchParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/lists/{id}</c>, but is otherwise the
+    /// same as <see cref="IListService.Retrieve(Lists::ListRetrieveParams, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<Lists::ListRetrieveResponse>> Retrieve(
+        Lists::ListRetrieveParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="Retrieve(Lists::ListRetrieveParams, CancellationToken)"/>
+    Task<HttpResponse<Lists::ListRetrieveResponse>> Retrieve(
+        string id,
+        Lists::ListRetrieveParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

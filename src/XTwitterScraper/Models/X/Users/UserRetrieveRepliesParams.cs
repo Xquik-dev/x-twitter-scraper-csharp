@@ -190,6 +190,32 @@ public record class UserRetrieveRepliesParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts whose photos show this. Send charts, screenshots, product_photos, memes
+    /// or people, or describe it in words, such as a rocket. AI-powered analysis checks posts
+    /// with photos X doesn't mark sensitive &amp; keeps scores of 0.5 or more. Other posts stay
+    /// out at no charge. Each kept post costs 2 credits, the AI analysis price, instead of the
+    /// read price, &amp; a post the filter drops costs nothing. imageFilter states the cutoff
+    /// &amp; counts.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Include each reply's parent tweet.
     /// </summary>
     public bool? IncludeParentTweet
@@ -536,6 +562,31 @@ public record class UserRetrieveRepliesParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts about this topic. AI-powered analysis asks "Is this post about
+    /// &lt;topic&gt;?" of each post &amp; keeps scores of 0.5 or more. It reads post text &amp;
+    /// safe photos. Each kept post costs 2 credits, the AI analysis price, instead of the read
+    /// price, &amp; a post the filter drops costs nothing. limit counts checked posts, &amp;
+    /// only kept posts come back. topicFilter states the cutoff &amp; counts.
+    /// </summary>
+    public string? Topic
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("topic");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("topic", value);
+        }
+    }
+
+    /// <summary>
     /// Filter replies sent to a username.
     /// </summary>
     public string? ToUser
@@ -616,6 +667,680 @@ public record class UserRetrieveRepliesParams : ParamsBase
             }
 
             this._rawQueryData.Set("verifiedOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Optional legacy pagination override. Filters such as keywords don't apply with it.
+    /// </summary>
+    public ApiEnum<string, UserRetrieveRepliesParamsMode>? Mode
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<
+                ApiEnum<string, UserRetrieveRepliesParamsMode>
+            >("mode");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("mode", value);
+        }
+    }
+
+    /// <summary>
+    /// Inclusive ISO bound for Tweet creation time, such as 2026-09-25T19:20:41Z. Unix seconds also work. A time without an offset is UTC.
+    /// </summary>
+    public string? SinceTime
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("sinceTime");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sinceTime", value);
+        }
+    }
+
+    /// <summary>
+    /// Exclusive ISO bound for Tweet creation time. Unix seconds also work. A time without an offset is UTC.
+    /// </summary>
+    public string? UntilTime
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("untilTime");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("untilTime", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum likes. Its aliases are minFaves, min_likes &amp; min_faves.
+    /// </summary>
+    public long? MinLikes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minLikes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minLikes", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum view count threshold.
+    /// </summary>
+    public long? MinViews
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minViews");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minViews", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum bookmark count threshold.
+    /// </summary>
+    public long? MinBookmarks
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minBookmarks");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minBookmarks", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum likes threshold. maxLikes &amp; max_likes also work.
+    /// </summary>
+    public long? MaxFaves
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxFaves");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxFaves", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum retweets threshold.
+    /// </summary>
+    public long? MaxRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum replies threshold.
+    /// </summary>
+    public long? MaxReplies
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxReplies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxReplies", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum quotes threshold.
+    /// </summary>
+    public long? MaxQuotes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxQuotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxQuotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return tweets from Blue-verified authors.
+    /// </summary>
+    public bool? BlueVerifiedOnly
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("blueVerifiedOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("blueVerifiedOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Keep only Tweets with this card type, such as poll2choice_text_only. Every returned Tweet has it.
+    /// </summary>
+    public string? CardName
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("cardName");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("cardName", value);
+        }
+    }
+
+    /// <summary>
+    /// `source` isn't supported. A Tweet search with it answers 424 &amp; charges nothing.
+    /// </summary>
+    public string? Source
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("source");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("source", value);
+        }
+    }
+
+    /// <summary>
+    /// `excludeSource` isn't supported. A Tweet search with it answers 424 &amp; charges nothing.
+    /// </summary>
+    public string? ExcludeSource
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("excludeSource");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("excludeSource", value);
+        }
+    }
+
+    /// <summary>
+    /// `geocode` isn't supported. A Tweet search with it answers 424 &amp; charges nothing.
+    /// </summary>
+    public string? Geocode
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("geocode");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("geocode", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets whose IDs exceed this ID. Searches accept `since_id` &amp; `max_id` bounds.
+    /// </summary>
+    public string? SinceID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("sinceId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sinceId", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets at or below this ID.
+    /// </summary>
+    public string? MaxID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("maxId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxId", value);
+        }
+    }
+
+    /// <summary>
+    /// A place name, such as a city or a country. Matching Tweets are tagged in or about that place.
+    /// </summary>
+    public string? Near
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("near");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("near", value);
+        }
+    }
+
+    /// <summary>
+    /// `within` isn't supported. A Tweet search with it answers 424 &amp; charges nothing. Use near alone.
+    /// </summary>
+    public string? Within
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("within");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("within", value);
+        }
+    }
+
+    /// <summary>
+    /// Keeps Tweets from a recent window, such as 90m or 7d. Use a whole number &amp; s, m, h or d.
+    /// </summary>
+    public string? WithinTime
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("withinTime");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("withinTime", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return native reposts.
+    /// </summary>
+    public bool? NativeRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("nativeRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("nativeRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Enable the safe-search filter.
+    /// </summary>
+    public bool? Safe
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("safe");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("safe", value);
+        }
+    }
+
+    /// <summary>
+    /// `news` isn't supported. A Tweet search with it answers 424 &amp; charges nothing.
+    /// </summary>
+    public bool? News
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("news");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("news", value);
+        }
+    }
+
+    /// <summary>
+    /// Words the Tweets must match, in X search syntax.
+    /// </summary>
+    public string? Keywords
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("keywords");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("keywords", value);
+        }
+    }
+
+    /// <summary>
+    /// Search within a list ID.
+    /// </summary>
+    public string? ListID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("listId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("listId", value);
+        }
+    }
+
+    /// <summary>
+    /// Search within a place ID.
+    /// </summary>
+    public string? Place
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("place");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("place", value);
+        }
+    }
+
+    /// <summary>
+    /// Search within a country code.
+    /// </summary>
+    public string? PlaceCountry
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("placeCountry");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("placeCountry", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo point radius, such as -73.99 40.73 25mi.
+    /// </summary>
+    public string? PointRadius
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("pointRadius");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pointRadius", value);
+        }
+    }
+
+    /// <summary>
+    /// Geo bounding box, such as -74.1 40.6 -73.9 40.8.
+    /// </summary>
+    public string? BoundingBox
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("boundingBox");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("boundingBox", value);
+        }
+    }
+
+    /// <summary>
+    /// Raw advanced search query appended as-is.
+    /// </summary>
+    public string? AdvancedQuery
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("advancedQuery");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("advancedQuery", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to keep in each row, comma-separated. Use dots for nested fields, such as author.username. A list keeps the field in each item. Case &amp; underscores do not matter. A row that lacks a field leaves it out. Cursors, counts &amp; diagnostics always stay. An unknown name answers 400 unknown_field with the valid names, before any read. The price stays the same. SDK row types then hold only the named fields. A longer URL fails at the edge before Xquik reads it. Pick only the fields you need with `fields` &amp; `omit`.
+    /// </summary>
+    public string? Fields
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("fields");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("fields", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to drop from each row, comma-separated. It takes the same names as fields. With fields, it drops from the kept fields. A longer URL fails at the edge before Xquik reads it.
+    /// </summary>
+    public string? Omit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("omit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("omit", value);
         }
     }
 
@@ -924,6 +1649,47 @@ sealed class UserRetrieveRepliesParamsRetweetsConverter
                 UserRetrieveRepliesParamsRetweets.Include => "include",
                 UserRetrieveRepliesParamsRetweets.Exclude => "exclude",
                 UserRetrieveRepliesParamsRetweets.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(UserRetrieveRepliesParamsModeConverter))]
+public enum UserRetrieveRepliesParamsMode
+{
+    Standard,
+}
+
+sealed class UserRetrieveRepliesParamsModeConverter : JsonConverter<UserRetrieveRepliesParamsMode>
+{
+    public override UserRetrieveRepliesParamsMode Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "standard" => UserRetrieveRepliesParamsMode.Standard,
+            _ => (UserRetrieveRepliesParamsMode)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UserRetrieveRepliesParamsMode value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UserRetrieveRepliesParamsMode.Standard => "standard",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

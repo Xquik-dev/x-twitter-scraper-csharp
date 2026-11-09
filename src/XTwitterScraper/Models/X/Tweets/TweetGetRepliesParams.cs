@@ -684,6 +684,472 @@ public record class TweetGetRepliesParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Legacy cursor alias. Prefer cursor.
+    /// </summary>
+    public string? After
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("after");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("after", value);
+        }
+    }
+
+    /// <summary>
+    /// Select all replies, direct replies, or nested replies.
+    /// </summary>
+    public ApiEnum<string, TweetGetRepliesParamsScope>? Scope
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetGetRepliesParamsScope>>(
+                "scope"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("scope", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum reply depth from the source post.
+    /// </summary>
+    public long? MaxDepth
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxDepth");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxDepth", value);
+        }
+    }
+
+    /// <summary>
+    /// Sorts the selected replies before limit applies. Complete mode defaults to relevance. Automatic pages list the newest first unless you set sort. Standard pages ignore it. With likes, each page is sorted by likes. A later page can hold a reply with more likes. The order is final on the last page. Latest &amp; oldest sort every row by date, which can take up to 80 s. An answer that stopped before every reply sets orderPartial.
+    /// </summary>
+    public ApiEnum<string, TweetGetRepliesParamsSort>? Sort
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<ApiEnum<string, TweetGetRepliesParamsSort>>(
+                "sort"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sort", value);
+        }
+    }
+
+    /// <summary>
+    /// Exclude replies written by the source-post author.
+    /// </summary>
+    public bool? ExcludeOriginalAuthor
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("excludeOriginalAuthor");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("excludeOriginalAuthor", value);
+        }
+    }
+
+    /// <summary>
+    /// Include the source post and count it toward limit.
+    /// </summary>
+    public bool? IncludeOriginalPost
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("includeOriginalPost");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("includeOriginalPost", value);
+        }
+    }
+
+    /// <summary>
+    /// Complete mode only. Adds the replies the post's author hid, each with hiddenByAuthor true. They count toward limit like any reply. A paged read answers 400. Get its hidden replies from GET /x/tweets/{id}/hidden-replies.
+    /// </summary>
+    public bool? IncludeHidden
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("includeHidden");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("includeHidden", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return replies containing media.
+    /// </summary>
+    public bool? HasMediaOnly
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("hasMediaOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("hasMediaOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum likes. Its aliases are minFaves, min_likes &amp; min_faves.
+    /// </summary>
+    public long? MinLikes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minLikes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minLikes", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum view count threshold.
+    /// </summary>
+    public long? MinViews
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minViews");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minViews", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum bookmark count threshold.
+    /// </summary>
+    public long? MinBookmarks
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minBookmarks");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minBookmarks", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum likes threshold. maxLikes &amp; max_likes also work.
+    /// </summary>
+    public long? MaxFaves
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxFaves");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxFaves", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum retweets threshold.
+    /// </summary>
+    public long? MaxRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum replies threshold.
+    /// </summary>
+    public long? MaxReplies
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxReplies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxReplies", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum quotes threshold.
+    /// </summary>
+    public long? MaxQuotes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxQuotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxQuotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return tweets from Blue-verified authors.
+    /// </summary>
+    public bool? BlueVerifiedOnly
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("blueVerifiedOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("blueVerifiedOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets whose IDs exceed this ID. Searches accept `since_id` &amp; `max_id` bounds.
+    /// </summary>
+    public string? SinceID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("sinceId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sinceId", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets at or below this ID.
+    /// </summary>
+    public string? MaxID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("maxId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxId", value);
+        }
+    }
+
+    /// <summary>
+    /// Keeps Tweets from a recent window, such as 90m or 7d. Use a whole number &amp; s, m, h or d.
+    /// </summary>
+    public string? WithinTime
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("withinTime");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("withinTime", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return native reposts.
+    /// </summary>
+    public bool? NativeRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("nativeRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("nativeRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to keep in each row, comma-separated. Use dots for nested fields, such as author.username. A list keeps the field in each item. Case &amp; underscores do not matter. A row that lacks a field leaves it out. Cursors, counts &amp; diagnostics always stay. An unknown name answers 400 unknown_field with the valid names, before any read. The price stays the same. SDK row types then hold only the named fields. A longer URL fails at the edge before Xquik reads it. Pick only the fields you need with `fields` &amp; `omit`.
+    /// </summary>
+    public string? Fields
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("fields");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("fields", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to drop from each row, comma-separated. It takes the same names as fields. With fields, it drops from the kept fields. A longer URL fails at the edge before Xquik reads it.
+    /// </summary>
+    public string? Omit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("omit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("omit", value);
+        }
+    }
+
     public TweetGetRepliesParams() { }
 
 #pragma warning disable CS8618
@@ -852,6 +1318,7 @@ sealed class TweetGetRepliesParamsMediaTypeConverter : JsonConverter<TweetGetRep
 public enum Mode
 {
     Complete,
+    Standard,
 }
 
 sealed class ModeConverter : JsonConverter<Mode>
@@ -865,6 +1332,7 @@ sealed class ModeConverter : JsonConverter<Mode>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "complete" => Mode.Complete,
+            "standard" => Mode.Standard,
             _ => (Mode)(-1),
         };
     }
@@ -876,6 +1344,7 @@ sealed class ModeConverter : JsonConverter<Mode>
             value switch
             {
                 Mode.Complete => "complete",
+                Mode.Standard => "standard",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1026,6 +1495,103 @@ sealed class TweetGetRepliesParamsRetweetsConverter : JsonConverter<TweetGetRepl
                 TweetGetRepliesParamsRetweets.Include => "include",
                 TweetGetRepliesParamsRetweets.Exclude => "exclude",
                 TweetGetRepliesParamsRetweets.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(TweetGetRepliesParamsScopeConverter))]
+public enum TweetGetRepliesParamsScope
+{
+    All,
+    Direct,
+    Nested,
+}
+
+sealed class TweetGetRepliesParamsScopeConverter : JsonConverter<TweetGetRepliesParamsScope>
+{
+    public override TweetGetRepliesParamsScope Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "all" => TweetGetRepliesParamsScope.All,
+            "direct" => TweetGetRepliesParamsScope.Direct,
+            "nested" => TweetGetRepliesParamsScope.Nested,
+            _ => (TweetGetRepliesParamsScope)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetGetRepliesParamsScope value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetGetRepliesParamsScope.All => "all",
+                TweetGetRepliesParamsScope.Direct => "direct",
+                TweetGetRepliesParamsScope.Nested => "nested",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+[JsonConverter(typeof(TweetGetRepliesParamsSortConverter))]
+public enum TweetGetRepliesParamsSort
+{
+    Relevance,
+    Latest,
+    Oldest,
+    Likes,
+}
+
+sealed class TweetGetRepliesParamsSortConverter : JsonConverter<TweetGetRepliesParamsSort>
+{
+    public override TweetGetRepliesParamsSort Read(
+        ref Utf8JsonReader reader,
+        global::System.Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "relevance" => TweetGetRepliesParamsSort.Relevance,
+            "latest" => TweetGetRepliesParamsSort.Latest,
+            "oldest" => TweetGetRepliesParamsSort.Oldest,
+            "likes" => TweetGetRepliesParamsSort.Likes,
+            _ => (TweetGetRepliesParamsSort)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        TweetGetRepliesParamsSort value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                TweetGetRepliesParamsSort.Relevance => "relevance",
+                TweetGetRepliesParamsSort.Latest => "latest",
+                TweetGetRepliesParamsSort.Oldest => "oldest",
+                TweetGetRepliesParamsSort.Likes => "likes",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

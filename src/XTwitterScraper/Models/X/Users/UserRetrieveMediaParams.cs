@@ -190,6 +190,32 @@ public record class UserRetrieveMediaParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts whose photos show this. Send charts, screenshots, product_photos, memes
+    /// or people, or describe it in words, such as a rocket. AI-powered analysis checks posts
+    /// with photos X doesn't mark sensitive &amp; keeps scores of 0.5 or more. Other posts stay
+    /// out at no charge. Each kept post costs 2 credits, the AI analysis price, instead of the
+    /// read price, &amp; a post the filter drops costs nothing. imageFilter states the cutoff
+    /// &amp; counts.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Only replies to this tweet ID.
     /// </summary>
     public string? InReplyToTweetID
@@ -515,6 +541,31 @@ public record class UserRetrieveMediaParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts about this topic. AI-powered analysis asks "Is this post about
+    /// &lt;topic&gt;?" of each post &amp; keeps scores of 0.5 or more. It reads post text &amp;
+    /// safe photos. Each kept post costs 2 credits, the AI analysis price, instead of the read
+    /// price, &amp; a post the filter drops costs nothing. limit counts checked posts, &amp;
+    /// only kept posts come back. topicFilter states the cutoff &amp; counts.
+    /// </summary>
+    public string? Topic
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("topic");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("topic", value);
+        }
+    }
+
+    /// <summary>
     /// Filter replies sent to a username.
     /// </summary>
     public string? ToUser
@@ -595,6 +646,300 @@ public record class UserRetrieveMediaParams : ParamsBase
             }
 
             this._rawQueryData.Set("verifiedOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum likes. Its aliases are minFaves, min_likes &amp; min_faves.
+    /// </summary>
+    public long? MinLikes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minLikes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minLikes", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum view count threshold.
+    /// </summary>
+    public long? MinViews
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minViews");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minViews", value);
+        }
+    }
+
+    /// <summary>
+    /// Minimum bookmark count threshold.
+    /// </summary>
+    public long? MinBookmarks
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("minBookmarks");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("minBookmarks", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum likes threshold. maxLikes &amp; max_likes also work.
+    /// </summary>
+    public long? MaxFaves
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxFaves");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxFaves", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum retweets threshold.
+    /// </summary>
+    public long? MaxRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum replies threshold.
+    /// </summary>
+    public long? MaxReplies
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxReplies");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxReplies", value);
+        }
+    }
+
+    /// <summary>
+    /// Maximum quotes threshold.
+    /// </summary>
+    public long? MaxQuotes
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("maxQuotes");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxQuotes", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return tweets from Blue-verified authors.
+    /// </summary>
+    public bool? BlueVerifiedOnly
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("blueVerifiedOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("blueVerifiedOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets whose IDs exceed this ID. Searches accept `since_id` &amp; `max_id` bounds.
+    /// </summary>
+    public string? SinceID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("sinceId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("sinceId", value);
+        }
+    }
+
+    /// <summary>
+    /// Return Tweets at or below this ID.
+    /// </summary>
+    public string? MaxID
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("maxId");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("maxId", value);
+        }
+    }
+
+    /// <summary>
+    /// Keeps Tweets from a recent window, such as 90m or 7d. Use a whole number &amp; s, m, h or d.
+    /// </summary>
+    public string? WithinTime
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("withinTime");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("withinTime", value);
+        }
+    }
+
+    /// <summary>
+    /// Only return native reposts.
+    /// </summary>
+    public bool? NativeRetweets
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<bool>("nativeRetweets");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("nativeRetweets", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to keep in each row, comma-separated. Use dots for nested fields, such as author.username. A list keeps the field in each item. Case &amp; underscores do not matter. A row that lacks a field leaves it out. Cursors, counts &amp; diagnostics always stay. An unknown name answers 400 unknown_field with the valid names, before any read. The price stays the same. SDK row types then hold only the named fields. A longer URL fails at the edge before Xquik reads it. Pick only the fields you need with `fields` &amp; `omit`.
+    /// </summary>
+    public string? Fields
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("fields");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("fields", value);
+        }
+    }
+
+    /// <summary>
+    /// Fields to drop from each row, comma-separated. It takes the same names as fields. With fields, it drops from the kept fields. A longer URL fails at the edge before Xquik reads it.
+    /// </summary>
+    public string? Omit
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<string>("omit");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("omit", value);
         }
     }
 

@@ -205,9 +205,10 @@ public record class ExtractionListParams : ParamsBase
 [JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
-    Running,
     Completed,
+    Running,
     Failed,
+    Canceled,
 }
 
 sealed class StatusConverter : JsonConverter<Status>
@@ -220,9 +221,10 @@ sealed class StatusConverter : JsonConverter<Status>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "running" => Status.Running,
             "completed" => Status.Completed,
+            "running" => Status.Running,
             "failed" => Status.Failed,
+            "canceled" => Status.Canceled,
             _ => (Status)(-1),
         };
     }
@@ -233,9 +235,10 @@ sealed class StatusConverter : JsonConverter<Status>
             writer,
             value switch
             {
-                Status.Running => "running",
                 Status.Completed => "completed",
+                Status.Running => "running",
                 Status.Failed => "failed",
+                Status.Canceled => "canceled",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
