@@ -112,17 +112,47 @@ static class GeneratedModelFixture
 #endif
     }
 
-    public static IEnumerable<JsonElement> RawValues(object instance) =>
-        instance
-            .GetType()
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(property =>
-                property.Name.StartsWith("Raw", StringComparison.Ordinal)
-                && property.PropertyType == typeof(IReadOnlyDictionary<string, JsonElement>)
+    public static Dictionary<string, JsonElement> RawEntries(object instance)
+    {
+        Dictionary<string, JsonElement> entries = new();
+        foreach (
+            var property in instance
+                .GetType()
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(property =>
+                    property.Name.StartsWith("Raw", StringComparison.Ordinal)
+                    && property.PropertyType == typeof(IReadOnlyDictionary<string, JsonElement>)
+                )
+        )
+        {
+            foreach (
+                var entry in (IReadOnlyDictionary<string, JsonElement>)property.GetValue(instance)!
             )
-            .SelectMany(property =>
-                ((IReadOnlyDictionary<string, JsonElement>)property.GetValue(instance)!).Values
-            );
+            {
+                entries[$"{property.Name}.{entry.Key}"] = entry.Value;
+            }
+        }
+        return entries;
+    }
+
+    public static void AssertOnlyNullsAdded(
+        IReadOnlyDictionary<string, JsonElement> built,
+        IReadOnlyDictionary<string, JsonElement> assigned
+    )
+    {
+        Assert.All(
+            assigned,
+            entry =>
+                Assert.True(
+                    entry.Value.ValueKind == JsonValueKind.Null
+                        || (
+                            built.TryGetValue(entry.Key, out var value)
+                            && JsonElement.DeepEquals(value, entry.Value)
+                        ),
+                    entry.Key
+                )
+        );
+    }
 
     static TheoryData<Type> TypesWhere(Func<Type, bool> predicate)
     {
