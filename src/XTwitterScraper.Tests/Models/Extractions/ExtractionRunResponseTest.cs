@@ -33,7 +33,10 @@ public class ExtractionRunResponseTest : TestBase
         Assert.True(estimate.Allowed);
         Assert.Equal(500, estimate.EstimatedResults);
         Assert.Equal(Source.Followers, estimate.Source);
-        Assert.Equal("estimate", response.Match(estimate: (_) => "estimate", started: (_) => "started"));
+        Assert.Equal(
+            "estimate",
+            response.Match(estimate: (_) => "estimate", started: (_) => "started")
+        );
     }
 
     [Fact]
@@ -74,10 +77,11 @@ public class ExtractionRunResponseTest : TestBase
     [Fact]
     public void BuiltVariantsSwitchAndCompare()
     {
-        ExtractionRunResponse estimate = Parse(EstimateJson).Match(
-            estimate: (x) => x,
-            started: (_) => throw new System.InvalidOperationException()
-        );
+        ExtractionRunResponse estimate = Parse(EstimateJson)
+            .Match(
+                estimate: (x) => x,
+                started: (_) => throw new System.InvalidOperationException()
+            );
         ExtractionRunResponse started = new ExtractionStarted()
         {
             ID = "ext_123",
@@ -93,7 +97,10 @@ public class ExtractionRunResponseTest : TestBase
         foreach (var response in new[] { estimate, started })
         {
             response.Validate();
-            response.Switch(estimate: (_) => seen.Add("estimate"), started: (_) => seen.Add("started"));
+            response.Switch(
+                estimate: (_) => seen.Add("estimate"),
+                started: (_) => seen.Add("started")
+            );
         }
 
         Assert.Equal(["estimate", "started"], seen);
