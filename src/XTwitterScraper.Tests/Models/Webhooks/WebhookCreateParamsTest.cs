@@ -21,11 +21,7 @@ public class WebhookCreateParamsTest : TestBase
             UrlValue = "https://example.com/webhook",
         };
 
-        List<WebhookEventType> expectedEventTypes =
-        [
-            EventType.TweetNew,
-            EventType.TweetReply,
-        ];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew, EventType.TweetReply];
         string expectedUrlValue = "https://example.com/webhook";
 
         Assert.Equal(expectedEventTypes.Count, parameters.EventTypes.Count);

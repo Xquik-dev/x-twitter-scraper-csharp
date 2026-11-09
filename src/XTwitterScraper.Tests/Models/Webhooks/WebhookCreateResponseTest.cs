@@ -26,11 +26,7 @@ public class WebhookCreateResponseTest : TestBase
 
         string expectedID = "webhook-test-id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
-        List<WebhookEventType> expectedEventTypes =
-        [
-            EventType.TweetNew,
-            EventType.TweetReply,
-        ];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew, EventType.TweetReply];
         string expectedSecret = "test-webhook-secret";
         string expectedUrl = "https://example.com/webhook";
 
@@ -87,11 +83,7 @@ public class WebhookCreateResponseTest : TestBase
 
         string expectedID = "webhook-test-id";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
-        List<WebhookEventType> expectedEventTypes =
-        [
-            EventType.TweetNew,
-            EventType.TweetReply,
-        ];
+        List<WebhookEventType> expectedEventTypes = [EventType.TweetNew, EventType.TweetReply];
         string expectedSecret = "test-webhook-secret";
         string expectedUrl = "https://example.com/webhook";
 

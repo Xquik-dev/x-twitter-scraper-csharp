@@ -74,9 +74,7 @@ public sealed record class Webhook : JsonModel
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<WebhookEventType>>(
-                "eventTypes"
-            );
+            return this._rawData.GetNotNullStruct<ImmutableArray<WebhookEventType>>("eventTypes");
         }
         init
         {
