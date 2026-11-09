@@ -11,188 +11,112 @@ namespace XTwitterScraper.Tests.Models.Extractions;
 
 public class ExtractionRunResponseTest : TestBase
 {
+    const string EstimateJson = """
+        {"allowed":true,"creditsAvailable":"50000","creditsRequired":"500","estimatedResults":500,"source":"followers"}
+        """;
+
+    const string StartedJson = """
+        {"id":"ext_123","url":"https://dashboard.xquik.com/activity/a1b2c3d4e5f6","pollAfterMs":1000,"status":"pending","statusUrl":"/api/v1/extractions/ext_123","toolType":"follower_explorer","waitUrl":"/api/v1/extractions/ext_123?wait=10"}
+        """;
+
+    static ExtractionRunResponse Parse(string json) =>
+        JsonSerializer.Deserialize<ExtractionRunResponse>(json, ModelBase.SerializerOptions)!;
+
     [Fact]
-    public void FieldRoundtrip_Works()
+    public void DryRunEstimateParsesAsEstimate()
     {
-        var model = new ExtractionRunResponse
+        var response = Parse(EstimateJson);
+
+        response.Validate();
+        Assert.True(response.TryPickEstimate(out var estimate));
+        Assert.False(response.TryPickStarted(out _));
+        Assert.True(estimate.Allowed);
+        Assert.Equal(500, estimate.EstimatedResults);
+        Assert.Equal(Source.Followers, estimate.Source);
+        Assert.Equal("estimate", response.Match(estimate: (_) => "estimate", started: (_) => "started"));
+    }
+
+    [Fact]
+    public void StartedJobParsesWithEveryStatus()
+    {
+        foreach (var status in new[] { "pending", "running", "canceled", "completed", "failed" })
         {
-            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
-        };
+            var response = Parse(StartedJson.Replace("\"pending\"", $"\"{status}\""));
 
-        string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
-        JsonElement expectedStatus = JsonSerializer.SerializeToElement("running");
-        ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
-            ExtractionRunResponseToolType.FollowerExplorer;
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.True(JsonElement.DeepEquals(expectedStatus, model.Status));
-        Assert.Equal(expectedToolType, model.ToolType);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new ExtractionRunResponse
-        {
-            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ExtractionRunResponse>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new ExtractionRunResponse
-        {
-            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ExtractionRunResponse>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
-        JsonElement expectedStatus = JsonSerializer.SerializeToElement("running");
-        ApiEnum<string, ExtractionRunResponseToolType> expectedToolType =
-            ExtractionRunResponseToolType.FollowerExplorer;
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.True(JsonElement.DeepEquals(expectedStatus, deserialized.Status));
-        Assert.Equal(expectedToolType, deserialized.ToolType);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new ExtractionRunResponse
-        {
-            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new ExtractionRunResponse
-        {
-            ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            ToolType = ExtractionRunResponseToolType.FollowerExplorer,
-        };
-
-        ExtractionRunResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class ExtractionRunResponseToolTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(ExtractionRunResponseToolType.ArticleExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunityExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunityModeratorExplorer)]
-    [InlineData(ExtractionRunResponseToolType.CommunityPostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunitySearch)]
-    [InlineData(ExtractionRunResponseToolType.Favoriters)]
-    [InlineData(ExtractionRunResponseToolType.FollowerExplorer)]
-    [InlineData(ExtractionRunResponseToolType.FollowingExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ListFollowerExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ListMemberExtractor)]
-    [InlineData(ExtractionRunResponseToolType.ListPostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.MentionExtractor)]
-    [InlineData(ExtractionRunResponseToolType.PeopleSearch)]
-    [InlineData(ExtractionRunResponseToolType.PostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.QuoteExtractor)]
-    [InlineData(ExtractionRunResponseToolType.ReplyExtractor)]
-    [InlineData(ExtractionRunResponseToolType.RepostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.SpaceExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ThreadExtractor)]
-    [InlineData(ExtractionRunResponseToolType.TweetSearchExtractor)]
-    [InlineData(ExtractionRunResponseToolType.UserLikes)]
-    [InlineData(ExtractionRunResponseToolType.UserMedia)]
-    [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
-    public void Validation_Works(ExtractionRunResponseToolType rawValue)
-    {
-        ApiEnum<string, ExtractionRunResponseToolType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseToolType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+            response.Validate();
+            Assert.False(response.TryPickEstimate(out _));
+            Assert.True(response.TryPickStarted(out var started));
+            Assert.Equal("ext_123", started.ID);
+            Assert.Equal(1000, started.PollAfterMs);
+            Assert.Equal(status, started.Status.Raw());
+            Assert.Equal(ExtractionJobToolType.FollowerExplorer, started.ToolType);
+            Assert.Equal("/api/v1/extractions/ext_123", started.StatusUrl);
+            Assert.Equal("/api/v1/extractions/ext_123?wait=10", started.WaitUrl);
+            Assert.Equal("https://dashboard.xquik.com/activity/a1b2c3d4e5f6", started.UrlValue);
+        }
     }
 
     [Theory]
-    [InlineData(ExtractionRunResponseToolType.ArticleExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunityExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunityModeratorExplorer)]
-    [InlineData(ExtractionRunResponseToolType.CommunityPostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.CommunitySearch)]
-    [InlineData(ExtractionRunResponseToolType.Favoriters)]
-    [InlineData(ExtractionRunResponseToolType.FollowerExplorer)]
-    [InlineData(ExtractionRunResponseToolType.FollowingExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ListFollowerExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ListMemberExtractor)]
-    [InlineData(ExtractionRunResponseToolType.ListPostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.MentionExtractor)]
-    [InlineData(ExtractionRunResponseToolType.PeopleSearch)]
-    [InlineData(ExtractionRunResponseToolType.PostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.QuoteExtractor)]
-    [InlineData(ExtractionRunResponseToolType.ReplyExtractor)]
-    [InlineData(ExtractionRunResponseToolType.RepostExtractor)]
-    [InlineData(ExtractionRunResponseToolType.SpaceExplorer)]
-    [InlineData(ExtractionRunResponseToolType.ThreadExtractor)]
-    [InlineData(ExtractionRunResponseToolType.TweetSearchExtractor)]
-    [InlineData(ExtractionRunResponseToolType.UserLikes)]
-    [InlineData(ExtractionRunResponseToolType.UserMedia)]
-    [InlineData(ExtractionRunResponseToolType.VerifiedFollowerExplorer)]
-    public void SerializationRoundtrip_Works(ExtractionRunResponseToolType rawValue)
+    [InlineData(EstimateJson)]
+    [InlineData(StartedJson)]
+    public void WireJsonRoundTripsUnchanged(string json)
     {
-        ApiEnum<string, ExtractionRunResponseToolType> value = rawValue;
+        var response = Parse(json);
 
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, ExtractionRunResponseToolType>
-        >(json, ModelBase.SerializerOptions);
+        var again = JsonSerializer.SerializeToElement(response, ModelBase.SerializerOptions);
 
-        Assert.Equal(value, deserialized);
+        Assert.True(JsonElement.DeepEquals(JsonDocument.Parse(json).RootElement, again));
+        Assert.Equal(response, Parse(again.GetRawText()));
+        Assert.Equal(0, response.GetHashCode());
+        Assert.Contains("\"", response.ToString());
     }
 
     [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
+    public void BuiltVariantsSwitchAndCompare()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, ExtractionRunResponseToolType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
+        ExtractionRunResponse estimate = Parse(EstimateJson).Match(
+            estimate: (x) => x,
+            started: (_) => throw new System.InvalidOperationException()
         );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, ExtractionRunResponseToolType>
-        >(json, ModelBase.SerializerOptions);
+        ExtractionRunResponse started = new ExtractionStarted()
+        {
+            ID = "ext_123",
+            UrlValue = "https://dashboard.xquik.com/activity/a1b2c3d4e5f6",
+            PollAfterMs = 1000,
+            Status = ExtractionJobStatus.Running,
+            StatusUrl = "/api/v1/extractions/ext_123",
+            ToolType = ExtractionJobToolType.FollowerExplorer,
+            WaitUrl = "/api/v1/extractions/ext_123?wait=10",
+        };
 
-        Assert.Equal(value, deserialized);
+        var seen = new System.Collections.Generic.List<string>();
+        foreach (var response in new[] { estimate, started })
+        {
+            response.Validate();
+            response.Switch(estimate: (_) => seen.Add("estimate"), started: (_) => seen.Add("started"));
+        }
+
+        Assert.Equal(["estimate", "started"], seen);
+        Assert.NotEqual(estimate, started);
+        Assert.Equal("running", started.Json.GetProperty("status").GetString());
+    }
+
+    [Theory]
+    [InlineData("""{"id":"ext_123","status":"running"}""")]
+    [InlineData("""{"allowed":true}""")]
+    [InlineData("[]")]
+    public void UnknownShapeFailsValidation(string json)
+    {
+        var response = Parse(json);
+
+        Assert.Null(response.Value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => response.Validate());
+        Assert.Throws<XTwitterScraperInvalidDataException>(() =>
+            response.Switch(estimate: (_) => { }, started: (_) => { })
+        );
+        Assert.Throws<XTwitterScraperInvalidDataException>(() =>
+            response.Match(estimate: (_) => 0, started: (_) => 1)
+        );
+        Assert.NotEqual(response, Parse(StartedJson));
     }
 }

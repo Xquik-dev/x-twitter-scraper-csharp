@@ -2,8 +2,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-using System.Collections.Frozen;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -13,482 +11,215 @@ using System = System;
 
 namespace XTwitterScraper.Models.Extractions;
 
-[JsonConverter(typeof(JsonModelConverter<ExtractionRunResponse, ExtractionRunResponseFromRaw>))]
-public sealed record class ExtractionRunResponse : JsonModel
+/// <summary>
+/// The free cost estimate of a dry run, or the job a real run starts.
+/// </summary>
+[JsonConverter(typeof(ExtractionRunResponseConverter))]
+public record class ExtractionRunResponse : ModelBase
 {
-    public required string ID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
-        }
-        init { this._rawData.Set("id", value); }
-    }
+    public object? Value { get; } = null;
 
-    public JsonElement Status
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("status");
-        }
-        init { this._rawData.Set("status", value); }
-    }
+    JsonElement? _element = null;
 
-    /// <summary>
-    /// Identifier for the extraction tool used to run a job.
-    /// </summary>
-    public required ApiEnum<string, ExtractionRunResponseToolType> ToolType
+    public JsonElement Json
     {
         get
         {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, ExtractionRunResponseToolType>>(
-                "toolType"
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
             );
         }
-        init { this._rawData.Set("toolType", value); }
+    }
+
+    public ExtractionRunResponse(ExtractionEstimateCostResponse value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ExtractionRunResponse(ExtractionStarted value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public ExtractionRunResponse(JsonElement element)
+    {
+        this._element = element;
     }
 
     /// <summary>
-    /// Whether the balance covers the full estimate.
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ExtractionEstimateCostResponse"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     /// </summary>
-    public bool? Allowed
+    public bool TryPickEstimate([NotNullWhen(true)] out ExtractionEstimateCostResponse? value)
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("allowed");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("allowed", value);
-        }
-    }
-
-    public string? CreditsAvailable
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("creditsAvailable");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("creditsAvailable", value);
-        }
-    }
-
-    public string? CreditsRequired
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("creditsRequired");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("creditsRequired", value);
-        }
+        value = this.Value as ExtractionEstimateCostResponse;
+        return value != null;
     }
 
     /// <summary>
-    /// The row count the credit estimate uses. It does not say how many rows exist.
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ExtractionStarted"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     /// </summary>
-    public long? EstimatedResults
+    public bool TryPickStarted([NotNullWhen(true)] out ExtractionStarted? value)
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("estimatedResults");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("estimatedResults", value);
-        }
+        value = this.Value as ExtractionStarted;
+        return value != null;
     }
 
     /// <summary>
-    /// Resolved X user ID from count-based profile estimates.
+    /// Calls the function parameter for the variant the instance holds.
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
     /// </summary>
-    public string? ResolvedXUserID
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("resolvedXUserId");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("resolvedXUserId", value);
-        }
-    }
-
-    public ApiEnum<string, ExtractionRunResponseSource>? Source
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<ApiEnum<string, ExtractionRunResponseSource>>(
-                "source"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("source", value);
-        }
-    }
-
-    /// <summary>
-    /// Dashboard page of the job. A signed-in user follows its progress there and downloads every row as CSV, XLSX, JSON, Markdown, PDF or text, so give this link to a person who wants the whole list as a file.
-    /// </summary>
-    public string? UrlValue
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("url");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("url", value);
-        }
-    }
-
-    public long? PollAfterMs
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("pollAfterMs");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("pollAfterMs", value);
-        }
-    }
-
-    public string? StatusUrl
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("statusUrl");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("statusUrl", value);
-        }
-    }
-
-    public string? WaitUrl
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("waitUrl");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("waitUrl", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.ID;
-        if (!JsonElement.DeepEquals(this.Status, JsonSerializer.SerializeToElement("running")))
-        {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
-        }
-        this.ToolType.Validate();
-        _ = this.Allowed;
-        _ = this.CreditsAvailable;
-        _ = this.CreditsRequired;
-        _ = this.EstimatedResults;
-        _ = this.ResolvedXUserID;
-        this.Source?.Validate();
-        _ = this.UrlValue;
-        _ = this.PollAfterMs;
-        _ = this.StatusUrl;
-        _ = this.WaitUrl;
-    }
-
-    public ExtractionRunResponse()
-    {
-        this.Status = JsonSerializer.SerializeToElement("running");
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public ExtractionRunResponse(ExtractionRunResponse extractionRunResponse)
-        : base(extractionRunResponse) { }
-#pragma warning restore CS8618
-
-    public ExtractionRunResponse(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-
-        this.Status = JsonSerializer.SerializeToElement("running");
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    ExtractionRunResponse(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="ExtractionRunResponseFromRaw.FromRawUnchecked"/>
-    public static ExtractionRunResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
+    public void Switch(
+        System::Action<ExtractionEstimateCostResponse> estimate,
+        System::Action<ExtractionStarted> started
     )
     {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+        switch (this.Value)
+        {
+            case ExtractionEstimateCostResponse value:
+                estimate(value);
+                break;
+            case ExtractionStarted value:
+                started(value);
+                break;
+            default:
+                throw new XTwitterScraperInvalidDataException(
+                    "Data did not match any variant of ExtractionRunResponse"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter for the variant the instance holds and returns its result.
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    /// </summary>
+    public T Match<T>(
+        System::Func<ExtractionEstimateCostResponse, T> estimate,
+        System::Func<ExtractionStarted, T> started
+    )
+    {
+        return this.Value switch
+        {
+            ExtractionEstimateCostResponse value => estimate(value),
+            ExtractionStarted value => started(value),
+            _ => throw new XTwitterScraperInvalidDataException(
+                "Data did not match any variant of ExtractionRunResponse"
+            ),
+        };
+    }
+
+    public static implicit operator ExtractionRunResponse(ExtractionEstimateCostResponse value) =>
+        new(value);
+
+    public static implicit operator ExtractionRunResponse(ExtractionStarted value) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new XTwitterScraperInvalidDataException(
+                "Data did not match any variant of ExtractionRunResponse"
+            );
+        }
+        this.Switch((estimate) => estimate.Validate(), (started) => started.Validate());
+    }
+
+    public virtual bool Equals(ExtractionRunResponse? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            ExtractionEstimateCostResponse _ => 0,
+            ExtractionStarted _ => 1,
+            _ => -1,
+        };
     }
 }
 
-class ExtractionRunResponseFromRaw : IFromRawJson<ExtractionRunResponse>
+sealed class ExtractionRunResponseConverter : JsonConverter<ExtractionRunResponse>
 {
-    /// <inheritdoc/>
-    public ExtractionRunResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => ExtractionRunResponse.FromRawUnchecked(rawData);
-}
-
-/// <summary>
-/// Identifier for the extraction tool used to run a job.
-/// </summary>
-[JsonConverter(typeof(ExtractionRunResponseToolTypeConverter))]
-public enum ExtractionRunResponseToolType
-{
-    ArticleExtractor,
-    CommunityExtractor,
-    CommunityModeratorExplorer,
-    CommunityPostExtractor,
-    CommunitySearch,
-    Favoriters,
-    FollowerExplorer,
-    FollowingExplorer,
-    ListFollowerExplorer,
-    ListMemberExtractor,
-    ListPostExtractor,
-    MentionExtractor,
-    PeopleSearch,
-    PostExtractor,
-    QuoteExtractor,
-    ReplyExtractor,
-    RepostExtractor,
-    SpaceExplorer,
-    ThreadExtractor,
-    TweetSearchExtractor,
-    UserAffiliates,
-    UserLikes,
-    UserMedia,
-    VerifiedFollowerExplorer,
-}
-
-sealed class ExtractionRunResponseToolTypeConverter : JsonConverter<ExtractionRunResponseToolType>
-{
-    public override ExtractionRunResponseToolType Read(
+    public override ExtractionRunResponse? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        try
         {
-            "article_extractor" => ExtractionRunResponseToolType.ArticleExtractor,
-            "community_extractor" => ExtractionRunResponseToolType.CommunityExtractor,
-            "community_moderator_explorer" =>
-                ExtractionRunResponseToolType.CommunityModeratorExplorer,
-            "community_post_extractor" => ExtractionRunResponseToolType.CommunityPostExtractor,
-            "community_search" => ExtractionRunResponseToolType.CommunitySearch,
-            "favoriters" => ExtractionRunResponseToolType.Favoriters,
-            "follower_explorer" => ExtractionRunResponseToolType.FollowerExplorer,
-            "following_explorer" => ExtractionRunResponseToolType.FollowingExplorer,
-            "list_follower_explorer" => ExtractionRunResponseToolType.ListFollowerExplorer,
-            "list_member_extractor" => ExtractionRunResponseToolType.ListMemberExtractor,
-            "list_post_extractor" => ExtractionRunResponseToolType.ListPostExtractor,
-            "mention_extractor" => ExtractionRunResponseToolType.MentionExtractor,
-            "people_search" => ExtractionRunResponseToolType.PeopleSearch,
-            "post_extractor" => ExtractionRunResponseToolType.PostExtractor,
-            "quote_extractor" => ExtractionRunResponseToolType.QuoteExtractor,
-            "reply_extractor" => ExtractionRunResponseToolType.ReplyExtractor,
-            "repost_extractor" => ExtractionRunResponseToolType.RepostExtractor,
-            "space_explorer" => ExtractionRunResponseToolType.SpaceExplorer,
-            "thread_extractor" => ExtractionRunResponseToolType.ThreadExtractor,
-            "tweet_search_extractor" => ExtractionRunResponseToolType.TweetSearchExtractor,
-            "user_affiliates" => ExtractionRunResponseToolType.UserAffiliates,
-            "user_likes" => ExtractionRunResponseToolType.UserLikes,
-            "user_media" => ExtractionRunResponseToolType.UserMedia,
-            "verified_follower_explorer" => ExtractionRunResponseToolType.VerifiedFollowerExplorer,
-            _ => (ExtractionRunResponseToolType)(-1),
-        };
+            var deserialized = JsonSerializer.Deserialize<ExtractionEstimateCostResponse>(
+                element,
+                options
+            );
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
+
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<ExtractionStarted>(element, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
+
+        return new(element);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        ExtractionRunResponseToolType value,
+        ExtractionRunResponse value,
         JsonSerializerOptions options
     )
     {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                ExtractionRunResponseToolType.ArticleExtractor => "article_extractor",
-                ExtractionRunResponseToolType.CommunityExtractor => "community_extractor",
-                ExtractionRunResponseToolType.CommunityModeratorExplorer =>
-                    "community_moderator_explorer",
-                ExtractionRunResponseToolType.CommunityPostExtractor => "community_post_extractor",
-                ExtractionRunResponseToolType.CommunitySearch => "community_search",
-                ExtractionRunResponseToolType.Favoriters => "favoriters",
-                ExtractionRunResponseToolType.FollowerExplorer => "follower_explorer",
-                ExtractionRunResponseToolType.FollowingExplorer => "following_explorer",
-                ExtractionRunResponseToolType.ListFollowerExplorer => "list_follower_explorer",
-                ExtractionRunResponseToolType.ListMemberExtractor => "list_member_extractor",
-                ExtractionRunResponseToolType.ListPostExtractor => "list_post_extractor",
-                ExtractionRunResponseToolType.MentionExtractor => "mention_extractor",
-                ExtractionRunResponseToolType.PeopleSearch => "people_search",
-                ExtractionRunResponseToolType.PostExtractor => "post_extractor",
-                ExtractionRunResponseToolType.QuoteExtractor => "quote_extractor",
-                ExtractionRunResponseToolType.ReplyExtractor => "reply_extractor",
-                ExtractionRunResponseToolType.RepostExtractor => "repost_extractor",
-                ExtractionRunResponseToolType.SpaceExplorer => "space_explorer",
-                ExtractionRunResponseToolType.ThreadExtractor => "thread_extractor",
-                ExtractionRunResponseToolType.TweetSearchExtractor => "tweet_search_extractor",
-                ExtractionRunResponseToolType.UserAffiliates => "user_affiliates",
-                ExtractionRunResponseToolType.UserLikes => "user_likes",
-                ExtractionRunResponseToolType.UserMedia => "user_media",
-                ExtractionRunResponseToolType.VerifiedFollowerExplorer =>
-                    "verified_follower_explorer",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(ExtractionRunResponseSourceConverter))]
-public enum ExtractionRunResponseSource
-{
-    Followers,
-    Following,
-    Collection,
-    LikeCount,
-    PaginationCap,
-    QuoteCount,
-    ReplyCount,
-    ResultsLimit,
-    RetweetCount,
-    Unknown,
-}
-
-sealed class ExtractionRunResponseSourceConverter : JsonConverter<ExtractionRunResponseSource>
-{
-    public override ExtractionRunResponseSource Read(
-        ref Utf8JsonReader reader,
-        global::System.Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "followers" => ExtractionRunResponseSource.Followers,
-            "following" => ExtractionRunResponseSource.Following,
-            "collection" => ExtractionRunResponseSource.Collection,
-            "likeCount" => ExtractionRunResponseSource.LikeCount,
-            "paginationCap" => ExtractionRunResponseSource.PaginationCap,
-            "quoteCount" => ExtractionRunResponseSource.QuoteCount,
-            "replyCount" => ExtractionRunResponseSource.ReplyCount,
-            "resultsLimit" => ExtractionRunResponseSource.ResultsLimit,
-            "retweetCount" => ExtractionRunResponseSource.RetweetCount,
-            "unknown" => ExtractionRunResponseSource.Unknown,
-            _ => (ExtractionRunResponseSource)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        ExtractionRunResponseSource value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                ExtractionRunResponseSource.Followers => "followers",
-                ExtractionRunResponseSource.Following => "following",
-                ExtractionRunResponseSource.Collection => "collection",
-                ExtractionRunResponseSource.LikeCount => "likeCount",
-                ExtractionRunResponseSource.PaginationCap => "paginationCap",
-                ExtractionRunResponseSource.QuoteCount => "quoteCount",
-                ExtractionRunResponseSource.ReplyCount => "replyCount",
-                ExtractionRunResponseSource.ResultsLimit => "resultsLimit",
-                ExtractionRunResponseSource.RetweetCount => "retweetCount",
-                ExtractionRunResponseSource.Unknown => "unknown",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
