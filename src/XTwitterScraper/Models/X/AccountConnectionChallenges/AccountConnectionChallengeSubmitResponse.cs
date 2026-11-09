@@ -2,320 +2,316 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-using System.Collections.Frozen;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using XTwitterScraper.Core;
 using XTwitterScraper.Exceptions;
+using XTwitterScraper.Models.X.Accounts;
 using System = System;
 
 namespace XTwitterScraper.Models.X.AccountConnectionChallenges;
 
 /// <summary>
-/// Sanitized X account summary returned by connect and reauth.
+/// The connected account once X accepts the code, or the next challenge when X asks
+/// for another one.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        AccountConnectionChallengeSubmitResponse,
-        AccountConnectionChallengeSubmitResponseFromRaw
-    >)
-)]
-public sealed record class AccountConnectionChallengeSubmitResponse : JsonModel
+[JsonConverter(typeof(AccountConnectionChallengeSubmitResponseConverter))]
+public record class AccountConnectionChallengeSubmitResponse : ModelBase
 {
-    public required string ID
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
     {
         get
         {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
         }
-        init { this._rawData.Set("id", value); }
     }
 
-    public required System::DateTimeOffset CreatedAt
+    public string ID
     {
         get
         {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("createdAt");
+            return Match(sanitizedXAccount: (x) => x.ID, xAccountConnectionChallenge: (x) => x.ID);
         }
-        init { this._rawData.Set("createdAt", value); }
-    }
-
-    public required ApiEnum<string, Health> Health
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, Health>>("health");
-        }
-        init { this._rawData.Set("health", value); }
     }
 
     public JsonElement Status
     {
         get
         {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("status");
+            return Match(
+                sanitizedXAccount: (x) => x.Status,
+                xAccountConnectionChallenge: (x) => x.Status
+            );
         }
-        init { this._rawData.Set("status", value); }
     }
 
-    public required string XUserID
+    public JsonElement? Object
     {
         get
         {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("xUserId");
+            return Match<JsonElement?>(
+                sanitizedXAccount: (_) => null,
+                xAccountConnectionChallenge: (x) => x.Object
+            );
         }
-        init { this._rawData.Set("xUserId", value); }
     }
 
-    public required string XUsername
+    public AccountConnectionChallengeSubmitResponse(
+        SanitizedXAccount value,
+        JsonElement? element = null
+    )
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("xUsername");
-        }
-        init { this._rawData.Set("xUsername", value); }
+        this.Value = value;
+        this._element = element;
     }
 
-    public ApiEnum<string, AccountConnectionChallengeSubmitResponseObject>? Object
+    public AccountConnectionChallengeSubmitResponse(
+        XAccountConnectionChallenge value,
+        JsonElement? element = null
+    )
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, AccountConnectionChallengeSubmitResponseObject>
-            >("object");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("object", value);
-        }
+        this.Value = value;
+        this._element = element;
     }
 
-    public System::DateTimeOffset? ExpiresAt
+    public AccountConnectionChallengeSubmitResponse(JsonElement element)
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<System::DateTimeOffset>("expiresAt");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("expiresAt", value);
-        }
+        this._element = element;
     }
 
-    public string? Message
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SanitizedXAccount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickSanitizedXAccount(out var value)) {
+    ///     // `value` is of type `SanitizedXAccount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickSanitizedXAccount([NotNullWhen(true)] out SanitizedXAccount? value)
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("message");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("message", value);
-        }
+        value = this.Value as SanitizedXAccount;
+        return value != null;
     }
 
-    public string? Username
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="XAccountConnectionChallenge"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickXAccountConnectionChallenge(out var value)) {
+    ///     // `value` is of type `XAccountConnectionChallenge`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickXAccountConnectionChallenge(
+        [NotNullWhen(true)] out XAccountConnectionChallenge? value
+    )
     {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("username");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
+        value = this.Value as XAccountConnectionChallenge;
+        return value != null;
+    }
 
-            this._rawData.Set("username", value);
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SanitizedXAccount value) =&gt; {...},
+    ///     (XAccountConnectionChallenge value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SanitizedXAccount> sanitizedXAccount,
+        System::Action<XAccountConnectionChallenge> xAccountConnectionChallenge
+    )
+    {
+        switch (this.Value)
+        {
+            case SanitizedXAccount value:
+                sanitizedXAccount(value);
+                break;
+            case XAccountConnectionChallenge value:
+                xAccountConnectionChallenge(value);
+                break;
+            default:
+                throw new XTwitterScraperInvalidDataException(
+                    "Data did not match any variant of AccountConnectionChallengeSubmitResponse"
+                );
         }
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SanitizedXAccount value) =&gt; {...},
+    ///     (XAccountConnectionChallenge value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SanitizedXAccount, T> sanitizedXAccount,
+        System::Func<XAccountConnectionChallenge, T> xAccountConnectionChallenge
+    )
+    {
+        return this.Value switch
+        {
+            SanitizedXAccount value => sanitizedXAccount(value),
+            XAccountConnectionChallenge value => xAccountConnectionChallenge(value),
+            _ => throw new XTwitterScraperInvalidDataException(
+                "Data did not match any variant of AccountConnectionChallengeSubmitResponse"
+            ),
+        };
+    }
+
+    public static implicit operator AccountConnectionChallengeSubmitResponse(
+        SanitizedXAccount value
+    ) => new(value);
+
+    public static implicit operator AccountConnectionChallengeSubmitResponse(
+        XAccountConnectionChallenge value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="XTwitterScraperInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
     public override void Validate()
     {
-        _ = this.ID;
-        _ = this.CreatedAt;
-        this.Health.Validate();
-        if (!JsonElement.DeepEquals(this.Status, JsonSerializer.SerializeToElement("active")))
+        if (this.Value == null)
         {
-            throw new XTwitterScraperInvalidDataException("Invalid value given for constant");
+            throw new XTwitterScraperInvalidDataException(
+                "Data did not match any variant of AccountConnectionChallengeSubmitResponse"
+            );
         }
-        _ = this.XUserID;
-        _ = this.XUsername;
-        this.Object?.Validate();
-        _ = this.ExpiresAt;
-        _ = this.Message;
-        _ = this.Username;
+        this.Switch(
+            (sanitizedXAccount) => sanitizedXAccount.Validate(),
+            (xAccountConnectionChallenge) => xAccountConnectionChallenge.Validate()
+        );
     }
 
-    public AccountConnectionChallengeSubmitResponse()
+    public virtual bool Equals(AccountConnectionChallengeSubmitResponse? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
     {
-        this.Status = JsonSerializer.SerializeToElement("active");
+        return 0;
     }
 
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public AccountConnectionChallengeSubmitResponse(
-        AccountConnectionChallengeSubmitResponse accountConnectionChallengeSubmitResponse
-    )
-        : base(accountConnectionChallengeSubmitResponse) { }
-#pragma warning restore CS8618
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
 
-    public AccountConnectionChallengeSubmitResponse(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    int VariantIndex()
     {
-        this._rawData = new(rawData);
-
-        this.Status = JsonSerializer.SerializeToElement("active");
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    AccountConnectionChallengeSubmitResponse(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="AccountConnectionChallengeSubmitResponseFromRaw.FromRawUnchecked"/>
-    public static AccountConnectionChallengeSubmitResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+        return this.Value switch
+        {
+            SanitizedXAccount _ => 0,
+            XAccountConnectionChallenge _ => 1,
+            _ => -1,
+        };
     }
 }
 
-class AccountConnectionChallengeSubmitResponseFromRaw
-    : IFromRawJson<AccountConnectionChallengeSubmitResponse>
+sealed class AccountConnectionChallengeSubmitResponseConverter
+    : JsonConverter<AccountConnectionChallengeSubmitResponse>
 {
-    /// <inheritdoc/>
-    public AccountConnectionChallengeSubmitResponse FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => AccountConnectionChallengeSubmitResponse.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(typeof(HealthConverter))]
-public enum Health
-{
-    Healthy,
-    Locked,
-    NeedsReauth,
-    Recovering,
-    Suspended,
-    TemporaryIssue,
-}
-
-sealed class HealthConverter : JsonConverter<Health>
-{
-    public override Health Read(
+    public override AccountConnectionChallengeSubmitResponse? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        try
         {
-            "healthy" => Health.Healthy,
-            "locked" => Health.Locked,
-            "needsReauth" => Health.NeedsReauth,
-            "recovering" => Health.Recovering,
-            "suspended" => Health.Suspended,
-            "temporaryIssue" => Health.TemporaryIssue,
-            _ => (Health)(-1),
-        };
-    }
-
-    public override void Write(Utf8JsonWriter writer, Health value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
+            var deserialized = JsonSerializer.Deserialize<SanitizedXAccount>(element, options);
+            if (deserialized != null)
             {
-                Health.Healthy => "healthy",
-                Health.Locked => "locked",
-                Health.NeedsReauth => "needsReauth",
-                Health.Recovering => "recovering",
-                Health.Suspended => "suspended",
-                Health.TemporaryIssue => "temporaryIssue",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
 
-[JsonConverter(typeof(AccountConnectionChallengeSubmitResponseObjectConverter))]
-public enum AccountConnectionChallengeSubmitResponseObject
-{
-    XAccountConnectionChallenge,
-}
-
-sealed class AccountConnectionChallengeSubmitResponseObjectConverter
-    : JsonConverter<AccountConnectionChallengeSubmitResponseObject>
-{
-    public override AccountConnectionChallengeSubmitResponseObject Read(
-        ref Utf8JsonReader reader,
-        global::System.Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        try
         {
-            "x_account_connection_challenge" =>
-                AccountConnectionChallengeSubmitResponseObject.XAccountConnectionChallenge,
-            _ => (AccountConnectionChallengeSubmitResponseObject)(-1),
-        };
+            var deserialized = JsonSerializer.Deserialize<XAccountConnectionChallenge>(
+                element,
+                options
+            );
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e)
+            when (e is JsonException || e is XTwitterScraperInvalidDataException) { }
+
+        return new(element);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        AccountConnectionChallengeSubmitResponseObject value,
+        AccountConnectionChallengeSubmitResponse value,
         JsonSerializerOptions options
     )
     {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                AccountConnectionChallengeSubmitResponseObject.XAccountConnectionChallenge =>
-                    "x_account_connection_challenge",
-                _ => throw new XTwitterScraperInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
+        JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
