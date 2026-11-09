@@ -35,6 +35,11 @@ const readSource = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const eventTypes = () =>
   [...readSource(`${SOURCE}/Models/EventType.cs`).matchAll(/"([^"]+)" => EventType\./g)].map((match) => match[1]);
 
+const pausedReasons = () =>
+  [...readSource(`${SOURCE}/Models/Monitors/Monitor.cs`).matchAll(/"([^"]+)" => MonitorPausedReason\./g)].map(
+    (match) => match[1],
+  );
+
 function monitorSchema() {
   const time = { type: "string", format: "date-time" };
   return {
@@ -45,7 +50,10 @@ function monitorSchema() {
       createdAt: time,
       eventTypes: { type: "array", items: { type: "string", enum: eventTypes() } },
       isActive: { type: "boolean" },
+      name: { type: "string" },
       nextBillingAt: time,
+      pausedAt: time,
+      pausedReason: { type: "string", enum: pausedReasons() },
       username: { type: "string" },
       xUserId: { type: "string" },
     },
@@ -192,7 +200,11 @@ test("request body fields compare in both directions and against the required li
   const body = {
     type: "object",
     required: ["username"],
-    properties: { eventTypes: { type: "array", items: { type: "string" } }, note: { type: "string" } },
+    properties: {
+      eventTypes: { type: "array", items: { type: "string" } },
+      name: { type: "string" },
+      note: { type: "string" },
+    },
   };
   const requestBody = { content: { "application/json; charset=utf-8": { schema: body } } };
 
@@ -209,6 +221,7 @@ test("a body only the SDK sends prints each field as extra", (t) => {
   assertFails(
     runCheck(t, specOf({ "/api/v1/monitors": { post: { responses: {} } } })),
     "POST /api/v1/monitors request extra eventTypes",
+    "POST /api/v1/monitors request extra name",
     "POST /api/v1/monitors request extra username",
     NEXT_STEP,
   );
@@ -569,6 +582,7 @@ test("an obsolete property stays out of extra, in a response and in a body, and 
   assertFails(
     runCheck(t, specOf({ "/api/v1/monitors": { post: { responses: {} } } }), { edits }),
     "POST /api/v1/monitors request extra eventTypes",
+    "POST /api/v1/monitors request extra name",
     NEXT_STEP,
   );
 });
