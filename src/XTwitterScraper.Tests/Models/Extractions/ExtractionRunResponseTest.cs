@@ -32,7 +32,7 @@ public class ExtractionRunResponseTest : TestBase
         Assert.False(response.TryPickStarted(out _));
         Assert.True(estimate.Allowed);
         Assert.Equal(500, estimate.EstimatedResults);
-        Assert.Equal(Source.Followers, estimate.Source);
+        Assert.Equal(Source.Followers, estimate.Source.Value());
         Assert.Equal(
             "estimate",
             response.Match(estimate: (_) => "estimate", started: (_) => "started")
@@ -52,7 +52,7 @@ public class ExtractionRunResponseTest : TestBase
             Assert.Equal("ext_123", started.ID);
             Assert.Equal(1000, started.PollAfterMs);
             Assert.Equal(status, started.Status.Raw());
-            Assert.Equal(ExtractionJobToolType.FollowerExplorer, started.ToolType);
+            Assert.Equal(ExtractionJobToolType.FollowerExplorer, started.ToolType.Value());
             Assert.Equal("/api/v1/extractions/ext_123", started.StatusUrl);
             Assert.Equal("/api/v1/extractions/ext_123?wait=10", started.WaitUrl);
             Assert.Equal("https://dashboard.xquik.com/activity/a1b2c3d4e5f6", started.UrlValue);
