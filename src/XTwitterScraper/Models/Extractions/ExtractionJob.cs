@@ -298,9 +298,10 @@ class ExtractionJobFromRaw : IFromRawJson<ExtractionJob>
 [JsonConverter(typeof(ExtractionJobStatusConverter))]
 public enum ExtractionJobStatus
 {
-    Running,
     Completed,
+    Running,
     Failed,
+    Canceled,
 }
 
 sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
@@ -313,9 +314,10 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "running" => ExtractionJobStatus.Running,
             "completed" => ExtractionJobStatus.Completed,
+            "running" => ExtractionJobStatus.Running,
             "failed" => ExtractionJobStatus.Failed,
+            "canceled" => ExtractionJobStatus.Canceled,
             _ => (ExtractionJobStatus)(-1),
         };
     }
@@ -330,9 +332,10 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
             writer,
             value switch
             {
-                ExtractionJobStatus.Running => "running",
                 ExtractionJobStatus.Completed => "completed",
+                ExtractionJobStatus.Running => "running",
                 ExtractionJobStatus.Failed => "failed",
+                ExtractionJobStatus.Canceled => "canceled",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

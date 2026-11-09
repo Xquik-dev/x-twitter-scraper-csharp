@@ -145,13 +145,15 @@ public enum Source
 {
     Followers,
     Following,
+    Collection,
+    LikeCount,
     PaginationCap,
-    Posts,
     QuoteCount,
     ReplyCount,
     ResultsLimit,
     RetweetCount,
     Unknown,
+    Posts,
 }
 
 sealed class SourceConverter : JsonConverter<Source>
@@ -166,13 +168,15 @@ sealed class SourceConverter : JsonConverter<Source>
         {
             "followers" => Source.Followers,
             "following" => Source.Following,
+            "collection" => Source.Collection,
+            "likeCount" => Source.LikeCount,
             "paginationCap" => Source.PaginationCap,
-            "posts" => Source.Posts,
             "quoteCount" => Source.QuoteCount,
             "replyCount" => Source.ReplyCount,
             "resultsLimit" => Source.ResultsLimit,
             "retweetCount" => Source.RetweetCount,
             "unknown" => Source.Unknown,
+            "posts" => Source.Posts,
             _ => (Source)(-1),
         };
     }
@@ -185,13 +189,15 @@ sealed class SourceConverter : JsonConverter<Source>
             {
                 Source.Followers => "followers",
                 Source.Following => "following",
+                Source.Collection => "collection",
+                Source.LikeCount => "likeCount",
                 Source.PaginationCap => "paginationCap",
-                Source.Posts => "posts",
                 Source.QuoteCount => "quoteCount",
                 Source.ReplyCount => "replyCount",
                 Source.ResultsLimit => "resultsLimit",
                 Source.RetweetCount => "retweetCount",
                 Source.Unknown => "unknown",
+                Source.Posts => "posts",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

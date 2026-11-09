@@ -32,7 +32,7 @@ public class WireSampleRoundtripTest
     [Fact]
     public void FixtureCoversEveryRow()
     {
-        Assert.Equal(952, Rows.Value.Count);
+        Assert.Equal(993, Rows.Value.Count);
     }
 
     [Theory]

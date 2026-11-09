@@ -929,7 +929,10 @@ public enum StopReason
     MissingCursor,
     NoNextPage,
     PageCap,
+    PartialView,
     RepeatedCursor,
+    WindowCovered,
+    WindowPassed,
 }
 
 sealed class StopReasonConverter : JsonConverter<StopReason>
@@ -948,7 +951,10 @@ sealed class StopReasonConverter : JsonConverter<StopReason>
             "missing_cursor" => StopReason.MissingCursor,
             "no_next_page" => StopReason.NoNextPage,
             "page_cap" => StopReason.PageCap,
+            "partial_view" => StopReason.PartialView,
             "repeated_cursor" => StopReason.RepeatedCursor,
+            "window_covered" => StopReason.WindowCovered,
+            "window_passed" => StopReason.WindowPassed,
             _ => (StopReason)(-1),
         };
     }
@@ -969,7 +975,10 @@ sealed class StopReasonConverter : JsonConverter<StopReason>
                 StopReason.MissingCursor => "missing_cursor",
                 StopReason.NoNextPage => "no_next_page",
                 StopReason.PageCap => "page_cap",
+                StopReason.PartialView => "partial_view",
                 StopReason.RepeatedCursor => "repeated_cursor",
+                StopReason.WindowCovered => "window_covered",
+                StopReason.WindowPassed => "window_passed",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
