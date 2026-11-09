@@ -298,6 +298,7 @@ class ExtractionJobFromRaw : IFromRawJson<ExtractionJob>
 [JsonConverter(typeof(ExtractionJobStatusConverter))]
 public enum ExtractionJobStatus
 {
+    Pending,
     Completed,
     Running,
     Failed,
@@ -314,6 +315,7 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
+            "pending" => ExtractionJobStatus.Pending,
             "completed" => ExtractionJobStatus.Completed,
             "running" => ExtractionJobStatus.Running,
             "failed" => ExtractionJobStatus.Failed,
@@ -332,6 +334,7 @@ sealed class ExtractionJobStatusConverter : JsonConverter<ExtractionJobStatus>
             writer,
             value switch
             {
+                ExtractionJobStatus.Pending => "pending",
                 ExtractionJobStatus.Completed => "completed",
                 ExtractionJobStatus.Running => "running",
                 ExtractionJobStatus.Failed => "failed",
