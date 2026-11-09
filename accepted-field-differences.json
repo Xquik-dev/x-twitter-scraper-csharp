@@ -27,21 +27,9 @@
   {
     "reason": "The API and the SDK list different values for these fields. Existing members stay so old code still compiles, and an unknown value stays readable through the raw JSON.",
     "differences": [
-      "GET /api/v1/events request enum eventType",
-      "GET /api/v1/events response enum events[].type",
-      "GET /api/v1/events/{id} response enum type",
       "GET /api/v1/extractions request enum status",
-      "GET /api/v1/extractions response enum extractions[].status",
-      "GET /api/v1/webhooks response enum webhooks[].eventTypes[]",
-      "PATCH /api/v1/webhooks/{id} request enum eventTypes[]",
-      "PATCH /api/v1/webhooks/{id} response enum eventTypes[]",
-      "POST /api/v1/extractions response enum status",
-      "POST /api/v1/extractions/estimate response enum source",
-      "POST /api/v1/webhooks request enum eventTypes[]",
-      "POST /api/v1/webhooks response enum eventTypes[]",
-      "POST /api/v1/webhooks/{id}/resume response enum webhook.eventTypes[]",
-      "POST /api/v1/x/account-connection-challenges/{id}/submit response enum status",
-      "POST /api/v1/x/accounts/{id}/reauth response enum status"
+      "POST /api/v1/extractions response enum source",
+      "POST /api/v1/extractions/estimate response enum source"
     ]
   },
   {
@@ -108,19 +96,8 @@
       "PATCH /api/v1/x/profile/banner request required url",
       "POST /api/v1/credits/topup response required chargedCurrency",
       "POST /api/v1/credits/topup response required chargedMinorUnits",
-      "POST /api/v1/extractions response required id",
-      "POST /api/v1/extractions response required status",
-      "POST /api/v1/extractions response required toolType",
       "POST /api/v1/support/tickets request required body",
       "POST /api/v1/support/tickets/{id}/messages request required body",
-      "POST /api/v1/x/account-connection-challenges/{id}/submit response required createdAt",
-      "POST /api/v1/x/account-connection-challenges/{id}/submit response required health",
-      "POST /api/v1/x/account-connection-challenges/{id}/submit response required xUserId",
-      "POST /api/v1/x/account-connection-challenges/{id}/submit response required xUsername",
-      "POST /api/v1/x/accounts/{id}/reauth response required createdAt",
-      "POST /api/v1/x/accounts/{id}/reauth response required health",
-      "POST /api/v1/x/accounts/{id}/reauth response required xUserId",
-      "POST /api/v1/x/accounts/{id}/reauth response required xUsername",
       "POST /api/v1/x/media request required url",
       "PUT /api/v1/styles/{id} request required label"
     ]
