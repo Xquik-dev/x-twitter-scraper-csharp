@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.6.3 (2026-11-09)
+
+[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
 
 ### Features
 
@@ -20,10 +22,6 @@
 ### Bug Fixes
 
 * Response validation accepts the compose score result. `TotalChecks` is 1 and each engagement `Multiplier` is `Source default. Production value can vary.`, as the API returns them.
-
-## 0.6.3 (2026-10-13)
-
-[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
 
 ### Documentation
 
