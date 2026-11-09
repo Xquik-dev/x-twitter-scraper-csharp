@@ -113,6 +113,32 @@ public record class TweetCreateParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Media IDs from POST /x/media, uploaded with this account. IDs last 24 hours.
+    /// Send up to 4 image IDs or exactly 1 video ID. Send Media or MediaIDs, not
+    /// both. Media adds 2 credits per started MB across all files.
+    /// </summary>
+    public IReadOnlyList<string>? MediaIDs
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("media_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "media_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     public string? ReplyToTweetID
     {
         get
