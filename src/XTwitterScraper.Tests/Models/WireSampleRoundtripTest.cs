@@ -13,9 +13,9 @@ namespace XTwitterScraper.Tests.Models;
 
 public class WireSampleRoundtripTest
 {
-    static readonly Lazy<IReadOnlyDictionary<string, JsonElement>> Rows = new(LoadRows);
+    static readonly Lazy<Dictionary<string, JsonElement>> Rows = new(LoadRows);
 
-    static IReadOnlyDictionary<string, JsonElement> LoadRows()
+    static Dictionary<string, JsonElement> LoadRows()
     {
         using var stream =
             typeof(WireSampleRoundtripTest).Assembly.GetManifestResourceStream("WireSamples.json")
