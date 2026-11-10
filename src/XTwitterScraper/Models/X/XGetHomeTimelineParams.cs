@@ -62,6 +62,27 @@ public record class XGetHomeTimelineParams : ParamsBase
         }
     }
 
+    /// <summary>
+    /// Items per page, 1 to 100, default 20. Source, filters or credits can return fewer. Follow next_cursor for more pages.
+    /// </summary>
+    public long? PageSize
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<long>("pageSize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("pageSize", value);
+        }
+    }
+
     public XGetHomeTimelineParams() { }
 
 #pragma warning disable CS8618
