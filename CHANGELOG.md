@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+* `X.Tweets.Create` takes `MediaIDs`, the IDs that `POST /x/media` returns. Send `Media` or `MediaIDs`, not both. Error codes add `MediaNotUploaded`.
+
 ## 0.6.3 (2026-11-09)
 
 [Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)

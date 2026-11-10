@@ -21,6 +21,7 @@ public class TweetCreateParamsTest : TestBase
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
             Media = ["https://example.com/video.mp4"],
+            MediaIDs = ["2104371968258560001"],
             ReplyToTweetID = "1234567890",
             Text = "Just launched our new feature!",
         };
@@ -30,6 +31,7 @@ public class TweetCreateParamsTest : TestBase
         string expectedCommunityID = "1500000000000000000";
         bool expectedIsNoteTweet = false;
         List<string> expectedMedia = ["https://example.com/video.mp4"];
+        List<string> expectedMediaIDs = ["2104371968258560001"];
         string expectedReplyToTweetID = "1234567890";
         string expectedText = "Just launched our new feature!";
 
@@ -42,6 +44,12 @@ public class TweetCreateParamsTest : TestBase
         for (int i = 0; i < expectedMedia.Count; i++)
         {
             Assert.Equal(expectedMedia[i], parameters.Media[i]);
+        }
+        Assert.NotNull(parameters.MediaIDs);
+        Assert.Equal(expectedMediaIDs.Count, parameters.MediaIDs.Count);
+        for (int i = 0; i < expectedMediaIDs.Count; i++)
+        {
+            Assert.Equal(expectedMediaIDs[i], parameters.MediaIDs[i]);
         }
         Assert.Equal(expectedReplyToTweetID, parameters.ReplyToTweetID);
         Assert.Equal(expectedText, parameters.Text);
@@ -62,6 +70,8 @@ public class TweetCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("is_note_tweet"));
         Assert.Null(parameters.Media);
         Assert.False(parameters.RawBodyData.ContainsKey("media"));
+        Assert.Null(parameters.MediaIDs);
+        Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
         Assert.Null(parameters.ReplyToTweetID);
         Assert.False(parameters.RawBodyData.ContainsKey("reply_to_tweet_id"));
         Assert.Null(parameters.Text);
@@ -79,6 +89,7 @@ public class TweetCreateParamsTest : TestBase
             CommunityID = null,
             IsNoteTweet = null,
             Media = null,
+            MediaIDs = null,
             ReplyToTweetID = null,
             Text = null,
         };
@@ -89,6 +100,8 @@ public class TweetCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("is_note_tweet"));
         Assert.Null(parameters.Media);
         Assert.False(parameters.RawBodyData.ContainsKey("media"));
+        Assert.Null(parameters.MediaIDs);
+        Assert.False(parameters.RawBodyData.ContainsKey("media_ids"));
         Assert.Null(parameters.ReplyToTweetID);
         Assert.False(parameters.RawBodyData.ContainsKey("reply_to_tweet_id"));
         Assert.Null(parameters.Text);
@@ -137,6 +150,7 @@ public class TweetCreateParamsTest : TestBase
             CommunityID = "1500000000000000000",
             IsNoteTweet = false,
             Media = ["https://example.com/video.mp4"],
+            MediaIDs = ["2104371968258560001"],
             ReplyToTweetID = "1234567890",
             Text = "Just launched our new feature!",
         };
