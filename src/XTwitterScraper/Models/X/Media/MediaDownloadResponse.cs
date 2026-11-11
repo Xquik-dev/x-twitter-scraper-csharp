@@ -179,6 +179,54 @@ public sealed record class MediaDownloadResponse : JsonModel
         }
     }
 
+    /// <summary>
+    /// Posts Xquik couldn't read, at no charge. Send them again.
+    /// </summary>
+    public IReadOnlyList<string>? FailedTweetIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("failedTweetIds");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "failedTweetIds",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Posts with no media to save, at no charge.
+    /// </summary>
+    public IReadOnlyList<string>? NoMediaTweetIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("noMediaTweetIds");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "noMediaTweetIds",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -193,6 +241,8 @@ public sealed record class MediaDownloadResponse : JsonModel
             item.Validate();
         }
         _ = this.UnprocessedTweetIDs;
+        _ = this.FailedTweetIDs;
+        _ = this.NoMediaTweetIDs;
     }
 
     public MediaDownloadResponse() { }
