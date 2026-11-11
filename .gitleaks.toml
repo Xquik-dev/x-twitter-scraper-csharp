@@ -17,3 +17,11 @@ regexes = [
   '''(?i)idempotency.?key''',
   '''(?i)(expectedSecret|\bSecret\s*=)''',
 ]
+
+[[allowlists]]
+description = "xq_live_abc123def456 is the made-up key the generated ApiKeyCreateResponse tests use."
+targetRules = ["generic-api-key"]
+regexTarget = "secret"
+regexes = [
+  '''^xq_live_abc123def456$''',
+]
