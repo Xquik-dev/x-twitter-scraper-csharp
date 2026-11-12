@@ -640,7 +640,7 @@
     {"name":"enum XTwitterScraper.Models.FootballRosterLeague","type":"XTwitterScraper.Models.FootballRosterLeague","list":true,"json":["nfl"]},
     {"name":"enum XTwitterScraper.Models.FootballScheduleLeague","type":"XTwitterScraper.Models.FootballScheduleLeague","list":true,"json":["nfl","ncaafb"]},
     {"name":"enum XTwitterScraper.Models.FootballScoreboardLeague","type":"XTwitterScraper.Models.FootballScoreboardLeague","list":true,"json":["nfl","ncaafb"]},
-    {"name":"enum XTwitterScraper.Models.StopReason","type":"XTwitterScraper.Models.StopReason","list":true,"json":["deadline","empty_pages","error","missing_cursor","no_next_page","page_cap","partial_view","repeated_cursor","window_covered","window_passed"]},
+    {"name":"enum XTwitterScraper.Models.StopReason","type":"XTwitterScraper.Models.StopReason","list":true,"json":["deadline","empty_pages","error","missing_cursor","no_next_page","page_cap","partial_view","repeated_cursor","reported_held","window_covered","window_passed"]},
     {"name":"enum XTwitterScraper.Models.PostEventType","type":"XTwitterScraper.Models.PostEventType","list":true,"json":["post.reply.new","post.quote.new","post.likes.changed","post.retweets.changed","post.replies.changed","post.quotes.changed","post.bookmarks.changed","post.views.changed","post.edited","post.deleted"]},
     {"name":"enum XTwitterScraper.Models.PostMonitorAuthorVerified","type":"XTwitterScraper.Models.PostMonitorAuthorVerified","list":true,"json":["blue","business","government"]},
     {"name":"enum XTwitterScraper.Models.PostMonitorMediaKind","type":"XTwitterScraper.Models.PostMonitorMediaKind","list":true,"json":["gif","photo","video"]},

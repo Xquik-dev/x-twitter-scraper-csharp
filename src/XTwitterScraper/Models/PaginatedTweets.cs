@@ -931,6 +931,7 @@ public enum StopReason
     PageCap,
     PartialView,
     RepeatedCursor,
+    ReportedHeld,
     WindowCovered,
     WindowPassed,
 }
@@ -953,6 +954,7 @@ sealed class StopReasonConverter : JsonConverter<StopReason>
             "page_cap" => StopReason.PageCap,
             "partial_view" => StopReason.PartialView,
             "repeated_cursor" => StopReason.RepeatedCursor,
+            "reported_held" => StopReason.ReportedHeld,
             "window_covered" => StopReason.WindowCovered,
             "window_passed" => StopReason.WindowPassed,
             _ => (StopReason)(-1),
@@ -977,6 +979,7 @@ sealed class StopReasonConverter : JsonConverter<StopReason>
                 StopReason.PageCap => "page_cap",
                 StopReason.PartialView => "partial_view",
                 StopReason.RepeatedCursor => "repeated_cursor",
+                StopReason.ReportedHeld => "reported_held",
                 StopReason.WindowCovered => "window_covered",
                 StopReason.WindowPassed => "window_passed",
                 _ => throw new XTwitterScraperInvalidDataException(
