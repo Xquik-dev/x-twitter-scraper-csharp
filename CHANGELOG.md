@@ -4,6 +4,7 @@
 
 ### Features
 
+* Replies diagnostics add the `ReportedHeld` stop reason, which a strategy returns once the read holds every reply X reports.
 * `X.Tweets.Create` takes `MediaIDs`, the IDs that `POST /x/media` returns. Send `Media` or `MediaIDs`, not both. Error codes add `MediaNotUploaded`.
 
 ## 0.6.3 (2026-11-09)
