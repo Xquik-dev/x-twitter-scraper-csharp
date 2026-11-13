@@ -98,6 +98,49 @@ public sealed record class TweetAnalysisPage : JsonModel
         init { this._rawData.Set("next_cursor", value); }
     }
 
+    /// <summary>
+    /// What the topic filter asked &amp; how many posts it kept. Present when you send topic.
+    /// </summary>
+    public TopicFilterSummary? TopicFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<TopicFilterSummary>("topicFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("topicFilter", value);
+        }
+    }
+
+    /// <summary>
+    /// What the image filter asked &amp; how many posts it kept. Present when you send
+    /// imageShows.
+    /// </summary>
+    public ImageFilterSummary? ImageFilter
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ImageFilterSummary>("imageFilter");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("imageFilter", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -112,6 +155,8 @@ public sealed record class TweetAnalysisPage : JsonModel
         this.AnalysisSummary.Validate();
         _ = this.HasNextPage;
         _ = this.NextCursor;
+        this.TopicFilter?.Validate();
+        this.ImageFilter?.Validate();
     }
 
     public TweetAnalysisPage() { }
