@@ -291,6 +291,55 @@ public record class AnalysisBrandParams : ParamsBase
     }
 
     /// <summary>
+    /// Keep only posts about this topic, the same as the Actors' topic input. AI-powered analysis
+    /// asks "Is this post about &lt;topic&gt;?" of each post &amp; keeps scores of 0.5 or more.
+    /// Only kept posts are analyzed &amp; cost 2 credits each, &amp; a post the filter drops costs
+    /// nothing. topicFilter states the cutoff &amp; counts. Send topic or imageShows, not both.
+    /// </summary>
+    public string? Topic
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("topic");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("topic", value);
+        }
+    }
+
+    /// <summary>
+    /// Keep only posts whose photos show this, the same as the Actors' imageShows input. Send
+    /// charts, screenshots, product_photos, memes or people, or describe it in words, such as a
+    /// rocket. AI-powered analysis checks posts with photos X doesn't mark sensitive &amp; keeps
+    /// scores of 0.5 or more. Only kept posts are analyzed &amp; cost 2 credits each. imageFilter
+    /// states the cutoff &amp; counts. Send topic or imageShows, not both.
+    /// </summary>
+    public string? ImageShows
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("imageShows");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("imageShows", value);
+        }
+    }
+
+    /// <summary>
     /// Analysis settings, the same as the analysis input of Xquik's AI Actors, plus images. Leave it out for the route's own questions.
     /// </summary>
     public global::XTwitterScraper.Models.TweetAnalysisSettings? Analysis

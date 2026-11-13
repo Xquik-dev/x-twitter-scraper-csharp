@@ -598,3 +598,75 @@ public class UserRetrieveMentionsParamsRetweetsTest : TestBase
         Assert.Equal(value, deserialized);
     }
 }
+
+public class UserRetrieveMentionsParamsOwnThreadsTest : TestBase
+{
+    [Theory]
+    [InlineData(UserRetrieveMentionsParamsOwnThreads.Exclude)]
+    public void Validation_Works(UserRetrieveMentionsParamsOwnThreads rawValue)
+    {
+        ApiEnum<string, UserRetrieveMentionsParamsOwnThreads> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(UserRetrieveMentionsParamsOwnThreads.Exclude)]
+    public void SerializationRoundtrip_Works(UserRetrieveMentionsParamsOwnThreads rawValue)
+    {
+        ApiEnum<string, UserRetrieveMentionsParamsOwnThreads> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void OwnThreadsReachesTheQuery()
+    {
+        UserRetrieveMentionsParams parameters = new()
+        {
+            ID = "44196397",
+            Replies = UserRetrieveMentionsParamsReplies.Exclude,
+            OwnThreads = UserRetrieveMentionsParamsOwnThreads.Exclude,
+        };
+
+        var url = parameters.Url(new() { ApiKey = "My API Key", BearerToken = "My Bearer Token" });
+
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://xquik.com/api/v1/x/users/44196397/mentions?replies=exclude&ownThreads=exclude"
+                ),
+                url
+            )
+        );
+    }
+}

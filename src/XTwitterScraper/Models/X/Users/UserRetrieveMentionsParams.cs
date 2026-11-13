@@ -450,6 +450,30 @@ public record class UserRetrieveMentionsParams : ParamsBase
     }
 
     /// <summary>
+    /// With replies=exclude, also leaves out replies to the author's own posts, so the search
+    /// skips every reply.
+    /// </summary>
+    public ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>? OwnThreads
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableClass<
+                ApiEnum<string, UserRetrieveMentionsParamsOwnThreads>
+            >("ownThreads");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawQueryData.Set("ownThreads", value);
+        }
+    }
+
+    /// <summary>
     /// Retweet mode.
     /// </summary>
     public ApiEnum<string, UserRetrieveMentionsParamsRetweets>? Retweets
@@ -1189,6 +1213,52 @@ sealed class UserRetrieveMentionsParamsRepliesConverter
                 UserRetrieveMentionsParamsReplies.Include => "include",
                 UserRetrieveMentionsParamsReplies.Exclude => "exclude",
                 UserRetrieveMentionsParamsReplies.Only => "only",
+                _ => throw new XTwitterScraperInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// With replies=exclude, also leaves out replies to the author's own posts, so the search
+/// skips every reply.
+/// </summary>
+[JsonConverter(typeof(UserRetrieveMentionsParamsOwnThreadsConverter))]
+public enum UserRetrieveMentionsParamsOwnThreads
+{
+    Exclude,
+}
+
+sealed class UserRetrieveMentionsParamsOwnThreadsConverter
+    : JsonConverter<UserRetrieveMentionsParamsOwnThreads>
+{
+    public override UserRetrieveMentionsParamsOwnThreads Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "exclude" => UserRetrieveMentionsParamsOwnThreads.Exclude,
+            _ => (UserRetrieveMentionsParamsOwnThreads)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        UserRetrieveMentionsParamsOwnThreads value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                UserRetrieveMentionsParamsOwnThreads.Exclude => "exclude",
                 _ => throw new XTwitterScraperInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

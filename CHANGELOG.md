@@ -8,6 +8,8 @@
 * Follower, following, verified follower, list member and list follower pages carry `WindowComplete`, present on the last page of an empty list whose profile counts 0 accounts in it.
 * Replies diagnostics add the `ReportedHeld` stop reason, which a strategy returns once the read holds every reply X reports.
 * `X.Tweets.Create` takes `MediaIDs`, the IDs that `POST /x/media` returns. Send `Media` or `MediaIDs`, not both. Error codes add `MediaNotUploaded`.
+* The 6 `X.Analysis` params take `Topic` and `ImageShows`, which keep only posts about a topic or with matching photos before the analysis runs. Send one, not both. `TweetAnalysisPage` carries `TopicFilter` or `ImageFilter` with the cutoff and counts.
+* `UserRetrieveMentionsParams` takes `OwnThreads`. With `Replies` set to `Exclude`, it also leaves out replies to the author's own posts.
 
 ## 0.6.3 (2026-11-09)
 
