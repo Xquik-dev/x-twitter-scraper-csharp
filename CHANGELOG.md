@@ -4,6 +4,8 @@
 
 ### Features
 
+* `PaginatedTweets`, `PaginatedTweets2` and `SportsGamePosts` carry `HiddenTimeline`, present on an empty last page when X shows the account's timeline to nobody, so the page doesn't mean the account posted nothing.
+* Follower, following, verified follower, list member and list follower pages carry `WindowComplete`, present on the last page of an empty list whose profile counts 0 accounts in it.
 * Replies diagnostics add the `ReportedHeld` stop reason, which a strategy returns once the read holds every reply X reports.
 * `X.Tweets.Create` takes `MediaIDs`, the IDs that `POST /x/media` returns. Send `Media` or `MediaIDs`, not both. Error codes add `MediaNotUploaded`.
 

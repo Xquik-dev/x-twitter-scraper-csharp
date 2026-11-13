@@ -138,6 +138,29 @@ public record class PaginatedTweets : JsonModel
     }
 
     /// <summary>
+    /// Present on an empty last page when X shows this account's timeline to nobody.
+    /// The page is empty because of that, so it doesn't mean the account posted
+    /// nothing. A retry returns the same page.
+    /// </summary>
+    public bool? HiddenTimeline
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("hiddenTimeline");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("hiddenTimeline", value);
+        }
+    }
+
+    /// <summary>
     /// Present on a last page whose sources all read past its start time.
     /// </summary>
     public bool? WindowComplete
@@ -239,6 +262,7 @@ public record class PaginatedTweets : JsonModel
         this.TopicFilter?.Validate();
         _ = this.FilteredCount;
         _ = this.ReadBackTo;
+        _ = this.HiddenTimeline;
         _ = this.WindowComplete;
         _ = this.SearchedQuery;
         this.SearchContext?.Validate();

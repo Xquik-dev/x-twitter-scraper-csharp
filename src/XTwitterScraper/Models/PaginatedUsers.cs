@@ -124,6 +124,27 @@ public sealed record class PaginatedUsers : JsonModel
         }
     }
 
+    /// <summary>
+    /// Present on the last page of an empty list whose profile counts 0 accounts in it.
+    /// </summary>
+    public bool? WindowComplete
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("windowComplete");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("windowComplete", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -136,6 +157,7 @@ public sealed record class PaginatedUsers : JsonModel
         _ = this.FilteredCount;
         this.ScanLimit?.Validate();
         this.Diagnostic?.Validate();
+        _ = this.WindowComplete;
     }
 
     public PaginatedUsers() { }
