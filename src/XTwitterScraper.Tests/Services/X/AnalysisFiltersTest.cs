@@ -125,7 +125,7 @@ public class AnalysisFiltersTest
         var page = await Routes[route](client, TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpMethod.Post, handler.Method);
-        Assert.Equal($"/api/v1/x/analysis/{route}", handler.Path);
+        Assert.Equal($"/x/analysis/{route}", handler.Path);
         Assert.NotNull(handler.Body);
         using (var body = JsonDocument.Parse(handler.Body))
         {
