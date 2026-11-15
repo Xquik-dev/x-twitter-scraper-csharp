@@ -144,4 +144,17 @@ public class ParamsBaseTest
         Assert.Equal("5", HeaderText(request, "X-Stainless-Timeout"));
         Assert.True(request.Headers.Contains("X-Stainless-Lang"));
     }
+
+    [Fact]
+    public void EveryRequestNamesTheCSharpSdkForXquik()
+    {
+        ClientOptions options = new() { BaseUrl = "https://example.test" };
+        using var optionsHttpClient = options.HttpClient;
+        using var request = new HttpRequestMessage();
+
+        Parameters("{}", "{}").AddHeadersToRequest(request, options);
+
+        Assert.Equal("csharp", HeaderText(request, "X-Xquik-SDK"));
+        Assert.Equal("csharp", HeaderText(request, "X-Stainless-Lang"));
+    }
 }
