@@ -76,6 +76,30 @@ public record class AnalysisSentimentParams : ParamsBase
     }
 
     /// <summary>
+    /// X searches to analyze as 1 search. A post matching any of them counts. Each takes the operators of query. query, when sent, joins them. X searches up to 512 characters, counted with the other search fields.
+    /// </summary>
+    public IReadOnlyList<string>? Queries
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("queries");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "queries",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Analyze 1 account's posts. Send a handle, with or without @, or a profile URL.
     /// </summary>
     public string? Username
@@ -97,6 +121,30 @@ public record class AnalysisSentimentParams : ParamsBase
     }
 
     /// <summary>
+    /// Analyze the posts of several accounts in 1 search. Send handles, with or without @, or profile URLs. username, when sent, joins them.
+    /// </summary>
+    public IReadOnlyList<string>? Usernames
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("usernames");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "usernames",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Analyze a public List's posts. Send its ID or URL.
     /// </summary>
     public string? ListID
@@ -114,6 +162,30 @@ public record class AnalysisSentimentParams : ParamsBase
             }
 
             this._rawBodyData.Set("listId", value);
+        }
+    }
+
+    /// <summary>
+    /// Analyze the posts of several public Lists in 1 search. Send their IDs or URLs. listId, when sent, joins them.
+    /// </summary>
+    public IReadOnlyList<string>? ListIDs
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("listIds");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "listIds",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -156,6 +228,90 @@ public record class AnalysisSentimentParams : ParamsBase
             }
 
             this._rawBodyData.Set("repliesTo", value);
+        }
+    }
+
+    /// <summary>
+    /// Analyze 1 post's thread, as /x/tweets/{id}/thread reads it. Send the post's ID or URL. Send no other posts or search with it.
+    /// </summary>
+    public string? ThreadOf
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("threadOf");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("threadOf", value);
+        }
+    }
+
+    /// <summary>
+    /// Analyze 1 account's posts &amp; replies, as its Replies tab shows them. /x/users/{id}/replies reads the same posts. Send a handle, with or without @, a user ID or a profile URL. Send no other posts or search with it.
+    /// </summary>
+    public string? RepliesBy
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("repliesBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("repliesBy", value);
+        }
+    }
+
+    /// <summary>
+    /// Analyze 1 account's posts with photos or videos, as its Media tab shows them. /x/users/{id}/media reads the same posts. Send a handle, with or without @, a user ID or a profile URL. Send no other posts or search with it.
+    /// </summary>
+    public string? MediaBy
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("mediaBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("mediaBy", value);
+        }
+    }
+
+    /// <summary>
+    /// Analyze the posts 1 account liked, as /x/users/{id}/likes reads them. Send a handle, with or without @, a user ID or a profile URL. Send no other posts or search with it.
+    /// </summary>
+    public string? LikedBy
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("likedBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("likedBy", value);
         }
     }
 
