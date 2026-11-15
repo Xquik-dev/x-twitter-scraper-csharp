@@ -304,7 +304,7 @@ XTwitterScraperClient client = new() { HttpClient = httpClient };
 
 ## Custom API fields
 
-The SDK accepts API fields missing from its generated types.
+The SDK accepts API fields missing from its typed models.
 
 ### Request fields
 

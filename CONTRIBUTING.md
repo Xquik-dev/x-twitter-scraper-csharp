@@ -18,15 +18,27 @@ Restore pinned tools and locked dependencies.
 
 Never commit credentials or runtime environment files.
 
-## Generated code
+## Change the SDK by hand
 
-Most SDK files come from the public OpenAPI contract.
+Maintainers write and review every file in this repository by hand.
+No code generator runs.
 
-Preserve generated method names and response contracts.
+When the API changes, the API coverage and [API fields](#api-fields) checks fail.
+Each failure names the operation or field that the SDK lacks.
+Add each one in the style of the code around it.
 
-Avoid generated-file changes when a generator fix exists.
+1. Add the method to its service in `src/XTwitterScraper/Services`.
+2. Add its params and response models in `src/XTwitterScraper/Models`.
+3. Add its tests in `src/XTwitterScraper.Tests/Services`.
+4. Add a line to the `Unreleased` section of `CHANGELOG.md`.
 
-Place stable examples outside generated directories.
+Keep every change additive.
+Never remove or rename a public method, parameter, model, property, or the `XTwitterScraper` package.
+To rename something, add the new name beside the old one and keep the old one working.
+
+`excluded-operations.json` lists each API operation the SDK leaves out, with the reason.
+
+Each request sends `X-Xquik-SDK: csharp`, which Xquik reads to count SDK requests.
 
 ## Verify changes
 
@@ -95,7 +107,7 @@ GET /api/v1/monitors response enum monitors[].eventTypes[]
 
 Fixes stay additive. Never remove or rename a public field or parameter to satisfy the check. Accept it instead.
 
-A line that starts with a file and a line number means the check cannot read that C# code. Write it in the style of the generated code around it, or teach `scripts/lib/api-fields/sdk.mjs` the new form.
+A line that starts with a file and a line number means the check cannot read that C# code. Write it in the style of the code around it, or teach `scripts/lib/api-fields/sdk.mjs` the new form.
 
 `accepted-field-differences.json` holds the reviewed differences the SDK keeps, in groups with a non-empty `reason`.
 A difference appears at most once.

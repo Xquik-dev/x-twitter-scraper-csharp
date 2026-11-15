@@ -31,6 +31,7 @@ public abstract record class ParamsBase
             ["X-Stainless-Package-Version"] = GetPackageVersion(),
             ["X-Stainless-Runtime"] = runtime.Name,
             ["X-Stainless-Runtime-Version"] = runtime.Version,
+            ["X-Xquik-SDK"] = "csharp",
         };
 
         var customHeadersEnv = Environment.GetEnvironmentVariable(
