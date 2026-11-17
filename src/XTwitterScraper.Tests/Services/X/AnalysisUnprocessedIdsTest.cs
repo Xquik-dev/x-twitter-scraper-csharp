@@ -64,7 +64,7 @@ public class AnalysisUnprocessedIdsTest
 
         var page = await Routes[route](client, TestContext.Current.CancellationToken);
 
-        Assert.Equal(["2", "3"], page.UnprocessedIDs);
+        Assert.Equal<string>(["2", "3"], page.UnprocessedIDs);
     }
 
     [Fact]
