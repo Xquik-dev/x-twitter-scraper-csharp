@@ -23,7 +23,7 @@ Never commit credentials or runtime environment files.
 Maintainers write and review every file in this repository by hand.
 No code generator runs.
 
-When the API changes, the API coverage and [API fields](#api-fields) checks fail.
+When the API changes, the [API fields](#api-fields) check fails.
 Each failure names the operation or field that the SDK lacks.
 Add each one in the style of the code around it.
 
@@ -91,7 +91,8 @@ It reads the spec's fields through `$ref`, `allOf`, `oneOf` and `anyOf`.
 It reads the SDK's operations from the request each class in `src/XTwitterScraper/Services` builds, and the fields from the params and response types that request names in `src/XTwitterScraper/Models`.
 Path parameters, header parameters, free-form objects and fields under an object that allows extra properties stay out.
 A field missing on 1 side counts once, at its top position.
-Operations that only the spec or only the SDK has are not compared.
+An operation the spec has and the SDK lacks fails with a line such as `GET /api/v1/monitors is in the API but not in the SDK.`, unless `excluded-operations.json` lists it.
+Operations that only the SDK has are not compared.
 
 Each difference prints as 1 line with the method, the full path, `request` or `response`, a kind and the field's JSON path.
 
