@@ -51,6 +51,8 @@
       "GET /api/v1/support/tickets response required hasMore",
       "GET /api/v1/webhooks response required hasMore",
       "GET /api/v1/webhooks/{id}/deliveries response required hasMore",
+      "GET /api/v1/x/account-connection-links response required links[].apiKeyId",
+      "GET /api/v1/x/account-connection-links/{id} response required apiKeyId",
       "GET /api/v1/x/bookmarks/folders response required folders[].name",
       "GET /api/v1/x/communities/find response required communities[].is_nsfw",
       "GET /api/v1/x/communities/find response required communities[].member_count",
@@ -94,6 +96,7 @@
       "POST /api/v1/credits/topup response required chargedMinorUnits",
       "POST /api/v1/support/tickets request required body",
       "POST /api/v1/support/tickets/{id}/messages request required body",
+      "POST /api/v1/x/account-connection-links response required apiKeyId",
       "POST /api/v1/x/media request required url",
       "PUT /api/v1/styles/{id} request required label"
     ]

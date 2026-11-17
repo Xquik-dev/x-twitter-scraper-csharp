@@ -90,6 +90,19 @@ public sealed record class AccountConnectionLinkCreateResponse : JsonModel
         init { this._rawData.Set("returnUrl", value); }
     }
 
+    /// <summary>
+    /// The ID of the API key that made the link, or null when a dashboard session made it.
+    /// </summary>
+    public string? ApiKeyID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("apiKeyId");
+        }
+        init { this._rawData.Set("apiKeyId", value); }
+    }
+
     public required string? AccountID
     {
         get
@@ -195,6 +208,7 @@ public sealed record class AccountConnectionLinkCreateResponse : JsonModel
         this.Status.Validate();
         _ = this.Reference;
         _ = this.ReturnUrl;
+        _ = this.ApiKeyID;
         _ = this.AccountID;
         _ = this.XUserID;
         _ = this.XUsername;

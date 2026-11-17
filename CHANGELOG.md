@@ -5,6 +5,7 @@
 ### Features
 
 * `X.AccountConnectionLinks.List` pages through your connect links, newest first, as `AccountConnectionLinkListResponse`. Pass `NextCursor` back as `Cursor` while `HasMore` is true.
+* `XAccountConnectionLink` and `AccountConnectionLinkCreateResponse` carry `ApiKeyID`, the API key that made the link, or null when a dashboard session made it. With `List`, it finds the links a leaked key made, so you can revoke them.
 * Every request sends `X-Xquik-SDK: csharp` beside the existing headers, so Xquik can count C# SDK requests.
 * The 6 `X.Analysis` params take `Queries`, `Usernames` and `ListIDs`, which join several searches, accounts or Lists into 1 search, and `ThreadOf`, `RepliesBy`, `MediaBy` and `LikedBy`, which analyze 1 post's thread or 1 account's replies, media or likes.
 * `PaginatedTweets`, `PaginatedTweets2` and `SportsGamePosts` carry `HiddenTimeline`, present on an empty last page when X shows the account's timeline to nobody, so the page doesn't mean the account posted nothing.
