@@ -326,6 +326,29 @@ public sealed record class PaginatedTweets2 : JsonModel
     }
 
     /// <summary>
+    /// Present on a last page that X cut short. `stalled` means X returned no new
+    /// results 2 times in a row, 30 s apart. The list may hold more. Read it again
+    /// later without cursor.
+    /// </summary>
+    public ApiEnum<string, CoverageEndReason>? EndReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, CoverageEndReason>>("endReason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("endReason", value);
+        }
+    }
+
+    /// <summary>
     /// The query that ran, when it differs from your q.
     /// </summary>
     public string? SearchedQuery
@@ -380,6 +403,7 @@ public sealed record class PaginatedTweets2 : JsonModel
         _ = this.ReadBackTo;
         _ = this.HiddenTimeline;
         _ = this.WindowComplete;
+        this.EndReason?.Validate();
         _ = this.SearchedQuery;
         this.SearchContext?.Validate();
     }
