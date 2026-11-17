@@ -211,9 +211,7 @@ public sealed class AccountConnectionLinkServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<
-        HttpResponse<AccountConnectionLinks::AccountConnectionLinkListResponse>
-    > List(
+    public async Task<HttpResponse<AccountConnectionLinks::AccountConnectionLinkListResponse>> List(
         AccountConnectionLinks::AccountConnectionLinkListParams? parameters = null,
         CancellationToken cancellationToken = default
     )

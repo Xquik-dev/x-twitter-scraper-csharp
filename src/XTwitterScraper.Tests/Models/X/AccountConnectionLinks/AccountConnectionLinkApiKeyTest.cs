@@ -57,10 +57,8 @@ public class AccountConnectionLinkApiKeyTest
         );
         Assert.NotNull(link);
 
-        var json = JsonSerializer.SerializeToElement(
-            link with { ApiKeyID = null },
-            ModelBase.SerializerOptions
-        );
+        var dashboard = link with { ApiKeyID = null };
+        var json = JsonSerializer.SerializeToElement(dashboard, ModelBase.SerializerOptions);
 
         Assert.Equal(JsonValueKind.Null, json.GetProperty("apiKeyId").ValueKind);
     }
