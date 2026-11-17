@@ -145,6 +145,29 @@ public sealed record class PaginatedUsers : JsonModel
         }
     }
 
+    /// <summary>
+    /// Present on a last page that X cut short. `stalled` means X returned no new
+    /// results 2 times in a row, 30 s apart. The list may hold more. Read it again
+    /// later without cursor.
+    /// </summary>
+    public ApiEnum<string, CoverageEndReason>? EndReason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<ApiEnum<string, CoverageEndReason>>("endReason");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("endReason", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -158,6 +181,7 @@ public sealed record class PaginatedUsers : JsonModel
         this.ScanLimit?.Validate();
         this.Diagnostic?.Validate();
         _ = this.WindowComplete;
+        this.EndReason?.Validate();
     }
 
     public PaginatedUsers() { }
