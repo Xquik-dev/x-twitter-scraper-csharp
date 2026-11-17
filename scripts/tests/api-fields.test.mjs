@@ -21,7 +21,8 @@ const MONITOR_FILES = [
     .filter((name) => name.endsWith(".cs"))
     .map((name) => `${SOURCE}/Models/Monitors/${name}`),
 ];
-const NEXT_STEP = "Fix each field above in the SDK, or list it in accepted-field-differences.json with a reason.";
+const NEXT_STEP =
+  "Fix each line above in the SDK, list a field in accepted-field-differences.json or an operation in excluded-operations.json with a reason.";
 const SDK_FORM_STEP =
   "Write each line above in the style of the generated code, or teach scripts/lib/api-fields/sdk.mjs the new form.";
 const UNREADABLE_TAIL =
@@ -327,13 +328,33 @@ test("the server path joins the spec path, at the document, path or operation le
   }
 });
 
-test("operations only the spec or only the SDK has are not compared", (t) => {
+const NEW_OPERATION = monitorOperation({ type: "object", properties: { a: { type: "string" } } });
+
+test("an operation only the spec has fails, sorted before the field lines", (t) => {
+  const schema = monitorSchema();
+  schema.properties.plan = { type: "string" };
   const paths = {
-    "/api/v1/monitors/{id}": { get: monitorOperation(monitorSchema()) },
-    "/api/v1/something-new": { get: monitorOperation({ type: "object", properties: { a: { type: "string" } } }) },
+    "/api/v1/something-new": { post: NEW_OPERATION, get: NEW_OPERATION },
+    "/api/v1/monitors/{id}": { get: monitorOperation(schema) },
   };
 
-  assertPasses(runCheck(t, specOf(paths)));
+  assertFails(
+    runCheck(t, specOf(paths)),
+    "GET /api/v1/something-new is in the API but not in the SDK.",
+    "POST /api/v1/something-new is in the API but not in the SDK.",
+    `${MONITOR} response missing plan`,
+    NEXT_STEP,
+  );
+});
+
+test("an operation only the spec has passes once excluded, and one only the SDK has is not compared", (t) => {
+  const paths = {
+    "/api/v1/monitors/{id}": { get: monitorOperation(monitorSchema()) },
+    "/api/v1/something-new": { get: NEW_OPERATION },
+  };
+  const excluded = [{ reason: "Not an SDK operation.", operations: ["GET /api/v1/something-new"] }];
+
+  assertPasses(runCheck(t, specOf(paths), { excluded }));
 });
 
 test("an accepted difference passes and counts, with 1 in the singular", (t) => {

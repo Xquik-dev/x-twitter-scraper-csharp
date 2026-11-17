@@ -68,7 +68,12 @@ export async function check(root, source) {
   const spec = readSpec(await loadSpec(source), source);
   const sdk = readSdk(root);
   const skipped = new Set([...excluded].map((entry) => operationKey(...splitOperation(entry))));
-  const compared = [...spec.keys()].filter((key) => sdk.has(key) && !skipped.has(key));
+  const expected = [...spec.keys()].filter((key) => !skipped.has(key));
+  const uncovered = expected
+    .filter((key) => !sdk.has(key))
+    .map((key) => `${spec.get(key).label} is in the API but not in the SDK.`)
+    .sort();
+  const compared = expected.filter((key) => sdk.has(key));
   const found = new Set(
     compared.flatMap((key) =>
       differences(spec.get(key).shape, sdk.get(key)).map(
@@ -83,11 +88,12 @@ export async function check(root, source) {
       .map((line) => `${ACCEPTED_FILE} lists ${line}, which the check no longer finds. Remove it.`),
     ...staleExclusions(excluded, spec),
   ];
-  if (unaccepted.length > 0) {
+  if (uncovered.length > 0 || unaccepted.length > 0) {
     throw new CheckFailure(
+      ...uncovered,
       ...unaccepted,
       ...stale,
-      `Fix each field above in the SDK, or list it in ${ACCEPTED_FILE} with a reason.`,
+      `Fix each line above in the SDK, list a field in ${ACCEPTED_FILE} or an operation in ${EXCLUDED_FILE} with a reason.`,
     );
   }
   if (stale.length > 0) {
