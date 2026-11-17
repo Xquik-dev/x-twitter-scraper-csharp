@@ -56,6 +56,14 @@ public interface IAccountConnectionLinkService
     );
 
     /// <summary>
+    /// Lists your connect links, newest first, with `apiKeyId` naming the API key that made each one, or null for a dashboard session. Use it to find and revoke the links a leaked key made. It never holds a token. Takes a Full access API key holding `connectsXAccounts`, or a dashboard session.
+    /// </summary>
+    Task<AccountConnectionLinks::AccountConnectionLinkListResponse> List(
+        AccountConnectionLinks::AccountConnectionLinkListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Stops a link working. An account it already connected stays connected. Takes a Full access API key or a dashboard session.
     /// </summary>
     Task<AccountConnectionLinks::AccountConnectionLinkRevokeResponse> Revoke(
@@ -108,6 +116,15 @@ public interface IAccountConnectionLinkServiceWithRawResponse
     Task<HttpResponse<Models::XAccountConnectionLink>> Retrieve(
         string id,
         AccountConnectionLinks::AccountConnectionLinkRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /x/account-connection-links</c>, but is otherwise the
+    /// same as <see cref="IAccountConnectionLinkService.List(AccountConnectionLinks::AccountConnectionLinkListParams?, CancellationToken)"/>
+    /// </summary>
+    Task<HttpResponse<AccountConnectionLinks::AccountConnectionLinkListResponse>> List(
+        AccountConnectionLinks::AccountConnectionLinkListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

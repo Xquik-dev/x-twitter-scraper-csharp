@@ -78,6 +78,18 @@ public sealed class AccountConnectionLinkService : IAccountConnectionLinkService
     }
 
     /// <inheritdoc/>
+    public async Task<AccountConnectionLinks::AccountConnectionLinkListResponse> List(
+        AccountConnectionLinks::AccountConnectionLinkListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.List(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
     public async Task<AccountConnectionLinks::AccountConnectionLinkRevokeResponse> Revoke(
         AccountConnectionLinks::AccountConnectionLinkRevokeParams parameters,
         CancellationToken cancellationToken = default
@@ -196,6 +208,38 @@ public sealed class AccountConnectionLinkServiceWithRawResponse
         parameters ??= new();
 
         return this.Retrieve(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<
+        HttpResponse<AccountConnectionLinks::AccountConnectionLinkListResponse>
+    > List(
+        AccountConnectionLinks::AccountConnectionLinkListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        HttpRequest<AccountConnectionLinks::AccountConnectionLinkListParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserialized = await response
+                    .Deserialize<AccountConnectionLinks::AccountConnectionLinkListResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserialized.Validate();
+                }
+                return deserialized;
+            }
+        );
     }
 
     /// <inheritdoc/>
