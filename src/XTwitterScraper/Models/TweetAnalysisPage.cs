@@ -58,6 +58,33 @@ public sealed record class TweetAnalysisPage : JsonModel
     }
 
     /// <summary>
+    /// IDs of the posts or texts the time ran out for. Send them again in tweetIds, or
+    /// those texts in texts. They cost nothing.
+    /// </summary>
+    public IReadOnlyList<string>? UnprocessedIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>(
+                "unprocessed_ids"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "unprocessed_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Totals of the answers across the analyzed posts.
     /// </summary>
     public required global::XTwitterScraper.Models.TweetAnalysisSummary AnalysisSummary
@@ -152,6 +179,7 @@ public sealed record class TweetAnalysisPage : JsonModel
         {
             item.Validate();
         }
+        _ = this.UnprocessedIDs;
         this.AnalysisSummary.Validate();
         _ = this.HasNextPage;
         _ = this.NextCursor;
