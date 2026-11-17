@@ -66,9 +66,7 @@ public sealed record class TweetAnalysisPage : JsonModel
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<string>>(
-                "unprocessed_ids"
-            );
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("unprocessed_ids");
         }
         init
         {

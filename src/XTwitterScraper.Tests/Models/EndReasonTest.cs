@@ -17,16 +17,14 @@ public class EndReasonTest
     const string UserPage = "\"users\":[],\"has_next_page\":false,\"next_cursor\":\"\"";
     const string SportsPage = TweetPage + ",\"query\":null";
 
-    static readonly Dictionary<
-        string,
-        Func<string, ApiEnum<string, CoverageEndReason>?>
-    > Pages = new()
-    {
-        ["PaginatedTweets"] = (json) => Read<PaginatedTweets>(TweetPage + json).EndReason,
-        ["PaginatedTweets2"] = (json) => Read<PaginatedTweets2>(TweetPage + json).EndReason,
-        ["PaginatedUsers"] = (json) => Read<PaginatedUsers>(UserPage + json).EndReason,
-        ["SportsGamePosts"] = (json) => Read<SportsGamePosts>(SportsPage + json).EndReason,
-    };
+    static readonly Dictionary<string, Func<string, ApiEnum<string, CoverageEndReason>?>> Pages =
+        new()
+        {
+            ["PaginatedTweets"] = (json) => Read<PaginatedTweets>(TweetPage + json).EndReason,
+            ["PaginatedTweets2"] = (json) => Read<PaginatedTweets2>(TweetPage + json).EndReason,
+            ["PaginatedUsers"] = (json) => Read<PaginatedUsers>(UserPage + json).EndReason,
+            ["SportsGamePosts"] = (json) => Read<SportsGamePosts>(SportsPage + json).EndReason,
+        };
 
     static T Read<T>(string fields)
         where T : ModelBase
