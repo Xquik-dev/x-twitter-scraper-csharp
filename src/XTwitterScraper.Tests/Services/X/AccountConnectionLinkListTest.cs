@@ -71,8 +71,10 @@ public class AccountConnectionLinkListTest
         Assert.Equal(2, page.Links.Count);
         Assert.Equal("xlink_AAAAAAAAAAAAAAAA", page.Links[0].ID);
         Assert.Equal(XAccountConnectionLinkStatus.Revoked, page.Links[0].Status.Value());
+        Assert.Equal("17", page.Links[0].ApiKeyID);
         Assert.Equal("xlink_BBBBBBBBBBBBBBBB", page.Links[1].ID);
         Assert.Equal("42", page.Links[1].AccountID);
+        Assert.Null(page.Links[1].ApiKeyID);
     }
 
     [Fact]
