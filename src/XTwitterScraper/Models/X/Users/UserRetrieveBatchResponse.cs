@@ -90,6 +90,7 @@ public sealed record class UserRetrieveBatchResponse : JsonModel
 
     /// <summary>
     /// Processed IDs with no returned profile, in first-seen request order.
+    /// NotFoundIDs and SuspendedIDs split them by X's answer.
     /// </summary>
     public required IReadOnlyList<string> UnavailableIds
     {
@@ -103,6 +104,56 @@ public sealed record class UserRetrieveBatchResponse : JsonModel
             this._rawData.Set<ImmutableArray<string>>(
                 "unavailable_ids",
                 ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The unavailable IDs no account holds, as X answers for an account that
+    /// was deactivated or deleted, in first-seen request order.
+    /// </summary>
+    public IReadOnlyList<string>? NotFoundIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("not_found_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "not_found_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The unavailable IDs of accounts X suspended, in first-seen request
+    /// order.
+    /// </summary>
+    public IReadOnlyList<string>? SuspendedIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("suspended_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "suspended_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -200,6 +251,8 @@ public sealed record class UserRetrieveBatchResponse : JsonModel
         _ = this.RequestedCount;
         _ = this.ReturnedCount;
         _ = this.UnavailableIds;
+        _ = this.NotFoundIDs;
+        _ = this.SuspendedIDs;
         _ = this.UnprocessedIds;
         foreach (var item in this.Users)
         {

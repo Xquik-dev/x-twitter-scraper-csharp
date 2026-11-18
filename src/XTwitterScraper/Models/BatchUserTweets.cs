@@ -60,7 +60,7 @@ public sealed record class BatchUserTweets : JsonModel
     }
 
     /// <summary>
-    /// Users with no account on X or with protected posts, in first-seen request order. They cost nothing.
+    /// Users with no account on X or with protected posts, in first-seen request order. They cost nothing. NotFoundIDs, SuspendedIDs and ProtectedIDs split them by X's answer.
     /// </summary>
     public required IReadOnlyList<string> UnavailableIDs
     {
@@ -74,6 +74,80 @@ public sealed record class BatchUserTweets : JsonModel
             this._rawData.Set<ImmutableArray<string>>(
                 "unavailable_ids",
                 ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The unavailable users no account holds, as X answers for an account that
+    /// was deactivated or deleted, in first-seen request order.
+    /// </summary>
+    public IReadOnlyList<string>? NotFoundIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("not_found_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "not_found_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The unavailable users X suspended, in first-seen request order.
+    /// </summary>
+    public IReadOnlyList<string>? SuspendedIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("suspended_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "suspended_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The unavailable users whose posts only approved followers see, in
+    /// first-seen request order.
+    /// </summary>
+    public IReadOnlyList<string>? ProtectedIDs
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<string>>("protected_ids");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<string>?>(
+                "protected_ids",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
@@ -107,6 +181,9 @@ public sealed record class BatchUserTweets : JsonModel
         _ = this.HasNextPage;
         _ = this.NextCursor;
         _ = this.UnavailableIDs;
+        _ = this.NotFoundIDs;
+        _ = this.SuspendedIDs;
+        _ = this.ProtectedIDs;
         _ = this.UnprocessedIDs;
     }
 
