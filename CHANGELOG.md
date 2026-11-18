@@ -1,9 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.6.3 (2026-11-18)
+
+[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
 
 ### Features
 
+* `X.Users.RetrieveBatch` returns `NotFoundIDs` and `SuspendedIDs`, and `X.Users.RetrieveBatchTweets` returns those and `ProtectedIDs`. They split the unavailable IDs by X's answer. `NotFoundIDs` holds accounts that were deactivated or deleted, `SuspendedIDs` the accounts X suspended, and `ProtectedIDs` the users whose posts only approved followers see. Each reads null on an answer from before the split.
 * `X.AccountConnectionLinks.List` pages through your connect links, newest first, as `AccountConnectionLinkListResponse`. Pass `NextCursor` back as `Cursor` while `HasMore` is true.
 * `XAccountConnectionLink` and `AccountConnectionLinkCreateResponse` carry `ApiKeyID`, the API key that made the link, or null when a dashboard session made it. With `List`, it finds the links a leaked key made, so you can revoke them.
 * `PaginatedTweets`, `PaginatedTweets2`, `PaginatedUsers` and `SportsGamePosts` carry `EndReason`, a `CoverageEndReason` present on a last page that X cut short. `Stalled` means X returned no new results 2 times in a row, so the list may hold more. Read it again later without `Cursor`.
@@ -16,13 +19,6 @@
 * `X.Tweets.Create` takes `MediaIDs`, the IDs that `POST /x/media` returns. Send `Media` or `MediaIDs`, not both. Error codes add `MediaNotUploaded`.
 * The 6 `X.Analysis` params take `Topic` and `ImageShows`, which keep only posts about a topic or with matching photos before the analysis runs. Send one, not both. `TweetAnalysisPage` carries `TopicFilter` or `ImageFilter` with the cutoff and counts.
 * `UserRetrieveMentionsParams` takes `OwnThreads`. With `Replies` set to `Exclude`, it also leaves out replies to the author's own posts.
-
-## 0.6.3 (2026-11-09)
-
-[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
-
-### Features
-
 * The 86 operations the SDK lacked gain methods. New services are `Activity`, `Monitors.Posts`, `Support.Attachments`, `X.AccountConnectionLinks`, `X.Analysis`, `X.Broadcasts`, `X.CommunityNotes`, `X.Communities.Media`, `X.Jobs`, `X.Spaces` and `X.Sports`.
 * Existing models and params gain 1293 optional typed properties for fields the API already sends or reads.
 * `POST /x/accounts/bulk-retry` can name accounts through `AccountIDs`. Leaving it unset still retries every account.
