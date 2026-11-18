@@ -69,6 +69,10 @@ Run them alone with `./scripts/test-scripts`.
 With push access, it posts the `xquik-local-checks` commit status for a clean, pushed `HEAD`.
 Pass `--no-status` to skip the status.
 
+When `git config checklocal.runner` names a command, `bin/check-local` runs that command with the checkout path and its own arguments instead, so a maintainer can run the checks on another machine.
+`bin/release-local` runs its checks the same way.
+Set `CHECK_LOCAL_HERE=1` to run them here anyway.
+
 Run a single gate with its script in `scripts/`.
 
 Coverage must remain at least 90% for lines and 80% for branches.
