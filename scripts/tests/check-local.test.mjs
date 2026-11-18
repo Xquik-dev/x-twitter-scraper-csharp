@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { test } from "node:test";
 
 import { createSandbox } from "./support.mjs";
@@ -143,4 +145,49 @@ test("a failing check stops the run and posts a failure status that names it", (
     result.sandbox.log("gh").at(-1),
     `${statuses}/${result.head} -f state=failure -f context=xquik-local-checks -f description=Failed at Coverage.`,
   );
+});
+
+const runnerFake = `#!/bin/sh
+printf '%s\\n' "$@" >"$FAKE_LOGS/runner"
+exit "\${FAKE_RUNNER_EXIT:-0}"
+`;
+
+function runnerProject(t, { args = [], env = {} } = {}) {
+  const sandbox = createSandbox(t);
+  sandbox.copy("bin/check-local");
+  for (const name of checkScripts) {
+    sandbox.write(`scripts/${name}`, stub(name), 0o755);
+  }
+  for (const name of ["codeql", "dotnet", "gh", "reuse", "shellcheck", "uvx"]) {
+    sandbox.fake(name, recordingFake(name));
+  }
+  sandbox.fake("runner", runnerFake);
+  sandbox.commit();
+  sandbox.git("config", "checklocal.runner", path.join(sandbox.base, "bin", "runner"));
+  return { ...sandbox.run("bin/check-local", args, env), sandbox };
+}
+
+test("a configured runner gets the checkout and the arguments instead of the checks", (t) => {
+  const result = runnerProject(t, { args: ["--no-status"] });
+
+  assert.equal(result.status, 0);
+  assert.deepEqual(result.sandbox.log("runner"), [fs.realpathSync(result.sandbox.repo), "--no-status"]);
+  assert.equal(result.stdout.includes("==> API fields"), false);
+  assert.deepEqual(result.sandbox.log("dotnet"), []);
+});
+
+test("CHECK_LOCAL_HERE=1 runs the checks here despite a configured runner", (t) => {
+  const result = runnerProject(t, { args: ["--no-status"], env: { CHECK_LOCAL_HERE: "1" } });
+
+  assert.equal(result.status, 0);
+  assert.deepEqual(result.sandbox.log("runner"), []);
+  assert.equal(result.stdout.split("\n").at(-2), passedLine);
+});
+
+test("a failing runner fails bin/check-local with its exit status", (t) => {
+  const result = runnerProject(t, { env: { FAKE_RUNNER_EXIT: "7" } });
+
+  assert.equal(result.status, 7);
+  assert.deepEqual(result.sandbox.log("runner"), [fs.realpathSync(result.sandbox.repo)]);
+  assert.deepEqual(result.sandbox.log("gh"), []);
 });
