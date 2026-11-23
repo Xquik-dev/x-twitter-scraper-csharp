@@ -46,7 +46,7 @@ public record class ExtractionRetrieveParams : ParamsBase
     }
 
     /// <summary>
-    /// Maximum number of results to return (1-1000, default 100)
+    /// Maximum number of results to return (1-10000, default 100)
     /// </summary>
     public long? Limit
     {
