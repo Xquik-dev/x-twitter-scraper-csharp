@@ -3,6 +3,7 @@
 ## Unreleased
 
 - `ClientOptions.DefaultTimeout` is now 80 seconds, up from 1 minute, since some API reads take longer than a minute to answer. A `Timeout` you set works as before.
+- A post carries `CommunityUnavailable` when X shows no Community for it, and embedded posts carry it too. Its `Reason` is X's reason, as X writes it. Each `FootballScheduleGame` from `X.Sports.ListGames` carries `Rankings`, the teams X ranks in its college football poll with their `Rank`. It is empty when X ranks neither team, and for the NFL, and reads null on an answer from before the field.
 
 ## 0.6.3 (2026-11-18)
 

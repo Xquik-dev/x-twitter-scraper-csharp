@@ -272,6 +272,33 @@ public sealed record class FootballScheduleGame : JsonModel
         init { this._rawData.Set("odds", value); }
     }
 
+    /// <summary>
+    /// Each team X ranks in its college football poll, with its rank. Empty when X
+    /// ranks neither team, &amp; for the NFL.
+    /// </summary>
+    public IReadOnlyList<global::XTwitterScraper.Models.FootballPollRanking>? Rankings
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<global::XTwitterScraper.Models.FootballPollRanking>
+            >("rankings");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<global::XTwitterScraper.Models.FootballPollRanking>?>(
+                "rankings",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -290,6 +317,10 @@ public sealed record class FootballScheduleGame : JsonModel
             item.Validate();
         }
         this.Odds?.Validate();
+        foreach (var item in this.Rankings ?? [])
+        {
+            item.Validate();
+        }
     }
 
     public FootballScheduleGame() { }
