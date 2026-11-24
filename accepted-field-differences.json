@@ -82,7 +82,6 @@
       "GET /api/v1/x/places/search response required places[].containedWithin[].name",
       "GET /api/v1/x/places/search response required places[].containedWithin[].placeType",
       "GET /api/v1/x/places/search response required places[].containedWithin[].url",
-      "GET /api/v1/x/sports/{league}/games response required games[].rankings",
       "GET /api/v1/x/tweets/search request required q",
       "GET /api/v1/x/tweets/{id} response required author.followers",
       "GET /api/v1/x/tweets/{id} response required author.verified",

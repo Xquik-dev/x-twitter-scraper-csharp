@@ -4,6 +4,7 @@
 
 using System.Text.Json;
 using XTwitterScraper.Core;
+using XTwitterScraper.Exceptions;
 using XTwitterScraper.Models;
 
 namespace XTwitterScraper.Tests.Models;
@@ -54,15 +55,18 @@ public class FootballPollRankingTest
     }
 
     [Fact]
-    public void AnAnswerFromBeforeRankingsReadsNull()
+    public void AGameWithoutRankingsFailsValidation()
     {
-        Assert.Null(Read("").Rankings);
+        Assert.Throws<XTwitterScraperInvalidDataException>(() => Read(""));
     }
 
     [Fact]
     public void RankingsWriteTheirWireValues()
     {
-        var game = Read("") with { Rankings = [new() { TeamID = "689566294702555136", Rank = 1 }] };
+        var game = Read(",\"rankings\":[]") with
+        {
+            Rankings = [new() { TeamID = "689566294702555136", Rank = 1 }],
+        };
 
         var json = JsonSerializer.SerializeToElement(game, ModelBase.SerializerOptions);
         var ranking = Assert.Single(json.GetProperty("rankings").EnumerateArray());
