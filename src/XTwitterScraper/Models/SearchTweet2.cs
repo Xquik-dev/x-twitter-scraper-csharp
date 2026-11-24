@@ -2943,6 +2943,29 @@ public sealed record class SearchTweet2 : JsonModel
     }
 
     /// <summary>
+    /// Why X shows no Community for the post. Omitted when X names no reason.
+    /// </summary>
+    public global::XTwitterScraper.Models.CommunityUnavailable? CommunityUnavailable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<global::XTwitterScraper.Models.CommunityUnavailable>(
+                "communityUnavailable"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("communityUnavailable", value);
+        }
+    }
+
+    /// <summary>
     /// Community Note presentation metadata returned by X.
     /// </summary>
     public global::XTwitterScraper.Models.TweetCommunityNote? CommunityNote
@@ -3798,6 +3821,7 @@ public sealed record class SearchTweet2 : JsonModel
         }
         _ = this.CommunityID;
         _ = this.CommunityName;
+        this.CommunityUnavailable?.Validate();
         this.CommunityNote?.Validate();
         _ = this.HasCommunityNotes;
         this.Edit?.Validate();

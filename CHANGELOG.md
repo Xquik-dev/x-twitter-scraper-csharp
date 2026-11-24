@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `ClientOptions.DefaultTimeout` is now 80 seconds, up from 1 minute, since some API reads take longer than a minute to answer. A `Timeout` you set works as before.
+- A post carries `CommunityUnavailable` when X shows no Community for it, and embedded posts carry it too. Its `Reason` is X's reason, as X writes it. Each `FootballScheduleGame` from `X.Sports.ListGames` carries `Rankings`, the teams X ranks in its college football poll with their `Rank`. It is empty when X ranks neither team, and for the NFL. `Rankings` is required, as the API marks it, so code that builds a `FootballScheduleGame` with an initializer must now set it.
+
 ## 0.6.3 (2026-11-18)
 
 [Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)

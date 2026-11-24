@@ -29,7 +29,7 @@ public class ClientOptionsTest
         using var httpClient = new ClientOptions().HttpClient;
 
         Assert.Equal(2, ClientOptions.DefaultMaxRetries);
-        Assert.Equal(TimeSpan.FromMinutes(1), ClientOptions.DefaultTimeout);
+        Assert.Equal(TimeSpan.FromSeconds(80), ClientOptions.DefaultTimeout);
         Assert.Equal(Timeout.InfiniteTimeSpan, httpClient.Timeout);
     }
 }

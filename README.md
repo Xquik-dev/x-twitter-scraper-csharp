@@ -257,7 +257,7 @@ Console.WriteLine(account);
 
 ## Timeouts
 
-Requests time out after 1 minute by default.
+Requests time out after 80 seconds by default.
 
 Set `Timeout` on the client.
 

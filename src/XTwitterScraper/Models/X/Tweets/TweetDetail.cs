@@ -1033,6 +1033,27 @@ public sealed record class TweetDetail : JsonModel
     }
 
     /// <summary>
+    /// Why X shows no Community for the post. Omitted when X names no reason.
+    /// </summary>
+    public CommunityUnavailable? CommunityUnavailable
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CommunityUnavailable>("communityUnavailable");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("communityUnavailable", value);
+        }
+    }
+
+    /// <summary>
     /// Whether X holds Community Notes on the post, shown or not.
     /// </summary>
     public bool? HasCommunityNotes
@@ -1565,6 +1586,7 @@ public sealed record class TweetDetail : JsonModel
         }
         _ = this.CommunityID;
         _ = this.CommunityName;
+        this.CommunityUnavailable?.Validate();
         _ = this.HasCommunityNotes;
         this.ExclusiveContent?.Validate();
         _ = this.GrokShareAttachment;
