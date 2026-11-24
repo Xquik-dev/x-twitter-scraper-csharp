@@ -20,7 +20,7 @@ public record struct ClientOptions()
     /// <summary>
     /// The default value used for <see cref="Timeout"/>.
     /// </summary>
-    public static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes(1);
+    public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(80);
 
     /// <summary>
     /// The HTTP client to use for making requests in the SDK.
@@ -98,7 +98,7 @@ public record struct ClientOptions()
     /// <para>This includes resolving DNS, connecting, writing the request body, server processing, as
     /// well as reading the response body.</para>
     ///
-    /// <para>Defaults to <c>TimeSpan.FromMinutes(1)</c> when null.</para>
+    /// <para>Defaults to <c>TimeSpan.FromSeconds(80)</c> when null.</para>
     /// </summary>
     public TimeSpan? Timeout { get; set; } = null;
 

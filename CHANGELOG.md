@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `ClientOptions.DefaultTimeout` is now 80 seconds, up from 1 minute, since some API reads take longer than a minute to answer. A `Timeout` you set works as before.
+
 ## 0.6.3 (2026-11-18)
 
 [Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
