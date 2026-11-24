@@ -1,15 +1,18 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 (2026-11-24)
 
-- `ClientOptions.DefaultTimeout` is now 80 seconds, up from 1 minute, since some API reads take longer than a minute to answer. A `Timeout` you set works as before.
-- A post carries `CommunityUnavailable` when X shows no Community for it, and embedded posts carry it too. Its `Reason` is X's reason, as X writes it. Each `FootballScheduleGame` from `X.Sports.ListGames` carries `Rankings`, the teams X ranks in its college football poll with their `Rank`. It is empty when X ranks neither team, and for the NFL. `Rankings` is required, as the API marks it, so code that builds a `FootballScheduleGame` with an initializer must now set it.
+[Full changelog from v0.6.2 to v0.7.0](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.7.0)
 
-## 0.6.3 (2026-11-18)
+### Breaking Changes
 
-[Full changelog from v0.6.2 to v0.6.3](https://github.com/Xquik-dev/x-twitter-scraper-csharp/compare/v0.6.2...v0.6.3)
+* `FootballScheduleGame.Rankings` is required, as the API marks it, so code that builds a `FootballScheduleGame` with an initializer must now set it.
 
 ### Features
+
+* `ClientOptions.DefaultTimeout` is now 80 seconds, up from 1 minute, since some API reads take longer than a minute to answer. A `Timeout` you set works as before.
+* A post carries `CommunityUnavailable` when X shows no Community for it, and embedded posts carry it too. Its `Reason` is X's reason, as X writes it.
+* Each `FootballScheduleGame` from `X.Sports.ListGames` carries `Rankings`, the teams X ranks in its college football poll with their `Rank`. It is empty when X ranks neither team, and for the NFL.
 
 * `X.Users.RetrieveBatch` returns `NotFoundIDs` and `SuspendedIDs`, and `X.Users.RetrieveBatchTweets` returns those and `ProtectedIDs`. They split the unavailable IDs by X's answer. `NotFoundIDs` holds accounts that were deactivated or deleted, `SuspendedIDs` the accounts X suspended, and `ProtectedIDs` the users whose posts only approved followers see. Each reads null on an answer from before the split.
 * `X.AccountConnectionLinks.List` pages through your connect links, newest first, as `AccountConnectionLinkListResponse`. Pass `NextCursor` back as `Cursor` while `HasMore` is true.
